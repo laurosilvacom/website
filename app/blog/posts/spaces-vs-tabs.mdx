@@ -4,11 +4,716 @@ publishedAt: '2024-04-08'
 summary: 'Explore the enduring debate between using spaces and tabs for code indentation, and why this choice matters more than you might think.'
 ---
 
-The debate between using spaces and tabs for indentation in coding may seem trivial to the uninitiated, but it is a topic that continues to inspire passionate discussions among developers. This seemingly minor choice can affect code readability, maintenance, and even team dynamics.
+create a new next.js app
 
-Let's delve into the arguments for both sides and consider why this debate remains relevant in the software development world.
+npx create-next-app@latest website
+
+we want to use tailwind v4
+
+If you’d like to try upgrading a project from v3 to the v4 beta releases, you can use our upgrade tool to do the vast majority of the heavy lifting for you:
+Terminal
+$ npx @tailwindcss/upgrade@next
+
+
+let's use pnpm `pnpm i`
+
+let's deploy this application but first commit
+
+gh repo create
+
+```
+laurosilvacom@laurosilvacom website % gh repo create
+? What would you like to do? Push an existing local repository to GitHub
+? Path to local repository .
+? Repository name website
+? Repository owner laurosilvacom
+? Description personal website for laurosilva.com
+? Visibility Public
+✓ Created repository laurosilvacom/website on GitHub
+  https://github.com/laurosilvacom/website
+? Add a remote? Yes
+? What should the new remote be called? origin
+✓ Added remote git@github.com:laurosilvacom/website.git
+? Would you like to push commits from the current branch to "origin"? Yes
+```
+
+deply with vercel cli
+
+```
+laurosilvacom@laurosilvacom website % vercel deploy
+Vercel CLI 39.0.5
+? Set up and deploy “~/1-projects/website”? yes
+? Which scope should contain your project? Products
+? Link to existing project? no
+? What’s your project’s name? website
+? In which directory is your code located? ./
+Local settings detected in vercel.json:
+Auto-detected Project Settings (Next.js):
+- Build Command: next build
+- Development Command: next dev --port $PORT
+- Install Command: `yarn install`, `pnpm install`, `npm install`, or `bun install`
+- Output Directory: Next.js default
+? Want to modify these settings? no
+🔗  Linked to laurosilvacom-products/website (created .vercel)
+🔍  Inspect: https://vercel.com/laurosilvacom-products/website/CNDFL9f2qR1tQPZtFJWepgTcbK8f [2s]
+✅  Production: https://website-rgqowbstc-laurosilvacom-products.vercel.app [2s]
+```
+
+deployed https://website-rgqowbstc-laurosilvacom-products.vercel.app/
+
+
+next add depencies, we'll keep these minimal
+
+pnpm add sugar-high next-mdx-remote geist @vercel/speed-insights @vercel/analytics
+
+
+### 1. **Import Statements and Setup**
+
+```typescript
+import type { Metadata } from "next";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import "./globals.css";
+
+const baseUrl = "https://website.example.com/";
+```
+
+- **Imports:**
+  - `Metadata`: Type from Next.js for defining metadata.
+  - `GeistSans` and `GeistMono`: Custom fonts.
+  - `Analytics` and `SpeedInsights`: Components for analytics and performance insights.
+  - `./globals.css`: Global CSS styles.
+
+- **`baseUrl`:** The base URL of your website, used in metadata.
+
+---
+
+### 2. **Defining Metadata**
+
+```typescript
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: "Next.js Portfolio Starter",
+    template: "%s | Next.js Portfolio Starter",
+  },
+  description: "This is my portfolio.",
+  openGraph: {
+    title: "My Portfolio",
+    description: "This is my portfolio.",
+    url: baseUrl,
+    siteName: "My Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+```
+
+- **Purpose:** Define metadata for SEO and social media sharing.
+- **Fields:**
+  - **`metadataBase`:** Base URL for the application.
+  - **`title`:** Default title and template for dynamic titles.
+  - **`description`:** Description of the site.
+  - **`openGraph`:** Information used when links are shared on social platforms.
+  - **`robots`:** Instructions for web crawlers.
+
+---
+
+### 3. **Fixing the TypeScript Error in `cx` Function**
+
+**Original Function (with TypeScript error):**
+
+```typescript
+const cx = (...classes) => classes.filter(Boolean).join(" ");
+```
+
+- **Issue:** TypeScript error stating:
+  ```
+  ts: Rest parameter 'classes' implicitly has an 'any[]' type.
+  ```
+- **Reason:** Without explicit type annotations, TypeScript cannot infer the types of `classes`, defaulting to `any[]`, which is discouraged.
+
+**Updated Function (with type annotations):**
+
+```typescript
+const cx = (...classes: (string | false | null | undefined)[]) =>
+  classes.filter(Boolean).join(" ");
+```
+
+#### **Explanation:**
+
+- **Type Annotation Added:**
+  - **`(string | false | null | undefined)[]`:** Specifies that `classes` is an array where each element can be:
+    - `string`
+    - `false`
+    - `null`
+    - `undefined`
+- **Why These Types?:**
+  - In React and CSS class manipulation, it's common to conditionally include class names. Falsy values (`false`, `null`, `undefined`) are often included and then filtered out.
+- **Function Purpose:**
+  - **`filter(Boolean)`:** Removes falsy values.
+  - **`.join(" ")`:** Joins the remaining class names into a single string, separated by spaces.
+
+---
+
+### 4. **Using the `cx` Function in `RootLayout` Component**
+
+```typescript
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={cx(
+        "text-black bg-white dark:text-white dark:bg-black",
+        GeistSans.variable,
+        GeistMono.variable,
+      )}
+    >
+      <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
+        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
+          {children}
+
+          <Analytics />
+          <SpeedInsights />
+        </main>
+      </body>
+    </html>
+  );
+}
+```
+
+#### **Explanation:**
+
+- **Component Definition:**
+  - **`RootLayout`:** The root layout component for your Next.js app.
+  - **Props:**
+    - **`children`:** The content to be rendered inside the layout, typed as `React.ReactNode`.
+    - **`Readonly`:** Makes the `children` prop read-only, ensuring it isn't modified within the component.
+
+- **Using `cx` Function:**
+  - **Purpose:** Combine class names for the `<html>` element dynamically.
+  - **Classes:**
+    - `"text-black bg-white dark:text-white dark:bg-black"`: Base classes for light and dark modes.
+    - `GeistSans.variable`, `GeistMono.variable`: Class names for custom fonts.
+  - **Result:** The `cx` function filters out any falsy values from the arguments and returns a single string of class names.
+
+- **`<html>` Element:**
+  - **`lang="en"`:** Sets the language attribute for accessibility and SEO.
+  - **`className`:** Applies the combined class names from the `cx` function.
+
+- **`<body>` and `<main>` Elements:**
+  - **Styling Classes:** Apply utility classes for layout and typography.
+  - **Content:** Render the `children`, followed by `<Analytics />` and `<SpeedInsights />` components.
+
+---
+
+### 5. **Additional Components**
+
+- **`<Analytics />`:**
+  - Integrates Vercel Analytics to track user interactions.
+
+- **`<SpeedInsights />`:**
+  - Incorporates Vercel Speed Insights for performance monitoring.
+
+
+explain why we made these chnages
 
 ```ts
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+
+```
+
+from:
+
+```ts
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+```
+
+
+
+### **Changes Made:**
+
+1. **Changed `"target"` from `"ES2017"` to `"es5"`**
+   - **Why:** To increase compatibility with older browsers and environments that only support ES5 features. Targeting ES5 ensures the compiled JavaScript is widely supported.
+
+2. **Set `"strict"` from `true` to `false` and added `"strictNullChecks": true`**
+   - **Why Disable `strict`:** To relax TypeScript's strict type-checking rules, which can reduce the number of type errors during development.
+   - **Why Enable `strictNullChecks`:** Even with `strict` disabled, keeping `strictNullChecks` `true` helps prevent bugs related to `null` and `undefined`, which are common sources of errors.
+
+3. **Changed `"moduleResolution"` from `"bundler"` to `"node"`**
+   - **Why:** `"node"` is the standard module resolution strategy that mimics Node.js behavior. This change improves compatibility with Node.js modules and simplifies module importing.
+
+4. **Added `"forceConsistentCasingInFileNames": true`**
+   - **Why:** To enforce consistent file name casing across your project. This prevents issues that can occur on case-sensitive file systems, ensuring imports reference files correctly.
+
+5. **Added `"baseUrl": "."`**
+   - **Why:** Setting `"baseUrl"` to `"."` establishes the root directory for module resolution. It helps TypeScript resolve modules correctly without needing relative paths from every file.
+
+6. **Removed `"paths"` configuration**
+   - **Why:** Eliminating custom path aliases (`"@/*": ["./*"]`) simplifies module resolution. It avoids the need for additional tooling configuration to handle these aliases, reducing potential import errors.
+
+
+
+let vs const
+
+https://overreacted.io/on-let-vs-const/
+
+app/blog/utils.ts
+
+```
+import fs from "fs";
+import path from "path";
+
+type Metadata = {
+  title: string;
+  publishedAt: string;
+  summary: string;
+  image?: string;
+};
+
+function parseFrontmatter(fileContent: string) {
+  const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
+  const match = frontmatterRegex.exec(fileContent);
+  const frontMatterBlock = match![1];
+  const content = fileContent.replace(frontmatterRegex, "").trim();
+  const frontMatterLines = frontMatterBlock.trim().split("\n");
+  const metadata: Partial<Metadata> = {};
+
+  frontMatterLines.forEach((line) => {
+    const [key, ...valueArr] = line.split(": ");
+    let value = valueArr.join(": ").trim();
+    value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
+    metadata[key.trim() as keyof Metadata] = value;
+  });
+
+  return { metadata: metadata as Metadata, content };
+}
+
+function getMDXFiles(dir: string): string[] {
+  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+}
+
+function readMDXFile(filePath: string) {
+  const rawContent = fs.readFileSync(filePath, "utf-8");
+  return parseFrontmatter(rawContent);
+}
+
+function getMDXData(dir: string) {
+  const mdxFiles = getMDXFiles(dir);
+  return mdxFiles.map((file) => {
+    const { metadata, content } = readMDXFile(path.join(dir, file));
+    const slug = path.basename(file, path.extname(file));
+
+    return {
+      metadata,
+      slug,
+      content,
+    };
+  });
+}
+
+export function getBlogPosts() {
+  return getMDXData(path.join(process.cwd(), "app", "blog", "posts"));
+}
+
+export function formatDate(date: string, includeRelative = false) {
+  const currentDate = new Date();
+  const dateToUse = date.includes("T") ? date : `${date}T00:00:00`;
+  const targetDate = new Date(dateToUse);
+
+  const yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
+  const monthsAgo = currentDate.getMonth() - targetDate.getMonth();
+  const daysAgo = currentDate.getDate() - targetDate.getDate();
+
+  let formattedDate = "";
+
+  if (yearsAgo > 0) {
+    formattedDate = `${yearsAgo}y ago`;
+  } else if (monthsAgo > 0) {
+    formattedDate = `${monthsAgo}mo ago`;
+  } else if (daysAgo > 0) {
+    formattedDate = `${daysAgo}d ago`;
+  } else {
+    formattedDate = "Today";
+  }
+
+  const fullDate = targetDate.toLocaleString("en-us", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
+  if (!includeRelative) {
+    return fullDate;
+  }
+
+  return `${fullDate} (${formattedDate})`;
+}
+```
+
+
+## **1. Importing Required Modules**
+
+```typescript
+import fs from "fs";
+import path from "path";
+```
+
+We begin by importing the `fs` and `path` modules from Node.js:
+
+- **`fs`**: Provides filesystem-related functions, allowing us to read files from the disk.
+- **`path`**: Helps with file path manipulations, such as joining paths and extracting file extensions.
+
+---
+
+## **2. Defining the Metadata Type**
+
+```typescript
+type Metadata = {
+  title: string;
+  publishedAt: string;
+  summary: string;
+  image?: string;
+};
+```
+
+We define a `Metadata` type that represents the frontmatter structure of our MDX files:
+
+- **`title`**: The title of the blog post.
+- **`publishedAt`**: The publication date.
+- **`summary`**: A brief summary of the post.
+- **`image`** _(optional)_: An image associated with the post.
+
+---
+
+## **3. Parsing the Frontmatter**
+
+```typescript
+function parseFrontmatter(fileContent: string) {
+  const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
+  const match = frontmatterRegex.exec(fileContent);
+  const frontMatterBlock = match![1];
+  const content = fileContent.replace(frontmatterRegex, "").trim();
+  const frontMatterLines = frontMatterBlock.trim().split("\n");
+  const metadata: Partial<Metadata> = {};
+
+  frontMatterLines.forEach((line) => {
+    const [key, ...valueArr] = line.split(": ");
+    let value = valueArr.join(": ").trim();
+    value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
+    metadata[key.trim() as keyof Metadata] = value;
+  });
+
+  return { metadata: metadata as Metadata, content };
+}
+```
+
+### **Explanation:**
+
+- **Purpose**: Extracts metadata and content from an MDX file.
+
+- **Steps**:
+
+  1. **Regex Match**:
+     - **`frontmatterRegex`**: Matches the frontmatter block enclosed between `---`.
+     - **`match`**: Executes the regex on the file content.
+     - **`frontMatterBlock`**: Captures the content inside the frontmatter.
+
+  2. **Extract Content**:
+     - **`content`**: Removes the frontmatter from the file content, leaving the main body.
+
+  3. **Parse Frontmatter Lines**:
+     - **`frontMatterLines`**: Splits the frontmatter into individual lines.
+     - **`metadata`**: Initializes an empty object to store metadata.
+
+  4. **Process Each Line**:
+     - Splits each line into a key and value.
+     - Joins the value parts in case the value contains `": "`.
+     - Removes surrounding quotes from the value.
+     - Adds the key-value pair to the `metadata` object.
+
+- **Return Value**: An object containing:
+
+  - **`metadata`**: The extracted metadata.
+  - **`content`**: The MDX content without the frontmatter.
+
+---
+
+## **4. Getting MDX Files from a Directory**
+
+```typescript
+function getMDXFiles(dir: string): string[] {
+  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+}
+```
+
+### **Explanation:**
+
+- **Purpose**: Retrieves all `.mdx` files from a specified directory.
+
+- **Steps**:
+
+  1. **Read Directory**:
+     - **`fs.readdirSync(dir)`**: Reads the contents of the directory synchronously.
+
+  2. **Filter MDX Files**:
+     - Uses the `filter` method to keep only files with the `.mdx` extension.
+
+- **Return Value**: An array of MDX filenames.
+
+---
+
+## **5. Reading and Parsing MDX Files**
+
+```typescript
+function readMDXFile(filePath: string) {
+  const rawContent = fs.readFileSync(filePath, "utf-8");
+  return parseFrontmatter(rawContent);
+}
+```
+
+### **Explanation:**
+
+- **Purpose**: Reads an MDX file and parses its content and metadata.
+
+- **Steps**:
+
+  1. **Read File Content**:
+     - **`rawContent`**: Reads the file synchronously as a UTF-8 string.
+
+  2. **Parse Frontmatter**:
+     - Calls `parseFrontmatter` to extract metadata and content.
+
+---
+
+## **6. Aggregating MDX Data**
+
+```typescript
+function getMDXData(dir: string) {
+  const mdxFiles = getMDXFiles(dir);
+  return mdxFiles.map((file) => {
+    const { metadata, content } = readMDXFile(path.join(dir, file));
+    const slug = path.basename(file, path.extname(file));
+
+    return {
+      metadata,
+      slug,
+      content,
+    };
+  });
+}
+```
+
+### **Explanation:**
+
+- **Purpose**: Collects metadata and content from all MDX files in a directory.
+
+- **Steps**:
+
+  1. **Get List of MDX Files**:
+     - Calls `getMDXFiles` to get an array of MDX filenames.
+
+  2. **Map Over Files**:
+     - For each file:
+
+       - **Read and Parse**:
+         - Uses `readMDXFile` to get the metadata and content.
+
+       - **Create Slug**:
+         - **`slug`**: Generates a URL-friendly identifier by removing the file extension.
+
+       - **Return Object**:
+         - Contains the `metadata`, `slug`, and `content`.
+
+- **Return Value**: An array of objects, each representing an MDX file's data.
+
+---
+
+## **7. Exporting Blog Posts**
+
+```typescript
+export function getBlogPosts() {
+  return getMDXData(path.join(process.cwd(), "app", "blog", "posts"));
+}
+```
+
+### **Explanation:**
+
+- **Purpose**: Provides a function to retrieve all blog posts.
+
+- **Steps**:
+
+  1. **Determine Posts Directory**:
+     - **`process.cwd()`**: Gets the current working directory.
+     - **`path.join(...)`**: Constructs the path to the `posts` directory.
+
+  2. **Get MDX Data**:
+     - Calls `getMDXData` with the posts directory path to retrieve all blog posts.
+
+- **Usage**: This function can be imported and used to get all blog posts data in other parts of your application.
+
+---
+
+## **8. Formatting Dates**
+
+```typescript
+export function formatDate(date: string, includeRelative = false) {
+  const currentDate = new Date();
+  const dateToUse = date.includes("T") ? date : `${date}T00:00:00`;
+  const targetDate = new Date(dateToUse);
+
+  const yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
+  const monthsAgo = currentDate.getMonth() - targetDate.getMonth();
+  const daysAgo = currentDate.getDate() - targetDate.getDate();
+
+  let formattedDate = "";
+
+  if (yearsAgo > 0) {
+    formattedDate = `${yearsAgo}y ago`;
+  } else if (monthsAgo > 0) {
+    formattedDate = `${monthsAgo}mo ago`;
+  } else if (daysAgo > 0) {
+    formattedDate = `${daysAgo}d ago`;
+  } else {
+    formattedDate = "Today";
+  }
+
+  const fullDate = targetDate.toLocaleString("en-us", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
+  if (!includeRelative) {
+    return fullDate;
+  }
+
+  return `${fullDate} (${formattedDate})`;
+}
+```
+
+### **Explanation:**
+
+- **Purpose**: Formats a date string into a readable format, optionally including relative time (e.g., "2d ago").
+
+- **Steps**:
+
+  1. **Parse Dates**:
+     - **`currentDate`**: The current date and time.
+     - **`dateToUse`**: Ensures the input date includes a time component to avoid parsing issues.
+     - **`targetDate`**: The date to format.
+
+  2. **Calculate Time Differences**:
+     - **`yearsAgo`**, **`monthsAgo`**, **`daysAgo`**: Differences between `currentDate` and `targetDate`.
+
+  3. **Determine Relative Time**:
+     - Initializes **`formattedDate`** as an empty string.
+     - Sets `formattedDate` based on the largest non-zero time difference:
+       - Years, months, days, or "Today".
+
+  4. **Format Full Date**:
+     - **`fullDate`**: Converts `targetDate` to a string like "January 1, 2023".
+
+  5. **Return Result**:
+     - If `includeRelative` is `false`, returns `fullDate`.
+     - If `true`, returns `fullDate` with `formattedDate` in parentheses.
+
+- **Usage**: Useful for displaying publication dates in blog posts, with options for relative time.
+
+---
+
+## **Putting It All Together**
+
+This module provides utilities to:
+
+- **Read and Parse MDX Files**: Extract content and metadata from MDX files.
+- **Aggregate Blog Posts**: Collects all posts for display or processing.
+- **Format Dates**: Presents dates in a user-friendly format.
+
+
+
+adding footer and navbar heere
+
+....
+
+code for each one
+...
+
+
+
+let's create a blog page here
+
+
+```tsx
 export const metadata = {
   title: "Blog",
   description: "Read my blog.",
@@ -21,26 +726,440 @@ export default function Page() {
     </section>
   );
 }
+
 ```
 
-## The Case for Spaces
+### **What the `metadata` Object Contains**
 
-Advocates for using spaces argue that it ensures consistent code appearance across different editors, tools, and platforms. Because a space is a universally recognized character with a consistent width, code indented with spaces will look the same no matter where it's viewed. This consistency is crucial for maintaining readability and avoiding formatting issues when code is shared between team members or published online.
+In your code, the `metadata` object includes:
 
-Additionally, some programming languages and style guides explicitly recommend spaces for indentation, suggesting a certain number of spaces (often two or four) per indentation level. Adhering to these recommendations can be essential for projects that aim for best practices in code quality and readability.
+- **`title`:** `"Blog"`
+- **`description`:** `"Read my blog."`
 
-## The Case for Tabs
+### **How Next.js Uses `metadata`**
 
-On the other side of the debate, proponents of tabs highlight the flexibility that tabs offer. Because the width of a tab can be adjusted in most text editors, individual developers can choose how much indentation they prefer to see, making the code more accessible and comfortable to read on a personal level. This adaptability can be particularly beneficial in teams with diverse preferences regarding code layout.
+By exporting the `metadata` object from your page, Next.js will:
 
-Tabs also have the advantage of semantic meaning. A tab is explicitly meant to represent indentation, whereas a space is used for many purposes within code. This distinction can make automated parsing and manipulation of code simpler, as tools can more easily recognize and adjust indentation levels without confusing them with spaces used for alignment.
+- **Set the Page Title:**
+  - The `title` property sets the text displayed in the browser tab and used by search engines. It defines the `<title>` tag in the HTML.
 
-## Hybrid Approaches and Team Dynamics
+- **Set the Meta Description:**
+  - The `description` property provides a summary of the page's content. It defines the `<meta name="description" content="...">` tag, which is important for SEO and when sharing links on social media.
 
-The debate often extends into discussions about hybrid approaches, where teams might use tabs for indentation and spaces for alignment within lines, attempting to combine the best of both worlds. However, such strategies require clear team agreements and disciplined adherence to coding standards to prevent formatting chaos.
+---
 
-Ultimately, the choice between spaces and tabs often comes down to team consensus and project guidelines. In environments where collaboration and code sharing are common, agreeing on a standard that everyone follows is more important than the individual preferences of spaces versus tabs. Modern development tools and linters can help enforce these standards, making the choice less about technical limitations and more about team dynamics and coding philosophy.
+## **How It Works in Your Page**
 
-## Conclusion
+### **Location Matters**
 
-While the spaces vs. tabs debate might not have a one-size-fits-all answer, it underscores the importance of consistency, readability, and team collaboration in software development. Whether a team chooses spaces, tabs, or a hybrid approach, the key is to make a conscious choice that serves the project's needs and to adhere to it throughout the codebase. As with many aspects of coding, communication and agreement among team members are paramount to navigating this classic programming debate.
+- **File Path:** `app/blog/page.tsx`
+  - This file represents the page at the `/blog` route in your application.
+  - Next.js uses the file's location in the `app` directory to determine the URL path.
+
+### **Putting It All Together**
+
+1. **Exporting `metadata`:**
+
+   ```typescript
+   export const metadata = {
+     title: "Blog",
+     description: "Read my blog.",
+   };
+   ```
+
+   - By exporting this object, you're telling Next.js what metadata to include for this page.
+   - Next.js automatically handles injecting this metadata into the HTML `<head>` section.
+
+2. **Defining the Page Component:**
+
+   ```typescript
+   export default function Page() {
+     return (
+       <section>
+         <h1 className="font-semibold text-2xl mb-8 tracking-tighter">My Blog</h1>
+       </section>
+     );
+   }
+   ```
+
+   - The `Page` function is the default export and represents the content of your `/blog` page.
+   - It returns a JSX structure that renders a `<section>` containing a `<h1>` header with the text "My Blog" and some styling classes.
+
+---
+
+## **Benefits of Using `metadata`**
+
+- **Simplifies Metadata Management:**
+  - No need to manually add `<Head>` components or manage metadata in every page.
+  - Consistent metadata handling across all pages in your Next.js app.
+
+- **Improves SEO:**
+  - Search engines use the page title and description to index your site.
+  - A clear and descriptive title and description can improve your site's visibility in search results.
+
+- **Enhances User Experience:**
+  - The page title appears in the browser tab, helping users understand what the page is about.
+  - When shared on social media, the description provides context about the page's content.
+
+
+
+```ts
+import { notFound } from "next/navigation";
+import { formatDate, getBlogPosts } from "app/blog/utils";
+import type { Metadata } from "next";
+
+const baseUrl = "https://yourwebsite.example.com/";
+
+interface PageMetadata extends Metadata {
+  title: string;
+  description: string;
+  openGraph: {
+    title: string;
+    description: string;
+    type: string;
+    publishedTime: string;
+    url: string;
+    images: { url: string }[];
+  };
+  twitter: {
+    card: string;
+    title: string;
+    description: string;
+    images: string[];
+  };
+}
+
+interface Params {
+  slug: string;
+}
+
+interface Props {
+  params: Params;
+}
+
+export async function generateStaticParams() {
+  const posts = getBlogPosts();
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+export async function generateMetadata(
+  props: Props,
+): Promise<PageMetadata | null> {
+  const params = await props.params;
+
+  if (!params || !params.slug) {
+    return null;
+  }
+
+  const post = getBlogPosts().find((post) => post.slug === params.slug);
+
+  if (!post) {
+    return null;
+  }
+
+  const {
+    title,
+    publishedAt: publishedTime,
+    summary: description,
+    image,
+  } = post.metadata;
+
+  const ogImage = image
+    ? `${baseUrl}${image}`
+    : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime,
+      url: `${baseUrl}/blog/${post.slug}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
+
+export default async function Blog(props: Props) {
+  const params = await props.params;
+
+  const post = getBlogPosts().find((post) => post.slug === params.slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  return (
+    <section>
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: post.metadata.title,
+            datePublished: post.metadata.publishedAt,
+            dateModified: post.metadata.publishedAt,
+            description: post.metadata.summary,
+            image: post.metadata.image
+              ? `${baseUrl}${post.metadata.image}`
+              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
+            url: `${baseUrl}/blog/${post.slug}`,
+            author: {
+              "@type": "Person",
+              name: "My Portfolio",
+            },
+          }),
+        }}
+      />
+      <h1 className="title font-semibold text-2xl tracking-tighter">
+        {post.metadata.title}
+      </h1>
+      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          {formatDate(post.metadata.publishedAt)}
+        </p>
+      </div>
+      <article className="prose">{post.content}</article>
+    </section>
+  );
+}
+```
+
+let's add styling
+
+
+```css
+
+@import 'tailwindcss';
+
+::selection {
+  background-color: #47a3f3;
+  color: #fefefe;
+}
+
+:root {
+  --sh-class: #2d5e9d;
+  --sh-identifier: #354150;
+  --sh-sign: #8996a3;
+  --sh-string: #007f7a;
+  --sh-keyword: #e02518;
+  --sh-comment: #a19595;
+  --sh-jsxliterals: #6266d1;
+  --sh-property: #e25a1c;
+  --sh-entity: #e25a1c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sh-class: #4c97f8;
+    --sh-identifier: white;
+    --sh-keyword: #f47067;
+    --sh-string: #0fa295;
+  }
+  html {
+    color-scheme: dark;
+  }
+}
+
+html {
+  min-width: 360px;
+}
+
+.prose .anchor {
+  @apply absolute invisible no-underline;
+
+  margin-left: -1em;
+  padding-right: 0.5em;
+  width: 80%;
+  max-width: 700px;
+  cursor: pointer;
+}
+
+.anchor:hover {
+  @apply visible;
+}
+
+.prose a {
+  @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
+}
+
+.prose .anchor:after {
+  @apply text-neutral-300 dark:text-neutral-700;
+  content: '#';
+}
+
+.prose *:hover > .anchor {
+  @apply visible;
+}
+
+.prose pre {
+  @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900 py-2 px-3 text-sm;
+}
+
+.prose code {
+  @apply px-1 py-0.5 rounded-lg;
+}
+
+.prose pre code {
+  @apply p-0;
+  border: initial;
+  line-height: 1.5;
+}
+
+.prose code span {
+  @apply font-medium;
+}
+
+.prose img {
+  /* Don't apply styles to next/image */
+  @apply m-0;
+}
+
+.prose p {
+  @apply my-4 text-neutral-800 dark:text-neutral-200;
+}
+
+.prose h1 {
+  @apply text-4xl font-medium tracking-tight mt-6 mb-2;
+}
+
+.prose h2 {
+  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+}
+
+.prose h3 {
+  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+}
+
+.prose h4 {
+  @apply text-lg font-medium tracking-tight mt-6 mb-2;
+}
+
+.prose strong {
+  @apply font-medium;
+}
+
+.prose ul {
+  @apply list-disc pl-6;
+}
+
+.prose ol {
+  @apply list-decimal pl-6;
+}
+
+.prose > :first-child {
+  /* Override removing top margin, causing layout shift */
+  margin-top: 1.25em !important;
+  margin-bottom: 1.25em !important;
+}
+
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+pre {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Remove Safari input shadow on mobile */
+input[type='text'],
+input[type='email'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+table {
+  display: block;
+  max-width: fit-content;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.title {
+  text-wrap: balance;
+}
+
+```
+
+
+Let's create a post component to get all components
+
+```tsx
+import Link from "next/link";
+import { formatDate, getBlogPosts } from "app/blog/utils";
+
+export function BlogPosts() {
+  const allBlogs = getBlogPosts();
+
+  return (
+    <div>
+      {allBlogs
+        .sort((a, b) => {
+          if (
+            new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
+          ) {
+            return -1;
+          }
+          return 1;
+        })
+        .map((post) => (
+          <Link
+            key={post.slug}
+            className="flex flex-col space-y-1 mb-4"
+            href={`/blog/${post.slug}`}
+          >
+            <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
+              <p className="text-neutral-600 dark:text-neutral-400 w-[100px] tabular-nums">
+                {formatDate(post.metadata.publishedAt, false)}
+              </p>
+              <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
+                {post.metadata.title}
+              </p>
+            </div>
+          </Link>
+        ))}
+    </div>
+  );
+}
+
+```
+
+Blog post index
+
+```tsx
+import { BlogPosts } from "../components/posts";
+
+export const metadata = {
+  title: "Blog",
+  description: "Read my blog.",
+};
+
+export default function Page() {
+  return (
+    <section>
+      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">My Blog</h1>
+      <BlogPosts />
+    </section>
+  );
+}
+
+```
