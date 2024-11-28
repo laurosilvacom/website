@@ -29,7 +29,7 @@ interface Params {
 }
 
 interface Props {
-  params: Params;
+  params: Promise<Params>;
 }
 
 export async function generateStaticParams() {
