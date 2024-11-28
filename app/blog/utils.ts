@@ -1,4 +1,4 @@
-import fs from "fs";
+import { promises as fs } from "fs";
 import path from "path";
 
 type Metadata = {
@@ -11,7 +11,11 @@ type Metadata = {
 function parseFrontmatter(fileContent: string) {
   const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
   const match = frontmatterRegex.exec(fileContent);
-  const frontMatterBlock = match![1];
+  if (!match) {
+    throw new Error("Invalid frontmatter");
+  }
+
+  const frontMatterBlock = match[1];
   const content = fileContent.replace(frontmatterRegex, "").trim();
   const frontMatterLines = frontMatterBlock.trim().split("\n");
   const metadata: Partial<Metadata> = {};
@@ -26,31 +30,35 @@ function parseFrontmatter(fileContent: string) {
   return { metadata: metadata as Metadata, content };
 }
 
-function getMDXFiles(dir: string): string[] {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+async function getMDXFiles(dir: string): Promise<string[]> {
+  const files = await fs.readdir(dir);
+  return files.filter((file) => path.extname(file) === ".mdx");
 }
 
-function readMDXFile(filePath: string) {
-  const rawContent = fs.readFileSync(filePath, "utf-8");
+async function readMDXFile(filePath: string) {
+  const rawContent = await fs.readFile(filePath, "utf-8");
   return parseFrontmatter(rawContent);
 }
 
-function getMDXData(dir: string) {
-  const mdxFiles = getMDXFiles(dir);
-  return mdxFiles.map((file) => {
-    const { metadata, content } = readMDXFile(path.join(dir, file));
-    const slug = path.basename(file, path.extname(file));
+async function getMDXData(dir: string) {
+  const mdxFiles = await getMDXFiles(dir);
+  const mdxData = await Promise.all(
+    mdxFiles.map(async (file) => {
+      const { metadata, content } = await readMDXFile(path.join(dir, file));
+      const slug = path.basename(file, path.extname(file));
 
-    return {
-      metadata,
-      slug,
-      content,
-    };
-  });
+      return {
+        metadata,
+        slug,
+        content,
+      };
+    }),
+  );
+  return mdxData;
 }
 
-export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), "app", "blog", "posts"));
+export async function getBlogPosts() {
+  return await getMDXData(path.join(process.cwd(), "app", "blog", "posts"));
 }
 
 export function formatDate(date: string, includeRelative = false) {
@@ -58,23 +66,24 @@ export function formatDate(date: string, includeRelative = false) {
   const dateToUse = date.includes("T") ? date : `${date}T00:00:00`;
   const targetDate = new Date(dateToUse);
 
-  const yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
-  const monthsAgo = currentDate.getMonth() - targetDate.getMonth();
-  const daysAgo = currentDate.getDate() - targetDate.getDate();
+  const diffTime = currentDate.getTime() - targetDate.getTime();
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
   let formattedDate = "";
 
-  if (yearsAgo > 0) {
+  if (diffDays >= 365) {
+    const yearsAgo = Math.floor(diffDays / 365);
     formattedDate = `${yearsAgo}y ago`;
-  } else if (monthsAgo > 0) {
+  } else if (diffDays >= 30) {
+    const monthsAgo = Math.floor(diffDays / 30);
     formattedDate = `${monthsAgo}mo ago`;
-  } else if (daysAgo > 0) {
-    formattedDate = `${daysAgo}d ago`;
+  } else if (diffDays > 0) {
+    formattedDate = `${diffDays}d ago`;
   } else {
     formattedDate = "Today";
   }
 
-  const fullDate = targetDate.toLocaleString("en-us", {
+  const fullDate = targetDate.toLocaleDateString("en-us", {
     month: "long",
     day: "numeric",
     year: "numeric",

@@ -2,8 +2,7 @@ import { notFound } from "next/navigation";
 import { formatDate, getBlogPosts } from "app/blog/utils";
 import type { Metadata } from "next";
 import { CustomMDX } from "app/components/mdx";
-
-const baseUrl = "https://yourwebsite.example.com/";
+import { baseUrl } from "app/sitemap";
 
 interface PageMetadata extends Metadata {
   title: string;
@@ -33,7 +32,7 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const posts = getBlogPosts();
+  const posts = await getBlogPosts();
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -49,7 +48,8 @@ export async function generateMetadata(
     return null;
   }
 
-  const post = getBlogPosts().find((post) => post.slug === params.slug);
+  const posts = await getBlogPosts();
+  const post = posts.find((post) => post.slug === params.slug);
 
   if (!post) {
     return null;
@@ -93,7 +93,8 @@ export async function generateMetadata(
 export default async function Blog(props: Props) {
   const params = await props.params;
 
-  const post = getBlogPosts().find((post) => post.slug === params.slug);
+  const posts = await getBlogPosts();
+  const post = posts.find((post) => post.slug === params.slug);
 
   if (!post) {
     notFound();
@@ -123,15 +124,15 @@ export default async function Blog(props: Props) {
           }),
         }}
       />
-      <h1 className="title font-semibold text-2xl tracking-tighter">
+      <h1 className="title font-semibold text-2xl tracking-tighter text-foreground">
         {post.metadata.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+        <p className="text-sm text-muted-foreground">
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
-      <article className="prose">
+      <article className="prose prose-lg max-w-none dark:prose-invert">
         <CustomMDX source={post.content} />
       </article>
     </section>

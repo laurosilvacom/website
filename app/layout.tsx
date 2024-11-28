@@ -1,13 +1,45 @@
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Footer from "./components/footer";
-import { Navbar } from "./components/nav";
-import "./globals.css";
+import Footer from "app/components/footer";
+import { Navbar } from "app/components/nav";
+import "app/globals.css";
+import { baseUrl } from "app/sitemap";
+import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 
-const baseUrl = "https://website-rgqowbstc-laurosilvacom-products.vercel.app/";
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const commitMono = localFont({
+  src: [
+    {
+      path: "./commit/CommitMono-400-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./commit/CommitMono-400-Italic.otf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "./commit/CommitMono-700-Regular.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./commit/CommitMono-700-Italic.otf",
+      weight: "700",
+      style: "italic",
+    },
+  ],
+  variable: "--font-commitmono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -46,16 +78,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={cx(
-        "text-black bg-white dark:text-white dark:bg-black",
-        GeistSans.variable,
-        GeistMono.variable,
-      )}
-    >
-      <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
-        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
+    <html lang="en" className={cx(inter.variable, commitMono.variable)}>
+      <body className="antialiased max-w-screen-sm mx-4 mt-8 lg:mx-auto">
+        <main className="grid grid-cols-1 gap-4 min-w-0 mt-6 px-2 md:px-0">
           <Navbar />
           {children}
           <Footer />
