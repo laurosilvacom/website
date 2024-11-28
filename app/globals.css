@@ -1,42 +1,206 @@
-@import 'tailwindcss';
+/* Import Tailwind CSS */
+@import "tailwindcss";
 
-@theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+/* Selection Styles */
+::selection {
+    background-color: #47a3f3;
+    color: #fefefe;
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
-}
-
+/* CSS Variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --sh-identifier: var(--color-text-primary); /* Code identifiers */
+    --sh-keyword: #bf5af2; /* Keywords in code (Purple) */
+    --sh-string: #42a5f5; /* Strings in code (Light Blue) */
+    --sh-class: #cf9f17; /* Class names in code (Gold) */
+    --sh-property: #e0457b; /* Properties in code (Pink) */
+    --sh-entity: #00bc65; /* Entities/functions in code (Green) */
+    --sh-jsxliterals: #ff9f0a; /* JSX literals (Orange) */
+    --sh-sign: #8e8e93; /* Operators and signs (Gray) */
+    --sh-comment: #a3a3a8; /* Comments in code (Light Gray) */
+
+    /* Background and Foreground Colors */
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
+/* Dark Mode Variables */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        /* Syntax Highlighting Colors */
+        --sh-identifier: var(--color-text-primary); /* Code identifiers */
+        --sh-keyword: #f2e75a; /* Keywords in code (Yellow) */
+        --sh-string: #639aff; /* Strings in code (Light Blue) */
+        --sh-class: #ec6a5e; /* Class names in code (Coral) */
+        --sh-property: #f4bf75; /* Properties in code (Gold) */
+        --sh-entity: #56b6c2; /* Entities/functions in code (Teal) */
+        --sh-jsxliterals: #d19a66; /* JSX literals (Orange) */
+        --sh-sign: #8e8e93; /* Operators and signs (Gray) */
+        --sh-comment: #7d7d80; /* Comments in code (Muted Gray) */
+
+        /* Background and Foreground for Dark Mode */
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
+
+    /* Set color-scheme to dark */
+    html {
+        color-scheme: dark;
+    }
+}
+
+/* Base Styles */
+html {
+    min-width: 360px;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom Prose Styles */
+.prose {
+    /* Anchor Links */
+    .anchor {
+        @apply absolute invisible no-underline;
+        margin-left: -1em;
+        padding-right: 0.5em;
+        width: 80%;
+        max-width: 700px;
+        cursor: pointer;
+
+        &:hover {
+            @apply visible;
+        }
+
+        /* Anchor Symbol */
+        &:after {
+            @apply text-neutral-300 dark:text-neutral-700;
+            content: "#";
+        }
+    }
+
+    /* Headings Hover Effect */
+    *:hover > .anchor {
+        @apply visible;
+    }
+
+    /* Links */
+    a {
+        @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
+    }
+
+    /* Preformatted Text */
+    pre {
+        @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900 py-2 px-3 text-sm;
+
+        /* Hide Scrollbar */
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* For IE, Edge, and Firefox */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* Code Blocks */
+    code {
+        @apply px-1 py-0.5 rounded-lg;
+
+        /* In Preformatted Text */
+        pre & {
+            @apply p-0;
+            border: initial;
+            line-height: 1.5;
+        }
+
+        /* Syntax Highlighting */
+        span {
+            @apply font-medium;
+        }
+    }
+
+    /* Images */
+    img {
+        /* Reset margin for next/image */
+        @apply m-0;
+    }
+
+    /* Paragraphs */
+    p {
+        @apply my-4 text-neutral-800 dark:text-neutral-200;
+    }
+
+    /* Headings */
+    h1 {
+        @apply text-4xl font-medium tracking-tight mt-6 mb-2;
+    }
+
+    h2 {
+        @apply text-xl font-medium tracking-tight mt-6 mb-2;
+    }
+
+    h3 {
+        @apply text-xl font-medium tracking-tight mt-6 mb-2;
+    }
+
+    h4 {
+        @apply text-lg font-medium tracking-tight mt-6 mb-2;
+    }
+
+    /* Strong Text */
+    strong {
+        @apply font-medium;
+    }
+
+    /* Lists */
+    ul {
+        @apply list-disc pl-6;
+    }
+
+    ol {
+        @apply list-decimal pl-6;
+    }
+
+    /* First Child Margin Adjustment */
+    > :first-child {
+        /* Override removing top margin to prevent layout shift */
+        margin-top: 1.25em !important;
+        margin-bottom: 1.25em !important;
+    }
+}
+
+/* Table Styles */
+table {
+    display: block;
+    max-width: fit-content;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+/* Title Class */
+.title {
+    text-wrap: balance;
+}
+
+/* Remove Default Border Color in Tailwind v4 */
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+/* Remove Safari Input Shadow on Mobile */
+input[type="text"],
+input[type="email"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
