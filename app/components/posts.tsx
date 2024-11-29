@@ -1,33 +1,39 @@
 import Link from "next/link";
+import Image from "next/image";
 import { formatDate, getBlogPosts } from "app/blog/utils";
 
 export async function BlogPosts() {
   const allBlogs = await getBlogPosts();
 
   return (
-    <div>
+    <div className="space-y-6">
       {allBlogs
-        .sort((a, b) => {
-          if (
-            new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
-          ) {
-            return -1;
-          }
-          return 1;
-        })
+        .sort(
+          (a, b) =>
+            new Date(b.metadata.publishedAt).getTime() -
+            new Date(a.metadata.publishedAt).getTime(),
+        )
         .map((post) => (
-          <Link
-            key={post.slug}
-            className="flex flex-col space-y-1 mb-4"
-            href={`/blog/${post.slug}`}
-          >
-            <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-              <p className="text-muted-foreground w-[100px] tabular-nums">
-                {formatDate(post.metadata.publishedAt, false)}
-              </p>
-              <p className="text-foreground tracking-tight">
-                {post.metadata.title}
-              </p>
+          <Link key={post.slug} href={`/blog/${post.slug}`} className="block">
+            <div className="flex items-center space-x-4 p-4 bg-card rounded-default hover:bg-muted transition">
+              {post.metadata.icon && (
+                <Image
+                  src={post.metadata.icon}
+                  alt={`${post.metadata.title} icon`}
+                  width={40}
+                  height={40}
+                  quality={100}
+                  className="rounded-default flex-shrink-0"
+                />
+              )}
+              <div>
+                <h2 className="text-xl font-semibold text-foreground">
+                  {post.metadata.title}
+                </h2>
+                <p className="text-sm text-muted-foreground">
+                  {formatDate(post.metadata.publishedAt, false)}
+                </p>
+              </div>
             </div>
           </Link>
         ))}

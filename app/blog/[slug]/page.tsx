@@ -124,11 +124,11 @@ export default async function Blog(props: Props) {
           }),
         }}
       />
-      <h1 className="title font-semibold text-2xl tracking-tighter text-foreground">
+      <h1 className="text-4xl font-semibold tracking-tight mb-6">
         {post.metadata.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-base text-muted-foreground">
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
