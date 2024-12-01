@@ -27,6 +27,7 @@
 		{
 			"files": ["**/*.mdx"],
 			"options": {
+				"printWidth": 65,
 				"proseWrap": "preserve",
 				"htmlWhitespaceSensitivity": "ignore"
 			}
