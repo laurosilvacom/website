@@ -1,9 +1,9 @@
-import React from 'react'
+import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
+import {MDXRemote} from 'next-mdx-remote/rsc'
 import Image from 'next/image'
 import Link from 'next/link'
-import {MDXRemote} from 'next-mdx-remote/rsc'
+import React from 'react'
 import {highlight} from 'sugar-high'
-import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
 
 function Table({data}) {
 	const headers = data.headers.map((header, index) => (

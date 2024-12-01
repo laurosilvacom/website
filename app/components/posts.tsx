@@ -1,7 +1,7 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import {formatDate, getBlogPosts} from 'app/blog/utils'
 import {ArrowRight} from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export async function BlogPosts() {
 	const allBlogs = await getBlogPosts()

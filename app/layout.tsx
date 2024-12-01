@@ -1,14 +1,14 @@
-import type {Metadata} from 'next'
 import {Analytics} from '@vercel/analytics/react'
 import {SpeedInsights} from '@vercel/speed-insights/next'
+import Container from 'app/components/container'
 import Footer from 'app/components/footer'
 import {Navbar} from 'app/components/nav'
 import 'app/globals.css'
 import {baseUrl} from 'app/sitemap'
-import localFont from 'next/font/local'
+import type {Metadata} from 'next'
 import {Inter} from 'next/font/google'
+import localFont from 'next/font/local'
 import {type ReactNode} from 'react'
-import Container from 'app/components/container'
 
 const inter = Inter({
 	subsets: ['latin'],

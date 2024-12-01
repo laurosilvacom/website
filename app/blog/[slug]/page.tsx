@@ -1,8 +1,8 @@
-import type {Metadata} from 'next'
-import {notFound} from 'next/navigation'
 import {formatDate, getBlogPosts} from 'app/blog/utils'
 import {CustomMDX} from 'app/components/mdx'
 import {baseUrl} from 'app/sitemap'
+import type {Metadata} from 'next'
+import {notFound} from 'next/navigation'
 
 interface PageMetadata extends Metadata {
 	title: string
