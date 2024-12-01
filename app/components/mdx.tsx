@@ -1,8 +1,9 @@
-import Link from 'next/link'
+import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import {MDXRemote} from 'next-mdx-remote/rsc'
 import {highlight} from 'sugar-high'
-import React from 'react'
+import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
 
 function Table({data}) {
 	const headers = data.headers.map((header, index) => (
@@ -26,22 +27,28 @@ function Table({data}) {
 	)
 }
 
-function CustomLink(props) {
-	const href = props.href
-
+function CustomLink({href, children, ...props}) {
 	if (href.startsWith('/')) {
 		return (
 			<Link href={href} {...props}>
-				{props.children}
+				{children}
 			</Link>
 		)
 	}
 
 	if (href.startsWith('#')) {
-		return <a {...props} />
+		return (
+			<a href={href} {...props}>
+				{children}
+			</a>
+		)
 	}
 
-	return <a target="_blank" rel="noopener noreferrer" {...props} />
+	return (
+		<a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+			{children}
+		</a>
+	)
 }
 
 function RoundedImage(props) {
@@ -57,19 +64,18 @@ function slugify(str) {
 	return str
 		.toString()
 		.toLowerCase()
-		.trim() // Remove whitespace from both ends of a string
-		.replace(/\s+/g, '-') // Replace spaces with -
-		.replace(/&/g, '-and-') // Replace & with 'and'
-		.replace(/[^\w\-]+/g, '') // Remove all non-word characters except for -
-		.replace(/\-\-+/g, '-') // Replace multiple - with single -
+		.trim()
+		.replace(/\s+/g, '-')
+		.replace(/&/g, '-and-')
+		.replace(/\-\-+/g, '-')
 }
 
 function createHeading(level) {
-	const Heading = ({children}) => {
+	return function Heading({children, ...props}) {
 		const slug = slugify(children)
 		return React.createElement(
 			`h${level}`,
-			{id: slug},
+			{id: slug, ...props},
 			[
 				React.createElement('a', {
 					href: `#${slug}`,
@@ -80,10 +86,6 @@ function createHeading(level) {
 			children
 		)
 	}
-
-	Heading.displayName = `Heading${level}`
-
-	return Heading
 }
 
 const components = {
@@ -99,7 +101,7 @@ const components = {
 	Table
 }
 
-export function CustomMDX(props) {
+export function CustomMDX(props: MDXRemoteProps) {
 	return (
 		<MDXRemote
 			{...props}

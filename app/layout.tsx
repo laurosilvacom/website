@@ -7,6 +7,8 @@ import 'app/globals.css'
 import {baseUrl} from 'app/sitemap'
 import localFont from 'next/font/local'
 import {Inter} from 'next/font/google'
+import {type ReactNode} from 'react'
+import Container from 'app/components/container'
 
 const inter = Inter({
 	subsets: ['latin'],
@@ -72,17 +74,17 @@ export const metadata: Metadata = {
 const cx = (...classes: (string | false | null | undefined)[]) =>
 	classes.filter(Boolean).join(' ')
 
-export default function RootLayout({
-	children
-}: Readonly<{
-	children: React.ReactNode
-}>) {
+type RootLayoutProps = {
+	children: ReactNode
+}
+
+export default function RootLayout({children}: RootLayoutProps) {
 	return (
 		<html lang="en" className={cx(inter.variable, commitMono.variable)}>
 			<body className="mx-4 mt-8 antialiased lg:mx-auto">
 				<main className="mt-6 min-w-0 px-2 md:px-0">
 					<Navbar />
-					{children}
+					<Container>{children}</Container>
 					<Footer />
 					<Analytics />
 					<SpeedInsights />

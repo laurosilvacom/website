@@ -13,7 +13,7 @@ type Metadata = {
 function parseFrontmatter(fileContent: string) {
 	const frontmatterRegex = /---\s*([\s\S]*?)\s*---/
 	const match = frontmatterRegex.exec(fileContent)
-	if (!match) {
+	if (!match || !match[1]) {
 		throw new Error('Invalid frontmatter')
 	}
 
@@ -23,11 +23,21 @@ function parseFrontmatter(fileContent: string) {
 	const metadata: Partial<Metadata> = {}
 
 	frontMatterLines.forEach((line) => {
-		const [key, ...valueArr] = line.split(': ')
-		let value = valueArr.join(': ').trim()
-		value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
+		if (!line) return
+
+		const [key, ...valueParts] = line.split(': ')
+		if (!key || valueParts.length === 0) return
+
+		const value = valueParts
+			.join(': ')
+			.trim()
+			.replace(/^['"](.*)['"]$/, '$1')
 		metadata[key.trim() as keyof Metadata] = value
 	})
+
+	if (!metadata.title || !metadata.publishedAt || !metadata.summary) {
+		throw new Error('Missing required frontmatter fields')
+	}
 
 	return {metadata: metadata as Metadata, content}
 }

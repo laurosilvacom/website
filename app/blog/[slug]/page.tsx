@@ -1,6 +1,6 @@
+import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 import {formatDate, getBlogPosts} from 'app/blog/utils'
-import type {Metadata} from 'next'
 import {CustomMDX} from 'app/components/mdx'
 import {baseUrl} from 'app/sitemap'
 
