@@ -10,7 +10,6 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
   "dependencies": {
-    "@tailwindcss/typography": "^0.5.15",
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
     "framer-motion": "^11.12.0",
@@ -19,20 +18,25 @@
     "motion": "^11.12.0",
     "next": "15.0.3",
     "next-mdx-remote": "^5.0.0",
-    "prettier": "^3.4.1",
-    "prettier-plugin-tailwindcss": "^0.6.9",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "sugar-high": "^0.7.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.0-beta.3",
+    "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^8.16.0",
+    "@typescript-eslint/parser": "^8.16.0",
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
     "postcss": "^8",
+    "prettier": "^3.4.1",
+    "prettier-plugin-tailwindcss": "^0.6.9",
     "tailwindcss": "^4.0.0-beta.3",
     "typescript": "^5"
   }
