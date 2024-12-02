@@ -4,6 +4,7 @@ import {baseUrl} from 'app/sitemap'
 import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 import Container from 'app/components/container'
+import Image from 'next/image'
 
 interface PageMetadata extends Metadata {
 	title: string
@@ -126,25 +127,67 @@ export default async function Blog(props: Props) {
 				}}
 			/>
 
-			<header className="relative mx-auto w-full max-w-screen-lg">
-				<div className="relative flex w-full flex-col items-center justify-center pt-24 pb-14 sm:pt-32 sm:pb-24">
-					<div className="flex flex-grow items-center justify-center">
-						<h1 className="w-full max-w-screen-xl px-5 text-center text-3xl font-semibold tracking-tight text-balance sm:text-3xl md:font-bold">
-							{post.metadata.title}
-						</h1>
-					</div>
-				</div>
-				<div className="text-muted-foreground mx-auto flex w-full max-w-3xl flex-row justify-center gap-5 px-5 pt-8 text-base sm:items-center sm:justify-between sm:gap-10 md:gap-16 lg:px-5">
-					<div className="flex flex-shrink-0 flex-col justify-center font-semibold sm:w-auto">
-						<span className="font-mono text-xs font-semibold uppercase opacity-75">
-							Published
-						</span>
-						{formatDate(post.metadata.publishedAt)}
-					</div>
-				</div>
-			</header>
+			<div className="bg-[radial-gradient(ellipse_at_top,#FFF0F5_0,transparent_75%)] dark:bg-[radial-gradient(ellipse_at_top,#1c1415_0,transparent_75%)]">
+				<header className="relative mx-auto w-full max-w-3xl py-24 md:py-32">
+					<div className="space-y-8">
+						{/* Title Section with Icon */}
+						<div className="space-y-4">
+							{post.metadata.icon && (
+								<Image
+									src={post.metadata.icon}
+									alt={`${post.metadata.title} icon`}
+									width={52}
+									height={52}
+									quality={100}
+									className="rounded-[calc(var(--radius)/2)]"
+								/>
+							)}
+							<h1 className="text-foreground text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+								{post.metadata.title}
+							</h1>
+						</div>
 
-			<article className="invert-svg prose dark:prose-invert md:prose-xl prose-code:break-words prose-pre:bg-card prose-pre:leading-relaxed md:prose-code:break-normal mx-auto w-full max-w-3xl px-5 py-8 md:py-16">
+						{/* Metadata Section */}
+						<div className="border-border/40 space-y-6">
+							{/* Author */}
+							<div className="flex items-center gap-4">
+								<div className="h-10 w-10 overflow-hidden rounded-full">
+									<Image
+										src="/heroavatar.jpg"
+										alt="Lauro Silva"
+										width={100}
+										height={100}
+										className="object-cover"
+										priority
+									/>
+								</div>
+								<div className="flex flex-col">
+									<span className="text-foreground font-medium">
+										Lauro Silva
+									</span>
+									<span className="text-muted-foreground text-sm">
+										JavaScript Engineer
+									</span>
+								</div>
+							</div>
+
+							{/* Date and Reading Time */}
+							<div className="text-muted-foreground flex items-center gap-6 text-sm">
+								<div className="flex items-center gap-2">
+									<time dateTime={post.metadata.publishedAt}>
+										{formatDate(post.metadata.publishedAt)}
+									</time>
+								</div>
+								<div className="flex items-center gap-2">
+									<span>{'5 min read'}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</header>
+			</div>
+
+			<article className="prose dark:prose-invert md:prose-lg prose-code:break-words mx-auto w-full max-w-3xl">
 				<CustomMDX source={post.content} />
 			</article>
 		</Container>

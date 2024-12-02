@@ -53,16 +53,17 @@ function CustomLink({href, children, ...props}) {
 
 function RoundedImage(props) {
 	return (
-		<Image
-			alt={props.alt}
-			className="rounded-xl shadow-xl"
-			width={720}
-			height={480}
-			{...props}
-		/>
+		<div className="-mx-10 md:-mx-20">
+			<Image
+				alt={props.alt || 'Default alt text'}
+				className="rounded-xl shadow-xl"
+				width={950}
+				height={480}
+				{...props}
+			/>
+		</div>
 	)
 }
-
 function Code({children, ...props}) {
 	const codeHTML = highlight(children)
 	return <code dangerouslySetInnerHTML={{__html: codeHTML}} {...props} />

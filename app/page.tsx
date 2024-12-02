@@ -5,45 +5,43 @@ import Container from 'app/components/container'
 export default function Page() {
 	return (
 		<Container className="mx-auto w-full max-w-screen-lg">
-			<main className="mx-auto py-12">
-				<section className="mb-20">
-					<h1 className="mb-8 text-4xl font-semibold tracking-tight">
+			<main className="mx-auto space-y-20 py-12">
+				<section>
+					<h1 className="text-foreground mb-6 text-4xl font-bold tracking-tight">
 						Welcome!
 					</h1>
-					<p className="text-muted-foreground mb-6 text-xl leading-relaxed">
-						{`I'm a Vim enthusiast and tab advocate, finding unmatched efficiency in. This extends to my support for static typing, where its
-          early error detection ensures cleaner code, and my preference for dark
-          mode, which eases long coding sessions by reducing eye strain.`}
-					</p>
 					<p className="text-muted-foreground text-xl leading-relaxed">
-						{`On this site, you can check out all the `}
-						<Link
-							href="/blog"
-							className="text-primary hover:text-primary-foreground underline transition-colors">
-							articles
-						</Link>
-						{` I've written or learn more `}
-						<Link
-							href="/about"
-							className="text-primary hover:text-primary-foreground underline transition-colors">
-							about me
-						</Link>
-						{`.`}
+						{`I'm a Vim enthusiast and tab advocate, finding unmatched efficiency in. This extends to my support for static typing, where its
+            early error detection ensures cleaner code, and my preference for dark
+            mode, which eases long coding sessions by reducing eye strain.`}
 					</p>
 				</section>
 
-				<section className="mb-20">
-					<h2 className="mb-8 text-4xl font-semibold tracking-tight">
+				<section>
+					<h2 className="text-foreground mb-8 text-3xl font-semibold tracking-tight">
 						Articles
 					</h2>
 
-					<BlogPosts />
+					<div className="space-y-8">
+						<BlogPosts />
 
-					<div className="mt-10">
 						<Link
 							href="/blog"
-							className="text-primary hover:text-primary-foreground font-medium underline transition-colors">
-							View All Articles
+							className="group text-primary hover:text-primary/70 mt-10 inline-flex items-center transition-colors">
+							<span className="font-base">View All</span>
+							<svg
+								className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor">
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth={2}
+									d="M9 5l7 7-7 7"
+								/>
+							</svg>
 						</Link>
 					</div>
 				</section>

@@ -1,57 +1,70 @@
-function ArrowIcon() {
-	return (
-		<svg
-			width="12"
-			height="12"
-			viewBox="0 0 12 12"
-			fill="none"
-			xmlns="http://www.w3.org/2000/svg">
-			<path
-				d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z"
-				fill="currentColor"
-			/>
-		</svg>
-	)
-}
+import Link from 'next/link'
+import Container from 'app/components/container'
+
+const FooterSection = ({title, links}) => (
+	<div>
+		<strong className="text-primary font-mono text-xs tracking-wider uppercase opacity-80">
+			{title}
+		</strong>
+		<ul className="pt-3 text-sm font-medium">
+			{links.map((link) => (
+				<li key={link.text}>
+					{link.external ? (
+						<a
+							href={link.href}
+							className="text-muted-foreground hover:text-foreground inline-block py-2 transition-colors"
+							target="_blank"
+							rel="noopener noreferrer">
+							{link.text}
+						</a>
+					) : (
+						<Link
+							href={link.href}
+							className="text-muted-foreground hover:text-foreground inline-block py-2 transition-colors">
+							{link.text}
+						</Link>
+					)}
+				</li>
+			))}
+		</ul>
+	</div>
+)
 
 export default function Footer() {
+	const sections = {
+		Resources: [
+			{href: '/blog', text: 'Blog'},
+			{href: '/tutorials', text: 'Tutorials'},
+			{href: '/workshops', text: 'Workshops'}
+		],
+		Social: [
+			{
+				href: 'https://github.com/laurosilvacom',
+				text: 'GitHub',
+				external: true
+			},
+			{href: 'https://twitter.com', text: 'Twitter', external: true},
+			{href: '/rss', text: 'RSS'}
+		]
+	}
+
 	return (
-		<footer className="mb-16">
-			<ul className="font-sm text-muted-foreground mt-8 flex flex-col space-y-2 space-x-0 md:flex-row md:space-y-0 md:space-x-4">
-				<li>
-					<a
-						className="hover:text-foreground flex items-center transition-all"
-						rel="noopener noreferrer"
-						target="_blank"
-						href="/rss">
-						<ArrowIcon />
-						<p className="ml-2 h-7">rss</p>
-					</a>
-				</li>
-				<li>
-					<a
-						className="hover:text-foreground flex items-center transition-all"
-						rel="noopener noreferrer"
-						target="_blank"
-						href="https://github.com/vercel/next.js">
-						<ArrowIcon />
-						<p className="ml-2 h-7">github</p>
-					</a>
-				</li>
-				<li>
-					<a
-						className="hover:text-foreground flex items-center transition-all"
-						rel="noopener noreferrer"
-						target="_blank"
-						href="https://vercel.com/templates/next.js/portfolio-starter-kit">
-						<ArrowIcon />
-						<p className="ml-2 h-7">view source</p>
-					</a>
-				</li>
-			</ul>
-			<p className="text-muted-foreground mt-8">
-				© {new Date().getFullYear()} MIT Licensed
-			</p>
+		<footer className="bg-card border-border relative mt-32 w-full border-t pb-32 print:hidden">
+			<Container className="mx-auto w-full max-w-screen-lg">
+				<div className="via-border absolute top-0 left-0 h-px w-full bg-gradient-to-r from-transparent to-transparent" />
+				<div className="relative mx-auto flex w-full max-w-screen-lg flex-col items-start justify-between gap-16 pt-14 pb-48 sm:flex-row sm:pt-16">
+					<div className="relative mx-auto flex w-full flex-col items-center gap-8 text-center sm:items-start sm:gap-16 sm:text-left md:flex-row">
+						{Object.entries(sections).map(([title, links]) => (
+							<FooterSection key={title} title={title} links={links} />
+						))}
+					</div>
+
+					{/* Copyright and Terms */}
+					<div className="text-muted-foreground absolute bottom-5 flex items-center gap-5 text-sm">
+						<span>© {new Date().getFullYear()} Lauro Silva, LLC</span>
+					</div>
+				</div>
+			</Container>
 		</footer>
 	)
 }
