@@ -3,6 +3,7 @@ import {CustomMDX} from 'app/components/mdx'
 import {baseUrl} from 'app/sitemap'
 import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
+import Container from 'app/components/container'
 
 interface PageMetadata extends Metadata {
 	title: string
@@ -101,7 +102,7 @@ export default async function Blog(props: Props) {
 	}
 
 	return (
-		<section>
+		<Container className="mx-auto w-full">
 			<script
 				type="application/ld+json"
 				suppressHydrationWarning
@@ -124,17 +125,28 @@ export default async function Blog(props: Props) {
 					})
 				}}
 			/>
-			<h1 className="mb-6 text-4xl font-semibold tracking-tight">
-				{post.metadata.title}
-			</h1>
-			<div className="mt-2 mb-8 flex items-center justify-between text-sm">
-				<p className="text-muted-foreground text-base">
-					{formatDate(post.metadata.publishedAt)}
-				</p>
-			</div>
-			<article className="prose prose-lg dark:prose-invert max-w-none">
+
+			<header className="relative mx-auto w-full max-w-screen-lg">
+				<div className="relative flex w-full flex-col items-center justify-center pt-24 pb-14 sm:pt-32 sm:pb-24">
+					<div className="flex flex-grow items-center justify-center">
+						<h1 className="w-full max-w-screen-xl px-5 text-center text-3xl font-semibold tracking-tight text-balance sm:text-3xl md:font-bold">
+							{post.metadata.title}
+						</h1>
+					</div>
+				</div>
+				<div className="text-muted-foreground mx-auto flex w-full max-w-3xl flex-row justify-center gap-5 px-5 pt-8 text-base sm:items-center sm:justify-between sm:gap-10 md:gap-16 lg:px-5">
+					<div className="flex flex-shrink-0 flex-col justify-center font-semibold sm:w-auto">
+						<span className="font-mono text-xs font-semibold uppercase opacity-75">
+							Published
+						</span>
+						{formatDate(post.metadata.publishedAt)}
+					</div>
+				</div>
+			</header>
+
+			<article className="invert-svg prose dark:prose-invert md:prose-xl prose-code:break-words prose-pre:bg-card prose-pre:leading-relaxed md:prose-code:break-normal mx-auto w-full max-w-3xl px-5 py-8 md:py-16">
 				<CustomMDX source={post.content} />
 			</article>
-		</section>
+		</Container>
 	)
 }

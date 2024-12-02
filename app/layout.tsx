@@ -1,6 +1,5 @@
 import {Analytics} from '@vercel/analytics/react'
 import {SpeedInsights} from '@vercel/speed-insights/next'
-import Container from 'app/components/container'
 import Footer from 'app/components/footer'
 import {Navbar} from 'app/components/nav'
 import 'app/globals.css'
@@ -80,11 +79,13 @@ type RootLayoutProps = {
 
 export default function RootLayout({children}: RootLayoutProps) {
 	return (
-		<html lang="en" className={cx(inter.variable, commitMono.variable)}>
+		<html
+			lang="en"
+			className={cx(inter.variable, commitMono.variable, 'scroll-smooth')}>
 			<body className="mx-4 mt-8 antialiased lg:mx-auto">
 				<main className="mt-6 min-w-0 px-2 md:px-0">
 					<Navbar />
-					<Container>{children}</Container>
+					{children}
 					<Footer />
 					<Analytics />
 					<SpeedInsights />

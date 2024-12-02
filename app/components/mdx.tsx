@@ -52,7 +52,15 @@ function CustomLink({href, children, ...props}) {
 }
 
 function RoundedImage(props) {
-	return <Image alt={props.alt} className="rounded-lg" {...props} />
+	return (
+		<Image
+			alt={props.alt}
+			className="rounded-xl shadow-xl"
+			width={720}
+			height={480}
+			{...props}
+		/>
+	)
 }
 
 function Code({children, ...props}) {

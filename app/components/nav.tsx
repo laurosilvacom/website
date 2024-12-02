@@ -16,11 +16,11 @@ export function Navbar() {
 	const pathname = usePathname()
 
 	return (
-		<nav className="bg-background text-foreground py-10">
+		<nav className="bg-background text-foreground py-5">
 			<div className="mx-auto flex max-w-screen-lg items-center justify-between">
 				<div className="text-2xl font-semibold">
 					<Link href="/" className="hover:text-primary transition-colors">
-						My Portfolio
+						Lauro Silva
 					</Link>
 				</div>
 				<div className="flex space-x-8">
