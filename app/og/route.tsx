@@ -1,6 +1,4 @@
 import {ImageResponse} from 'next/og'
-import {join} from 'path'
-import {readFileSync} from 'fs'
 
 export const runtime = 'edge'
 
@@ -8,9 +6,10 @@ export async function GET(request: Request) {
 	const url = new URL(request.url)
 	const title = url.searchParams.get('title') || 'Lauro Silva'
 
-	// Load the Wotfard font
-	const fontPath = join(process.cwd(), 'app/wotfard/Wotfard-SemiBold.ttf')
-	const fontData = readFileSync(fontPath)
+	// Load the font file directly using fetch
+	const fontData = await fetch(
+		new URL('/wotfard/Wotfard-SemiBold.ttf', request.url)
+	).then((res) => res.arrayBuffer())
 
 	return new ImageResponse(
 		(
@@ -86,7 +85,6 @@ export async function GET(request: Request) {
 								alignItems: 'center',
 								gap: '12px'
 							}}>
-							{/* Added width and height to the image */}
 							<img
 								src="https://res.cloudinary.com/laurosilvacom/image/upload/v1733352657/laurosilvacom/lauro/v0apzla84d3xnux8u2pl.webp"
 								alt="Lauro Silva"
