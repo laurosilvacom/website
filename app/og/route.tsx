@@ -1,6 +1,8 @@
 import {ImageResponse} from 'next/og'
 
-export function GET(request: Request) {
+export const runtime = 'edge'
+
+export async function GET(request: Request) {
 	const url = new URL(request.url)
 	const title = url.searchParams.get('title') || 'Lauro Silva'
 
@@ -76,9 +78,7 @@ export function GET(request: Request) {
 								margin: 0,
 								fontSize: '68px',
 								fontWeight: 'bold',
-								background: 'linear-gradient(45deg, #333, #666)',
-								'-webkit-background-clip': 'text',
-								color: 'transparent',
+								color: '#333',
 								letterSpacing: '-0.02em',
 								lineHeight: 1.2
 							}}>
@@ -89,11 +89,9 @@ export function GET(request: Request) {
 							style={{
 								marginTop: '24px',
 								display: 'flex',
-								alignItems: 'center',
-								gap: '12px'
+								alignItems: 'center'
 							}}>
-							{/* Emojis for fun */}
-							<span style={{fontSize: '32px'}}>✨</span>
+							<span style={{fontSize: '32px', marginRight: '12px'}}>✨</span>
 							<div
 								style={{
 									color: '#666',
