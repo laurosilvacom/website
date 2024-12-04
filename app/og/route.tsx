@@ -22,45 +22,100 @@ export async function GET(request: Request) {
 						height: '100%',
 						width: '100%',
 						display: 'flex',
-						flexDirection: 'column',
 						alignItems: 'center',
 						justifyContent: 'center',
-						backgroundColor: 'white',
-						padding: '40px'
+						backgroundColor: '#FAFAFA'
 					}}>
-					{icon && (
-						<div style={{display: 'flex', marginBottom: '20px'}}>
-							<img src={icon} alt="Post icon" width={48} height={48} />
-						</div>
-					)}
-
 					<div
 						style={{
 							display: 'flex',
-							fontSize: '60px',
-							fontFamily: 'Wotfard',
-							letterSpacing: '-0.05em',
-							color: '#333',
-							marginBottom: '20px'
+							flexDirection: 'column',
+							alignItems: 'flex-start',
+							backgroundColor: 'white',
+							padding: '56px',
+							margin: '40px',
+							borderRadius: '24px',
+							boxShadow: '0 2px 40px rgba(0,0,0,0.1)',
+							border: '2px solid #E2E8F0',
+							width: '1000px'
 						}}>
-						{title}
-					</div>
-
-					<div style={{display: 'flex', alignItems: 'center'}}>
-						<img
-							src="https://res.cloudinary.com/laurosilvacom/image/upload/v1733356380/laurosilvacom/lauro/kldqbcyrvtngub7fmutn.png"
-							alt="Lauro Silva"
-							width={40}
-							height={40}
-						/>
-						<span
+						<div
 							style={{
-								marginLeft: '10px',
-								fontFamily: 'Wotfard',
-								color: '#666'
+								display: 'flex',
+								alignItems: 'center',
+								marginBottom: '32px'
 							}}>
-							Lauro Silva
-						</span>
+							{icon && (
+								<div
+									style={{
+										display: 'flex',
+										padding: '12px',
+										backgroundColor: '#F8FAFC',
+										borderRadius: '16px',
+										border: '2px solid #E2E8F0'
+									}}>
+									<img src={icon} alt="Post icon" width={40} height={40} />
+								</div>
+							)}
+						</div>
+
+						<div
+							style={{
+								display: 'flex',
+								flexDirection: 'column',
+								marginBottom: '40px'
+							}}>
+							<div
+								style={{
+									fontSize: '64px',
+									fontFamily: 'Wotfard',
+									letterSpacing: '-0.03em',
+									color: '#1E293B',
+									lineHeight: '1.1'
+								}}>
+								{title}
+							</div>
+						</div>
+
+						<div
+							style={{
+								display: 'flex',
+								alignItems: 'center',
+								backgroundColor: '#F8FAFC',
+								padding: '12px 16px',
+								borderRadius: '12px',
+								border: '2px solid #E2E8F0'
+							}}>
+							<img
+								src="https://res.cloudinary.com/laurosilvacom/image/upload/v1733356380/laurosilvacom/lauro/kldqbcyrvtngub7fmutn.png"
+								alt="Lauro Silva"
+								width={44}
+								height={44}
+								style={{
+									borderRadius: '22px',
+									marginRight: '16px',
+									border: '2px solid #E2E8F0'
+								}}
+							/>
+							<div style={{display: 'flex', flexDirection: 'column'}}>
+								<span
+									style={{
+										color: '#334155',
+										fontSize: '20px',
+										fontFamily: 'Wotfard'
+									}}>
+									Lauro Silva
+								</span>
+								<span
+									style={{
+										color: '#64748B',
+										fontSize: '16px',
+										fontFamily: 'Wotfard'
+									}}>
+									Software Engineer
+								</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			),
