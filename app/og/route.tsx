@@ -4,24 +4,17 @@ export const runtime = 'edge'
 
 export async function GET(request: Request) {
 	try {
-		// 1. Parse and prepare all URLs and data first
 		const url = new URL(request.url)
-		const baseUrl = `${url.protocol}//${url.host}`
-
-		// 2. Get and decode parameters safely
 		const title = decodeURIComponent(
 			url.searchParams.get('title') || 'Lauro Silva'
 		)
 		const iconParam = url.searchParams.get('icon')
 		const icon = iconParam ? decodeURIComponent(iconParam) : null
-		const profileImage = `${baseUrl}/heroavatar.jpg`
 
-		// 3. Load font
 		const fontData = await fetch(
 			new URL('/wotfard/Wotfard-SemiBold.ttf', request.url)
 		).then((res) => res.arrayBuffer())
 
-		// 4. Generate image response
 		return new ImageResponse(
 			(
 				<div
@@ -54,7 +47,12 @@ export async function GET(request: Request) {
 					</div>
 
 					<div style={{display: 'flex', alignItems: 'center'}}>
-						<img src={profileImage} alt="Lauro Silva" width={40} height={40} />
+						<img
+							src="https://res.cloudinary.com/laurosilvacom/image/upload/v1733356380/laurosilvacom/lauro/kldqbcyrvtngub7fmutn.png"
+							alt="Lauro Silva"
+							width={40}
+							height={40}
+						/>
 						<span
 							style={{
 								marginLeft: '10px',
