@@ -7,56 +7,103 @@ export function GET(request: Request) {
 	return new ImageResponse(
 		(
 			<div
-				tw="flex w-full h-full items-center justify-center relative"
 				style={{
-					background: 'linear-gradient(to bottom right, white, #fafafa)'
+					background: 'white',
+					width: '100%',
+					height: '100%',
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+					position: 'relative'
 				}}>
-				{/* Gradient Orbs */}
+				{/* Background gradient */}
 				<div
-					tw="absolute top-0 right-0 w-[400px] h-[400px] opacity-30"
 					style={{
-						background:
-							'radial-gradient(circle at center, hsl(12, 90%, 63%) 0%, transparent 70%)',
-						filter: 'blur(100px)'
-					}}
-				/>
-				<div
-					tw="absolute bottom-0 left-0 w-[400px] h-[400px] opacity-30"
-					style={{
-						background:
-							'radial-gradient(circle at center, hsl(260, 85%, 65%) 0%, transparent 70%)',
-						filter: 'blur(100px)'
+						position: 'absolute',
+						inset: 0,
+						background: 'linear-gradient(130deg, #fff1f1 0%, #e8f2ff 100%)'
 					}}
 				/>
 
-				{/* Main Container */}
-				<div tw="flex relative z-10 w-full max-w-4xl px-20">
-					{/* Decorative Elements */}
-					<div tw="absolute -left-2 top-0 w-1 h-full bg-gradient-to-b from-purple-500/50 to-transparent" />
+				{/* Content wrapper */}
+				<div
+					style={{
+						position: 'relative',
+						display: 'flex',
+						flexDirection: 'column',
+						width: '90%',
+						maxWidth: '900px'
+					}}>
+					{/* Decorative shapes */}
+					<div
+						style={{
+							position: 'absolute',
+							top: '-20px',
+							left: '-40px',
+							width: '80px',
+							height: '80px',
+							background: 'hsl(12, 90%, 63%)',
+							borderRadius: '12px',
+							transform: 'rotate(-20deg)',
+							opacity: 0.8
+						}}
+					/>
+					<div
+						style={{
+							position: 'absolute',
+							bottom: '-30px',
+							right: '-20px',
+							width: '100px',
+							height: '100px',
+							background: 'hsl(260, 85%, 65%)',
+							borderRadius: '16px',
+							transform: 'rotate(15deg)',
+							opacity: 0.6
+						}}
+					/>
 
-					{/* Content */}
-					<div tw="flex flex-col">
-						<div tw="text-[3.5rem] font-bold leading-tight tracking-tight text-gray-800">
+					{/* Main content */}
+					<div
+						style={{
+							background: 'white',
+							padding: '60px',
+							borderRadius: '24px',
+							boxShadow: '0 8px 40px rgba(0, 0, 0, 0.12)',
+							border: '2px solid rgba(0, 0, 0, 0.06)'
+						}}>
+						<h1
+							style={{
+								margin: 0,
+								fontSize: '68px',
+								fontWeight: 'bold',
+								background: 'linear-gradient(45deg, #333, #666)',
+								'-webkit-background-clip': 'text',
+								color: 'transparent',
+								letterSpacing: '-0.02em',
+								lineHeight: 1.2
+							}}>
 							{title}
-						</div>
+						</h1>
 
-						{/* Bottom Info */}
-						<div tw="mt-8 flex items-center gap-2 text-gray-500">
-							<span tw="font-medium">Lauro Silva</span>
-							<span>•</span>
-							<span>laurosilvadevelopment.com</span>
+						<div
+							style={{
+								marginTop: '24px',
+								display: 'flex',
+								alignItems: 'center',
+								gap: '12px'
+							}}>
+							{/* Emojis for fun */}
+							<span style={{fontSize: '32px'}}>✨</span>
+							<div
+								style={{
+									color: '#666',
+									fontSize: '24px'
+								}}>
+								Lauro Silva
+							</div>
 						</div>
 					</div>
 				</div>
-
-				{/* Corner Accent */}
-				<div
-					tw="absolute bottom-0 right-0 w-32 h-32 opacity-40"
-					style={{
-						background:
-							'linear-gradient(135deg, transparent 50%, hsl(12, 90%, 63%) 50%)'
-					}}
-				/>
 			</div>
 		),
 		{
