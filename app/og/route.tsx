@@ -6,11 +6,8 @@ export async function GET(request: Request) {
 	const url = new URL(request.url)
 	const title = url.searchParams.get('title') || 'Lauro Silva'
 	const icon = url.searchParams.get('icon')
-
-	// Get base URL for assets
 	const baseUrl = `${url.protocol}//${url.host}`
 
-	// Load the font file directly using fetch
 	const fontData = await fetch(
 		new URL('/wotfard/Wotfard-SemiBold.ttf', request.url)
 	).then((res) => res.arrayBuffer())
@@ -41,38 +38,40 @@ export async function GET(request: Request) {
 						width: '90%',
 						maxWidth: '900px'
 					}}>
-					{/* Decorative shapes */}
-					<div
-						style={{
-							position: 'absolute',
-							top: '-20px',
-							left: '-40px',
-							width: '80px',
-							height: '80px',
-							background: 'hsl(12, 90%, 63%)',
-							borderRadius: '12px',
-							transform: 'rotate(-20deg)',
-							opacity: 0.8
-						}}
-					/>
-					<div
-						style={{
-							position: 'absolute',
-							bottom: '-30px',
-							right: '-20px',
-							width: '100px',
-							height: '100px',
-							background: 'hsl(260, 85%, 65%)',
-							borderRadius: '16px',
-							transform: 'rotate(15deg)',
-							opacity: 0.6
-						}}
-					/>
+					{/* Decorative shapes container */}
+					<div style={{display: 'flex', position: 'absolute', inset: 0}}>
+						<div
+							style={{
+								position: 'absolute',
+								top: '-20px',
+								left: '-40px',
+								width: '80px',
+								height: '80px',
+								background: 'hsl(12, 90%, 63%)',
+								borderRadius: '12px',
+								transform: 'rotate(-20deg)',
+								opacity: 0.8
+							}}
+						/>
+						<div
+							style={{
+								position: 'absolute',
+								bottom: '-30px',
+								right: '-20px',
+								width: '100px',
+								height: '100px',
+								background: 'hsl(260, 85%, 65%)',
+								borderRadius: '16px',
+								transform: 'rotate(15deg)',
+								opacity: 0.6
+							}}
+						/>
+					</div>
 
+					{/* Content container */}
 					<div style={{display: 'flex', flexDirection: 'column', gap: '24px'}}>
-						{/* Post Icon */}
 						{icon && (
-							<div style={{marginBottom: '8px'}}>
+							<div style={{display: 'flex', marginBottom: '8px'}}>
 								<img
 									src={icon}
 									alt="Post icon"
@@ -85,17 +84,19 @@ export async function GET(request: Request) {
 							</div>
 						)}
 
-						<h1
-							style={{
-								margin: 0,
-								fontSize: '68px',
-								fontWeight: 600,
-								color: '#333',
-								letterSpacing: '-0.02em',
-								lineHeight: 1.2
-							}}>
-							{title}
-						</h1>
+						<div style={{display: 'flex'}}>
+							<h1
+								style={{
+									margin: 0,
+									fontSize: '68px',
+									fontWeight: 600,
+									color: '#333',
+									letterSpacing: '-0.02em',
+									lineHeight: 1.2
+								}}>
+								{title}
+							</h1>
+						</div>
 
 						<div
 							style={{
