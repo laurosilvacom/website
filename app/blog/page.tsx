@@ -1,12 +1,16 @@
-import {BlogPosts} from 'app/components/posts'
+import {Card} from 'app/components/card'
+import {formatDate, getBlogPosts} from 'app/blog/utils'
 import Container from 'app/components/container'
+import {CardGrid} from 'app/components/card-grid'
 
 export const metadata = {
 	title: 'Blog',
 	description: 'Read my blog.'
 }
 
-export default function Page() {
+export default async function Page() {
+	const allBlogs = await getBlogPosts()
+
 	return (
 		<Container className="mx-auto w-full max-w-screen-lg">
 			<main className="mx-auto py-12">
@@ -17,7 +21,19 @@ export default function Page() {
 				</section>
 
 				<section className="mb-20">
-					<BlogPosts />
+					<CardGrid>
+						{allBlogs.map((post) => (
+							<Card
+								key={post.slug}
+								href={`/blog/${post.slug}`}
+								title={post.metadata.title}
+								description={post.metadata.description}
+								icon={post.metadata.icon}
+								date={formatDate(post.metadata.publishedAt, false)}
+								gradient={post.metadata.gradient}
+							/>
+						))}
+					</CardGrid>
 				</section>
 			</main>
 		</Container>

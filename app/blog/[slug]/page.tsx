@@ -98,6 +98,11 @@ export default async function Blog(props: Props) {
 	const posts = await getBlogPosts()
 	const post = posts.find((post) => post.slug === params.slug)
 
+	const [lightGradient, darkGradient] = post?.metadata?.gradient || [
+		'#FFF0F5',
+		'#1c1415'
+	]
+
 	if (!post) {
 		notFound()
 	}
@@ -127,63 +132,72 @@ export default async function Blog(props: Props) {
 				}}
 			/>
 
-			<div className="bg-[radial-gradient(ellipse_at_top,#FFF0F5_0,transparent_75%)] dark:bg-[radial-gradient(ellipse_at_top,#1c1415_0,transparent_75%)]">
-				<header className="relative mx-auto w-full max-w-3xl py-24 md:py-32">
-					<div className="space-y-8">
-						{/* Title Section with Icon */}
-						<div className="space-y-4">
-							{post.metadata.icon && (
-								<Image
-									src={post.metadata.icon}
-									alt={`${post.metadata.title} icon`}
-									width={52}
-									height={52}
-									quality={100}
-									className="rounded-[calc(var(--radius)/2)]"
-								/>
-							)}
-							<h1 className="text-foreground text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-								{post.metadata.title}
-							</h1>
-						</div>
+			<div className="relative">
+				{/* Ambient light effect */}
+				{/* Ambient light effect */}
+				<div className="absolute inset-0 -z-10" aria-hidden="true">
+					<div
+						className="absolute top-0 h-[300px] w-full opacity-[0.15] dark:opacity-[0.08]"
+						style={{
+							background: `
+                    radial-gradient(
+                        50% 100% at 50% 0%,
+                        ${lightGradient} 0%,
+                        transparent 100%
+                    )
+                `
+						}}
+					/>
+				</div>
 
-						{/* Metadata Section */}
-						<div className="border-border/40 space-y-6">
-							{/* Author */}
-							<div className="flex items-center gap-4">
-								<div className="h-10 w-10 overflow-hidden rounded-full">
-									<Image
-										src="/heroavatar.jpg"
-										alt="Lauro Silva"
-										width={100}
-										height={100}
-										className="object-cover"
-										priority
-									/>
-								</div>
-								<div className="flex flex-col">
-									<span className="text-foreground font-medium">
-										Lauro Silva
-									</span>
-									<span className="text-muted-foreground text-sm">
-										JavaScript Engineer
-									</span>
-								</div>
-							</div>
-
-							{/* Date and Reading Time */}
-							<div className="text-muted-foreground flex items-center gap-6 text-sm">
-								<div className="flex items-center gap-2">
-									<time dateTime={post.metadata.publishedAt}>
-										{formatDate(post.metadata.publishedAt)}
-									</time>
-								</div>
-								<div className="flex items-center gap-2">
-									<span>{'5 min read'}</span>
-								</div>
-							</div>
+				{/* Header content */}
+				<header className="relative mx-auto w-full max-w-3xl pt-16 pb-12 md:pt-24 md:pb-16">
+					{/* Icon */}
+					{post.metadata.icon && (
+						<div className="mb-8">
+							<Image
+								src={post.metadata.icon}
+								alt={`${post.metadata.title} icon`}
+								width={52}
+								height={52}
+								quality={100}
+								className="rounded-lg"
+							/>
 						</div>
+					)}
+
+					{/* Title */}
+					<h1 className="text-foreground mb-8 text-4xl font-bold tracking-tight md:text-5xl">
+						{post.metadata.title}
+					</h1>
+
+					{/* Meta info */}
+					<div className="text-muted-foreground flex items-center gap-4 text-sm">
+						<div className="h-8 w-8 overflow-hidden rounded-full">
+							<Image
+								src="/heroavatar.jpg"
+								alt="Lauro Silva"
+								width={100}
+								height={100}
+								className="object-cover"
+								priority
+							/>
+						</div>
+						<span className="font-medium">Lauro Silva</span>
+						<span>•</span>
+						<time dateTime={post.metadata.publishedAt}>
+							{formatDate(post.metadata.publishedAt)}
+						</time>
+						<span>•</span>
+						<span>5 min read</span>
 					</div>
+
+					{/* Description */}
+					{post.metadata.description && (
+						<p className="text-muted-foreground mt-8 text-xl leading-relaxed">
+							{post.metadata.description}
+						</p>
+					)}
 				</header>
 			</div>
 

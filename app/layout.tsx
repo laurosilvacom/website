@@ -5,14 +5,39 @@ import {Navbar} from 'app/components/nav'
 import 'app/globals.css'
 import {baseUrl} from 'app/sitemap'
 import type {Metadata} from 'next'
-import {Inter} from 'next/font/google'
 import localFont from 'next/font/local'
 import {type ReactNode} from 'react'
 
-const inter = Inter({
-	subsets: ['latin'],
-	display: 'swap',
-	variable: '--font-inter'
+const wotfard = localFont({
+	src: [
+		{
+			path: './wotfard/Wotfard-Thin.ttf',
+			weight: '100',
+			style: 'normal'
+		},
+		{
+			path: './wotfard/Wotfard-Regular.ttf',
+			weight: '400',
+			style: 'normal'
+		},
+		{
+			path: './wotfard/Wotfard-Medium.ttf',
+			weight: '500',
+			style: 'normal'
+		},
+		{
+			path: './wotfard/Wotfard-SemiBold.ttf',
+			weight: '600',
+			style: 'normal'
+		},
+		{
+			path: './wotfard/Wotfard-Bold.ttf',
+			weight: '700',
+			style: 'normal'
+		}
+	],
+	variable: '--font-sans',
+	display: 'swap'
 })
 
 const commitMono = localFont({
@@ -38,7 +63,7 @@ const commitMono = localFont({
 			style: 'italic'
 		}
 	],
-	variable: '--font-commitmono',
+	variable: '--font-mono',
 	display: 'swap'
 })
 
@@ -81,8 +106,8 @@ export default function RootLayout({children}: RootLayoutProps) {
 	return (
 		<html
 			lang="en"
-			className={cx(inter.variable, commitMono.variable, 'scroll-smooth')}>
-			<body className="mx-4 antialiased lg:mx-auto">
+			className={cx(wotfard.variable, commitMono.variable, 'scroll-smooth')}>
+			<body className="antialiased lg:mx-auto">
 				<main className="min-w-0 px-2 md:px-0">
 					<Navbar />
 					{children}

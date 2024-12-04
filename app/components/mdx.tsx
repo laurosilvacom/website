@@ -53,7 +53,7 @@ function CustomLink({href, children, ...props}) {
 
 function RoundedImage(props) {
 	return (
-		<div className="-mx-10 md:-mx-20">
+		<div className="mx-0 md:-mx-20">
 			<Image
 				alt={props.alt || 'Default alt text'}
 				className="rounded-xl shadow-xl"

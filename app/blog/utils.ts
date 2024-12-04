@@ -8,6 +8,7 @@ type Metadata = {
 	icon?: string
 	image?: string
 	description?: string
+	gradient?: [string, string]
 }
 
 function parseFrontmatter(fileContent: string) {
@@ -28,11 +29,25 @@ function parseFrontmatter(fileContent: string) {
 		const [key, ...valueParts] = line.split(': ')
 		if (!key || valueParts.length === 0) return
 
-		const value = valueParts
-			.join(': ')
-			.trim()
-			.replace(/^['"](.*)['"]$/, '$1')
-		metadata[key.trim() as keyof Metadata] = value
+		const trimmedKey = key.trim()
+		const value = valueParts.join(': ').trim()
+
+		if (trimmedKey === 'gradient') {
+			// Parse gradient array from string like "['#FFF0F5', '#1c1415']"
+			try {
+				const gradientValue = JSON.parse(
+					value.replace(/'/g, '"') // Replace single quotes with double quotes for JSON parsing
+				) as [string, string]
+				metadata[trimmedKey] = gradientValue
+			} catch (e) {
+				console.warn(`Failed to parse gradient value: ${value}`)
+			}
+		} else {
+			metadata[trimmedKey as keyof Metadata] = value.replace(
+				/^['"](.*)['"]$/,
+				'$1'
+			)
+		}
 	})
 
 	if (!metadata.title || !metadata.publishedAt || !metadata.summary) {
