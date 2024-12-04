@@ -1,76 +1,67 @@
 import {ImageResponse} from 'next/og'
 
-export const runtime = 'edge'
+export function GET(request: Request) {
+	const url = new URL(request.url)
+	const title = url.searchParams.get('title') || 'Lauro Silva'
 
-export async function GET(request: Request) {
-	try {
-		const url = new URL(request.url)
-		const title = url.searchParams.get('title') || 'Lauro Silva'
-
-		return new ImageResponse(
-			(
+	return new ImageResponse(
+		(
+			<div
+				tw="flex w-full h-full items-center justify-center relative"
+				style={{
+					background: 'linear-gradient(to bottom right, white, #fafafa)'
+				}}>
+				{/* Gradient Orbs */}
 				<div
-					tw="flex w-full h-full items-center justify-center relative"
+					tw="absolute top-0 right-0 w-[400px] h-[400px] opacity-30"
 					style={{
 						background:
-							'linear-gradient(to bottom right, #fdfcfb 0%, #f9f7f7 100%)'
-					}}>
-					{/* Decorative elements */}
-					<div
-						tw="absolute top-0 right-0 w-[400px] h-[400px] opacity-50"
-						style={{
-							background:
-								'radial-gradient(circle at center, hsl(12, 90%, 63%) 0%, transparent 70%)',
-							filter: 'blur(100px)'
-						}}
-					/>
-					<div
-						tw="absolute bottom-0 left-0 w-[400px] h-[400px] opacity-50"
-						style={{
-							background:
-								'radial-gradient(circle at center, hsl(260, 85%, 65%) 0%, transparent 70%)',
-							filter: 'blur(100px)'
-						}}
-					/>
+							'radial-gradient(circle at center, hsl(12, 90%, 63%) 0%, transparent 70%)',
+						filter: 'blur(100px)'
+					}}
+				/>
+				<div
+					tw="absolute bottom-0 left-0 w-[400px] h-[400px] opacity-30"
+					style={{
+						background:
+							'radial-gradient(circle at center, hsl(260, 85%, 65%) 0%, transparent 70%)',
+						filter: 'blur(100px)'
+					}}
+				/>
 
-					{/* Content container */}
-					<div tw="flex flex-col relative z-10 max-w-4xl">
-						{/* Small decorative shapes */}
-						<div
-							tw="absolute -top-8 -left-8 w-16 h-16 rotate-12 opacity-50"
-							style={{background: 'hsl(12, 90%, 63%)'}}
-						/>
-						<div
-							tw="absolute -bottom-8 -right-8 w-16 h-16 -rotate-12 opacity-50"
-							style={{background: 'hsl(260, 85%, 65%)'}}
-						/>
+				{/* Main Container */}
+				<div tw="flex relative z-10 w-full max-w-4xl px-20">
+					{/* Decorative Elements */}
+					<div tw="absolute -left-2 top-0 w-1 h-full bg-gradient-to-b from-purple-500/50 to-transparent" />
 
-						{/* Main content */}
-						<div tw="flex flex-col px-12 py-8 bg-white/80 rounded-2xl border-2 backdrop-blur">
-							<h1 tw="text-6xl font-bold text-gray-800 tracking-tight">
-								{title}
-							</h1>
+					{/* Content */}
+					<div tw="flex flex-col">
+						<div tw="text-[3.5rem] font-bold leading-tight tracking-tight text-gray-800">
+							{title}
+						</div>
 
-							{/* Author info */}
-							<div tw="flex items-center mt-8">
-								<div tw="ml-4">
-									<p tw="text-xl text-gray-700">Lauro Silva</p>
-									<p tw="text-gray-500">laurosilvadevelopment.com</p>
-								</div>
-							</div>
+						{/* Bottom Info */}
+						<div tw="mt-8 flex items-center gap-2 text-gray-500">
+							<span tw="font-medium">Lauro Silva</span>
+							<span>•</span>
+							<span>laurosilvadevelopment.com</span>
 						</div>
 					</div>
 				</div>
-			),
-			{
-				width: 1200,
-				height: 630
-			}
-		)
-	} catch (error) {
-		console.error(error)
-		return new Response(`Failed to generate image: ${error.message}`, {
-			status: 500
-		})
-	}
+
+				{/* Corner Accent */}
+				<div
+					tw="absolute bottom-0 right-0 w-32 h-32 opacity-40"
+					style={{
+						background:
+							'linear-gradient(135deg, transparent 50%, hsl(12, 90%, 63%) 50%)'
+					}}
+				/>
+			</div>
+		),
+		{
+			width: 1200,
+			height: 630
+		}
+	)
 }
