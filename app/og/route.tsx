@@ -24,91 +24,93 @@ export async function GET(request: Request) {
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'center',
-						backgroundColor: '#FAFAFA'
+						backgroundColor: '#FEF6F3'
 					}}>
+					{/* Main card with bigger padding for more "air" */}
 					<div
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
-							alignItems: 'flex-start',
 							backgroundColor: 'white',
-							padding: '56px',
+							padding: '68px',
 							margin: '40px',
-							borderRadius: '24px',
-							boxShadow: '0 2px 40px rgba(0,0,0,0.1)',
-							border: '2px solid #E2E8F0',
+							borderRadius: '32px',
+							boxShadow: '0 2px 40px rgba(0,0,0,0.08)',
+							border: '3px solid #FFE5DB', // Playful border color
 							width: '1000px'
 						}}>
-						<div
-							style={{
-								display: 'flex',
-								alignItems: 'center',
-								marginBottom: '32px'
-							}}>
-							{icon && (
+						{/* Icon section with fun background */}
+						{icon && (
+							<div
+								style={{
+									display: 'flex',
+									marginBottom: '40px'
+								}}>
 								<div
 									style={{
 										display: 'flex',
-										padding: '12px',
-										backgroundColor: '#F8FAFC',
-										borderRadius: '16px',
-										border: '2px solid #E2E8F0'
+										padding: '16px',
+										backgroundColor: '#F4FAFF', // Cool background for contrast
+										borderRadius: '20px',
+										border: '3px solid #E6F0FF'
 									}}>
-									<img src={icon} alt="Post icon" width={40} height={40} />
+									<img src={icon} alt="Post icon" width={48} height={48} />
 								</div>
-							)}
-						</div>
+							</div>
+						)}
 
+						{/* Title with generous spacing */}
 						<div
 							style={{
 								display: 'flex',
-								flexDirection: 'column',
-								marginBottom: '40px'
+								marginBottom: '48px'
 							}}>
 							<div
 								style={{
-									fontSize: '64px',
+									fontSize: '68px',
 									fontFamily: 'Wotfard',
 									letterSpacing: '-0.03em',
-									color: '#1E293B',
+									color: '#1A365D',
 									lineHeight: '1.1'
 								}}>
 								{title}
 							</div>
 						</div>
 
+						{/* Author card with playful style */}
 						<div
 							style={{
 								display: 'flex',
 								alignItems: 'center',
-								backgroundColor: '#F8FAFC',
-								padding: '12px 16px',
-								borderRadius: '12px',
-								border: '2px solid #E2E8F0'
+								backgroundColor: '#F9FAFB',
+								padding: '16px 20px',
+								borderRadius: '20px',
+								border: '3px solid #EDF2F7',
+								width: 'fit-content' // Make it wrap the content
 							}}>
 							<img
 								src="https://res.cloudinary.com/laurosilvacom/image/upload/v1733356380/laurosilvacom/lauro/kldqbcyrvtngub7fmutn.png"
 								alt="Lauro Silva"
-								width={44}
-								height={44}
+								width={48}
+								height={48}
 								style={{
-									borderRadius: '22px',
+									borderRadius: '24px',
 									marginRight: '16px',
-									border: '2px solid #E2E8F0'
+									border: '3px solid #EDF2F7'
 								}}
 							/>
 							<div style={{display: 'flex', flexDirection: 'column'}}>
 								<span
 									style={{
-										color: '#334155',
-										fontSize: '20px',
+										color: '#2D3748',
+										fontSize: '22px',
 										fontFamily: 'Wotfard'
 									}}>
 									Lauro Silva
 								</span>
 								<span
 									style={{
-										color: '#64748B',
+										color: '#718096',
 										fontSize: '16px',
 										fontFamily: 'Wotfard'
 									}}>
