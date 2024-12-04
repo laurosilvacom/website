@@ -1,10 +1,16 @@
 import {ImageResponse} from 'next/og'
+import {join} from 'path'
+import {readFileSync} from 'fs'
 
 export const runtime = 'edge'
 
 export async function GET(request: Request) {
 	const url = new URL(request.url)
 	const title = url.searchParams.get('title') || 'Lauro Silva'
+
+	// Load the Wotfard font
+	const fontPath = join(process.cwd(), 'app/wotfard/Wotfard-SemiBold.ttf')
+	const fontData = readFileSync(fontPath)
 
 	return new ImageResponse(
 		(
@@ -16,7 +22,8 @@ export async function GET(request: Request) {
 					display: 'flex',
 					alignItems: 'center',
 					justifyContent: 'center',
-					padding: '40px'
+					padding: '40px',
+					fontFamily: 'Wotfard'
 				}}>
 				<div
 					style={{
@@ -64,10 +71,11 @@ export async function GET(request: Request) {
 							style={{
 								margin: 0,
 								fontSize: '68px',
-								fontWeight: 'bold',
+								fontWeight: 600,
 								color: '#333',
 								letterSpacing: '-0.02em',
-								lineHeight: 1.2
+								lineHeight: 1.2,
+								fontFamily: 'Wotfard'
 							}}>
 							{title}
 						</h1>
@@ -78,13 +86,13 @@ export async function GET(request: Request) {
 								alignItems: 'center',
 								gap: '12px'
 							}}>
-							{/* Profile image */}
+							{/* Added width and height to the image */}
 							<img
 								src="https://res.cloudinary.com/laurosilvacom/image/upload/v1733352657/laurosilvacom/lauro/v0apzla84d3xnux8u2pl.webp"
 								alt="Lauro Silva"
+								width={48}
+								height={48}
 								style={{
-									width: '48px',
-									height: '48px',
 									borderRadius: '24px',
 									border: '2px solid rgba(0, 0, 0, 0.06)'
 								}}
@@ -92,7 +100,8 @@ export async function GET(request: Request) {
 							<span
 								style={{
 									color: '#666',
-									fontSize: '24px'
+									fontSize: '24px',
+									fontFamily: 'Wotfard'
 								}}>
 								Lauro Silva
 							</span>
@@ -103,7 +112,15 @@ export async function GET(request: Request) {
 		),
 		{
 			width: 1200,
-			height: 630
+			height: 630,
+			fonts: [
+				{
+					name: 'Wotfard',
+					data: fontData,
+					style: 'normal',
+					weight: 600
+				}
+			]
 		}
 	)
 }
