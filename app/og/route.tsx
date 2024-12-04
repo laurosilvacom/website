@@ -22,95 +22,96 @@ export async function GET(request: Request) {
 						height: '100%',
 						width: '100%',
 						display: 'flex',
-						flexDirection: 'column',
-						backgroundColor: '#1E293B', // Deep blue background
-						padding: '80px'
+						alignItems: 'center',
+						justifyContent: 'center',
+						backgroundColor: '#FAFBFC'
 					}}>
-					{/* Color bar at the top */}
+					{/* Main card */}
 					<div
 						style={{
 							display: 'flex',
-							height: '8px',
-							width: '100px',
-							backgroundColor: '#FF6B6B',
-							marginBottom: '60px',
-							borderRadius: '4px'
-						}}
-					/>
-
-					{/* Main content */}
-					<div
-						style={{
-							display: 'flex',
-							flexDirection: 'column'
+							flexDirection: 'column',
+							alignItems: 'flex-start',
+							backgroundColor: 'white',
+							padding: '50px 60px',
+							margin: '20px',
+							borderRadius: '24px',
+							border: '2px solid #E2E8F0',
+							boxShadow: '0 2px 40px rgba(0,0,0,0.08)',
+							width: '1000px'
 						}}>
+						{/* Top section with icon */}
 						{icon && (
 							<div
 								style={{
 									display: 'flex',
-									backgroundColor: '#334155',
+									backgroundColor: '#F8FAFC',
 									padding: '16px',
 									borderRadius: '16px',
-									width: '80px',
-									height: '80px',
-									marginBottom: '40px'
+									marginBottom: '32px',
+									border: '2px solid #E2E8F0'
 								}}>
-								<img src={icon} width={48} height={48} alt="Post icon" />
+								<img src={icon} width={40} height={40} alt="Post icon" />
 							</div>
 						)}
 
-						{/* Title */}
+						{/* Title section */}
 						<div
 							style={{
 								display: 'flex',
-								color: 'white',
-								fontSize: '72px',
-								fontFamily: 'Wotfard',
-								letterSpacing: '-0.05em',
-								marginBottom: '60px',
-								lineHeight: 1.1,
-								width: '850px'
+								flexDirection: 'column',
+								marginBottom: '40px'
 							}}>
-							{title}
+							<div
+								style={{
+									fontSize: '68px',
+									fontFamily: 'Wotfard',
+									letterSpacing: '-0.03em',
+									color: '#1A365D',
+									lineHeight: '1.1',
+									marginBottom: '8px'
+								}}>
+								{title}
+							</div>
 						</div>
 
 						{/* Author section */}
 						<div
 							style={{
 								display: 'flex',
-								alignItems: 'center'
+								alignItems: 'center',
+								backgroundColor: '#F8FAFC',
+								padding: '12px 16px',
+								borderRadius: '12px',
+								border: '2px solid #E2E8F0'
 							}}>
 							<img
 								src={`${baseUrl}/heroavatar.jpg`}
-								width={54}
-								height={54}
+								width={44}
+								height={44}
 								alt="Lauro Silva"
 								style={{
-									borderRadius: '27px',
-									marginRight: '16px'
+									borderRadius: '22px',
+									marginRight: '16px',
+									border: '2px solid #E2E8F0'
 								}}
 							/>
-							<div
-								style={{
-									display: 'flex',
-									flexDirection: 'column',
-									marginLeft: '8px'
-								}}>
+							<div style={{display: 'flex', flexDirection: 'column'}}>
 								<span
 									style={{
-										color: 'white',
-										fontSize: '24px',
+										color: '#2D3748',
+										fontSize: '20px',
 										fontFamily: 'Wotfard'
 									}}>
 									Lauro Silva
 								</span>
 								<span
 									style={{
-										color: '#94A3B8',
-										fontSize: '18px',
+										color: '#718096',
+										fontSize: '16px',
 										fontFamily: 'Wotfard'
 									}}>
-									laurosilvadevelopment.com
+									Software Engineer
 								</span>
 							</div>
 						</div>
