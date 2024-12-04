@@ -82,7 +82,7 @@ export async function GET(request: Request) {
 										padding: '12px',
 										background: 'rgba(0,0,0,0.03)',
 										borderRadius: '16px',
-										width: 'fit-content'
+										width: '72px'
 									}}>
 									<img
 										src={icon}
