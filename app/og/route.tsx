@@ -8,13 +8,12 @@ export async function GET(request: Request) {
 		const url = new URL(request.url)
 		const baseUrl = `${url.protocol}//${url.host}`
 
-		// 2. Get and decode parameters
+		// 2. Get and decode parameters safely
 		const title = decodeURIComponent(
 			url.searchParams.get('title') || 'Lauro Silva'
 		)
-		const icon = url.searchParams.get('icon')
-			? decodeURIComponent(url.searchParams.get('icon'))
-			: null
+		const iconParam = url.searchParams.get('icon')
+		const icon = iconParam ? decodeURIComponent(iconParam) : null
 		const profileImage = `${baseUrl}/heroavatar.jpg`
 
 		// 3. Load font
