@@ -8,7 +8,7 @@ type Metadata = {
 	icon?: string
 	image?: string
 	description?: string
-	gradient?: [string, string]
+	gradient?: [string, string] | string
 }
 
 function parseFrontmatter(fileContent: string) {
