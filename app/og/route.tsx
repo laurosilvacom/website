@@ -19,120 +19,98 @@ export async function GET(request: Request) {
 			(
 				<div
 					style={{
-						width: '100%',
 						height: '100%',
+						width: '100%',
 						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-						fontFamily: 'Wotfard',
-						background: '#FAFAFA'
+						flexDirection: 'column',
+						backgroundColor: '#1E293B', // Deep blue background
+						padding: '80px'
 					}}>
+					{/* Color bar at the top */}
 					<div
 						style={{
 							display: 'flex',
-							flexDirection: 'column',
-							background: 'white',
-							padding: '60px',
-							margin: '40px',
-							borderRadius: '24px',
-							boxShadow: '0 2px 40px rgba(0,0,0,0.1)',
-							border: '2px solid rgba(0,0,0,0.1)',
-							position: 'relative',
-							maxWidth: '850px'
+							height: '8px',
+							width: '100px',
+							backgroundColor: '#FF6B6B',
+							marginBottom: '60px',
+							borderRadius: '4px'
+						}}
+					/>
+
+					{/* Main content */}
+					<div
+						style={{
+							display: 'flex',
+							flexDirection: 'column'
 						}}>
-						<div
-							style={{
-								position: 'absolute',
-								top: '-15px',
-								left: '-15px',
-								width: '140px',
-								height: '140px',
-								background: 'linear-gradient(45deg, #FF6B6B, #ee5253)',
-								borderRadius: '16px',
-								transform: 'rotate(-15deg)',
-								opacity: 0.1
-							}}
-						/>
-						<div
-							style={{
-								position: 'absolute',
-								bottom: '-20px',
-								right: '-20px',
-								width: '180px',
-								height: '180px',
-								background: 'linear-gradient(45deg, #4834d4, #686de0)',
-								borderRadius: '20px',
-								transform: 'rotate(15deg)',
-								opacity: 0.1
-							}}
-						/>
-
-						<div
-							style={{
-								display: 'flex',
-								flexDirection: 'column',
-								gap: '32px',
-								position: 'relative',
-								zIndex: 1
-							}}>
-							{icon && (
-								<div
-									style={{
-										display: 'flex',
-										padding: '12px',
-										background: 'rgba(0,0,0,0.03)',
-										borderRadius: '16px',
-										width: '72px'
-									}}>
-									<img
-										src={icon}
-										alt="Post icon"
-										width={48}
-										height={48}
-										style={{
-											objectFit: 'contain'
-										}}
-									/>
-								</div>
-							)}
-
-							<div style={{display: 'flex'}}>
-								<h1
-									style={{
-										margin: 0,
-										fontSize: '72px',
-										fontWeight: 600,
-										color: '#16222A',
-										letterSpacing: '-0.03em',
-										lineHeight: 1.1
-									}}>
-									{title}
-								</h1>
-							</div>
-
+						{icon && (
 							<div
 								style={{
 									display: 'flex',
-									alignItems: 'center',
-									gap: '12px'
+									backgroundColor: '#334155',
+									padding: '16px',
+									borderRadius: '16px',
+									width: '80px',
+									height: '80px',
+									marginBottom: '40px'
 								}}>
-								<img
-									src={`${baseUrl}/heroavatar.jpg`}
-									alt="Lauro Silva"
-									width={44}
-									height={44}
-									style={{
-										borderRadius: '50%',
-										border: '2px solid rgba(0,0,0,0.05)'
-									}}
-								/>
+								<img src={icon} width={48} height={48} alt="Post icon" />
+							</div>
+						)}
+
+						{/* Title */}
+						<div
+							style={{
+								display: 'flex',
+								color: 'white',
+								fontSize: '72px',
+								fontFamily: 'Wotfard',
+								letterSpacing: '-0.05em',
+								marginBottom: '60px',
+								lineHeight: 1.1,
+								width: '850px'
+							}}>
+							{title}
+						</div>
+
+						{/* Author section */}
+						<div
+							style={{
+								display: 'flex',
+								alignItems: 'center'
+							}}>
+							<img
+								src={`${baseUrl}/heroavatar.jpg`}
+								width={54}
+								height={54}
+								alt="Lauro Silva"
+								style={{
+									borderRadius: '27px',
+									marginRight: '16px'
+								}}
+							/>
+							<div
+								style={{
+									display: 'flex',
+									flexDirection: 'column',
+									marginLeft: '8px'
+								}}>
 								<span
 									style={{
-										color: '#666',
-										fontSize: '22px',
-										letterSpacing: '-0.01em'
+										color: 'white',
+										fontSize: '24px',
+										fontFamily: 'Wotfard'
 									}}>
 									Lauro Silva
+								</span>
+								<span
+									style={{
+										color: '#94A3B8',
+										fontSize: '18px',
+										fontFamily: 'Wotfard'
+									}}>
+									laurosilvadevelopment.com
 								</span>
 							</div>
 						</div>
