@@ -10,7 +10,6 @@ interface CardProps {
 	icon?: string
 	date?: string
 	footer?: ReactNode
-	gradient?: [string, string]
 	className?: string
 }
 export function Card({

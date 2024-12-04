@@ -98,14 +98,11 @@ export default async function Blog(props: Props) {
 	const posts = await getBlogPosts()
 	const post = posts.find((post) => post.slug === params.slug)
 
-	const [lightGradient, darkGradient] = post?.metadata?.gradient || [
-		'#FFF0F5',
-		'#1c1415'
-	]
-
 	if (!post) {
 		notFound()
 	}
+
+	const gradient = post.metadata.gradient || '#FFF0F5'
 
 	return (
 		<Container className="mx-auto w-full">
@@ -133,23 +130,20 @@ export default async function Blog(props: Props) {
 			/>
 
 			<div className="relative">
-				{/* Ambient light effect */}
-				{/* Ambient light effect */}
 				<div className="absolute inset-0 -z-10" aria-hidden="true">
 					<div
 						className="absolute top-0 h-[300px] w-full opacity-[0.15] dark:opacity-[0.08]"
 						style={{
 							background: `
-                    radial-gradient(
-                        50% 100% at 50% 0%,
-                        ${lightGradient} 0%,
-                        transparent 100%
-                    )
-                `
+                radial-gradient(
+                    50% 100% at 50% 0%,
+                    ${gradient} 0%,
+                    transparent 100%
+                )
+            `
 						}}
 					/>
 				</div>
-
 				{/* Header content */}
 				<header className="relative mx-auto w-full max-w-3xl pt-16 pb-12 md:pt-24 md:pb-16">
 					{/* Icon */}

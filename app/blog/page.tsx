@@ -30,7 +30,6 @@ export default async function Page() {
 								description={post.metadata.description}
 								icon={post.metadata.icon}
 								date={formatDate(post.metadata.publishedAt, false)}
-								gradient={post.metadata.gradient}
 							/>
 						))}
 					</CardGrid>

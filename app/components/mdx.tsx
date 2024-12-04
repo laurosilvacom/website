@@ -30,7 +30,7 @@ function Table({data}) {
 function CustomLink({href, children, ...props}) {
 	if (href.startsWith('/')) {
 		return (
-			<Link href={href} {...props}>
+			<Link className="fancy-link" href={href} {...props}>
 				{children}
 			</Link>
 		)
