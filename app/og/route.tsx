@@ -78,7 +78,17 @@ export async function GET(request: Request) {
 								alignItems: 'center',
 								gap: '12px'
 							}}>
-							<span style={{fontSize: '32px'}}>✨</span>
+							{/* Profile image */}
+							<img
+								src="https://res.cloudinary.com/laurosilvacom/image/upload/v1733352657/laurosilvacom/lauro/v0apzla84d3xnux8u2pl.webp"
+								alt="Lauro Silva"
+								style={{
+									width: '48px',
+									height: '48px',
+									borderRadius: '24px',
+									border: '2px solid rgba(0, 0, 0, 0.06)'
+								}}
+							/>
 							<span
 								style={{
 									color: '#666',
