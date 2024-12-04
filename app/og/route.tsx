@@ -10,29 +10,24 @@ export async function GET(request: Request) {
 		(
 			<div
 				style={{
-					background: 'white',
+					background: 'linear-gradient(130deg, #fff1f1 0%, #e8f2ff 100%)',
 					width: '100%',
 					height: '100%',
 					display: 'flex',
 					alignItems: 'center',
 					justifyContent: 'center',
-					position: 'relative'
+					padding: '40px'
 				}}>
-				{/* Background gradient */}
 				<div
 					style={{
-						position: 'absolute',
-						inset: 0,
-						background: 'linear-gradient(130deg, #fff1f1 0%, #e8f2ff 100%)'
-					}}
-				/>
-
-				{/* Content wrapper */}
-				<div
-					style={{
-						position: 'relative',
 						display: 'flex',
 						flexDirection: 'column',
+						background: 'white',
+						padding: '60px',
+						borderRadius: '24px',
+						boxShadow: '0 8px 40px rgba(0, 0, 0, 0.12)',
+						border: '2px solid rgba(0, 0, 0, 0.06)',
+						position: 'relative',
 						width: '90%',
 						maxWidth: '900px'
 					}}>
@@ -64,15 +59,7 @@ export async function GET(request: Request) {
 						}}
 					/>
 
-					{/* Main content */}
-					<div
-						style={{
-							background: 'white',
-							padding: '60px',
-							borderRadius: '24px',
-							boxShadow: '0 8px 40px rgba(0, 0, 0, 0.12)',
-							border: '2px solid rgba(0, 0, 0, 0.06)'
-						}}>
+					<div style={{display: 'flex', flexDirection: 'column', gap: '24px'}}>
 						<h1
 							style={{
 								margin: 0,
@@ -87,18 +74,18 @@ export async function GET(request: Request) {
 
 						<div
 							style={{
-								marginTop: '24px',
 								display: 'flex',
-								alignItems: 'center'
+								alignItems: 'center',
+								gap: '12px'
 							}}>
-							<span style={{fontSize: '32px', marginRight: '12px'}}>✨</span>
-							<div
+							<span style={{fontSize: '32px'}}>✨</span>
+							<span
 								style={{
 									color: '#666',
 									fontSize: '24px'
 								}}>
 								Lauro Silva
-							</div>
+							</span>
 						</div>
 					</div>
 				</div>
