@@ -9,6 +9,14 @@ type Metadata = {
 	image?: string
 	description?: string
 	gradient?: [string, string] | string
+	readingTime?: string
+}
+
+function calculateReadingTime(content: string): string {
+	const wordsPerMinute = 200
+	const words = content.trim().split(/\s+/).length
+	const minutes = Math.ceil(words / wordsPerMinute)
+	return `${minutes} min read`
 }
 
 function parseFrontmatter(fileContent: string) {
@@ -53,7 +61,11 @@ async function getMDXFiles(dir: string): Promise<string[]> {
 
 async function readMDXFile(filePath: string) {
 	const rawContent = await fs.readFile(filePath, 'utf-8')
-	return parseFrontmatter(rawContent)
+	const {metadata, content} = parseFrontmatter(rawContent)
+
+	metadata.readingTime = calculateReadingTime(content)
+
+	return {metadata, content}
 }
 
 async function getMDXData(dir: string) {

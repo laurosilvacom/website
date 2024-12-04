@@ -124,7 +124,7 @@ function CustomLink({href, children, ...props}) {
 function RoundedImage({alt, ...imageProps}: ImageProps) {
 	return (
 		<div className="not-prose group relative my-16 w-full overflow-hidden md:-mx-8 lg:-mx-16">
-			<div className="relative aspect-[9/9] overflow-hidden rounded-xl transition-all duration-500">
+			<div className="relative overflow-hidden rounded-xl transition-all duration-500">
 				{/* Ambient light effect */}
 				<div className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-500 group-hover:opacity-100">
 					<div className="from-primary/20 to-chart-2/20 absolute inset-0 bg-gradient-to-br via-transparent blur-2xl" />

@@ -183,7 +183,7 @@ export default async function Blog(props: Props) {
 							{formatDate(post.metadata.publishedAt)}
 						</time>
 						<span>•</span>
-						<span>5 min read</span>
+						<span>{post.metadata.readingTime}</span>
 					</div>
 
 					{/* Description */}
