@@ -73,8 +73,7 @@ export async function GET(request: Request) {
 								fontWeight: 600,
 								color: '#333',
 								letterSpacing: '-0.02em',
-								lineHeight: 1.2,
-								fontFamily: 'Wotfard'
+								lineHeight: 1.2
 							}}>
 							{title}
 						</h1>
@@ -86,7 +85,7 @@ export async function GET(request: Request) {
 								gap: '12px'
 							}}>
 							<img
-								src="https://res.cloudinary.com/laurosilvacom/image/upload/v1733352657/laurosilvacom/lauro/v0apzla84d3xnux8u2pl.webp"
+								src="/heroavatar.jpg"
 								alt="Lauro Silva"
 								width={48}
 								height={48}
@@ -98,8 +97,7 @@ export async function GET(request: Request) {
 							<span
 								style={{
 									color: '#666',
-									fontSize: '24px',
-									fontFamily: 'Wotfard'
+									fontSize: '24px'
 								}}>
 								Lauro Silva
 							</span>
