@@ -1,88 +1,184 @@
 ---
-title: 'Building a Mimimal Blog with Next.js + MDX'
+title: 'MDX Component Gallery'
 publishedAt: '2024-04-08'
-summary: 'Explore the enduring debate between using spaces and tabs for code indentation, and why this choice matters more than you might think.'
+summary: 'A showcase of all available MDX components and how to use them'
 icon: 'https://www.taniarascia.com/static/d6b2adaef93726b3d9da8e040810adb8/92ab1/graphql.png'
-description: 'At some point, you might work on a React/Redux application that requires the use of WebSockets, such as for chat or live updates on a dashboard.'
-gradient: #e534ab
+description: 'Comprehensive guide showing all available MDX components with examples and usage instructions.'
+gradient: '#e534ab'
 ---
 
-create a new next.js app
+Welcome to our component gallery! This page demonstrates all available MDX components and how to use them in your content. `pnpm run dev`
 
-```bash
-$ npx create-next-app@latest website
+## Text Styling Components
+
+### Emphasis
+
+Here's how to use _rounded corners and hover effects_ in your content.
+
+```md
+_This text will be emphasized_
 ```
 
-We want to use Tailwind CSS v4. If you’d like to try upgrading a project from v3 to the v4 beta releases, you can use our upgrade tool to do the vast majority of the heavy lifting for you:
+### Strong Text
+
+You can make text **bold and important** like this:
+
+```md
+**This text will be bold**
+```
+
+## Blockquotes
+
+You can create beautiful blockquotes like this:
+
+> This is a blockquote. It's perfect for highlighting important information or displaying quotes from other sources.
+>
+> You can have multiple paragraphs too!
+
+```md
+> Your quote text goes here
+```
+
+## Lists
+
+Here's how our custom lists look:
+
+- First item with custom bullet
+- Second item that shows animation
+- Third item with hover effect
+  - Nested items work too
+  - With consistent styling
+
+## Info Boxes
+
+<InfoBox type="info">
+	This is a standard info box. Use it for general information.
+</InfoBox>
+
+<InfoBox type="warning">
+	This is a warning box. Use it for important cautions.
+</InfoBox>
+
+<InfoBox type="error">
+	This is an error box. Use it for critical information.
+</InfoBox>
+
+<InfoBox type="success">
+	This is a success box. Use it for positive outcomes.
+</InfoBox>
+
+```jsx
+<InfoBox type="info">Your message here</InfoBox>
+<InfoBox type="warning">Warning message</InfoBox>
+<InfoBox type="error">Error message</InfoBox>
+<InfoBox type="success">Success message</InfoBox>
+```
+
+## Callouts
+
+<Callout emoji="💡">
+	This is a callout with a lightbulb emoji. Perfect for tips and
+	ideas!
+</Callout>
+
+<Callout emoji="⚠️">
+	This is a warning callout. Use it when you need to catch the
+	reader's attention.
+</Callout>
+
+```jsx
+<Callout emoji="💡">Your callout text here</Callout>
+```
+
+## Code Examples
+
+You can use `inline code` like this.
+
+Or create code blocks:
 
 ```tsx
-import React from 'react'
-
-// Utility function to combine class names
-const cx = (...classes: string[]): string =>
-	classes.filter(Boolean).join(' ')
-
-// Define the props for the Container component
-type ContainerProps = {
-	className?: string
-	wrapperClassName?: string
-	as?: keyof JSX.IntrinsicElements | React.ComponentType<any>
-} & React.PropsWithChildren
-
-// Container component definition
-const Container: React.FC<ContainerProps> = ({
-	children,
-	className = '',
-	wrapperClassName = '',
-	as: Component = 'div',
-	...props
-}) => {
-	const wrapperClasses = cx(
-		'w-full px-2 sm:px-5 lg:px-8',
-		wrapperClassName
-	)
-	const componentClasses = cx('container h-full', className)
-
+function Example() {
 	return (
-		<div className={wrapperClasses}>
-			<Component className={componentClasses} {...props}>
-				{children}
-			</Component>
+		<div>
+			<h1>Hello World</h1>
 		</div>
 	)
 }
-
-export default Container
 ```
 
-Let's use pnpm
+## Keyboard Shortcuts
 
-```bash
-$ pnpm i
+You can show keyboard combinations like this: <Kbd>⌘</Kbd> + <Kbd>S</Kbd> to save.
+
+```jsx
+;<Kbd>⌘</Kbd> + <Kbd>S</Kbd>
 ```
 
-let's deploy this application but first commit
+## Demo Containers
 
-```tsx
-function Table({data}) {
-	const headers = data.headers.map((header, index) => (
-		<th key={index}>{header}</th>
-	))
-	const rows = data.rows.map((row, index) => (
-		<tr key={index}>
-			{row.map((cell, cellIndex) => (
-				<td key={cellIndex}>{cell}</td>
-			))}
-		</tr>
-	))
+<Demo>
+  This is a demo container. Use it to showcase examples or interactive components.
 
-	return (
-		<table>
-			<thead>
-				<tr>{headers}</tr>
-			</thead>
-			<tbody>{rows}</tbody>
-		</table>
-	)
-}
+You can put any content here!
+
+</Demo>
+
+```jsx
+<Demo>Your demo content here</Demo>
 ```
+
+## Tables
+
+Tables are styled automatically:
+
+<Table
+	data={{
+		headers: ['Component', 'Usage', 'Example'],
+		rows: [
+			['InfoBox', 'Information display', 'Info, Warning, Error'],
+			['Callout', 'Attention-grabbing notes', 'Tips, Warnings'],
+			['Kbd', 'Keyboard shortcuts', '⌘ + S']
+		]
+	}}
+/>
+
+## Horizontal Rules
+
+Here's a fancy gradient horizontal rule:
+
+---
+
+## Images
+
+Images get special treatment with rounded corners and hover effects:
+
+<Image
+	src="https://res.cloudinary.com/laurosilvacom/image/upload/v1733096522/laurosilvacom/footprints/mblcyj5gx4losphwwsyf.jpg"
+	alt="Description"
+	alt="Footprints Camp Recap: A Running + Climate Camp"
+/>
+
+## Combining Components
+
+You can combine components for rich content:
+
+<InfoBox type="info">
+	Here's how to **combine** components: - Use _emphasized_ text -
+	Add `inline code` - Include <Kbd>shortcuts</Kbd>
+</InfoBox>
+
+## Best Practices
+
+1. Use appropriate components for their intended purpose
+2. Combine components thoughtfully
+3. Keep accessibility in mind
+4. Test your content in both light and dark modes
+
+<Callout emoji="🎨">
+	Remember: These components are designed to make your content
+	more engaging and easier to read!
+</Callout>
+
+---
+
+That's our complete component gallery! Check the source of this page to see exactly how each component is used.

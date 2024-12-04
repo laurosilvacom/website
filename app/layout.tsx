@@ -7,6 +7,7 @@ import {baseUrl} from 'app/sitemap'
 import type {Metadata} from 'next'
 import localFont from 'next/font/local'
 import {type ReactNode} from 'react'
+import {Toaster} from 'app/components/toaster'
 
 const wotfard = localFont({
 	src: [
@@ -114,6 +115,7 @@ export default function RootLayout({children}: RootLayoutProps) {
 					<Footer />
 					<Analytics />
 					<SpeedInsights />
+					<Toaster />
 				</main>
 			</body>
 		</html>
