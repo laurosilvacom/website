@@ -5,6 +5,10 @@ export const runtime = 'edge'
 export async function GET(request: Request) {
 	const url = new URL(request.url)
 	const title = url.searchParams.get('title') || 'Lauro Silva'
+	const icon = url.searchParams.get('icon')
+
+	// Get base URL for assets
+	const baseUrl = `${url.protocol}//${url.host}`
 
 	// Load the font file directly using fetch
 	const fontData = await fetch(
@@ -66,6 +70,21 @@ export async function GET(request: Request) {
 					/>
 
 					<div style={{display: 'flex', flexDirection: 'column', gap: '24px'}}>
+						{/* Post Icon */}
+						{icon && (
+							<div style={{marginBottom: '8px'}}>
+								<img
+									src={icon}
+									alt="Post icon"
+									width={56}
+									height={56}
+									style={{
+										objectFit: 'contain'
+									}}
+								/>
+							</div>
+						)}
+
 						<h1
 							style={{
 								margin: 0,
@@ -85,7 +104,7 @@ export async function GET(request: Request) {
 								gap: '12px'
 							}}>
 							<img
-								src="/heroavatar.jpg"
+								src={`${baseUrl}/heroavatar.jpg`}
 								alt="Lauro Silva"
 								width={48}
 								height={48}

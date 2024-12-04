@@ -61,12 +61,15 @@ export async function generateMetadata(
 		title,
 		publishedAt: publishedTime,
 		summary: description,
-		image
+		image,
+		icon
 	} = post.metadata
 
 	const ogImage = image
 		? `${baseUrl}${image}`
-		: `${baseUrl}/og?title=${encodeURIComponent(title)}`
+		: `${baseUrl}/og?title=${encodeURIComponent(title)}${
+				icon ? `&icon=${encodeURIComponent(icon)}` : ''
+			}`
 
 	return {
 		title,
