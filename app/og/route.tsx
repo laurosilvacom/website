@@ -24,18 +24,18 @@ export async function GET(request: Request) {
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'center',
-						backgroundColor: '#FEF6F3'
+						backgroundColor: 'hsl(225, 25%, 97%)' // --background
 					}}>
 					<div
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
-							backgroundColor: 'white',
+							backgroundColor: 'hsl(225, 25%, 99%)', // --card
 							padding: '68px',
 							margin: '40px',
-							borderRadius: '32px',
+							borderRadius: '12px', // --radius
 							boxShadow: '0 2px 40px rgba(0,0,0,0.08)',
-							border: '3px solid #FFE5DB',
+							border: '2px solid hsl(225, 25%, 90%)', // --border
 							width: '1000px'
 						}}>
 						{icon && (
@@ -48,9 +48,9 @@ export async function GET(request: Request) {
 									style={{
 										display: 'flex',
 										padding: '16px',
-										backgroundColor: '#F4FAFF',
-										borderRadius: '20px',
-										border: '3px solid #E6F0FF'
+										backgroundColor: 'hsl(225, 25%, 95%)', // --secondary
+										borderRadius: '12px',
+										border: '2px solid hsl(225, 25%, 90%)' // --border
 									}}>
 									<img src={icon} alt="Post icon" width={48} height={48} />
 								</div>
@@ -67,7 +67,7 @@ export async function GET(request: Request) {
 									fontSize: '68px',
 									fontFamily: 'Wotfard',
 									letterSpacing: '-0.03em',
-									color: '#1A365D',
+									color: 'hsl(225, 25%, 20%)', // --foreground
 									lineHeight: '1.1'
 								}}>
 								{title}
@@ -78,27 +78,27 @@ export async function GET(request: Request) {
 							style={{
 								display: 'flex',
 								alignItems: 'center',
-								backgroundColor: '#F9FAFB',
+								backgroundColor: 'hsl(225, 25%, 95%)', // --secondary
 								padding: '16px 20px',
-								borderRadius: '20px',
-								border: '3px solid #EDF2F7',
-								width: '320px' // Fixed width instead of fit-content
+								borderRadius: '12px',
+								border: '2px solid hsl(225, 25%, 90%)', // --border
+								width: '320px'
 							}}>
 							<img
 								src="https://res.cloudinary.com/laurosilvacom/image/upload/v1733356380/laurosilvacom/lauro/kldqbcyrvtngub7fmutn.png"
 								alt="Lauro Silva"
-								width={48}
-								height={48}
+								width={78}
+								height={78}
 								style={{
 									borderRadius: '24px',
 									marginRight: '16px',
-									border: '3px solid #EDF2F7'
+									border: '2px solid hsl(225, 25%, 90%)' // --border
 								}}
 							/>
 							<div style={{display: 'flex', flexDirection: 'column'}}>
 								<span
 									style={{
-										color: '#2D3748',
+										color: 'hsl(225, 25%, 20%)', // --foreground
 										fontSize: '22px',
 										fontFamily: 'Wotfard'
 									}}>
@@ -106,7 +106,7 @@ export async function GET(request: Request) {
 								</span>
 								<span
 									style={{
-										color: '#718096',
+										color: 'hsl(225, 25%, 40%)', // --muted-foreground
 										fontSize: '16px',
 										fontFamily: 'Wotfard'
 									}}>
