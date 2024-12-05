@@ -4,17 +4,21 @@ import {formatDate} from 'app/blog/utils'
 import {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 
-type Props = {
+const baseUrl =
+	process.env.NEXT_PUBLIC_URL || 'https://laurosilvadevelopment.com'
+
+type PageProps = {
 	params: {
 		slug: string
 	}
+	searchParams: {[key: string]: string | string[] | undefined}
 }
 
-export async function generateMetadata(props: Props): Promise<Metadata | null> {
+export async function generateMetadata({
+	params
+}: PageProps): Promise<Metadata | null> {
 	const tutorials = await getTutorials()
-	const tutorial = tutorials.find(
-		(tutorial) => tutorial.slug === props.params.slug
-	)
+	const tutorial = tutorials.find((tutorial) => tutorial.slug === params.slug)
 
 	if (!tutorial) {
 		return null
@@ -24,8 +28,16 @@ export async function generateMetadata(props: Props): Promise<Metadata | null> {
 		title,
 		publishedAt: publishedTime,
 		summary: description,
-		videoUrl
+		videoUrl,
+		icon,
+		image
 	} = tutorial.metadata
+
+	const ogImage = image
+		? `${baseUrl}${image}`
+		: `${baseUrl}/og?title=${encodeURIComponent(title)}${
+				icon ? `&icon=${encodeURIComponent(icon)}` : ''
+			}`
 
 	return {
 		title,
@@ -35,7 +47,12 @@ export async function generateMetadata(props: Props): Promise<Metadata | null> {
 			description,
 			type: 'article',
 			publishedTime,
-			url: `https://laurosilvadevelopment.com/tutorials/${tutorial.slug}`,
+			url: `${baseUrl}/tutorials/${tutorial.slug}`,
+			images: [
+				{
+					url: ogImage
+				}
+			],
 			videos: [
 				{
 					url: videoUrl,
@@ -48,12 +65,13 @@ export async function generateMetadata(props: Props): Promise<Metadata | null> {
 		twitter: {
 			card: 'summary_large_image',
 			title,
-			description
+			description,
+			images: [ogImage]
 		}
 	}
 }
 
-export default async function TutorialPage({params}: Props) {
+export default async function TutorialPage({params}: PageProps) {
 	const tutorials = await getTutorials()
 	const tutorial = tutorials.find((tutorial) => tutorial.slug === params.slug)
 

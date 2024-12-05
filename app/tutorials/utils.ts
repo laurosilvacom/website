@@ -8,6 +8,7 @@ type TutorialMetadata = {
 	publishedAt: string
 	summary: string
 	icon?: string
+	image?: string
 	videoUrl: string
 	duration: string
 	topics?: string[]
