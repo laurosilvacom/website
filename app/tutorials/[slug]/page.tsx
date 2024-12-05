@@ -7,16 +7,14 @@ import {notFound} from 'next/navigation'
 const baseUrl =
 	process.env.NEXT_PUBLIC_URL || 'https://laurosilvadevelopment.com'
 
-type PageProps = {
-	params: {
-		slug: string
-	}
+interface GenerateMetadataProps {
+	params: {slug: string}
 	searchParams: {[key: string]: string | string[] | undefined}
 }
 
 export async function generateMetadata({
 	params
-}: PageProps): Promise<Metadata | null> {
+}: GenerateMetadataProps): Promise<Metadata | null> {
 	const tutorials = await getTutorials()
 	const tutorial = tutorials.find((tutorial) => tutorial.slug === params.slug)
 
@@ -71,7 +69,13 @@ export async function generateMetadata({
 	}
 }
 
-export default async function TutorialPage({params}: PageProps) {
+export default async function TutorialPage({
+	params,
+	searchParams
+}: {
+	params: {slug: string}
+	searchParams: {[key: string]: string | string[] | undefined}
+}) {
 	const tutorials = await getTutorials()
 	const tutorial = tutorials.find((tutorial) => tutorial.slug === params.slug)
 
