@@ -1,20 +1,54 @@
 import {getTutorials} from '../utils'
 import {CustomMDX} from 'app/components/mdx'
 import {formatDate} from 'app/blog/utils'
-import {Metadata} from 'next'
+import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 
 const baseUrl =
 	process.env.NEXT_PUBLIC_URL || 'https://laurosilvadevelopment.com'
 
-interface GenerateMetadataProps {
-	params: {slug: string}
-	searchParams: {[key: string]: string | string[] | undefined}
+interface PageMetadata extends Metadata {
+	title: string
+	description: string
+	openGraph: {
+		title: string
+		description: string
+		type: string
+		publishedTime: string
+		url: string
+		images: {url: string}[]
+		videos: {
+			url: string
+			width: number
+			height: number
+			type: string
+		}[]
+	}
+	twitter: {
+		card: string
+		title: string
+		description: string
+		images: string[]
+	}
 }
 
-export async function generateMetadata({
-	params
-}: GenerateMetadataProps): Promise<Metadata | null> {
+interface Params {
+	slug: string
+}
+
+interface Props {
+	params: Promise<Params>
+}
+
+export async function generateMetadata(
+	props: Props
+): Promise<PageMetadata | null> {
+	const params = await props.params
+
+	if (!params || !params.slug) {
+		return null
+	}
+
 	const tutorials = await getTutorials()
 	const tutorial = tutorials.find((tutorial) => tutorial.slug === params.slug)
 
@@ -69,13 +103,9 @@ export async function generateMetadata({
 	}
 }
 
-export default async function TutorialPage({
-	params,
-	searchParams
-}: {
-	params: {slug: string}
-	searchParams: {[key: string]: string | string[] | undefined}
-}) {
+export default async function TutorialPage(props: Props) {
+	const params = await props.params
+
 	const tutorials = await getTutorials()
 	const tutorial = tutorials.find((tutorial) => tutorial.slug === params.slug)
 
