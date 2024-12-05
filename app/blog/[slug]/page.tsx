@@ -5,6 +5,7 @@ import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 import Container from 'app/components/container'
 import Image from 'next/image'
+import {TableOfContents} from 'app/components/toc'
 
 interface PageMetadata extends Metadata {
 	title: string
@@ -108,7 +109,7 @@ export default async function Blog(props: Props) {
 	const gradient = post.metadata.gradient || '#FFF0F5'
 
 	return (
-		<Container className="mx-auto w-full">
+		<Container>
 			<script
 				type="application/ld+json"
 				suppressHydrationWarning
@@ -132,7 +133,8 @@ export default async function Blog(props: Props) {
 				}}
 			/>
 
-			<div className="relative">
+			<div className="relative mx-auto max-w-[1600px] px-6 py-10">
+				{/* Background gradient */}
 				<div className="absolute inset-0 -z-10" aria-hidden="true">
 					<div
 						className="absolute top-0 h-[300px] w-full opacity-[0.15] dark:opacity-[0.08]"
@@ -143,64 +145,106 @@ export default async function Blog(props: Props) {
                     ${gradient} 0%,
                     transparent 100%
                 )
-            `
+              `
 						}}
 					/>
 				</div>
-				{/* Header content */}
-				<header className="relative mx-auto w-full max-w-3xl pt-16 pb-12 md:pt-24 md:pb-16">
-					{/* Icon */}
-					{post.metadata.icon && (
-						<div className="mb-8">
-							<Image
-								src={post.metadata.icon}
-								alt={`${post.metadata.title} icon`}
-								width={52}
-								height={52}
-								quality={100}
-								className="rounded-lg"
-							/>
-						</div>
-					)}
 
-					{/* Title */}
-					<h1 className="text-foreground mb-8 text-4xl font-bold tracking-tight md:text-5xl">
-						{post.metadata.title}
-					</h1>
+				{/* Main layout grid */}
+				<div className="relative grid grid-cols-1 gap-8 lg:grid-cols-[250px_1fr] xl:grid-cols-[300px_1fr]">
+					{/* Left sidebar - ToC */}
+					<div className="hidden lg:block">
+						<div className="sticky top-24">
+							{/* Author info */}
+							<div className="mb-8">
+								<div className="mb-4 flex items-center gap-4">
+									<div className="h-12 w-12 overflow-hidden rounded-full">
+										<Image
+											src="/heroavatar.jpg"
+											alt="Lauro Silva"
+											width={100}
+											height={100}
+											className="object-cover"
+											priority
+										/>
+									</div>
+									<div>
+										<div className="text-foreground font-medium">
+											Lauro Silva
+										</div>
+										<time className="text-muted-foreground text-sm">
+											{formatDate(post.metadata.publishedAt)}
+										</time>
+									</div>
+								</div>
+								<div className="text-muted-foreground text-sm">
+									{post.metadata.readingTime}
+								</div>
+							</div>
 
-					{/* Meta info */}
-					<div className="text-muted-foreground flex items-center gap-4 text-sm">
-						<div className="h-8 w-8 overflow-hidden rounded-full">
-							<Image
-								src="/heroavatar.jpg"
-								alt="Lauro Silva"
-								width={100}
-								height={100}
-								className="object-cover"
-								priority
-							/>
+							{/* Table of Contents */}
+							<TableOfContents />
 						</div>
-						<span className="font-medium">Lauro Silva</span>
-						<span>•</span>
-						<time dateTime={post.metadata.publishedAt}>
-							{formatDate(post.metadata.publishedAt)}
-						</time>
-						<span>•</span>
-						<span>{post.metadata.readingTime}</span>
 					</div>
 
-					{/* Description */}
-					{post.metadata.description && (
-						<p className="text-muted-foreground mt-8 text-xl leading-relaxed">
-							{post.metadata.description}
-						</p>
-					)}
-				</header>
-			</div>
+					{/* Main content */}
+					<div className="m-auto max-w-screen-md min-w-0">
+						{/* Header for mobile */}
+						<div className="mb-8 lg:hidden">
+							<div className="text-muted-foreground flex items-center gap-4 text-sm">
+								<div className="h-8 w-8 overflow-hidden rounded-full">
+									<Image
+										src="/heroavatar.jpg"
+										alt="Lauro Silva"
+										width={100}
+										height={100}
+										className="object-cover"
+										priority
+									/>
+								</div>
+								<span className="font-medium">Lauro Silva</span>
+								<span>•</span>
+								<time dateTime={post.metadata.publishedAt}>
+									{formatDate(post.metadata.publishedAt)}
+								</time>
+								<span>•</span>
+								<span>{post.metadata.readingTime}</span>
+							</div>
+						</div>
 
-			<article className="prose dark:prose-invert md:prose-lg prose-code:break-words mx-auto w-full max-w-3xl">
-				<CustomMDX source={post.content} />
-			</article>
+						{/* Article header */}
+						<header className="mb-12">
+							{post.metadata.icon && (
+								<div className="mb-8">
+									<Image
+										src={post.metadata.icon}
+										alt={`${post.metadata.title} icon`}
+										width={52}
+										height={52}
+										quality={100}
+										className="rounded-lg"
+									/>
+								</div>
+							)}
+
+							<h1 className="text-foreground mb-8 text-4xl font-bold tracking-tight md:text-5xl">
+								{post.metadata.title}
+							</h1>
+
+							{post.metadata.description && (
+								<p className="text-muted-foreground text-xl leading-relaxed">
+									{post.metadata.description}
+								</p>
+							)}
+						</header>
+
+						{/* Article content */}
+						<article className="prose prose-lg dark:prose-invert prose-code:break-words w-full">
+							<CustomMDX source={post.content} />
+						</article>
+					</div>
+				</div>
+			</div>
 		</Container>
 	)
 }
