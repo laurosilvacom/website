@@ -6,8 +6,63 @@ import React from 'react'
 import {highlight} from 'sugar-high'
 import {ReactNode} from 'react'
 import {CodeCopyButton} from './copy-button'
-
 import type {ImageProps as NextImageProps} from 'next/image'
+
+interface StackBlitzProps {
+	id: string
+	height?: string
+	file?: string
+	view?: 'preview' | 'editor' | 'both' // Control the view layout
+	hideNavigation?: boolean // Hide the top navigation bar
+	hideDevTools?: boolean // Hide the bottom dev tools
+	hideExplorer?: boolean // Hide the file explorer
+	hideTerminal?: boolean // Hide the terminal
+	terminalHeight?: number // Control terminal height (pixels)
+	devToolsHeight?: number // Control devtools height (pixels)
+	theme?: 'dark' | 'light' // Editor theme
+	clickToLoad?: boolean // Load on click instead of immediately
+}
+
+function StackBlitz({
+	id,
+	height = '500px',
+	file = 'src/App.tsx',
+	view = 'both',
+	hideNavigation = true,
+	hideDevTools = false,
+	hideExplorer = false,
+	hideTerminal = false,
+	terminalHeight,
+	devToolsHeight,
+	theme = 'dark',
+	clickToLoad = false
+}: StackBlitzProps) {
+	const params = new URLSearchParams({
+		embed: '1',
+		file,
+		view,
+		hideNavigation: hideNavigation ? '1' : '0',
+		hideDevTools: hideDevTools ? '1' : '0',
+		hideExplorer: hideExplorer ? '1' : '0',
+		hideTerminal: hideTerminal ? '1' : '0',
+		theme,
+		...(terminalHeight && {terminalHeight: terminalHeight.toString()}),
+		...(devToolsHeight && {devToolsHeight: devToolsHeight.toString()}),
+		...(clickToLoad && {clickToLoad: '1'})
+	})
+
+	return (
+		<div className="-mx-0 my-8 overflow-auto rounded-xl border p-4 text-base shadow-xs md:-mx-10 md:my-8">
+			<iframe
+				src={`https://stackblitz.com/edit/${id}?${params.toString()}`}
+				className="w-full rounded-xl border border-[hsl(var(--border))] bg-[hsl(var(--card))]"
+				style={{height}}
+				title="StackBlitz Example"
+				loading="lazy"
+			/>
+		</div>
+	)
+}
 
 type ImageProps = Omit<NextImageProps, 'width' | 'height'> & {
 	width?: number
@@ -17,7 +72,7 @@ type ImageProps = Omit<NextImageProps, 'width' | 'height'> & {
 // Whimsical table with hover effects and playful borders
 function Table({data}) {
 	return (
-		<div className="my-8 overflow-x-auto">
+		<div className="-mx-0 my-8 overflow-x-auto rounded-xl border p-4 text-base shadow-xs md:-mx-14 md:my-8">
 			<table className="animate-fade-in w-full border-collapse">
 				<thead>
 					<tr className="border-primary-500 border-b-2">
@@ -444,7 +499,8 @@ const components = {
 	Callout,
 	Demo,
 	Kbd,
-	Details
+	Details,
+	StackBlitz
 }
 
 export function CustomMDX(props: MDXRemoteProps) {

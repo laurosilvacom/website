@@ -207,6 +207,139 @@ Here's a list:
 
 </Details>
 
+## StackBlitz Component
+
+The StackBlitz component allows you to embed interactive code examples directly in your MDX content.
+
+### Basic Example
+
+<StackBlitz id="vitejs-vite-ym2hon" />
+
+### Component Props
+
+<Table
+	data={{
+		headers: ['Prop', 'Type', 'Default', 'Description'],
+		rows: [
+			['id', 'string', 'required', 'The StackBlitz project ID'],
+			['height', 'string', '500px', 'Height of the embed'],
+			['file', 'string', 'src/App.tsx', 'Initial file to open'],
+			[
+				'view',
+				'"preview" | "editor" | "both"',
+				'both',
+				'Layout view mode'
+			],
+			[
+				'hideNavigation',
+				'boolean',
+				'true',
+				'Hide the top navigation bar'
+			],
+			[
+				'hideDevTools',
+				'boolean',
+				'false',
+				'Hide the bottom dev tools'
+			],
+			[
+				'hideExplorer',
+				'boolean',
+				'false',
+				'Hide the file explorer'
+			],
+			['hideTerminal', 'boolean', 'false', 'Hide the terminal'],
+			[
+				'terminalHeight',
+				'number',
+				'undefined',
+				'Terminal height in pixels'
+			],
+			[
+				'devToolsHeight',
+				'number',
+				'undefined',
+				'DevTools height in pixels'
+			],
+			['theme', '"dark" | "light"', 'dark', 'Editor theme'],
+			[
+				'clickToLoad',
+				'boolean',
+				'false',
+				'Load on click instead of immediately'
+			]
+		]
+	}}
+/>
+
+### Configuration Examples
+
+#### Editor View
+
+<StackBlitz
+	id="vitejs-vite-ym2hon"
+	view="editor"
+	height="400px"
+/>
+
+#### Preview Only View
+
+<StackBlitz
+	id="vitejs-vite-ym2hon"
+	view="preview"
+	hideDevTools={true}
+	hideTerminal={true}
+/>
+
+#### Custom Layout Example
+
+<StackBlitz
+	id="vitejs-vite-ym2hon"
+	height="600px"
+	hideExplorer={false}
+	terminalHeight={100}
+	theme="light"
+/>
+
+### Implementation
+
+```mdx
+// Basic usage
+
+<StackBlitz id="vitejs-vite-ym2hon" />
+
+// Custom configuration
+
+<StackBlitz
+	id="vitejs-vite-ym2hon"
+	height="600px"
+	file="src/main.tsx"
+	view="editor"
+	hideExplorer={true}
+	theme="dark"
+/>
+
+// Preview focused
+
+<StackBlitz
+	id="vitejs-vite-ym2hon"
+	view="preview"
+	hideDevTools={true}
+	hideTerminal={true}
+/>
+```
+
+### Note
+
+1. **Performance**: Use `clickToLoad={true}` for pages with multiple embeds
+2. **Height**: Adjust height based on your content needs
+3. **View Mode**: Choose appropriate view mode for your use case:
+   - `editor`: For code-focused examples
+   - `preview`: For result-focused examples
+   - `both`: For interactive tutorials
+4. **Initial File**: Set `file` prop to focus on specific code
+5. **Theme**: Match your site's theme using the `theme` prop
+
 ---
 
 That's our complete component gallery! Check the source of this page to see exactly how each component is used.
