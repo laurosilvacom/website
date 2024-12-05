@@ -398,3 +398,19 @@ code:not(pre code) span {
 		scroll-margin-top: 150px; /* Increased from 100px */
 	}
 }
+
+@property --rotate {
+	syntax: '<angle>';
+	initial-value: 0deg;
+	inherits: false;
+}
+
+@keyframes cycle-colors {
+	0%,
+	100% {
+		--rotate: 0deg;
+	}
+	50% {
+		--rotate: 180deg;
+	}
+}

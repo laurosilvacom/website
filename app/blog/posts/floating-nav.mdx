@@ -1,0 +1,98 @@
+---
+title: 'Creating a Floating Navbar with Next.js and Tailwind CSS'
+publishedAt: '2024-01-08'
+summary: 'Learn how to build a responsive floating navbar in Next.js using Tailwind CSS'
+icon: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1705629532/laurosilvacom/icons/iw7vdsnx4p2owgjivykm.png'
+description: 'Step-by-step guide to creating a floating navbar that stays fixed at the top of the screen using Next.js and Tailwind CSS.'
+gradient: '#4169E1'
+---
+
+This tutorial will teach us how to create a floating navbar in Tailwind CSS and Next.js. A floating navbar is a navigation bar that stays fixed at the top of the screen as the user scrolls down the page. This common design pattern can help improve the user experience by providing easy access to navigation links at all times.
+
+## Prerequisites
+
+Before we get started, make sure you have the following installed:
+
+- Node.js
+- Next.js
+- Tailwind CSS
+
+## Creating the Navbar Component
+
+The first step is to create a new component for the navbar. We will call this component `Navbar`. Here is the code for the component:
+
+```jsx
+import Link from 'next/link'
+
+const Navbar = () => {
+	return (
+		<nav className="fixed top-0 right-0 left-0 z-50 bg-white shadow-lg">
+			<div className="container mx-auto px-4">
+				<div className="flex justify-between">
+					<div className="flex items-center">
+						<Link href="/">
+							<a className="text-xl font-bold text-gray-800">
+								My Website
+							</a>
+						</Link>
+					</div>
+					<div className="hidden items-center md:flex">
+						<Link href="/">
+							<a className="rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-800">
+								Home
+							</a>
+						</Link>
+						<Link href="/about">
+							<a className="rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-800">
+								About
+							</a>
+						</Link>
+						<Link href="/contact">
+							<a className="rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-800">
+								Contact
+							</a>
+						</Link>
+					</div>
+				</div>
+			</div>
+		</nav>
+	)
+}
+
+export default Navbar
+```
+
+This code creates a new component called `Navbar` that contains the HTML for the navigation bar. The navigation bar is fixed to the top of the screen using the `fixed` and `top-0` classes. The `z-50` class ensures that the navigation bar is always on top of other elements on the page. The `bg-white` and `shadow-lg` classes give the navigation bar a white background and a shadow effect.
+
+The navigation links are contained within a `div` element with the `container` and `mx-auto` classes. This centers the navigation links on the page and ensures that they are not too wide on larger screens.
+
+The `flex justify-between` class on the `div` element ensures that the logo is on the left side of the navigation bar and the links are on the right side. The `flex items-center` class on the logo and links ensures that they are vertically centered within their respective containers.
+
+The navigation links are contained within a `div` element with the `hidden md:flex` classes. This ensures that the navigation links are hidden on smaller screens and only appear when the screen size is medium or larger. The `px-3 py-2 rounded-md text-sm font-medium` classes give the navigation links a consistent style.
+
+## Using the Navbar Component
+
+Now that we have created the `Navbar` component, we can use it in our Next.js app. Here is an example of how to use the `Navbar` component in the `Layout` component:
+
+```jsx
+import Navbar from './Navbar'
+
+const Layout = ({children}) => {
+	return (
+		<>
+			<Navbar />
+			<main>{children}</main>
+		</>
+	)
+}
+
+export default Layout
+```
+
+This code imports the `Navbar` component and adds it to the `Layout` component. The `Layout` component is used as a wrapper around the content of each page in our app. This ensures that the navigation bar is displayed on every page.
+
+## Conclusion
+
+In this tutorial, we learned how to create a floating navbar in Tailwind CSS and Next.js. We created a new component called `Navbar` that contains the HTML for the navigation bar.
+
+We then used the `Navbar` component in our Next.js app by adding it to the `Layout` component. This ensures that the navigation bar is displayed on every page in our app. If you have any questions or comments, feel free to leave them below!

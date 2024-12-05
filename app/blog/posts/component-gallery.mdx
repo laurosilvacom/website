@@ -7,13 +7,13 @@ description: 'Comprehensive guide showing all available MDX components with exam
 gradient: '#e534ab'
 ---
 
-Welcome to our component gallery! This page demonstrates all available MDX components and how to use them in your content. `pnpm run dev`
+Welcome to our component gallery! This page demonstrates all available MDX components and how to use them in your content.
 
 ## Text Styling Components
 
 ### Emphasis
 
-Here's how to use _rounded corners and hover effects_ in your content.
+Here's how to use _emphasis_ in your content.
 
 ```md
 _This text will be emphasized_
@@ -166,18 +166,54 @@ You can combine components for rich content:
 	Add `inline code` - Include <Kbd>shortcuts</Kbd>
 </InfoBox>
 
+## Details Component
+
+The Details component creates an expandable/collapsible section with a smooth animation. It's perfect for FAQs, additional information, or any content that should be hidden by default.
+
+<Table
+	data={{
+		headers: ['Prop', 'Type', 'Description'],
+		rows: [
+			[
+				'title',
+				'string',
+				'The text shown in the expandable header'
+			],
+			[
+				'children',
+				'ReactNode',
+				'The content revealed when expanded'
+			]
+		]
+	}}
+/>
+
+### Examples
+
+<Details title="Basic Example">
+	This content is hidden by default and will be revealed when
+	clicked.
+</Details>
+
+<Details title="With Multiple Elements">
+  <Callout emoji="💡">
+    You can nest other MDX components inside Details!
+  </Callout>
+
+Here's a list:
+
+- Item one
+- Item two
+
+</Details>
+
+---
+
+That's our complete component gallery! Check the source of this page to see exactly how each component is used.
+
 ## Best Practices
 
 1. Use appropriate components for their intended purpose
 2. Combine components thoughtfully
 3. Keep accessibility in mind
 4. Test your content in both light and dark modes
-
-<Callout emoji="🎨">
-	Remember: These components are designed to make your content
-	more engaging and easier to read!
-</Callout>
-
----
-
-That's our complete component gallery! Check the source of this page to see exactly how each component is used.

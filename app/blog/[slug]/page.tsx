@@ -133,7 +133,7 @@ export default async function Blog(props: Props) {
 				}}
 			/>
 
-			<div className="relative mx-auto max-w-[1600px] px-6 py-10">
+			<div className="relative mx-auto max-w-[1600px] px-4 py-10 sm:px-6 lg:px-8">
 				{/* Background gradient */}
 				<div className="absolute inset-0 -z-10" aria-hidden="true">
 					<div
@@ -187,61 +187,65 @@ export default async function Blog(props: Props) {
 						</div>
 					</div>
 
-					{/* Main content */}
-					<div className="m-auto max-w-screen-md min-w-0">
-						{/* Header for mobile */}
-						<div className="mb-8 lg:hidden">
-							<div className="text-muted-foreground flex items-center gap-4 text-sm">
-								<div className="h-8 w-8 overflow-hidden rounded-full">
-									<Image
-										src="/heroavatar.jpg"
-										alt="Lauro Silva"
-										width={100}
-										height={100}
-										className="object-cover"
-										priority
-									/>
+					<div className="min-w-0 lg:flex lg:justify-center">
+						{/* Content container with max width */}
+						<div className="w-full max-w-screen-md">
+							{/* Mobile author info */}
+							<div className="mb-8 lg:hidden">
+								<div className="text-muted-foreground flex items-center gap-4 text-sm">
+									<div className="h-8 w-8 overflow-hidden rounded-full">
+										<Image
+											src="/heroavatar.jpg"
+											alt="Lauro Silva"
+											width={100}
+											height={100}
+											className="object-cover"
+											priority
+										/>
+									</div>
+									<div className="flex items-center gap-4">
+										<span className="font-medium">Lauro Silva</span>
+										<span>•</span>
+										<time dateTime={post.metadata.publishedAt}>
+											{formatDate(post.metadata.publishedAt)}
+										</time>
+										<span>•</span>
+										<span>{post.metadata.readingTime}</span>
+									</div>
 								</div>
-								<span className="font-medium">Lauro Silva</span>
-								<span>•</span>
-								<time dateTime={post.metadata.publishedAt}>
-									{formatDate(post.metadata.publishedAt)}
-								</time>
-								<span>•</span>
-								<span>{post.metadata.readingTime}</span>
 							</div>
+
+							{/* Article header */}
+							<header className="mb-12">
+								{post.metadata.icon && (
+									<div className="mb-8">
+										<Image
+											src={post.metadata.icon}
+											alt={`${post.metadata.title} icon`}
+											width={52}
+											height={52}
+											quality={100}
+											className="rounded-lg"
+										/>
+									</div>
+								)}
+
+								<h1 className="text-foreground mb-8 text-4xl font-bold tracking-tight md:text-5xl">
+									{post.metadata.title}
+								</h1>
+
+								{post.metadata.description && (
+									<p className="text-muted-foreground text-xl leading-relaxed">
+										{post.metadata.description}
+									</p>
+								)}
+							</header>
+
+							{/* Article content */}
+							<article className="prose prose-lg dark:prose-invert prose-code:break-words w-full">
+								<CustomMDX source={post.content} />
+							</article>
 						</div>
-
-						{/* Article header */}
-						<header className="mb-12">
-							{post.metadata.icon && (
-								<div className="mb-8">
-									<Image
-										src={post.metadata.icon}
-										alt={`${post.metadata.title} icon`}
-										width={52}
-										height={52}
-										quality={100}
-										className="rounded-lg"
-									/>
-								</div>
-							)}
-
-							<h1 className="text-foreground mb-8 text-4xl font-bold tracking-tight md:text-5xl">
-								{post.metadata.title}
-							</h1>
-
-							{post.metadata.description && (
-								<p className="text-muted-foreground text-xl leading-relaxed">
-									{post.metadata.description}
-								</p>
-							)}
-						</header>
-
-						{/* Article content */}
-						<article className="prose prose-lg dark:prose-invert prose-code:break-words w-full">
-							<CustomMDX source={post.content} />
-						</article>
 					</div>
 				</div>
 			</div>

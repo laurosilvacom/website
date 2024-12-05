@@ -123,7 +123,7 @@ function CustomLink({href, children, ...props}) {
 // Delightful image component with subtle animations
 function RoundedImage({alt, ...imageProps}: ImageProps) {
 	return (
-		<div className="not-prose group relative my-16 w-full overflow-hidden md:-mx-8 lg:-mx-16">
+		<div className="not-prose group relative my-16 w-full overflow-hidden">
 			<div className="relative overflow-hidden rounded-xl transition-all duration-500">
 				{/* Ambient light effect */}
 				<div className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-500 group-hover:opacity-100">
@@ -134,7 +134,7 @@ function RoundedImage({alt, ...imageProps}: ImageProps) {
 				<div className="border-primary/10 absolute inset-0 border opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
 				{/* Image with hover effect */}
-				<div className="transform-gpu transition-transform duration-500 ease-out will-change-transform group-hover:scale-[1.02]">
+				<div className="transform-gpu transition-transform duration-500 ease-out will-change-transform">
 					<Image
 						className="h-auto w-full object-cover"
 						width={1200}
@@ -358,29 +358,28 @@ function InfoBox({
 
 function Callout({children, emoji}: {children: ReactNode; emoji: string}) {
 	return (
-		<div className="group border-primary/20 from-background to-muted/50 relative my-8 rounded-lg border bg-gradient-to-br p-6 shadow-lg transition-all duration-500 ease-out hover:shadow-xl">
-			{/* Animated corner accent */}
-			<div className="absolute -top-1 -left-1 h-12 w-12">
-				<div className="bg-primary/40 group-hover:bg-primary/60 absolute h-[2px] w-6 transform transition-all duration-500 ease-out group-hover:scale-x-125" />
-				<div className="bg-primary/40 group-hover:bg-primary/60 absolute h-6 w-[2px] transform transition-all duration-500 ease-out group-hover:scale-y-125" />
-			</div>
-			{/* Bottom right corner accent */}
-			<div className="absolute -right-1 -bottom-1 h-12 w-12">
-				<div className="bg-primary/40 group-hover:bg-primary/60 absolute right-0 bottom-0 h-[2px] w-6 transform transition-all duration-500 ease-out group-hover:scale-x-125" />
-				<div className="bg-primary/40 group-hover:bg-primary/60 absolute right-0 bottom-0 h-6 w-[2px] transform transition-all duration-500 ease-out group-hover:scale-y-125" />
-			</div>
+		<div className="group relative my-8">
+			{/* Subtle glow effect */}
+			<div className="absolute -inset-[1px] animate-pulse rounded-xl bg-gradient-to-r from-violet-500 via-sky-500 to-violet-500 opacity-25 blur-xl" />
 
-			<div className="flex items-baseline gap-4">
-				{/* Emoji with baseline alignment */}
-				<span
-					className="ease-bounce text-2xl transition-transform duration-500 group-hover:-translate-y-0.5"
-					role="img"
-					aria-label="callout emoji">
-					{emoji}
-				</span>
+			{/* Main card */}
+			<div className="bg-card relative rounded-xl p-6 shadow-sm">
+				<div className="flex items-baseline gap-5">
+					{/* Emoji container */}
+					<div
+						className="relative flex-shrink-0 transition-transform duration-300 ease-in-out group-hover:-rotate-6"
+						role="img"
+						aria-label={`Callout indicated by ${emoji}`}>
+						<span className="text-2xl">{emoji}</span>
+					</div>
 
-				{/* Content */}
-				<div className="text-foreground flex-1">{children}</div>
+					{/* Content */}
+					<div className="flex-1">
+						<div className="text-foreground text-lg leading-relaxed [text-wrap:pretty]">
+							{children}
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	)
@@ -399,6 +398,26 @@ function Kbd({children}) {
 		<kbd className="rounded border border-gray-200 bg-gray-100 px-2 py-1 font-mono text-sm shadow-sm dark:border-gray-700 dark:bg-gray-800">
 			{children}
 		</kbd>
+	)
+}
+
+function Details({children, title}: {children: ReactNode; title: string}) {
+	return (
+		<details className="group my-4 rounded-lg">
+			{/* Native details/summary elements for built-in functionality */}
+			<summary className="bg-card hover:bg-primary/5 flex cursor-pointer items-center justify-between rounded-lg p-4 text-lg font-medium transition-all">
+				<span>{title}</span>
+				{/* Unicode chevron that rotates */}
+				<span className="text-primary/60 transition-transform duration-200 group-open:rotate-90">
+					›
+				</span>
+			</summary>
+
+			{/* Content with slide animation */}
+			<div className="border-primary/10 bg-card/50 rounded-b-lg border-x border-b p-4 pt-2">
+				{children}
+			</div>
+		</details>
 	)
 }
 
@@ -424,7 +443,8 @@ const components = {
 	InfoBox,
 	Callout,
 	Demo,
-	Kbd
+	Kbd,
+	Details
 }
 
 export function CustomMDX(props: MDXRemoteProps) {
