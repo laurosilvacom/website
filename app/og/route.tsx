@@ -26,7 +26,6 @@ export async function GET(request: Request) {
 						justifyContent: 'center',
 						backgroundColor: '#FEF6F3'
 					}}>
-					{/* Main card with bigger padding for more "air" */}
 					<div
 						style={{
 							display: 'flex',
@@ -36,10 +35,9 @@ export async function GET(request: Request) {
 							margin: '40px',
 							borderRadius: '32px',
 							boxShadow: '0 2px 40px rgba(0,0,0,0.08)',
-							border: '3px solid #FFE5DB', // Playful border color
+							border: '3px solid #FFE5DB',
 							width: '1000px'
 						}}>
-						{/* Icon section with fun background */}
 						{icon && (
 							<div
 								style={{
@@ -50,7 +48,7 @@ export async function GET(request: Request) {
 									style={{
 										display: 'flex',
 										padding: '16px',
-										backgroundColor: '#F4FAFF', // Cool background for contrast
+										backgroundColor: '#F4FAFF',
 										borderRadius: '20px',
 										border: '3px solid #E6F0FF'
 									}}>
@@ -59,7 +57,6 @@ export async function GET(request: Request) {
 							</div>
 						)}
 
-						{/* Title with generous spacing */}
 						<div
 							style={{
 								display: 'flex',
@@ -77,7 +74,6 @@ export async function GET(request: Request) {
 							</div>
 						</div>
 
-						{/* Author card with playful style */}
 						<div
 							style={{
 								display: 'flex',
@@ -86,7 +82,7 @@ export async function GET(request: Request) {
 								padding: '16px 20px',
 								borderRadius: '20px',
 								border: '3px solid #EDF2F7',
-								width: 'fit-content' // Make it wrap the content
+								width: '320px' // Fixed width instead of fit-content
 							}}>
 							<img
 								src="https://res.cloudinary.com/laurosilvacom/image/upload/v1733356380/laurosilvacom/lauro/kldqbcyrvtngub7fmutn.png"
