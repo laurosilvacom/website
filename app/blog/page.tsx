@@ -16,10 +16,14 @@ export default async function Page() {
 			<main className="mx-auto py-12">
 				<section className="mb-20">
 					<h1 className="mb-8 text-4xl font-semibold tracking-tight">
-						Articles!
+						Articles
 					</h1>
+					<div className="text-muted-foreground space-y-4 text-xl">
+						<p className="leading-relaxed">
+							A collection of technical articles on web development.
+						</p>
+					</div>
 				</section>
-
 				<section className="mb-20">
 					<CardGrid>
 						{allBlogs.map((post) => (

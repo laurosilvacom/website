@@ -109,7 +109,7 @@ export default async function Blog(props: Props) {
 	const gradient = post.metadata.gradient || '#FFF0F5'
 
 	return (
-		<Container>
+		<Container className="m-auto">
 			<script
 				type="application/ld+json"
 				suppressHydrationWarning

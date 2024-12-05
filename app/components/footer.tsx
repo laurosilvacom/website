@@ -119,13 +119,13 @@ export default function Footer() {
 		<footer
 			className="bg-card border-border relative mt-32 w-full border-t pb-32 print:hidden"
 			role="contentinfo">
-			<Container className="mx-auto w-full max-w-screen-lg">
+			<Container className="mx-auto w-full max-w-screen-xl">
 				<div
 					className="via-border absolute top-0 left-0 h-px w-full bg-gradient-to-r from-transparent to-transparent"
 					aria-hidden="true"
 				/>
 
-				<div className="relative mx-auto flex w-full max-w-screen-lg flex-col items-start justify-between gap-16 pt-14 pb-48 sm:flex-row sm:pt-16">
+				<div className="relative mx-auto flex w-full flex-col items-start justify-between gap-16 pt-14 pb-48 sm:flex-row sm:pt-16">
 					<div className="relative mx-auto flex w-full flex-col items-start gap-8 sm:flex-row sm:items-start sm:gap-16">
 						{Object.entries(sections).map(([title, links]) => (
 							<FooterSection
