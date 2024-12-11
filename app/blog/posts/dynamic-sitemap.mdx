@@ -15,7 +15,7 @@ Creating a sitemap is crucial for better SEO and ensuring that search engines ca
 - Sanity configured and running with some content
 - Node.js and npm installed
 
-## Step 1: Set Up Your Next.js Project
+## Set Up Your Next.js Project
 
 If you don't already have a Next.js project set up, you can create one using the following command:
 
@@ -24,7 +24,7 @@ npx create-next-app my-nextjs-app --use-npm
 cd my-nextjs-app
 ```
 
-## Step 2: Configure Sanity Client
+## Configure Sanity Client
 
 Install Sanity client if you haven't already:
 
@@ -45,7 +45,7 @@ export const client = sanityClient({
 })
 ```
 
-## Step 3: Fetch Data from Sanity
+## Fetch Data from Sanity
 
 Define fetching functions to retrieve data from Sanity.
 
@@ -122,7 +122,7 @@ export const getAllRoutes = async () => {
 }
 ```
 
-## Step 4: Generate Sitemap Using Metadata API
+## Generate Sitemap Using Metadata API
 
 In Next.js 13+, you leverage the new `app` directory structure to create and serve the sitemap.
 
@@ -146,7 +146,7 @@ export default async function sitemap() {
 }
 ```
 
-## Step 5: Create Robots.txt (Optional but Recommended)
+## Create Robots.txt (Optional but Recommended)
 
 To provide instructions to web crawlers, you can create a `robots.txt` file.
 
@@ -170,7 +170,7 @@ export default function robots() {
 }
 ```
 
-## Step 6: Configure Environment Variables
+## Configure Environment Variables
 
 Ensure you have configured the `NEXT_PUBLIC_SITE_URL` in your `.env` file:
 
@@ -178,21 +178,21 @@ Ensure you have configured the `NEXT_PUBLIC_SITE_URL` in your `.env` file:
 NEXT_PUBLIC_SITE_URL=https://your-website.com
 ```
 
-## Step 7: Testing
+## Testing
 
-#### 1. Run Your Next.js App:
+1. Run Your Next.js App:
 
 ```bash
 npm run dev
 ```
 
-#### 2. Visit Your Sitemap URL:
+2. Visit Your Sitemap URL:
 
 ```bash
 http://localhost:3002/sitemap.xml
 ```
 
-#### 3. Visit Your Robots URL (if implemented):
+3. Visit Your Robots URL (if implemented):
 
 ```bash
 http://localhost:3002/robots.txt

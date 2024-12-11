@@ -414,3 +414,15 @@ code:not(pre code) span {
 		--rotate: 180deg;
 	}
 }
+
+details summary::-webkit-details-marker {
+	display: none;
+}
+
+details summary {
+	list-style: none;
+}
+
+details summary:focus {
+	outline: none;
+}

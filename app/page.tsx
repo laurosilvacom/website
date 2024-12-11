@@ -18,7 +18,7 @@ export default async function Page() {
 		.slice(0, 4)
 
 	return (
-		<Container className="mx-auto w-full max-w-screen-lg">
+		<Container className="mx-auto w-full max-w-screen-xl">
 			<main className="mx-auto space-y-32 py-24">
 				{/* Hero Section */}
 				<section className="relative">

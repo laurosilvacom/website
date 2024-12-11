@@ -7,6 +7,70 @@ import Container from 'app/components/container'
 import Image from 'next/image'
 import {TableOfContents} from 'app/components/toc'
 
+interface BlogHeaderProps {
+	author: string
+	date: string
+	readingTime: string | undefined
+	icon?: string
+	title: string
+	description?: string
+}
+
+const BlogHeader = ({
+	author,
+	date,
+	readingTime,
+	icon,
+	title,
+	description
+}: BlogHeaderProps) => (
+	<header className="mb-10">
+		<div className="mb-6 flex items-center gap-4">
+			<div className="h-12 w-12 overflow-hidden rounded-full">
+				<Image
+					src="/heroavatar.jpg"
+					alt={author}
+					width={100}
+					height={100}
+					className="object-cover"
+					priority
+				/>
+			</div>
+			<div className="flex flex-col sm:flex-row sm:items-center sm:gap-4">
+				<span className="font-medium">{author}</span>
+				<div className="text-muted-foreground flex items-center gap-2 text-sm">
+					<time dateTime={date}>{formatDate(date)}</time>
+					<span aria-hidden="true">•</span>
+					<span>{readingTime}</span>
+				</div>
+			</div>
+		</div>
+
+		{icon && (
+			<div className="mb-6">
+				<Image
+					src={icon}
+					alt={`${title} icon`}
+					width={80}
+					height={80}
+					quality={100}
+					className="rounded-lg"
+				/>
+			</div>
+		)}
+
+		<h1 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+			{title}
+		</h1>
+
+		{description && (
+			<p className="text-muted-foreground text-xl leading-relaxed">
+				{description}
+			</p>
+		)}
+	</header>
+)
+
 interface PageMetadata extends Metadata {
 	title: string
 	description: string
@@ -36,7 +100,6 @@ interface Props {
 
 export async function generateStaticParams() {
 	const posts = await getBlogPosts()
-
 	return posts.map((post) => ({
 		slug: post.slug
 	}))
@@ -46,17 +109,11 @@ export async function generateMetadata(
 	props: Props
 ): Promise<PageMetadata | null> {
 	const params = await props.params
-
-	if (!params || !params.slug) {
-		return null
-	}
+	if (!params || !params.slug) return null
 
 	const posts = await getBlogPosts()
 	const post = posts.find((post) => post.slug === params.slug)
-
-	if (!post) {
-		return null
-	}
+	if (!post) return null
 
 	const {
 		title,
@@ -81,11 +138,7 @@ export async function generateMetadata(
 			type: 'article',
 			publishedTime,
 			url: `${baseUrl}/blog/${post.slug}`,
-			images: [
-				{
-					url: ogImage
-				}
-			]
+			images: [{url: ogImage}]
 		},
 		twitter: {
 			card: 'summary_large_image',
@@ -98,7 +151,6 @@ export async function generateMetadata(
 
 export default async function Blog(props: Props) {
 	const params = await props.params
-
 	const posts = await getBlogPosts()
 	const post = posts.find((post) => post.slug === params.slug)
 
@@ -109,7 +161,15 @@ export default async function Blog(props: Props) {
 	const gradient = post.metadata.gradient || '#FFF0F5'
 
 	return (
-		<Container className="m-auto">
+		<Container className="m-auto min-h-screen">
+			{/* Gradient background - contained to header */}
+			<div
+				className="absolute inset-x-0 -top-10 -z-10 h-[400px] rounded-b-[30px] opacity-15 dark:opacity-10"
+				style={{
+					background: `radial-gradient(60% 80% at 50% 0%, ${gradient} 0%, transparent 100%)`
+				}}
+				aria-hidden="true"
+			/>
 			<script
 				type="application/ld+json"
 				suppressHydrationWarning
@@ -123,129 +183,100 @@ export default async function Blog(props: Props) {
 						description: post.metadata.summary,
 						image: post.metadata.image
 							? `${baseUrl}${post.metadata.image}`
-							: `/og?title=${encodeURIComponent(post.metadata.title)}`,
+							: `${baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}`,
 						url: `${baseUrl}/blog/${post.slug}`,
 						author: {
 							'@type': 'Person',
-							name: 'My Portfolio'
+							name: 'Lauro Silva'
 						}
 					})
 				}}
 			/>
+			<div className="mx-auto flex w-full max-w-screen-xl px-5 sm:px-10 lg:px-0">
+				<div className="w-full py-10">
+					{/* Content grid */}
+					<div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-x-[clamp(2rem,6vw,6rem)]">
+						{/* Main content */}
+						<div className="min-w-0">
+							{/* Header section with gradient */}
+							<div className="relative mb-16">
+								<BlogHeader
+									author="Lauro Silva"
+									date={post.metadata.publishedAt}
+									readingTime={post.metadata.readingTime}
+									icon={post.metadata.icon}
+									title={post.metadata.title}
+									description={post.metadata.description}
+								/>
 
-			<div className="relative mx-auto max-w-[1600px] px-4 py-10 sm:px-6 lg:px-8">
-				{/* Background gradient */}
-				<div className="absolute inset-0 -z-10" aria-hidden="true">
-					<div
-						className="absolute top-0 h-[300px] w-full opacity-[0.15] dark:opacity-[0.08]"
-						style={{
-							background: `
-                radial-gradient(
-                    50% 100% at 50% 0%,
-                    ${gradient} 0%,
-                    transparent 100%
-                )
-              `
-						}}
-					/>
-				</div>
+								{/* Mobile TOC */}
+								<div className="mb-10 lg:hidden">
+									<details className="group">
+										<summary className="relative cursor-pointer overflow-hidden rounded-xl">
+											{/* Frosted glass effect layers */}
+											<div className="absolute inset-0 backdrop-blur-xl" />
+											<div className="absolute inset-0 bg-white/[0.2] dark:bg-black/[0.2]" />
+											<div className="absolute inset-0 rounded-xl border border-white/[0.1] dark:border-white/[0.05]" />
 
-				{/* Main layout grid */}
-				<div className="relative grid grid-cols-1 gap-8 lg:grid-cols-[250px_1fr] xl:grid-cols-[300px_1fr]">
-					{/* Left sidebar - ToC */}
-					<div className="hidden lg:block">
-						<div className="sticky top-24">
-							{/* Author info */}
-							<div className="mb-8">
-								<div className="mb-4 flex items-center gap-4">
-									<div className="h-12 w-12 overflow-hidden rounded-full">
-										<Image
-											src="/heroavatar.jpg"
-											alt="Lauro Silva"
-											width={100}
-											height={100}
-											className="object-cover"
-											priority
-										/>
-									</div>
-									<div>
-										<div className="text-foreground font-medium">
-											Lauro Silva
+											<div className="relative flex items-center justify-between p-4">
+												<span className="text-base font-medium text-white/90 dark:text-white/90">
+													On this page
+												</span>
+												<svg
+													className="h-5 w-5 transform text-white/70 transition-transform duration-200 group-open:rotate-180"
+													fill="none"
+													viewBox="0 0 24 24"
+													stroke="currentColor">
+													<path
+														strokeLinecap="round"
+														strokeLinejoin="round"
+														strokeWidth={2}
+														d="M19 9l-7 7-7-7"
+													/>
+												</svg>
+											</div>
+										</summary>
+
+										<div className="relative mt-2 overflow-hidden rounded-xl">
+											{/* Frosted glass effect layers */}
+											<div className="absolute inset-0 backdrop-blur-xl" />
+											<div className="absolute inset-0 bg-white/[0.2] dark:bg-black/[0.2]" />
+											<div className="absolute inset-0 rounded-xl border border-white/[0.1] dark:border-white/[0.05]" />
+											{/* Bottom edge highlight */}
+											<div className="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+
+											<div className="relative px-6 py-4">
+												<TableOfContents />
+											</div>
 										</div>
-										<time className="text-muted-foreground text-sm">
-											{formatDate(post.metadata.publishedAt)}
-										</time>
-									</div>
-								</div>
-								<div className="text-muted-foreground text-sm">
-									{post.metadata.readingTime}
+									</details>
 								</div>
 							</div>
 
-							{/* Table of Contents */}
-							<TableOfContents />
-						</div>
-					</div>
-
-					<div className="min-w-0 lg:flex lg:justify-center">
-						{/* Content container with max width */}
-						<div className="w-full max-w-screen-md">
-							{/* Mobile author info */}
-							<div className="mb-8 lg:hidden">
-								<div className="text-muted-foreground flex items-center gap-4 text-sm">
-									<div className="h-8 w-8 overflow-hidden rounded-full">
-										<Image
-											src="/heroavatar.jpg"
-											alt="Lauro Silva"
-											width={100}
-											height={100}
-											className="object-cover"
-											priority
-										/>
-									</div>
-									<div className="flex items-center gap-4">
-										<span className="font-medium">Lauro Silva</span>
-										<span>•</span>
-										<time dateTime={post.metadata.publishedAt}>
-											{formatDate(post.metadata.publishedAt)}
-										</time>
-										<span>•</span>
-										<span>{post.metadata.readingTime}</span>
-									</div>
-								</div>
-							</div>
-
-							{/* Article header */}
-							<header className="mb-12">
-								{post.metadata.icon && (
-									<div className="mb-8">
-										<Image
-											src={post.metadata.icon}
-											alt={`${post.metadata.title} icon`}
-											width={52}
-											height={52}
-											quality={100}
-											className="rounded-lg"
-										/>
-									</div>
-								)}
-
-								<h1 className="text-foreground mb-8 text-4xl font-bold tracking-tight md:text-5xl">
-									{post.metadata.title}
-								</h1>
-
-								{post.metadata.description && (
-									<p className="text-muted-foreground text-xl leading-relaxed">
-										{post.metadata.description}
-									</p>
-								)}
-							</header>
-
-							{/* Article content */}
-							<article className="prose prose-lg dark:prose-invert prose-code:break-words w-full">
+							{/* Article content - clean background */}
+							<article className="prose prose-lg dark:prose-invert prose-headings:scroll-mt-24 max-w-none">
 								<CustomMDX source={post.content} />
 							</article>
 						</div>
+
+						{/* Desktop TOC */}
+						<aside className="hidden lg:block">
+							<div className="sticky top-24">
+								<div className="relative overflow-hidden rounded-xl">
+									{/* Frosted glass effect layers */}
+									<div className="absolute inset-0 backdrop-blur-xl" />
+									<div className="absolute inset-0 bg-white/[0.2] dark:bg-black/[0.2]" />
+									<div className="absolute inset-0 rounded-xl border border-white/[0.1] dark:border-white/[0.05]" />
+									{/* Bottom edge highlight */}
+									<div className="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+
+									{/* Content */}
+									<div className="relative p-6">
+										<TableOfContents />
+									</div>
+								</div>
+							</div>
+						</aside>
 					</div>
 				</div>
 			</div>

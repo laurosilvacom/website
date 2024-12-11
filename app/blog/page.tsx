@@ -12,7 +12,7 @@ export default async function Page() {
 	const allBlogs = await getBlogPosts()
 
 	return (
-		<Container className="mx-auto w-full max-w-screen-lg">
+		<Container className="mx-auto w-full max-w-screen-xl">
 			<main className="mx-auto py-12">
 				<section className="mb-20">
 					<h1 className="mb-8 text-4xl font-semibold tracking-tight">

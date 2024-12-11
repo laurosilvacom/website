@@ -84,10 +84,16 @@ export function Navbar() {
 			<nav
 				role="navigation"
 				aria-label="Main navigation"
-				className={`border-border sticky top-0 z-50 w-full border-b backdrop-blur-sm transition-all duration-300 ease-in-out print:hidden ${mounted ? 'bg-[hsl(225,25%,97%,0.8)]' : 'bg-[hsl(225,25%,97%)]'} ${mounted ? 'supports-[backdrop-filter]:bg-[hsl(225,25%,97%,0.5)]' : ''} ${mounted ? 'dark:bg-[hsl(225,25%,9%,0.8)]' : 'dark:bg-[hsl(225,25%,9%)]'} ${mounted ? 'supports-[backdrop-filter]:dark:bg-[hsl(225,25%,9%,0.6)]' : ''} `}>
+				className={`border-border sticky top-0 z-50 w-full border-b backdrop-blur-sm transition-all duration-300 ease-in-out print:hidden ${
+					mounted ? 'bg-[hsl(225,25%,97%,0.8)]' : 'bg-[hsl(225,25%,97%)]'
+				} ${mounted ? 'supports-[backdrop-filter]:bg-[hsl(225,25%,97%,0.5)]' : ''} ${
+					mounted
+						? 'dark:bg-[hsl(225,25%,9%,0.8)]'
+						: 'dark:bg-[hsl(225,25%,9%)]'
+				} ${mounted ? 'supports-[backdrop-filter]:dark:bg-[hsl(225,25%,9%,0.6)]' : ''} `}>
 				<div
 					className={`mx-auto flex max-w-screen-xl items-center justify-between px-5 transition-all duration-300 ease-in-out sm:px-10 lg:px-0 ${
-						isScrolled ? 'h-12' : 'h-18'
+						isScrolled ? 'h-16' : 'h-20'
 					}`}>
 					<Link
 						href="/"

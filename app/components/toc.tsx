@@ -53,10 +53,8 @@ export function TableOfContents() {
 
 					return (
 						<li
-							key={heading.id}
-							style={{
-								paddingLeft: `${(heading.level - 2) * 16}px`
-							}}>
+							key={`${heading.id}-${heading.text}`}
+							style={{paddingLeft: `${heading.level * 1}px`}}>
 							<a
 								href={`#${heading.id}`}
 								className={`group focus-visible:ring-primary relative block rounded-sm py-1.5 transition-all duration-300 ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
