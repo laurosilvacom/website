@@ -21,6 +21,24 @@ interface FooterSectionProps {
 	onToggle?: () => void
 }
 
+const HireIcon = () => (
+	<svg
+		className="ease-bounce h-4 w-4 transition-transform duration-300 group-hover:translate-y-[-2px]"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round">
+		<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+		<path d="M12 22v-8" />
+		<path d="M12 14l8-4.5" />
+		<path d="M12 14l-8-4.5" />
+		<path d="M12 6l8 4.5" />
+		<path d="M12 6l-8 4.5" />
+	</svg>
+)
+
 const ResourceIcon = () => (
 	<svg
 		className="ease-bounce h-4 w-4 transition-transform duration-300 group-hover:-rotate-12"
@@ -186,6 +204,9 @@ const FooterSection = ({
 								{title === 'Resources' && link.text === 'Tutorials' && (
 									<TutorialIcon />
 								)}
+								{title === 'Services' && link.text === 'Hire Me' && (
+									<HireIcon />
+								)}
 								{title === 'Resources' && link.text === 'Workshops' && (
 									<WorkshopIcon />
 								)}
@@ -221,6 +242,7 @@ export default function Footer() {
 			{href: '/tutorials', text: 'Tutorials'},
 			{href: '/workshops', text: 'Workshops'}
 		],
+		Services: [{href: '/hire-lauro', text: 'Hire Me'}],
 		Social: [
 			{
 				href: 'https://github.com/laurosilvacom',

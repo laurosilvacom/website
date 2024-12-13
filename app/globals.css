@@ -6,7 +6,7 @@
 	--font-sans: 'Wotfard', sans-serif;
 	--font-mono: 'commitMono';
 
-	--background: 225 25% 100%; /* Cool off-white background */
+	--background: 225 25% 96%; /* Cool off-white background */
 	--foreground: 225 25% 20%; /* Deep grey-blue text */
 	--card: 225 25% 99%; /* Slightly elevated surface */
 	--card-foreground: 225 25% 20%;
@@ -412,24 +412,5 @@ code:not(pre code) span {
 	}
 	50% {
 		--rotate: 180deg;
-	}
-}
-
-@keyframes float {
-	0%,
-	100% {
-		transform: translateY(0);
-	}
-	50% {
-		transform: translateY(-20px);
-	}
-}
-
-@keyframes spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
 	}
 }
