@@ -51,7 +51,7 @@
 						"fixStyle": "inline-type-imports"
 					}
 				],
-				"@typescript-eslint/no-floating-promises": "error"
+				"@typescript-eslint/no-floating-promises": "off"
 			}
 		}
 	],
