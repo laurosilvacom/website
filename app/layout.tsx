@@ -1,13 +1,13 @@
+import {type ReactNode} from 'react'
 import {Analytics} from '@vercel/analytics/react'
 import {SpeedInsights} from '@vercel/speed-insights/next'
-import Footer from 'app/components/footer'
-import {Navbar} from 'app/components/nav'
-import 'app/globals.css'
-import {baseUrl} from 'app/sitemap'
 import type {Metadata} from 'next'
-import localFont from 'next/font/local'
-import {type ReactNode} from 'react'
+import 'app/globals.css'
+import {Navbar} from 'app/components/nav'
+import Footer from 'app/components/footer'
 import {Toaster} from 'app/components/toaster'
+import {baseUrl} from 'app/sitemap'
+import localFont from 'next/font/local'
 
 const wotfard = localFont({
 	src: [

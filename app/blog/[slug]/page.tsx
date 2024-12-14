@@ -1,11 +1,11 @@
-import {formatDate, getBlogPosts} from 'app/blog/utils'
-import {CustomMDX} from 'app/components/mdx'
-import {baseUrl} from 'app/sitemap'
-import type {Metadata} from 'next'
-import {notFound} from 'next/navigation'
-import Container from 'app/components/container'
+import {type Metadata} from 'next'
 import Image from 'next/image'
+import {notFound} from 'next/navigation'
+import {formatDate, getBlogPosts} from 'app/blog/utils'
+import Container from 'app/components/container'
+import {CustomMDX} from 'app/components/mdx'
 import {TableOfContents} from 'app/components/toc'
+import {baseUrl} from 'app/sitemap'
 
 interface BlogHeaderProps {
 	author: string

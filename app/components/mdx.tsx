@@ -1,12 +1,11 @@
-import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
-import {MDXRemote} from 'next-mdx-remote/rsc'
+import React, {ReactNode} from 'react'
+import type {ImageProps as NextImageProps} from 'next/image'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import {MDXRemote} from 'next-mdx-remote/rsc'
+import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
 import {highlight} from 'sugar-high'
-import {ReactNode} from 'react'
 import {CodeCopyButton} from './copy-button'
-import type {ImageProps as NextImageProps} from 'next/image'
 
 interface StackBlitzProps {
 	id: string
@@ -107,7 +106,6 @@ function CustomLink({href, children, ...props}) {
 	const isInternal = href.startsWith('/')
 	const isAnchor = href.startsWith('#')
 
-	// Base styles focusing on accessibility and readability
 	const baseStyles = `
     relative
     text-blue-600 dark:text-blue-400
@@ -128,7 +126,6 @@ function CustomLink({href, children, ...props}) {
     motion-safe:transition-all
   `
 
-	// Subtle spring animation on hover using transform
 	const hoverStyles = `
     hover:after:scale-x-100
     after:absolute
