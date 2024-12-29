@@ -50,7 +50,7 @@ export function Card({
 				</div>
 
 				{(date || footer) && (
-					<div className="border-border bg-muted relative rounded-b-3xl border-t p-6 sm:p-8">
+					<div className="border-border bg-card relative rounded-b-3xl border-t p-6 sm:p-8">
 						<div className="flex items-center justify-between">
 							{date && (
 								<time dateTime={date} className="text-muted-foreground text-sm">

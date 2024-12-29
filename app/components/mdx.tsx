@@ -307,9 +307,9 @@ opacity-0 group-hover:opacity-100
 
 function Blockquote({children}: {children: ReactNode}) {
 	return (
-		<blockquote className="bg-card rounded-default border-default relative my-12 border-2 p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+		<blockquote className="bg-card rounded-default border-default relative my-20 border-2 p-16 shadow-xl">
 			<div className="rounded-default border-primary bg-background absolute -top-3 -left-3 flex h-12 w-12 items-center justify-center border-2 shadow-md">
-				<span className="text-primary translate-y-[-2px] text-2xl">❝</span>
+				<span className="text-primary translate-y-[3px] text-2xl">❝</span>
 			</div>
 
 			<div className="relative">

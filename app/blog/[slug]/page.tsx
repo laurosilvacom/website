@@ -23,53 +23,57 @@ const BlogHeader = ({
 	icon,
 	title,
 	description
-}: BlogHeaderProps) => (
-	<header className="mb-10">
-		<div className="mb-6 flex items-center gap-4">
-			<div className="h-12 w-12 overflow-hidden rounded-full">
-				<Image
-					src="/heroavatar.jpg"
-					alt={author}
-					width={100}
-					height={100}
-					className="object-cover"
-					priority
-				/>
+}: BlogHeaderProps) => {
+	return (
+		<header className="mx-auto max-w-4xl space-y-8">
+			{/* Title and Icon Section */}
+			<div className="space-y-4">
+				{icon && (
+					<div className="inline-block">
+						<Image
+							src={icon}
+							alt={`${title} icon`}
+							width={64}
+							height={64}
+							quality={100}
+							className="rounded-lg"
+						/>
+					</div>
+				)}
+				<h1 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+					{title}
+				</h1>
+				{description && (
+					<p className="text-muted-foreground text-lg leading-relaxed md:text-xl">
+						{description}
+					</p>
+				)}
 			</div>
-			<div className="flex flex-col sm:flex-row sm:items-center sm:gap-4">
-				<span className="font-medium">{author}</span>
-				<div className="text-muted-foreground flex items-center gap-2 text-sm">
-					<time dateTime={date}>{formatDate(date)}</time>
-					<span aria-hidden="true">•</span>
-					<span>{readingTime}</span>
+
+			{/* Author and Meta Section */}
+			<div className="border-border flex items-center gap-4 border-t pt-6">
+				<div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-full">
+					<Image
+						src="/heroavatar.jpg"
+						alt={author}
+						width={48}
+						height={48}
+						className="h-full w-full object-cover"
+						priority
+					/>
+				</div>
+				<div className="flex flex-col gap-1">
+					<span className="font-medium">{author}</span>
+					<div className="text-muted-foreground flex items-center text-sm">
+						<time dateTime={date}>{formatDate(date)}</time>
+						<span className="mx-2">•</span>
+						<span>{readingTime}</span>
+					</div>
 				</div>
 			</div>
-		</div>
-
-		{icon && (
-			<div className="mb-6">
-				<Image
-					src={icon}
-					alt={`${title} icon`}
-					width={80}
-					height={80}
-					quality={100}
-					className="rounded-lg"
-				/>
-			</div>
-		)}
-
-		<h1 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-			{title}
-		</h1>
-
-		{description && (
-			<p className="text-muted-foreground text-xl leading-relaxed">
-				{description}
-			</p>
-		)}
-	</header>
-)
+		</header>
+	)
+}
 
 interface PageMetadata extends Metadata {
 	title: string

@@ -26,7 +26,6 @@ export default async function Page() {
 						<div className="space-y-8 md:max-w-[600px]">
 							<h1 className="text-foreground text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
 								Hey, I&apos;m Lauro{' '}
-								<span className="animate-wave inline-block">👋</span>
 							</h1>
 
 							<div className="text-muted-foreground space-y-4 text-xl">
