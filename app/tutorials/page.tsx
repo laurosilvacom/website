@@ -1,6 +1,7 @@
-import {getTutorials} from 'app/tutorials/utils'
+import Image from 'next/image'
 import Link from 'next/link'
 import Container from 'app/components/container'
+import {getTutorials} from 'app/tutorials/utils'
 
 export default async function TutorialsPage() {
 	const tutorials = await getTutorials()
@@ -28,7 +29,7 @@ export default async function TutorialsPage() {
 								className="group border-border bg-card relative rounded-lg border p-6 transition-all hover:shadow-lg">
 								<div className="flex items-start gap-4">
 									{tutorial.metadata.icon && (
-										<img
+										<Image
 											src={tutorial.metadata.icon}
 											alt=""
 											className="h-12 w-12 rounded-lg"

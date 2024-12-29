@@ -7,7 +7,7 @@ const cx = (...classes: string[]): string => classes.filter(Boolean).join(' ')
 type ContainerProps = {
 	className?: string
 	wrapperClassName?: string
-	as?: keyof JSX.IntrinsicElements | React.ComponentType<any>
+	as?: keyof React.ReactHTML | React.ComponentType<unknown>
 } & React.PropsWithChildren
 
 // Container component definition

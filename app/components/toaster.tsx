@@ -27,7 +27,7 @@ export function Toaster() {
 }
 
 export function successToast(message: string) {
-	toast.custom((t) => (
+	toast.custom(() => (
 		<div className="rounded-default border-border bg-card flex items-center gap-3 border p-4 font-sans shadow-lg transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-xl">
 			<div className="relative flex h-8 w-8 items-center justify-center">
 				<div className="animate-in fade-in-0 zoom-in-50 absolute h-8 w-8 duration-300">
@@ -51,7 +51,7 @@ export function successToast(message: string) {
 }
 
 export function errorToast(message: string) {
-	toast.custom((t) => (
+	toast.custom(() => (
 		<div className="rounded-default border-border bg-card flex items-center gap-3 border p-4 font-sans shadow-lg transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-xl">
 			<div className="relative flex h-8 w-8 items-center justify-center">
 				<div className="animate-in fade-in-0 zoom-in-50 absolute h-8 w-8 duration-300">

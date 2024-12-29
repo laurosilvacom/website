@@ -1,11 +1,11 @@
-import {formatDate, getBlogPosts} from 'app/blog/utils'
-import {Card} from 'app/components/card'
-import {CardGrid} from 'app/components/card-grid'
-import Container from 'app/components/container'
 import {ArrowRight, BookOpen, Mail, Newspaper} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {type ReactNode} from 'react'
+import {formatDate, getBlogPosts} from 'app/blog/utils'
+import {Card} from 'app/components/card'
+import {CardGrid} from 'app/components/card-grid'
+import Container from 'app/components/container'
 
 export default async function Page() {
 	const allBlogs = await getBlogPosts()
@@ -25,18 +25,19 @@ export default async function Page() {
 					<div className="flex flex-col-reverse gap-16 md:flex-row md:items-center md:justify-between">
 						<div className="space-y-8 md:max-w-[600px]">
 							<h1 className="text-foreground text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-								Hey, I'm Lauro{' '}
+								Hey, I&apos;m Lauro{' '}
 								<span className="animate-wave inline-block">👋</span>
 							</h1>
 
 							<div className="text-muted-foreground space-y-4 text-xl">
 								<p className="leading-relaxed">
-									I'm a JavaScript Engineer and Educator passionate about
+									I&apos;m a JavaScript Engineer and Educator passionate about
 									helping developers build better software.
 								</p>
 								<p className="leading-relaxed">
-									When I'm not coding or teaching, you'll find me running in the
-									mountains, pushing my limits on long-distance trails.
+									When I&apos;m not coding or teaching, you&apos;ll find me
+									running in the mountains, pushing my limits on long-distance
+									trails.
 								</p>
 							</div>
 
@@ -139,6 +140,7 @@ export default async function Page() {
 		</Container>
 	)
 }
+
 interface ResourceCardProps {
 	href: string
 	icon: ReactNode

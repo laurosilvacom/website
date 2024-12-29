@@ -4,22 +4,18 @@ export default async function NewsletterPage() {
 	return (
 		<Container className="mx-auto w-full max-w-screen-lg">
 			<main className="mx-auto py-12">
-				{/* Hero Section */}
 				<section className="relative mb-20 text-center">
-					{/* Decorative background elements */}
 					<div
 						className="bg-primary absolute -top-8 left-1/2 h-40 w-40 -translate-x-1/2 opacity-5 blur-3xl"
 						aria-hidden="true"
 					/>
 
-					{/* Tag line */}
 					<div className="bg-muted mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1">
 						<span className="text-primary text-sm font-medium">
 							PUBLISHED EVERY TWO WEEKS
 						</span>
 					</div>
 
-					{/* Main heading */}
 					<h1 className="mb-4">
 						<span className="text-primary text-4xl font-bold tracking-tight sm:text-5xl">
 							The Newsletter
@@ -32,7 +28,6 @@ export default async function NewsletterPage() {
 						</span>
 					</h1>
 
-					{/* Description with personality */}
 					<div className="relative">
 						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
 							Join me on a journey through the wonderful world of web
@@ -42,34 +37,29 @@ export default async function NewsletterPage() {
 							</span>
 							and
 							<span className="text-primary mx-1 font-medium">
-								"aha!" moments
+								&quot;aha!&quot; moments
 							</span>
 							that make coding fun.
 						</p>
 
-						{/* Fun decorative elements */}
 						<div className="bg-primary absolute top-0 -right-4 h-2 w-2 rounded-full opacity-50" />
 						<div className="bg-primary absolute bottom-0 -left-4 h-2 w-2 rounded-full opacity-50" />
 					</div>
 				</section>
-				{/* Newsletter Card */}
+
 				<section className="mb-20">
 					<div className="group relative mx-auto max-w-2xl">
-						{/* Enhanced gradient glow */}
 						<div
 							className="bg-primary absolute -inset-[2px] rounded-2xl opacity-20 blur-xl transition-all duration-500 group-hover:opacity-40"
 							aria-hidden="true"
 						/>
 
-						{/* Main card */}
 						<div className="border-default bg-card relative rounded-xl border p-1 shadow-2xl">
 							<div className="border-default rounded-lg border p-8">
-								{/* Content */}
 								<div className="relative grid gap-12 md:grid-cols-[1.2fr,1fr]">
-									{/* Left column */}
 									<div>
 										<div className="text-primary mb-2 inline-flex items-center gap-2 rounded-lg bg-[hsl(var(--primary)/0.1)] px-4 py-1">
-											<span>📦 What's inside</span>
+											<span>📦 What&apos;s inside</span>
 											<span className="text-sm">↓</span>
 										</div>
 
@@ -100,7 +90,6 @@ export default async function NewsletterPage() {
 										</ul>
 									</div>
 
-									{/* Right column */}
 									<div>
 										<form className="space-y-6">
 											<div>

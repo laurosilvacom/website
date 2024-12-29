@@ -1,9 +1,9 @@
 'use client'
-import React from 'react'
+
+import {ArrowRight, CheckCircle} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import Container from 'app/components/container'
-import {ArrowRight, CheckCircle, ArrowDownCircle} from 'lucide-react'
+import React, {type JSX} from 'react'
 
 // Define TypeScript interfaces
 interface UnifiedService {
@@ -229,7 +229,7 @@ export default function ServicesPage(): JSX.Element {
 						{/* Main heading with creative layout */}
 						<div className="mb-6">
 							<h1 className="text-foreground text-4xl font-bold tracking-tight sm:text-5xl md:text-7xl">
-								Hey! I'm Lauro,
+								Hey! I&apos;m Lauro,
 								<br className="hidden md:block" />
 								<span className="mt-2 block">
 									an educator & engineer
@@ -545,12 +545,12 @@ export default function ServicesPage(): JSX.Element {
 			<section className="border-muted bg-card relative rounded-2xl border p-8 py-32 transition-all hover:shadow-sm">
 				<div className="mx-auto max-w-5xl text-center">
 					<h2 className="title text-foreground text-4xl font-bold tracking-tight sm:text-5xl">
-						Let's Build Something Impactful — Together.
+						Let&apos;s Build Something Impactful — Together.
 					</h2>
 					<p className="text-muted-foreground mx-auto mt-6 max-w-3xl text-lg leading-relaxed sm:text-xl">
-						Your next project starts with a conversation. Let's discuss your
-						goals and ideas to create something amazing. Ready to get started?
-						Book a call today.
+						Your next project starts with a conversation. Let&apos;s discuss
+						your goals and ideas to create something amazing. Ready to get
+						started? Book a call today.
 					</p>
 					<div className="mt-12">
 						<a

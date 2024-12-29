@@ -1,9 +1,7 @@
-import React, {ReactNode} from 'react'
-import type {ImageProps as NextImageProps} from 'next/image'
-import Image from 'next/image'
+import Image, {type ImageProps as NextImageProps} from 'next/image'
 import Link from 'next/link'
-import {MDXRemote} from 'next-mdx-remote/rsc'
-import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
+import {MDXRemote, type MDXRemoteProps} from 'next-mdx-remote/rsc'
+import React, {type ReactNode} from 'react'
 import {highlight} from 'sugar-high'
 import {CodeCopyButton} from './copy-button'
 
@@ -269,35 +267,39 @@ function slugify(str) {
 }
 
 // Interactive headings with hover effects
-function createHeading(level) {
-	return function Heading({children, ...props}) {
+function createHeading(level: number) {
+	return function Heading({
+		children,
+		...props
+	}: {children: React.ReactNode} & React.HTMLAttributes<HTMLElement>) {
 		const slug = slugify(children)
 		return React.createElement(
 			`h${level}`,
 			{
 				id: slug,
 				className: `
-          group relative
-          flex items-center
-          my-6 font-bold
-          text-primary-900 dark:text-primary-100
-        `,
+					group relative
+					flex items-center
+					my-6 font-bold
+text-primary-900 dark:text-primary-100
+				`,
 				...props
 			},
-			[
-				React.createElement('a', {
+			React.createElement(
+				'a',
+				{
 					href: `#${slug}`,
 					key: `link-${slug}`,
 					className: `
-            absolute -left-6
-            opacity-0 group-hover:opacity-100
-            transition-opacity duration-200
-            text-primary-400 hover:text-primary-700
-            dark:text-primary-600 dark:hover:text-primary-300
-          `,
-					children: '#'
-				})
-			],
+						absolute -left-6
+opacity-0 group-hover:opacity-100
+						transition-opacity duration-200
+						text-primary-400 hover:text-primary-700
+						dark:text-primary-600 dark:hover:text-primary-300
+					`
+				},
+				'#'
+			),
 			children
 		)
 	}

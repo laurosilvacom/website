@@ -24,7 +24,6 @@ export function Navbar() {
 	const [isScrolled, setIsScrolled] = useState(false)
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 	const [mounted, setMounted] = useState(false)
-	const isBlogArticle = pathname.includes('/blog/')
 
 	const closeMenu = useCallback(() => {
 		setIsMenuOpen(false)

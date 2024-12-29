@@ -7,7 +7,7 @@ export function CodeCopyButton({code}: {code: string}) {
 		try {
 			await navigator.clipboard.writeText(code)
 			successToast('Code copied to clipboard')
-		} catch (err) {
+		} catch {
 			errorToast('Failed to copy code')
 		}
 	}

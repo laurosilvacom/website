@@ -1,8 +1,9 @@
-import {getTutorials} from '../utils'
-import {CustomMDX} from 'app/components/mdx'
-import {formatDate} from 'app/blog/utils'
-import type {Metadata} from 'next'
+import {type Metadata} from 'next'
+import Image from 'next/image'
 import {notFound} from 'next/navigation'
+import {formatDate} from 'app/blog/utils'
+import {CustomMDX} from 'app/components/mdx'
+import {getTutorials} from '../utils'
 
 const baseUrl =
 	process.env.NEXT_PUBLIC_URL || 'https://laurosilvadevelopment.com'
@@ -133,7 +134,7 @@ export default async function TutorialPage(props: Props) {
 				{/* Title and icon */}
 				<div className="flex items-start gap-4 border-b pb-6">
 					{tutorial.metadata.icon && (
-						<img
+						<Image
 							src={tutorial.metadata.icon}
 							alt=""
 							className="h-12 w-12 rounded-lg"

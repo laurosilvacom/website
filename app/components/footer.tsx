@@ -1,8 +1,8 @@
 'use client'
 
-import Container from 'app/components/container'
 import Link from 'next/link'
 import {useEffect, useState} from 'react'
+import Container from 'app/components/container'
 
 interface FooterLink {
 	href: string

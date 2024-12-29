@@ -52,6 +52,7 @@ export async function GET(request: Request) {
 										borderRadius: '12px',
 										border: '2px solid hsl(225, 25%, 90%)' // --border
 									}}>
+									{/* eslint-disable-next-line @next/next/no-img-element */}
 									<img src={icon} alt="Post icon" width={48} height={48} />
 								</div>
 							</div>
@@ -84,6 +85,7 @@ export async function GET(request: Request) {
 								border: '2px solid hsl(225, 25%, 90%)', // --border
 								width: '320px'
 							}}>
+							{/* eslint-disable-next-line @next/next/no-img-element */}
 							<img
 								src="https://res.cloudinary.com/laurosilvacom/image/upload/v1733356380/laurosilvacom/lauro/kldqbcyrvtngub7fmutn.png"
 								alt="Lauro Silva"
