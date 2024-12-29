@@ -117,7 +117,7 @@ export default async function TutorialPage(props: Props) {
 	return (
 		<div className="mx-auto max-w-[1200px] px-6 py-10">
 			{/* Video section first */}
-			<div className="relative mb-12 overflow-hidden rounded-xl bg-black">
+			<div className="relative mb-12 overflow-hidden rounded-3xl bg-black">
 				<div className="aspect-video">
 					<iframe
 						className="h-full w-full"
@@ -130,13 +130,15 @@ export default async function TutorialPage(props: Props) {
 			</div>
 
 			{/* Metadata section */}
-			<div className="bg-card mb-16 rounded-xl border p-8">
+			<div className="bg-card mb-16 rounded-3xl border p-8">
 				{/* Title and icon */}
 				<div className="flex items-start gap-4 border-b pb-6">
 					{tutorial.metadata.icon && (
 						<Image
 							src={tutorial.metadata.icon}
-							alt=""
+							alt={tutorial.metadata.title}
+							width={48}
+							height={48}
 							className="h-12 w-12 rounded-lg"
 						/>
 					)}

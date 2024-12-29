@@ -26,12 +26,14 @@ export default async function TutorialsPage() {
 							<Link
 								key={tutorial.slug}
 								href={`/tutorials/${tutorial.slug}`}
-								className="group border-border bg-card relative rounded-lg border p-6 transition-all hover:shadow-lg">
+								className="group border-border bg-card relative rounded-3xl border p-6 transition-all hover:shadow-lg">
 								<div className="flex items-start gap-4">
 									{tutorial.metadata.icon && (
 										<Image
 											src={tutorial.metadata.icon}
-											alt=""
+											alt={tutorial.metadata.title}
+											width={48}
+											height={48}
 											className="h-12 w-12 rounded-lg"
 										/>
 									)}

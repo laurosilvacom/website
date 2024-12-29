@@ -11,6 +11,14 @@ export const metadata = {
 export default async function Page() {
 	const allBlogs = await getBlogPosts()
 
+	// Sort blogs from newest to oldest
+	const sortedBlogs = allBlogs.sort((a, b) => {
+		return (
+			new Date(b.metadata.publishedAt).getTime() -
+			new Date(a.metadata.publishedAt).getTime()
+		)
+	})
+
 	return (
 		<Container className="mx-auto w-full max-w-screen-xl">
 			<main className="mx-auto py-12">
@@ -26,7 +34,7 @@ export default async function Page() {
 				</section>
 				<section className="mb-20">
 					<CardGrid>
-						{allBlogs.map((post) => (
+						{sortedBlogs.map((post) => (
 							<Card
 								key={post.slug}
 								href={`/blog/${post.slug}`}

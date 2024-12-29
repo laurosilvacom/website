@@ -6,8 +6,9 @@
 	--font-sans: 'Wotfard', sans-serif;
 	--font-mono: 'commitMono';
 
-	--background: 225 25% 96%; /* Cool off-white background */
-	--foreground: 225 25% 20%; /* Deep grey-blue text */
+	--background: 250 30% 97%;
+	--foreground: 245 25% 25%;
+
 	--card: 225 25% 99%; /* Slightly elevated surface */
 	--card-foreground: 225 25% 20%;
 	--popover: 225 25% 99%; /* Matching card */
