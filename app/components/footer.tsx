@@ -271,12 +271,12 @@ export default function Footer() {
 	}
 
 	return (
-		<footer className="bg-card/50 border-border relative mt-32 w-full border-t pb-32 backdrop-blur-sm print:hidden">
+		<footer className="relative mt-32 w-full border-t border-[hsl(var(--border)/0.2)] bg-[hsl(var(--card)/0.95)] pb-20 backdrop-blur-xl print:hidden">
 			<Container className="mx-auto w-full max-w-screen-xl">
-				<div className="via-primary/20 absolute top-0 right-0 left-0 h-px bg-gradient-to-r from-transparent to-transparent" />
+				<div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[hsl(var(--primary)/0.1)] to-transparent" />
 
-				<div className="relative mx-auto flex w-full flex-col items-start justify-between gap-16 pt-14 pb-48 sm:flex-row sm:pt-16">
-					<div className="relative mx-auto flex w-full flex-col items-start gap-8 sm:flex-row sm:items-start sm:gap-16">
+				<div className="relative mx-auto flex w-full flex-col gap-16 py-16 sm:flex-row sm:items-start">
+					<div className="relative mx-auto flex w-full flex-col items-start gap-12 sm:flex-row sm:items-start">
 						{Object.entries(sections).map(([title, links]) => (
 							<FooterSection
 								key={title}
@@ -288,7 +288,7 @@ export default function Footer() {
 						))}
 					</div>
 
-					<div className="text-muted-foreground absolute bottom-5 flex items-center gap-2 text-sm">
+					<div className="absolute bottom-4 left-5 text-sm text-[hsl(var(--muted-foreground)/0.7)] sm:left-10 lg:left-0">
 						<span>© {new Date().getFullYear()} Lauro Silva, LLC</span>
 					</div>
 				</div>

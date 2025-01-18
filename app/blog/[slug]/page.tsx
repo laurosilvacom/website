@@ -25,34 +25,36 @@ const BlogHeader = ({
 	description
 }: BlogHeaderProps) => {
 	return (
-		<header className="mx-auto max-w-4xl space-y-8">
+		<header className="mx-auto max-w-4xl space-y-10">
 			{/* Title and Icon Section */}
-			<div className="space-y-4">
+			<div className="space-y-6">
 				{icon && (
 					<div className="inline-block">
-						<Image
-							src={icon}
-							alt={`${title} icon`}
-							width={64}
-							height={64}
-							quality={100}
-							className="rounded-lg"
-						/>
+						<div className="rounded-2xl bg-[hsl(var(--accent)/0.05)] p-4 ring-1 ring-[hsl(var(--border)/0.1)]">
+							<Image
+								src={icon}
+								alt={`${title} icon`}
+								width={48}
+								height={48}
+								quality={100}
+								className="h-12 w-12 object-contain"
+							/>
+						</div>
 					</div>
 				)}
-				<h1 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+				<h1 className="text-4xl leading-tight font-bold tracking-tight text-[hsl(var(--foreground))] md:text-5xl lg:text-6xl">
 					{title}
 				</h1>
 				{description && (
-					<p className="text-muted-foreground text-lg leading-relaxed md:text-xl">
+					<p className="text-xl leading-relaxed text-[hsl(var(--muted-foreground)/0.9)]">
 						{description}
 					</p>
 				)}
 			</div>
 
 			{/* Author and Meta Section */}
-			<div className="border-border flex items-center gap-4 border-t pt-6">
-				<div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-full">
+			<div className="flex items-center gap-4 border-t border-[hsl(var(--border)/0.2)] pt-6">
+				<div className="h-12 w-12 overflow-hidden rounded-full ring-1 ring-[hsl(var(--border)/0.1)]">
 					<Image
 						src="/heroavatar.jpg"
 						alt={author}
@@ -63,8 +65,10 @@ const BlogHeader = ({
 					/>
 				</div>
 				<div className="flex flex-col gap-1">
-					<span className="font-medium">{author}</span>
-					<div className="text-muted-foreground flex items-center text-sm">
+					<span className="font-medium text-[hsl(var(--foreground))]">
+						{author}
+					</span>
+					<div className="flex items-center text-sm text-[hsl(var(--muted-foreground)/0.8)]">
 						<time dateTime={date}>{formatDate(date)}</time>
 						<span className="mx-2">•</span>
 						<span>{readingTime}</span>
@@ -162,18 +166,15 @@ export default async function Blog(props: Props) {
 		notFound()
 	}
 
-	const gradient = post.metadata.gradient || '#FFF0F5'
-
 	return (
 		<Container className="m-auto min-h-screen">
-			{/* Gradient background - contained to header */}
+			{/* Subtle gradient background */}
 			<div
-				className="absolute inset-x-0 -top-10 -z-10 h-[400px] rounded-b-[30px] opacity-15 dark:opacity-10"
-				style={{
-					background: `radial-gradient(60% 80% at 50% 0%, ${gradient} 0%, transparent 100%)`
-				}}
+				className="absolute inset-x-0 -top-10 -z-10 h-[500px] bg-gradient-to-b from-[hsl(var(--primary)/0.05)] to-transparent opacity-50"
 				aria-hidden="true"
 			/>
+
+			{/* Schema markup remains the same */}
 			<script
 				type="application/ld+json"
 				suppressHydrationWarning
@@ -196,13 +197,14 @@ export default async function Blog(props: Props) {
 					})
 				}}
 			/>
+
 			<div className="mx-auto flex w-full max-w-screen-xl px-5 sm:px-10 lg:px-0">
-				<div className="w-full py-10">
+				<div className="w-full py-12">
 					{/* Content grid */}
 					<div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-x-[clamp(2rem,6vw,6rem)]">
 						{/* Main content */}
 						<div className="min-w-0">
-							{/* Header section with gradient */}
+							{/* Header section */}
 							<div className="relative mb-16">
 								<BlogHeader
 									author="Lauro Silva"
@@ -214,20 +216,15 @@ export default async function Blog(props: Props) {
 								/>
 
 								{/* Mobile TOC */}
-								<div className="mb-10 lg:hidden">
+								<div className="mt-10 lg:hidden">
 									<details className="group">
-										<summary className="relative cursor-pointer overflow-hidden rounded-xl">
-											{/* Frosted glass effect layers */}
-											<div className="absolute inset-0 backdrop-blur-xl" />
-											<div className="absolute inset-0 bg-white/[0.2] dark:bg-black/[0.2]" />
-											<div className="absolute inset-0 rounded-xl border border-white/[0.1] dark:border-white/[0.05]" />
-
-											<div className="relative flex items-center justify-between p-4">
-												<span className="text-base font-medium text-white/90 dark:text-white/90">
+										<summary className="cursor-pointer rounded-2xl border border-[hsl(var(--border)/0.2)] bg-[hsl(var(--card)/0.95)] shadow-[0_1px_3px_rgba(0,0,0,0.05)] backdrop-blur-xl">
+											<div className="flex items-center justify-between p-4">
+												<span className="text-base font-medium">
 													On this page
 												</span>
 												<svg
-													className="h-5 w-5 transform text-white/70 transition-transform duration-200 group-open:rotate-180"
+													className="h-5 w-5 transform text-[hsl(var(--muted-foreground)/0.8)] transition-transform duration-300 ease-out group-open:rotate-180"
 													fill="none"
 													viewBox="0 0 24 24"
 													stroke="currentColor">
@@ -241,15 +238,8 @@ export default async function Blog(props: Props) {
 											</div>
 										</summary>
 
-										<div className="relative mt-2 overflow-hidden rounded-xl">
-											{/* Frosted glass effect layers */}
-											<div className="absolute inset-0 backdrop-blur-xl" />
-											<div className="absolute inset-0 bg-white/[0.2] dark:bg-black/[0.2]" />
-											<div className="absolute inset-0 rounded-xl border border-white/[0.1] dark:border-white/[0.05]" />
-											{/* Bottom edge highlight */}
-											<div className="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-
-											<div className="relative px-6 py-4">
+										<div className="mt-2 overflow-hidden rounded-2xl border border-[hsl(var(--border)/0.2)] bg-[hsl(var(--card)/0.95)] shadow-[0_1px_3px_rgba(0,0,0,0.05)] backdrop-blur-xl">
+											<div className="p-4">
 												<TableOfContents />
 											</div>
 										</div>
@@ -257,8 +247,8 @@ export default async function Blog(props: Props) {
 								</div>
 							</div>
 
-							{/* Article content - clean background */}
-							<article className="prose prose-lg dark:prose-invert prose-headings:scroll-mt-24 max-w-none">
+							{/* Article content */}
+							<article className="prose prose-lg dark:prose-invert prose-headings:scroll-mt-24 prose-headings:font-bold prose-h2:text-2xl prose-h2:leading-tight prose-p:text-[hsl(var(--muted-foreground)/0.9)] prose-a:text-[hsl(var(--primary))] prose-a:no-underline hover:prose-a:underline max-w-none">
 								<CustomMDX source={post.content} />
 							</article>
 						</div>
@@ -266,16 +256,9 @@ export default async function Blog(props: Props) {
 						{/* Desktop TOC */}
 						<aside className="hidden lg:block">
 							<div className="sticky top-24">
-								<div className="relative overflow-hidden rounded-xl">
-									{/* Frosted glass effect layers */}
-									<div className="absolute inset-0 backdrop-blur-xl" />
-									<div className="absolute inset-0 bg-white/[0.2] dark:bg-black/[0.2]" />
-									<div className="absolute inset-0 rounded-xl border border-white/[0.1] dark:border-white/[0.05]" />
-									{/* Bottom edge highlight */}
-									<div className="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-
-									{/* Content */}
-									<div className="relative p-6">
+								<div className="overflow-hidden rounded-2xl border border-[hsl(var(--border)/0.2)] bg-[hsl(var(--card)/0.95)] shadow-[0_1px_3px_rgba(0,0,0,0.05)] backdrop-blur-xl">
+									<div className="p-6">
+										<h3 className="mb-4 text-base font-medium">On this page</h3>
 										<TableOfContents />
 									</div>
 								</div>

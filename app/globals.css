@@ -1,120 +1,145 @@
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
-/* Theme Configuration */
 
 @theme {
 	--font-sans: 'Wotfard', sans-serif;
 	--font-mono: 'commitMono';
 
-	--background: 250 30% 97%;
-	--foreground: 245 25% 25%;
+	/* Base colors */
+	--background: 216 20% 7%; /* #0d1117 main bg */
+	--foreground: 215 20% 92%; /* #e6edf3 main text */
 
-	--card: 225 25% 99%; /* Slightly elevated surface */
-	--card-foreground: 225 25% 20%;
-	--popover: 225 25% 99%; /* Matching card */
-	--popover-foreground: 225 25% 20%;
+	/* Subtle elevation system that feels part of the theme */
+	--card: 216 20% 9%; /* Subtle lift from background */
+	--card-foreground: 215 20% 92%;
+	--popover: 216 20% 11%; /* Slightly more elevated */
+	--popover-foreground: 215 20% 92%;
 
-	/* Playful coral primary  */
-	--primary: 12 90% 63%;
-	--primary-foreground: 0 0% 100%;
+	/* GitHub accent colors */
+	--primary: 212 100% 58%; /* #2f81f7 */
+	--primary-foreground: 215 20% 92%;
 
-	/* Subtle secondary that complements primary */
-	--secondary: 225 25% 95%;
-	--secondary-foreground: 225 25% 20%;
+	/* Interactive states */
+	--secondary: 215 10% 40%; /* #6e7681 */
+	--secondary-foreground: 215 20% 92%;
 
-	/* Muted that stays in family */
-	--muted: 225 25% 95%;
-	--muted-foreground: 225 25% 40%;
+	/* Muted elements */
+	--muted: 215 10% 40%; /* #6e7681 */
+	--muted-foreground: 215 9% 53%; /* #8b949e */
 
-	/* Accent matches the overall theme */
-	--accent: 225 25% 95%;
-	--accent-foreground: 225 25% 20%;
+	/* Hover states */
+	--accent: 215 10% 40%; /* #6e7681 */
+	--accent-foreground: 215 20% 92%;
 
-	/* Warning/Destructive */
-	--destructive: 0 90% 60%;
-	--destructive-foreground: 0 0% 100%;
+	/* Destructive actions */
+	--destructive: 3 90% 63%; /* #f85149 */
+	--destructive-foreground: 215 20% 92%;
 
 	/* UI elements */
-	--border: 225 25% 90%;
-	--input: 225 25% 90%;
-	--ring: 12 90% 63%; /* Matches primary */
-	--radius: 0.75rem;
+	--border: 215 14% 21%; /* #30363d */
+	--input: 215 14% 21%;
+	--ring: 212 100% 58%;
+	--radius: 0.375rem;
 
-	/* Harmonious chart colors */
-	--chart-1: 12 90% 63%; /* Coral */
-	--chart-2: 260 85% 65%; /* Purple */
-	--chart-3: 325 85% 65%; /* Pink */
-	--chart-4: 170 85% 45%; /* Teal */
-	--chart-5: 45 85% 65%; /* Gold */
+	/* GitHub status colors */
+	--chart-1: 212 100% 58%; /* #2f81f7 blue */
+	--chart-2: 3 90% 63%; /* #f85149 red */
+	--chart-3: 144 47% 46%; /* #3fb950 green */
+	--chart-4: 271 81% 77%; /* #bc8cff purple */
+	--chart-5: 35 85% 48%; /* #d29922 yellow */
 
-	/* Light Theme Syntax */
-	--sh-identifier: var(--foreground); /* Base text color */
-	--sh-keyword: hsl(280 85% 60%); /* Vibrant purple for keywords */
-	--sh-string: hsl(150 60% 40%); /* Forest green for strings */
-	--sh-class: hsl(12 90% 63%); /* Our theme's coral for classes */
-	--sh-property: hsl(330 85% 60%); /* Pink for properties */
-	--sh-entity: hsl(200 85% 50%); /* Bright blue for entities */
-	--sh-jsxliterals: hsl(35 90% 55%); /* Warm gold for JSX */
-	--sh-sign: hsl(225 25% 60%); /* Muted blue-grey for signs */
-	--sh-comment: hsl(225 25% 40%); /* Darker blue-grey for comments */
+	/* Exact GitHub syntax colors - Dark */
+	--sh-boolean: #79c0ff;
+	--sh-comment: #8b949e;
+	--sh-constant: #79c0ff;
+	--sh-constructor: #7ee787;
+	--sh-keyword: #ff7b72;
+	--sh-function: #d2a8ff;
+	--sh-string: #a5d6ff;
+	--sh-string-escape: #ff7b72;
+	--sh-regexp: #a5d6ff;
+	--sh-class: #7ee787;
+	--sh-special: #a5d6ff;
+	--sh-number: #79c0ff;
+	--sh-variable: #ffa657;
+	--sh-type: #79c0ff;
+	--sh-property: #79c0ff;
+	--sh-symbol: #a5d6ff;
+	--sh-tag: #7ee787;
+	--sh-emphasis: #e6edf3;
+	--sh-emphasis-strong: #e6edf3;
+	--sh-link-text: #a5d6ff;
+	--sh-link-uri: #a5d6ff;
+	--sh-title: #ffa657;
 }
 
-/* Dark Mode - Maintaining accessibility and charm */
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
 	:root {
-		/* Rich, deep background - not pure black */
-		--background: 225 25% 9%;
-		--foreground: 225 25% 98%;
-		--card: 225 25% 11%;
-		--card-foreground: 225 25% 98%;
-		--popover: 225 25% 9%;
-		--popover-foreground: 225 25% 98%;
+		/* Base colors */
+		--background: 210 25% 98%; /* #ffffff */
+		--foreground: 215 14% 21%; /* #24292f */
 
-		/* Brighter coral for dark mode visibility */
-		--primary: 12 95% 65%;
-		--primary-foreground: 225 25% 9%;
+		/* Subtle light mode elevation */
+		--card: 0 0% 100%; /* #f6f8fa */
+		--card-foreground: 215 14% 21%;
+		--popover: 210 25% 96%;
+		--popover-foreground: 215 14% 21%;
 
-		/* Deep, rich secondary */
-		--secondary: 225 25% 15%;
-		--secondary-foreground: 225 25% 98%;
+		/* Light mode accent colors */
+		--primary: 212 92% 45%; /* #0969da */
+		--primary-foreground: 0 0% 100%;
 
-		/* Muted that maintains readability */
-		--muted: 225 25% 15%;
-		--muted-foreground: 225 25% 70%;
+		/* Light interactive states */
+		--secondary: 210 25% 98%; /* #f6f8fa */
+		--secondary-foreground: 215 14% 21%;
 
-		/* Accent maintains theme consistency */
-		--accent: 225 25% 15%;
-		--accent-foreground: 225 25% 98%;
+		/* Light muted elements */
+		--muted: 215 14% 21%;
+		--muted-foreground: 215 8% 47%; /* #6e7781 */
 
-		/* Brighter destructive for dark mode */
-		--destructive: 0 95% 65%;
-		--destructive-foreground: 225 25% 9%;
+		/* Light hover states */
+		--accent: 210 25% 98%;
+		--accent-foreground: 215 14% 21%;
 
-		/* UI elements dark */
-		--border: 225 25% 15%;
-		--input: 225 25% 15%;
-		--ring: 12 95% 65%;
+		/* Light destructive */
+		--destructive: 3 90% 63%; /* #cf222e */
+		--destructive-foreground: 0 0% 100%;
 
-		/* Brighter chart colors for dark mode */
-		--chart-1: 12 95% 65%; /* Bright Coral */
-		--chart-2: 260 90% 70%; /* Bright Purple */
-		--chart-3: 325 90% 70%; /* Bright Pink */
-		--chart-4: 170 90% 50%; /* Bright Teal */
-		--chart-5: 45 90% 70%; /* Bright Gold */
+		/* Light UI elements */
+		--border: 215 14% 91%; /* #d0d7de */
+		--input: 215 14% 91%;
+		--ring: 212 92% 45%;
 
-		--sh-identifier: var(--foreground); /* Base text color */
-		--sh-keyword: hsl(280 85% 70%); /* Lighter purple */
-		--sh-string: hsl(150 60% 60%); /* Brighter green */
-		--sh-class: hsl(12 95% 65%); /* Brighter coral */
-		--sh-property: hsl(330 85% 70%); /* Brighter pink */
-		--sh-entity: hsl(200 85% 65%); /* Brighter blue */
-		--sh-jsxliterals: hsl(35 90% 65%); /* Brighter gold */
-		--sh-sign: hsl(225 25% 70%); /* Lighter blue-grey */
-		--sh-comment: hsl(225 25% 50%); /* Visible but muted */
-	}
+		/* Light status colors */
+		--chart-1: 212 92% 45%; /* #0969da */
+		--chart-2: 3 90% 63%; /* #cf222e */
+		--chart-3: 144 47% 46%; /* #2da44e */
+		--chart-4: 271 81% 77%; /* #8250df */
+		--chart-5: 35 85% 48%; /* #d4a72c */
 
-	html {
-		color-scheme: dark;
+		/* Exact GitHub syntax colors - Light */
+		--sh-boolean: #0550ae;
+		--sh-comment: #6e7781;
+		--sh-constant: #0550ae;
+		--sh-constructor: #116329;
+		--sh-keyword: #cf222e;
+		--sh-function: #8250df;
+		--sh-string: #0a3069;
+		--sh-string-escape: #cf222e;
+		--sh-regexp: #0a3069;
+		--sh-class: #116329;
+		--sh-special: #0a3069;
+		--sh-number: #0550ae;
+		--sh-variable: #953800;
+		--sh-type: #0550ae;
+		--sh-property: #0550ae;
+		--sh-symbol: #0a3069;
+		--sh-tag: #116329;
+		--sh-emphasis: #24292f;
+		--sh-emphasis-strong: #24292f;
+		--sh-link-text: #0969da;
+		--sh-link-uri: #0969da;
+		--sh-title: #953800;
 	}
 }
 
@@ -151,7 +176,7 @@ html {
 /* Code Block Styling */
 pre {
 	@apply -mx-0 my-6 overflow-auto rounded-xl border p-4 text-base shadow-xs md:-mx-10 md:my-8;
-	background-color: hsl(var(--accent));
+	background-color: hsl(var(--card));
 	color: hsl(var(--card-foreground));
 	counter-reset: sh-line-number; /* Reset line number counter */
 }

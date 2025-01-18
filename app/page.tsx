@@ -15,7 +15,7 @@ export default async function Page() {
 				new Date(b.metadata.publishedAt).getTime() -
 				new Date(a.metadata.publishedAt).getTime()
 		)
-		.slice(0, 4)
+		.slice(0, 6)
 
 	return (
 		<Container className="mx-auto w-full max-w-screen-xl">

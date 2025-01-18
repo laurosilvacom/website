@@ -2,7 +2,6 @@ import {ArrowRight} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {type ReactNode} from 'react'
-
 interface CardProps {
 	href: string
 	title: string
@@ -23,49 +22,60 @@ export function Card({
 	className = ''
 }: CardProps) {
 	return (
-		<Link href={href} aria-label={`Read more about ${title}`} className="group">
+		<Link
+			href={href}
+			className="group block h-full transform transition-all duration-300"
+			aria-label={`Read more about ${title}`}>
 			<article
-				className={`border-border bg-card hover:shadow-primary/5 relative flex h-full flex-col rounded-3xl border backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sm ${className} `}>
-				<div className="relative flex-grow space-y-4 p-6 sm:p-8">
+				className={`relative flex h-full flex-col rounded-2xl border border-[hsl(var(--border)/0.15)] bg-[hsl(var(--card)/0.95)] shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all duration-300 ease-out hover:border-[hsl(var(--border)/0.25)] hover:bg-[hsl(var(--accent)/0.05)] hover:shadow-[0_4px_18px_rgba(0,0,0,0.04)] dark:shadow-[0_1px_3px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_18px_rgba(0,0,0,0.25)] ${className} `}>
+				<div className="flex flex-1 flex-col p-8">
+					{/* Icon */}
 					{icon && (
-						<Image
-							src={icon}
-							alt={`${title} icon`}
-							width={32}
-							height={32}
-							quality={100}
-							className="rounded-lg"
-						/>
+						<div className="mb-7">
+							<div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-[hsl(var(--accent)/0.1)] ring-1 ring-[hsl(var(--border)/0.1)]">
+								<Image
+									src={icon}
+									alt=""
+									width={28}
+									height={28}
+									quality={100}
+									className="h-7 w-7 object-contain"
+									aria-hidden="true"
+								/>
+							</div>
+						</div>
 					)}
 
-					<h2 className="text-foreground text-xl font-bold tracking-tight sm:text-2xl">
-						{title}
-					</h2>
-
-					{description && (
-						<p className="text-muted-foreground line-clamp-3 text-base leading-relaxed">
-							{description}
-						</p>
-					)}
-				</div>
-
-				{(date || footer) && (
-					<div className="border-border bg-card relative rounded-b-3xl border-t p-6 sm:p-8">
-						<div className="flex items-center justify-between">
-							{date && (
-								<time dateTime={date} className="text-muted-foreground text-sm">
-									{date}
-								</time>
-							)}
-							{footer || (
-								<div className="flex items-center gap-2">
-									<span className="text-muted-foreground text-sm">
-										Read more
-									</span>
-									<ArrowRight className="text-primary h-4 w-4 transition-all duration-300 group-hover:translate-x-1" />
-								</div>
+					{/* Content */}
+					<div className="flex-1 space-y-5">
+						<div className="space-y-3">
+							<h2 className="text-2xl leading-tight font-bold tracking-tight text-[hsl(var(--foreground))]">
+								{title}
+							</h2>
+							{description && (
+								<p className="text-base leading-relaxed text-[hsl(var(--muted-foreground)/0.9)]">
+									{description}
+								</p>
 							)}
 						</div>
+
+						{date && (
+							<time className="block text-sm font-medium text-[hsl(var(--muted-foreground)/0.7)]">
+								{date}
+							</time>
+						)}
+					</div>
+				</div>
+
+				{/* Footer */}
+				{(footer || !icon) && (
+					<div className="mt-auto flex items-center border-t border-[hsl(var(--border)/0.1)] px-8 py-6">
+						{footer || (
+							<div className="flex items-center font-medium text-[hsl(var(--primary))]">
+								<span className="text-base">Learn more</span>
+								<ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 ease-out group-hover:translate-x-0.5" />
+							</div>
+						)}
 					</div>
 				)}
 			</article>
