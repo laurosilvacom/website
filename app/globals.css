@@ -5,48 +5,30 @@
 	--font-sans: 'Wotfard', sans-serif;
 	--font-mono: 'commitMono';
 
-	/* Base colors */
-	--background: 216 20% 7%; /* #0d1117 main bg */
-	--foreground: 215 20% 92%; /* #e6edf3 main text */
-
-	/* Subtle elevation system that feels part of the theme */
-	--card: 216 20% 9%; /* Subtle lift from background */
-	--card-foreground: 215 20% 92%;
-	--popover: 216 20% 11%; /* Slightly more elevated */
-	--popover-foreground: 215 20% 92%;
-
-	/* GitHub accent colors */
-	--primary: 212 100% 58%; /* #2f81f7 */
-	--primary-foreground: 215 20% 92%;
-
-	/* Interactive states */
-	--secondary: 215 10% 40%; /* #6e7681 */
-	--secondary-foreground: 215 20% 92%;
-
-	/* Muted elements */
-	--muted: 215 10% 40%; /* #6e7681 */
-	--muted-foreground: 215 9% 53%; /* #8b949e */
-
-	/* Hover states */
-	--accent: 215 10% 40%; /* #6e7681 */
-	--accent-foreground: 215 20% 92%;
-
-	/* Destructive actions */
-	--destructive: 3 90% 63%; /* #f85149 */
-	--destructive-foreground: 215 20% 92%;
-
-	/* UI elements */
-	--border: 215 14% 21%; /* #30363d */
-	--input: 215 14% 21%;
-	--ring: 212 100% 58%;
-	--radius: 0.375rem;
-
-	/* GitHub status colors */
-	--chart-1: 212 100% 58%; /* #2f81f7 blue */
-	--chart-2: 3 90% 63%; /* #f85149 red */
-	--chart-3: 144 47% 46%; /* #3fb950 green */
-	--chart-4: 271 81% 77%; /* #bc8cff purple */
-	--chart-5: 35 85% 48%; /* #d29922 yellow */
+	--background: 20 14.3% 5.1%;
+	--foreground: 60 9.1% 97.8%;
+	--card: 20 14.3% 4.1%;
+	--card-foreground: 60 9.1% 97.8%;
+	--popover: 20 14.3% 4.1%;
+	--popover-foreground: 60 9.1% 97.8%;
+	--primary: 47.9 95.8% 53.1%;
+	--primary-foreground: 26 83.3% 14.1%;
+	--secondary: 12 6.5% 15.1%;
+	--secondary-foreground: 60 9.1% 97.8%;
+	--muted: 12 6.5% 15.1%;
+	--muted-foreground: 24 5.4% 63.9%;
+	--accent: 12 6.5% 15.1%;
+	--accent-foreground: 60 9.1% 97.8%;
+	--destructive: 0 62.8% 30.6%;
+	--destructive-foreground: 60 9.1% 97.8%;
+	--border: 12 6.5% 15.1%;
+	--input: 12 6.5% 15.1%;
+	--ring: 47.9 95.8% 53.1%;
+	--chart-1: 220 70% 50%;
+	--chart-2: 160 60% 45%;
+	--chart-3: 30 80% 55%;
+	--chart-4: 280 65% 60%;
+	--chart-5: 340 75% 55%;
 
 	/* Exact GitHub syntax colors - Dark */
 	--sh-boolean: #79c0ff;
@@ -75,49 +57,32 @@
 
 @media (prefers-color-scheme: light) {
 	:root {
-		/* Base colors */
-		--background: 210 25% 98%; /* #ffffff */
-		--foreground: 215 14% 21%; /* #24292f */
+		--background: 0 0% 97%;
+		--foreground: 20 14.3% 4.1%;
+		--card: 0 0% 100%;
+		--card-foreground: 20 14.3% 4.1%;
+		--popover: 0 0% 100%;
+		--popover-foreground: 20 14.3% 4.1%;
+		--primary: 47.9 95.8% 53.1%;
+		--primary-foreground: 26 83.3% 14.1%;
+		--secondary: 60 4.8% 95.9%;
+		--secondary-foreground: 24 9.8% 10%;
+		--muted: 60 4.8% 95.9%;
+		--muted-foreground: 25 5.3% 44.7%;
+		--accent: 60 4.8% 95.9%;
+		--accent-foreground: 24 9.8% 10%;
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 60 9.1% 97.8%;
+		--border: 20 5.9% 90%;
+		--input: 20 5.9% 90%;
+		--ring: 47.9 95.8% 53.1%;
+		--radius: 1rem;
+		--chart-1: 12 76% 61%;
+		--chart-2: 173 58% 39%;
+		--chart-3: 197 37% 24%;
+		--chart-4: 43 74% 66%;
+		--chart-5: 27 87% 67%;
 
-		/* Subtle light mode elevation */
-		--card: 0 0% 100%; /* #f6f8fa */
-		--card-foreground: 215 14% 21%;
-		--popover: 210 25% 96%;
-		--popover-foreground: 215 14% 21%;
-
-		/* Light mode accent colors */
-		--primary: 212 92% 45%; /* #0969da */
-		--primary-foreground: 0 0% 100%;
-
-		/* Light interactive states */
-		--secondary: 210 25% 98%; /* #f6f8fa */
-		--secondary-foreground: 215 14% 21%;
-
-		/* Light muted elements */
-		--muted: 215 14% 21%;
-		--muted-foreground: 215 8% 47%; /* #6e7781 */
-
-		/* Light hover states */
-		--accent: 210 25% 98%;
-		--accent-foreground: 215 14% 21%;
-
-		/* Light destructive */
-		--destructive: 3 90% 63%; /* #cf222e */
-		--destructive-foreground: 0 0% 100%;
-
-		/* Light UI elements */
-		--border: 215 14% 91%; /* #d0d7de */
-		--input: 215 14% 91%;
-		--ring: 212 92% 45%;
-
-		/* Light status colors */
-		--chart-1: 212 92% 45%; /* #0969da */
-		--chart-2: 3 90% 63%; /* #cf222e */
-		--chart-3: 144 47% 46%; /* #2da44e */
-		--chart-4: 271 81% 77%; /* #8250df */
-		--chart-5: 35 85% 48%; /* #d4a72c */
-
-		/* Exact GitHub syntax colors - Light */
 		--sh-boolean: #0550ae;
 		--sh-comment: #6e7781;
 		--sh-constant: #0550ae;
@@ -159,11 +124,6 @@ html {
 	color: hsl(var(--primary-foreground));
 }
 
-/* Title Balance */
-.title {
-	text-wrap: balance;
-}
-
 /* Base Border Color */
 *,
 ::after,
@@ -175,10 +135,14 @@ html {
 
 /* Code Block Styling */
 pre {
-	@apply -mx-0 my-6 overflow-auto rounded-xl border p-4 text-base shadow-xs md:-mx-10 md:my-8;
+	@apply -mx-0 my-6 overflow-auto rounded-xl border p-4 text-base shadow-xs sm:p-6 sm:text-base md:-mx-10 md:my-8 md:p-8 md:text-lg lg:text-xl;
 	background-color: hsl(var(--card));
 	color: hsl(var(--card-foreground));
-	counter-reset: sh-line-number; /* Reset line number counter */
+	counter-reset: sh-line-number;
+}
+
+pre code {
+	@apply text-base leading-relaxed sm:text-sm sm:leading-relaxed md:text-base md:leading-relaxed lg:text-lg;
 }
 
 /* Reset the line number counter for code inside pre elements */
@@ -438,5 +402,21 @@ code:not(pre code) span {
 	}
 	50% {
 		--rotate: 180deg;
+	}
+}
+
+@layer utilities {
+	.focus-ring {
+		@apply transition-all duration-300 outline-none;
+		/* Using the --ring variable directly from @theme */
+		--tw-ring-color: hsl(var(--ring));
+		--tw-ring-opacity: 0.8;
+	}
+
+	.group:hover .focus-ring {
+		--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0
+			var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+		--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 4px var(--tw-ring-color);
+		box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow);
 	}
 }

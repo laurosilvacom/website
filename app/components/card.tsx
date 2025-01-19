@@ -1,7 +1,7 @@
-import {ArrowRight} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {type ReactNode} from 'react'
+
 interface CardProps {
 	href: string
 	title: string
@@ -24,60 +24,53 @@ export function Card({
 	return (
 		<Link
 			href={href}
-			className="group block h-full transform transition-all duration-300"
+			className="group peer relative block w-full focus:outline-none"
 			aria-label={`Read more about ${title}`}>
-			<article
-				className={`relative flex h-full flex-col rounded-2xl border border-[hsl(var(--border)/0.15)] bg-[hsl(var(--card)/0.95)] shadow-[0_1px_3px_rgba(0,0,0,0.05)] transition-all duration-300 ease-out hover:border-[hsl(var(--border)/0.25)] hover:bg-[hsl(var(--accent)/0.05)] hover:shadow-[0_4px_18px_rgba(0,0,0,0.04)] dark:shadow-[0_1px_3px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_4px_18px_rgba(0,0,0,0.25)] ${className} `}>
-				<div className="flex flex-1 flex-col p-8">
-					{/* Icon */}
-					{icon && (
-						<div className="mb-7">
-							<div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-[hsl(var(--accent)/0.1)] ring-1 ring-[hsl(var(--border)/0.1)]">
-								<Image
-									src={icon}
-									alt=""
-									width={28}
-									height={28}
-									quality={100}
-									className="h-7 w-7 object-contain"
-									aria-hidden="true"
-								/>
-							</div>
-						</div>
-					)}
-
-					{/* Content */}
-					<div className="flex-1 space-y-5">
-						<div className="space-y-3">
-							<h2 className="text-2xl leading-tight font-bold tracking-tight text-[hsl(var(--foreground))]">
-								{title}
-							</h2>
-							{description && (
-								<p className="text-base leading-relaxed text-[hsl(var(--muted-foreground)/0.9)]">
-									{description}
-								</p>
-							)}
-						</div>
-
-						{date && (
-							<time className="block text-sm font-medium text-[hsl(var(--muted-foreground)/0.7)]">
-								{date}
-							</time>
-						)}
+			<article className={`space-y-8 ${className}`}>
+				<div className="relative aspect-[3/4] rounded-lg">
+					{/* Inner container for image with overflow hidden */}
+					<div className="absolute inset-0 overflow-hidden rounded-lg">
+						<Image
+							src="/heroavatar.jpg"
+							alt={title}
+							fill
+							className="absolute h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+						/>
 					</div>
+					{/* Border effect outside of overflow hidden */}
+					<div className="absolute inset-0 rounded-lg transition-shadow duration-300 group-hover:shadow-[0_0_0_4px_hsl(var(--primary))]" />
 				</div>
 
-				{/* Footer */}
-				{(footer || !icon) && (
-					<div className="mt-auto flex items-center border-t border-[hsl(var(--border)/0.1)] px-8 py-6">
-						{footer || (
-							<div className="flex items-center font-medium text-[hsl(var(--primary))]">
-								<span className="text-base">Learn more</span>
-								<ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 ease-out group-hover:translate-x-0.5" />
-							</div>
-						)}
-					</div>
+				<div className="flex items-center justify-between">
+					{date && (
+						<time className="text-muted-foreground text-xl font-medium">
+							{date}
+						</time>
+					)}
+					{icon && (
+						<div className="bg-secondary/10 rounded-xl p-2">
+							<Image
+								src={icon}
+								alt=""
+								width={24}
+								height={24}
+								className="h-6 w-6 object-contain"
+							/>
+						</div>
+					)}
+				</div>
+
+				<div className="text-foreground text-xl font-semibold md:text-3xl">
+					{title}
+				</div>
+
+				{description && (
+					<p className="text-muted-foreground text-lg leading-relaxed">
+						{description}
+					</p>
 				)}
+
+				{footer}
 			</article>
 		</Link>
 	)

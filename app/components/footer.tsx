@@ -146,12 +146,12 @@ const FooterSection = ({
 		<div className="w-full sm:w-auto">
 			<button
 				onClick={onToggle}
-				className="text-primary group flex w-full items-center justify-between text-left font-mono text-xs tracking-wider uppercase"
+				className="group text-primary flex w-full items-center justify-between text-left font-mono text-xs tracking-wider uppercase"
 				aria-expanded={isMobile ? isExpanded : true}
 				aria-controls={`footer-${title.toLowerCase()}`}>
 				<span className="relative">
 					<strong className="relative z-10">{title}</strong>
-					<span className="bg-primary/5 absolute inset-0 -z-10 h-full w-full opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+					<span className="bg-secondary absolute inset-0 -z-10 h-full w-full opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 				</span>
 				{isMobile && (
 					<span
@@ -163,7 +163,7 @@ const FooterSection = ({
 			</button>
 			<ul
 				id={`footer-${title.toLowerCase()}`}
-				className={`space-y-2 overflow-hidden pt-3 text-sm transition-all duration-300 ease-in-out ${
+				className={`space-y-2 overflow-hidden pt-3 text-base transition-all duration-300 ease-in-out ${
 					isMobile && !isExpanded ? 'max-h-0' : 'max-h-[500px]'
 				}`}
 				role="menu">
@@ -172,7 +172,7 @@ const FooterSection = ({
 						{link.external ? (
 							<a
 								href={link.href}
-								className="text-muted-foreground hover:text-foreground group inline-flex items-center gap-2 py-2 transition-all duration-300"
+								className="group text-muted-foreground hover:text-foreground inline-flex items-center gap-2 py-2 decoration-[hsl(var(--primary))] decoration-wavy underline-offset-[6px] transition-all duration-300 hover:underline"
 								target="_blank"
 								rel="noopener noreferrer"
 								role="menuitem">
@@ -196,7 +196,7 @@ const FooterSection = ({
 						) : (
 							<Link
 								href={link.href}
-								className="text-muted-foreground hover:text-foreground group inline-flex items-center gap-2 py-2 transition-all duration-300"
+								className="group text-muted-foreground hover:text-foreground inline-flex items-center gap-2 py-2 decoration-[hsl(var(--primary))] decoration-wavy underline-offset-[6px] transition-all duration-300 hover:underline"
 								role="menuitem">
 								{title === 'Resources' && link.text === 'Blog' && (
 									<ResourceIcon />
@@ -271,9 +271,9 @@ export default function Footer() {
 	}
 
 	return (
-		<footer className="relative mt-32 w-full border-t border-[hsl(var(--border)/0.2)] bg-[hsl(var(--card)/0.95)] pb-20 backdrop-blur-xl print:hidden">
+		<footer className="border-muted bg-card relative mt-32 w-full border-t pb-20 backdrop-blur-xl print:hidden">
 			<Container className="mx-auto w-full max-w-screen-xl">
-				<div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[hsl(var(--primary)/0.1)] to-transparent" />
+				<div className="via-primary absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent" />
 
 				<div className="relative mx-auto flex w-full flex-col gap-16 py-16 sm:flex-row sm:items-start">
 					<div className="relative mx-auto flex w-full flex-col items-start gap-12 sm:flex-row sm:items-start">
@@ -288,7 +288,7 @@ export default function Footer() {
 						))}
 					</div>
 
-					<div className="absolute bottom-4 left-5 text-sm text-[hsl(var(--muted-foreground)/0.7)] sm:left-10 lg:left-0">
+					<div className="text-muted-foreground absolute bottom-4 left-5 text-sm sm:left-10 lg:left-0">
 						<span>© {new Date().getFullYear()} Lauro Silva, LLC</span>
 					</div>
 				</div>

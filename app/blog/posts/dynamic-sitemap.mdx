@@ -186,15 +186,11 @@ NEXT_PUBLIC_SITE_URL=https://your-website.com
 npm run dev
 ```
 
-2. Visit Your Sitemap URL:
-
-```bash
+```md
+Visit Your Sitemap URL:
 http://localhost:3002/sitemap.xml
-```
 
-3. Visit Your Robots URL (if implemented):
-
-```bash
+Visit Your Robots URL (if implemented):
 http://localhost:3002/robots.txt
 ```
 
@@ -202,17 +198,21 @@ By following these steps, you'll have a dynamic sitemap generated and served by 
 
 ## Final Directory Structure
 
-```
+````
+
 apps/
 └── lauro-silva/
-    ├── app/
-    │   ├── sitemap.ts
-    │   ├── robots.ts (optional)
-    └── sanity/
-        ├── lib/
-        │   ├── client.ts
-        │   ├── routes.ts
+├── app/
+│ ├── sitemap.ts
+│ ├── robots.ts (optional)
+└── sanity/
+├── lib/
+│ ├── client.ts
+│ ├── routes.ts
 // Other necessary files and directories
+
 ```
 
 This approach fully utilizes the Next.js 13+ `app` directory and the new metadata API, ensuring a clean and performant implementation for creating dynamic sitemaps and potentially a `robots.txt` file for your website.
+```
+````

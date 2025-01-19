@@ -19,121 +19,174 @@ export default async function Page() {
 
 	return (
 		<Container className="mx-auto w-full max-w-screen-xl">
-			<main className="mx-auto space-y-32 py-24">
+			<main>
 				{/* Hero Section */}
-				<section className="relative">
-					<div className="flex flex-col-reverse gap-16 md:flex-row md:items-center md:justify-between">
-						<div className="space-y-8 md:max-w-[600px]">
-							<h1 className="text-foreground text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-								Hey, I&apos;m Lauro{' '}
-							</h1>
-
-							<div className="text-muted-foreground space-y-4 text-xl">
-								<p className="leading-relaxed">
-									I&apos;m a JavaScript Engineer and Educator passionate about
-									helping developers build better software.
-								</p>
-								<p className="leading-relaxed">
-									When I&apos;m not coding or teaching, you&apos;ll find me
-									running in the mountains, pushing my limits on long-distance
-									trails.
-								</p>
-							</div>
-
-							<div className="flex flex-wrap gap-3">
-								{['JavaScript Engineer', 'Educator', 'Ultra Runner'].map(
-									(role) => (
-										<span
-											key={role}
-											className="bg-secondary text-secondary-foreground rounded-full px-4 py-2 text-sm font-medium">
-											{role}
-										</span>
-									)
-								)}
-							</div>
-						</div>
-
-						<div className="relative mx-auto md:mx-0">
-							<div className="relative aspect-square w-[280px] md:w-[320px] lg:w-[380px]">
-								<Image
-									src="/heroavatar.jpg"
-									alt="Lauro Silva"
-									fill
-									className="rounded-[2rem] object-cover"
-									priority
-								/>
-							</div>
-							{/* Decorative background for image */}
+				<div className="relative mx-auto mt-10 mb-24 grid h-auto max-w-7xl grid-cols-4 gap-x-4 pt-24 md:grid-cols-8 lg:mb-64 lg:min-h-[40rem] lg:grid-cols-12 lg:gap-x-6 lg:pb-12">
+					{/* Image Section */}
+					<div className="lg:-mr-5vw col-span-full mb-12 flex items-center justify-center lg:col-span-7 lg:col-start-6 lg:-mt-24 lg:mb-0 lg:px-10">
+						<div className="max-h-75vh relative aspect-square w-full">
+							<Image
+								src="/heroavatar.jpg"
+								alt="Lauro Silva"
+								fill
+								className="motion-safe:animate-hero-image-reveal rounded-[3rem] object-cover shadow-[0_0_30px_rgba(var(--primary),0.2)]"
+								priority
+							/>
+							{/* Decorative Elements */}
 							<div
-								className="bg-secondary/50 absolute -inset-4 -z-10 rounded-[2.5rem] blur-2xl"
+								className="from-primary/30 via-primary/10 to-primary/30 absolute -inset-4 -z-10 rounded-[3rem] bg-gradient-to-tr blur-2xl"
 								aria-hidden="true"
 							/>
 						</div>
 					</div>
+
+					{/* Content Section */}
+					<div className="col-span-full pt-6 lg:col-span-5 lg:col-start-1 lg:row-start-1 lg:flex lg:h-full lg:flex-col">
+						<div className="flex flex-auto flex-col">
+							{/* Main Heading */}
+							<h2 className="text-primary motion-safe:animate-hero-text-reveal text-3xl leading-tight font-bold md:text-4xl lg:text-5xl">
+								Helping developers build better software through quality
+								education.
+							</h2>
+
+							{/* Buttons */}
+							<div className="motion-safe:animate-hero-text-reveal mt-14 flex flex-col space-y-4">
+								<div className="mr-auto flex flex-col gap-4">
+									<Link
+										href="/blog"
+										className="group bg-primary text-primary-foreground hover:bg-primary/90 relative inline-flex items-center rounded-full px-8 py-4 text-lg font-medium shadow-[0_0_15px_rgba(var(--primary),0.25)] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(var(--primary),0.35)]">
+										Read the blog
+										<ArrowRight className="ml-2 h-5 w-5" />
+									</Link>
+									<Link
+										href="/courses"
+										className="group bg-secondary/10 text-primary hover:bg-secondary/20 border-primary/10 relative inline-flex items-center rounded-full border-2 px-8 py-4 text-lg font-medium transition-all hover:-translate-y-0.5">
+										Take a course
+										<ArrowRight className="ml-2 h-5 w-5" />
+									</Link>
+								</div>
+							</div>
+						</div>
+
+						{/* Learn More Section */}
+						<div className="motion-safe:animate-hero-text-reveal hidden pt-12 lg:block">
+							<Link
+								href="#about"
+								className="text-primary hover:text-primary/80 inline-flex items-center text-lg font-medium transition-colors">
+								<div className="relative inline-flex h-14 w-14 items-center justify-center p-1">
+									<div className="border-primary/20 absolute animate-pulse rounded-full border-2 p-3">
+										<ArrowRight className="h-6 w-6 rotate-90" />
+									</div>
+								</div>
+								<span className="ml-8 text-xl">Learn more about Lauro</span>
+							</Link>
+						</div>
+					</div>
+				</div>
+
+				<section className="mx-auto max-w-7xl px-4 py-32">
+					<div className="grid grid-cols-4 gap-8 md:grid-cols-8 lg:grid-cols-12">
+						<div className="col-span-full lg:col-span-4">
+							<h2 className="text-primary text-3xl font-bold lg:text-4xl">
+								Free Resources
+							</h2>
+							<p className="text-muted-foreground mt-4 text-xl">
+								Level up your development skills with practical resources
+							</p>
+						</div>
+
+						<div className="col-span-full lg:col-span-8">
+							<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+								<ResourceCard
+									href="/blog"
+									icon={<Newspaper className="text-primary h-6 w-6" />}
+									title="Technical Articles"
+									description="Deep dives into React, TypeScript, and modern web development practices."
+								/>
+								<ResourceCard
+									href="/tutorials"
+									icon={<BookOpen className="text-primary h-6 w-6" />}
+									title="Free Tutorials"
+									description="Step-by-step guides to help you master web development fundamentals."
+								/>
+								<ResourceCard
+									href="/newsletter"
+									icon={<Mail className="text-primary h-6 w-6" />}
+									title="Newsletter"
+									description="Get weekly insights and resources straight to your inbox."
+								/>
+							</div>
+						</div>
+					</div>
 				</section>
 
-				{/* Resources Grid */}
-				<section className="space-y-12">
-					<div className="space-y-4">
-						<h2 className="text-foreground text-2xl font-semibold tracking-tight md:text-3xl lg:text-4xl">
-							Free Resources
-						</h2>
-						<p className="text-muted-foreground text-xl">
-							Practical resources to help you become a better developer
-						</p>
-					</div>
-
-					<div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
-						<ResourceCard
-							href="/blog"
-							icon={<Newspaper className="h-6 w-6 text-orange-200/90" />}
-							title="Technical Articles"
-							description="Deep dives into React, TypeScript, and modern web development practices. New articles every week."
-							gradient="from-[#FF8F8F] to-[#FFB6B6]"
-						/>
-						<ResourceCard
-							href="/tutorials"
-							icon={<BookOpen className="h-6 w-6 text-sky-200/90" />}
-							title="Free Tutorials"
-							description="Hands-on tutorials covering everything from basics to advanced patterns in React and JavaScript."
-							gradient="from-[#84B7FF] to-[#B5D1FF]"
-						/>
-						<ResourceCard
-							href="/newsletter"
-							icon={<Mail className="h-6 w-6 text-yellow-200/90" />}
-							title="Newsletter"
-							description="Get weekly insights, tips, and resources straight to your inbox. Join over 1,000 developers."
-							gradient="from-[#FFB561] to-[#FFCD94]"
-							cta="Subscribe"
-						/>
-					</div>
-				</section>
 				{/* Latest Articles Section */}
-				<section className="space-y-8">
-					<div className="flex items-end justify-between">
-						<h2 className="text-foreground text-2xl font-semibold tracking-tight md:text-3xl">
-							Latest Articles
-						</h2>
-						<Link
-							href="/blog"
-							className="group text-primary hover:text-primary/70 inline-flex items-center gap-2 transition-colors">
-							<span className="font-medium">View All</span>
-							<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-						</Link>
-					</div>
+				<section className="bg-secondary/5 mx-auto max-w-7xl px-4 py-32">
+					<div className="grid grid-cols-4 gap-8 md:grid-cols-8 lg:grid-cols-12">
+						<div className="col-span-full flex items-center justify-between">
+							<h2 className="text-primary text-3xl font-bold lg:text-4xl">
+								Latest Articles
+							</h2>
+							<Link
+								href="/blog"
+								className="text-primary hover:text-primary/80 group inline-flex items-center gap-2 transition-colors">
+								View all articles
+								<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+							</Link>
+						</div>
 
-					<CardGrid>
-						{latestPosts.map((post) => (
-							<Card
-								key={post.slug}
-								href={`/blog/${post.slug}`}
-								title={post.metadata.title}
-								description={post.metadata.description}
-								icon={post.metadata.icon}
-								date={formatDate(post.metadata.publishedAt, false)}
-							/>
-						))}
-					</CardGrid>
+						<div className="col-span-full">
+							<CardGrid>
+								{latestPosts.map((post) => (
+									<Card
+										key={post.slug}
+										href={`/blog/${post.slug}`}
+										title={post.metadata.title}
+										description={post.metadata.description}
+										icon={post.metadata.icon}
+										date={formatDate(post.metadata.publishedAt, false)}
+									/>
+								))}
+							</CardGrid>
+						</div>
+					</div>
+				</section>
+
+				{/* Newsletter Section */}
+				<section className="mx-auto max-w-7xl px-4 py-32">
+					<div className="from-primary/5 border-primary/10 relative rounded-3xl border bg-gradient-to-b to-transparent p-12">
+						<div className="grid grid-cols-4 gap-8 md:grid-cols-8 lg:grid-cols-12">
+							<div className="col-span-full text-center lg:col-span-6 lg:col-start-4">
+								<h2 className="text-primary mb-4 text-3xl font-bold">
+									Stay Updated
+								</h2>
+								<p className="text-muted-foreground mb-8 text-lg">
+									Join my newsletter for weekly insights on modern web
+									development.
+								</p>
+
+								<form className="mx-auto flex max-w-md flex-col gap-4 sm:flex-row">
+									<input
+										type="email"
+										placeholder="Enter your email"
+										className="bg-background/50 border-primary/10 focus:border-primary/20 focus:ring-primary/10 flex-1 rounded-xl border px-4 py-3 focus:ring-2 focus:outline-none"
+										required
+									/>
+									<button
+										type="submit"
+										className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl px-6 py-3 font-medium shadow-[0_0_15px_rgba(var(--primary),0.25)] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(var(--primary),0.35)]">
+										Subscribe
+									</button>
+								</form>
+							</div>
+						</div>
+
+						{/* Decorative Elements */}
+						<div className="absolute inset-0 -z-10 overflow-hidden rounded-3xl">
+							<div className="bg-primary/10 absolute -top-1/2 left-1/2 aspect-square w-1/2 rounded-full blur-3xl" />
+							<div className="bg-primary/10 absolute right-1/2 -bottom-1/2 aspect-square w-1/2 rounded-full blur-3xl" />
+						</div>
+					</div>
 				</section>
 			</main>
 		</Container>
@@ -145,36 +198,25 @@ interface ResourceCardProps {
 	icon: ReactNode
 	title: string
 	description: string
-	gradient: string
-	cta?: string
 }
 
-function ResourceCard({
-	href,
-	icon,
-	title,
-	description,
-	gradient,
-	cta = 'Learn more'
-}: ResourceCardProps) {
+function ResourceCard({href, icon, title, description}: ResourceCardProps) {
 	return (
 		<Link
 			href={href}
-			className="group relative overflow-hidden rounded-2xl p-px">
-			<div
-				className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-20 transition-opacity duration-300 group-hover:opacity-30`}
-			/>
+			className="group border-primary/10 from-primary/5 relative overflow-hidden rounded-2xl border bg-gradient-to-b to-transparent p-8 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(var(--primary),0.15)]">
+			<div className="space-y-4">
+				<div className="bg-primary/10 group-hover:bg-primary/15 inline-flex h-12 w-12 items-center justify-center rounded-xl transition-colors">
+					{icon}
+				</div>
 
-			<div className="bg-card relative flex h-full flex-col rounded-2xl p-6">
-				<div className="bg-primary/10 mb-4 w-fit rounded-xl p-3">{icon}</div>
+				<h3 className="text-xl font-bold">{title}</h3>
 
-				<h3 className="text-foreground mb-2 text-lg font-semibold">{title}</h3>
+				<p className="text-muted-foreground">{description}</p>
 
-				<p className="text-muted-foreground mb-4">{description}</p>
-
-				<div className="text-primary mt-auto flex items-center gap-2 font-medium">
-					{cta}
-					<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+				<div className="text-primary flex items-center pt-4">
+					Learn more
+					<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 				</div>
 			</div>
 		</Link>

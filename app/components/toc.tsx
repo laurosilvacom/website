@@ -57,11 +57,11 @@ export function TableOfContents() {
 							style={{paddingLeft: `${heading.level * 1}px`}}>
 							<a
 								href={`#${heading.id}`}
-								className={`group focus-visible:ring-primary relative block rounded-sm py-1.5 transition-all duration-300 ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+								className={`group focus-visible:ring-primary relative block rounded-sm py-1.5 transition-all duration-500 ease-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
 									isActive
-										? 'text-primary pl-4'
-										: 'text-muted-foreground hover:text-foreground pl-0'
-								} `}
+										? 'text-foreground pl-4 underline decoration-[hsl(var(--primary))] decoration-wavy underline-offset-[6px]'
+										: 'text-muted-foreground hover:text-foreground pl-0 hover:underline hover:decoration-[hsl(var(--primary))] hover:decoration-wavy hover:underline-offset-[6px]'
+								}`}
 								onClick={(e) => {
 									e.preventDefault()
 									const element = document.getElementById(heading.id)
@@ -71,9 +71,7 @@ export function TableOfContents() {
 											block: 'start'
 										})
 										window.history.pushState(null, '', `#${heading.id}`)
-										// Set focus to the heading for screen readers
 										element.focus({preventScroll: true})
-										// Announce the section change
 										element.setAttribute('tabindex', '-1')
 									}
 								}}
@@ -82,23 +80,15 @@ export function TableOfContents() {
 								tabIndex={0}>
 								{/* Arrow indicator */}
 								<span
-									className={`text-chart-2 aria-hidden="true" absolute top-1/2 left-0 -translate-y-1/2 transition-all duration-300 ease-out ${
+									className={`absolute top-1/2 left-0 -translate-y-1/2 text-[hsl(var(--primary))] transition-all duration-300 ease-out ${
 										isActive
 											? 'translate-x-0 opacity-100'
 											: '-translate-x-2 opacity-0'
-									} `}
+									}`}
 									aria-hidden="true">
 									›
 								</span>
-
-								{/* Text with underline effect */}
-								<span className="relative">
-									{heading.text}
-									<span
-										className={`bg-chart-2 absolute -bottom-0.5 left-0 h-[1px] w-full origin-left transition-transform duration-300 ease-out ${isActive ? 'scale-x-100' : 'scale-x-0'} `}
-										aria-hidden="true"
-									/>
-								</span>
+								{heading.text}
 							</a>
 						</li>
 					)

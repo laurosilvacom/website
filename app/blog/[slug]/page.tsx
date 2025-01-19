@@ -30,7 +30,7 @@ const BlogHeader = ({
 			<div className="space-y-6">
 				{icon && (
 					<div className="inline-block">
-						<div className="rounded-2xl bg-[hsl(var(--accent)/0.05)] p-4 ring-1 ring-[hsl(var(--border)/0.1)]">
+						<div className="border-muted bg-card rounded-2xl border p-4">
 							<Image
 								src={icon}
 								alt={`${title} icon`}
@@ -42,33 +42,31 @@ const BlogHeader = ({
 						</div>
 					</div>
 				)}
-				<h1 className="text-4xl leading-tight font-bold tracking-tight text-[hsl(var(--foreground))] md:text-5xl lg:text-6xl">
+				<h1 className="text-foreground text-4xl leading-tight font-bold tracking-tight md:text-5xl lg:text-6xl">
 					{title}
 				</h1>
 				{description && (
-					<p className="text-xl leading-relaxed text-[hsl(var(--muted-foreground)/0.9)]">
+					<p className="text-muted-foreground text-2xl leading-relaxed">
 						{description}
 					</p>
 				)}
 			</div>
 
 			{/* Author and Meta Section */}
-			<div className="flex items-center gap-4 border-t border-[hsl(var(--border)/0.2)] pt-6">
-				<div className="h-12 w-12 overflow-hidden rounded-full ring-1 ring-[hsl(var(--border)/0.1)]">
+			<div className="border-muted flex items-center gap-4 border-t pt-6">
+				<div className="bg-card h-16 w-16 overflow-hidden rounded-full border-3">
 					<Image
 						src="/heroavatar.jpg"
 						alt={author}
-						width={48}
-						height={48}
+						width={98}
+						height={98}
 						className="h-full w-full object-cover"
 						priority
 					/>
 				</div>
 				<div className="flex flex-col gap-1">
-					<span className="font-medium text-[hsl(var(--foreground))]">
-						{author}
-					</span>
-					<div className="flex items-center text-sm text-[hsl(var(--muted-foreground)/0.8)]">
+					<span className="text-foreground font-medium">{author}</span>
+					<div className="text-muted-foreground flex items-center text-lg">
 						<time dateTime={date}>{formatDate(date)}</time>
 						<span className="mx-2">•</span>
 						<span>{readingTime}</span>
@@ -168,12 +166,6 @@ export default async function Blog(props: Props) {
 
 	return (
 		<Container className="m-auto min-h-screen">
-			{/* Subtle gradient background */}
-			<div
-				className="absolute inset-x-0 -top-10 -z-10 h-[500px] bg-gradient-to-b from-[hsl(var(--primary)/0.05)] to-transparent opacity-50"
-				aria-hidden="true"
-			/>
-
 			{/* Schema markup remains the same */}
 			<script
 				type="application/ld+json"
@@ -218,13 +210,13 @@ export default async function Blog(props: Props) {
 								{/* Mobile TOC */}
 								<div className="mt-10 lg:hidden">
 									<details className="group">
-										<summary className="cursor-pointer rounded-2xl border border-[hsl(var(--border)/0.2)] bg-[hsl(var(--card)/0.95)] shadow-[0_1px_3px_rgba(0,0,0,0.05)] backdrop-blur-xl">
+										<summary className="border-muted bg-card cursor-pointer rounded-2xl border shadow-sm backdrop-blur-xl">
 											<div className="flex items-center justify-between p-4">
 												<span className="text-base font-medium">
 													On this page
 												</span>
 												<svg
-													className="h-5 w-5 transform text-[hsl(var(--muted-foreground)/0.8)] transition-transform duration-300 ease-out group-open:rotate-180"
+													className="text-muted-foreground h-5 w-5 transform transition-transform duration-300 ease-out group-open:rotate-180"
 													fill="none"
 													viewBox="0 0 24 24"
 													stroke="currentColor">
@@ -238,7 +230,7 @@ export default async function Blog(props: Props) {
 											</div>
 										</summary>
 
-										<div className="mt-2 overflow-hidden rounded-2xl border border-[hsl(var(--border)/0.2)] bg-[hsl(var(--card)/0.95)] shadow-[0_1px_3px_rgba(0,0,0,0.05)] backdrop-blur-xl">
+										<div className="border-muted bg-card mt-2 overflow-hidden rounded-2xl border shadow-sm backdrop-blur-xl">
 											<div className="p-4">
 												<TableOfContents />
 											</div>
@@ -248,7 +240,7 @@ export default async function Blog(props: Props) {
 							</div>
 
 							{/* Article content */}
-							<article className="prose prose-lg dark:prose-invert prose-headings:scroll-mt-24 prose-headings:font-bold prose-h2:text-2xl prose-h2:leading-tight prose-p:text-[hsl(var(--muted-foreground)/0.9)] prose-a:text-[hsl(var(--primary))] prose-a:no-underline hover:prose-a:underline max-w-none">
+							<article className="prose sm:prose-lg md:prose-xl lg:prose-2xl dark:prose-invert prose-headings:scroll-mt-24 prose-headings:font-bold prose-h2:text-2xl sm:prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:leading-tight prose-p:text-muted-foreground prose-p:leading-relaxed prose-ul:text-muted-foreground prose-ol:text-muted-foreground prose-li:text-muted-foreground prose-li:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline mx-auto max-w-none px-4 sm:px-6 md:px-8 lg:max-w-[65ch] lg:px-0">
 								<CustomMDX source={post.content} />
 							</article>
 						</div>
@@ -256,7 +248,7 @@ export default async function Blog(props: Props) {
 						{/* Desktop TOC */}
 						<aside className="hidden lg:block">
 							<div className="sticky top-24">
-								<div className="overflow-hidden rounded-2xl border border-[hsl(var(--border)/0.2)] bg-[hsl(var(--card)/0.95)] shadow-[0_1px_3px_rgba(0,0,0,0.05)] backdrop-blur-xl">
+								<div className="border-muted bg-card overflow-hidden rounded-2xl border shadow-sm backdrop-blur-xl">
 									<div className="p-6">
 										<h3 className="mb-4 text-base font-medium">On this page</h3>
 										<TableOfContents />

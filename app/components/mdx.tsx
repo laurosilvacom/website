@@ -106,21 +106,21 @@ function CustomLink({href, children, ...props}) {
 
 	const baseStyles = `
     relative
-    text-blue-600 dark:text-blue-400
+    text-yellow-600 dark:text-yellow-300
     outline-none
     focus-visible:ring-2
-    focus-visible:ring-blue-500
+    focus-visible:ring-yellow-500
     focus-visible:ring-offset-2
     rounded-sm
     decoration-[0.1em]
-    decoration-blue-300/40
-    dark:decoration-blue-400/40
+    decoration-yellow-300/40
+    dark:decoration-yellow-300/40
     underline
     underline-offset-[0.2em]
     transition-all
     hover:decoration-[0.15em]
-    hover:text-blue-800
-    dark:hover:text-blue-300
+    hover:text-yellow-800
+    dark:hover:text-yellow-300
     motion-safe:transition-all
   `
 
@@ -313,7 +313,7 @@ function Blockquote({children}: {children: ReactNode}) {
 			</div>
 
 			<div className="relative">
-				<div className="text-foreground pt-2 text-lg leading-relaxed font-medium">
+				<div className="text-foreground pt-2 leading-relaxed font-medium">
 					{children}
 				</div>
 				<div className="from-primary/30 mt-4 h-px w-16 bg-gradient-to-r to-transparent" />
@@ -332,7 +332,7 @@ function Em({children}) {
 
 function Strong({children}: {children: ReactNode}) {
 	return (
-		<strong className="text-foreground font-bold underline decoration-purple-300 decoration-wavy underline-offset-[5px] transition-all duration-500 ease-out hover:decoration-purple-400 hover:underline-offset-[6px]">
+		<strong className="text-foreground font-semibold underline decoration-yellow-300 decoration-wavy underline-offset-[5px] transition-all duration-500 ease-out hover:decoration-yellow-300 hover:underline-offset-[6px]">
 			{children}
 		</strong>
 	)
@@ -350,7 +350,7 @@ function UnorderedList({children}: {children: ReactNode}) {
 
 function OrderedList({children}: {children: ReactNode}) {
 	return (
-		<ol className="marker:text-primary/70 my-6 ml-6 list-decimal space-y-2 marker:font-medium">
+		<ol className="marker:text-primary my-6 ml-6 list-decimal space-y-2 marker:font-medium">
 			{children}
 		</ol>
 	)
@@ -374,8 +374,8 @@ function InfoBox({
 	const styles = {
 		info: {
 			containerClass:
-				'bg-blue-50/50 dark:bg-blue-900/10 border-blue-100 dark:border-blue-800/30',
-			iconClass: 'text-blue-500 dark:text-blue-400',
+				'bg-yellow-50/50 dark:bg-yellow-900/10 border-yellow-100 dark:border-yellow-800/30',
+			iconClass: 'text-yellow-500 dark:text-yellow-400',
 			icon: '💡'
 		},
 		warning: {
