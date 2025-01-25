@@ -142,7 +142,7 @@ pre {
 }
 
 pre code {
-	@apply text-base leading-relaxed sm:text-sm sm:leading-relaxed md:text-base md:leading-relaxed lg:text-lg;
+	@apply text-sm leading-relaxed sm:text-xs sm:leading-relaxed md:text-sm md:leading-relaxed lg:text-base;
 }
 
 /* Reset the line number counter for code inside pre elements */

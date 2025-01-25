@@ -10,6 +10,7 @@ interface CardProps {
 	date?: string
 	footer?: ReactNode
 	className?: string
+	coverImage?: string
 }
 
 export function Card({
@@ -17,6 +18,7 @@ export function Card({
 	title,
 	description,
 	icon,
+	coverImage,
 	date,
 	footer,
 	className = ''
@@ -29,16 +31,20 @@ export function Card({
 			<article className={`space-y-8 ${className}`}>
 				<div className="relative aspect-[3/4] rounded-lg">
 					{/* Inner container for image with overflow hidden */}
-					<div className="absolute inset-0 overflow-hidden rounded-lg">
-						<Image
-							src="/heroavatar.jpg"
-							alt={title}
-							fill
-							className="absolute h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-						/>
+					<div className="absolute inset-0 overflow-hidden rounded-xl">
+						{coverImage ? (
+							<Image
+								src={coverImage}
+								alt={title}
+								fill
+								className="absolute h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+							/>
+						) : (
+							<h1>lol</h1>
+						)}
 					</div>
 					{/* Border effect outside of overflow hidden */}
-					<div className="absolute inset-0 rounded-lg transition-shadow duration-300 group-hover:shadow-[0_0_0_4px_hsl(var(--primary))]" />
+					<div className="absolute inset-0 rounded-xl transition-shadow duration-300 group-hover:shadow-[0_0_0_4px_hsl(var(--primary))]" />
 				</div>
 
 				<div className="flex items-center justify-between">

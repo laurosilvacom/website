@@ -144,6 +144,7 @@ export default async function Page() {
 										title={post.metadata.title}
 										description={post.metadata.description}
 										icon={post.metadata.icon}
+										coverImage={post.metadata.coverImage}
 										date={formatDate(post.metadata.publishedAt, false)}
 									/>
 								))}

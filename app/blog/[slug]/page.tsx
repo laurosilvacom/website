@@ -14,6 +14,7 @@ interface BlogHeaderProps {
 	icon?: string
 	title: string
 	description?: string
+	coverImage?: string
 }
 
 const BlogHeader = ({
@@ -22,57 +23,61 @@ const BlogHeader = ({
 	readingTime,
 	icon,
 	title,
+	coverImage,
 	description
 }: BlogHeaderProps) => {
 	return (
-		<header className="mx-auto max-w-4xl space-y-10">
-			{/* Title and Icon Section */}
+		<header className="mx-auto w-full max-w-4xl">
+			{/* Title and Description Section */}
 			<div className="space-y-6">
-				{icon && (
-					<div className="inline-block">
-						<div className="border-muted bg-card rounded-2xl border p-4">
+				{/* Eyebrow - Icon and Date */}
+				<div className="flex items-center justify-between">
+					{icon && (
+						<div className="bg-secondary/10 rounded-lg p-2">
 							<Image
 								src={icon}
 								alt={`${title} icon`}
-								width={48}
-								height={48}
-								quality={100}
-								className="h-12 w-12 object-contain"
+								width={24}
+								height={24}
+								className="h-6 w-6 object-contain"
 							/>
 						</div>
-					</div>
-				)}
-				<h1 className="text-foreground text-4xl leading-tight font-bold tracking-tight md:text-5xl lg:text-6xl">
+					)}
+					<time className="text-muted-foreground text-sm">
+						{formatDate(date)}
+					</time>
+				</div>
+
+				{/* Title */}
+				<h1 className="text-foreground text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl">
 					{title}
 				</h1>
-				{description && (
-					<p className="text-muted-foreground text-2xl leading-relaxed">
-						{description}
-					</p>
-				)}
-			</div>
 
-			{/* Author and Meta Section */}
-			<div className="border-muted flex items-center gap-4 border-t pt-6">
-				<div className="bg-card h-16 w-16 overflow-hidden rounded-full border-3">
-					<Image
-						src="/heroavatar.jpg"
-						alt={author}
-						width={98}
-						height={98}
-						className="h-full w-full object-cover"
-						priority
-					/>
-				</div>
-				<div className="flex flex-col gap-1">
-					<span className="text-foreground font-medium">{author}</span>
-					<div className="text-muted-foreground flex items-center text-lg">
-						<time dateTime={date}>{formatDate(date)}</time>
-						<span className="mx-2">•</span>
+				{/* Description and Meta */}
+				<div className="space-y-3">
+					{description && (
+						<p className="text-muted-foreground text-lg md:text-xl">
+							{description}
+						</p>
+					)}
+					<div className="text-muted-foreground flex items-center gap-2 text-sm">
 						<span>{readingTime}</span>
 					</div>
 				</div>
 			</div>
+
+			{/* Cover Image Section */}
+			{coverImage && (
+				<div className="relative -mx-4 mt-10 aspect-[4/2] overflow-hidden sm:-mx-6 lg:mx-0 lg:mt-12 lg:rounded-lg">
+					<Image
+						src={coverImage}
+						alt={`Cover image for ${title}`}
+						fill
+						priority
+						className="object-cover object-center"
+					/>
+				</div>
+			)}
 		</header>
 	)
 }
@@ -205,6 +210,7 @@ export default async function Blog(props: Props) {
 									icon={post.metadata.icon}
 									title={post.metadata.title}
 									description={post.metadata.description}
+									coverImage={post.metadata.coverImage}
 								/>
 
 								{/* Mobile TOC */}
@@ -240,7 +246,7 @@ export default async function Blog(props: Props) {
 							</div>
 
 							{/* Article content */}
-							<article className="prose sm:prose-lg md:prose-xl lg:prose-2xl dark:prose-invert prose-headings:scroll-mt-24 prose-headings:font-bold prose-h2:text-2xl sm:prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:leading-tight prose-p:text-muted-foreground prose-p:leading-relaxed prose-ul:text-muted-foreground prose-ol:text-muted-foreground prose-li:text-muted-foreground prose-li:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline mx-auto max-w-none px-4 sm:px-6 md:px-8 lg:max-w-[65ch] lg:px-0">
+							<article className="prose prose-xl dark:prose-invert prose-headings:scroll-mt-24 prose-headings:font-bold prose-h2:text-2xl prose-h2:leading-tight prose-p:text-muted-foreground prose-ul:text-muted-foreground prose-ol:text-muted-foreground prose-li:text-muted-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline max-w-none">
 								<CustomMDX source={post.content} />
 							</article>
 						</div>
