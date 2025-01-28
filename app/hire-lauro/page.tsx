@@ -218,135 +218,110 @@ const EngineeringTestimonials: Testimonial[] = [
 export default function ServicesPage(): JSX.Element {
 	return (
 		<div className="bg-background mx-auto max-w-[1400px] px-6 sm:px-12 lg:px-20">
-			<section className="relative py-24 md:py-32">
+			<section className="relative px-6 py-16 sm:py-20 md:py-32">
 				<div className="mx-auto max-w-[1200px]">
 					{/* Background decorative elements */}
 					<div className="pointer-events-none absolute inset-0 -z-10">
-						<div className="bg-primary/5 absolute top-0 left-1/2 aspect-square w-1/2 -translate-x-1/2 rounded-full blur-3xl" />
-						<div className="bg-primary/10 absolute top-1/3 right-0 h-48 w-48 rounded-full blur-3xl" />
+						<div className="bg-primary absolute top-0 left-1/2 aspect-square w-1/2 -translate-x-1/2 rounded-full blur-3xl" />
+						<div className="bg-primary absolute top-1/3 right-0 h-48 w-48 rounded-full blur-3xl" />
 					</div>
 
-					<div className="flex flex-col items-start space-y-12">
+					<div className="flex flex-col space-y-16 sm:space-y-20">
 						{/* Status badge */}
-						<div className="animate-in slide-in-from-top duration-1000">
-							<div className="bg-primary/10 inline-flex items-center gap-2 rounded-full px-4 py-2 backdrop-blur-sm">
-								<span className="relative flex h-2 w-2">
-									<span className="bg-primary absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
-									<span className="bg-primary relative inline-flex h-2 w-2 rounded-full"></span>
-								</span>
-								<span className="text-primary text-sm font-medium">
+
+						<div className="inline-flex">
+							<div className="bg-popover text-primary-foreground group relative inline-flex items-center gap-3 rounded-full px-5 py-2">
+								<div className="relative flex h-1.5 w-1.5 items-center justify-center">
+									<div className="bg-primary absolute h-full w-full animate-ping rounded-full"></div>
+									<div className="bg-primary relative h-full w-full rounded-full"></div>
+								</div>
+								<span className="text-sm font-semibold tracking-wide">
 									Available for new projects
 								</span>
 							</div>
 						</div>
 
 						{/* Main content grid */}
-						<div className="grid gap-16 md:grid-cols-[1.5fr_1fr] md:gap-24">
-							<div className="space-y-12">
-								{/* Heading with animated entrance */}
-								<div className="space-y-4">
-									<div className="animate-in slide-in-from-left duration-700">
-										<h1 className="text-foreground font-bold tracking-tight">
-											<span className="block text-4xl sm:text-5xl md:text-7xl">
-												Hey! I&apos;m Lauro
-												<span className="text-primary">.</span>
-											</span>
-											<span className="mt-4 block text-3xl sm:text-4xl md:text-6xl">
-												An educator &
-												<span className="text-primary"> engineer</span>
-											</span>
-										</h1>
-									</div>
-								</div>
-
-								{/* Bio with animated entrance */}
-								<div className="animate-in slide-in-from-left delay-200 duration-700">
-									<p className="text-muted-foreground text-xl leading-relaxed md:text-2xl">
+						<div className="grid gap-12 md:grid-cols-[1.5fr_1fr] md:gap-20">
+							<div className="space-y-10 sm:space-y-12">
+								{/* Heading */}
+								<div className="space-y-6">
+									<h1 className="text-foreground">
+										<span className="block text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+											Hey! I&apos;m Lauro<span className="text-primary">.</span>
+										</span>
+										<span className="mt-2 block text-3xl font-bold sm:mt-3 sm:text-4xl md:text-5xl lg:text-6xl">
+											An educator &{' '}
+											<span className="text-primary">engineer</span>
+										</span>
+									</h1>
+									<p className="text-muted-foreground text-lg leading-relaxed sm:text-xl md:text-2xl">
 										I help companies build exceptional products and upskill
 										their developer communities. Think of me as your technical
 										companion for both building and teaching.
 									</p>
 								</div>
 
-								{/* CTA buttons with animated entrance */}
-								<div className="animate-in slide-in-from-left delay-300 duration-700">
-									<div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-										{/* Primary CTA - Book a call */}
-										<Link
-											href="https://cal.com/laurosilvacom/chat"
-											target="_blank"
-											rel="noopener noreferrer"
-											className="bg-primary text-primary-foreground group relative inline-flex items-center justify-center rounded-full px-8 py-4 text-lg font-medium transition-all hover:-translate-y-1">
-											<span className="relative flex items-center gap-2">
-												Book a free consultation
-												<ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-											</span>
-										</Link>
+								{/* CTAs */}
+								<div className="flex flex-col gap-4 sm:flex-row">
+									<Link
+										href="https://cal.com/laurosilvacom/chat"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="bg-primary text-primary-foreground group inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-medium transition-all hover:-translate-y-1 sm:px-8 sm:py-4 sm:text-lg">
+										<span className="flex items-center gap-2">
+											Book a free consultation
+											<ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+										</span>
+									</Link>
 
-										{/* Secondary CTA - Services */}
-										<Link
-											href="#services-section"
-											className="group bg-background inline-flex items-center justify-center rounded-full border px-8 py-4 text-lg font-medium transition-all hover:-translate-y-1">
-											<span className="relative flex items-center gap-2">
-												View services
-												<ArrowDown className="h-5 w-5 transition-transform group-hover:translate-y-1" />
-											</span>
-										</Link>
-									</div>
+									<Link
+										href="#services-section"
+										className="border-muted bg-popover group inline-flex items-center justify-center rounded-full border px-6 py-3 text-base font-medium transition-all hover:-translate-y-1 sm:px-8 sm:py-4 sm:text-lg">
+										<span className="flex items-center gap-2">
+											View services
+											<ArrowDown className="h-5 w-5 transition-transform group-hover:translate-y-1" />
+										</span>
+									</Link>
 								</div>
 							</div>
 
-							{/* Right column decorative element/image */}
+							{/* Hero image */}
 							<div className="hidden md:block">
-								<div className="bg-secondary/50 relative aspect-square rounded-2xl backdrop-blur-sm">
+								<div className="bg-secondary relative aspect-square rounded-3xl">
 									<Image
 										src="/conference.png"
 										alt="Lauro Silva"
 										fill
-										className="motion-safe:animate-hero-image-reveal rounded-[3rem] object-cover shadow-[0_0_30px_rgba(var(--primary),0.2)]"
+										className="rounded-3xl object-cover"
 										priority
 									/>
 								</div>
 							</div>
 						</div>
 
-						{/* Social proof section with animated entrance */}
-						<div className="animate-in slide-in-from-bottom delay-500 duration-1000">
-							<div className="bg-card/50 relative mt-16 rounded-2xl border p-8 backdrop-blur-sm">
-								<p className="text-muted-foreground mb-8 text-sm font-medium">
-									Empowering engineering teams at companies like:
-								</p>
-								<div className="grid grid-cols-2 gap-12 opacity-70 grayscale transition-opacity hover:opacity-100 hover:grayscale-0 sm:grid-cols-4">
-									<Image
-										src="/google.png"
-										alt="Google"
-										width={120}
-										height={20}
-										className="self-center transition-transform hover:scale-105"
-									/>
-									<Image
-										src="/oreilly.svg"
-										alt="Company 3"
-										width={120}
-										height={40}
-										className="self-center transition-transform hover:scale-105"
-									/>
-									<Image
-										src="/sentry.png"
-										alt="Company 2"
-										width={120}
-										height={40}
-										className="self-center transition-transform hover:scale-105"
-									/>
-
-									<Image
-										src="/hoka-logo.png"
-										alt="Company 4"
-										width={120}
-										height={40}
-										className="self-center transition-transform hover:scale-105"
-									/>
-								</div>
+						{/* Companies section */}
+						<div className="pt-8 sm:pt-12">
+							<p className="text-muted-foreground mb-8 text-sm font-medium">
+								Empowering engineering teams at companies like:
+							</p>
+							<div className="grid grid-cols-2 items-center justify-items-center gap-8 sm:grid-cols-4 sm:gap-12">
+								{[
+									{src: '/google.png', alt: 'Google', width: 90},
+									{src: '/oreilly.svg', alt: "O'Reilly", width: 90},
+									{src: '/sentry.png', alt: 'Sentry', width: 100},
+									{src: '/hoka-logo.png', alt: 'Hoka', width: 80}
+								].map((logo) => (
+									<div key={logo.alt} className="w-20 sm:w-28">
+										<Image
+											src={logo.src}
+											alt={logo.alt}
+											width={logo.width}
+											height={20}
+											className="w-full opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+										/>
+									</div>
+								))}
 							</div>
 						</div>
 					</div>
@@ -412,33 +387,35 @@ export default function ServicesPage(): JSX.Element {
 								{EducationTestimonials.map((testimonial, index) => (
 									<div
 										key={index}
-										className="group border-muted bg-card relative rounded-2xl border p-8 transition-all hover:shadow-sm">
+										className="group border-muted bg-card relative overflow-hidden rounded-3xl border p-8 sm:p-10">
+										{/* Gradient Background */}
 										<div
-											className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${testimonial.gradient} opacity-10 transition-opacity group-hover:opacity-20`}
+											className={`absolute inset-0 bg-gradient-to-br ${testimonial.gradient} opacity-10 transition-opacity group-hover:opacity-20`}
 										/>
-										<div className="relative z-10">
-											<div className="mb-6 h-12">
+
+										{/* Content Container */}
+										<div className="relative space-y-8">
+											{/* Company Logo */}
+											<div className="h-8">
 												<Image
 													src={testimonial.logo}
 													alt="Company logo"
-													width={40}
-													height={40}
-													className="object-contain"
+													width={120}
+													height={30}
+													className="h-full w-auto object-contain"
 												/>
 											</div>
-											<blockquote className="relative">
-												<svg
-													className="text-primary absolute -top-3 -left-3 h-8 w-8 opacity-20"
-													fill="currentColor"
-													viewBox="0 0 32 32">
-													<path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-												</svg>
+
+											{/* Quote */}
+											<div className="space-y-6">
 												<p className="text-foreground text-lg leading-relaxed font-medium">
 													{testimonial.quote}
 												</p>
-											</blockquote>
-											<div className="mt-8 flex items-center gap-4">
-												<div className="ring-primary/20 relative h-12 w-12 overflow-hidden rounded-full ring-2">
+											</div>
+
+											{/* Author Info */}
+											<div className="flex items-center gap-4 pt-2">
+												<div className="bg-secondary relative h-12 w-12 overflow-hidden rounded-full">
 													<Image
 														src={testimonial.image}
 														alt={testimonial.author}
@@ -446,11 +423,12 @@ export default function ServicesPage(): JSX.Element {
 														className="object-cover"
 													/>
 												</div>
-												<div>
+
+												<div className="space-y-1">
 													<p className="text-foreground font-medium">
 														{testimonial.author}
 													</p>
-													<p className="text-primary text-sm">
+													<p className="text-primary text-sm font-medium">
 														{testimonial.role}
 													</p>
 												</div>
@@ -574,45 +552,56 @@ export default function ServicesPage(): JSX.Element {
 								{EngineeringTestimonials.map((testimonial, index) => (
 									<div
 										key={index}
-										className="group border-muted bg-card relative rounded-2xl border p-8 transition-all hover:shadow-sm">
+										className="group border-muted bg-card relative overflow-hidden rounded-3xl border p-8 sm:p-10">
+										{/* Gradient Background */}
 										<div
-											className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${testimonial.gradient} opacity-10 transition-opacity group-hover:opacity-20`}
+											className={`absolute inset-0 bg-gradient-to-br ${testimonial.gradient} opacity-10 transition-opacity group-hover:opacity-20`}
 										/>
-										<div className="relative z-10">
-											<div className="mb-6 h-12">
+
+										{/* Content Container */}
+										<div className="relative space-y-8">
+											{/* Company Logo */}
+											<div className="h-10">
 												<Image
 													src={testimonial.logo}
 													alt="Company logo"
 													width={40}
 													height={40}
-													className="object-contain"
+													className="h-full w-auto object-contain"
 												/>
 											</div>
-											<blockquote className="relative">
-												<svg
-													className="text-primary absolute -top-3 -left-3 h-8 w-8 opacity-20"
-													fill="currentColor"
-													viewBox="0 0 32 32">
-													<path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-												</svg>
-												<p className="text-foreground text-lg leading-relaxed font-medium">
-													{testimonial.quote}
-												</p>
-											</blockquote>
-											<div className="mt-8 flex items-center gap-4">
-												<div className="ring-primary/20 relative h-12 w-12 overflow-hidden rounded-full ring-2">
-													<Image
-														src={testimonial.image}
-														alt={testimonial.author}
-														fill
-														className="object-cover"
-													/>
+
+											{/* Quote Container */}
+											<div className="space-y-6">
+												{/* Quote Symbol */}
+
+												{/* Quote Text */}
+												<blockquote>
+													<p className="text-foreground text-lg leading-relaxed font-medium">
+														{testimonial.quote}
+													</p>
+												</blockquote>
+											</div>
+
+											{/* Author Info */}
+											<div className="flex items-center gap-4 pt-2">
+												<div className="relative h-12 w-12">
+													<div className="bg-primary/10 absolute inset-0 animate-pulse rounded-full"></div>
+													<div className="border-primary/10 relative h-full w-full overflow-hidden rounded-full border-2">
+														<Image
+															src={testimonial.image}
+															alt={testimonial.author}
+															fill
+															className="object-cover"
+														/>
+													</div>
 												</div>
-												<div>
-													<p className="text-foreground font-medium">
+
+												<div className="space-y-1">
+													<p className="text-foreground font-semibold">
 														{testimonial.author}
 													</p>
-													<p className="text-primary text-sm">
+													<p className="text-primary text-sm font-medium">
 														{testimonial.role}
 													</p>
 												</div>
@@ -646,11 +635,11 @@ export default function ServicesPage(): JSX.Element {
 						{/* Main content */}
 						<div className="space-y-6">
 							<h2 className="text-foreground mx-auto max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-								Let's Build Something
+								Lets Build Something
 								<span className="text-primary"> Impactful</span> — Together
 							</h2>
 							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
-								Your next project starts with a conversation. Let's discuss your
+								Your next project starts with a conversation. Lets discuss your
 								goals and ideas to create something amazing.
 							</p>
 						</div>
