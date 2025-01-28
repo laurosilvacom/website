@@ -8,7 +8,6 @@ import {TableOfContents} from 'app/components/toc'
 import {baseUrl} from 'app/sitemap'
 
 interface BlogHeaderProps {
-	author: string
 	date: string
 	readingTime: string | undefined
 	icon?: string
@@ -18,7 +17,6 @@ interface BlogHeaderProps {
 }
 
 const BlogHeader = ({
-	author,
 	date,
 	readingTime,
 	icon,
@@ -33,13 +31,13 @@ const BlogHeader = ({
 				{/* Eyebrow - Icon and Date */}
 				<div className="flex items-center justify-between">
 					{icon && (
-						<div className="bg-secondary/10 rounded-lg p-2">
+						<div className="bg-secondary/10 rounded-lg grayscale">
 							<Image
 								src={icon}
 								alt={`${title} icon`}
 								width={24}
 								height={24}
-								className="h-6 w-6 object-contain"
+								className="h-10 w-10 object-contain"
 							/>
 						</div>
 					)}
@@ -204,7 +202,6 @@ export default async function Blog(props: Props) {
 							{/* Header section */}
 							<div className="relative mb-16">
 								<BlogHeader
-									author="Lauro Silva"
 									date={post.metadata.publishedAt}
 									readingTime={post.metadata.readingTime}
 									icon={post.metadata.icon}

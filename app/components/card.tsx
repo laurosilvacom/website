@@ -54,13 +54,13 @@ export function Card({
 						</time>
 					)}
 					{icon && (
-						<div className="bg-secondary/10 rounded-xl p-2">
+						<div className="bg-secondary/10 rounded-xl p-2 grayscale">
 							<Image
 								src={icon}
 								alt=""
-								width={24}
-								height={24}
-								className="h-6 w-6 object-contain"
+								width={34}
+								height={34}
+								className="h-8 w-8 object-contain"
 							/>
 						</div>
 					)}

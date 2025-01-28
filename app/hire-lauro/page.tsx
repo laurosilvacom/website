@@ -1,6 +1,6 @@
 'use client'
 
-import {ArrowRight, CheckCircle} from 'lucide-react'
+import {ArrowDown, ArrowRight, CheckCircle} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, {type JSX} from 'react'
@@ -218,88 +218,137 @@ const EngineeringTestimonials: Testimonial[] = [
 export default function ServicesPage(): JSX.Element {
 	return (
 		<div className="bg-background mx-auto max-w-[1400px] px-6 sm:px-12 lg:px-20">
-			<section className="relative px-6 py-32 md:py-48">
+			<section className="relative py-24 md:py-32">
 				<div className="mx-auto max-w-[1200px]">
-					<div className="flex flex-col items-start">
-						{/* Eyebrow text */}
-						<span className="text-primary mb-8 text-sm font-medium">
-							Currently available for new projects
-						</span>
+					{/* Background decorative elements */}
+					<div className="pointer-events-none absolute inset-0 -z-10">
+						<div className="bg-primary/5 absolute top-0 left-1/2 aspect-square w-1/2 -translate-x-1/2 rounded-full blur-3xl" />
+						<div className="bg-primary/10 absolute top-1/3 right-0 h-48 w-48 rounded-full blur-3xl" />
+					</div>
 
-						{/* Main heading with creative layout */}
-						<div className="mb-6">
-							<h1 className="text-foreground text-4xl font-bold tracking-tight sm:text-5xl md:text-7xl">
-								Hey! I&apos;m Lauro,
-								<br className="hidden md:block" />
-								<span className="mt-2 block">
-									an educator & engineer
-									<span className="text-primary">.</span>
+					<div className="flex flex-col items-start space-y-12">
+						{/* Status badge */}
+						<div className="animate-in slide-in-from-top duration-1000">
+							<div className="bg-primary/10 inline-flex items-center gap-2 rounded-full px-4 py-2 backdrop-blur-sm">
+								<span className="relative flex h-2 w-2">
+									<span className="bg-primary absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
+									<span className="bg-primary relative inline-flex h-2 w-2 rounded-full"></span>
 								</span>
-							</h1>
+								<span className="text-primary text-sm font-medium">
+									Available for new projects
+								</span>
+							</div>
 						</div>
 
-						{/* Bio with personality */}
-						<div className="max-w-2xl">
-							<p className="text-muted-foreground text-xl md:text-2xl">
-								I help companies build exceptional products and upskill their
-								developer communities. Think of me as your technical companion
-								for both building and teaching.
-							</p>
+						{/* Main content grid */}
+						<div className="grid gap-16 md:grid-cols-[1.5fr_1fr] md:gap-24">
+							<div className="space-y-12">
+								{/* Heading with animated entrance */}
+								<div className="space-y-4">
+									<div className="animate-in slide-in-from-left duration-700">
+										<h1 className="text-foreground font-bold tracking-tight">
+											<span className="block text-4xl sm:text-5xl md:text-7xl">
+												Hey! I&apos;m Lauro
+												<span className="text-primary">.</span>
+											</span>
+											<span className="mt-4 block text-3xl sm:text-4xl md:text-6xl">
+												An educator &
+												<span className="text-primary"> engineer</span>
+											</span>
+										</h1>
+									</div>
+								</div>
+
+								{/* Bio with animated entrance */}
+								<div className="animate-in slide-in-from-left delay-200 duration-700">
+									<p className="text-muted-foreground text-xl leading-relaxed md:text-2xl">
+										I help companies build exceptional products and upskill
+										their developer communities. Think of me as your technical
+										companion for both building and teaching.
+									</p>
+								</div>
+
+								{/* CTA buttons with animated entrance */}
+								<div className="animate-in slide-in-from-left delay-300 duration-700">
+									<div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+										{/* Primary CTA - Book a call */}
+										<Link
+											href="https://cal.com/laurosilvacom/chat"
+											target="_blank"
+											rel="noopener noreferrer"
+											className="bg-primary text-primary-foreground group relative inline-flex items-center justify-center rounded-full px-8 py-4 text-lg font-medium transition-all hover:-translate-y-1">
+											<span className="relative flex items-center gap-2">
+												Book a free consultation
+												<ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+											</span>
+										</Link>
+
+										{/* Secondary CTA - Services */}
+										<Link
+											href="#services-section"
+											className="group bg-background inline-flex items-center justify-center rounded-full border px-8 py-4 text-lg font-medium transition-all hover:-translate-y-1">
+											<span className="relative flex items-center gap-2">
+												View services
+												<ArrowDown className="h-5 w-5 transition-transform group-hover:translate-y-1" />
+											</span>
+										</Link>
+									</div>
+								</div>
+							</div>
+
+							{/* Right column decorative element/image */}
+							<div className="hidden md:block">
+								<div className="bg-secondary/50 relative aspect-square rounded-2xl backdrop-blur-sm">
+									<Image
+										src="/conference.png"
+										alt="Lauro Silva"
+										fill
+										className="motion-safe:animate-hero-image-reveal rounded-[3rem] object-cover shadow-[0_0_30px_rgba(var(--primary),0.2)]"
+										priority
+									/>
+								</div>
+							</div>
 						</div>
 
-						{/* CTA Section */}
-						<div className="mt-12 flex items-center gap-6">
-							<Link
-								href="#services-section"
-								className="group bg-primary text-primary-foreground relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-lg font-medium transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_16px_rgba(var(--primary),0.5)]">
-								See how I can help
-								<ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
-							</Link>
+						{/* Social proof section with animated entrance */}
+						<div className="animate-in slide-in-from-bottom delay-500 duration-1000">
+							<div className="bg-card/50 relative mt-16 rounded-2xl border p-8 backdrop-blur-sm">
+								<p className="text-muted-foreground mb-8 text-sm font-medium">
+									Empowering engineering teams at companies like:
+								</p>
+								<div className="grid grid-cols-2 gap-12 opacity-70 grayscale transition-opacity hover:opacity-100 hover:grayscale-0 sm:grid-cols-4">
+									<Image
+										src="/google.png"
+										alt="Google"
+										width={120}
+										height={20}
+										className="self-center transition-transform hover:scale-105"
+									/>
+									<Image
+										src="/oreilly.svg"
+										alt="Company 3"
+										width={120}
+										height={40}
+										className="self-center transition-transform hover:scale-105"
+									/>
+									<Image
+										src="/sentry.png"
+										alt="Company 2"
+										width={120}
+										height={40}
+										className="self-center transition-transform hover:scale-105"
+									/>
 
-							<a
-								href="https://cal.com/laurosilvacom/chat"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="group text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-lg font-medium transition-colors">
-								Book a call
-								<ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
-							</a>
+									<Image
+										src="/hoka-logo.png"
+										alt="Company 4"
+										width={120}
+										height={40}
+										className="self-center transition-transform hover:scale-105"
+									/>
+								</div>
+							</div>
 						</div>
-
-						{/* Logos Section */}
-						{/*
-              <div className="mt-20">
-                <p className="text-muted-foreground mb-8 text-sm">
-                  Trusted by developers from companies like:
-                </p>
-                <div className="flex flex-wrap items-center gap-x-8 gap-y-4 opacity-70 grayscale">
-                  <Image
-                    src="/logo1.svg"
-                    alt="Company 1"
-                    width={120}
-                    height={40}
-                  />
-                  <Image
-                    src="/logo2.svg"
-                    alt="Company 2"
-                    width={120}
-                    height={40}
-                  />
-                  <Image
-                    src="/logo3.svg"
-                    alt="Company 3"
-                    width={120}
-                    height={40}
-                  />
-                  <Image
-                    src="/logo4.svg"
-                    alt="Company 4"
-                    width={120}
-                    height={40}
-                  />
-                </div>
-              </div>
-              */}
 					</div>
 				</div>
 			</section>
@@ -317,28 +366,38 @@ export default function ServicesPage(): JSX.Element {
 							development, and I also help dev-focused companies launch
 							effective education strategies for their communities.
 						</p>
-						<div className="mx-auto mt-20 grid gap-12 md:grid-cols-2">
+						<div className="mx-auto mt-20 grid gap-8 sm:gap-12 md:grid-cols-2">
 							{unifiedServices.map((service, index) => (
 								<div
 									key={index}
-									className="group border-muted bg-card relative rounded-3xl border p-10 transition-all hover:shadow-sm">
+									className="group border-muted bg-card relative overflow-hidden rounded-3xl border p-8 sm:p-10">
+									{/* Gradient Background */}
 									<div
-										className={`absolute inset-0 rounded-3xl ${service.gradient} opacity-10 transition-opacity group-hover:opacity-20`}
+										className={`absolute inset-0 ${service.gradient} opacity-10 transition-opacity group-hover:opacity-20`}
 									/>
-									<h3 className="text-foreground text-2xl font-bold">
-										{service.title}
-									</h3>
-									<p className="text-muted-foreground mt-4 text-lg leading-relaxed">
-										{service.description}
-									</p>
-									<div className="mt-6 flex flex-wrap gap-2">
-										{service.tags.map((tag) => (
-											<span
-												key={tag}
-												className="border-muted text-muted-foreground hover:bg-muted hover:text-foreground rounded-full border px-4 py-2 text-sm transition-all">
-												{tag}
-											</span>
-										))}
+
+									{/* Content Container */}
+									<div className="relative space-y-8">
+										{/* Title */}
+										<h3 className="text-foreground text-2xl leading-tight font-bold sm:text-3xl">
+											{service.title}
+										</h3>
+
+										{/* Description */}
+										<p className="text-muted-foreground text-base leading-relaxed sm:text-lg">
+											{service.description}
+										</p>
+
+										{/* Tags */}
+										<div className="flex flex-wrap items-center justify-center gap-3 pt-4">
+											{service.tags.map((tag) => (
+												<span
+													key={tag}
+													className="border-muted bg-secondary text-muted-foreground hover:text-foreground inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-all">
+													{tag}
+												</span>
+											))}
+										</div>
 									</div>
 								</div>
 							))}
@@ -402,33 +461,46 @@ export default function ServicesPage(): JSX.Element {
 							</div>
 							{/* Services Details */}
 							<div>
-								<h3 className="text-primary text-sm font-semibold">
+								<h3 className="text-muted-foreground text-base font-semibold">
 									Developer Education & Training
 								</h3>
 								<h2 className="title text-foreground mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
 									Upskill Your Developer Communities
 								</h2>
-								<div className="mt-12 space-y-8">
+								<div className="mt-12 space-y-6">
 									{educationServices.map((service, index) => (
 										<div
 											key={index}
-											className="group border-muted bg-card relative rounded-2xl border p-8 transition-all hover:shadow-sm">
-											<div className="flex gap-6">
-												<span className="text-primary text-4xl">
-													{service.icon}
-												</span>
-												<div>
-													<h3 className="text-foreground text-xl font-bold">
-														{service.title}
-													</h3>
-													<p className="text-muted-foreground mt-2">
-														{service.description}
-													</p>
-													<div className="mt-4 flex flex-wrap gap-2">
+											className="group border-muted bg-card relative overflow-hidden rounded-3xl border p-8 sm:p-10">
+											{/* Gradient overlay */}
+											<div className="from-primary absolute inset-0 bg-gradient-to-br via-transparent to-transparent opacity-10 transition-opacity group-hover:opacity-20" />
+
+											{/* Content Container */}
+											<div className="relative flex gap-8">
+												{/* Icon with fixed width */}
+												<div className="bg-secondary flex h-14 w-14 flex-none items-center justify-center rounded-2xl">
+													<span className="text-primary text-2xl">
+														{service.icon}
+													</span>
+												</div>
+
+												{/* Text Content */}
+												<div className="space-y-6">
+													<div className="space-y-3">
+														<h3 className="text-foreground text-xl leading-tight font-bold sm:text-2xl">
+															{service.title}
+														</h3>
+														<p className="text-muted-foreground text-base leading-relaxed sm:text-lg">
+															{service.description}
+														</p>
+													</div>
+
+													{/* Features */}
+													<div className="flex flex-wrap gap-3">
 														{service.features.map((feature) => (
 															<span
 																key={feature}
-																className="border-muted text-muted-foreground hover:bg-muted hover:text-foreground rounded-full border px-3 py-1 text-sm transition-all">
+																className="border-muted bg-secondary text-muted-foreground hover:text-foreground inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-all">
 																{feature}
 															</span>
 														))}
@@ -447,33 +519,46 @@ export default function ServicesPage(): JSX.Element {
 						<div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
 							{/* Services Details */}
 							<div>
-								<h3 className="text-primary text-sm font-semibold">
+								<h3 className="text-muted-foreground text-base font-semibold">
 									Full-Stack Engineering Consulting
 								</h3>
 								<h2 className="title text-foreground mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
 									Build Exceptional Digital Products
 								</h2>
-								<div className="mt-12 space-y-8">
+								<div className="mt-12 space-y-6">
 									{engineeringServices.map((service, index) => (
 										<div
 											key={index}
-											className="group border-muted bg-card relative rounded-2xl border p-8 transition-all hover:shadow-sm">
-											<div className="flex gap-6">
-												<span className="text-primary text-4xl">
-													{service.icon}
-												</span>
-												<div>
-													<h3 className="text-foreground text-xl font-bold">
-														{service.title}
-													</h3>
-													<p className="text-muted-foreground mt-2">
-														{service.description}
-													</p>
-													<div className="mt-4 flex flex-wrap gap-2">
+											className="group border-muted bg-card relative overflow-hidden rounded-3xl border p-8 transition-all hover:-translate-y-1 sm:p-10">
+											{/* Gradient overlay */}
+											<div className="from-primary absolute inset-0 bg-gradient-to-br via-transparent to-transparent opacity-10 transition-opacity group-hover:opacity-20" />
+
+											{/* Content Container */}
+											<div className="relative flex gap-8">
+												{/* Icon */}
+												<div className="bg-secondary flex h-14 w-14 flex-none items-center justify-center rounded-2xl">
+													<span className="text-primary text-2xl">
+														{service.icon}
+													</span>
+												</div>
+
+												{/* Text Content */}
+												<div className="space-y-6">
+													<div className="space-y-3">
+														<h3 className="text-foreground text-xl leading-tight font-bold sm:text-2xl">
+															{service.title}
+														</h3>
+														<p className="text-muted-foreground text-base leading-relaxed sm:text-lg">
+															{service.description}
+														</p>
+													</div>
+
+													{/* Features */}
+													<div className="flex flex-wrap gap-3">
 														{service.features.map((feature) => (
 															<span
 																key={feature}
-																className="border-muted text-muted-foreground hover:bg-muted hover:text-foreground rounded-full border px-3 py-1 text-sm transition-all">
+																className="border-muted bg-secondary text-muted-foreground hover:text-foreground inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-all">
 																{feature}
 															</span>
 														))}
@@ -542,37 +627,62 @@ export default function ServicesPage(): JSX.Element {
 			</section>
 
 			{/* CTA Section */}
-			<section className="border-muted bg-card relative rounded-2xl border p-8 py-32 transition-all hover:shadow-sm">
-				<div className="mx-auto max-w-5xl text-center">
-					<h2 className="title text-foreground text-4xl font-bold tracking-tight sm:text-5xl">
-						Let&apos;s Build Something Impactful — Together.
-					</h2>
-					<p className="text-muted-foreground mx-auto mt-6 max-w-3xl text-lg leading-relaxed sm:text-xl">
-						Your next project starts with a conversation. Let&apos;s discuss
-						your goals and ideas to create something amazing. Ready to get
-						started? Book a call today.
-					</p>
-					<div className="mt-12">
-						<a
-							href="https://cal.com/laurosilvacom/chat"
-							target="_blank"
-							rel="noopener noreferrer">
-							<button className="group bg-primary text-primary-foreground relative overflow-hidden rounded-full px-8 py-4 text-lg font-medium transition-all hover:shadow-lg">
-								<span className="relative z-10 flex items-center justify-center">
-									Start a Conversation
-									<ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+			<section className="group border-muted bg-card relative mx-6 rounded-2xl border p-10">
+				<div className="from-primary absolute inset-0 rounded-2xl bg-gradient-to-br via-transparent to-transparent opacity-10 transition-opacity group-hover:opacity-20" />
+
+				<div className="mx-auto max-w-[1200px]">
+					{/* Content container */}
+					<div className="relative space-y-12 text-center">
+						{/* Badge */}
+						<div className="inline-flex">
+							<div className="border-muted bg-secondary inline-flex items-center gap-2 rounded-full border px-4 py-2">
+								<div className="bg-primary h-2 w-2 rounded-full" />
+								<span className="text-primary text-sm font-medium">
+									Available for new projects
 								</span>
-							</button>
-						</a>
-					</div>
-					<div className="text-muted-foreground mt-8 flex flex-col items-center gap-4 text-sm sm:flex-row sm:justify-center sm:gap-8">
-						<div className="flex items-center gap-2">
-							<CheckCircle className="text-primary h-4 w-4" />
-							<span>No commitment required</span>
+							</div>
 						</div>
-						<div className="flex items-center gap-2">
-							<CheckCircle className="text-primary h-4 w-4" />
-							<span>Free initial consultation</span>
+
+						{/* Main content */}
+						<div className="space-y-6">
+							<h2 className="text-foreground mx-auto max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+								Let's Build Something
+								<span className="text-primary"> Impactful</span> — Together
+							</h2>
+							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
+								Your next project starts with a conversation. Let's discuss your
+								goals and ideas to create something amazing.
+							</p>
+						</div>
+
+						{/* CTA Section */}
+						<div className="space-y-8">
+							<a
+								href="https://cal.com/laurosilvacom/chat"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="bg-primary text-primary-foreground group relative inline-flex items-center justify-center rounded-full px-8 py-4 text-lg font-medium transition-all hover:-translate-y-1">
+								<span className="relative flex items-center gap-2">
+									Book a free consultation
+									<ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+								</span>
+							</a>
+
+							{/* Features */}
+							<div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-8">
+								<div className="border-muted bg-secondary inline-flex items-center gap-2 rounded-full border px-4 py-2">
+									<CheckCircle className="text-primary h-4 w-4" />
+									<span className="text-muted-foreground text-sm">
+										No commitment required
+									</span>
+								</div>
+								<div className="border-muted bg-secondary inline-flex items-center gap-2 rounded-full border px-4 py-2">
+									<CheckCircle className="text-primary h-4 w-4" />
+									<span className="text-muted-foreground text-sm">
+										Free initial consultation
+									</span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

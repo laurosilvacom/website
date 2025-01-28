@@ -58,28 +58,8 @@ export default async function Page() {
 										Read the blog
 										<ArrowRight className="ml-2 h-5 w-5" />
 									</Link>
-									<Link
-										href="/courses"
-										className="group bg-secondary/10 text-primary hover:bg-secondary/20 border-primary/10 relative inline-flex items-center rounded-full border-2 px-8 py-4 text-lg font-medium transition-all hover:-translate-y-0.5">
-										Take a course
-										<ArrowRight className="ml-2 h-5 w-5" />
-									</Link>
 								</div>
 							</div>
-						</div>
-
-						{/* Learn More Section */}
-						<div className="motion-safe:animate-hero-text-reveal hidden pt-12 lg:block">
-							<Link
-								href="#about"
-								className="text-primary hover:text-primary/80 inline-flex items-center text-lg font-medium transition-colors">
-								<div className="relative inline-flex h-14 w-14 items-center justify-center p-1">
-									<div className="border-primary/20 absolute animate-pulse rounded-full border-2 p-3">
-										<ArrowRight className="h-6 w-6 rotate-90" />
-									</div>
-								</div>
-								<span className="ml-8 text-xl">Learn more about Lauro</span>
-							</Link>
 						</div>
 					</div>
 				</div>
@@ -155,7 +135,7 @@ export default async function Page() {
 
 				{/* Newsletter Section */}
 				<section className="mx-auto max-w-7xl px-4 py-32">
-					<div className="from-primary/5 border-primary/10 relative rounded-3xl border bg-gradient-to-b to-transparent p-12">
+					<div className="from-primary/5 border-primary/10 bg-card relative rounded-3xl border bg-gradient-to-b to-transparent p-12">
 						<div className="grid grid-cols-4 gap-8 md:grid-cols-8 lg:grid-cols-12">
 							<div className="col-span-full text-center lg:col-span-6 lg:col-start-4">
 								<h2 className="text-primary mb-4 text-3xl font-bold">
@@ -205,9 +185,9 @@ function ResourceCard({href, icon, title, description}: ResourceCardProps) {
 	return (
 		<Link
 			href={href}
-			className="group border-primary/10 from-primary/5 relative overflow-hidden rounded-2xl border bg-gradient-to-b to-transparent p-8 transition-all hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(var(--primary),0.15)]">
+			className="group bg-card from-primary relative overflow-hidden rounded-2xl border bg-gradient-to-b to-transparent p-8 transition-all hover:-translate-y-1">
 			<div className="space-y-4">
-				<div className="bg-primary/10 group-hover:bg-primary/15 inline-flex h-12 w-12 items-center justify-center rounded-xl transition-colors">
+				<div className="bg-primary inline-flex h-12 w-12 items-center justify-center rounded-xl transition-colors">
 					{icon}
 				</div>
 

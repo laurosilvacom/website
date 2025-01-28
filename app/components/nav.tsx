@@ -136,9 +136,6 @@ const navItems = {
 	'/blog': {
 		name: 'Articles'
 	},
-	'/tutorials': {
-		name: 'Tutorials'
-	},
 	'/newsletter': {
 		name: 'Newsletter'
 	}
