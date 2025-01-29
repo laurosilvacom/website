@@ -1,0 +1,445 @@
+---
+title: 'Building a Newsletter System with Next.js Server Actions'
+publishedAt: '2025-01-27'
+summary: 'Learn how to build a newsletter subscription system using Next.js Server Actions and Buttondown. A practical guide to handling forms, server-side validation, and double opt-in verification.'
+icon: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1705629532/laurosilvacom/icons/iw7vdsnx4p2owgjivykm.png'
+description: 'A step-by-step guide to implementing a newsletter system with Server Actions in Next.js 14. Learn how to handle form submissions, manage loading states, and create a seamless subscription flow.'
+coverImage: https://res.cloudinary.com/laurosilvacom/image/upload/v1737787039/laurosilvacom/blog-images/yarknxhnvoi2vlt27i9n.jpg
+---
+
+Many developers reach a point where they need to add a newsletter to their website or application. While there are many solutions out there, finding one that's both simple to implement and powerful enough for real-world use can be challenging. In this article, I'll show you how to build a newsletter system using Next.js and Buttondown.
+
+## Why Buttondown?
+
+Before diving into the implementation, let's address why we're choosing Buttondown. Unlike complex enterprise solutions, Buttondown provides:
+
+- A straightforward API that's easy to work with
+- Custom fields for personalizing your newsletters
+- Built-in analytics and subscriber tracking
+- Double opt-in verification for better list quality
+- Reasonable pricing for smaller projects
+
+Most importantly, it lets you focus on your content rather than managing complex infrastructure.
+
+## Project Structure
+
+```ts
+app/
+├── components/
+│   └── newsletter-form.tsx      // The form component with validation
+├── actions/
+│   └── newsletter.ts           // Server actions for API handling
+├── subscribe-pending/
+│   └── page.tsx               // Success/verification page
+└── confirmed/
+    └── page.tsx              // Final confirmation page
+```
+
+### Components
+
+The `newsletter-form.tsx` is our main component handling the subscription form. I prefer keeping it separate because:
+
+- It can be reused across different pages
+- Form logic stays isolated and maintainable
+- Styling and validation live together with the form
+
+### Server Actions
+
+The `newsletter.ts` file in the actions directory contains our server-side logic. This is where we:
+
+- Handle API calls to Buttondown
+- Validate email addresses
+- Process form submissions
+- Track subscriber metadata
+
+I always keep API interactions in server actions because it:
+
+- Keeps sensitive data (like API keys) secure
+- Improves performance by running on the server
+- Makes error handling more robust
+
+### Pages
+
+We have two important pages:
+
+- `subscribe-pending`: Shows after initial signup
+- `confirmed`: Displays after email verification
+
+This two-page approach provides a better user experience by clearly communicating the subscription status. Users know exactly what's happening at each step.
+
+I've found this structure works well for most newsletter implementations. It's simple enough to get started but flexible enough to add features as your needs grow.
+
+## The How of Server Actions in Next.js
+
+Let's build a newsletter subscription system with Server Actions. We'll start minimal and understand each piece.
+
+### What are Server Actions?
+
+Server Actions in Next.js let you write server-side code directly in your components. Think of them as special functions that only run on your server, keeping sensitive data like API keys safe.
+
+Here's a basic Server Action:
+
+```typescript
+'use server'
+
+interface ActionResponse {
+	success: boolean
+	message: string
+	status?: 'pending_verification' | 'subscribed' | 'error'
+	redirect?: string
+}
+
+export async function subscribeToNewsletter(
+	_prevState: ActionResponse,
+	formData: FormData
+): Promise<ActionResponse> {
+	const email = formData.get('email')?.toString().trim()
+
+	// Basic validation
+	if (!email) {
+		return {
+			success: false,
+			message: 'Email is required',
+			status: 'error'
+		}
+	}
+
+	// Implementation coming soon...
+}
+```
+
+The `'use server'` directive at the top is crucial - it tells Next.js this code only runs on the server.
+
+### Adding the Buttondown Integration
+
+Now let's add the API call to Buttondown:
+
+```typescript
+try {
+	const response = await fetch(
+		'https://api.buttondown.email/v1/subscribers',
+		{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Token your_api_key_here'
+			},
+			body: JSON.stringify({
+				email_address: email,
+				type: 'unsubscribed' // For double opt-in
+			})
+		}
+	)
+
+	if (response.ok) {
+		return {
+			success: true,
+			message: 'Please check your email',
+			status: 'pending_verification',
+			redirect: '/subscribe-pending'
+		}
+	}
+} catch (error) {
+	return {
+		success: false,
+		message: 'Something went wrong',
+		status: 'error'
+	}
+}
+```
+
+### Why This Approach Works
+
+I love Server Actions for forms because they:
+
+- Keep API keys secure on the server
+- Handle form data automatically
+- Support progressive enhancement
+- Provide type safety with TypeScript
+
+<Details title="See full code">
+
+```typescript
+'use server'
+
+interface ActionResponse {
+	success: boolean
+	message: string
+	status?: 'pending_verification' | 'subscribed' | 'error'
+	redirect?: string
+}
+
+export async function subscribeToNewsletter(
+	_prevState: ActionResponse,
+	formData: FormData
+): Promise<ActionResponse> {
+	const email = formData.get('email')?.toString().trim()
+
+	if (!email) {
+		return {
+			success: false,
+			message: 'Email is required',
+			status: 'error'
+		}
+	}
+
+	try {
+		const response = await fetch(
+			'https://api.buttondown.email/v1/subscribers',
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Token your_api_key_here'
+				},
+				body: JSON.stringify({
+					email_address: email,
+					type: 'unsubscribed' // For double opt-in
+				})
+			}
+		)
+
+		if (!response.ok) {
+			const error = await response.json()
+
+			if (error.detail?.includes('already subscribed')) {
+				return {
+					success: false,
+					message: 'Already subscribed. Check your inbox.',
+					status: 'error'
+				}
+			}
+
+			return {
+				success: false,
+				message: error.message || 'Failed to subscribe',
+				status: 'error'
+			}
+		}
+
+		return {
+			success: true,
+			message: 'Please check your email',
+			status: 'pending_verification',
+			redirect: '/subscribe-pending'
+		}
+	} catch (error) {
+		return {
+			success: false,
+			message:
+				error instanceof Error
+					? error.message
+					: 'Something went wrong',
+			status: 'error'
+		}
+	}
+}
+```
+
+</Details>
+
+## Building the Newsletter Form Component
+
+Let's create a form that works with our Server Action. Here's a minimal example to get started:
+
+```typescript
+'use client'
+
+import { useActionState } from 'react'
+import { useFormStatus } from 'react-dom'
+import { subscribeToNewsletter } from '../actions/newsletter'
+
+function SubmitButton() {
+  const { pending } = useFormStatus()
+
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+    >
+      {pending ? 'Subscribing...' : 'Subscribe'}
+    </button>
+  )
+}
+
+export function NewsletterForm() {
+  const [state, formAction] = useActionState(subscribeToNewsletter, {
+    message: '',
+    success: false
+  })
+
+  return (
+    <form action={formAction}>
+      <input
+        name="email"
+        type="email"
+        placeholder="you@example.com"
+        required
+      />
+
+      <SubmitButton />
+
+      {state?.message && (
+        <p className={state.success ? 'text-green-500' : 'text-red-500'}>
+          {state.message}
+        </p>
+      )}
+    </form>
+  )
+}
+```
+
+### Key Concepts
+
+**Client Components**: The `'use client'` directive tells Next.js this is a client-side component.
+
+**Form State**: `useActionState` connects our form to the Server Action:
+
+```typescript
+const [state, formAction] = useActionState(
+	subscribeToNewsletter,
+	{
+		message: '',
+		success: false
+	}
+)
+```
+
+**Loading States**: The `SubmitButton` component uses `useFormStatus` to show loading states:
+
+```typescript
+function SubmitButton() {
+  const { pending } = useFormStatus()
+  return <button disabled={pending}>...</button>
+}
+```
+
+The form automatically:
+
+- Handles submissions via Server Actions
+- Shows loading states
+- Displays success/error messages
+- Redirects after successful submission
+
+### Using the Newsletter Form
+
+Now that we have our form component ready, let's create a simple page to display it. Here's a minimal example:
+
+```typescript
+'use client'
+
+import { NewsletterForm } from 'app/components/newsletter-form'
+
+export default function NewsletterPage() {
+  return (
+    <div className="max-w-md mx-auto p-6">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold mb-4">
+          Learn, build, and grow
+        </h1>
+        <p className="text-lg mb-8">
+          Join developers learning React and TypeScript.
+        </p>
+      </div>
+
+      <div className="border rounded-xl p-6">
+        <NewsletterForm />
+      </div>
+    </div>
+  )
+}
+```
+
+## Setting Up Redirect Pages
+
+Before creating our pages, we need to configure Buttondown to handle redirects correctly. This provides a better user experience for the subscription flow.
+
+### Buttondown Configuration
+
+1. Go to your Buttondown Settings
+2. Find "Custom redirects" section
+3. Set two important URLs:
+
+```text
+Custom subscription redirect: https://yourdomain.com/subscribe-pending
+Custom confirmation redirect: https://yourdomain.com/confirmed
+```
+
+Now when someone:
+
+- Submits the form → They'll see your pending page
+- Confirms email → They'll see your confirmed page
+
+### Creating the Pages
+
+Here's a minimal implementation for both pages:
+
+```typescript
+// app/subscribe-pending/page.tsx
+export default function SubscribePending() {
+  return (
+    <div className="text-center p-8">
+      <h1 className="text-2xl font-bold">Check Your Email</h1>
+      <p>Please confirm your subscription by clicking the link we just sent.</p>
+    </div>
+  )
+}
+
+// app/confirmed/page.tsx
+export default function Confirmed() {
+  return (
+    <div className="text-center p-8">
+      <h1 className="text-2xl font-bold">You're Subscribed! 🎉</h1>
+      <p>Thank you for confirming your subscription.</p>
+    </div>
+  )
+}
+```
+
+## Recap
+
+In this tutorial, you learned how to build a newsletter system using Next.js Server Actions and Buttondown. Here's what we covered:
+
+**Server Actions**: We used Next.js Server Actions to handle form submissions securely. The key pieces:
+
+```typescript
+'use server'
+async function subscribeToNewsletter(formData: FormData) {
+	// Server-side code
+}
+```
+
+**Form Handling**: Connected Server Actions to forms using `useActionState`:
+
+```typescript
+const [state, formAction] = useActionState(
+	subscribeToNewsletter,
+	initialState
+)
+```
+
+**Loading States**: Managed loading states with `useFormStatus`:
+
+```typescript
+const {pending} = useFormStatus()
+```
+
+**Subscription Flow**: Created a complete flow:
+
+- Form submission → Pending page
+- Email verification → Confirmed page
+
+## What's Next?
+
+After getting the basic newsletter working, you might want to:
+
+- Add form validation
+- Include analytics tracking
+- Customize email templates in Buttondown
+- Add tests for your Server Actions
+
+Remember: Start simple and add features as you need them. Server Actions make it easy to enhance your implementation over time.
+
+The code for this tutorial is available on [GitHub](https://github.com/yourusername/newsletter-example).
+
+Happy coding! 👋
