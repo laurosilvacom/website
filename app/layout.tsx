@@ -108,9 +108,13 @@ export default function RootLayout({children}: RootLayoutProps) {
 	return (
 		<html
 			lang="en"
-			className={cx(wotfard.variable, commitMono.variable, 'scroll-smooth')}>
-			<body className="antialiased lg:mx-auto">
-				<main className="min-w-0 px-2 md:px-0">
+			className={cx(
+				wotfard.variable,
+				commitMono.variable,
+				'scroll-smooth antialiased'
+			)}>
+			<body>
+				<main className="min-w-0">
 					<Navbar />
 					{children}
 					<Footer />

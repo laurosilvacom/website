@@ -2,8 +2,8 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-	--font-sans: 'Wotfard', sans-serif;
-	--font-mono: 'commitMono';
+	--font-sans: 'IBM Plex Mono', monospace;
+	--font-secondary: 'Inter', sans-serif;
 
 	--background: 20 14.3% 5.1%;
 	--foreground: 60 9.1% 97.8%;
@@ -134,15 +134,16 @@ html {
 }
 
 /* Code Block Styling */
-pre {
-	@apply -mx-0 my-6 overflow-auto rounded-xl border p-4 text-base shadow-xs sm:p-6 sm:text-base md:-mx-10 md:my-8 md:p-8 md:text-lg lg:text-xl;
+.prose pre {
+	@apply overflow-auto rounded-xl border p-4 shadow-xs sm:p-6 md:my-8 md:p-8;
 	background-color: hsl(var(--card));
 	color: hsl(var(--card-foreground));
 	counter-reset: sh-line-number;
 }
 
-pre code {
-	@apply text-sm leading-relaxed sm:text-xs sm:leading-relaxed md:text-sm md:leading-relaxed lg:text-base;
+.prose pre code {
+	@apply !text-base !leading-relaxed;
+	font-size: inherit !important;
 }
 
 /* Reset the line number counter for code inside pre elements */

@@ -220,8 +220,7 @@ export default async function Blog(props: Props) {
 								</div>
 							</div>
 
-							{/* Article content */}
-							<article className="prose prose-xl dark:prose-invert prose-headings:scroll-mt-24 prose-headings:font-bold prose-p:text-muted-foreground prose-ul:text-muted-foreground prose-ol:text-muted-foreground prose-li:text-muted-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline max-w-none">
+							<article className="prose prose-xl dark:prose-invert // Headings prose-headings:scroll-mt-24 prose-headings:font-bold // Text & Lists prose-p:text-muted-foreground prose-ul:text-muted-foreground prose-ol:text-muted-foreground prose-li:text-muted-foreground // Code Blocks prose-pre:text-sm prose-pre:leading-relaxed // Links prose-a:text-primary prose-a:no-underline hover:prose-a:underline mx-auto max-w-none px-4 sm:px-6 lg:px-8 [&_pre]:text-sm [&_pre_code]:text-sm">
 								<CustomMDX source={post.content} />
 							</article>
 						</div>
