@@ -212,33 +212,11 @@ export default async function Blog(props: Props) {
 
 								{/* Mobile TOC */}
 								<div className="mt-10 lg:hidden">
-									<details className="group">
-										<summary className="border-muted bg-card cursor-pointer rounded-2xl border shadow-sm backdrop-blur-xl">
-											<div className="flex items-center justify-between p-4">
-												<span className="text-base font-medium">
-													On this page
-												</span>
-												<svg
-													className="text-muted-foreground h-5 w-5 transform transition-transform duration-300 ease-out group-open:rotate-180"
-													fill="none"
-													viewBox="0 0 24 24"
-													stroke="currentColor">
-													<path
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														strokeWidth={2}
-														d="M19 9l-7 7-7-7"
-													/>
-												</svg>
-											</div>
-										</summary>
-
-										<div className="border-muted bg-card mt-2 overflow-hidden rounded-2xl border shadow-sm backdrop-blur-xl">
-											<div className="p-4">
-												<TableOfContents />
-											</div>
+									<div className="border-muted bg-card mt-2 overflow-hidden rounded-2xl border shadow-sm backdrop-blur-xl">
+										<div className="p-4">
+											<TableOfContents />
 										</div>
-									</details>
+									</div>
 								</div>
 							</div>
 
@@ -253,7 +231,6 @@ export default async function Blog(props: Props) {
 							<div className="sticky top-24">
 								<div className="border-muted bg-card overflow-hidden rounded-2xl border shadow-sm backdrop-blur-xl">
 									<div className="p-6">
-										<h3 className="mb-4 text-base font-medium">On this page</h3>
 										<TableOfContents />
 									</div>
 								</div>

@@ -182,7 +182,7 @@ const FooterSection = ({
 								{title === 'Resources' && link.text === 'Tutorials' && (
 									<TutorialIcon />
 								)}
-								{title === 'Resources' && link.text === 'Workshops' && (
+								{title === 'Services' && link.text === 'Workshops' && (
 									<WorkshopIcon />
 								)}
 								{title === 'Social' && link.text === 'GitHub' && <GithubIcon />}
@@ -207,7 +207,7 @@ const FooterSection = ({
 								{title === 'Services' && link.text === 'Hire Me' && (
 									<HireIcon />
 								)}
-								{title === 'Resources' && link.text === 'Workshops' && (
+								{title === 'Services' && link.text === 'Workshops' && (
 									<WorkshopIcon />
 								)}
 								{title === 'Social' && link.text === 'GitHub' && <GithubIcon />}
@@ -239,10 +239,12 @@ export default function Footer() {
 	const sections: FooterSections = {
 		Resources: [
 			{href: '/blog', text: 'Blog'},
-			{href: '/tutorials', text: 'Tutorials'},
+			{href: '/tutorials', text: 'Tutorials'}
+		],
+		Services: [
+			{href: '/hire-lauro', text: 'Hire Me'},
 			{href: '/workshops', text: 'Workshops'}
 		],
-		Services: [{href: '/hire-lauro', text: 'Hire Me'}],
 		Social: [
 			{
 				href: 'https://github.com/laurosilvacom',

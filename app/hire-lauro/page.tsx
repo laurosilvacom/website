@@ -217,25 +217,17 @@ const EngineeringTestimonials: Testimonial[] = [
 
 export default function ServicesPage(): JSX.Element {
 	return (
-		<div className="bg-background mx-auto max-w-[1400px] px-6 sm:px-12 lg:px-20">
-			<section className="relative px-6 py-16 sm:py-20 md:py-32">
-				<div className="mx-auto max-w-[1200px]">
-					{/* Background decorative elements */}
-					<div className="pointer-events-none absolute inset-0 -z-10">
-						<div className="bg-primary absolute top-0 left-1/2 aspect-square w-1/2 -translate-x-1/2 rounded-full blur-3xl" />
-						<div className="bg-primary absolute top-1/3 right-0 h-48 w-48 rounded-full blur-3xl" />
-					</div>
-
+		<div className="mx-auto max-w-screen-xl">
+			<section className="relative py-16 sm:py-20 md:py-32">
+				<div className="mx-auto">
 					<div className="flex flex-col space-y-16 sm:space-y-20">
-						{/* Status badge */}
-
 						<div className="inline-flex">
-							<div className="bg-popover text-primary-foreground group relative inline-flex items-center gap-3 rounded-full px-5 py-2">
-								<div className="relative flex h-1.5 w-1.5 items-center justify-center">
-									<div className="bg-primary absolute h-full w-full animate-ping rounded-full"></div>
-									<div className="bg-primary relative h-full w-full rounded-full"></div>
+							<div className="border-primary/10 bg-primary/5 inline-flex items-center gap-2 rounded-full border px-3 py-1.5">
+								<div className="relative h-1.5 w-1.5">
+									<div className="bg-primary/40 absolute h-full w-full animate-ping rounded-full"></div>
+									<div className="bg-primary h-full w-full rounded-full"></div>
 								</div>
-								<span className="text-sm font-semibold tracking-wide">
+								<span className="text-primary text-xs font-medium">
 									Available for new projects
 								</span>
 							</div>
@@ -309,7 +301,7 @@ export default function ServicesPage(): JSX.Element {
 								{[
 									{src: '/google.png', alt: 'Google', width: 90},
 									{src: '/oreilly.svg', alt: "O'Reilly", width: 90},
-									{src: '/sentry.png', alt: 'Sentry', width: 100},
+									{src: '/sentry.png', alt: 'Sentry', width: 110},
 									{src: '/hoka-logo.png', alt: 'Hoka', width: 80}
 								].map((logo) => (
 									<div key={logo.alt} className="w-20 sm:w-28">
@@ -317,7 +309,7 @@ export default function ServicesPage(): JSX.Element {
 											src={logo.src}
 											alt={logo.alt}
 											width={logo.width}
-											height={20}
+											height={30}
 											className="w-full opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
 										/>
 									</div>
