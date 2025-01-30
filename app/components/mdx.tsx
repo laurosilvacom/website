@@ -9,15 +9,16 @@ interface StackBlitzProps {
 	id: string
 	height?: string
 	file?: string
-	view?: 'preview' | 'editor' | 'both' // Control the view layout
-	hideNavigation?: boolean // Hide the top navigation bar
-	hideDevTools?: boolean // Hide the bottom dev tools
-	hideExplorer?: boolean // Hide the file explorer
-	hideTerminal?: boolean // Hide the terminal
-	terminalHeight?: number // Control terminal height (pixels)
-	devToolsHeight?: number // Control devtools height (pixels)
-	theme?: 'dark' | 'light' // Editor theme
-	clickToLoad?: boolean // Load on click instead of immediately
+	view?: 'preview' | 'editor' | 'both'
+	hideNavigation?: boolean
+	hideDevTools?: boolean
+	hideExplorer?: boolean
+	hideTerminal?: boolean
+	terminalHeight?: number
+	devToolsHeight?: number
+	theme?: 'dark' | 'light'
+	clickToLoad?: boolean
+	isGithub?: boolean // New prop to indicate if it's a GitHub repository
 }
 
 function StackBlitz({
@@ -32,7 +33,8 @@ function StackBlitz({
 	terminalHeight,
 	devToolsHeight,
 	theme = 'dark',
-	clickToLoad = false
+	clickToLoad = false,
+	isGithub = false // New prop with default value
 }: StackBlitzProps) {
 	const params = new URLSearchParams({
 		embed: '1',
@@ -48,10 +50,14 @@ function StackBlitz({
 		...(clickToLoad && {clickToLoad: '1'})
 	})
 
+	const baseUrl = isGithub
+		? `https://stackblitz.com/github/${id}`
+		: `https://stackblitz.com/edit/${id}`
+
 	return (
-		<div className="-mx-0 my-8 overflow-auto rounded-xl border p-4 text-base shadow-xs md:-mx-10 md:my-8">
+		<div className="bg-card my-8 overflow-auto rounded-xl border p-4 text-base shadow-xs md:my-8">
 			<iframe
-				src={`https://stackblitz.com/edit/${id}?${params.toString()}`}
+				src={`${baseUrl}?${params.toString()}`}
 				className="w-full rounded-xl border border-[hsl(var(--border))] bg-[hsl(var(--card))]"
 				style={{height}}
 				title="StackBlitz Example"
