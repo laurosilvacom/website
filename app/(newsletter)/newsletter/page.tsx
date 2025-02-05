@@ -1,7 +1,7 @@
 'use client'
 
 import Container from 'app/components/container'
-import {NewsletterForm} from 'app/components/newsletter-form'
+import {NewsletterForm} from '../newsletter-form'
 
 export default function NewsletterPage() {
 	return (

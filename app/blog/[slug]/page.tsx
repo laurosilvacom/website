@@ -1,6 +1,6 @@
-import {type Metadata} from 'next'
+import type {Metadata} from 'next/types'
 import Image from 'next/image'
-import {notFound} from 'next/navigation'
+import {notFound} from 'next/dist/client/components/not-found'
 import {formatDate, getBlogPosts} from 'app/blog/utils'
 import Container from 'app/components/container'
 import {CustomMDX} from 'app/components/mdx'
@@ -177,14 +177,14 @@ export default async function Blog(props: Props) {
 					__html: JSON.stringify({
 						'@context': 'https://schema.org',
 						'@type': 'BlogPosting',
-						headline: post.metadata.title,
-						datePublished: post.metadata.publishedAt,
-						dateModified: post.metadata.publishedAt,
-						description: post.metadata.summary,
-						image: post.metadata.image
-							? `${baseUrl}${post.metadata.image}`
-							: `${baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}`,
-						url: `${baseUrl}/blog/${post.slug}`,
+						headline: post!.metadata.title,
+						datePublished: post!.metadata.publishedAt,
+						dateModified: post!.metadata.publishedAt,
+						description: post!.metadata.summary,
+						image: post!.metadata.image
+							? `${baseUrl}${post!.metadata.image}`
+							: `${baseUrl}/og?title=${encodeURIComponent(post!.metadata.title)}`,
+						url: `${baseUrl}/blog/${post!.slug}`,
 						author: {
 							'@type': 'Person',
 							name: 'Lauro Silva'
@@ -202,12 +202,12 @@ export default async function Blog(props: Props) {
 							{/* Header section */}
 							<div className="relative mb-16">
 								<BlogHeader
-									date={post.metadata.publishedAt}
-									readingTime={post.metadata.readingTime}
-									icon={post.metadata.icon}
-									title={post.metadata.title}
-									description={post.metadata.description}
-									coverImage={post.metadata.coverImage}
+									date={post!.metadata.publishedAt}
+									readingTime={post!.metadata.readingTime}
+									icon={post!.metadata.icon}
+									title={post!.metadata.title}
+									description={post!.metadata.description}
+									coverImage={post!.metadata.coverImage}
 								/>
 
 								{/* Mobile TOC */}
@@ -221,7 +221,7 @@ export default async function Blog(props: Props) {
 							</div>
 
 							<article className="prose prose-xl dark:prose-invert // Headings prose-headings:scroll-mt-24 prose-headings:font-bold // Text & Lists prose-p:text-muted-foreground prose-ul:text-muted-foreground prose-ol:text-muted-foreground prose-li:text-muted-foreground // Code Blocks prose-pre:text-sm prose-pre:leading-relaxed // Links prose-a:text-primary prose-a:no-underline hover:prose-a:underline mx-auto max-w-none px-4 sm:px-6 lg:px-8 [&_pre]:text-sm [&_pre_code]:text-sm">
-								<CustomMDX source={post.content} />
+								<CustomMDX source={post!.content} />
 							</article>
 						</div>
 

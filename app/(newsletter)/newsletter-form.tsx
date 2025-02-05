@@ -3,7 +3,7 @@
 import {useRouter} from 'next/navigation'
 import {useActionState, useEffect, useState} from 'react'
 import {useFormStatus} from 'react-dom'
-import {subscribeToNewsletter} from '../actions/newsletter'
+import {subscribeToNewsletter} from './actions/newsletter'
 
 function SubmitButton() {
 	const {pending} = useFormStatus()
@@ -59,6 +59,7 @@ export function NewsletterForm() {
 	// Handle redirect using useEffect
 	useEffect(() => {
 		if (state?.redirect) {
+			// Use the new router.push() pattern for App Router
 			router.push(state.redirect)
 		}
 	}, [state?.redirect, router])

@@ -1,6 +1,6 @@
 import {Analytics} from '@vercel/analytics/react'
 import {SpeedInsights} from '@vercel/speed-insights/next'
-import {type Metadata} from 'next'
+import {type Metadata} from 'next/types'
 import localFont from 'next/font/local'
 import {type ReactNode} from 'react'
 
@@ -13,27 +13,27 @@ import {baseUrl} from 'app/sitemap'
 const wotfard = localFont({
 	src: [
 		{
-			path: './wotfard/Wotfard-Thin.ttf',
+			path: './fonts/wotfard/Wotfard-Thin.ttf',
 			weight: '100',
 			style: 'normal'
 		},
 		{
-			path: './wotfard/Wotfard-Regular.ttf',
+			path: './fonts/wotfard/Wotfard-Regular.ttf',
 			weight: '400',
 			style: 'normal'
 		},
 		{
-			path: './wotfard/Wotfard-Medium.ttf',
+			path: './fonts/wotfard/Wotfard-Medium.ttf',
 			weight: '500',
 			style: 'normal'
 		},
 		{
-			path: './wotfard/Wotfard-SemiBold.ttf',
+			path: './fonts/wotfard/Wotfard-SemiBold.ttf',
 			weight: '600',
 			style: 'normal'
 		},
 		{
-			path: './wotfard/Wotfard-Bold.ttf',
+			path: './fonts/wotfard/Wotfard-Bold.ttf',
 			weight: '700',
 			style: 'normal'
 		}
@@ -45,22 +45,22 @@ const wotfard = localFont({
 const commitMono = localFont({
 	src: [
 		{
-			path: './commit/CommitMono-400-Regular.otf',
+			path: './fonts/commit/CommitMono-400-Regular.otf',
 			weight: '400',
 			style: 'normal'
 		},
 		{
-			path: './commit/CommitMono-400-Italic.otf',
+			path: './fonts/commit/CommitMono-400-Italic.otf',
 			weight: '400',
 			style: 'italic'
 		},
 		{
-			path: './commit/CommitMono-700-Regular.otf',
+			path: './fonts/commit/CommitMono-700-Regular.otf',
 			weight: '700',
 			style: 'normal'
 		},
 		{
-			path: './commit/CommitMono-700-Italic.otf',
+			path: './fonts/commit/CommitMono-700-Italic.otf',
 			weight: '700',
 			style: 'italic'
 		}

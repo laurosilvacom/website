@@ -1,6 +1,6 @@
-import {type Metadata} from 'next'
+import type {Metadata} from 'next/types'
 import Image from 'next/image'
-import {notFound} from 'next/navigation'
+import {notFound} from 'next/dist/client/components/not-found'
 import {formatDate} from 'app/blog/utils'
 import {CustomMDX} from 'app/components/mdx'
 import {getTutorials} from '../utils'
@@ -121,8 +121,8 @@ export default async function TutorialPage(props: Props) {
 				<div className="aspect-video">
 					<iframe
 						className="h-full w-full"
-						src={tutorial.metadata.videoUrl}
-						title={tutorial.metadata.title}
+						src={tutorial!.metadata.videoUrl}
+						title={tutorial!.metadata.title}
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 						allowFullScreen
 					/>
@@ -133,10 +133,10 @@ export default async function TutorialPage(props: Props) {
 			<div className="bg-card mb-16 rounded-3xl border p-8">
 				{/* Title and icon */}
 				<div className="flex items-start gap-4 border-b pb-6">
-					{tutorial.metadata.icon && (
+					{tutorial!.metadata.icon && (
 						<Image
-							src={tutorial.metadata.icon}
-							alt={tutorial.metadata.title}
+							src={tutorial!.metadata.icon}
+							alt={tutorial!.metadata.title}
 							width={48}
 							height={48}
 							className="h-12 w-12 rounded-lg"
@@ -144,10 +144,10 @@ export default async function TutorialPage(props: Props) {
 					)}
 					<div>
 						<h1 className="text-foreground mb-3 text-2xl font-bold">
-							{tutorial.metadata.title}
+							{tutorial!.metadata.title}
 						</h1>
 						<p className="text-muted-foreground text-lg">
-							{tutorial.metadata.summary}
+							{tutorial!.metadata.summary}
 						</p>
 					</div>
 				</div>
@@ -167,7 +167,7 @@ export default async function TutorialPage(props: Props) {
 								d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
 							/>
 						</svg>
-						{formatDate(tutorial.metadata.publishedAt)}
+						{formatDate(tutorial!.metadata.publishedAt)}
 					</time>
 
 					<div className="flex items-center gap-2 text-sm">
@@ -183,10 +183,10 @@ export default async function TutorialPage(props: Props) {
 								d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
 							/>
 						</svg>
-						{tutorial.metadata.duration}
+						{tutorial!.metadata.duration}
 					</div>
 
-					{tutorial.metadata.difficulty && (
+					{tutorial!.metadata.difficulty && (
 						<div className="flex items-center gap-2 text-sm">
 							<svg
 								className="h-4 w-4"
@@ -200,15 +200,17 @@ export default async function TutorialPage(props: Props) {
 									d="M13 10V3L4 14h7v7l9-11h-7z"
 								/>
 							</svg>
-							<span className="capitalize">{tutorial.metadata.difficulty}</span>
+							<span className="capitalize">
+								{tutorial!.metadata.difficulty}
+							</span>
 						</div>
 					)}
 				</div>
 
 				{/* Topics */}
-				{tutorial.metadata.topics && tutorial.metadata.topics.length > 0 && (
+				{tutorial!.metadata.topics && tutorial!.metadata.topics.length > 0 && (
 					<div className="flex flex-wrap gap-2 pt-6">
-						{tutorial.metadata.topics.map((topic) => (
+						{tutorial!.metadata.topics.map((topic) => (
 							<span
 								key={topic}
 								className="bg-secondary/50 text-secondary-foreground rounded px-3 py-1 text-sm">
@@ -221,7 +223,7 @@ export default async function TutorialPage(props: Props) {
 
 			{/* Content section */}
 			<article className="prose prose-gray dark:prose-invert mx-auto max-w-3xl">
-				<CustomMDX source={tutorial.content} />
+				<CustomMDX source={tutorial!.content} />
 			</article>
 
 			<script
@@ -231,9 +233,9 @@ export default async function TutorialPage(props: Props) {
 					__html: JSON.stringify({
 						'@context': 'https://schema.org',
 						'@type': 'Article',
-						headline: tutorial.metadata.title,
-						description: tutorial.metadata.summary,
-						datePublished: tutorial.metadata.publishedAt,
+						headline: tutorial!.metadata.title,
+						description: tutorial!.metadata.summary,
+						datePublished: tutorial!.metadata.publishedAt,
 						author: {
 							'@type': 'Person',
 							name: 'Lauro Silva',
