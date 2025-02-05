@@ -204,11 +204,7 @@ export function Navbar() {
 			<nav
 				role="navigation"
 				aria-label="Main navigation"
-				className={`border-border sticky top-0 z-40 w-full border-b backdrop-blur-sm transition-all duration-300 ease-in-out print:hidden ${
-					mounted ? 'bg-card' : 'bg-card'
-				} ${mounted ? 'supports-[backdrop-filter]:bg-card' : ''} ${
-					mounted ? 'dark:bg-card' : 'dark:bg-card'
-				} ${mounted ? 'supports-[backdrop-filter]:dark:bg-card' : ''}`}>
+				className="border-border sticky top-0 z-40 w-full border-b bg-[hsl(var(--card))] backdrop-blur-sm transition-all duration-300 ease-in-out print:hidden">
 				<div
 					className={`mx-auto flex max-w-screen-xl items-center justify-between px-5 transition-all duration-300 ease-in-out sm:px-10 lg:px-0 ${isScrolled ? 'h-16' : 'h-20'}`}>
 					<Link

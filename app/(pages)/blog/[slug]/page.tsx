@@ -1,7 +1,7 @@
 import type {Metadata} from 'next/types'
 import Image from 'next/image'
 import {notFound} from 'next/dist/client/components/not-found'
-import {formatDate, getBlogPosts} from 'app/blog/utils'
+import {formatDate, getBlogPosts} from '../utils'
 import Container from 'app/components/container'
 import {CustomMDX} from 'app/components/mdx'
 import {TableOfContents} from 'app/components/toc'

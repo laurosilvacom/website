@@ -4,7 +4,7 @@ import {ArrowDown, ArrowRight, CheckCircle} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, {type JSX} from 'react'
-import Container from '../components/container'
+import Container from '@/components/container'
 
 export default function ServicesPage(): JSX.Element {
 	return (

@@ -65,9 +65,7 @@ export function NewsletterForm() {
 	}, [state?.redirect, router])
 
 	return (
-		<form
-			action={formAction}
-			className="bg-card space-y-8 rounded-2xl p-6 shadow-sm">
+		<form action={formAction} className="space-y-8">
 			{/* Hidden metadata fields */}
 			<input type="hidden" name="pageUrl" value={pageMetadata.url} />
 			<input type="hidden" name="pagePath" value={pageMetadata.path} />

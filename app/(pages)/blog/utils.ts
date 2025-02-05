@@ -54,7 +54,8 @@ function parseFrontmatter(fileContent: string) {
 	return {metadata: metadata as Metadata, content}
 }
 
-// Rest of your code remains the same
+const POSTS_PATH = path.join(process.cwd(), 'app/(pages)/blog/posts')
+
 async function getMDXFiles(dir: string): Promise<string[]> {
 	const files = await fs.readdir(dir)
 	return files.filter((file) => path.extname(file) === '.mdx')
@@ -87,7 +88,7 @@ async function getMDXData(dir: string) {
 }
 
 export async function getBlogPosts() {
-	return await getMDXData(path.join(process.cwd(), 'app', 'blog', 'posts'))
+	return await getMDXData(POSTS_PATH)
 }
 
 export function formatDate(date: string, includeRelative = false) {

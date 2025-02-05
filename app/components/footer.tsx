@@ -237,10 +237,7 @@ export default function Footer() {
 	}, [])
 
 	const sections: FooterSections = {
-		Resources: [
-			{href: '/blog', text: 'Blog'},
-			{href: '/tutorials', text: 'Tutorials'}
-		],
+		Resources: [{href: '/blog', text: 'Blog'}],
 		Services: [
 			{href: '/hire-lauro', text: 'Hire Me'},
 			{href: '/workshops', text: 'Workshops'}

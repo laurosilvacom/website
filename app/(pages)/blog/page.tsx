@@ -1,7 +1,7 @@
-import {formatDate, getBlogPosts} from 'app/blog/utils'
-import {Card} from 'app/components/card'
-import {CardGrid} from 'app/components/card-grid'
-import Container from 'app/components/container'
+import {formatDate, getBlogPosts} from '@/app/(pages)/blog/utils'
+import {Card} from '@/app/components/card'
+import {CardGrid} from '@/app/components/card-grid'
+import Container from '@/app/components/container'
 
 export const metadata = {
 	title: 'Blog',
