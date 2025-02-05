@@ -1,0 +1,43 @@
+{
+	"title": "React From Zero to Production",
+	"description": "Build production-ready React applications with modern best practices and real-world patterns.",
+	"status": "available",
+	"price": "$199",
+	"imageUrl": "/heroavatar.jpg",
+	"publishedAt": "2024-03-10",
+	"duration": "8:00",
+	"topics": ["react", "typescript", "nextjs"],
+	"highlights": [
+		"From fundamentals to advanced patterns",
+		"Real-world project building",
+		"Private Discord community"
+	],
+	"curriculum": [
+		{
+			"title": "Getting Started",
+			"lessons": [
+				{
+					"title": "Introduction to React",
+					"duration": "15:00"
+				},
+				{
+					"title": "Setting Up Your Environment",
+					"duration": "20:00"
+				}
+			]
+		},
+		{
+			"title": "Core Concepts",
+			"lessons": [
+				{
+					"title": "Components and Props",
+					"duration": "30:00"
+				},
+				{
+					"title": "State and Effects",
+					"duration": "45:00"
+				}
+			]
+		}
+	]
+}

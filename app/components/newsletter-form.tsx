@@ -12,7 +12,7 @@ function SubmitButton() {
 		<button
 			type="submit"
 			disabled={pending}
-			className="bg-primary text-primary-foreground hover:bg-primary/90 w-full rounded-xl px-8 py-3 text-base font-medium transition-all hover:-translate-y-0.5 disabled:opacity-50 md:text-lg">
+			className="bg-primary text-primary-foreground focus:ring-primary/50 w-full rounded-xl px-8 py-3.5 text-base font-medium transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-lg">
 			{pending ? 'Subscribing...' : 'Subscribe'}
 		</button>
 	)
@@ -64,7 +64,9 @@ export function NewsletterForm() {
 	}, [state?.redirect, router])
 
 	return (
-		<form action={formAction} className="space-y-6">
+		<form
+			action={formAction}
+			className="bg-card space-y-8 rounded-2xl p-6 shadow-sm">
 			{/* Hidden metadata fields */}
 			<input type="hidden" name="pageUrl" value={pageMetadata.url} />
 			<input type="hidden" name="pagePath" value={pageMetadata.path} />
@@ -79,42 +81,50 @@ export function NewsletterForm() {
 			/>
 
 			{/* Visible form fields */}
-			<div className="space-y-4">
-				<label htmlFor="firstName" className="sr-only">
-					First Name
-				</label>
-				<input
-					id="firstName"
-					name="firstName"
-					type="text"
-					placeholder="First Name"
-					className="border-input bg-background text-foreground placeholder:text-primary hover:border-primary focus-visible:border-primary focus-visible:ring-primary w-full rounded-xl border px-4 py-3 text-base transition-colors focus-visible:ring-2 focus-visible:outline-none md:text-lg"
-				/>
-			</div>
+			<div className="space-y-6">
+				<div>
+					<label
+						htmlFor="firstName"
+						className="text-muted-foreground mb-2 block text-sm font-medium">
+						First Name
+					</label>
+					<input
+						id="firstName"
+						name="firstName"
+						type="text"
+						placeholder="John"
+						className="border-input bg-background text-foreground placeholder:text-muted-foreground/60 hover:border-primary/50 focus:border-primary focus:ring-primary/20 w-full rounded-xl border px-4 py-3.5 text-base focus:ring-2 focus:outline-none md:text-lg"
+					/>
+				</div>
 
-			<div>
-				<label htmlFor="email" className="sr-only">
-					Enter your email
-				</label>
-				<input
-					id="email"
-					name="email"
-					type="email"
-					placeholder="you@example.com"
-					className="border-input bg-background text-foreground placeholder:text-primary hover:border-primary focus-visible:border-primary focus-visible:ring-primary w-full rounded-xl border px-4 py-3 text-base transition-colors focus-visible:ring-2 focus-visible:outline-none md:text-lg"
-					required
-				/>
+				<div>
+					<label
+						htmlFor="email"
+						className="text-muted-foreground mb-2 block text-sm font-medium">
+						Email address
+					</label>
+					<input
+						id="email"
+						name="email"
+						type="email"
+						placeholder="you@example.com"
+						className="border-input bg-background text-foreground placeholder:text-muted-foreground/60 hover:border-primary/50 focus:border-primary focus:ring-primary/20 w-full rounded-xl border px-4 py-3.5 text-base focus:ring-2 focus:outline-none md:text-lg"
+						required
+					/>
+				</div>
 			</div>
 
 			<SubmitButton />
 
 			{state?.message && !state.redirect && (
-				<p
-					className={`text-center text-sm ${
-						state.success ? 'text-green-500' : 'text-red-500'
+				<div
+					className={`rounded-lg p-4 text-center text-sm ${
+						state.success
+							? 'bg-green-500/10 text-green-500'
+							: 'bg-destructive/10 text-destructive'
 					}`}>
 					{state.message}
-				</p>
+				</div>
 			)}
 		</form>
 	)
