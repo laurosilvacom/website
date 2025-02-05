@@ -4,17 +4,15 @@ import {useRouter} from 'next/navigation'
 import {useActionState, useEffect, useState} from 'react'
 import {useFormStatus} from 'react-dom'
 import {subscribeToNewsletter} from './actions/newsletter'
+import {Button} from '@/components/ui/button'
 
 function SubmitButton() {
 	const {pending} = useFormStatus()
 
 	return (
-		<button
-			type="submit"
-			disabled={pending}
-			className="bg-primary text-primary-foreground focus:ring-primary/50 w-full rounded-xl px-8 py-3.5 text-base font-medium transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-lg">
+		<Button type="submit" disabled={pending} className="w-full" size="lg">
 			{pending ? 'Subscribing...' : 'Subscribe'}
-		</button>
+		</Button>
 	)
 }
 

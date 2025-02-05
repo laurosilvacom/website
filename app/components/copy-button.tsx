@@ -1,5 +1,6 @@
 'use client'
 
+import {Button} from './ui/button'
 import {successToast, errorToast} from 'app/components/toaster'
 
 export function CodeCopyButton({code}: {code: string}) {
@@ -13,39 +14,24 @@ export function CodeCopyButton({code}: {code: string}) {
 	}
 
 	return (
-		<button
+		<Button
 			onClick={handleCopy}
-			className="group/button border-primary/20 bg-card/50 hover:border-primary/30 hover:bg-card focus:ring-primary/20 absolute top-3 right-3 rounded-md border p-1.5 opacity-0 backdrop-blur-sm transition-all duration-300 ease-out group-hover:opacity-100 hover:shadow-sm focus:ring-2 focus:outline-none"
+			size="icon"
+			variant="ghost"
+			className="absolute top-3 right-3 h-8 w-8 opacity-0 transition-opacity group-hover:opacity-100"
 			aria-label="Copy code to clipboard">
-			<div className="relative">
-				{/* Background glow effect */}
-				<div className="bg-primary/20 absolute -inset-1 rounded-full opacity-0 blur transition-opacity duration-300 group-hover/button:opacity-100" />
-
-				{/* Icon */}
-				<svg
-					width="15"
-					height="15"
-					viewBox="0 0 24 24"
-					fill="none"
-					className="relative transform-gpu transition-transform duration-200 ease-out group-hover/button:scale-110 group-active/button:scale-90">
-					<path
-						d="M6 11C6 9.89543 6.89543 9 8 9H16C17.1046 9 18 9.89543 18 11V19C18 20.1046 17.1046 21 16 21H8C6.89543 21 6 20.1046 6 19V11Z"
-						stroke="currentColor"
-						strokeWidth="2"
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						className="text-primary"
-					/>
-					<path
-						d="M6 13H4C3.44772 13 3 12.5523 3 12V4C3 3.44772 3.44772 3 4 3H12C12.5523 3 13 3.44772 13 4V6"
-						stroke="currentColor"
-						strokeWidth="2"
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						className="text-primary/50"
-					/>
-				</svg>
-			</div>
-		</button>
+			<svg
+				width="15"
+				height="15"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="2"
+				strokeLinecap="round"
+				strokeLinejoin="round">
+				<path d="M8 4v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.242a2 2 0 0 0-.602-1.43L16.083 2.57A2 2 0 0 0 14.685 2H10a2 2 0 0 0-2 2z" />
+				<path d="M16 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2" />
+			</svg>
+		</Button>
 	)
 }

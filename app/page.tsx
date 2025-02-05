@@ -5,6 +5,7 @@ import {formatDate, getBlogPosts} from './(pages)/blog/utils'
 import {Card} from 'app/components/card'
 import {CardGrid} from 'app/components/card-grid'
 import Container from 'app/components/container'
+import {Button} from 'app/components/ui/button'
 
 export default async function Page() {
 	const allBlogs = await getBlogPosts()
@@ -37,14 +38,12 @@ export default async function Page() {
 							</p>
 
 							<div className="flex flex-col gap-4 pt-8 sm:flex-row">
-								<Link
-									href="/blog"
-									className="bg-primary text-primary-foreground inline-flex items-center justify-center rounded-lg px-8 py-3 text-base font-medium transition hover:translate-y-[-2px]">
-									<span className="flex items-center gap-2">
+								<Button asChild size="lg">
+									<Link href="/blog" className="group">
 										Read the blog
-										<ArrowRight className="h-4 w-4" />
-									</span>
-								</Link>
+										<ArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
+									</Link>
+								</Button>
 							</div>
 						</div>
 					</div>
@@ -66,18 +65,18 @@ export default async function Page() {
 				</div>
 
 				{/* Latest Articles Section */}
-				<section className="bg-secondary/5 mx-auto max-w-7xl px-4 py-32">
+				<section className="mx-auto max-w-7xl px-4 py-32">
 					<div className="grid grid-cols-4 gap-8 md:grid-cols-8 lg:grid-cols-12">
 						<div className="col-span-full flex items-center justify-between">
-							<h2 className="text-primary text-3xl font-bold lg:text-4xl">
+							<h2 className="text-3xl font-bold lg:text-4xl">
 								Latest Articles
 							</h2>
-							<Link
-								href="/blog"
-								className="text-primary hover:text-primary/80 group inline-flex items-center gap-2 transition-colors">
-								View all articles
-								<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-							</Link>
+							<Button variant="link" asChild>
+								<Link href="/blog" className="group">
+									View all articles
+									<ArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
+								</Link>
+							</Button>
 						</div>
 
 						<div className="col-span-full">

@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, {type JSX} from 'react'
 import Container from '@/components/container'
+import {Button} from '@/components/ui/button'
 
 export default function ServicesPage(): JSX.Element {
 	return (
@@ -47,25 +48,26 @@ export default function ServicesPage(): JSX.Element {
 
 								{/* CTAs */}
 								<div className="flex flex-col gap-4 sm:flex-row">
-									<Link
-										href="https://cal.com/laurosilvacom/chat"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="bg-primary text-primary-foreground group inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-medium transition-all hover:-translate-y-1 sm:px-8 sm:py-4 sm:text-lg">
-										<span className="flex items-center gap-2">
-											Book a free consultation
-											<ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-										</span>
-									</Link>
+									<Button asChild size="lg">
+										<Link
+											href="https://cal.com/laurosilvacom/chat"
+											target="_blank"
+											rel="noopener noreferrer">
+											<span className="flex items-center gap-2">
+												Book a free consultation
+												<ArrowRight />
+											</span>
+										</Link>
+									</Button>
 
-									<Link
-										href="#services-section"
-										className="border-muted bg-popover group inline-flex items-center justify-center rounded-full border px-6 py-3 text-base font-medium transition-all hover:-translate-y-1 sm:px-8 sm:py-4 sm:text-lg">
-										<span className="flex items-center gap-2">
-											View services
-											<ArrowDown className="h-5 w-5 transition-transform group-hover:translate-y-1" />
-										</span>
-									</Link>
+									<Button asChild variant="outline" size="lg">
+										<Link href="#services-section">
+											<span className="flex items-center gap-2">
+												View services
+												<ArrowDown />
+											</span>
+										</Link>
+									</Button>
 								</div>
 							</div>
 
@@ -429,16 +431,17 @@ export default function ServicesPage(): JSX.Element {
 
 						{/* CTA Section */}
 						<div className="space-y-8">
-							<a
-								href="https://cal.com/laurosilvacom/chat"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="bg-primary text-primary-foreground group relative inline-flex items-center justify-center rounded-full px-8 py-4 text-lg font-medium transition-all hover:-translate-y-1">
-								<span className="relative flex items-center gap-2">
-									Book a free consultation
-									<ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-								</span>
-							</a>
+							<Button asChild size="lg">
+								<a
+									href="https://cal.com/laurosilvacom/chat"
+									target="_blank"
+									rel="noopener noreferrer">
+									<span className="flex items-center gap-2">
+										Book a free consultation
+										<ArrowRight />
+									</span>
+								</a>
+							</Button>
 
 							{/* Features */}
 							<div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-8">
