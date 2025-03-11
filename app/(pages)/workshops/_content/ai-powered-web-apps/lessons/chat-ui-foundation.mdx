@@ -1,0 +1,253 @@
+---
+title: 'Building the chat UI foundation'
+number: 2
+duration: '35:00'
+section: 'UI Scaffolding'
+---
+
+## Introduction
+
+Now that our development environment is set up, we'll focus on constructing the foundational UI components for our AI chat application. We'll create a responsive chat interface with a message display area and an input component.
+
+## Chat container layout
+
+First, let's create our main chat container layout in `app/chat/page.tsx`:
+
+```tsx
+import {Chat} from '@/components/chat/chat'
+
+export default function ChatPage() {
+	return (
+		<main className="container flex flex-col items-center py-8">
+			<div className="w-full max-w-2xl">
+				<h1 className="mb-8 text-center text-3xl font-bold">
+					AI Chat Assistant
+				</h1>
+				<Chat />
+			</div>
+		</main>
+	)
+}
+```
+
+## Creating the Chat component
+
+Next, let's create our main Chat component in `components/chat/chat.tsx`:
+
+```tsx
+'use client'
+
+import {useChat} from 'ai/react'
+import {ChatWindow} from './chat-window'
+import {ChatInput} from './chat-input'
+
+export function Chat() {
+	const {
+		messages,
+		input,
+		handleInputChange,
+		handleSubmit,
+		isLoading
+	} = useChat()
+
+	return (
+		<div className="bg-background flex h-[600px] flex-col rounded-lg border shadow-sm">
+			<ChatWindow messages={messages} isLoading={isLoading} />
+			<ChatInput
+				input={input}
+				handleInputChange={handleInputChange}
+				handleSubmit={handleSubmit}
+				isLoading={isLoading}
+			/>
+		</div>
+	)
+}
+```
+
+## Building the ChatWindow component
+
+Create a component to display our chat messages in `components/chat/chat-window.tsx`:
+
+```tsx
+import {Message} from 'ai'
+import {ChatMessage} from './chat-message'
+import {useRef, useEffect} from 'react'
+
+interface ChatWindowProps {
+	messages: Message[]
+	isLoading: boolean
+}
+
+export function ChatWindow({
+	messages,
+	isLoading
+}: ChatWindowProps) {
+	const containerRef = useRef<HTMLDivElement>(null)
+
+	// Auto-scroll to bottom on new messages
+	useEffect(() => {
+		if (containerRef.current) {
+			containerRef.current.scrollTop =
+				containerRef.current.scrollHeight
+		}
+	}, [messages])
+
+	return (
+		<div
+			className="flex-1 overflow-y-auto p-4"
+			ref={containerRef}>
+			{messages.length === 0 ? (
+				<div className="flex h-full items-center justify-center">
+					<p className="text-muted-foreground text-center">
+						Start a conversation with the AI assistant.
+					</p>
+				</div>
+			) : (
+				messages.map((message) => (
+					<ChatMessage key={message.id} message={message} />
+				))
+			)}
+			{isLoading && messages.length > 0 && (
+				<div className="mt-2 flex items-center">
+					<div className="bg-primary h-2 w-2 animate-bounce rounded-full"></div>
+					<div className="bg-primary animation-delay-200 mx-1 h-2 w-2 animate-bounce rounded-full"></div>
+					<div className="bg-primary animation-delay-400 h-2 w-2 animate-bounce rounded-full"></div>
+				</div>
+			)}
+		</div>
+	)
+}
+```
+
+## Creating the ChatMessage component
+
+Let's create the component that will render individual messages in `components/chat/chat-message.tsx`:
+
+```tsx
+import {Message} from 'ai'
+import {
+	Avatar,
+	AvatarFallback,
+	AvatarImage
+} from '@/components/ui/avatar'
+import {cn} from '@/lib/utils'
+
+interface ChatMessageProps {
+	message: Message
+}
+
+export function ChatMessage({message}: ChatMessageProps) {
+	const isUser = message.role === 'user'
+
+	return (
+		<div
+			className={cn(
+				'mb-4 flex',
+				isUser ? 'justify-end' : 'justify-start'
+			)}>
+			<div
+				className={cn(
+					'flex max-w-[80%] items-start gap-2',
+					isUser && 'flex-row-reverse'
+				)}>
+				<Avatar className="h-8 w-8">
+					{!isUser && <AvatarImage src="/bot-avatar.png" />}
+					<AvatarFallback>
+						{isUser ? 'You' : 'AI'}
+					</AvatarFallback>
+				</Avatar>
+				<div
+					className={cn(
+						'rounded-lg p-3',
+						isUser
+							? 'bg-primary text-primary-foreground'
+							: 'bg-muted'
+					)}>
+					<p className="text-sm">{message.content}</p>
+				</div>
+			</div>
+		</div>
+	)
+}
+```
+
+## Building the ChatInput component
+
+Finally, let's create the input component for sending messages in `components/chat/chat-input.tsx`:
+
+```tsx
+import {FormEvent} from 'react'
+import {Button} from '@/components/ui/button'
+import {Textarea} from '@/components/ui/textarea'
+import {Send} from 'lucide-react'
+
+interface ChatInputProps {
+	input: string
+	handleInputChange: (
+		e: React.ChangeEvent<HTMLTextAreaElement>
+	) => void
+	handleSubmit: (e: FormEvent<HTMLFormElement>) => void
+	isLoading: boolean
+}
+
+export function ChatInput({
+	input,
+	handleInputChange,
+	handleSubmit,
+	isLoading
+}: ChatInputProps) {
+	return (
+		<form onSubmit={handleSubmit} className="border-t p-4">
+			<div className="flex items-end gap-2">
+				<Textarea
+					value={input}
+					onChange={handleInputChange}
+					placeholder="Type your message..."
+					className="resize-none"
+					rows={1}
+					onKeyDown={(e) => {
+						if (e.key === 'Enter' && !e.shiftKey) {
+							e.preventDefault()
+							if (input.trim()) {
+								handleSubmit(
+									e as unknown as FormEvent<HTMLFormElement>
+								)
+							}
+						}
+					}}
+				/>
+				<Button
+					type="submit"
+					size="icon"
+					disabled={isLoading || !input.trim()}>
+					<Send className="h-4 w-4" />
+					<span className="sr-only">Send message</span>
+				</Button>
+			</div>
+		</form>
+	)
+}
+```
+
+## Creating animation utilities
+
+Let's create a simple animation delay utility in `app/globals.css`:
+
+```css
+@layer utilities {
+	.animation-delay-200 {
+		animation-delay: 200ms;
+	}
+	.animation-delay-400 {
+		animation-delay: 400ms;
+	}
+}
+```
+
+## Testing the UI
+
+With all components in place, start your development server with `npm run dev` and navigate to `/chat` to see your chat interface. It won't connect to an AI model yet, but you should see a functional UI where you can type messages.
+
+## Conclusion
+
+We've now built the foundational UI components for our AI chat application! In the next module, we'll integrate the Vercel AI SDK to connect our interface with language models.

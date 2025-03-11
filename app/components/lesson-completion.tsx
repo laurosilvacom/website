@@ -314,17 +314,15 @@ export function LessonCompletion({
 								</p>
 
 								{/* Action button */}
-								<button
-									className={`text-foreground w-full rounded-lg py-3 text-center font-medium transition-all ${
-										completionType === 'workshop'
-											? 'bg-primary hover:bg-primary/90 animate-pulse text-lg'
-											: 'bg-primary/90 hover:bg-primary/80'
+								<Button
+									className={`w-full ${
+										completionType === 'workshop' ? 'animate-pulse text-lg' : ''
 									}`}
 									onClick={dismissCelebration}>
 									{completionType === 'workshop'
 										? 'Get Your Certificate!'
 										: 'Continue to Next Section'}
-								</button>
+								</Button>
 							</div>
 						</div>
 					</div>
@@ -396,7 +394,7 @@ export function LessonCompletion({
 							{/* Icon and heading */}
 							<div className="mb-6 flex items-center justify-center">
 								<div
-									className={`mb-5 rounded-full p-3 ${
+									className={`text-foreground mb-5 rounded-full p-3 ${
 										completionType === 'workshop'
 											? 'bg-primary/20 text-4xl'
 											: 'bg-primary/10 text-3xl'

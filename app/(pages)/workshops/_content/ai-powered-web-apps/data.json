@@ -1,0 +1,26 @@
+{
+	"title": "AI-Powered Web Applications",
+	"description": "This workshop teaches you how to build web applications powered by AI. You'll learn to create a chat application using Next.js and the Vercel AI SDK. By the end, you'll understand how to integrate AI models into your web projects and create engaging user experiences.",
+	"imageUrl": "https://res.cloudinary.com/laurosilvacom/image/upload/v1705629532/laurosilvacom/icons/iw7vdsnx4p2owgjivykm.png",
+	"publishedAt": "2024-03-10",
+	"highlights": [
+		"Integrate AI language models into React applications",
+		"Develop interactive chat interfaces using AI SDK",
+		"Construct accessible UIs with Tailwind and shadcn",
+		"Deploy AI-powered applications with user interactions",
+		"Private Discord community"
+	],
+	"curriculum": [
+		{
+			"title": "UI Scaffolding",
+			"lessons": [
+				{
+					"title": "Set Your Development Environment"
+				},
+				{
+					"title": "Building the chat UI foundation"
+				}
+			]
+		}
+	]
+}

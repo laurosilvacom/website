@@ -3,29 +3,11 @@ import Image from 'next/image'
 import React from 'react'
 import Container from 'app/components/container'
 import {CustomMDX} from 'app/components/mdx'
-import {type Workshop} from '../types'
 import {getWorkshops, getWorkshopLessons} from '../utils'
-import {
-	BookOpen,
-	ArrowRight,
-	Check,
-	Play,
-	Zap,
-	Code,
-	Users,
-	ChevronDown,
-	Trophy,
-	CheckCircle,
-	Trash2,
-	RotateCcw
-} from 'lucide-react'
+import {BookOpen, Check, ChevronDown, Trophy, CheckCircle} from 'lucide-react'
 import {Button} from '@/components/ui/button'
 import {Progress} from '@/components/ui/progress'
-import {
-	getCompletedLessons,
-	areAllLessonsCompleted,
-	resetWorkshopProgress
-} from '../actions/lesson-completion'
+import {getCompletedLessons} from '../actions/lesson-completion'
 import {ResetProgressButton} from '@/components/reset-progress-button'
 
 import {StartWorkshopButton} from '@/components/start-workshop-button'
@@ -84,7 +66,7 @@ export default async function WorkshopPage(props: Props) {
 	const hasUserStarted = await hasStartedWorkshop(slug)
 
 	return (
-		<div className="bg-background relative min-h-screen">
+		<div className="relative min-h-screen">
 			<Container className="mx-auto w-full max-w-screen-xl">
 				<div className="mx-auto flex w-full px-5 sm:px-10 lg:px-0">
 					<div className="w-full py-12">
@@ -160,7 +142,7 @@ export default async function WorkshopPage(props: Props) {
 							</div>
 
 							{/* Workshop Image */}
-							<div className="border-border relative aspect-square overflow-hidden rounded-xl border">
+							<div className="relative aspect-square overflow-hidden">
 								<Image
 									src={workshop.metadata.imageUrl}
 									alt={workshop.metadata.title}
@@ -230,8 +212,8 @@ export default async function WorkshopPage(props: Props) {
 																		<CheckCircle className="text-primary h-4 w-4" />
 																	) : null}
 																	<span>{section.title}</span>
-																	<span className="bg-muted text-muted-foreground ml-2 rounded-full px-2 py-0.5 text-xs">
-																		{section.lessons.length} lessons
+																	<span className="bg-muted text-muted-foreground py-0.2 ml-2 rounded-full px-2 text-xs">
+																		{section.lessons.length}
 																	</span>
 																</div>
 																<ChevronDown className="text-muted-foreground h-5 w-5 transition-transform group-open:rotate-180" />
@@ -282,7 +264,7 @@ export default async function WorkshopPage(props: Props) {
 																								hasUserStarted={hasUserStarted}
 																							/>
 																						) : (
-																							<span className="text-muted-foreground flex-1">
+																							<span className="text-muted-foreground">
 																								{lesson.title}
 																							</span>
 																						)}

@@ -297,15 +297,6 @@ button {
 	--color-sidebar-ring: var(--sidebar-ring);
 }
 
-@layer base {
-	* {
-		@apply border-border outline-ring/50;
-	}
-	body {
-		@apply bg-background text-foreground;
-	}
-}
-
 @keyframes draw {
 	0% {
 		stroke-dasharray: 1200;

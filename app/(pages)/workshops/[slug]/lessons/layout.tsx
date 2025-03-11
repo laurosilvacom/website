@@ -14,9 +14,8 @@ export default function LessonLayout({children}: {children: ReactNode}) {
 			<Analytics />
 			<SpeedInsights />
 			<Toaster />
-
 			{/* Subtle grid overlay */}
-			<div className="pointer-events-none fixed inset-0 z-[-1] bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_100%_50%_at_50%_0%,#000,transparent)]" />
+			<div className="pointer-events-none fixed inset-0 z-[-1] bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_100%_30%_at_30%_0%,#000,transparent)]" />
 		</div>
 	)
 }

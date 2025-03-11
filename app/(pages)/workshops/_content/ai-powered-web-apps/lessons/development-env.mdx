@@ -1,0 +1,101 @@
+---
+title: 'Set Your Development Environment'
+number: 1
+duration: '25:00'
+section: 'UI Scaffolding'
+---
+
+## Introduction
+
+Welcome to the first lesson of our AI-powered web applications workshop! Before we dive into building our chat interface, we need to set up our development environment with all the necessary tools and dependencies.
+
+## Prerequisites
+
+Make sure you have the following installed:
+
+- Node.js (v18 or later)
+- npm or yarn
+- A code editor (VS Code recommended)
+
+## Creating a new Next.js project
+
+We'll start by creating a new Next.js project with the App Router:
+
+```bash
+npx create-next-app ai-chat-app
+```
+
+When prompted, select the following options:
+
+- TypeScript: Yes
+- ESLint: Yes
+- Tailwind CSS: Yes
+- App Router: Yes
+- Import alias: Yes (default @/\*)
+
+## Installing additional dependencies
+
+Navigate to your project folder and install the required packages:
+
+```bash
+cd ai-chat-app
+npm install ai @vercel/ai lucide-react class-variance-authority clsx tailwind-merge
+```
+
+## Setting up UI components
+
+We'll use shadcn/ui for our component library. Initialize it with:
+
+```bash
+npx shadcn-ui@latest init
+```
+
+When prompted, choose:
+
+- TypeScript: Yes
+- Style: Default (or your preference)
+- Base color: Slate (or your preference)
+- Global CSS path: app/globals.css
+- CSS variables: Yes
+- React Server Components: Yes
+- Components location: @/components
+- Utilities location: @/lib/utils
+
+## Adding essential components
+
+Let's add some components we'll need:
+
+```bash
+npx shadcn-ui@latest add button input card textarea avatar
+```
+
+## Project structure
+
+Create the following folder structure:
+
+```
+app/
+├── api/
+│   └── chat/
+│       └── route.ts
+├── chat/
+│   └── page.tsx
+├── page.tsx
+components/
+├── chat/
+│   ├── chat-input.tsx
+│   ├── chat-message.tsx
+│   └── chat-window.tsx
+```
+
+## Setting up environment variables
+
+Create a `.env.local` file in your project root:
+
+```
+OPENAI_API_KEY=your_api_key_here
+```
+
+## Conclusion
+
+Your development environment is now set up! In the next lesson, we'll start building the UI scaffolding for our AI chat interface.

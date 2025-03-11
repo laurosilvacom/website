@@ -100,7 +100,7 @@ export default async function LessonPage(props: Props) {
 	const userData = await getUserData()
 
 	return (
-		<div className="bg-background text-foreground h-screen overflow-hidden">
+		<div className="text-foreground h-screen overflow-hidden">
 			<SidebarProvider defaultOpen={true}>
 				<ClientWorkshopSidebar
 					workshopTitle={workshop.metadata.title}
@@ -198,7 +198,7 @@ export default async function LessonPage(props: Props) {
 
 					{/* Main content area */}
 					<main className="h-[calc(100vh-56px)] overflow-auto">
-						<div className="mx-auto max-w-4xl px-4 py-8 md:px-8 lg:px-12">
+						<div className="mx-auto max-w-5xl px-4 py-8 md:px-8 lg:px-12">
 							{/* Lesson header */}
 							<div className="mb-12">
 								<div className="text-muted-foreground mb-4 flex items-center gap-3 text-sm">
@@ -211,7 +211,7 @@ export default async function LessonPage(props: Props) {
 									</span>
 								</div>
 
-								<h1 className="text-foreground mb-8 text-6xl leading-tight font-extrabold tracking-tight sm:text-7xl">
+								<h1 className="text-foreground mb-8 text-5xl leading-tight font-extrabold tracking-tight sm:text-6xl">
 									<span className="relative">
 										{lesson.metadata.title}
 										<span className="bg-primary/0 absolute right-0 -bottom-3 left-0 h-3 w-full">

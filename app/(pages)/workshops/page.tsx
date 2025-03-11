@@ -8,7 +8,7 @@ export default async function WorkshopsPage() {
 	const workshops = await getWorkshops()
 
 	return (
-		<div className="bg-background relative min-h-screen">
+		<div className="relative min-h-screen">
 			<Container className="mx-auto w-full max-w-screen-lg">
 				<main className="mx-auto py-20">
 					{/* Header Section */}
@@ -30,50 +30,26 @@ export default async function WorkshopsPage() {
 							<Link
 								key={workshop.slug}
 								href={`/workshops/${workshop.slug}`}
-								className="group border-border bg-card/50 hover:bg-card flex h-full flex-col overflow-hidden rounded-xl border transition-all duration-200 hover:shadow-md">
-								{/* Workshop Cover Image */}
-								<div className="relative h-52 overflow-hidden">
-									<Image
-										src={workshop.metadata.imageUrl}
-										alt={workshop.metadata.title}
-										fill
-										className="object-cover transition-transform duration-500 group-hover:scale-105"
-									/>
-									<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-									<div className="absolute bottom-0 left-0 w-full p-4">
-										<h3 className="text-2xl font-bold text-white">
+								className="group">
+								<div className="flex items-center gap-4">
+									{/* Workshop Icon/Image */}
+									<div className="relative h-16 w-16 overflow-hidden rounded-lg">
+										<Image
+											src={workshop.metadata.imageUrl}
+											alt={workshop.metadata.title}
+											fill
+											className="object-cover"
+										/>
+									</div>
+
+									{/* Workshop Title */}
+									<div>
+										<h3 className="text-foreground group-hover:text-primary text-xl font-semibold transition-colors">
 											{workshop.metadata.title}
 										</h3>
-									</div>
-								</div>
-
-								{/* Workshop Content */}
-								<div className="flex flex-grow flex-col p-6">
-									<p className="text-muted-foreground mb-4 text-sm">
-										{workshop.metadata.description}
-									</p>
-
-									{/* Highlights Section */}
-									<div className="mb-6 flex-grow space-y-3">
-										{workshop.metadata.highlights
-											?.slice(0, 3)
-											.map((highlight, i) => (
-												<div key={i} className="flex items-start gap-3">
-													<span className="text-primary mt-0.5">•</span>
-													<span className="text-foreground text-sm">
-														{highlight}
-													</span>
-												</div>
-											))}
-									</div>
-
-									{/* Footer */}
-									<div className="border-border mt-auto flex items-center border-t pt-4">
-										<div className="text-primary flex items-center text-sm font-medium group-hover:underline">
-											<BookOpen className="mr-1.5 h-4 w-4" />
-											<span>Explore Workshop</span>
-										</div>
-										<ArrowRight className="text-primary ml-auto h-4 w-4 -translate-x-2 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100" />
+										<p className="text-muted-foreground text-sm">
+											{workshop.metadata.description.substring(0, 60)}...
+										</p>
 									</div>
 								</div>
 							</Link>
