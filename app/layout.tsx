@@ -1,7 +1,7 @@
 import {Analytics} from '@vercel/analytics/react'
 import {SpeedInsights} from '@vercel/speed-insights/next'
-import {type Metadata} from 'next/types'
 import localFont from 'next/font/local'
+import {type Metadata} from 'next/types'
 import {type ReactNode} from 'react'
 
 import 'app/globals.css'

@@ -1,7 +1,7 @@
 'use client'
 
-import {Button} from './ui/button'
 import {successToast, errorToast} from 'app/components/toaster'
+import {Button} from './ui/button'
 
 export function CodeCopyButton({code}: {code: string}) {
 	const handleCopy = async () => {

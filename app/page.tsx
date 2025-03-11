@@ -1,11 +1,11 @@
 import {ArrowRight} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import {formatDate, getBlogPosts} from './(pages)/blog/utils'
 import {Card} from 'app/components/card'
 import {CardGrid} from 'app/components/card-grid'
 import Container from 'app/components/container'
 import {Button} from 'app/components/ui/button'
+import {formatDate, getBlogPosts} from './(pages)/blog/utils'
 
 export default async function Page() {
 	const allBlogs = await getBlogPosts()

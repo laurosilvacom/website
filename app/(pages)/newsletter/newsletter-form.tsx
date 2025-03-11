@@ -3,8 +3,8 @@
 import {useRouter} from 'next/navigation'
 import {useActionState, useEffect, useState} from 'react'
 import {useFormStatus} from 'react-dom'
-import {subscribeToNewsletter} from './actions/newsletter'
 import {Button} from '@/components/ui/button'
+import {subscribeToNewsletter} from './actions/newsletter'
 
 function SubmitButton() {
 	const {pending} = useFormStatus()

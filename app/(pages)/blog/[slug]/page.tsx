@@ -1,11 +1,11 @@
-import type {Metadata} from 'next/types'
-import Image from 'next/image'
 import {notFound} from 'next/dist/client/components/not-found'
-import {formatDate, getBlogPosts} from '../utils'
+import Image from 'next/image'
+import {type Metadata} from 'next/types'
 import Container from 'app/components/container'
 import {CustomMDX} from 'app/components/mdx'
 import {TableOfContents} from 'app/components/toc'
 import {baseUrl} from 'app/sitemap'
+import {formatDate, getBlogPosts} from '../utils'
 
 interface BlogHeaderProps {
 	date: string
