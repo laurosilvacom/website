@@ -16,6 +16,7 @@ import {
 	SidebarProvider,
 	SidebarTrigger
 } from '@/components/ui/sidebar'
+import {getUserData} from '@/app/(pages)/workshops/actions/user-data'
 
 // Relative imports
 
@@ -96,6 +97,8 @@ export default async function LessonPage(props: Props) {
 	// Get all completed lessons
 	const completedLessons = await getCompletedLessons()
 
+	const userData = await getUserData()
+
 	return (
 		<div className="bg-background text-foreground h-screen overflow-hidden">
 			<SidebarProvider defaultOpen={true}>
@@ -115,16 +118,17 @@ export default async function LessonPage(props: Props) {
 							<SidebarTrigger className="text-muted-foreground hover:text-foreground hover:bg-accent mr-2 rounded-md p-2" />
 
 							<div className="flex items-center">
-								{/* Workshop title link */}
+								{/* Workshop title link - HIDE ON MOBILE */}
 								<Link
 									href={`/workshops/${params.slug}`}
-									className="text-muted-foreground hover:text-foreground text-sm">
+									className="text-muted-foreground hover:text-foreground hidden text-sm sm:inline">
 									{workshop.metadata.title}
 								</Link>
 
-								<ChevronRight className="text-muted-foreground/50 mx-1 h-4 w-4" />
+								{/* Right arrow - HIDE ON MOBILE */}
+								<ChevronRight className="text-muted-foreground/50 mx-1 hidden h-4 w-4 sm:inline" />
 
-								{/* Section link - find first lesson in this section */}
+								{/* Section link - HIDE ON MOBILE */}
 								{(() => {
 									const currentSection = lesson.metadata.section
 									const lessonsInSection = lessons
@@ -139,35 +143,47 @@ export default async function LessonPage(props: Props) {
 											{firstLessonInSection ? (
 												<Link
 													href={`/workshops/${params.slug}/lessons/${firstLessonInSection.slug}`}
-													className="text-muted-foreground hover:text-foreground text-sm">
+													className="text-muted-foreground hover:text-foreground hidden text-sm sm:inline">
 													{currentSection}
 												</Link>
 											) : (
-												<span className="text-muted-foreground text-sm">
+												<span className="text-muted-foreground hidden text-sm sm:inline">
 													{currentSection}
 												</span>
 											)}
 										</>
 									)
 								})()}
-								<ChevronRight className="text-muted-foreground/50 mx-1 h-4 w-4" />
 
-								{/* Current lesson title - updated styling */}
-								<span className="text-foreground max-w-[300px] truncate text-base font-semibold">
+								{/* Right arrow - HIDE ON MOBILE */}
+								<ChevronRight className="text-muted-foreground/50 mx-1 hidden h-4 w-4 sm:inline" />
+
+								{/* Current lesson title - ALWAYS SHOW */}
+								<span className="text-foreground max-w-[300px] truncate text-base font-semibold sm:max-w-[300px]">
 									{lesson.metadata.title}
 								</span>
 							</div>
 						</div>
 
 						<div className="ml-auto flex items-center gap-4">
-							<div className="text-muted-foreground flex items-center text-sm">
+							{/* User greeting with name and progress - NEW */}
+							<div className="text-muted-foreground hidden items-center text-sm sm:flex">
+								<span className="font-medium">
+									{userData?.name ? `${userData.name}, ` : ''}
+									you have completed {completedLessons.length} of{' '}
+									{allLessons.length} lessons
+								</span>
+							</div>
+
+							{/* Lesson number - HIDE ON MOBILE */}
+							<div className="text-muted-foreground hidden items-center text-sm sm:flex">
 								<Clock className="mr-1 h-4 w-4" />
 								<span>
 									Lesson {lesson.metadata.number} of {allLessons.length}
 								</span>
 							</div>
 
-							{/* Replace bookmark with lesson completion button */}
+							{/* Always show completion button */}
 							<LessonCompletion
 								workshopSlug={params.slug}
 								lessonSlug={params.lessonSlug}
@@ -175,6 +191,7 @@ export default async function LessonPage(props: Props) {
 								variant="icon"
 								lessonsBySection={lessonsBySection}
 								allLessons={allLessons}
+								nextLessonSlug={nextLesson?.slug}
 							/>
 						</div>
 					</header>
@@ -234,6 +251,7 @@ export default async function LessonPage(props: Props) {
 										variant="button"
 										lessonsBySection={lessonsBySection}
 										allLessons={allLessons}
+										nextLessonSlug={nextLesson?.slug}
 									/>
 								</div>
 

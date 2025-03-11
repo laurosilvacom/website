@@ -3,9 +3,54 @@
 import {revalidatePath} from 'next/cache'
 import {cookies} from 'next/headers'
 import {Lesson} from '@/app/(pages)/workshops/types'
+import {getUserData, saveUserData} from './user-data' // Add this import
 
 const COMPLETION_COOKIE_NAME = 'completed_lessons'
 const COMPLETION_COOKIE_MAX_AGE = 60 * 60 * 24 * 365 // 1 year in seconds
+
+export async function resetWorkshopProgress(
+	workshopSlug: string
+): Promise<void> {
+	const cookieStore = await cookies()
+	const completedLessons = await getCompletedLessons()
+
+	// Filter out all lessons from this workshop
+	const updatedLessons = completedLessons.filter(
+		(lessonId) => !lessonId.startsWith(`${workshopSlug}/`)
+	)
+
+	// Update lesson completion cookie with the filtered list
+	cookieStore.set({
+		name: COMPLETION_COOKIE_NAME,
+		value: JSON.stringify(updatedLessons),
+		maxAge: COMPLETION_COOKIE_MAX_AGE,
+		path: '/',
+		sameSite: 'lax'
+	})
+
+	// Also reset the user's workshop start status
+	const userData = await getUserData()
+
+	if (
+		userData.startedWorkshops &&
+		userData.startedWorkshops.includes(workshopSlug)
+	) {
+		// Remove this workshop from the started workshops list
+		const updatedStartedWorkshops = userData.startedWorkshops.filter(
+			(slug) => slug !== workshopSlug
+		)
+
+		// Update the user data with the modified list
+		await saveUserData({
+			startedWorkshops: updatedStartedWorkshops
+		})
+	}
+
+	// Revalidate all relevant paths
+	revalidatePath('/workshops/[slug]/lessons/[lessonSlug]')
+	revalidatePath(`/workshops/${workshopSlug}`)
+	revalidatePath(`/workshops/${workshopSlug}/certificate`)
+}
 
 // Get completed lessons
 export async function getCompletedLessons(): Promise<string[]> {

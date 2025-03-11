@@ -15,14 +15,24 @@ import {
 	Users,
 	ChevronDown,
 	Trophy,
-	CheckCircle
+	CheckCircle,
+	Trash2,
+	RotateCcw
 } from 'lucide-react'
 import {Button} from '@/components/ui/button'
 import {Progress} from '@/components/ui/progress'
 import {
 	getCompletedLessons,
-	areAllLessonsCompleted
+	areAllLessonsCompleted,
+	resetWorkshopProgress
 } from '../actions/lesson-completion'
+import {ResetProgressButton} from '@/components/reset-progress-button'
+
+import {StartWorkshopButton} from '@/components/start-workshop-button'
+import {hasStartedWorkshop} from '../actions/user-data'
+
+// Add this new import for the client component
+import {LessonLink} from './lesson-link'
 
 export async function generateStaticParams(): Promise<{slug: string}[]> {
 	const workshops = await getWorkshops()
@@ -71,6 +81,7 @@ export default async function WorkshopPage(props: Props) {
 	const completionPercentage = Math.round((completedCount / totalLessons) * 100)
 	const isCompleted = completedCount === totalLessons
 	const hasStarted = completedCount > 0
+	const hasUserStarted = await hasStartedWorkshop(slug)
 
 	return (
 		<div className="bg-background relative min-h-screen">
@@ -133,16 +144,19 @@ export default async function WorkshopPage(props: Props) {
 								)}
 
 								{/* Certificate link if completed */}
-								{isCompleted && (
-									<div className="mt-4">
+								<div className="mt-4 flex flex-wrap gap-4">
+									{isCompleted && (
 										<Button asChild variant="default" className="gap-2">
 											<Link href={`/workshops/${slug}/certificate`}>
 												<Trophy className="h-4 w-4" />
 												View Your Certificate
 											</Link>
 										</Button>
-									</div>
-								)}
+									)}
+
+									{/* Reset progress button - only show if user has started */}
+									{hasStarted && <ResetProgressButton workshopSlug={slug} />}
+								</div>
 							</div>
 
 							{/* Workshop Image */}
@@ -256,11 +270,17 @@ export default async function WorkshopPage(props: Props) {
 																						)}
 
 																						{lessonFile ? (
-																							<Link
-																								href={`/workshops/${slug}/lessons/${lessonFile.slug}`}
-																								className={`${isLessonCompleted ? 'text-primary' : 'text-foreground hover:text-primary'} flex-1 hover:underline`}>
-																								{lesson.title}
-																							</Link>
+																							// Use our custom lesson link component instead
+																							<LessonLink
+																								lessonSlug={lessonFile.slug}
+																								lessonTitle={lesson.title}
+																								workshopSlug={slug}
+																								workshopTitle={
+																									workshop.metadata.title
+																								}
+																								isCompleted={isLessonCompleted}
+																								hasUserStarted={hasUserStarted}
+																							/>
 																						) : (
 																							<span className="text-muted-foreground flex-1">
 																								{lesson.title}
@@ -281,17 +301,13 @@ export default async function WorkshopPage(props: Props) {
 
 										{/* CTA Button */}
 										<div className="border-border border-t p-4">
-											{isCompleted ? (
-												<Button
-													className="w-full justify-center"
-													size="lg"
-													asChild>
-													<Link href={`/workshops/${slug}/certificate`}>
-														<Trophy className="mr-2 h-4 w-4" />
-														View Certificate
-													</Link>
-												</Button>
-											) : hasStarted ? (
+											{!hasUserStarted ? (
+												<StartWorkshopButton
+													workshopSlug={slug}
+													workshopTitle={workshop.metadata.title}
+													firstLessonSlug={firstLesson?.slug || ''}
+												/>
+											) : (
 												<Button
 													className="w-full justify-center"
 													size="lg"
@@ -301,18 +317,6 @@ export default async function WorkshopPage(props: Props) {
 														Continue Workshop
 													</Link>
 												</Button>
-											) : (
-												firstLesson && (
-													<Button
-														className="w-full justify-center"
-														size="lg"
-														asChild>
-														<Link
-															href={`/workshops/${slug}/lessons/${firstLesson.slug}`}>
-															Start Workshop
-														</Link>
-													</Button>
-												)
 											)}
 										</div>
 									</div>

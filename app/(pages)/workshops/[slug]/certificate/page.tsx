@@ -1,6 +1,7 @@
 import React from 'react'
 import {getWorkshops} from '../../utils'
 import {CertificateControls} from '@/components/certificate-controls'
+import {cookies} from 'next/headers'
 
 export async function generateStaticParams() {
 	const workshops = await getWorkshops()
@@ -16,6 +17,23 @@ interface Props {
 	}>
 }
 
+// Function to get user data from cookies
+async function getUserName() {
+	// Need to await the cookies() function
+	const cookieStore = await cookies()
+	const userDataCookie = cookieStore.get('user_workshop_data')
+
+	if (userDataCookie?.value) {
+		try {
+			const userData = JSON.parse(userDataCookie.value)
+			return userData.name || ''
+		} catch {
+			return ''
+		}
+	}
+	return ''
+}
+
 export default async function CertificatePage(props: Props) {
 	// Await the params to resolve the slug - exactly as done in other pages
 	const params = await props.params
@@ -26,6 +44,9 @@ export default async function CertificatePage(props: Props) {
 	if (!workshop) {
 		return <div>Workshop not found</div>
 	}
+
+	// Get user name from cookies
+	const userName = await getUserName()
 
 	// Format today's date
 	const today = new Date()
@@ -45,6 +66,7 @@ export default async function CertificatePage(props: Props) {
 					workshopTitle={workshop.metadata.title}
 					certificateId={certificateId}
 					formattedDate={formattedDate}
+					userName={userName}
 				/>
 			</div>
 		</div>

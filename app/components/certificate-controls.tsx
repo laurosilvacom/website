@@ -1,6 +1,6 @@
 'use client'
 
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {Download} from 'lucide-react'
 import {Button} from '@/components/ui/button'
 import {Input} from '@/components/ui/input'
@@ -9,23 +9,34 @@ interface CertificateControlsProps {
 	workshopTitle: string
 	certificateId: string
 	formattedDate: string
+	userName?: string
 }
 
 export function CertificateControls({
 	workshopTitle,
 	certificateId,
-	formattedDate
+	formattedDate,
+	userName: initialUserName
 }: CertificateControlsProps) {
 	const [userName, setUserName] = useState<string>('Your Name')
+	const [isEditing, setIsEditing] = useState(false)
+
+	// Use the user name from cookies if available
+	useEffect(() => {
+		if (initialUserName && initialUserName.trim()) {
+			setUserName(initialUserName)
+		}
+	}, [initialUserName])
 
 	// Update certificate name
 	const updateCertificate = () => {
 		const nameInput = document.getElementById('name') as HTMLInputElement
-		if (nameInput.value.trim()) {
+		if (nameInput?.value?.trim()) {
 			setUserName(nameInput.value)
 		} else {
 			setUserName('Your Name')
 		}
+		setIsEditing(false)
 	}
 
 	// Handle certificate download
@@ -162,28 +173,35 @@ export function CertificateControls({
 
 	return (
 		<>
-			{/* Certificate Form */}
-			<div className="bg-card border-border mb-8 rounded-lg border p-6 shadow-md">
-				<h2 className="mb-4 text-xl font-semibold">
-					Personalize Your Certificate
-				</h2>
-				<div className="space-y-4">
-					<div>
-						<label htmlFor="name" className="mb-2 block text-sm font-medium">
-							Enter your full name
-						</label>
-						<Input
-							id="name"
-							placeholder="John Doe"
-							className="max-w-md"
-							defaultValue=""
-						/>
-					</div>
-					<Button className="mt-2" onClick={updateCertificate}>
-						Update Certificate
-					</Button>
-				</div>
+			{/* Header with edit option */}
+			<div className="mb-8 flex items-center justify-between">
+				<h2 className="text-xl font-semibold">Your Certificate</h2>
+				<Button variant="outline" onClick={() => setIsEditing(!isEditing)}>
+					{isEditing ? 'Cancel' : 'Edit Name'}
+				</Button>
 			</div>
+
+			{/* Edit form - only show when editing */}
+			{isEditing && (
+				<div className="bg-card border-border mb-8 rounded-lg border p-6 shadow-md">
+					<div className="space-y-4">
+						<div>
+							<label htmlFor="name" className="mb-2 block text-sm font-medium">
+								Enter your full name
+							</label>
+							<Input
+								id="name"
+								placeholder="John Doe"
+								className="max-w-md"
+								defaultValue={userName !== 'Your Name' ? userName : ''}
+							/>
+						</div>
+						<Button className="mt-2" onClick={updateCertificate}>
+							Update Certificate
+						</Button>
+					</div>
+				</div>
+			)}
 
 			{/* Certificate Preview */}
 			<div className="border-primary/20 bg-card relative overflow-hidden rounded-lg border-8 shadow-xl">
