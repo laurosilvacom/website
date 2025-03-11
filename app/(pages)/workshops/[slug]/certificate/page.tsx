@@ -9,13 +9,17 @@ export async function generateStaticParams() {
 	}))
 }
 
+// Match exactly what's used in your lessons page
 interface Props {
-	params: {
+	params: Promise<{
 		slug: string
-	}
+	}>
 }
 
-export default async function CertificatePage({params}: Props) {
+export default async function CertificatePage(props: Props) {
+	// Await the params to resolve the slug - exactly as done in other pages
+	const params = await props.params
+
 	const workshops = await getWorkshops()
 	const workshop = workshops.find((w) => w.slug === params.slug)
 
@@ -31,14 +35,12 @@ export default async function CertificatePage({params}: Props) {
 		day: 'numeric'
 	})
 
-	// Generate a certificate ID that won't change between server and client renders
-	// Using workshop slug and a fixed string instead of Date.now()
+	// Generate a certificate ID
 	const certificateId = `${workshop.slug}-CERT-${params.slug.toUpperCase()}`
 
 	return (
 		<div className="bg-background min-h-screen py-12">
 			<div className="mx-auto max-w-4xl px-4">
-				{/* Using the client component for all interactive parts */}
 				<CertificateControls
 					workshopTitle={workshop.metadata.title}
 					certificateId={certificateId}
