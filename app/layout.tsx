@@ -9,6 +9,7 @@ import Footer from 'app/components/footer'
 import {Navbar} from 'app/components/nav'
 import {Toaster} from 'app/components/toaster'
 import {baseUrl} from 'app/sitemap'
+import {LayoutContents} from './layout-contents'
 
 const wotfard = localFont({
 	src: [
@@ -116,14 +117,10 @@ export default function RootLayout({children}: RootLayoutProps) {
 				'scroll-smooth antialiased'
 			)}>
 			<body>
-				<main className="min-w-0">
-					<Navbar />
-					{children}
-					<Footer />
-					<Analytics />
-					<SpeedInsights />
-					<Toaster />
-				</main>
+				<LayoutContents>{children}</LayoutContents>
+				<Analytics />
+				<SpeedInsights />
+				<Toaster />
 				{/* Subtle grid overlay */}
 				<div className="pointer-events-none fixed inset-0 z-[-1] bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_100%_50%_at_50%_0%,#000,transparent)]" />
 			</body>

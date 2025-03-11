@@ -1,0 +1,142 @@
+---
+title: 'Using TypeScript in React'
+number: 5
+duration: '45:00'
+section: 'TypeScript'
+---
+
+While props allow components to receive data, they don't allow components to change over time. For that, we need state and effects.
+
+## Component State
+
+State is data that changes over time within a component. Unlike props, which are passed from parent to child, state is managed within the component itself.
+
+In React, we use the `useState` hook to add state to functional components:
+
+```jsx
+import React, {useState} from 'react'
+
+function Counter() {
+	// Declare a state variable named "count" with initial value of 0
+	const [count, setCount] = useState(0)
+
+	return (
+		<div>
+			<p>You clicked {count} times</p>
+			<button onClick={() => setCount(count + 1)}>
+				Click me
+			</button>
+		</div>
+	)
+}
+```
+
+The `useState` hook returns an array with two elements:
+
+1. The current state value
+2. A function to update that value
+
+## State Updates Are Asynchronous
+
+It's important to understand that React may batch state updates for performance. If you need to update state based on the previous state, use the functional form:
+
+```jsx
+// Instead of this:
+setCount(count + 1)
+
+// Do this:
+setCount((prevCount) => prevCount + 1)
+```
+
+## Multiple State Variables
+
+You can use the `useState` hook multiple times in a single component:
+
+```jsx
+function UserForm() {
+	const [name, setName] = useState('')
+	const [email, setEmail] = useState('')
+	const [age, setAge] = useState(25)
+
+	// ...
+}
+```
+
+### Configuration Examples
+
+#### Editor View
+
+<StackBlitz
+	id="vitejs-vite-ym2hon"
+	view="editor"
+	height="400px"
+/>
+
+#### Preview Only View
+
+<StackBlitz
+	id="vitejs-vite-ym2hon"
+	view="preview"
+	hideDevTools={true}
+	hideTerminal={true}
+/>
+
+#### Custom Layout Example
+
+<StackBlitz
+	id="vitejs-vite-ym2hon"
+	height="600px"
+	hideExplorer={false}
+	terminalHeight={100}
+	theme="light"
+/>
+
+### Implementation
+
+```mdx
+// Basic usage
+
+<StackBlitz id="vitejs-vite-ym2hon" />
+
+// Custom configuration
+
+<StackBlitz
+	id="vitejs-vite-ym2hon"
+	height="600px"
+	file="src/main.tsx"
+	view="editor"
+	hideExplorer={true}
+	theme="dark"
+/>
+
+// Preview focused
+
+<StackBlitz
+	id="vitejs-vite-ym2hon"
+	view="preview"
+	hideDevTools={true}
+	hideTerminal={true}
+/>
+```
+
+### Note
+
+1. **Performance**: Use `clickToLoad={true}` for pages with multiple embeds
+2. **Height**: Adjust height based on your content needs
+3. **View Mode**: Choose appropriate view mode for your use case:
+   - `editor`: For code-focused examples
+   - `preview`: For result-focused examples
+   - `both`: For interactive tutorials
+4. **Initial File**: Set `file` prop to focus on specific code
+5. **Theme**: Match your site's theme using the `theme` prop
+
+---
+
+That's our complete component gallery! Check the source of this page to see exactly how each component is used.
+
+## Best Practices
+
+1. Use appropriate components for their intended purpose
+2. Combine components thoughtfully
+3. Keep accessibility in mind
+4. Test your content in both light and dark modes

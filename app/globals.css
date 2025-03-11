@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
 @plugin "@tailwindcss/typography";
 
 @theme {
@@ -101,6 +103,15 @@
 	--sh-link-text: #a5d6ff;
 	--sh-link-uri: #a5d6ff;
 	--sh-title: #ffa657;
+
+	--sidebar-background: 240 10% 3.9%; /* Match background */
+	--sidebar-foreground: 0 0% 98%; /* Match foreground */
+	--sidebar-primary: 47.9 95.8% 53.1%; /* Match primary */
+	--sidebar-primary-foreground: 26 83.3% 14.1%; /* Match primary-foreground */
+	--sidebar-accent: 240 3.7% 15.9%; /* Match secondary/accent/muted */
+	--sidebar-accent-foreground: 0 0% 98%; /* Match secondary-foreground */
+	--sidebar-border: 240 3.7% 15.9%; /* Match border */
+	--sidebar-ring: 240 4.9% 83.9%; /* Match ring */
 }
 
 @media (prefers-color-scheme: light) {
@@ -153,6 +164,15 @@
 		--sh-link-text: #0969da;
 		--sh-link-uri: #0969da;
 		--sh-title: #953800;
+
+		--sidebar-background: 0 0% 100%; /* Match background */
+		--sidebar-foreground: 240 10% 3.9%; /* Match foreground */
+		--sidebar-primary: 47.9 95.8% 53.1%; /* Match primary */
+		--sidebar-primary-foreground: 26 83.3% 14.1%; /* Match primary-foreground */
+		--sidebar-accent: 240 4.8% 95.9%; /* Match secondary/accent/muted */
+		--sidebar-accent-foreground: 240 5.9% 10%; /* Match secondary-foreground */
+		--sidebar-border: 240 5.9% 90%; /* Match border */
+		--sidebar-ring: 240 5.9% 10%; /* Match ring */
 	}
 }
 
@@ -264,4 +284,39 @@ button {
 
 .animation-delay-2000 {
 	animation-delay: 2s;
+}
+
+@theme inline {
+	--color-sidebar: var(--sidebar);
+	--color-sidebar-foreground: var(--sidebar-foreground);
+	--color-sidebar-primary: var(--sidebar-primary);
+	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+	--color-sidebar-accent: var(--sidebar-accent);
+	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+	--color-sidebar-border: var(--sidebar-border);
+	--color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+}
+
+@keyframes draw {
+	0% {
+		stroke-dasharray: 1200;
+		stroke-dashoffset: 1200;
+	}
+	100% {
+		stroke-dasharray: 1200;
+		stroke-dashoffset: 0;
+	}
+}
+
+.animate-draw {
+	animation: draw 1.5s ease-in-out forwards;
 }

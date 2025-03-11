@@ -1,0 +1,136 @@
+---
+title: 'Components and Props'
+number: 3
+duration: '30:00'
+section: 'Core Concepts'
+---
+
+Components are the building blocks of React applications. They let you split the UI into independent, reusable pieces, and think about each piece in isolation.
+
+## What Are Components?
+
+In React, a component is a JavaScript function or class that optionally accepts inputs (called "props") and returns a React element that describes how a section of the UI should appear.
+
+Components can be as small as a button or as large as an entire page. Breaking your UI into components allows you to:
+
+- Reuse UI elements across your application
+- Keep related code together
+- Test individual parts of your UI in isolation
+- Develop parts of your application independently
+
+## Functional Components
+
+The simplest way to define a component is to write a JavaScript function:
+
+```jsx
+function Greeting() {
+	return <h1>Hello, World!</h1>
+}
+```
+
+This is a functional component that returns a simple heading element. To use this component in your application, you would write:
+
+```jsx
+<Greeting />
+```
+
+## Props: Component Inputs
+
+Components often need to be customizable. This is where props come in. Props (short for "properties") are inputs that you pass to a component.
+
+Let's modify our Greeting component to accept a `name` prop:
+
+```jsx
+function Greeting(props) {
+	return <h1>Hello, {props.name}!</h1>
+}
+```
+
+Now we can use it like this:
+
+```jsx
+<Greeting name="Alice" />  // Renders: Hello, Alice!
+<Greeting name="Bob" />    // Renders: Hello, Bob!
+```
+
+## Destructuring Props
+
+For cleaner code, it's common to destructure props:
+
+```jsx
+function Greeting({name, role = 'user'}) {
+	return (
+		<div>
+			<h1>Hello, {name}!</h1>
+			<p>Role: {role}</p>
+		</div>
+	)
+}
+```
+
+Notice how we've also provided a default value for the `role` prop.
+
+## Props Are Read-Only
+
+In React, components must never modify their own props. Props flow down from parent to child, and this one-way data flow makes your application more predictable and easier to understand.
+
+## Composing Components
+
+The true power of components comes from composition - building complex UIs by combining simpler components:
+
+```jsx
+function Avatar({user}) {
+	return <img src={user.avatarUrl} alt={user.name} />
+}
+
+function UserInfo({user}) {
+	return (
+		<div className="user-info">
+			<Avatar user={user} />
+			<div className="user-info-name">{user.name}</div>
+		</div>
+	)
+}
+
+function Comment({author, text}) {
+	return (
+		<div className="comment">
+			<UserInfo user={author} />
+			<div className="comment-text">{text}</div>
+		</div>
+	)
+}
+```
+
+This pattern of composition creates a clean separation of concerns and makes your components more reusable.
+
+## Children Props
+
+React has a special prop called `children` that allows components to accept arbitrary content:
+
+```jsx
+function Card({title, children}) {
+	return (
+		<div className="card">
+			<h2>{title}</h2>
+			<div className="card-content">{children}</div>
+		</div>
+	)
+}
+
+// Usage
+;<Card title="Welcome">
+	<p>This is some content inside the card.</p>
+	<button>Click me!</button>
+</Card>
+```
+
+The `children` prop gives you incredible flexibility when designing reusable components.
+
+## Exercises
+
+1. Create a `Button` component that accepts `text`, `onClick`, and `disabled` props
+2. Create a `UserProfile` component that displays a user's name, email, and avatar
+3. Create a `Container` component that wraps its children with consistent padding and a border
+
+In the next lesson, we'll explore state and effects, which will allow our components to be dynamic and respond to user interactions.

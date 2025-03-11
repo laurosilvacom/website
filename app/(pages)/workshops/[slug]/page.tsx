@@ -1,34 +1,28 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import React from 'react'
 import Container from 'app/components/container'
 import {CustomMDX} from 'app/components/mdx'
-import {getWorkshops, formatDuration} from '../utils'
-
-interface Lesson {
-	title: string
-	duration: string
-}
-
-interface CurriculumSection {
-	title: string
-	lessons: Lesson[]
-}
-
-interface WorkshopMetadata {
-	title: string
-	description: string
-	price: string
-	duration: string
-	topics: string[]
-	status: string
-	curriculum: CurriculumSection[]
-}
-
-interface Workshop {
-	slug: string
-	content: string
-	metadata: WorkshopMetadata
-}
+import {type Workshop} from '../types'
+import {getWorkshops, getWorkshopLessons} from '../utils'
+import {
+	BookOpen,
+	ArrowRight,
+	Check,
+	Play,
+	Zap,
+	Code,
+	Users,
+	ChevronDown,
+	Trophy,
+	CheckCircle
+} from 'lucide-react'
+import {Button} from '@/components/ui/button'
+import {Progress} from '@/components/ui/progress'
+import {
+	getCompletedLessons,
+	areAllLessonsCompleted
+} from '../actions/lesson-completion'
 
 export async function generateStaticParams(): Promise<{slug: string}[]> {
 	const workshops = await getWorkshops()
@@ -37,76 +31,46 @@ export async function generateStaticParams(): Promise<{slug: string}[]> {
 	}))
 }
 
-interface WorkshopHeaderProps {
-	title: string
-	description: string
-	price: string
-	duration: string
-	topics: string[]
-	status: string
-}
-
-function WorkshopHeader({
-	title,
-	description,
-	duration,
-	topics,
-	status
-}: WorkshopHeaderProps) {
-	return (
-		<header className="mx-auto w-full max-w-4xl">
-			<div className="space-y-6">
-				<div className="flex items-center justify-between">
-					<span
-						className={`text-sm ${
-							status === 'available' ? 'text-primary' : 'text-muted-foreground'
-						}`}>
-						{status}
-					</span>
-					<span className="text-muted-foreground text-sm">
-						{formatDuration(duration)}
-					</span>
-				</div>
-
-				<h1 className="text-foreground text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl">
-					{title}
-				</h1>
-
-				<div className="space-y-3">
-					<p className="text-muted-foreground text-lg md:text-xl">
-						{description}
-					</p>
-					<div className="flex flex-wrap gap-2">
-						{topics.map((topic) => (
-							<span
-								key={topic}
-								className="bg-secondary/10 rounded-full px-3 py-1 text-sm">
-								{topic}
-							</span>
-						))}
-					</div>
-				</div>
-			</div>
-		</header>
-	)
-}
-
-type Props = {
+interface Props {
 	params: Promise<{slug: string}>
-	searchParams: Promise<{[key: string]: string | string[] | undefined}>
 }
 
-export default async function WorkshopPage(
-	props: Props
-): Promise<React.ReactElement> {
-	const params = await props.params
+export default async function WorkshopPage(props: Props) {
+	// Await the params to resolve the slug
+	const {slug} = await props.params
 
-	const workshops = (await getWorkshops()) as Workshop[]
-	const workshop = workshops.find((w) => w.slug === params.slug)
+	const workshops = await getWorkshops()
+	const workshop = workshops.find((w) => w.slug === slug)
 
 	if (!workshop) {
 		return <div>Workshop not found</div>
 	}
+
+	// Get the lessons for this workshop
+	const lessons = await getWorkshopLessons(slug)
+
+	// Get the first lesson if available
+	const firstLesson = lessons.length > 0 ? lessons[0] : null
+
+	// Count total lessons
+	const totalLessons = workshop.metadata.curriculum.reduce(
+		(total, section) => total + section.lessons.length,
+		0
+	)
+
+	// Get completed lessons
+	const completedLessons = await getCompletedLessons()
+
+	// Filter to just this workshop's completed lessons
+	const workshopCompletedLessons = completedLessons.filter((id) =>
+		id.startsWith(`${slug}/`)
+	)
+
+	// Calculate completion status
+	const completedCount = workshopCompletedLessons.length
+	const completionPercentage = Math.round((completedCount / totalLessons) * 100)
+	const isCompleted = completedCount === totalLessons
+	const hasStarted = completedCount > 0
 
 	return (
 		<div className="bg-background relative min-h-screen">
@@ -116,80 +80,244 @@ export default async function WorkshopPage(
 						{/* Back link */}
 						<Link
 							href="/workshops"
-							className="text-primary mb-12 inline-flex items-center gap-2 hover:opacity-80">
+							className="text-primary mb-8 inline-flex items-center gap-2 hover:opacity-80">
 							← Back to Workshops
 						</Link>
 
-						{/* Content grid */}
-						<div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-x-[clamp(2rem,6vw,6rem)]">
-							{/* Main content */}
-							<div className="min-w-0">
-								{/* Header section */}
-								<div className="relative mb-16">
-									<WorkshopHeader
-										title={workshop!.metadata.title}
-										description={workshop!.metadata.description}
-										price={workshop!.metadata.price}
-										duration={workshop!.metadata.duration}
-										topics={workshop!.metadata.topics}
-										status={workshop!.metadata.status}
-									/>
+						{/* Hero Section */}
+						<div className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-[2fr_1fr] md:items-start md:gap-12">
+							<div>
+								<h1 className="text-foreground mb-6 text-4xl font-bold sm:text-5xl">
+									{workshop.metadata.title}
+								</h1>
+
+								<p className="text-muted-foreground mb-8 text-xl leading-relaxed">
+									{workshop.metadata.description}
+								</p>
+
+								<div className="mb-4 flex flex-wrap gap-8">
+									{/* Stats */}
+									<div className="flex items-center gap-2">
+										<BookOpen className="text-primary h-5 w-5" />
+										<span className="text-muted-foreground">
+											{totalLessons} lessons
+										</span>
+									</div>
+
+									{/* Completion status */}
+									{hasStarted && (
+										<div className="flex items-center gap-2">
+											<CheckCircle
+												className={`h-5 w-5 ${isCompleted ? 'text-primary' : 'text-muted-foreground'}`}
+											/>
+											<span className="text-muted-foreground">
+												{completedCount} of {totalLessons} completed
+											</span>
+										</div>
+									)}
 								</div>
 
-								{/* Content */}
-								<article className="prose prose-xl dark:prose-invert prose-headings:scroll-mt-24 prose-headings:font-bold prose-p:text-muted-foreground prose-ul:text-muted-foreground prose-ol:text-muted-foreground prose-li:text-muted-foreground mx-auto max-w-none">
-									<CustomMDX source={workshop!.content} />
+								{/* Completion progress */}
+								{hasStarted && (
+									<div className="mb-6 space-y-2">
+										<div className="flex justify-between text-sm">
+											<span className="text-muted-foreground font-medium">
+												Progress
+											</span>
+											<span className="text-muted-foreground font-medium">
+												{completionPercentage}%
+											</span>
+										</div>
+										<Progress value={completionPercentage} className="h-2" />
+									</div>
+								)}
+
+								{/* Certificate link if completed */}
+								{isCompleted && (
+									<div className="mt-4">
+										<Button asChild variant="default" className="gap-2">
+											<Link href={`/workshops/${slug}/certificate`}>
+												<Trophy className="h-4 w-4" />
+												View Your Certificate
+											</Link>
+										</Button>
+									</div>
+								)}
+							</div>
+
+							{/* Workshop Image */}
+							<div className="border-border relative aspect-square overflow-hidden rounded-xl border">
+								<Image
+									src={workshop.metadata.imageUrl}
+									alt={workshop.metadata.title}
+									fill
+									className="object-cover"
+									priority
+								/>
+							</div>
+						</div>
+
+						{/* Content grid */}
+						<div className="grid grid-cols-1 gap-12 lg:grid-cols-[2fr_1fr]">
+							{/* Main content */}
+							<div>
+								{/* Highlights section */}
+								<div className="mb-12">
+									<h2 className="text-foreground mb-6 text-2xl font-bold">
+										Workshop Highlights
+									</h2>
+									<div className="grid gap-4 sm:grid-cols-2">
+										{workshop.metadata.highlights.map((highlight, i) => (
+											<div
+												key={i}
+												className="border-border bg-card flex items-start gap-3 rounded-lg border p-4">
+												<div className="bg-primary/10 rounded-full p-1">
+													<Check className="text-primary h-4 w-4" />
+												</div>
+												<span className="text-foreground">{highlight}</span>
+											</div>
+										))}
+									</div>
+								</div>
+
+								{/* Workshop content */}
+								<article className="prose prose-lg dark:prose-invert prose-headings:scroll-mt-24 prose-headings:font-bold prose-p:text-muted-foreground mx-auto max-w-none">
+									<CustomMDX source={workshop.content} />
 								</article>
 							</div>
 
 							{/* Sidebar */}
-							<aside className="relative lg:block">
+							<div className="relative">
 								<div className="sticky top-24 space-y-8">
-									<div className="bg-card overflow-hidden rounded-xl border shadow-sm">
-										<div className="p-6">
-											<div className="mb-6 flex items-center justify-between">
-												<span className="text-xl font-bold">
-													{workshop!.metadata.price}
-												</span>
-												<span className="text-muted-foreground text-sm">
-													{formatDuration(workshop!.metadata.duration)} total
-												</span>
-											</div>
+									<div className="border-border bg-card overflow-hidden rounded-xl border shadow-sm">
+										{/* Curriculum tabs */}
+										<div className="divide-border divide-y">
+											{workshop.metadata.curriculum.map(
+												(section, sectionIndex) => {
+													// Check if this section is completed
+													const sectionLessons = lessons.filter(
+														(l) => l.metadata.section === section.title
+													)
+													const isSectionCompleted = sectionLessons.every(
+														(lesson) =>
+															completedLessons.includes(
+																`${slug}/${lesson.slug}`
+															)
+													)
 
-											<button
-												className="bg-primary text-primary-foreground hover:bg-primary/90 mb-6 w-full rounded-lg px-8 py-3 font-medium transition-all disabled:opacity-50"
-												disabled={workshop!.metadata.status === 'coming-soon'}>
-												{workshop!.metadata.status === 'available'
-													? 'Enroll Now'
-													: 'Coming Soon'}
-											</button>
+													return (
+														<details
+															key={sectionIndex}
+															className="group"
+															open={sectionIndex === 0}>
+															<summary className="text-foreground hover:bg-muted/50 flex cursor-pointer items-center justify-between p-4 font-medium">
+																<div className="flex items-center gap-2">
+																	{isSectionCompleted ? (
+																		<CheckCircle className="text-primary h-4 w-4" />
+																	) : null}
+																	<span>{section.title}</span>
+																	<span className="bg-muted text-muted-foreground ml-2 rounded-full px-2 py-0.5 text-xs">
+																		{section.lessons.length} lessons
+																	</span>
+																</div>
+																<ChevronDown className="text-muted-foreground h-5 w-5 transition-transform group-open:rotate-180" />
+															</summary>
 
-											<div className="space-y-6">
-												<h3 className="text-lg font-semibold">
-													Workshop Curriculum
-												</h3>
-												{workshop!.metadata.curriculum.map((section, i) => (
-													<div key={i}>
-														<h4 className="mb-2 font-medium">
-															{section.title}
-														</h4>
-														<ul className="space-y-2">
-															{section.lessons.map((lesson, j) => (
-																<li
-																	key={j}
-																	className="text-muted-foreground flex items-center justify-between text-sm">
-																	<span>{lesson.title}</span>
-																	<span>{formatDuration(lesson.duration)}</span>
-																</li>
-															))}
-														</ul>
-													</div>
-												))}
-											</div>
+															<div className="border-border bg-card/50 border-t p-4">
+																<ul className="space-y-3">
+																	{section.lessons.map(
+																		(lesson, lessonIndex) => {
+																			// Find the lesson in our lessons array if available
+																			const lessonFile = lessons.find(
+																				(l) => l.metadata.title === lesson.title
+																			)
+
+																			// Check if this lesson is completed
+																			const isLessonCompleted = lessonFile
+																				? completedLessons.includes(
+																						`${slug}/${lessonFile.slug}`
+																					)
+																				: false
+
+																			return (
+																				<li key={lessonIndex} className="group">
+																					<div className="flex items-center gap-3">
+																						{isLessonCompleted ? (
+																							<div className="bg-primary text-primary-foreground flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-medium">
+																								<Check className="h-3 w-3" />
+																							</div>
+																						) : (
+																							<div className="bg-secondary flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-medium">
+																								{sectionIndex *
+																									section.lessons.length +
+																									lessonIndex +
+																									1}
+																							</div>
+																						)}
+
+																						{lessonFile ? (
+																							<Link
+																								href={`/workshops/${slug}/lessons/${lessonFile.slug}`}
+																								className={`${isLessonCompleted ? 'text-primary' : 'text-foreground hover:text-primary'} flex-1 hover:underline`}>
+																								{lesson.title}
+																							</Link>
+																						) : (
+																							<span className="text-muted-foreground flex-1">
+																								{lesson.title}
+																							</span>
+																						)}
+																					</div>
+																				</li>
+																			)
+																		}
+																	)}
+																</ul>
+															</div>
+														</details>
+													)
+												}
+											)}
+										</div>
+
+										{/* CTA Button */}
+										<div className="border-border border-t p-4">
+											{isCompleted ? (
+												<Button
+													className="w-full justify-center"
+													size="lg"
+													asChild>
+													<Link href={`/workshops/${slug}/certificate`}>
+														<Trophy className="mr-2 h-4 w-4" />
+														View Certificate
+													</Link>
+												</Button>
+											) : hasStarted ? (
+												<Button
+													className="w-full justify-center"
+													size="lg"
+													asChild>
+													<Link
+														href={`/workshops/${slug}/lessons/${firstLesson?.slug}`}>
+														Continue Workshop
+													</Link>
+												</Button>
+											) : (
+												firstLesson && (
+													<Button
+														className="w-full justify-center"
+														size="lg"
+														asChild>
+														<Link
+															href={`/workshops/${slug}/lessons/${firstLesson.slug}`}>
+															Start Workshop
+														</Link>
+													</Button>
+												)
+											)}
 										</div>
 									</div>
 								</div>
-							</aside>
+							</div>
 						</div>
 					</div>
 				</div>

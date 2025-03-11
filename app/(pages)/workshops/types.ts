@@ -1,19 +1,27 @@
+export interface LessonMetadata {
+	title: string
+	number: number
+	duration?: string // Made optional
+	section: string
+}
+
+export interface Lesson {
+	slug: string
+	metadata: LessonMetadata
+	content: string
+}
+
 export interface WorkshopMetadata {
 	title: string
 	description: string
-	status: 'available' | 'coming-soon'
-	price: string
+	status?: string // Made optional since we're not displaying it
 	imageUrl: string
-	highlights: string[]
 	publishedAt: string
-	duration: string
-	topics: string[]
-	videoUrl?: string
+	highlights: string[]
 	curriculum: {
 		title: string
 		lessons: {
 			title: string
-			duration: string
 		}[]
 	}[]
 }
