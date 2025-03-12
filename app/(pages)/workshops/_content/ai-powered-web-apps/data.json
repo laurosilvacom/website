@@ -12,13 +12,54 @@
 	],
 	"curriculum": [
 		{
+			"title": "Introduction",
+			"lessons": [
+				{
+					"title": "Welcome to the Workshop"
+				}
+			]
+		},
+		{
 			"title": "UI Scaffolding",
 			"lessons": [
 				{
-					"title": "Set Your Development Environment"
+					"title": "Technology Stack"
 				},
 				{
-					"title": "Building the chat UI foundation"
+					"title": "Building UIs with AI Generators"
+				}
+			]
+		},
+		{
+			"title": "AI SDK Integration",
+			"lessons": [
+				{
+					"title": "Installing the Vercel AI SDK"
+				},
+				{
+					"title": "Setting up AI models"
+				}
+			]
+		},
+		{
+			"title": "Dynamic Chat",
+			"lessons": [
+				{
+					"title": "Creating responsive chat components"
+				},
+				{
+					"title": "Implementing real-time responses"
+				}
+			]
+		},
+		{
+			"title": "Advanced & Deploy",
+			"lessons": [
+				{
+					"title": "Adding custom features"
+				},
+				{
+					"title": "Deploying your AI application"
 				}
 			]
 		}
