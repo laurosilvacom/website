@@ -15,7 +15,13 @@
 			"title": "Introduction",
 			"lessons": [
 				{
-					"title": "Welcome to the Workshop"
+					"title": "Meet Your Instructor"
+				},
+				{
+					"title": "Learning Platform"
+				},
+				{
+					"title": "Workshop Structure"
 				}
 			]
 		},
@@ -26,7 +32,13 @@
 					"title": "Technology Stack"
 				},
 				{
+					"title": "AI Fundamentals for Developers"
+				},
+				{
 					"title": "Building UIs with AI Generators"
+				},
+				{
+					"title": "Implementing AI-Generated UIs"
 				}
 			]
 		},
