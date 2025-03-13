@@ -46,10 +46,10 @@
 			"title": "AI SDK Integration",
 			"lessons": [
 				{
-					"title": "Installing the Vercel AI SDK"
+					"title": "Integrating the Vercel AI SDK"
 				},
 				{
-					"title": "Setting up AI models"
+					"title": "Setting up AI Models"
 				}
 			]
 		},
@@ -57,10 +57,13 @@
 			"title": "Dynamic Chat",
 			"lessons": [
 				{
-					"title": "Creating responsive chat components"
+					"title": "Building AI Tools"
 				},
 				{
-					"title": "Implementing real-time responses"
+					"title": "Building Generative UI"
+				},
+				{
+					"title": "Setting Custom AI Instructions"
 				}
 			]
 		},
@@ -68,10 +71,13 @@
 			"title": "Advanced & Deploy",
 			"lessons": [
 				{
-					"title": "Adding custom features"
+					"title": "Deploying Your AI App to Vercel"
 				},
 				{
-					"title": "Deploying your AI application"
+					"title": "Post-Workshop Challenges"
+				},
+				{
+					"title": "Workshop Conclusion"
 				}
 			]
 		}
