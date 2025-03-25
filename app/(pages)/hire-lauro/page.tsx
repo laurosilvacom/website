@@ -389,7 +389,7 @@ export default function ServicesPage(): JSX.Element {
 						{/* Main content */}
 						<div className="space-y-6">
 							<h2 className="text-foreground mx-auto max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-								Let's Build Something
+								{`Let's Build Something`}
 								<span className="text-primary"> Impactful</span> — Together
 							</h2>
 							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
