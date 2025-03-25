@@ -393,8 +393,8 @@ export default function ServicesPage(): JSX.Element {
 								<span className="text-primary"> Impactful</span> — Together
 							</h2>
 							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
-								Your next project starts with a conversation. Let's discuss your
-								goals and ideas to create something amazing.
+								{`Your next project starts with a conversation. Let's discuss your
+								goals and ideas to create something amazing.`}
 							</p>
 						</div>
 
