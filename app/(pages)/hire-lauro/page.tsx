@@ -164,7 +164,7 @@ export default function ServicesPage(): JSX.Element {
 								{EducationTestimonials.map((testimonial, index) => (
 									<div
 										key={index}
-										className={`relative overflow-hidden rounded-3xl border p-8 sm:p-10 ${testimonial.className || 'bg-primary/5 border-primary/10'}`}>
+										className={`relative overflow-hidden rounded-3xl border p-8 sm:p-10`}>
 										{/* Content Container */}
 										<div className="relative space-y-8">
 											{/* Company Logo */}
@@ -318,7 +318,7 @@ export default function ServicesPage(): JSX.Element {
 								{EngineeringTestimonials.map((testimonial, index) => (
 									<div
 										key={index}
-										className={`relative overflow-hidden rounded-3xl border p-8 sm:p-10 ${testimonial.className || 'bg-primary/5 border-primary/10'}`}>
+										className={`relative overflow-hidden rounded-3xl border p-8 sm:p-10`}>
 										{/* Content Container */}
 										<div className="relative space-y-8">
 											{/* Company Logo */}
