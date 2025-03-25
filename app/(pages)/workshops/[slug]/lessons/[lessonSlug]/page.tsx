@@ -236,7 +236,7 @@ export default async function LessonPage(props: Props) {
 							</div>
 
 							{/* Lesson content */}
-							<article className="prose prose-lg dark:prose-invert mx-auto max-w-none">
+							<article className="prose prose-base text-foreground">
 								<CustomMDX source={lesson.content} />
 							</article>
 

@@ -8,7 +8,8 @@ const nextConfig: NextConfig = {
 				hostname: 'res.cloudinary.com'
 			}
 		]
-	}
+	},
+	 transpilePackages: ["next-mdx-remote"]
 }
 
 export default nextConfig

@@ -15,10 +15,7 @@ export default function ServicesPage(): JSX.Element {
 					<div className="flex flex-col space-y-16 sm:space-y-20">
 						<div className="inline-flex">
 							<div className="border-primary/10 bg-primary/5 inline-flex items-center gap-2 rounded-full border px-3 py-1.5">
-								<div className="relative h-1.5 w-1.5">
-									<div className="bg-primary/40 absolute h-full w-full animate-ping rounded-full"></div>
-									<div className="bg-primary h-full w-full rounded-full"></div>
-								</div>
+								<div className="bg-primary h-1.5 w-1.5 rounded-full"></div>
 								<span className="text-primary text-xs font-medium">
 									Available for new projects
 								</span>
@@ -73,7 +70,7 @@ export default function ServicesPage(): JSX.Element {
 
 							{/* Hero image */}
 							<div className="hidden md:block">
-								<div className="relative aspect-square rounded-3xl">
+								<div className="relative aspect-square overflow-hidden rounded-3xl">
 									<Image
 										src="/conference.png"
 										alt="Lauro Silva"
@@ -87,7 +84,7 @@ export default function ServicesPage(): JSX.Element {
 
 						{/* Companies section */}
 						<div className="pt-8 sm:pt-12">
-							<p className="text-muted-foreground mb-8 text-sm font-medium">
+							<p className="text-muted-foreground mb-8 text-sm font-medium tracking-wide uppercase">
 								Empowering engineering teams at companies like:
 							</p>
 							<div className="grid grid-cols-2 items-center justify-items-center gap-8 sm:grid-cols-4 sm:gap-12">
@@ -118,7 +115,7 @@ export default function ServicesPage(): JSX.Element {
 				<div className="mx-auto max-w-7xl">
 					{/* Services Overview */}
 					<div className="relative mb-32 text-center">
-						<h2 className="title text-foreground relative z-10 text-5xl font-bold tracking-tight sm:text-6xl">
+						<h2 className="text-foreground relative z-10 text-5xl font-bold tracking-tight sm:text-6xl">
 							Services & Expertise
 						</h2>
 						<p className="text-muted-foreground mx-auto mt-6 max-w-3xl text-lg leading-relaxed sm:text-xl">
@@ -130,12 +127,7 @@ export default function ServicesPage(): JSX.Element {
 							{unifiedServices.map((service, index) => (
 								<div
 									key={index}
-									className="group border-muted bg-card relative overflow-hidden rounded-3xl border p-8 sm:p-10">
-									{/* Gradient Background */}
-									<div
-										className={`absolute inset-0 ${service.gradient} opacity-10 transition-opacity group-hover:opacity-20`}
-									/>
-
+									className="border-muted bg-card relative overflow-hidden rounded-3xl border p-8 sm:p-10">
 									{/* Content Container */}
 									<div className="relative space-y-8">
 										{/* Title */}
@@ -149,7 +141,7 @@ export default function ServicesPage(): JSX.Element {
 										</p>
 
 										{/* Tags */}
-										<div className="flex flex-wrap items-center justify-center gap-3 pt-4">
+										<div className="flex flex-wrap items-center gap-3 pt-4">
 											{service.tags.map((tag) => (
 												<span
 													key={tag}
@@ -172,12 +164,7 @@ export default function ServicesPage(): JSX.Element {
 								{EducationTestimonials.map((testimonial, index) => (
 									<div
 										key={index}
-										className="group border-muted bg-card relative overflow-hidden rounded-3xl border p-8 sm:p-10">
-										{/* Gradient Background */}
-										<div
-											className={`absolute inset-0 bg-gradient-to-br ${testimonial.gradient} opacity-10 transition-opacity group-hover:opacity-20`}
-										/>
-
+										className={`relative overflow-hidden rounded-3xl border p-8 sm:p-10 ${testimonial.className || 'bg-primary/5 border-primary/10'}`}>
 										{/* Content Container */}
 										<div className="relative space-y-8">
 											{/* Company Logo */}
@@ -224,20 +211,17 @@ export default function ServicesPage(): JSX.Element {
 							</div>
 							{/* Services Details */}
 							<div>
-								<h3 className="text-muted-foreground text-base font-semibold">
+								<h3 className="text-muted-foreground text-base font-semibold tracking-wide uppercase">
 									Developer Education & Training
 								</h3>
-								<h2 className="title text-foreground mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+								<h2 className="text-foreground mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
 									Upskill Your Developer Communities
 								</h2>
 								<div className="mt-12 space-y-6">
 									{educationServices.map((service, index) => (
 										<div
 											key={index}
-											className="group border-muted bg-card relative overflow-hidden rounded-3xl border p-8 sm:p-10">
-											{/* Gradient overlay */}
-											<div className="from-primary absolute inset-0 bg-gradient-to-br via-transparent to-transparent opacity-10 transition-opacity group-hover:opacity-20" />
-
+											className="border-muted bg-card relative overflow-hidden rounded-3xl border p-8 sm:p-10">
 											{/* Content Container */}
 											<div className="relative flex gap-8">
 												{/* Icon with fixed width */}
@@ -282,20 +266,17 @@ export default function ServicesPage(): JSX.Element {
 						<div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
 							{/* Services Details */}
 							<div>
-								<h3 className="text-muted-foreground text-base font-semibold">
+								<h3 className="text-muted-foreground text-base font-semibold tracking-wide uppercase">
 									Full-Stack Engineering Consulting
 								</h3>
-								<h2 className="title text-foreground mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+								<h2 className="text-foreground mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
 									Build Exceptional Digital Products
 								</h2>
 								<div className="mt-12 space-y-6">
 									{engineeringServices.map((service, index) => (
 										<div
 											key={index}
-											className="group border-muted bg-card relative overflow-hidden rounded-3xl border p-8 transition-all hover:-translate-y-1 sm:p-10">
-											{/* Gradient overlay */}
-											<div className="from-primary absolute inset-0 bg-gradient-to-br via-transparent to-transparent opacity-10 transition-opacity group-hover:opacity-20" />
-
+											className="border-muted bg-card relative overflow-hidden rounded-3xl border p-8 transition-all hover:-translate-y-1 sm:p-10">
 											{/* Content Container */}
 											<div className="relative flex gap-8">
 												{/* Icon */}
@@ -337,12 +318,7 @@ export default function ServicesPage(): JSX.Element {
 								{EngineeringTestimonials.map((testimonial, index) => (
 									<div
 										key={index}
-										className="group border-muted bg-card relative overflow-hidden rounded-3xl border p-8 sm:p-10">
-										{/* Gradient Background */}
-										<div
-											className={`absolute inset-0 bg-gradient-to-br ${testimonial.gradient} opacity-10 transition-opacity group-hover:opacity-20`}
-										/>
-
+										className={`relative overflow-hidden rounded-3xl border p-8 sm:p-10 ${testimonial.className || 'bg-primary/5 border-primary/10'}`}>
 										{/* Content Container */}
 										<div className="relative space-y-8">
 											{/* Company Logo */}
@@ -358,8 +334,6 @@ export default function ServicesPage(): JSX.Element {
 
 											{/* Quote Container */}
 											<div className="space-y-6">
-												{/* Quote Symbol */}
-
 												{/* Quote Text */}
 												<blockquote>
 													<p className="text-foreground text-lg leading-relaxed font-medium">
@@ -370,16 +344,13 @@ export default function ServicesPage(): JSX.Element {
 
 											{/* Author Info */}
 											<div className="flex items-center gap-4 pt-2">
-												<div className="relative h-12 w-12">
-													<div className="bg-primary/10 absolute inset-0 animate-pulse rounded-full"></div>
-													<div className="border-primary/10 relative h-full w-full overflow-hidden rounded-full border-2">
-														<Image
-															src={testimonial.image}
-															alt={testimonial.author}
-															fill
-															className="object-cover"
-														/>
-													</div>
+												<div className="border-border relative h-12 w-12 overflow-hidden rounded-full border">
+													<Image
+														src={testimonial.image}
+														alt={testimonial.author}
+														fill
+														className="object-cover"
+													/>
 												</div>
 
 												<div className="space-y-1">
@@ -401,9 +372,7 @@ export default function ServicesPage(): JSX.Element {
 			</section>
 
 			{/* CTA Section */}
-			<section className="group border-muted bg-card relative mx-6 rounded-2xl border p-10">
-				<div className="from-primary absolute inset-0 rounded-2xl bg-gradient-to-br via-transparent to-transparent opacity-10 transition-opacity group-hover:opacity-20" />
-
+			<section className="border-muted bg-card relative mx-6 mb-20 rounded-2xl border p-10">
 				<div className="mx-auto max-w-[1200px]">
 					{/* Content container */}
 					<div className="relative space-y-12 text-center">
@@ -420,11 +389,11 @@ export default function ServicesPage(): JSX.Element {
 						{/* Main content */}
 						<div className="space-y-6">
 							<h2 className="text-foreground mx-auto max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-								Lets Build Something
+								Let's Build Something
 								<span className="text-primary"> Impactful</span> — Together
 							</h2>
 							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
-								Your next project starts with a conversation. Lets discuss your
+								Your next project starts with a conversation. Let's discuss your
 								goals and ideas to create something amazing.
 							</p>
 						</div>

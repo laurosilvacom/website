@@ -176,8 +176,7 @@ export default async function WorkshopPage(props: Props) {
 									</div>
 								</div>
 
-								{/* Workshop content */}
-								<article className="prose prose-lg dark:prose-invert prose-headings:scroll-mt-24 prose-headings:font-bold prose-p:text-muted-foreground mx-auto max-w-none">
+								<article className="prose prose-xl text-foreground">
 									<CustomMDX source={workshop.content} />
 								</article>
 							</div>

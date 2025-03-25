@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -27,7 +28,7 @@
 	--chart-3: oklch(0.398 0.07 227.392);
 	--chart-4: oklch(0.828 0.189 84.429);
 	--chart-5: oklch(0.769 0.188 70.08);
-	--radius: 0.625rem;
+	--radius: 1rem;
 	--sidebar: oklch(0.985 0 0);
 	--sidebar-foreground: oklch(0.145 0 0);
 	--sidebar-primary: oklch(0.205 0 0);
@@ -184,17 +185,12 @@ html {
 	color: hsl(var(--primary-foreground));
 }
 
-/* Code Block Styling */
-.prose pre {
-	@apply overflow-auto rounded-xl border p-4 shadow-xs sm:p-6 md:my-8 md:p-8;
+pre {
 	background-color: hsl(var(--card));
 	color: hsl(var(--card-foreground));
 	counter-reset: sh-line-number;
-}
-
-.prose pre code {
-	@apply !text-base !leading-relaxed;
-	font-size: inherit !important;
+	overflow-x: auto;
+	border-radius: 0.75rem; /* rounded-xl */
 }
 
 /* Reset the line number counter for code inside pre elements */
@@ -211,15 +207,8 @@ pre code .sh__line::before {
 	color: hsl(var(--muted-foreground));
 }
 
-/* Inline Code Styling */
-code:not(pre code) {
-	@apply rounded-sm px-3 py-0.5 text-xs font-normal;
-	background-color: hsl(var(--muted));
-	color: hsl(var(--muted-foreground));
-}
-
 /* Ensure inline code spans inherit styles correctly */
-code:not(pre code) span {
+:not(pre) > code span {
 	font-weight: inherit;
 	color: inherit;
 }

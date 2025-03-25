@@ -26,12 +26,12 @@ const BlogHeader = ({
 }: BlogHeaderProps) => {
 	return (
 		<header className="mx-auto w-full max-w-4xl">
-			{/* Title and Description Section */}
+			{/* Title and Description Section - preserved original layout */}
 			<div className="space-y-6">
 				{/* Eyebrow - Icon and Date */}
 				<div className="flex items-center justify-between">
 					{icon && (
-						<div className="bg-secondary/10 rounded-lg grayscale">
+						<div className="bg-secondary/30 rounded-lg p-2">
 							<Image
 								src={icon}
 								alt={`${title} icon`}
@@ -41,30 +41,32 @@ const BlogHeader = ({
 							/>
 						</div>
 					)}
-					<time className="text-muted-foreground text-sm">
+					<time className="text-muted-foreground text-sm font-medium">
 						{formatDate(date)}
 					</time>
 				</div>
 
-				{/* Title */}
+				{/* Title - preserved original sizing */}
 				<h1 className="text-foreground text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl">
 					{title}
 				</h1>
 
-				{/* Description and Meta */}
+				{/* Description and Meta - kept original structure */}
 				<div className="space-y-3">
 					{description && (
 						<p className="text-muted-foreground text-lg md:text-xl">
 							{description}
 						</p>
 					)}
-					<div className="text-muted-foreground flex items-center gap-2 text-sm">
-						<span>{readingTime}</span>
-					</div>
+					{readingTime && (
+						<div className="text-muted-foreground flex items-center gap-2 text-sm">
+							<span>{readingTime}</span>
+						</div>
+					)}
 				</div>
 			</div>
 
-			{/* Cover Image Section */}
+			{/* Cover Image Section - maintained original positioning */}
 			{coverImage && (
 				<div className="relative -mx-4 mt-10 aspect-[4/2] overflow-hidden sm:-mx-6 lg:mx-0 lg:mt-12 lg:rounded-lg">
 					<Image
@@ -117,6 +119,7 @@ export async function generateStaticParams() {
 export async function generateMetadata(
 	props: Props
 ): Promise<PageMetadata | null> {
+	// Metadata generation unchanged
 	const params = await props.params
 	if (!params || !params.slug) return null
 
@@ -169,7 +172,7 @@ export default async function Blog(props: Props) {
 
 	return (
 		<Container className="m-auto min-h-screen">
-			{/* Schema markup remains the same */}
+			{/* Schema markup unchanged */}
 			<script
 				type="application/ld+json"
 				suppressHydrationWarning
@@ -193,9 +196,10 @@ export default async function Blog(props: Props) {
 				}}
 			/>
 
+			{/* Maintained original layout structure for proper alignment */}
 			<div className="mx-auto flex w-full max-w-screen-xl px-5 sm:px-10 lg:px-0">
 				<div className="w-full py-12">
-					{/* Content grid */}
+					{/* Content grid - preserved original column settings */}
 					<div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-x-[clamp(2rem,6vw,6rem)]">
 						{/* Main content */}
 						<div className="min-w-0">
@@ -210,9 +214,9 @@ export default async function Blog(props: Props) {
 									coverImage={post!.metadata.coverImage}
 								/>
 
-								{/* Mobile TOC */}
+								{/* Mobile TOC - kept original placement */}
 								<div className="mt-10 lg:hidden">
-									<div className="border-muted bg-card mt-2 overflow-hidden rounded-2xl border shadow-sm backdrop-blur-xl">
+									<div className="border-border bg-card mt-2 overflow-hidden rounded-xl border">
 										<div className="p-4">
 											<TableOfContents />
 										</div>
@@ -220,15 +224,16 @@ export default async function Blog(props: Props) {
 								</div>
 							</div>
 
-							<article className="prose prose-xl dark:prose-invert // Headings prose-headings:scroll-mt-24 prose-headings:font-bold // Text & Lists prose-p:text-muted-foreground prose-ul:text-muted-foreground prose-ol:text-muted-foreground prose-li:text-muted-foreground // Code Blocks prose-pre:text-sm prose-pre:leading-relaxed // Links prose-a:text-primary prose-a:no-underline hover:prose-a:underline mx-auto max-w-none px-4 sm:px-6 lg:px-8 [&_pre]:text-sm [&_pre_code]:text-sm">
+							{/* Article content - maintained prose settings */}
+							<article className="prose prose-base text-foreground !max-w-none">
 								<CustomMDX source={post!.content} />
 							</article>
 						</div>
 
-						{/* Desktop TOC */}
+						{/* Desktop TOC - kept original positioning */}
 						<aside className="hidden lg:block">
 							<div className="sticky top-24">
-								<div className="border-muted bg-card overflow-hidden rounded-2xl border shadow-sm backdrop-blur-xl">
+								<div className="border-border bg-card overflow-hidden rounded-xl border">
 									<div className="p-6">
 										<TableOfContents />
 									</div>

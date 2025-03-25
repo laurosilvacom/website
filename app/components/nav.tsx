@@ -4,6 +4,7 @@ import Link from 'next/link'
 import {usePathname} from 'next/navigation'
 import {useCallback, useEffect, useState} from 'react'
 
+// Original icon components
 const HireIcon = () => (
 	<svg
 		className="ease-bounce h-4 w-4 transition-transform duration-300 group-hover:translate-y-[-2px]"
@@ -36,21 +37,6 @@ const ResourceIcon = () => (
 	</svg>
 )
 
-const TutorialIcon = () => (
-	<svg
-		className="ease-bounce h-4 w-4 transition-transform duration-300 group-hover:scale-110"
-		viewBox="0 0 24 24"
-		fill="none"
-		stroke="currentColor">
-		<path
-			d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4M10 17l5-5-5-5M13 12H3"
-			strokeWidth="2"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-		/>
-	</svg>
-)
-
 const WorkshopIcon = () => (
 	<svg
 		className="ease-bounce h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
@@ -79,21 +65,6 @@ const HomeIcon = () => (
 	</svg>
 )
 
-const AboutIcon = () => (
-	<svg
-		className="ease-bounce h-4 w-4 transition-transform duration-300 group-hover:rotate-12"
-		viewBox="0 0 24 24"
-		fill="none"
-		stroke="currentColor"
-		strokeWidth="2"
-		strokeLinecap="round"
-		strokeLinejoin="round">
-		<circle cx="12" cy="12" r="10" />
-		<path d="M12 16v-4" />
-		<path d="M12 8h.01" />
-	</svg>
-)
-
 const NewsletterIcon = () => (
 	<svg
 		className="ease-bounce h-4 w-4 transition-transform duration-300 group-hover:translate-y-[-2px]"
@@ -108,17 +79,13 @@ const NewsletterIcon = () => (
 	</svg>
 )
 
-// Then update the getIconForPath function to include it:
+// Original getIconForPath function
 const getIconForPath = (path: string) => {
 	switch (path) {
 		case '/':
 			return <HomeIcon />
-		case '/about':
-			return <AboutIcon />
 		case '/blog':
 			return <ResourceIcon />
-		case '/tutorials':
-			return <TutorialIcon />
 		case '/workshops':
 			return <WorkshopIcon />
 		case '/hire-lauro':
@@ -129,6 +96,7 @@ const getIconForPath = (path: string) => {
 			return null
 	}
 }
+
 const navItems = {
 	'/': {
 		name: 'Home'
@@ -140,6 +108,7 @@ const navItems = {
 		name: 'Newsletter'
 	}
 }
+
 export function Navbar() {
 	const pathname = usePathname()
 	const [isScrolled, setIsScrolled] = useState(false)
@@ -206,20 +175,20 @@ export function Navbar() {
 				aria-label="Main navigation"
 				className="border-border bg-card sticky top-0 z-40 w-full border-b backdrop-blur-sm transition-all duration-300 ease-in-out print:hidden">
 				<div
-					className={`mx-auto flex max-w-screen-xl items-center justify-between px-5 transition-all duration-300 ease-in-out sm:px-10 lg:px-0 ${isScrolled ? 'h-16' : 'h-20'}`}>
+					className={`mx-auto flex max-w-screen-xl items-center justify-between px-5 transition-all duration-300 ease-in-out sm:px-10 lg:px-0 ${
+						isScrolled ? 'h-16' : 'h-20'
+					}`}>
 					<Link
 						href="/"
 						aria-label="Home"
-						className="group text-foreground flex items-center gap-2 text-lg font-semibold transition-all duration-300 ease-in-out">
-						<span className="group-hover:text-primary transition-all duration-300 ease-in-out">
+						className="group text-foreground flex items-center gap-2 text-lg font-semibold">
+						<span className="group-hover:text-primary transition-colors duration-300">
 							Lauro Silva
 						</span>
 					</Link>
 
 					{/* Desktop Menu */}
-					<div
-						className="hidden items-center gap-1 transition-all duration-300 ease-in-out md:flex"
-						role="menubar">
+					<div className="hidden items-center gap-1 md:flex" role="menubar">
 						{Object.entries(navItems).map(([path, {name}]) => {
 							const isActive = pathname === path
 							return (
@@ -228,10 +197,10 @@ export function Navbar() {
 									href={path}
 									role="menuitem"
 									aria-current={isActive ? 'page' : undefined}
-									className={`group inline-flex items-center gap-2 px-4 py-2 text-base font-medium transition-all duration-300 ease-out ${
+									className={`group inline-flex items-center gap-2 px-4 py-2 text-base font-medium ${
 										isActive
 											? 'text-foreground decoration-primary underline decoration-wavy underline-offset-[6px]'
-											: 'text-muted-foreground hover:text-foreground'
+											: 'text-muted-foreground hover:text-foreground hover:decoration-primary hover:underline hover:decoration-wavy hover:underline-offset-[6px]'
 									}`}>
 									{getIconForPath(path)}
 									{name}
@@ -249,15 +218,21 @@ export function Navbar() {
 						aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}>
 						<div className="relative flex w-6 items-center justify-center">
 							<span
-								className={`bg-foreground absolute h-0.5 w-6 transform transition duration-300 ease-in-out ${isMenuOpen ? 'translate-y-0 rotate-45' : '-translate-y-2'}`}
+								className={`bg-foreground absolute h-0.5 w-6 transform transition duration-300 ease-in-out ${
+									isMenuOpen ? 'translate-y-0 rotate-45' : '-translate-y-2'
+								}`}
 								aria-hidden="true"
 							/>
 							<span
-								className={`bg-foreground absolute h-0.5 transform transition-all duration-300 ease-in-out ${isMenuOpen ? 'w-0 opacity-0' : 'w-6 opacity-100'}`}
+								className={`bg-foreground absolute h-0.5 transform transition-all duration-300 ease-in-out ${
+									isMenuOpen ? 'w-0 opacity-0' : 'w-6 opacity-100'
+								}`}
 								aria-hidden="true"
 							/>
 							<span
-								className={`bg-foreground absolute h-0.5 w-6 transform transition duration-300 ease-in-out ${isMenuOpen ? 'translate-y-0 -rotate-45' : 'translate-y-2'}`}
+								className={`bg-foreground absolute h-0.5 w-6 transform transition duration-300 ease-in-out ${
+									isMenuOpen ? 'translate-y-0 -rotate-45' : 'translate-y-2'
+								}`}
 								aria-hidden="true"
 							/>
 						</div>
@@ -269,14 +244,12 @@ export function Navbar() {
 			<div
 				className={`fixed inset-0 z-40 backdrop-blur-sm transition-all duration-300 md:hidden ${
 					mounted ? 'bg-card/80' : 'bg-card/80'
-				} ${mounted ? 'dark:bg-card/80' : 'dark:bg-card/80'} ${
-					isMenuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
-				}`}
+				} ${isMenuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
 				onClick={closeMenu}
 				aria-hidden="true"
 			/>
 
-			{/* Mobile Menu Panel */}
+			{/* Mobile Menu Panel - Maintained original width */}
 			<div
 				id="mobile-menu"
 				role="dialog"
@@ -285,10 +258,30 @@ export function Navbar() {
 				className={`border-border bg-card fixed top-0 right-0 z-40 h-full w-[300px] transform border-l transition-all duration-300 ease-in-out md:hidden ${
 					isMenuOpen ? 'translate-x-0' : 'translate-x-full'
 				}`}>
+				<div className="flex justify-end p-4">
+					<button
+						className="hover:bg-secondary flex h-12 w-12 items-center justify-center rounded-full"
+						onClick={closeMenu}
+						aria-label="Close menu">
+						<svg
+							className="text-muted-foreground h-6 w-6"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24">
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="2"
+								d="M6 18L18 6M6 6l12 12"
+							/>
+						</svg>
+					</button>
+				</div>
+
 				<nav
 					role="navigation"
 					aria-label="Mobile navigation"
-					className="flex flex-col space-y-4 px-6 pt-24">
+					className="flex flex-col space-y-4 px-6 pt-6">
 					{Object.entries(navItems).map(([path, {name}]) => {
 						const isActive = pathname === path
 						return (
@@ -296,7 +289,7 @@ export function Navbar() {
 								key={path}
 								href={path}
 								aria-current={isActive ? 'page' : undefined}
-								className={`group inline-flex items-center gap-2 px-4 py-3 text-xl font-medium transition-colors duration-300 ease-out ${
+								className={`group inline-flex items-center gap-2 px-4 py-3 text-xl font-medium ${
 									isActive
 										? 'text-foreground decoration-primary underline decoration-wavy underline-offset-[6px]'
 										: 'text-muted-foreground hover:text-foreground'

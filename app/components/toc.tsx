@@ -46,15 +46,21 @@ export function TableOfContents() {
 	return (
 		<nav className="relative font-sans" aria-label="Table of contents">
 			<details className="group [&_summary::-webkit-details-marker]:hidden">
-				<summary className="border-muted bg-card flex cursor-pointer items-center justify-between rounded-2xl border p-4 shadow-sm backdrop-blur-xl">
-					<h2 id="toc-title" className="text-foreground text-sm font-semibold">
-						Table of Contents
-					</h2>
-					<ChevronDown className="text-muted-foreground h-5 w-5 transition-transform duration-300 group-open:rotate-180" />
+				<summary className="bg-secondary/30 border-border ring-border/40 flex cursor-pointer items-center justify-between rounded-xl border p-3 ring-1 shadow-sm">
+					<div className="flex items-center gap-2">
+						{/* Simple dot indicator to match code block */}
+						<div className="bg-primary/60 h-2 w-2 rounded-full"></div>
+						<h2
+							id="toc-title"
+							className="text-foreground text-[0.85rem] font-medium">
+							Table of Contents
+						</h2>
+					</div>
+					<ChevronDown className="text-primary/70 h-4 w-4 transition-transform duration-200 group-open:rotate-180" />
 				</summary>
 
 				<ul
-					className="mt-4 space-y-2 text-sm"
+					className="mt-3 space-y-1 text-[0.85rem]"
 					role="list"
 					aria-labelledby="toc-title">
 					{headings.map((heading) => {
@@ -63,13 +69,13 @@ export function TableOfContents() {
 						return (
 							<li
 								key={`${heading.id}-${heading.text}`}
-								style={{marginLeft: `${(heading.level - 2) * 16}px`}}>
+								style={{marginLeft: `${(heading.level - 2) * 12}px`}}>
 								<a
 									href={`#${heading.id}`}
-									className={`group hover:text-foreground focus-visible:ring-primary relative block rounded-sm py-1.5 pl-4 transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+									className={`hover:text-primary relative flex items-center py-1.5 pl-3 transition-colors duration-150 ${
 										isActive
-											? 'text-foreground underline decoration-[hsl(var(--primary))] decoration-wavy underline-offset-[6px]'
-											: 'text-muted-foreground hover:underline hover:decoration-[hsl(var(--primary))] hover:decoration-wavy hover:underline-offset-[6px]'
+											? 'text-primary font-medium'
+											: 'text-muted-foreground'
 									}`}
 									onClick={(e) => {
 										e.preventDefault()
@@ -85,13 +91,13 @@ export function TableOfContents() {
 										}
 									}}
 									aria-current={isActive ? 'location' : undefined}>
+									{/* Simple active indicator */}
 									<span
-										className={`absolute top-1/2 left-0 -translate-y-1/2 text-[hsl(var(--primary))] transition-transform duration-200 ${
-											isActive ? 'translate-x-0' : '-translate-x-2 opacity-0'
+										className={`bg-primary/60 absolute left-0 h-full w-0.5 rounded-full transition-opacity duration-150 ${
+											isActive ? 'opacity-100' : 'opacity-0'
 										}`}
-										aria-hidden="true">
-										→
-									</span>
+										aria-hidden="true"
+									/>
 									{heading.text}
 								</a>
 							</li>

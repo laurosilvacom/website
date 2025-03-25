@@ -22,9 +22,10 @@ interface FooterSectionProps {
 	onToggle?: () => void
 }
 
+// Icon components remain the same
 const HireIcon = () => (
 	<svg
-		className="ease-bounce h-4 w-4 transition-transform duration-300 group-hover:translate-y-[-2px]"
+		className="h-4 w-4 transition-transform duration-200 group-hover:translate-y-[-2px]"
 		viewBox="0 0 24 24"
 		fill="none"
 		stroke="currentColor"
@@ -42,7 +43,7 @@ const HireIcon = () => (
 
 const ResourceIcon = () => (
 	<svg
-		className="ease-bounce h-4 w-4 transition-transform duration-300 group-hover:-rotate-12"
+		className="h-4 w-4 transition-transform duration-200 group-hover:-rotate-12"
 		viewBox="0 0 24 24"
 		fill="none"
 		stroke="currentColor">
@@ -56,7 +57,7 @@ const ResourceIcon = () => (
 
 const TutorialIcon = () => (
 	<svg
-		className="ease-bounce h-4 w-4 transition-transform duration-300 group-hover:scale-110"
+		className="h-4 w-4 transition-transform duration-200 group-hover:scale-110"
 		viewBox="0 0 24 24"
 		fill="none"
 		stroke="currentColor">
@@ -71,7 +72,7 @@ const TutorialIcon = () => (
 
 const WorkshopIcon = () => (
 	<svg
-		className="ease-bounce h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+		className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
 		viewBox="0 0 24 24"
 		fill="none"
 		stroke="currentColor">
@@ -85,7 +86,7 @@ const WorkshopIcon = () => (
 
 const GithubIcon = () => (
 	<svg
-		className="ease-bounce h-4 w-4 transition-transform duration-300 group-hover:scale-110"
+		className="h-4 w-4 transition-transform duration-200 group-hover:scale-110"
 		viewBox="0 0 24 24"
 		fill="none"
 		stroke="currentColor">
@@ -98,22 +99,17 @@ const GithubIcon = () => (
 
 const SocialIcon = () => (
 	<svg
-		className="ease-bounce h-4 w-4 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-12"
+		className="h-4 w-4 transition-all duration-200 group-hover:scale-110 group-hover:-rotate-12"
 		viewBox="0 0 24 24"
 		fill="none"
 		stroke="currentColor"
 		strokeWidth="1.5"
 		strokeLinecap="round"
 		strokeLinejoin="round">
-		{/* Upper wings */}
 		<path d="M12 8C9.5 4.5 4.5 5 3.5 8S5 14 7 15.5C9 17 12 15 12 15" />
 		<path d="M12 8C14.5 4.5 19.5 5 20.5 8S19 14 17 15.5C15 17 12 15 12 15" />
-
-		{/* Lower wings */}
 		<path d="M12 15C10 15.5 7 17 6 19S7 21 9 20.5C11 20 12 17 12 15" />
 		<path d="M12 15C14 15.5 17 17 18 19S17 21 15 20.5C13 20 12 17 12 15" />
-
-		{/* Body and antennae */}
 		<path d="M12 8V15" strokeWidth="2" />
 		<path d="M11 7.5C10.5 6.5 10.5 5.5 11 4.5" />
 		<path d="M13 7.5C13.5 6.5 13.5 5.5 13 4.5" />
@@ -122,7 +118,7 @@ const SocialIcon = () => (
 
 const RssIcon = () => (
 	<svg
-		className="ease-bounce h-4 w-4 transition-all duration-300 group-hover:scale-110"
+		className="h-4 w-4 transition-all duration-200 group-hover:scale-110"
 		viewBox="0 0 24 24"
 		fill="none"
 		stroke="currentColor"
@@ -147,24 +143,21 @@ const FooterSection = ({
 		<div className="w-full sm:w-auto">
 			<button
 				onClick={onToggle}
-				className="group text-primary flex w-full items-center justify-between text-left font-mono text-xs tracking-wider uppercase"
+				className="text-primary mb-4 flex w-full items-center justify-between text-left text-sm font-medium tracking-wide uppercase"
 				aria-expanded={isMobile ? isExpanded : true}
 				aria-controls={`footer-${title.toLowerCase()}`}>
-				<span className="relative">
-					<strong className="relative z-10">{title}</strong>
-					<span className="bg-secondary absolute inset-0 -z-10 h-full w-full opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-				</span>
+				<span>{title}</span>
 				{isMobile && (
 					<span
-						className="transition-transform duration-200 group-hover:rotate-180 sm:hidden"
+						className="text-xs transition-transform duration-200 sm:hidden"
 						aria-hidden="true">
-						↓
+						{isExpanded ? '−' : '+'}
 					</span>
 				)}
 			</button>
 			<ul
 				id={`footer-${title.toLowerCase()}`}
-				className={`space-y-2 overflow-hidden pt-3 text-base transition-all duration-300 ease-in-out ${
+				className={`space-y-3 overflow-hidden transition-all duration-200 ease-in-out ${
 					isMobile && !isExpanded ? 'max-h-0' : 'max-h-[500px]'
 				}`}
 				role="menu">
@@ -173,7 +166,7 @@ const FooterSection = ({
 						{link.external ? (
 							<a
 								href={link.href}
-								className="group text-muted-foreground hover:text-foreground inline-flex items-center gap-2 py-2 decoration-[hsl(var(--primary))] decoration-wavy underline-offset-[6px] transition-all duration-300 hover:underline"
+								className="text-muted-foreground hover:text-foreground group inline-flex items-center gap-2 transition-colors duration-200"
 								target="_blank"
 								rel="noopener noreferrer"
 								role="menuitem">
@@ -189,15 +182,12 @@ const FooterSection = ({
 								{title === 'Social' && link.text === 'GitHub' && <GithubIcon />}
 								{title === 'Social' && link.text === 'Bsky' && <SocialIcon />}
 								{title === 'Social' && link.text === 'RSS' && <RssIcon />}
-								<span className="relative">
-									{link.text}
-									<span className="bg-primary/50 absolute inset-x-0 -bottom-0.5 h-px scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
-								</span>
+								<span>{link.text}</span>
 							</a>
 						) : (
 							<Link
 								href={link.href}
-								className="group text-muted-foreground hover:text-foreground inline-flex items-center gap-2 py-2 decoration-[hsl(var(--primary))] decoration-wavy underline-offset-[6px] transition-all duration-300 hover:underline"
+								className="text-muted-foreground hover:text-foreground group inline-flex items-center gap-2 transition-colors duration-200"
 								role="menuitem">
 								{title === 'Resources' && link.text === 'Blog' && (
 									<ResourceIcon />
@@ -214,10 +204,7 @@ const FooterSection = ({
 								{title === 'Social' && link.text === 'GitHub' && <GithubIcon />}
 								{title === 'Social' && link.text === 'Bsky' && <SocialIcon />}
 								{title === 'Social' && link.text === 'RSS' && <RssIcon />}
-								<span className="relative">
-									{link.text}
-									<span className="bg-primary/50 absolute inset-x-0 -bottom-0.5 h-px scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
-								</span>
+								<span>{link.text}</span>
 							</Link>
 						)}
 					</li>
@@ -271,26 +258,49 @@ export default function Footer() {
 	}
 
 	return (
-		<footer className="border-muted bg-card relative mt-32 w-full border-t pb-20 backdrop-blur-xl print:hidden">
-			<Container className="mx-auto w-full max-w-screen-xl">
-				<div className="via-primary absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent" />
+		<footer className="bg-muted/20 border-border mt-32 border-t pb-8">
+			<Container className="mx-auto max-w-screen-xl">
+				<div className="pt-16 pb-8">
+					<div className="grid grid-cols-1 gap-12 md:grid-cols-4">
+						{/* Logo and Info */}
+						<div className="md:col-span-1">
+							<div className="mb-6">
+								<Link
+									href="/"
+									className="text-foreground text-xl font-semibold">
+									Lauro Silva
+								</Link>
+							</div>
+							<p className="text-muted-foreground text-sm">
+								Helping developers build exceptional products and upskill their
+								communities.
+							</p>
 
-				<div className="relative mx-auto flex w-full flex-col gap-16 py-16 sm:flex-row sm:items-start">
-					<div className="relative mx-auto flex w-full flex-col items-start gap-12 sm:flex-row sm:items-start">
-						{Object.entries(sections).map(([title, links]) => (
-							<FooterSection
-								key={title}
-								title={title}
-								links={links}
-								isExpanded={expandedSections[title]}
-								onToggle={() => toggleSection(title)}
-							/>
-						))}
-					</div>
+							<div className="mt-6">
+								<ModeToggle />
+							</div>
+						</div>
 
-					<div className="flex items-center justify-between py-6">
-						<ModeToggle />
+						{/* Navigation Sections */}
+						<div className="grid grid-cols-1 gap-10 sm:grid-cols-3 md:col-span-3">
+							{Object.entries(sections).map(([title, links]) => (
+								<FooterSection
+									key={title}
+									title={title}
+									links={links}
+									isExpanded={expandedSections[title]}
+									onToggle={() => toggleSection(title)}
+								/>
+							))}
+						</div>
 					</div>
+				</div>
+
+				{/* Copyright and Bottom Links */}
+				<div className="flex flex-col items-center justify-between gap-4 pt-20 sm:flex-row">
+					<p className="text-muted-foreground text-xs">
+						© {new Date().getFullYear()} Lauro Silva. All rights reserved.
+					</p>
 				</div>
 			</Container>
 		</footer>

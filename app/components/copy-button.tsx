@@ -18,7 +18,7 @@ export function CodeCopyButton({code}: {code: string}) {
 			onClick={handleCopy}
 			size="icon"
 			variant="ghost"
-			className="absolute top-3 right-3 h-8 w-8 opacity-0 transition-opacity group-hover:opacity-100"
+			className="h-8 w-8 transition-opacity" // Updated classes for header
 			aria-label="Copy code to clipboard">
 			<svg
 				width="15"

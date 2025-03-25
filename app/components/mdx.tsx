@@ -4,6 +4,7 @@ import {MDXRemote, type MDXRemoteProps} from 'next-mdx-remote/rsc'
 import React, {type ReactNode} from 'react'
 import {highlight} from 'sugar-high'
 import {CodeCopyButton} from './copy-button'
+import {AlertCircle, AlertTriangle, CheckCircle, XCircle} from 'lucide-react'
 
 interface StackBlitzProps {
 	id: string
@@ -55,10 +56,13 @@ function StackBlitz({
 		: `https://stackblitz.com/edit/${id}`
 
 	return (
-		<div className="bg-card my-8 overflow-auto rounded-xl border p-4 text-base shadow-xs md:my-8">
+		<div className="bg-card text-card-foreground border-border my-8 overflow-hidden rounded-xl border shadow-xs">
+			<div className="bg-muted border-border border-b px-4 py-2">
+				<div className="text-muted-foreground text-sm">StackBlitz Example</div>
+			</div>
 			<iframe
 				src={`${baseUrl}?${params.toString()}`}
-				className="border-border bg-card w-full rounded-xl border"
+				className="bg-card w-full"
 				style={{height}}
 				title="StackBlitz Example"
 				loading="lazy"
@@ -72,34 +76,37 @@ type ImageProps = Omit<NextImageProps, 'width' | 'height'> & {
 	height?: number
 }
 
-// Whimsical table with hover effects and playful borders
 function Table({data}) {
 	return (
-		<div className="-mx-0 my-8 overflow-x-auto rounded-xl border p-4 text-base shadow-xs md:-mx-14 md:my-8">
-			<table className="animate-fade-in w-full border-collapse">
-				<thead>
-					<tr className="border-border border-b-2">
-						{data.headers.map((header, i) => (
-							<th key={i} className="text-foreground p-4 text-left font-bold">
-								{header}
-							</th>
-						))}
-					</tr>
-				</thead>
-				<tbody>
-					{data.rows.map((row, i) => (
-						<tr
-							key={i}
-							className="border-border hover:bg-secondary border-b transition-colors duration-150">
-							{row.map((cell, j) => (
-								<td key={j} className="p-4">
-									{cell}
-								</td>
+		<div className="bg-card text-card-foreground border-border my-8 overflow-hidden rounded-xl border shadow-xs">
+			<div className="overflow-x-auto">
+				<table className="w-full">
+					<thead>
+						<tr>
+							{data.headers.map((header, i) => (
+								<th
+									key={`header-${i}`}
+									className="border-border bg-muted border-b px-4 py-3 text-left font-medium">
+									{header}
+								</th>
 							))}
 						</tr>
-					))}
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						{data.rows.map((row, i) => (
+							<tr
+								key={`row-${i}`}
+								className="border-border hover:bg-muted/50 border-b transition-colors last:border-0">
+								{row.map((cell, j) => (
+									<td key={`cell-${i}-${j}`} className="px-4 py-3">
+										{cell}
+									</td>
+								))}
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
 		</div>
 	)
 }
@@ -108,42 +115,12 @@ function CustomLink({href, children, ...props}) {
 	const isInternal = href.startsWith('/')
 	const isAnchor = href.startsWith('#')
 
-	const baseStyles = `
-    relative
-    text-foreground
-    outline-none
-    focus-visible:ring-2
-    focus-visible:ring-ring
-    focus-visible:ring-offset-2
-    rounded-sm
-    decoration-[0.1em]
-    decoration-primary/40
-    underline
-    underline-offset-[0.2em]
-    transition-all
-    hover:decoration-[0.15em]
-    hover:text-foreground
-    motion-safe:transition-all
-  `
-
-	const hoverStyles = `
-    hover:after:scale-x-100
-    after:absolute
-    after:inset-x-0
-    after:bottom-0
-    after:h-[0.1em]
-    after:bg-current
-    after:scale-x-0
-    after:origin-right
-    after:transition-transform
-    after:duration-300
-    motion-safe:after:transition-transform
-    motion-safe:hover:-translate-y-[0.05em]
-  `
+	const linkClass =
+		'text-primary hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm transition-colors'
 
 	if (isInternal) {
 		return (
-			<Link href={href} className={`${baseStyles} ${hoverStyles}`} {...props}>
+			<Link href={href} className={linkClass} {...props}>
 				{children}
 			</Link>
 		)
@@ -151,7 +128,7 @@ function CustomLink({href, children, ...props}) {
 
 	if (isAnchor) {
 		return (
-			<a href={href} className={`${baseStyles} ${hoverStyles}`} {...props}>
+			<a href={href} className={linkClass} {...props}>
 				{children}
 			</a>
 		)
@@ -162,49 +139,31 @@ function CustomLink({href, children, ...props}) {
 			href={href}
 			target="_blank"
 			rel="noopener noreferrer"
-			className={`${baseStyles} ${hoverStyles} inline-flex items-center gap-0.5`}
+			className={`${linkClass} inline-flex items-center gap-1`}
 			{...props}>
 			{children}
-			<span className="text-[0.7em] transition-transform duration-150 motion-safe:group-hover:translate-x-[0.1em] motion-safe:group-hover:translate-y-[-0.1em]">
-				↗
-			</span>
+			<span className="text-xs">↗</span>
 		</a>
 	)
 }
 
-// Delightful image component with subtle animations
 function RoundedImage({alt, ...imageProps}: ImageProps) {
 	return (
-		<div className="not-prose group relative my-16 w-full overflow-hidden">
-			<div className="relative overflow-hidden rounded-xl transition-all duration-500">
-				{/* Ambient light effect */}
-				<div className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-					<div className="from-primary/20 to-chart-2/20 absolute inset-0 bg-gradient-to-br via-transparent blur-2xl" />
-				</div>
-
-				{/* Subtle border that shows on hover */}
-				<div className="border-primary/10 absolute inset-0 border opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-				{/* Image with hover effect */}
-				<div className="transform-gpu transition-transform duration-500 ease-out will-change-transform">
-					<Image
-						className="h-auto w-full object-cover"
-						width={1200}
-						height={675}
-						quality={95}
-						alt={alt || 'Default alt text'}
-						{...imageProps}
-					/>
-				</div>
-			</div>
-
-			{/* Optional caption with fade-in effect */}
+		<figure className="bg-card border-border my-8 overflow-hidden rounded-xl border">
+			<Image
+				className="w-full"
+				width={1200}
+				height={675}
+				quality={95}
+				alt={alt || 'Image'}
+				{...imageProps}
+			/>
 			{alt && (
-				<figcaption className="text-muted-foreground mt-3 text-center text-sm opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+				<figcaption className="bg-muted border-border text-muted-foreground mt-0 border-t p-3 text-center text-sm">
 					{alt}
 				</figcaption>
 			)}
-		</div>
+		</figure>
 	)
 }
 
@@ -216,20 +175,63 @@ function Code({children, ...props}) {
 		return <code dangerouslySetInnerHTML={{__html: codeHTML}} {...props} />
 	}
 
+	// Josh-style inline code
 	return (
-		<span className="relative inline-flex">
-			<CodeCopyButton code={children?.toString() ?? ''} />
-			<code dangerouslySetInnerHTML={{__html: codeHTML}} {...props} />
-		</span>
+		<code
+			className="bg-secondary/70 text-secondary-foreground ring-border/40 relative inline-block rounded px-1.5 py-0.5 font-mono text-sm font-medium ring-1"
+			dangerouslySetInnerHTML={{__html: codeHTML}}
+		/>
 	)
 }
 
-function Pre({children, ...props}) {
+function Pre({
+	children,
+	...props
+}: {children: React.ReactNode} & React.HTMLAttributes<HTMLPreElement>) {
+	// Initialize language as null
+	let language: string | null = null
+
+	// Extract code content for the copy button
+	const code = extractTextFromChildren(children)
+
+	// Type-safe check for React element
+	if (React.isValidElement(children)) {
+		// Use type assertion for props
+		const childProps = children.props as {className?: string}
+
+		if (childProps.className) {
+			const match = childProps.className.match(/language-(\w+)/)
+			language = match && match[1] ? match[1] : null
+		}
+	}
+
 	return (
-		<pre className="group relative" {...props}>
-			<CodeCopyButton code={extractTextFromChildren(children)} />
-			{children}
-		</pre>
+		<div className="not-prose border-border bg-card ring-border/40 my-10 overflow-hidden rounded-xl border ring-1 shadow-sm">
+			{/* Josh-style header */}
+			<div className="border-border bg-secondary/30 flex items-center justify-between border-b px-4 py-2.5">
+				<div className="flex items-center space-x-2">
+					{/* Simple dot indicator */}
+					<div className="bg-primary/60 h-2 w-2 rounded-full"></div>
+
+					{/* Language badge - simplified */}
+					{language && (
+						<span className="text-primary/90 font-mono text-xs">
+							{language}
+						</span>
+					)}
+				</div>
+
+				{/* Copy button */}
+				<CodeCopyButton code={code} />
+			</div>
+
+			{/* Code content with refined styling */}
+			<div className="relative">
+				<pre className="overflow-auto p-4 text-sm leading-relaxed" {...props}>
+					{children}
+				</pre>
+			</div>
+		</div>
 	)
 }
 
@@ -257,7 +259,6 @@ function extractTextFromChildren(children: React.ReactNode): string {
 	return ''
 }
 
-// Helper function for creating heading anchors
 function slugify(str) {
 	return str
 		.toString()
@@ -265,26 +266,26 @@ function slugify(str) {
 		.trim()
 		.replace(/\s+/g, '-')
 		.replace(/&/g, '-and-')
+		.replace(/[^\w\-]+/g, '')
 		.replace(/\-\-+/g, '-')
 }
 
-// Interactive headings with hover effects
 function createHeading(level: number) {
 	return function Heading({
 		children,
 		...props
 	}: {children: React.ReactNode} & React.HTMLAttributes<HTMLElement>) {
-		const slug = slugify(children)
+		const content = React.isValidElement(children)
+			? extractTextFromChildren(children)
+			: String(children)
+
+		const slug = slugify(content)
+
 		return React.createElement(
 			`h${level}`,
 			{
 				id: slug,
-				className: `
-					group relative
-					flex items-center
-					my-6 font-bold
-                    text-foreground
-				`,
+				className: `text-foreground group relative my-6 font-bold scroll-mt-20`,
 				...props
 			},
 			React.createElement(
@@ -292,12 +293,7 @@ function createHeading(level: number) {
 				{
 					href: `#${slug}`,
 					key: `link-${slug}`,
-					className: `
-						absolute -left-6
-                        opacity-0 group-hover:opacity-100
-						transition-opacity duration-200
-						text-muted-foreground hover:text-foreground
-					`
+					className: `absolute -left-5 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-primary transition-opacity`
 				},
 				'#'
 			),
@@ -308,24 +304,15 @@ function createHeading(level: number) {
 
 function Blockquote({children}: {children: ReactNode}) {
 	return (
-		<blockquote className="bg-card border-border relative my-20 rounded-xl border-2 p-16 shadow-xl">
-			<div className="border-primary bg-background absolute -top-3 -left-3 flex h-12 w-12 items-center justify-center rounded-xl border-2 shadow-md">
-				<span className="text-primary translate-y-[3px] text-2xl">❝</span>
-			</div>
-
-			<div className="relative">
-				<div className="text-foreground pt-2 leading-relaxed font-medium">
-					{children}
-				</div>
-				<div className="from-primary/30 mt-4 h-px w-16 bg-gradient-to-r to-transparent" />
-			</div>
+		<blockquote className="bg-card border-primary text-card-foreground my-8 border-l-4 py-4 pl-6">
+			{children}
 		</blockquote>
 	)
 }
 
 function Em({children}) {
 	return (
-		<em className="py-0.4 from-primary/20 to-primary/10 text-foreground rounded-sm bg-gradient-to-r px-2 font-medium not-italic">
+		<em className="bg-secondary text-secondary-foreground rounded-sm px-2 py-0.5 not-italic">
 			{children}
 		</em>
 	)
@@ -333,104 +320,106 @@ function Em({children}) {
 
 function Strong({children}: {children: ReactNode}) {
 	return (
-		<strong className="text-foreground decoration-primary font-semibold underline decoration-wavy underline-offset-[5px] transition-all duration-500 ease-out hover:underline-offset-[6px]">
-			{children}
+		<strong className="relative inline-block font-bold">
+			<span className="text-primary relative z-10">{children}</span>
+			<span className="bg-primary/15 absolute bottom-0.5 left-0 z-0 h-3 w-full rounded-sm"></span>
 		</strong>
 	)
 }
 
 function Hr() {
 	return (
-		<hr className="via-border my-12 h-[2px] border-none bg-gradient-to-r from-transparent to-transparent" />
+		<div className="my-12 flex items-center">
+			<div className="border-border flex-grow border-t"></div>
+			<div className="mx-4 flex space-x-1.5">
+				<div className="bg-primary/30 h-1.5 w-1.5 rounded-full"></div>
+				<div className="bg-primary/50 h-1.5 w-1.5 rounded-full"></div>
+				<div className="bg-primary/30 h-1.5 w-1.5 rounded-full"></div>
+			</div>
+			<div className="border-border flex-grow border-t"></div>
+		</div>
 	)
 }
 
 function UnorderedList({children}: {children: ReactNode}) {
-	return <ul className="my-6 ml-6 list-none space-y-2">{children}</ul>
+	return <ul className="my-6 ml-6 space-y-3">{children}</ul>
 }
 
 function OrderedList({children}: {children: ReactNode}) {
 	return (
-		<ol className="marker:text-primary my-6 ml-6 list-decimal space-y-2 marker:font-medium">
+		<ol className="marker:text-primary my-6 ml-6 list-decimal space-y-3 marker:font-medium">
 			{children}
 		</ol>
 	)
 }
 
 function ListItem({children}: {children: ReactNode}) {
-	return (
-		<li className="group [&:not(ol>&)]:before:text-primary relative pl-2 [&:not(ol>&)]:before:absolute [&:not(ol>&)]:before:top-0 [&:not(ol>&)]:before:-left-4 [&:not(ol>&)]:before:transition-transform [&:not(ol>&)]:before:duration-200 [&:not(ol>&)]:before:content-['•'] [&:not(ol>&)]:hover:before:scale-150">
-			{children}
-		</li>
-	)
+	return <li className="relative pl-1">{children}</li>
 }
 
-function InfoBox({
+function Alert({
 	children,
 	type = 'info'
 }: {
 	children: ReactNode
 	type?: 'info' | 'warning' | 'error' | 'success'
 }) {
+	// Enhanced styling with better contrast
 	const styles = {
-		info: {
-			containerClass: 'bg-primary/5 border-primary/20',
-			iconClass: 'text-primary',
-			icon: '💡'
-		},
-		warning: {
-			containerClass: 'bg-destructive/5 border-destructive/20',
-			iconClass: 'text-destructive',
-			icon: '⚠️'
-		},
-		error: {
-			containerClass: 'bg-destructive/10 border-destructive/30',
-			iconClass: 'text-destructive',
-			icon: '❌'
-		},
-		success: {
-			containerClass: 'bg-primary/5 border-primary/20',
-			iconClass: 'text-primary',
-			icon: '✅'
-		}
+		info: 'bg-primary/5 border-primary/20 text-foreground',
+		warning: 'bg-destructive/5 border-destructive/20 text-foreground',
+		error: 'bg-destructive/10 border-destructive/30 text-foreground',
+		success: 'bg-primary/5 border-primary/20 text-foreground'
+	}
+
+	// Icon mapping using Lucide icons
+	const icons = {
+		info: <AlertCircle className="text-primary h-5 w-5 flex-shrink-0" />,
+		warning: (
+			<AlertTriangle className="text-destructive/70 h-5 w-5 flex-shrink-0" />
+		),
+		error: <XCircle className="text-destructive h-5 w-5 flex-shrink-0" />,
+		success: <CheckCircle className="text-primary/70 h-5 w-5 flex-shrink-0" />
+	}
+
+	// Labels for screen readers
+	const ariaLabels = {
+		info: 'Information',
+		warning: 'Warning',
+		error: 'Error',
+		success: 'Success'
 	}
 
 	return (
-		<div
-			className={`relative my-8 rounded-lg border-2 ${styles[type].containerClass} p-6 pt-8 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl`}>
-			<div
-				className={`absolute -top-4 left-4 flex h-8 w-8 items-center justify-center rounded-full border-2 ${styles[type].containerClass} bg-background shadow-md`}>
-				<span className="text-lg">{styles[type].icon}</span>
+		<div className={`my-8 rounded-lg border p-4 ${styles[type]}`}>
+			<div className="flex items-center">
+				{/* Icon with flex-shrink-0 to prevent distortion */}
+				<div className="flex-shrink-0">{icons[type]}</div>
+
+				{/* Content with proper spacing */}
+				<div className="ml-3">
+					<span className="sr-only">{ariaLabels[type]}</span>
+					<div>{children}</div>
+				</div>
 			</div>
-			<div className="prose dark:prose-invert max-w-none">{children}</div>
 		</div>
 	)
 }
 
 function Callout({children, emoji}: {children: ReactNode; emoji: string}) {
 	return (
-		<div className="group relative my-8">
-			{/* Subtle glow effect */}
-			<div className="from-primary/30 via-primary/20 to-primary/30 absolute -inset-[1px] animate-pulse rounded-xl bg-gradient-to-r opacity-25 blur-xl" />
-
-			{/* Main card */}
-			<div className="bg-card relative rounded-xl p-6 shadow-sm">
-				<div className="flex items-baseline gap-5">
-					{/* Emoji container */}
-					<div
-						className="relative flex-shrink-0 transition-transform duration-300 ease-in-out group-hover:-rotate-6"
-						role="img"
-						aria-label={`Callout indicated by ${emoji}`}>
-						<span className="text-2xl">{emoji}</span>
-					</div>
-
-					{/* Content */}
-					<div className="flex-1">
-						<div className="text-foreground text-lg leading-relaxed [text-wrap:pretty]">
-							{children}
-						</div>
-					</div>
+		<div className="bg-muted/40 border-border my-8 overflow-hidden rounded-lg border">
+			<div className="flex items-center gap-4 p-5">
+				{/* Emoji container - perfectly centered */}
+				<div
+					className="bg-card flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-xl"
+					role="img"
+					aria-label={`Callout emoji: ${emoji}`}>
+					{emoji}
 				</div>
+
+				{/* Content container */}
+				<div className="text-foreground flex-1">{children}</div>
 			</div>
 		</div>
 	)
@@ -438,15 +427,16 @@ function Callout({children, emoji}: {children: ReactNode; emoji: string}) {
 
 function Demo({children}) {
 	return (
-		<div className="border-border bg-card my-8 transform rounded-lg border p-6 shadow-lg transition-all duration-300 hover:-translate-y-0.5">
-			{children}
+		<div className="bg-card my-8 overflow-hidden rounded-lg border">
+			<div className="bg-card border-b p-3 text-sm font-medium">Demo</div>
+			<div className="p-4">{children}</div>
 		</div>
 	)
 }
 
 function Kbd({children}) {
 	return (
-		<kbd className="border-border bg-secondary rounded border px-2 py-1 font-mono text-sm shadow-sm">
+		<kbd className="bg-secondary text-secondary-foreground rounded border px-1.5 py-0.5 font-mono text-xs">
 			{children}
 		</kbd>
 	)
@@ -454,20 +444,11 @@ function Kbd({children}) {
 
 function Details({children, title}: {children: ReactNode; title: string}) {
 	return (
-		<details className="group my-4 rounded-lg">
-			{/* Native details/summary elements for built-in functionality */}
-			<summary className="bg-card hover:bg-primary/5 flex cursor-pointer items-center justify-between rounded-lg p-4 text-lg font-medium transition-all">
-				<span>{title}</span>
-				{/* Unicode chevron that rotates */}
-				<span className="text-primary/60 transition-transform duration-200 group-open:rotate-90">
-					›
-				</span>
+		<details className="bg-card my-6 overflow-hidden rounded-lg border">
+			<summary className="bg-muted cursor-pointer px-4 py-3 font-medium">
+				{title}
 			</summary>
-
-			{/* Content with slide animation */}
-			<div className="border-primary/10 bg-card/50 rounded-b-lg border-x border-b p-4 pt-2">
-				{children}
-			</div>
+			<div className="p-4">{children}</div>
 		</details>
 	)
 }
@@ -491,7 +472,7 @@ const components = {
 	ul: UnorderedList,
 	ol: OrderedList,
 	li: ListItem,
-	InfoBox,
+	InfoBox: Alert, // Map InfoBox to our Alert component
 	Callout,
 	Demo,
 	Kbd,

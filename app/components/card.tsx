@@ -26,63 +26,69 @@ export function Card({
 	return (
 		<Link
 			href={href}
-			className="group peer relative block w-full focus:outline-none"
+			className="group focus-visible:ring-primary block h-full focus-visible:ring-2 focus-visible:outline-none"
 			aria-label={`Read more about ${title}`}>
-			<article className={`space-y-8 ${className}`}>
-				<div className="relative aspect-[3/4] rounded-lg">
-					{/* Inner container for image with overflow hidden */}
-					<div className="absolute inset-0 overflow-hidden rounded-xl">
-						{coverImage ? (
-							<Image
-								src={coverImage}
-								alt={title}
-								fill
-								quality={70}
-								loading="lazy" // Add lazy loading
-								sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Add responsive sizes
-								placeholder="blur" // Add blur placeholder
-								blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRg..." // Add base64 blur image
-								className="absolute h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-								priority={false} // Set to true only for above-the-fold images
-							/>
-						) : (
-							<h1>lol</h1>
-						)}
+			<article
+				className={`${className} bg-card border-border h-full overflow-hidden rounded-xl border shadow-sm`}>
+				{/* Clean image container */}
+				{coverImage && (
+					<div className="relative aspect-[16/9] w-full overflow-hidden">
+						<Image
+							src={coverImage}
+							alt={title}
+							fill
+							quality={80}
+							loading="lazy"
+							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+							className="object-cover"
+							priority={false}
+						/>
 					</div>
-					{/* Border effect outside of overflow hidden */}
-					<div className="absolute inset-0 rounded-xl transition-shadow duration-300 group-hover:shadow-[0_0_0_4px_hsl(var(--primary))]" />
-				</div>
-
-				<div className="flex items-center justify-between">
-					{date && (
-						<time className="text-muted-foreground text-xl font-medium">
-							{date}
-						</time>
-					)}
-					{icon && (
-						<div className="bg-secondary/10 rounded-xl p-2 grayscale">
-							<Image
-								src={icon}
-								alt=""
-								width={34}
-								height={34}
-								className="h-8 w-8 object-contain"
-							/>
-						</div>
-					)}
-				</div>
-
-				<div className="text-foreground text-xl font-semibold md:text-3xl">
-					{title}
-				</div>
-
-				{description && (
-					<p className="text-muted-foreground text-lg leading-relaxed">
-						{description}
-					</p>
 				)}
 
-				{footer}
+				{/* Content with proper spacing */}
+				<div className="flex h-[calc(100%-9rem)] min-h-[14rem] flex-col p-6">
+					{/* Date and icon row */}
+					<div className="mb-4 flex items-center justify-between">
+						{date && (
+							<time className="text-muted-foreground text-sm font-medium">
+								{date}
+							</time>
+						)}
+						{icon && (
+							<div className="p-2">
+								<Image
+									src={icon}
+									alt=""
+									width={28}
+									height={28}
+									className="h-7 w-7 object-contain"
+								/>
+							</div>
+						)}
+					</div>
+
+					{/* Title with proper size */}
+					<h3 className="text-foreground mb-2 line-clamp-2 text-xl font-semibold">
+						{title}
+					</h3>
+
+					{/* Description with better size */}
+					{description && (
+						<p className="text-muted-foreground mb-auto line-clamp-3 text-base">
+							{description}
+						</p>
+					)}
+
+					{/* Footer area */}
+					<div className="mt-auto pt-4">
+						{footer || (
+							<div className="text-primary text-sm font-medium">
+								Read article
+							</div>
+						)}
+					</div>
+				</div>
 			</article>
 		</Link>
 	)
