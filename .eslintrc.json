@@ -9,21 +9,7 @@
 			{"terms": ["FIXME"], "location": "anywhere"}
 		],
 		"import/no-duplicates": ["warn", {"prefer-inline": true}],
-		"import/order": [
-			"warn",
-			{
-				"alphabetize": {"order": "asc", "caseInsensitive": true},
-				"pathGroups": [{"pattern": "#*/**", "group": "internal"}],
-				"groups": [
-					"builtin",
-					"external",
-					"internal",
-					"parent",
-					"sibling",
-					"index"
-				]
-			}
-		],
+		"import/order": "off",
 		"react-hooks/rules-of-hooks": "error",
 		"react-hooks/exhaustive-deps": "warn",
 		"react/jsx-key": "warn",
@@ -50,7 +36,8 @@
 						"disallowTypeAnnotations": true,
 						"fixStyle": "inline-type-imports"
 					}
-				]
+				],
+				"@typescript-eslint/no-floating-promises": "off"
 			}
 		}
 	],

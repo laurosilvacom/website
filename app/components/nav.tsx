@@ -230,7 +230,7 @@ export function Navbar() {
 									aria-current={isActive ? 'page' : undefined}
 									className={`group inline-flex items-center gap-2 px-4 py-2 text-base font-medium transition-all duration-300 ease-out ${
 										isActive
-											? 'text-foreground underline decoration-[hsl(var(--primary))] decoration-wavy underline-offset-[6px]'
+											? 'text-foreground decoration-primary underline decoration-wavy underline-offset-[6px]'
 											: 'text-muted-foreground hover:text-foreground'
 									}`}>
 									{getIconForPath(path)}
@@ -242,22 +242,22 @@ export function Navbar() {
 
 					{/* Mobile Menu Button */}
 					<button
-						className="hover:bg-secondary/10 relative z-50 flex h-12 w-12 items-center justify-center rounded-full transition-colors md:hidden"
+						className="hover:bg-secondary relative z-50 flex h-12 w-12 items-center justify-center rounded-full transition-colors md:hidden"
 						onClick={() => setIsMenuOpen(!isMenuOpen)}
 						aria-expanded={isMenuOpen}
 						aria-controls="mobile-menu"
 						aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}>
 						<div className="relative flex w-6 items-center justify-center">
 							<span
-								className={`absolute h-0.5 w-6 transform bg-[hsl(var(--foreground))] transition duration-300 ease-in-out ${isMenuOpen ? 'translate-y-0 rotate-45' : '-translate-y-2'}`}
+								className={`bg-foreground absolute h-0.5 w-6 transform transition duration-300 ease-in-out ${isMenuOpen ? 'translate-y-0 rotate-45' : '-translate-y-2'}`}
 								aria-hidden="true"
 							/>
 							<span
-								className={`absolute h-0.5 transform bg-[hsl(var(--foreground))] transition-all duration-300 ease-in-out ${isMenuOpen ? 'w-0 opacity-0' : 'w-6 opacity-100'}`}
+								className={`bg-foreground absolute h-0.5 transform transition-all duration-300 ease-in-out ${isMenuOpen ? 'w-0 opacity-0' : 'w-6 opacity-100'}`}
 								aria-hidden="true"
 							/>
 							<span
-								className={`absolute h-0.5 w-6 transform bg-[hsl(var(--foreground))] transition duration-300 ease-in-out ${isMenuOpen ? 'translate-y-0 -rotate-45' : 'translate-y-2'}`}
+								className={`bg-foreground absolute h-0.5 w-6 transform transition duration-300 ease-in-out ${isMenuOpen ? 'translate-y-0 -rotate-45' : 'translate-y-2'}`}
 								aria-hidden="true"
 							/>
 						</div>
@@ -282,7 +282,7 @@ export function Navbar() {
 				role="dialog"
 				aria-label="Mobile menu"
 				aria-modal="true"
-				className={`border-border bg-card dark:bg-card fixed top-0 right-0 z-40 h-full w-[300px] transform border-l transition-all duration-300 ease-in-out md:hidden ${
+				className={`border-border bg-card fixed top-0 right-0 z-40 h-full w-[300px] transform border-l transition-all duration-300 ease-in-out md:hidden ${
 					isMenuOpen ? 'translate-x-0' : 'translate-x-full'
 				}`}>
 				<nav
@@ -298,7 +298,7 @@ export function Navbar() {
 								aria-current={isActive ? 'page' : undefined}
 								className={`group inline-flex items-center gap-2 px-4 py-3 text-xl font-medium transition-colors duration-300 ease-out ${
 									isActive
-										? 'text-foreground underline decoration-[hsl(var(--primary))] decoration-wavy underline-offset-[6px]'
+										? 'text-foreground decoration-primary underline decoration-wavy underline-offset-[6px]'
 										: 'text-muted-foreground hover:text-foreground'
 								}`}>
 								{getIconForPath(path)}

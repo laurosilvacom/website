@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import {useEffect, useState} from 'react'
 import Container from 'app/components/container'
+import {ModeToggle} from './toggle'
 
 interface FooterLink {
 	href: string
@@ -287,8 +288,8 @@ export default function Footer() {
 						))}
 					</div>
 
-					<div className="text-muted-foreground absolute bottom-4 left-5 text-sm sm:left-10 lg:left-0">
-						<span>© {new Date().getFullYear()} Lauro Silva, LLC</span>
+					<div className="flex items-center justify-between py-6">
+						<ModeToggle />
 					</div>
 				</div>
 			</Container>

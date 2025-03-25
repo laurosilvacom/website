@@ -18,7 +18,7 @@ interface StackBlitzProps {
 	devToolsHeight?: number
 	theme?: 'dark' | 'light'
 	clickToLoad?: boolean
-	isGithub?: boolean // New prop to indicate if it's a GitHub repository
+	isGithub?: boolean
 }
 
 function StackBlitz({
@@ -34,7 +34,7 @@ function StackBlitz({
 	devToolsHeight,
 	theme = 'dark',
 	clickToLoad = false,
-	isGithub = false // New prop with default value
+	isGithub = false
 }: StackBlitzProps) {
 	const params = new URLSearchParams({
 		embed: '1',
@@ -58,7 +58,7 @@ function StackBlitz({
 		<div className="bg-card my-8 overflow-auto rounded-xl border p-4 text-base shadow-xs md:my-8">
 			<iframe
 				src={`${baseUrl}?${params.toString()}`}
-				className="w-full rounded-xl border border-[hsl(var(--border))] bg-[hsl(var(--card))]"
+				className="border-border bg-card w-full rounded-xl border"
 				style={{height}}
 				title="StackBlitz Example"
 				loading="lazy"
@@ -78,11 +78,9 @@ function Table({data}) {
 		<div className="-mx-0 my-8 overflow-x-auto rounded-xl border p-4 text-base shadow-xs md:-mx-14 md:my-8">
 			<table className="animate-fade-in w-full border-collapse">
 				<thead>
-					<tr className="border-primary-500 border-b-2">
+					<tr className="border-border border-b-2">
 						{data.headers.map((header, i) => (
-							<th
-								key={i}
-								className="text-primary-900 dark:text-primary-100 p-4 text-left font-bold">
+							<th key={i} className="text-foreground p-4 text-left font-bold">
 								{header}
 							</th>
 						))}
@@ -92,7 +90,7 @@ function Table({data}) {
 					{data.rows.map((row, i) => (
 						<tr
 							key={i}
-							className="border-primary-200 dark:border-primary-800 hover:bg-primary-50 dark:hover:bg-primary-900/30 border-b transition-colors duration-150">
+							className="border-border hover:bg-secondary border-b transition-colors duration-150">
 							{row.map((cell, j) => (
 								<td key={j} className="p-4">
 									{cell}
@@ -112,21 +110,19 @@ function CustomLink({href, children, ...props}) {
 
 	const baseStyles = `
     relative
-    text-yellow-600 dark:text-yellow-300
+    text-foreground
     outline-none
     focus-visible:ring-2
-    focus-visible:ring-yellow-500
+    focus-visible:ring-ring
     focus-visible:ring-offset-2
     rounded-sm
     decoration-[0.1em]
-    decoration-yellow-300/40
-    dark:decoration-yellow-300/40
+    decoration-primary/40
     underline
     underline-offset-[0.2em]
     transition-all
     hover:decoration-[0.15em]
-    hover:text-yellow-800
-    dark:hover:text-yellow-300
+    hover:text-foreground
     motion-safe:transition-all
   `
 
@@ -287,7 +283,7 @@ function createHeading(level: number) {
 					group relative
 					flex items-center
 					my-6 font-bold
-text-primary-900 dark:text-primary-100
+                    text-foreground
 				`,
 				...props
 			},
@@ -298,10 +294,9 @@ text-primary-900 dark:text-primary-100
 					key: `link-${slug}`,
 					className: `
 						absolute -left-6
-opacity-0 group-hover:opacity-100
+                        opacity-0 group-hover:opacity-100
 						transition-opacity duration-200
-						text-primary-400 hover:text-primary-700
-						dark:text-primary-600 dark:hover:text-primary-300
+						text-muted-foreground hover:text-foreground
 					`
 				},
 				'#'
@@ -313,8 +308,8 @@ opacity-0 group-hover:opacity-100
 
 function Blockquote({children}: {children: ReactNode}) {
 	return (
-		<blockquote className="bg-card rounded-default border-default relative my-20 border-2 p-16 shadow-xl">
-			<div className="rounded-default border-primary bg-background absolute -top-3 -left-3 flex h-12 w-12 items-center justify-center border-2 shadow-md">
+		<blockquote className="bg-card border-border relative my-20 rounded-xl border-2 p-16 shadow-xl">
+			<div className="border-primary bg-background absolute -top-3 -left-3 flex h-12 w-12 items-center justify-center rounded-xl border-2 shadow-md">
 				<span className="text-primary translate-y-[3px] text-2xl">❝</span>
 			</div>
 
@@ -330,7 +325,7 @@ function Blockquote({children}: {children: ReactNode}) {
 
 function Em({children}) {
 	return (
-		<em className="py-0.4 rounded-sm bg-gradient-to-r from-yellow-200 to-yellow-100 px-2 font-medium text-gray-900 not-italic dark:from-yellow-400/50 dark:to-yellow-300/50 dark:text-gray-50">
+		<em className="py-0.4 from-primary/20 to-primary/10 text-foreground rounded-sm bg-gradient-to-r px-2 font-medium not-italic">
 			{children}
 		</em>
 	)
@@ -338,7 +333,7 @@ function Em({children}) {
 
 function Strong({children}: {children: ReactNode}) {
 	return (
-		<strong className="text-foreground font-semibold underline decoration-yellow-300 decoration-wavy underline-offset-[5px] transition-all duration-500 ease-out hover:decoration-yellow-300 hover:underline-offset-[6px]">
+		<strong className="text-foreground decoration-primary font-semibold underline decoration-wavy underline-offset-[5px] transition-all duration-500 ease-out hover:underline-offset-[6px]">
 			{children}
 		</strong>
 	)
@@ -346,7 +341,7 @@ function Strong({children}: {children: ReactNode}) {
 
 function Hr() {
 	return (
-		<hr className="my-12 h-[2px] border-none bg-gradient-to-r from-transparent via-gray-400 to-transparent dark:via-gray-600" />
+		<hr className="via-border my-12 h-[2px] border-none bg-gradient-to-r from-transparent to-transparent" />
 	)
 }
 
@@ -379,27 +374,23 @@ function InfoBox({
 }) {
 	const styles = {
 		info: {
-			containerClass:
-				'bg-yellow-50/50 dark:bg-yellow-900/10 border-yellow-100 dark:border-yellow-800/30',
-			iconClass: 'text-yellow-500 dark:text-yellow-400',
+			containerClass: 'bg-primary/5 border-primary/20',
+			iconClass: 'text-primary',
 			icon: '💡'
 		},
 		warning: {
-			containerClass:
-				'bg-amber-50/50 dark:bg-amber-900/10 border-amber-100 dark:border-amber-800/30',
-			iconClass: 'text-amber-500 dark:text-amber-400',
+			containerClass: 'bg-destructive/5 border-destructive/20',
+			iconClass: 'text-destructive',
 			icon: '⚠️'
 		},
 		error: {
-			containerClass:
-				'bg-red-50/50 dark:bg-red-900/10 border-red-100 dark:border-red-800/30',
-			iconClass: 'text-red-500 dark:text-red-400',
+			containerClass: 'bg-destructive/10 border-destructive/30',
+			iconClass: 'text-destructive',
 			icon: '❌'
 		},
 		success: {
-			containerClass:
-				'bg-emerald-50/50 dark:bg-emerald-900/10 border-emerald-100 dark:border-emerald-800/30',
-			iconClass: 'text-emerald-500 dark:text-emerald-400',
+			containerClass: 'bg-primary/5 border-primary/20',
+			iconClass: 'text-primary',
 			icon: '✅'
 		}
 	}
@@ -408,7 +399,7 @@ function InfoBox({
 		<div
 			className={`relative my-8 rounded-lg border-2 ${styles[type].containerClass} p-6 pt-8 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl`}>
 			<div
-				className={`absolute -top-4 left-4 flex h-8 w-8 items-center justify-center rounded-full border-2 ${styles[type].containerClass} bg-white shadow-md dark:bg-gray-950`}>
+				className={`absolute -top-4 left-4 flex h-8 w-8 items-center justify-center rounded-full border-2 ${styles[type].containerClass} bg-background shadow-md`}>
 				<span className="text-lg">{styles[type].icon}</span>
 			</div>
 			<div className="prose dark:prose-invert max-w-none">{children}</div>
@@ -420,7 +411,7 @@ function Callout({children, emoji}: {children: ReactNode; emoji: string}) {
 	return (
 		<div className="group relative my-8">
 			{/* Subtle glow effect */}
-			<div className="absolute -inset-[1px] animate-pulse rounded-xl bg-gradient-to-r from-violet-500 via-sky-500 to-violet-500 opacity-25 blur-xl" />
+			<div className="from-primary/30 via-primary/20 to-primary/30 absolute -inset-[1px] animate-pulse rounded-xl bg-gradient-to-r opacity-25 blur-xl" />
 
 			{/* Main card */}
 			<div className="bg-card relative rounded-xl p-6 shadow-sm">
@@ -447,7 +438,7 @@ function Callout({children, emoji}: {children: ReactNode; emoji: string}) {
 
 function Demo({children}) {
 	return (
-		<div className="my-8 transform rounded-lg border border-gray-200 bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-0.5 dark:border-gray-700 dark:bg-gray-800">
+		<div className="border-border bg-card my-8 transform rounded-lg border p-6 shadow-lg transition-all duration-300 hover:-translate-y-0.5">
 			{children}
 		</div>
 	)
@@ -455,7 +446,7 @@ function Demo({children}) {
 
 function Kbd({children}) {
 	return (
-		<kbd className="rounded border border-gray-200 bg-gray-100 px-2 py-1 font-mono text-sm shadow-sm dark:border-gray-700 dark:bg-gray-800">
+		<kbd className="border-border bg-secondary rounded border px-2 py-1 font-mono text-sm shadow-sm">
 			{children}
 		</kbd>
 	)

@@ -3,10 +3,10 @@ import {SpeedInsights} from '@vercel/speed-insights/next'
 import localFont from 'next/font/local'
 import {type Metadata} from 'next/types'
 import {type ReactNode} from 'react'
+import {ThemeProvider} from '@/components/theme-provider'
 
 import 'app/globals.css'
-import Footer from 'app/components/footer'
-import {Navbar} from 'app/components/nav'
+
 import {Toaster} from 'app/components/toaster'
 import {baseUrl} from 'app/sitemap'
 import {LayoutContents} from './layout-contents'
@@ -114,10 +114,18 @@ export default function RootLayout({children}: RootLayoutProps) {
 			className={cx(
 				wotfard.variable,
 				commitMono.variable,
-				'scroll-smooth antialiased'
-			)}>
+				'bg-background text-foreground scroll-smooth antialiased'
+			)}
+			suppressHydrationWarning // Add this to suppress hydration warnings related to theme
+		>
 			<body>
-				<LayoutContents>{children}</LayoutContents>
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem
+					disableTransitionOnChange>
+					<LayoutContents>{children}</LayoutContents>
+				</ThemeProvider>
 				<Analytics />
 				<SpeedInsights />
 				<Toaster />
