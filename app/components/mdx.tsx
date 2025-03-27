@@ -78,7 +78,7 @@ type ImageProps = Omit<NextImageProps, 'width' | 'height'> & {
 
 function Table({data}) {
 	return (
-		<div className="bg-card text-card-foreground border-border my-8 overflow-hidden rounded-xl border shadow-xs">
+		<div className="bg-card text-foreground border-border my-8 overflow-hidden rounded-xl border shadow-xs">
 			<div className="overflow-x-auto">
 				<table className="w-full">
 					<thead>
@@ -86,7 +86,7 @@ function Table({data}) {
 							{data.headers.map((header, i) => (
 								<th
 									key={`header-${i}`}
-									className="border-border bg-muted border-b px-4 py-3 text-left font-medium">
+									className="border-border text-foreground bg-muted text-md border-b px-4 py-3 text-left font-medium">
 									{header}
 								</th>
 							))}
@@ -190,16 +190,43 @@ function Pre({
 }: {children: React.ReactNode} & React.HTMLAttributes<HTMLPreElement>) {
 	// Initialize language as null
 	let language: string | null = null
+	let filePath: string | null = null
 
-	// Extract code content for the copy button
-	const code = extractTextFromChildren(children)
+	// Extract code content
+	const originalCode = extractTextFromChildren(children)
+	let displayCode = originalCode
 
-	// Type-safe check for React element
+	// Check if the first line contains a file path comment
+	if (originalCode && originalCode.trim() !== '') {
+		const lines = originalCode.split('\n')
+		if (lines.length > 0 && lines[0]) {
+			const firstLine = lines[0].trim()
+
+			// Check for // path.tsx or /* path.tsx */ or # path.tsx format
+			if (
+				firstLine.startsWith('// ') ||
+				firstLine.startsWith('/* ') ||
+				firstLine.startsWith('# ')
+			) {
+				// Extract the file path
+				filePath = firstLine
+					.replace(/^(\/\/|\/\*|#)\s+/, '')
+					.replace(/\s+\*\/$/, '')
+
+				// Remove the first line for display
+				displayCode = lines.slice(1).join('\n')
+			}
+		}
+	}
+
+	// Type-safe check for React element and extract language
+	let className = ''
 	if (React.isValidElement(children)) {
-		// Use type assertion for props
-		const childProps = children.props as {className?: string}
+		// Type assertion with proper type checking
+		const childProps = children.props as {className?: string} | undefined
 
-		if (childProps.className) {
+		if (childProps && childProps.className) {
+			className = childProps.className
 			const match = childProps.className.match(/language-(\w+)/)
 			language = match && match[1] ? match[1] : null
 		}
@@ -213,22 +240,31 @@ function Pre({
 					{/* Simple dot indicator */}
 					<div className="bg-primary/60 h-2 w-2 rounded-full"></div>
 
-					{/* Language badge - simplified */}
-					{language && (
-						<span className="text-primary/90 font-mono text-xs">
-							{language}
+					{/* File path takes precedence over language badge */}
+					{filePath ? (
+						<span className="text-primary/60 font-mono text-xs font-semibold">
+							{filePath}
 						</span>
+					) : (
+						language && (
+							<span className="text-primary/60 font-mono text-xs font-semibold">
+								{language}
+							</span>
+						)
 					)}
 				</div>
 
-				{/* Copy button */}
-				<CodeCopyButton code={code} />
+				{/* Copy button - always use the original code for copying */}
+				<CodeCopyButton code={originalCode} />
 			</div>
 
-			{/* Code content with refined styling */}
+			{/* Code content with refined styling - manually render the highlighted code */}
 			<div className="relative">
 				<pre className="overflow-auto p-4 text-sm leading-relaxed" {...props}>
-					{children}
+					<code
+						className={className}
+						dangerouslySetInnerHTML={{__html: highlight(displayCode)}}
+					/>
 				</pre>
 			</div>
 		</div>
