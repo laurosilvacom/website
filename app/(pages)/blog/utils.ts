@@ -11,6 +11,19 @@ type Metadata = {
 	description?: string
 	gradient?: [string, string] | string
 	readingTime?: string
+	tags?: string[]
+}
+
+export function extractTagsFromPosts(posts: any[]): string[] {
+	const tagsSet = new Set<string>()
+
+	posts.forEach((post) => {
+		if (post.metadata.tags && Array.isArray(post.metadata.tags)) {
+			post.metadata.tags.forEach((tag: string) => tagsSet.add(tag))
+		}
+	})
+
+	return Array.from(tagsSet).sort()
 }
 
 function calculateReadingTime(content: string): string {
@@ -41,10 +54,43 @@ function parseFrontmatter(fileContent: string) {
 		const trimmedKey = key.trim()
 		const value = valueParts.join(': ').trim()
 
-		metadata[trimmedKey as keyof Metadata] = value.replace(
-			/^['"](.*)['"]$/,
-			'$1'
-		)
+		// Handle arrays like tags: ['nextjs', 'seo', 'sanity']
+		if (value.startsWith('[') && value.endsWith(']')) {
+			try {
+				// Parse the array using JSON.parse with proper string replacement
+				const arrayString = value.replace(/'/g, '"') // Replace single quotes with double quotes
+
+				// Use type assertion to tell TypeScript this is a valid assignment
+				const parsedValue = JSON.parse(arrayString)
+				if (trimmedKey === 'tags' && Array.isArray(parsedValue)) {
+					metadata.tags = parsedValue as string[]
+				} else {
+					metadata[trimmedKey as keyof Metadata] = parsedValue
+				}
+			} catch (e) {
+				// Fallback to simple string splitting if JSON parsing fails
+				const cleanValue = value.substring(1, value.length - 1) // Remove [ and ]
+				const items = cleanValue.split(',').map(
+					(item) => item.trim().replace(/^['"]|['"]$/g, '') // Remove quotes
+				)
+
+				// Use specific type handling for known array fields
+				if (trimmedKey === 'tags') {
+					metadata.tags = items
+				} else {
+					// For other potential array fields, use a type assertion
+					// @ts-expect-error - Handle other array types
+					metadata[trimmedKey as keyof Metadata] = items
+				}
+			}
+		} else {
+			// Handle regular string values
+			// @ts-expect-error - Allow string assignment
+			metadata[trimmedKey as keyof Metadata] = value.replace(
+				/^['"](.*)['"]$/,
+				'$1'
+			)
+		}
 	})
 
 	if (!metadata.title || !metadata.publishedAt || !metadata.summary) {
