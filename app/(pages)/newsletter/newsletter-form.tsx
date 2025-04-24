@@ -89,7 +89,7 @@ export function NewsletterForm() {
 						id="firstName"
 						name="firstName"
 						type="text"
-						placeholder="John"
+						placeholder="Name"
 						className="border-input bg-background text-foreground placeholder:text-muted-foreground/60 hover:border-primary/50 focus:border-primary focus:ring-primary/20 w-full rounded-xl border px-4 py-3.5 text-base focus:ring-2 focus:outline-none md:text-lg"
 					/>
 				</div>
@@ -104,7 +104,7 @@ export function NewsletterForm() {
 						id="email"
 						name="email"
 						type="email"
-						placeholder="you@example.com"
+						placeholder="me@email.com"
 						className="border-input bg-background text-foreground placeholder:text-muted-foreground/60 hover:border-primary/50 focus:border-primary focus:ring-primary/20 w-full rounded-xl border px-4 py-3.5 text-base focus:ring-2 focus:outline-none md:text-lg"
 						required
 					/>

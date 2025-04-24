@@ -4,6 +4,7 @@ import Link from 'next/link'
 import {useEffect, useState} from 'react'
 import Container from 'app/components/container'
 import {ModeToggle} from './toggle'
+import {cn} from '@/lib/utils'
 
 interface FooterLink {
 	href: string
@@ -143,13 +144,13 @@ const FooterSection = ({
 		<div className="w-full sm:w-auto">
 			<button
 				onClick={onToggle}
-				className="text-primary mb-4 flex w-full items-center justify-between text-left text-sm font-medium tracking-wide uppercase"
+				className="text-primary mb-4 flex w-full items-center justify-between text-left text-xs font-medium tracking-wider uppercase"
 				aria-expanded={isMobile ? isExpanded : true}
 				aria-controls={`footer-${title.toLowerCase()}`}>
 				<span>{title}</span>
 				{isMobile && (
 					<span
-						className="text-xs transition-transform duration-200 sm:hidden"
+						className="ml-2 text-xs transition-transform duration-200 sm:hidden"
 						aria-hidden="true">
 						{isExpanded ? '−' : '+'}
 					</span>
@@ -166,7 +167,7 @@ const FooterSection = ({
 						{link.external ? (
 							<a
 								href={link.href}
-								className="text-muted-foreground hover:text-foreground group inline-flex items-center gap-2 transition-colors duration-200"
+								className="group text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-sm transition-colors"
 								target="_blank"
 								rel="noopener noreferrer"
 								role="menuitem">
@@ -187,7 +188,7 @@ const FooterSection = ({
 						) : (
 							<Link
 								href={link.href}
-								className="text-muted-foreground hover:text-foreground group inline-flex items-center gap-2 transition-colors duration-200"
+								className="group text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-sm transition-colors"
 								role="menuitem">
 								{title === 'Resources' && link.text === 'Blog' && (
 									<ResourceIcon />
@@ -258,49 +259,43 @@ export default function Footer() {
 	}
 
 	return (
-		<footer className="bg-muted/20 border-border mt-32 border-t pb-8">
+		<footer className="border-border bg-background/60 mt-32 border-t py-16">
 			<Container className="mx-auto max-w-screen-xl">
-				<div className="pt-16 pb-8">
-					<div className="grid grid-cols-1 gap-12 md:grid-cols-4">
-						{/* Logo and Info */}
-						<div className="md:col-span-1">
-							<div className="mb-6">
-								<Link
-									href="/"
-									className="text-foreground text-xl font-semibold">
-									Lauro Silva
-								</Link>
-							</div>
-							<p className="text-muted-foreground text-sm">
-								Helping developers build exceptional products and upskill their
-								communities.
-							</p>
-
-							<div className="mt-6">
-								<ModeToggle />
-							</div>
+				<div className="grid grid-cols-1 gap-12 md:grid-cols-6">
+					{/* Logo and Info Column */}
+					<div className="md:col-span-3">
+						<div className="mb-6">
+							<Link
+								href="/"
+								className="text-foreground hover:text-primary text-xl font-medium transition-colors">
+								Lauro Silva
+							</Link>
 						</div>
+						<p className="text-muted-foreground mb-6 max-w-md">
+							Helping developers build exceptional products and upskill their
+							communities.
+						</p>
 
-						{/* Navigation Sections */}
-						<div className="grid grid-cols-1 gap-10 sm:grid-cols-3 md:col-span-3">
-							{Object.entries(sections).map(([title, links]) => (
-								<FooterSection
-									key={title}
-									title={title}
-									links={links}
-									isExpanded={expandedSections[title]}
-									onToggle={() => toggleSection(title)}
-								/>
-							))}
+						<div className="flex items-center space-x-3">
+							<ModeToggle />
+							<span className="text-muted-foreground text-xs">
+								© {new Date().getFullYear()} Lauro Silva
+							</span>
 						</div>
 					</div>
-				</div>
 
-				{/* Copyright and Bottom Links */}
-				<div className="flex flex-col items-center justify-between gap-4 pt-20 sm:flex-row">
-					<p className="text-muted-foreground text-xs">
-						© {new Date().getFullYear()} Lauro Silva. All rights reserved.
-					</p>
+					{/* Navigation Sections - Right Side */}
+					<div className="grid grid-cols-3 gap-8 md:col-span-3">
+						{Object.entries(sections).map(([title, links]) => (
+							<FooterSection
+								key={title}
+								title={title}
+								links={links}
+								isExpanded={expandedSections[title]}
+								onToggle={() => toggleSection(title)}
+							/>
+						))}
+					</div>
 				</div>
 			</Container>
 		</footer>

@@ -194,7 +194,7 @@ export function BlogSearch({
 				<TooltipProvider>
 					<Tooltip>
 						<TooltipTrigger asChild>
-							<Button variant="outline" size="icon" asChild>
+							<Button variant="outline" className="bg-card" size="icon" asChild>
 								<a href="/blog/rss.xml" aria-label="RSS Feed">
 									<RssIcon className="h-4 w-4" />
 									<VisuallyHidden>RSS Feed</VisuallyHidden>
@@ -265,10 +265,10 @@ export function BlogSearch({
 						)}
 
 						<Button
-							variant="ghost"
+							variant="outline"
 							size="sm"
 							onClick={clearAllFilters}
-							className="h-8 text-sm font-normal">
+							className="bg-card h-8 text-sm font-normal">
 							Clear all
 						</Button>
 					</div>

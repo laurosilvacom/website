@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
 			}
 		]
 	},
-	 transpilePackages: ["next-mdx-remote"]
+	transpilePackages: ['next-mdx-remote']
 }
 
 export default nextConfig

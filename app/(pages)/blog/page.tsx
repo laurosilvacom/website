@@ -181,7 +181,6 @@ export default async function Page({searchParams}: BlogPageProps) {
 										post.metadata.description || post.metadata.summary
 									}
 									icon={post.metadata.icon}
-									coverImage={post.metadata.coverImage}
 									date={formatDate(post.metadata.publishedAt, false)}
 									footer={
 										post.metadata.tags && post.metadata.tags.length > 0 ? (

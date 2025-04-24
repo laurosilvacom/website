@@ -225,7 +225,7 @@ export default async function Blog(props: Props) {
 							</div>
 
 							{/* Article content - maintained prose settings */}
-							<article className="prose prose-base text-foreground !max-w-none">
+							<article className="prose prose-lg text-foreground !max-w-none">
 								<CustomMDX source={post!.content} />
 							</article>
 						</div>

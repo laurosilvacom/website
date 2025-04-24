@@ -173,7 +173,11 @@ export function Navbar() {
 			<nav
 				role="navigation"
 				aria-label="Main navigation"
-				className="border-border bg-card sticky top-0 z-40 w-full border-b backdrop-blur-sm transition-all duration-300 ease-in-out print:hidden">
+				className={`border-border sticky top-0 z-40 w-full border-b transition-all duration-300 ease-in-out print:hidden ${
+					isScrolled
+						? 'bg-background shadow-sm backdrop-blur-xs'
+						: 'bg-transparent'
+				}`}>
 				<div
 					className={`mx-auto flex max-w-screen-xl items-center justify-between px-5 transition-all duration-300 ease-in-out sm:px-10 lg:px-0 ${
 						isScrolled ? 'h-16' : 'h-20'
@@ -242,9 +246,11 @@ export function Navbar() {
 
 			{/* Mobile Menu Overlay */}
 			<div
-				className={`fixed inset-0 z-40 backdrop-blur-sm transition-all duration-300 md:hidden ${
+				className={`fixed inset-0 z-40 transition-all duration-300 md:hidden ${
 					mounted ? 'bg-card/80' : 'bg-card/80'
-				} ${isMenuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
+				} backdrop-blur-sm ${
+					isMenuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+				}`}
 				onClick={closeMenu}
 				aria-hidden="true"
 			/>
