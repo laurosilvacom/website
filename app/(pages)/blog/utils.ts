@@ -14,7 +14,13 @@ type Metadata = {
 	tags?: string[]
 }
 
-export function extractTagsFromPosts(posts: any[]): string[] {
+type BlogPost = {
+	metadata: Metadata
+	slug: string
+	content: string
+}
+
+export function extractTagsFromPosts(posts: BlogPost[]): string[] {
 	const tagsSet = new Set<string>()
 
 	posts.forEach((post) => {
@@ -67,7 +73,7 @@ function parseFrontmatter(fileContent: string) {
 				} else {
 					metadata[trimmedKey as keyof Metadata] = parsedValue
 				}
-			} catch (e) {
+			} catch (error) {
 				// Fallback to simple string splitting if JSON parsing fails
 				const cleanValue = value.substring(1, value.length - 1) // Remove [ and ]
 				const items = cleanValue.split(',').map(
