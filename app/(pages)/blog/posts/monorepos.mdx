@@ -5,7 +5,7 @@ summary: 'A practical guide to understanding monorepos using the forest ecosyste
 icon: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1733903998/laurosilvacom/lauro/icons/apbiew0qgkqsipxo4xed.png'
 description: 'Learn how monorepos work through an intuitive forest metaphor, exploring their architecture, benefits, and practical implementation strategies.'
 coverImage: https://res.cloudinary.com/laurosilvacom/image/upload/v1737787041/laurosilvacom/blog-images/qk3ridiywhjxrunwc3ez.jpg
-tags: ['nextjs', 'monorepo', 'turborepo']
+tags: ['monorepos', 'turborepo']
 ---
 
 Trail running through Forest Park in Portland has taught me more about software architecture than any technical book. As I navigate the winding paths and observe the interconnected ecosystem, I've found a perfect metaphor for understanding monorepos.
@@ -109,6 +109,7 @@ Instead of managing dependencies for each project separately, you maintain a sin
 When you need to make changes that affect multiple projects, monorepos shine. For example:
 
 ```bash
+# app/monorepo.json
 # In a monorepo, updating a shared component affects all projects immediately
 git commit -m "update: Button component styling"
 # One commit, all projects updated

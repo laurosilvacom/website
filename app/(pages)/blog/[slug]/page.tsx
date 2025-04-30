@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import {notFound} from 'next/dist/client/components/not-found'
 import Image from 'next/image'
 import {type Metadata} from 'next/types'
@@ -14,6 +15,7 @@ interface BlogHeaderProps {
 	title: string
 	description?: string
 	coverImage?: string
+	tags?: string[] // Added tags property
 }
 
 const BlogHeader = ({
@@ -22,7 +24,8 @@ const BlogHeader = ({
 	icon,
 	title,
 	coverImage,
-	description
+	description,
+	tags
 }: BlogHeaderProps) => {
 	return (
 		<header className="mx-auto w-full max-w-4xl">
@@ -58,9 +61,42 @@ const BlogHeader = ({
 							{description}
 						</p>
 					)}
-					{readingTime && (
-						<div className="text-muted-foreground flex items-center gap-2 text-sm">
-							<span>{readingTime}</span>
+
+					{/* Meta information section */}
+					<div className="flex flex-wrap items-center gap-4">
+						{/* Reading time */}
+						{readingTime && (
+							<div className="text-muted-foreground flex items-center gap-2 text-sm">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									className="h-4 w-4"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor">
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth={2}
+										d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+									/>
+								</svg>
+								<span>{readingTime}</span>
+							</div>
+						)}
+					</div>
+
+					{/* Tags section - separated from reading time for better visual hierarchy */}
+					{tags && tags.length > 0 && (
+						<div className="mt-3 flex flex-wrap gap-2">
+							{tags.map((tag) => (
+								<Link
+									key={tag}
+									href={`/tags/${encodeURIComponent(tag)}`}
+									className="bg-primary/10 text-primary hover:bg-primary/20 border-primary/20 inline-flex items-center gap-1 rounded-md border px-3 py-1 text-sm font-medium transition-colors duration-200">
+									<span className="text-xs">#</span>
+									{tag}
+								</Link>
+							))}
 						</div>
 					)}
 				</div>
@@ -212,6 +248,7 @@ export default async function Blog(props: Props) {
 									title={post!.metadata.title}
 									description={post!.metadata.description}
 									coverImage={post!.metadata.coverImage}
+									tags={post!.metadata.tags} // Pass tags to the BlogHeader component
 								/>
 
 								{/* Mobile TOC - kept original placement */}

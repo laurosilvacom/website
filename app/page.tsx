@@ -30,7 +30,7 @@ export default async function Page() {
 								<div className="bg-primary/5 border-primary/10 inline-flex items-center gap-2 rounded-full border px-3 py-1.5">
 									<div className="bg-primary h-1.5 w-1.5 rounded-full"></div>
 									<span className="text-primary text-xs font-medium">
-										Developer insights & tutorials
+										Developer Educator & Software Engineer
 									</span>
 								</div>
 							</div>
