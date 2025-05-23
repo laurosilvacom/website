@@ -5,6 +5,8 @@ import {type Metadata} from 'next/types'
 import Container from 'app/components/container'
 import {CustomMDX} from 'app/components/mdx'
 import {TableOfContents} from 'app/components/toc'
+import {StructuredData} from 'app/components/structured-data'
+import {generateBlogPostMetadata} from 'app/lib/metadata'
 import {baseUrl} from 'app/sitemap'
 import {formatDate, getBlogPosts} from '../utils'
 
@@ -118,24 +120,7 @@ const BlogHeader = ({
 	)
 }
 
-interface PageMetadata extends Metadata {
-	title: string
-	description: string
-	openGraph: {
-		title: string
-		description: string
-		type: string
-		publishedTime: string
-		url: string
-		images: {url: string}[]
-	}
-	twitter: {
-		card: string
-		title: string
-		description: string
-		images: string[]
-	}
-}
+
 
 interface Params {
 	slug: string
@@ -154,8 +139,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(
 	props: Props
-): Promise<PageMetadata | null> {
-	// Metadata generation unchanged
+): Promise<Metadata | null> {
 	const params = await props.params
 	if (!params || !params.slug) return null
 
@@ -165,36 +149,20 @@ export async function generateMetadata(
 
 	const {
 		title,
-		publishedAt: publishedTime,
+		publishedAt,
 		summary: description,
 		image,
-		icon
+		tags
 	} = post.metadata
 
-	const ogImage = image
-		? `${baseUrl}${image}`
-		: `${baseUrl}/og?title=${encodeURIComponent(title)}${
-				icon ? `&icon=${encodeURIComponent(icon)}` : ''
-			}`
-
-	return {
+	return generateBlogPostMetadata(
 		title,
 		description,
-		openGraph: {
-			title,
-			description,
-			type: 'article',
-			publishedTime,
-			url: `${baseUrl}/blog/${post.slug}`,
-			images: [{url: ogImage}]
-		},
-		twitter: {
-			card: 'summary_large_image',
-			title,
-			description,
-			images: [ogImage]
-		}
-	}
+		params.slug,
+		publishedAt,
+		image,
+		tags
+	)
 }
 
 export default async function Blog(props: Props) {
@@ -208,28 +176,20 @@ export default async function Blog(props: Props) {
 
 	return (
 		<Container className="m-auto min-h-screen">
-			{/* Schema markup unchanged */}
-			<script
-				type="application/ld+json"
-				suppressHydrationWarning
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify({
-						'@context': 'https://schema.org',
-						'@type': 'BlogPosting',
-						headline: post!.metadata.title,
-						datePublished: post!.metadata.publishedAt,
-						dateModified: post!.metadata.publishedAt,
-						description: post!.metadata.summary,
-						image: post!.metadata.image
-							? `${baseUrl}${post!.metadata.image}`
-							: `${baseUrl}/og?title=${encodeURIComponent(post!.metadata.title)}`,
-						url: `${baseUrl}/blog/${post!.slug}`,
-						author: {
-							'@type': 'Person',
-							name: 'Lauro Silva'
-						}
-					})
-				}}
+			<StructuredData 
+				type="article"
+				title={post!.metadata.title}
+				description={post!.metadata.summary}
+				image={post!.metadata.image 
+					? `${baseUrl}${post!.metadata.image}`
+					: `${baseUrl}/og?title=${encodeURIComponent(post!.metadata.title)}${
+						post!.metadata.icon ? `&icon=${encodeURIComponent(post!.metadata.icon)}` : ''
+					}`
+				}
+				datePublished={post!.metadata.publishedAt}
+				dateModified={post!.metadata.publishedAt}
+				author="Lauro Silva"
+				url={`${baseUrl}/blog/${post!.slug}`}
 			/>
 
 			{/* Maintained original layout structure for proper alignment */}

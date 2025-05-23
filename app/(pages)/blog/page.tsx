@@ -10,11 +10,25 @@ import {BlogSearch} from '@/app/components/blog-search'
 import {Suspense} from 'react'
 import {TagFooter} from '@/app/components/tag-footer'
 import Link from 'next/link'
+import {generatePageMetadata} from '@/app/lib/metadata'
+import {StructuredData} from '@/app/components/structured-data'
 
-export const metadata = {
-	title: 'Blog',
-	description: 'Read my blog.'
-}
+export const metadata = generatePageMetadata(
+	'Blog',
+	'A collection of technical articles on web development, programming tutorials, and developer insights. Learn about JavaScript, TypeScript, React, Next.js, and more.',
+	{
+		keywords: [
+			'blog',
+			'articles',
+			'tutorials',
+			'web development',
+			'programming',
+			'developer blog',
+			'technical writing'
+		],
+		canonical: '/blog'
+	}
+)
 
 // Define detailed interfaces
 interface ExtendedMetadata {
@@ -141,6 +155,12 @@ export default async function Page({searchParams}: BlogPageProps) {
 
 	return (
 		<Container className="mx-auto w-full max-w-screen-xl">
+			<StructuredData 
+				type="website"
+				title="Blog - Technical Articles and Tutorials"
+				description="A collection of technical articles on web development, programming tutorials, and developer insights."
+				url="/blog"
+			/>
 			<main className="mx-auto py-12">
 				<section className="mb-10">
 					<h1 className="mb-4 text-4xl font-semibold tracking-tight">
