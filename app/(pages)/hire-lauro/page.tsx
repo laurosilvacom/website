@@ -37,9 +37,7 @@ export default function ServicesPage(): JSX.Element {
 										</span>
 									</h1>
 									<p className="text-muted-foreground text-lg leading-relaxed sm:text-xl md:text-2xl">
-										I help companies build exceptional products and upskill
-										their developer communities. Think of me as your technical
-										companion for both building and teaching.
+										I help companies build products and upskill developer communities through engineering and education.
 									</p>
 								</div>
 
@@ -85,7 +83,7 @@ export default function ServicesPage(): JSX.Element {
 						{/* Companies section */}
 						<div className="pt-8 sm:pt-12">
 							<p className="text-muted-foreground mb-8 text-sm font-medium tracking-wide uppercase">
-								Empowering engineering teams at companies like:
+								Working with teams at:
 							</p>
 							<div className="grid grid-cols-2 items-center justify-items-center gap-8 sm:grid-cols-4 sm:gap-12">
 								{[
@@ -119,9 +117,7 @@ export default function ServicesPage(): JSX.Element {
 							Services & Expertise
 						</h2>
 						<p className="text-muted-foreground mx-auto mt-6 max-w-3xl text-lg leading-relaxed sm:text-xl">
-							I help companies build exceptional products through full-stack
-							development, and I also help dev-focused companies launch
-							effective education strategies for their communities.
+							Full-stack engineering and developer education. Building products and teaching developers.
 						</p>
 						<div className="mx-auto mt-20 grid gap-8 sm:gap-12 md:grid-cols-2">
 							{unifiedServices.map((service, index) => (
@@ -212,10 +208,10 @@ export default function ServicesPage(): JSX.Element {
 							{/* Services Details */}
 							<div>
 								<h3 className="text-muted-foreground text-base font-semibold tracking-wide uppercase">
-									Developer Education & Training
+									Developer Education
 								</h3>
 								<h2 className="text-foreground mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-									Upskill Your Developer Communities
+									Upskill Your Teams
 								</h2>
 								<div className="mt-12 space-y-6">
 									{educationServices.map((service, index) => (
@@ -267,10 +263,10 @@ export default function ServicesPage(): JSX.Element {
 							{/* Services Details */}
 							<div>
 								<h3 className="text-muted-foreground text-base font-semibold tracking-wide uppercase">
-									Full-Stack Engineering Consulting
+									Engineering
 								</h3>
 								<h2 className="text-foreground mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-									Build Exceptional Digital Products
+									Build Products
 								</h2>
 								<div className="mt-12 space-y-6">
 									{engineeringServices.map((service, index) => (
@@ -389,12 +385,10 @@ export default function ServicesPage(): JSX.Element {
 						{/* Main content */}
 						<div className="space-y-6">
 							<h2 className="text-foreground mx-auto max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-								{`Let's Build Something`}
-								<span className="text-primary"> Impactful</span> — Together
+								Let&apos;s work together
 							</h2>
 							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
-								{`Your next project starts with a conversation. Let's discuss your
-								goals and ideas to create something amazing.`}
+								Start with a conversation about your goals and how I can help.
 							</p>
 						</div>
 
@@ -462,14 +456,14 @@ interface Testimonial {
 // Data Arrays
 const unifiedServices: UnifiedService[] = [
 	{
-		title: 'Developer Education & Training',
-		description: `I've partnered with developer-focused companies to build and launch large-scale educational initiatives aimed at upskilling their developer communities. This work takes various forms: managing content production, building learning experiences, and designing the curriculum.`,
+		title: 'Developer Education',
+		description: `Partner with me to build educational initiatives for your developer community. I manage content production, create learning experiences, and design curriculum.`,
 		tags: ['Workshops', 'Content', 'Training', 'Community'],
 		gradient: 'bg-gradient-to-bl from-primary/5 via-transparent to-transparent'
 	},
 	{
-		title: 'Full-Stack Engineering Consulting',
-		description: `I specialize in full-stack development with React and proficient in backend technologies like Next.js and Node.js. You can hire me for product development (solo/team), consulting, or team leadership and mentoring. `,
+		title: 'Engineering',
+		description: `Full-stack development with React, Next.js, and Node.js. Available for product development, consulting, and technical leadership.`,
 		tags: ['React', 'Next.js', 'Performance', 'Architecture'],
 		gradient: 'bg-gradient-to-br from-primary/5 via-transparent to-transparent'
 	}
@@ -478,7 +472,7 @@ const unifiedServices: UnifiedService[] = [
 const engineeringServices: Service[] = [
 	{
 		title: 'Full-Stack Development',
-		description: `I'm a software engineer specializing in helping teams ship large-scale React applications. You can hire me for development projects, including full-stack development, product development, and tech stack migrations to React.`,
+		description: `Specializing in large-scale React applications. Available for full-stack development, product work, and React migrations.`,
 		features: [
 			'Full-Stack Development',
 			'Product Development ',
@@ -489,14 +483,14 @@ const engineeringServices: Service[] = [
 	{
 		title: 'Technical Leadership',
 		description:
-			'I can provide technical leadership by guiding teams and setting high standards for software excellence. With a focus on mentoring, code quality, and fostering innovation,',
+			'Guide teams and set high standards for software excellence. Focus on mentoring, code quality, and innovation.',
 		features: ['Mentoring', 'Code Quality', 'Innovation'],
 		icon: '💛'
 	},
 	{
 		title: 'Performance Optimization',
 		description:
-			'I specialize in enhancing application performance to deliver lightning-fast user experiences. By focusing on speed, optimizing Core Web Vitals, and implementing best practices, I ensure your applications run smoothly and efficiently.',
+			'Enhance application performance for fast user experiences. Focus on speed, Core Web Vitals, and performance best practices.',
 		features: [
 			'Speed Improvements',
 			'Core Web Vitals',
@@ -510,13 +504,13 @@ const educationServices: Service[] = [
 	{
 		title: 'Content Development',
 		description:
-			'Partner with me to create engaging tutorials, produce insightful video content, and develop interactive resources that assist developers at all levels.',
+			'Create tutorials, video content, and interactive resources for developers at all levels.',
 		features: ['Tutorials', 'Video Content', 'Resources'],
 		icon: '📕'
 	},
 	{
 		title: 'Technical Workshops',
-		description: `I offer remote professional workshops tailored to enhance your team's skills in building modern, full-stack web applications with Next.js, TypeScript and Node.js`,
+		description: `Remote workshops to enhance your team's skills in building modern full-stack applications with Next.js, TypeScript, and Node.js.`,
 		features: [
 			'Hands-on Learning',
 			'Real-World Projects',
@@ -525,9 +519,9 @@ const educationServices: Service[] = [
 		icon: '🚀'
 	},
 	{
-		title: 'Instructional Design for Developers',
+		title: 'Instructional Design',
 		description:
-			'I provide instructional design training to empower your DevRel team in creating effective educational content and strategies.',
+			'Train your DevRel team to create effective educational content and strategies.',
 		features: ['Instructional Design', 'Content Strategy', 'DevRel Training'],
 		icon: '📹'
 	}

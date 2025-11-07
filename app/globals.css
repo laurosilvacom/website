@@ -11,7 +11,7 @@
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.648 0.2 131.684);
+  --primary: oklch(0.48 0.2 31.684);
   --primary-foreground: oklch(0.986 0.031 120.757);
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
@@ -89,6 +89,10 @@
 	}
 	body {
 		@apply bg-background text-foreground;
+		font-feature-settings: 'kern' 1, 'liga' 1;
+		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 }
 
@@ -118,6 +122,88 @@ pre {
 .prose
 	:where(code):not(:where([class~='not-prose'], [class~='not-prose'] *)):after {
 	content: none;
+}
+
+/* Elegant typography system for optimal readability */
+.prose {
+	@apply text-foreground;
+	max-width: 65ch;
+	line-height: 1.7;
+	font-size: 17px;
+}
+
+.prose p {
+	@apply mb-7;
+	line-height: 1.75;
+}
+
+.prose h1 {
+	@apply text-3xl font-semibold mb-6 mt-10 leading-tight tracking-tight;
+	letter-spacing: -0.02em;
+}
+
+.prose h2 {
+	@apply text-2xl font-semibold mb-5 mt-10 leading-tight tracking-tight;
+	letter-spacing: -0.01em;
+}
+
+.prose h3 {
+	@apply text-xl font-semibold mb-4 mt-8 leading-snug tracking-tight;
+}
+
+.prose h4 {
+	@apply text-lg font-semibold mb-3 mt-7 leading-snug;
+}
+
+.prose ul,
+.prose ol {
+	@apply mb-7 ml-6;
+}
+
+.prose li {
+	@apply mb-2.5;
+	line-height: 1.75;
+}
+
+.prose blockquote {
+	@apply border-l-3 border-muted-foreground/30 pl-6 italic my-7;
+	line-height: 1.75;
+}
+
+.prose code {
+	@apply bg-muted px-1.5 py-0.5 rounded text-[0.9em] font-mono;
+	font-weight: 500;
+}
+
+.prose pre {
+	@apply p-5 my-7 overflow-x-auto;
+	line-height: 1.6;
+}
+
+.prose pre code {
+	@apply bg-transparent p-0;
+	font-size: 0.9em;
+}
+
+.prose a {
+	@apply text-foreground underline underline-offset-3 hover:text-foreground/70 transition-colors;
+	text-decoration-thickness: 1px;
+}
+
+.prose img {
+	@apply rounded-lg my-9;
+}
+
+.prose hr {
+	@apply border-border my-10;
+}
+
+.prose strong {
+	@apply font-semibold;
+}
+
+.prose em {
+	@apply italic;
 }
 
 button {

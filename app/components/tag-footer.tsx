@@ -1,6 +1,5 @@
 'use client'
 
-import {Badge} from '@/components/ui/badge'
 import {useRouter} from 'next/navigation'
 import {useTransition} from 'react'
 
@@ -23,10 +22,8 @@ export function TagFooter({tags}: TagFooterProps) {
 	return (
 		<div className="flex flex-wrap gap-2">
 			{tags.map((tag) => (
-				<Badge
+				<button
 					key={tag}
-					variant="secondary"
-					className="cursor-pointer"
 					onClick={() => handleTagClick(tag)}
 					onKeyDown={(e) => {
 						if (e.key === 'Enter' || e.key === ' ') {
@@ -35,9 +32,10 @@ export function TagFooter({tags}: TagFooterProps) {
 						}
 					}}
 					tabIndex={0}
-					aria-disabled={isPending}>
-					{tag}
-				</Badge>
+					disabled={isPending}
+					className="text-muted-foreground hover:text-foreground text-xs transition-colors">
+					#{tag}
+				</button>
 			))}
 		</div>
 	)

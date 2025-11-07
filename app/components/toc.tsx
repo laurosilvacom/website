@@ -50,26 +50,30 @@ export function TableOfContents() {
 		return () => observer.disconnect()
 	}, [])
 
+	if (headings.length === 0) return null
+
 	return (
 		<nav aria-label="Table of contents">
 			<Collapsible open={isOpen} onOpenChange={setIsOpen}>
-				<CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg border p-3">
-					<h2 className="text-sm font-medium">Table of Contents</h2>
-					<ChevronDown className="h-4 w-4" />
+				<CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg p-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+					<span>Contents</span>
+					<ChevronDown className={cn('h-4 w-4 transition-transform', isOpen && 'rotate-180')} />
 				</CollapsibleTrigger>
 				<CollapsibleContent>
-					<ul className="mt-3 space-y-1 text-sm">
+					<ul className="mt-4 space-y-2 text-sm">
 						{headings.map((heading) => {
 							const isActive = activeId === heading.id
 							return (
 								<li
 									key={`${heading.id}-${heading.text}`}
-									style={{marginLeft: `${(heading.level - 2) * 12}px`}}>
+									style={{paddingLeft: `${(heading.level - 2) * 12}px`}}>
 									<a
 										href={`#${heading.id}`}
 										className={cn(
-											'block py-1',
-											isActive ? 'text-foreground font-medium' : 'text-muted-foreground'
+											'block py-1 leading-relaxed transition-colors',
+											isActive
+												? 'text-foreground font-medium'
+												: 'text-muted-foreground hover:text-foreground'
 										)}
 										onClick={(e) => {
 											e.preventDefault()

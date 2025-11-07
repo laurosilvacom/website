@@ -3,13 +3,13 @@ import {type Metadata} from 'next/types'
 import {type ReactNode} from 'react'
 import {ThemeProvider} from '@/components/theme-provider'
 
-import 'app/globals.css'
+import '@/app/globals.css'
 
-import {Toaster} from 'app/components/toaster'
-import {StructuredData} from 'app/components/structured-data'
-import {baseUrl} from 'app/sitemap'
-import {Navbar} from 'app/components/nav'
-import Footer from 'app/components/footer'
+import {Toaster} from '@/components/toaster'
+import {StructuredData} from '@/components/structured-data'
+import {baseUrl} from '@/app/sitemap'
+import {Navbar} from '@/components/nav'
+import Footer from '@/components/footer'
 
 const wotfard = localFont({
 	src: [

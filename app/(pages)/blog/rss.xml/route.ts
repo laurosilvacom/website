@@ -1,4 +1,4 @@
-import {getBlogPosts} from '@/app/(pages)/blog/utils'
+import {getBlogPosts} from '@/lib/blog'
 
 export async function GET() {
 	const posts = await getBlogPosts()
@@ -18,7 +18,7 @@ export async function GET() {
   <channel>
     <title>Lauro Silva's Blog</title>
     <link>${baseUrl}/blog</link>
-    <description>Articles on web development, React, and design</description>
+    <description>Writing on web development, React, and design</description>
     <language>en</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${baseUrl}/blog/rss.xml" rel="self" type="application/rss+xml"/>

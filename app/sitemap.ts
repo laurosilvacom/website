@@ -1,4 +1,4 @@
-import {getBlogPosts} from '@/app/(pages)/blog/utils'
+import {getBlogPosts} from '@/lib/blog'
 
 export const baseUrl = 'https://website-red-alpha-10.vercel.app/'
 

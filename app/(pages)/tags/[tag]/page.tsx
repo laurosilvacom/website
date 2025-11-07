@@ -1,14 +1,15 @@
 import Link from 'next/link'
 import {notFound} from 'next/navigation'
-import {
-	formatDate,
-	getBlogPosts,
-	extractTagsFromPosts
-} from '@/app/(pages)/blog/utils'
-import Container from '@/app/components/container'
-import {Card} from '@/app/components/card'
-import {TagFooter} from '@/app/components/tag-footer'
+import Container from '@/components/container'
+import {Card} from '@/components/card'
+import {TagFooter} from '@/components/tag-footer'
+import {formatDate} from '@/lib/blog'
 import {type Metadata} from 'next'
+import {
+	getBlogPosts,
+	extractTagsFromPosts,
+	filterBlogPosts
+} from '@/lib/blog'
 
 interface TagPageProps {
 	params: Promise<{
@@ -24,7 +25,7 @@ export async function generateMetadata({
 
 	return {
 		title: `${tag} - Blog Posts`,
-		description: `Articles tagged with ${tag}`
+		description: `Writing tagged with ${tag}`
 	}
 }
 
@@ -43,71 +44,51 @@ export default async function TagPage({params}: TagPageProps) {
 	const allPosts = await getBlogPosts()
 	const allTags = extractTagsFromPosts(allPosts)
 
-	// Verify the tag exists
 	if (!allTags.includes(tag)) {
 		notFound()
 	}
 
-	// Filter posts by tag
-	const taggedPosts = allPosts.filter((post) =>
-		post.metadata.tags?.includes(tag)
-	)
+	const taggedPosts = filterBlogPosts(allPosts, {
+		tagFilter: tag,
+		sortBy: 'newest'
+	})
 
 	return (
-		<Container className="mx-auto w-full max-w-screen-xl">
-			<main className="mx-auto py-12">
-				<section className="mb-10">
+		<Container>
+			<main className="py-16">
+				<section className="mb-14">
 					<Link
 						href="/blog"
-						className="text-primary mb-6 inline-block hover:opacity-80">
+						className="text-muted-foreground mb-5 inline-block text-sm hover:text-foreground transition-colors">
 						← Back to all posts
 					</Link>
 
-					<h1 className="mb-4 text-4xl font-semibold tracking-tight">
+					<h1 className="mb-3 text-4xl font-semibold leading-tight tracking-tight">
 						Posts tagged with &ldquo;{tag}&rdquo;
 					</h1>
-					<div className="text-muted-foreground space-y-4 text-xl">
-						<p className="leading-relaxed">
-							{taggedPosts.length} article{taggedPosts.length !== 1 ? 's' : ''}{' '}
-							with this tag
-						</p>
-					</div>
+					<p className="text-muted-foreground text-lg leading-relaxed">
+						{taggedPosts.length} writing{taggedPosts.length !== 1 ? 's' : ''}{' '}
+						with this tag
+					</p>
 				</section>
 
 				<section>
-					{taggedPosts.length > 0 ? (
-						<div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-							{taggedPosts.map((post) => (
-								<Card
-									key={post.slug}
-									href={`/blog/${post.slug}`}
-									title={post.metadata.title}
-									description={
-										post.metadata.description || post.metadata.summary
-									}
-									icon={post.metadata.icon}
-									date={formatDate(post.metadata.publishedAt, false)}
-									footer={
-										post.metadata.tags && post.metadata.tags.length > 0 ? (
-											<TagFooter tags={post.metadata.tags} />
-										) : undefined
-									}
-								/>
-							))}
-						</div>
-					) : (
-						<div className="bg-muted/30 rounded-lg p-10 text-center">
-							<h3 className="mb-2 text-xl font-medium">No articles found</h3>
-							<p className="text-muted-foreground mb-4">
-								No articles with the tag &ldquo;{tag}&rdquo;.
-							</p>
-							<Link
-								href="/blog"
-								className="ring-offset-background focus-visible:ring-ring bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-10 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50">
-								View All Posts
-							</Link>
-						</div>
-					)}
+					<div className="space-y-8">
+						{taggedPosts.map((post) => (
+							<Card
+								key={post.slug}
+								href={`/blog/${post.slug}`}
+								title={post.metadata.title}
+								description={post.metadata.description || post.metadata.summary}
+								date={formatDate(post.metadata.publishedAt, false)}
+								footer={
+									post.metadata.tags && post.metadata.tags.length > 0 ? (
+										<TagFooter tags={post.metadata.tags} />
+									) : undefined
+								}
+							/>
+						))}
+					</div>
 				</section>
 			</main>
 		</Container>

@@ -4,130 +4,20 @@ import {MDXRemote, type MDXRemoteProps} from 'next-mdx-remote/rsc'
 import React, {type ReactNode} from 'react'
 import {highlight} from 'sugar-high'
 import {CodeCopyButton} from './copy-button'
-import {AlertCircle, AlertTriangle, CheckCircle, XCircle} from 'lucide-react'
-
-interface StackBlitzProps {
-	id: string
-	height?: string
-	file?: string
-	view?: 'preview' | 'editor' | 'both'
-	hideNavigation?: boolean
-	hideDevTools?: boolean
-	hideExplorer?: boolean
-	hideTerminal?: boolean
-	terminalHeight?: number
-	devToolsHeight?: number
-	theme?: 'dark' | 'light'
-	clickToLoad?: boolean
-	isGithub?: boolean
-}
-
-function StackBlitz({
-	id,
-	height = '500px',
-	file = 'src/App.tsx',
-	view = 'both',
-	hideNavigation = true,
-	hideDevTools = false,
-	hideExplorer = false,
-	hideTerminal = false,
-	terminalHeight,
-	devToolsHeight,
-	theme = 'dark',
-	clickToLoad = false,
-	isGithub = false
-}: StackBlitzProps) {
-	const params = new URLSearchParams({
-		embed: '1',
-		file,
-		view,
-		hideNavigation: hideNavigation ? '1' : '0',
-		hideDevTools: hideDevTools ? '1' : '0',
-		hideExplorer: hideExplorer ? '1' : '0',
-		hideTerminal: hideTerminal ? '1' : '0',
-		theme,
-		...(terminalHeight && {terminalHeight: terminalHeight.toString()}),
-		...(devToolsHeight && {devToolsHeight: devToolsHeight.toString()}),
-		...(clickToLoad && {clickToLoad: '1'})
-	})
-
-	const baseUrl = isGithub
-		? `https://stackblitz.com/github/${id}`
-		: `https://stackblitz.com/edit/${id}`
-
-	return (
-		<div className="my-8 overflow-hidden rounded-lg border">
-			<div className="border-b px-4 py-2">
-				<div className="text-sm">StackBlitz Example</div>
-			</div>
-			<iframe
-				src={`${baseUrl}?${params.toString()}`}
-				className="w-full"
-				style={{height}}
-				title="StackBlitz Example"
-				loading="lazy"
-			/>
-		</div>
-	)
-}
 
 type ImageProps = Omit<NextImageProps, 'width' | 'height'> & {
 	width?: number
 	height?: number
 }
 
-function Table({data}) {
-	return (
-		<div className="my-8 overflow-hidden rounded-lg border">
-			<div className="overflow-x-auto">
-				<table className="w-full">
-					<thead>
-						<tr>
-							{data.headers.map((header, i) => (
-								<th
-									key={`header-${i}`}
-									className="border-b px-4 py-3 text-left font-medium">
-									{header}
-								</th>
-							))}
-						</tr>
-					</thead>
-					<tbody>
-						{data.rows.map((row, i) => (
-							<tr key={`row-${i}`} className="border-b last:border-0">
-								{row.map((cell, j) => (
-									<td key={`cell-${i}-${j}`} className="px-4 py-3">
-										{cell}
-									</td>
-								))}
-							</tr>
-						))}
-					</tbody>
-				</table>
-			</div>
-		</div>
-	)
-}
-
 function CustomLink({href, children, ...props}) {
-	const isInternal = href.startsWith('/')
-	const isAnchor = href.startsWith('#')
-
-	const linkClass = 'text-primary hover:underline'
+	const isInternal = href.startsWith('/') || href.startsWith('#')
 
 	if (isInternal) {
 		return (
-			<Link href={href} className={linkClass} {...props}>
+			<Link href={href} {...props}>
 				{children}
 			</Link>
-		)
-	}
-
-	if (isAnchor) {
-		return (
-			<a href={href} className={linkClass} {...props}>
-				{children}
-			</a>
 		)
 	}
 
@@ -136,27 +26,25 @@ function CustomLink({href, children, ...props}) {
 			href={href}
 			target="_blank"
 			rel="noopener noreferrer"
-			className={`${linkClass} inline-flex items-center gap-1`}
 			{...props}>
 			{children}
-			<span className="text-xs">↗</span>
 		</a>
 	)
 }
 
 function RoundedImage({alt, ...imageProps}: ImageProps) {
 	return (
-		<figure className="my-8 overflow-hidden rounded-lg border">
+		<figure className="my-9">
 			<Image
-				className="w-full"
+				className="w-full rounded-lg"
 				width={1200}
 				height={675}
 				quality={95}
-				alt={alt || 'Image'}
+				alt={alt || ''}
 				{...imageProps}
 			/>
 			{alt && (
-				<figcaption className="border-t p-3 text-center text-sm">
+				<figcaption className="text-muted-foreground mt-3 text-center text-sm">
 					{alt}
 				</figcaption>
 			)}
@@ -172,90 +60,11 @@ function Code({children, ...props}) {
 		return <code dangerouslySetInnerHTML={{__html: codeHTML}} {...props} />
 	}
 
-	// Josh-style inline code
 	return (
 		<code
-			className="rounded px-1.5 py-0.5 font-mono text-sm"
+			className="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.9em]"
 			dangerouslySetInnerHTML={{__html: codeHTML}}
 		/>
-	)
-}
-
-function Pre({
-	children,
-	...props
-}: {children: React.ReactNode} & React.HTMLAttributes<HTMLPreElement>) {
-	// Initialize language as null
-	let language: string | null = null
-	let filePath: string | null = null
-
-	// Extract code content
-	const originalCode = extractTextFromChildren(children)
-	let displayCode = originalCode
-
-	// Check if the first line contains a file path comment
-	if (originalCode && originalCode.trim() !== '') {
-		const lines = originalCode.split('\n')
-		if (lines.length > 0 && lines[0]) {
-			const firstLine = lines[0].trim()
-
-			// Check for // path.tsx or /* path.tsx */ or # path.tsx format
-			if (
-				firstLine.startsWith('// ') ||
-				firstLine.startsWith('/* ') ||
-				firstLine.startsWith('# ')
-			) {
-				// Extract the file path
-				filePath = firstLine
-					.replace(/^(\/\/|\/\*|#)\s+/, '')
-					.replace(/\s+\*\/$/, '')
-
-				// Remove the first line for display
-				displayCode = lines.slice(1).join('\n')
-			}
-		}
-	}
-
-	// Type-safe check for React element and extract language
-	let className = ''
-	if (React.isValidElement(children)) {
-		// Type assertion with proper type checking
-		const childProps = children.props as {className?: string} | undefined
-
-		if (childProps && childProps.className) {
-			className = childProps.className
-			const match = childProps.className.match(/language-(\w+)/)
-			language = match && match[1] ? match[1] : null
-		}
-	}
-
-	return (
-		<div className="my-10 overflow-hidden rounded-lg border">
-			<div className="flex items-center justify-between border-b px-4 py-2.5">
-				<div className="flex items-center space-x-2">
-					{filePath ? (
-						<span className="font-mono text-xs font-semibold">
-							{filePath}
-						</span>
-					) : (
-						language && (
-							<span className="font-mono text-xs font-semibold">
-								{language}
-							</span>
-						)
-					)}
-				</div>
-				<CodeCopyButton code={originalCode} />
-			</div>
-			<div className="relative">
-				<pre className="overflow-auto p-4 text-sm leading-relaxed" {...props}>
-					<code
-						className={className}
-						dangerouslySetInnerHTML={{__html: highlight(displayCode)}}
-					/>
-				</pre>
-			</div>
-		</div>
 	)
 }
 
@@ -264,8 +73,7 @@ function extractTextFromChildren(children: React.ReactNode): string {
 
 	if (React.isValidElement(children)) {
 		const childProps = children.props as {children?: React.ReactNode}
-
-		if (childProps.children) {
+		if (childProps?.children) {
 			if (typeof childProps.children === 'string') {
 				return childProps.children
 			}
@@ -283,13 +91,49 @@ function extractTextFromChildren(children: React.ReactNode): string {
 	return ''
 }
 
-function slugify(str) {
+function Pre({
+	children,
+	...props
+}: {children: React.ReactNode} & React.HTMLAttributes<HTMLPreElement>) {
+	let language: string | null = null
+	let className = ''
+
+	if (React.isValidElement(children)) {
+		const childProps = children.props as {className?: string}
+		if (childProps?.className) {
+			className = childProps.className
+			const match = childProps.className.match(/language-(\w+)/)
+			language = match?.[1] || null
+		}
+	}
+
+	const code = extractTextFromChildren(children)
+
+	return (
+		<div className="my-7 overflow-hidden rounded-lg border">
+			<div className="flex items-center justify-between border-b px-4 py-2.5">
+				{language && (
+					<span className="text-muted-foreground font-mono text-xs">
+						{language}
+					</span>
+				)}
+				<CodeCopyButton code={code} />
+			</div>
+			<pre className="overflow-auto p-5 text-sm leading-relaxed" {...props}>
+				<code
+					className={className}
+					dangerouslySetInnerHTML={{__html: highlight(code)}}
+				/>
+			</pre>
+		</div>
+	)
+}
+
+function slugify(str: string) {
 	return str
-		.toString()
 		.toLowerCase()
 		.trim()
 		.replace(/\s+/g, '-')
-		.replace(/&/g, '-and-')
 		.replace(/[^\w\-]+/g, '')
 		.replace(/\-\-+/g, '-')
 }
@@ -305,61 +149,42 @@ function createHeading(level: number) {
 
 		const slug = slugify(content)
 
-		return React.createElement(
-			`h${level}`,
-			{
-				id: slug,
-				className: `my-6 font-bold scroll-mt-20`,
-				...props
-			},
-			React.createElement(
-				'a',
-				{
-					href: `#${slug}`,
-					key: `link-${slug}`,
-					className: `absolute -left-5 opacity-0 hover:opacity-100 text-muted-foreground`
-				},
-				'#'
-			),
-			children
-		)
+		return React.createElement(`h${level}`, {
+			id: slug,
+			...props
+		}, children)
 	}
 }
 
-function Blockquote({children}: {children: ReactNode}) {
+function Table({data}) {
 	return (
-		<blockquote className="my-8 border-l-4 py-4 pl-6">
-			{children}
-		</blockquote>
+		<div className="my-7 overflow-x-auto">
+			<table className="w-full">
+				<thead>
+					<tr className="border-b">
+						{data.headers.map((header, i) => (
+							<th
+								key={`header-${i}`}
+								className="px-4 py-3 text-left text-sm font-medium">
+								{header}
+							</th>
+						))}
+					</tr>
+				</thead>
+				<tbody>
+					{data.rows.map((row, i) => (
+						<tr key={`row-${i}`} className="border-b last:border-0">
+							{row.map((cell, j) => (
+								<td key={`cell-${i}-${j}`} className="px-4 py-3 text-sm">
+									{cell}
+								</td>
+							))}
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
 	)
-}
-
-function Em({children}) {
-	return <em className="not-italic">{children}</em>
-}
-
-function Strong({children}: {children: ReactNode}) {
-	return <strong className="font-bold">{children}</strong>
-}
-
-function Hr() {
-	return <hr className="my-12" />
-}
-
-function UnorderedList({children}: {children: ReactNode}) {
-	return <ul className="my-6 ml-6 space-y-3">{children}</ul>
-}
-
-function OrderedList({children}: {children: ReactNode}) {
-	return (
-		<ol className="my-6 ml-6 list-decimal space-y-3">
-			{children}
-		</ol>
-	)
-}
-
-function ListItem({children}: {children: ReactNode}) {
-	return <li className="relative pl-1">{children}</li>
 }
 
 function Alert({
@@ -369,80 +194,49 @@ function Alert({
 	children: ReactNode
 	type?: 'info' | 'warning' | 'error' | 'success'
 }) {
-	// Enhanced styling with better contrast
-	const styles = {
-		info: 'border-primary/20',
-		warning: 'border-destructive/20',
-		error: 'border-destructive/30',
-		success: 'border-primary/20'
-	}
-
-	// Icon mapping using Lucide icons
-	const icons = {
-		info: <AlertCircle className="h-5 w-5 flex-shrink-0" />,
-		warning: <AlertTriangle className="h-5 w-5 flex-shrink-0" />,
-		error: <XCircle className="h-5 w-5 flex-shrink-0" />,
-		success: <CheckCircle className="h-5 w-5 flex-shrink-0" />
-	}
-
-	// Labels for screen readers
-	const ariaLabels = {
-		info: 'Information',
-		warning: 'Warning',
-		error: 'Error',
-		success: 'Success'
-	}
-
 	return (
-		<div className={`my-8 rounded-lg border p-4 ${styles[type]}`}>
-			<div className="flex items-center">
-				<div className="flex-shrink-0">{icons[type]}</div>
-				<div className="ml-3">
-					<span className="sr-only">{ariaLabels[type]}</span>
-					<div>{children}</div>
-				</div>
-			</div>
+		<div className="my-7 rounded-lg border border-muted-foreground/20 p-5">
+			{children}
 		</div>
 	)
 }
 
-function Callout({children, emoji}: {children: ReactNode; emoji: string}) {
+function Callout({children, emoji}: {children: ReactNode; emoji?: string}) {
 	return (
-		<div className="my-8 overflow-hidden rounded-lg border">
-			<div className="flex items-center gap-4 p-5">
-				<div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-xl">
-					{emoji}
-				</div>
-				<div className="flex-1">{children}</div>
-			</div>
+		<div className="my-7 rounded-lg border border-muted-foreground/20 p-5">
+			{children}
 		</div>
 	)
 }
 
-function Demo({children}) {
+function Demo({children}: {children: ReactNode}) {
 	return (
-		<div className="my-8 overflow-hidden rounded-lg border">
-			<div className="border-b p-3 text-sm font-medium">Demo</div>
-			<div className="p-4">{children}</div>
+		<div className="my-7 rounded-lg border p-5">
+			{children}
 		</div>
 	)
 }
 
-function Kbd({children}) {
+function Kbd({children}: {children: ReactNode}) {
 	return (
-		<kbd className="rounded border px-1.5 py-0.5 font-mono text-xs">
+		<kbd className="bg-muted rounded border px-1.5 py-0.5 font-mono text-xs">
 			{children}
 		</kbd>
 	)
 }
 
+function StackBlitz({id, height}: {id?: string; height?: string}) {
+	// Embed functionality removed - component renders nothing
+	return null
+}
+
 function Details({children, title}: {children: ReactNode; title: string}) {
 	return (
-		<details className="my-6 overflow-hidden rounded-lg border">
-			<summary className="cursor-pointer px-4 py-3 font-medium">
+		<details className="my-7 rounded-lg border">
+			<summary className="cursor-pointer px-4 py-3 text-sm font-medium">
 				{title}
 			</summary>
-			<div className="p-4">{children}</div>
+			<div className="border-t p-4 text-sm">{children}</div>
 		</details>
 	)
 }
@@ -459,19 +253,17 @@ const components = {
 	code: Code,
 	pre: Pre,
 	Table,
-	blockquote: Blockquote,
-	em: Em,
-	strong: Strong,
-	hr: Hr,
-	ul: UnorderedList,
-	ol: OrderedList,
-	li: ListItem,
-	InfoBox: Alert, // Map InfoBox to our Alert component
+	blockquote: ({children}: {children: ReactNode}) => (
+		<blockquote className="my-7 border-l-3 border-muted-foreground/30 pl-6 italic">
+			{children}
+		</blockquote>
+	),
+	InfoBox: Alert,
 	Callout,
 	Demo,
 	Kbd,
-	Details,
-	StackBlitz
+	StackBlitz,
+	Details
 }
 
 export function CustomMDX(props: MDXRemoteProps) {

@@ -1,5 +1,5 @@
-import {baseUrl} from 'app/sitemap'
-import {getBlogPosts} from '../(pages)/blog/utils'
+import {baseUrl} from '@/app/sitemap'
+import {getBlogPosts} from '@/lib/blog'
 
 export async function GET() {
 	const allBlogs = await getBlogPosts()

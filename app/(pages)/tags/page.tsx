@@ -1,10 +1,10 @@
 import Link from 'next/link'
-import {getBlogPosts, extractTagsFromPosts} from '@/app/(pages)/blog/utils'
-import Container from '@/app/components/container'
+import Container from '@/components/container'
+import {getBlogPosts, extractTagsFromPosts} from '@/lib/blog'
 
 export const metadata = {
 	title: 'Blog Tags',
-	description: 'Browse articles by tag'
+	description: 'Browse writing by tag'
 }
 
 export default async function TagsPage() {
@@ -24,30 +24,30 @@ export default async function TagsPage() {
 	)
 
 	return (
-		<Container className="mx-auto w-full max-w-screen-xl">
-			<main className="mx-auto py-12">
-				<section className="mb-10">
+		<Container>
+			<main className="py-16">
+				<section className="mb-14">
 					<Link
 						href="/blog"
-						className="text-primary mb-6 inline-block hover:opacity-80">
-						← Back to all posts
+						className="text-muted-foreground mb-5 inline-block text-sm hover:text-foreground transition-colors">
+						← Back to writing
 					</Link>
 
-					<h1 className="mb-4 text-4xl font-semibold tracking-tight">
-						Browse by Tag
+					<h1 className="mb-3 text-4xl font-semibold leading-tight tracking-tight">
+						Tags
 					</h1>
-					<div className="text-muted-foreground space-y-4 text-xl">
-						<p className="leading-relaxed">Find articles on specific topics</p>
-					</div>
+					<p className="text-muted-foreground text-lg leading-relaxed">
+						Browse writing by topic
+					</p>
 				</section>
 
 				<section>
-					<div className="flex flex-wrap gap-4">
+					<div className="flex flex-wrap gap-3">
 						{allTags.map((tag) => (
 							<Link
 								key={tag}
 								href={`/tags/${encodeURIComponent(tag)}`}
-								className="bg-card hover:bg-secondary/80 text-foreground border-border rounded-full border px-5 py-2 text-sm font-medium transition">
+								className="bg-card hover:bg-secondary/80 text-foreground border-border rounded-full border px-4 py-1.5 text-sm font-medium transition-colors">
 								{tag} ({tagCounts[tag]})
 							</Link>
 						))}
