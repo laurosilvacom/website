@@ -30,3 +30,11 @@
 - shadcn/ui components
 - MDX for blog content
 
+## Project Structure
+- See PROJECT.md for architecture details
+- Use path aliases: `@/components`, `@/lib`, `@/hooks`
+- Server Components by default, mark Client Components with 'use client'
+- Blog posts in `app/(pages)/blog/posts/YYYY/MM/` organized by date
+- Minimal design: spacing-based, no borders, 680px content width
+
+
