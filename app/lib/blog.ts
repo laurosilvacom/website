@@ -94,17 +94,19 @@ async function findMDXFiles(dir: string, baseDir: string = dir): Promise<string[
 }
 
 async function readMDXFile(filePath: string, baseDir: string) {
-	const rawContent = await fs.readFile(filePath, 'utf-8')
-	const {metadata, content} = parseFrontmatter(rawContent)
-	metadata.readingTime = calculateReadingTime(content)
+	try {
+		const rawContent = await fs.readFile(filePath, 'utf-8')
+		const {metadata, content} = parseFrontmatter(rawContent)
+		metadata.readingTime = calculateReadingTime(content)
 
-	// Generate slug from filename only (preserves original URLs)
-	// This allows flexible folder organization without breaking existing links
-	// Example: 2024/01/my-post.mdx → my-post (not 2024-01-my-post)
-	const filename = path.basename(filePath, '.mdx')
-	const slug = filename.toLowerCase()
+		const filename = path.basename(filePath, '.mdx')
+		const slug = filename.toLowerCase()
 
-	return {metadata, content, slug}
+		return {metadata, content, slug}
+	} catch (error) {
+		console.error(`Error reading MDX file ${filePath}:`, error)
+		throw new Error(`Failed to read blog post: ${path.basename(filePath)}`)
+	}
 }
 
 async function getMDXData(dir: string) {

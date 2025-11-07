@@ -1,3 +1,4 @@
+import {Suspense} from 'react'
 import {ArrowRight} from 'lucide-react'
 import Link from 'next/link'
 import Container from '@/components/container'
@@ -6,7 +7,7 @@ import {Card} from '@/components/card'
 import {TagFooter} from '@/components/tag-footer'
 import {formatDate, getBlogPosts} from '@/lib/blog'
 
-export default async function Page() {
+async function BlogPosts() {
 	const allBlogs = await getBlogPosts()
 	const latestPosts = allBlogs
 		.sort(
@@ -16,6 +17,41 @@ export default async function Page() {
 		)
 		.slice(0, 6)
 
+	return (
+		<div className="space-y-10">
+			{latestPosts.map((post) => (
+				<Card
+					key={post.slug}
+					href={`/blog/${post.slug}`}
+					title={post.metadata.title}
+					description={post.metadata.summary}
+					date={formatDate(post.metadata.publishedAt, false)}
+					footer={
+						post.metadata.tags && post.metadata.tags.length > 0 ? (
+							<TagFooter tags={post.metadata.tags} />
+						) : undefined
+					}
+				/>
+			))}
+		</div>
+	)
+}
+
+function BlogPostsFallback() {
+	return (
+		<div className="space-y-10">
+			{Array.from({length: 3}).map((_, i) => (
+				<div key={i} className="space-y-2.5 pb-10">
+					<div className="bg-muted h-4 w-24 animate-pulse rounded" />
+					<div className="bg-muted h-6 w-full animate-pulse rounded" />
+					<div className="bg-muted h-4 w-3/4 animate-pulse rounded" />
+				</div>
+			))}
+		</div>
+	)
+}
+
+export default async function Page() {
 	return (
 		<Container>
 			<main>
@@ -50,22 +86,9 @@ export default async function Page() {
 							</Button>
 						</div>
 
-						<div className="space-y-10">
-							{latestPosts.map((post) => (
-								<Card
-									key={post.slug}
-									href={`/blog/${post.slug}`}
-									title={post.metadata.title}
-									description={post.metadata.summary}
-									date={formatDate(post.metadata.publishedAt, false)}
-									footer={
-										post.metadata.tags && post.metadata.tags.length > 0 ? (
-											<TagFooter tags={post.metadata.tags} />
-										) : undefined
-									}
-								/>
-							))}
-						</div>
+						<Suspense fallback={<BlogPostsFallback />}>
+							<BlogPosts />
+						</Suspense>
 					</div>
 				</section>
 			</main>

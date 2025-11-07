@@ -51,8 +51,8 @@
   --popover: oklch(0.22 0.028 280);
   --popover-foreground: oklch(0.98 0.002 85);
   /* Vibrant electric purple - Design+Code accent - pops */
-  --primary: oklch(0.72 0.25 280);
-  --primary-foreground: oklch(0.18 0.025 280);
+  --primary: oklch(0.58 0.28 280);
+  --primary-foreground: oklch(0.92 0.015 280);
   /* Darker purple secondary */
   --secondary: oklch(0.26 0.030 280);
   --secondary-foreground: oklch(0.95 0.002 85);
