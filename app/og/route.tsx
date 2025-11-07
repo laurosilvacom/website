@@ -2,18 +2,25 @@ import {ImageResponse} from 'next/og'
 
 export const runtime = 'edge'
 
+// Convert OKLCH to approximate RGB for OG images
+// Light mode: purple-tinted background
+const bgLight = '#f5f3f8' // oklch(0.92 0.015 280) approximation
+const cardLight = '#faf9fc' // oklch(0.95 0.012 280) approximation
+const textLight = '#1a1625' // oklch(0.15 0.010 250) approximation
+const primaryPurple = '#8b5cf6' // oklch(0.58 0.28 280) approximation
+const mutedText = '#6b7280' // oklch(0.50 0.010 250) approximation
+
 export async function GET(request: Request) {
 	try {
 		const url = new URL(request.url)
 		const title = decodeURIComponent(
 			url.searchParams.get('title') || 'Lauro Silva'
 		)
-		const iconParam = url.searchParams.get('icon')
-		const icon = iconParam ? decodeURIComponent(iconParam) : null
 
+		// Load fonts - using Wotfard for headings (matches site)
 		const fontData = await fetch(
 			new URL('/wotfard/Wotfard-SemiBold.ttf', request.url)
-		).then((res) => res.arrayBuffer())
+		).then((res) => res.arrayBuffer()).catch(() => null)
 
 		return new ImageResponse(
 			(
@@ -24,95 +31,80 @@ export async function GET(request: Request) {
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'center',
-						backgroundColor: 'hsl(225, 25%, 97%)' // --background
+						background: bgLight,
+						fontFamily: 'system-ui, -apple-system, sans-serif'
 					}}>
 					<div
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
-							backgroundColor: 'hsl(225, 25%, 99%)', // --card
-							padding: '68px',
-							margin: '40px',
-							borderRadius: '12px', // --radius
-							boxShadow: '0 2px 40px rgba(0,0,0,0.08)',
-							border: '2px solid hsl(225, 25%, 90%)', // --border
-							width: '1000px'
+							width: '900px',
+							padding: '0 60px'
 						}}>
-						{icon && (
-							<div
-								style={{
-									display: 'flex',
-									marginBottom: '40px'
-								}}>
-								<div
-									style={{
-										display: 'flex',
-										padding: '16px',
-										backgroundColor: 'hsl(225, 25%, 95%)', // --secondary
-										borderRadius: '12px',
-										border: '2px solid hsl(225, 25%, 90%)' // --border
-									}}>
-									{/* eslint-disable-next-line @next/next/no-img-element */}
-									<img src={icon} alt="Post icon" width={48} height={48} />
-								</div>
-							</div>
-						)}
-
+						{/* Title - matches site h1 scale */}
 						<div
 							style={{
 								display: 'flex',
-								marginBottom: '48px'
+								marginBottom: '40px'
 							}}>
-							<div
+							<h1
 								style={{
-									fontSize: '68px',
-									fontFamily: 'Wotfard',
-									letterSpacing: '-0.03em',
-									color: 'hsl(225, 25%, 20%)', // --foreground
-									lineHeight: '1.1'
+									fontSize: '48px',
+									fontWeight: 600,
+									letterSpacing: '-0.015em',
+									color: textLight,
+									lineHeight: '1.35',
+									fontFamily: fontData ? 'Wotfard' : 'system-ui',
+									margin: 0
 								}}>
 								{title}
-							</div>
+							</h1>
 						</div>
 
+						{/* Author section - minimal, spacing-based */}
 						<div
 							style={{
 								display: 'flex',
 								alignItems: 'center',
-								backgroundColor: 'hsl(225, 25%, 95%)', // --secondary
-								padding: '16px 20px',
-								borderRadius: '12px',
-								border: '2px solid hsl(225, 25%, 90%)', // --border
-								width: '320px'
+								gap: '16px',
+								paddingTop: '32px',
+								marginTop: '32px'
 							}}>
-							{/* eslint-disable-next-line @next/next/no-img-element */}
-							<img
-								src="https://res.cloudinary.com/laurosilvacom/image/upload/v1733356380/laurosilvacom/lauro/kldqbcyrvtngub7fmutn.png"
-								alt="Lauro Silva"
-								width={78}
-								height={78}
+							<div
 								style={{
-									borderRadius: '24px',
-									marginRight: '16px',
-									border: '2px solid hsl(225, 25%, 90%)' // --border
-								}}
-							/>
-							<div style={{display: 'flex', flexDirection: 'column'}}>
+									width: '48px',
+									height: '48px',
+									borderRadius: '50%',
+									backgroundColor: primaryPurple,
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'center',
+									fontSize: '20px',
+									fontWeight: 600,
+									color: '#ffffff',
+									flexShrink: 0
+								}}>
+								LS
+							</div>
+							<div style={{display: 'flex', flexDirection: 'column', gap: '2px'}}>
 								<span
 									style={{
-										color: 'hsl(225, 25%, 20%)', // --foreground
-										fontSize: '22px',
-										fontFamily: 'Wotfard'
+										color: textLight,
+										fontSize: '18px',
+										fontWeight: 600,
+										letterSpacing: '-0.01em',
+										lineHeight: '1.4'
 									}}>
 									Lauro Silva
 								</span>
 								<span
 									style={{
-										color: 'hsl(225, 25%, 40%)', // --muted-foreground
-										fontSize: '16px',
-										fontFamily: 'Wotfard'
+										color: mutedText,
+										fontSize: '14px',
+										fontWeight: 400,
+										lineHeight: '1.5'
 									}}>
-									Software Engineer
+									Software Engineer & Developer Educator
 								</span>
 							</div>
 						</div>
@@ -122,14 +114,14 @@ export async function GET(request: Request) {
 			{
 				width: 1200,
 				height: 630,
-				fonts: [
+				fonts: fontData ? [
 					{
 						name: 'Wotfard',
 						data: fontData,
 						style: 'normal',
 						weight: 600
 					}
-				]
+				] : []
 			}
 		)
 	} catch (e) {
