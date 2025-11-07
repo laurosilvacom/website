@@ -38,8 +38,8 @@ export function Navbar() {
 			<nav
 				role="navigation"
 				aria-label="Main navigation"
-				className="border-border sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 print:hidden">
-				<div className="mx-auto flex max-w-[680px] items-center justify-between h-16">
+				className="sticky top-0 z-40 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 print:hidden">
+				<div className="mx-auto flex max-w-7xl items-center justify-between h-16 px-4 sm:px-6">
 					<Link
 						href="/"
 						aria-label="Home"
@@ -110,10 +110,10 @@ export function Navbar() {
 				role="dialog"
 				aria-label="Mobile menu"
 				aria-modal="true"
-				className={`border-border bg-background fixed top-0 right-0 z-40 h-full w-[280px] border-l md:hidden transition-transform duration-200 ${
+				className={`bg-background fixed top-0 right-0 z-40 h-full w-[280px] md:hidden transition-transform duration-200 ${
 					isMenuOpen ? 'translate-x-0' : 'translate-x-full'
 				}`}>
-				<div className="flex h-16 items-center justify-between border-b px-6">
+				<div className="flex h-16 items-center justify-between px-6 mb-8">
 					<span className="text-lg font-semibold">Menu</span>
 					<button
 						onClick={closeMenu}

@@ -15,7 +15,7 @@ export function CodeCopyButton({code}: {code: string}) {
 	return (
 		<button
 			onClick={handleCopy}
-			className="text-muted-foreground hover:text-foreground h-7 w-7 transition-colors"
+			className="text-muted-foreground hover:text-foreground h-6 w-6 flex items-center justify-center transition-colors rounded"
 			aria-label="Copy code">
 			<svg
 				width="14"

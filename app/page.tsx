@@ -21,7 +21,7 @@ export default async function Page() {
 			<main>
 				<section className="py-24">
 					<div className="space-y-6">
-						<h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+						<h1 className="text-2xl font-semibold leading-tight sm:text-3xl">
 							Learn, build, and grow as a developer
 						</h1>
 						<p className="text-muted-foreground text-lg leading-relaxed">
@@ -38,10 +38,10 @@ export default async function Page() {
 					</div>
 				</section>
 
-				<section className="py-16 border-t">
+				<section className="py-16 mt-16">
 					<div className="space-y-10">
 						<div className="flex items-center justify-between">
-							<h2 className="text-2xl font-semibold leading-tight tracking-tight">Recent Writings</h2>
+							<h2 className="text-xl font-semibold leading-tight">Recent Writings</h2>
 							<Button variant="ghost" asChild>
 								<Link href="/blog">
 									View all
@@ -50,13 +50,13 @@ export default async function Page() {
 							</Button>
 						</div>
 
-						<div className="space-y-8">
+						<div className="space-y-10">
 							{latestPosts.map((post) => (
 								<Card
 									key={post.slug}
 									href={`/blog/${post.slug}`}
 									title={post.metadata.title}
-									description={post.metadata.description || post.metadata.summary}
+									description={post.metadata.summary}
 									date={formatDate(post.metadata.publishedAt, false)}
 									footer={
 										post.metadata.tags && post.metadata.tags.length > 0 ? (

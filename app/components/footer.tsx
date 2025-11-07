@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Container from '@/components/container'
 import {ModeToggle} from './toggle'
 
 interface FooterLink {
@@ -75,8 +74,8 @@ export default function Footer() {
 	}
 
 	return (
-		<footer className="border-border mt-32 border-t py-16">
-			<Container>
+		<footer className="mt-32 pt-16">
+			<div className="mx-auto max-w-7xl px-4 sm:px-6">
 				<div className="space-y-12">
 					<div className="space-y-4">
 						<Link
@@ -99,14 +98,14 @@ export default function Footer() {
 						))}
 					</div>
 
-					<div className="flex items-center justify-between border-t pt-8">
+					<div className="flex items-center justify-between pt-8">
 						<span className="text-muted-foreground text-xs">
 							© {new Date().getFullYear()} Lauro Silva
 						</span>
 						<ModeToggle />
 					</div>
 				</div>
-			</Container>
+			</div>
 		</footer>
 	)
 }

@@ -23,7 +23,7 @@ export function Card({
 		<Link
 			href={href}
 			className={cn(
-				'group block border-b border-border pb-8 last:border-0 last:pb-0',
+				'group block pb-10',
 				className
 			)}>
 			<article className="space-y-2.5">
@@ -32,7 +32,7 @@ export function Card({
 						{date}
 					</time>
 				)}
-				<h3 className="text-2xl font-semibold leading-tight tracking-tight group-hover:text-foreground/80 transition-colors">
+				<h3 className="text-xl font-semibold leading-tight group-hover:text-foreground/80 transition-colors">
 					{title}
 				</h3>
 				{description && (

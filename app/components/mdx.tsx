@@ -62,8 +62,9 @@ function Code({children, ...props}) {
 
 	return (
 		<code
-			className="bg-muted rounded px-1.5 py-0.5 font-mono text-[0.9em]"
+			className="inline-code rounded px-1.5 py-0.5 font-mono text-[0.9em] font-medium"
 			dangerouslySetInnerHTML={{__html: codeHTML}}
+			{...props}
 		/>
 	)
 }
@@ -110,8 +111,8 @@ function Pre({
 	const code = extractTextFromChildren(children)
 
 	return (
-		<div className="my-7 overflow-hidden rounded-lg border">
-			<div className="flex items-center justify-between border-b px-4 py-2.5">
+		<div className="my-7 overflow-hidden rounded-lg border border-border bg-card">
+			<div className="flex items-center justify-between border-b border-border px-4 py-2">
 				{language && (
 					<span className="text-muted-foreground font-mono text-xs">
 						{language}
@@ -119,7 +120,7 @@ function Pre({
 				)}
 				<CodeCopyButton code={code} />
 			</div>
-			<pre className="overflow-auto p-5 text-sm leading-relaxed" {...props}>
+			<pre className="overflow-auto p-4 text-sm leading-relaxed" {...props}>
 				<code
 					className={className}
 					dangerouslySetInnerHTML={{__html: highlight(code)}}
@@ -151,6 +152,7 @@ function createHeading(level: number) {
 
 		return React.createElement(`h${level}`, {
 			id: slug,
+			className: 'scroll-mt-20 text-foreground',
 			...props
 		}, children)
 	}

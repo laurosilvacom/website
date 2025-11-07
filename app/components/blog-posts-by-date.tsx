@@ -75,19 +75,19 @@ export function BlogPostsByDate({posts}: BlogPostsByDateProps) {
 		<div className="space-y-20">
 			{grouped.map(({year, months}) => (
 				<div key={year} className="space-y-14">
-					<h2 className="text-2xl font-semibold leading-tight tracking-tight">{year}</h2>
+					<h2 className="text-xl font-semibold leading-tight">{year}</h2>
 					{months.map(({month, monthName, posts: monthPosts}) => (
 						<div key={month} className="space-y-10">
 							<h3 className="text-lg font-medium text-muted-foreground">
 								{monthName}
 							</h3>
-							<div className="space-y-8">
+							<div className="space-y-10">
 								{monthPosts.map((post) => (
 									<Card
 										key={post.slug}
 										href={`/blog/${post.slug}`}
 										title={post.metadata.title}
-										description={post.metadata.description || post.metadata.summary}
+										description={post.metadata.summary}
 										date={formatDate(post.metadata.publishedAt, false)}
 										footer={
 											post.metadata.tags && post.metadata.tags.length > 0 ? (

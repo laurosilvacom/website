@@ -63,7 +63,7 @@ export default async function TagPage({params}: TagPageProps) {
 						← Back to all posts
 					</Link>
 
-					<h1 className="mb-3 text-4xl font-semibold leading-tight tracking-tight">
+					<h1 className="mb-3 text-2xl font-semibold leading-tight">
 						Posts tagged with &ldquo;{tag}&rdquo;
 					</h1>
 					<p className="text-muted-foreground text-lg leading-relaxed">
@@ -73,13 +73,13 @@ export default async function TagPage({params}: TagPageProps) {
 				</section>
 
 				<section>
-					<div className="space-y-8">
+					<div className="space-y-10">
 						{taggedPosts.map((post) => (
 							<Card
 								key={post.slug}
 								href={`/blog/${post.slug}`}
 								title={post.metadata.title}
-								description={post.metadata.description || post.metadata.summary}
+								description={post.metadata.summary}
 								date={formatDate(post.metadata.publishedAt, false)}
 								footer={
 									post.metadata.tags && post.metadata.tags.length > 0 ? (

@@ -1,4 +1,4 @@
-import localFont from 'next/font/local'
+import {Inter, Sora} from 'next/font/google'
 import {type Metadata} from 'next/types'
 import {type ReactNode} from 'react'
 import {ThemeProvider} from '@/components/theme-provider'
@@ -11,62 +11,15 @@ import {baseUrl} from '@/app/sitemap'
 import {Navbar} from '@/components/nav'
 import Footer from '@/components/footer'
 
-const wotfard = localFont({
-	src: [
-		{
-			path: './fonts/wotfard/Wotfard-Thin.ttf',
-			weight: '100',
-			style: 'normal'
-		},
-		{
-			path: './fonts/wotfard/Wotfard-Regular.ttf',
-			weight: '400',
-			style: 'normal'
-		},
-		{
-			path: './fonts/wotfard/Wotfard-Medium.ttf',
-			weight: '500',
-			style: 'normal'
-		},
-		{
-			path: './fonts/wotfard/Wotfard-SemiBold.ttf',
-			weight: '600',
-			style: 'normal'
-		},
-		{
-			path: './fonts/wotfard/Wotfard-Bold.ttf',
-			weight: '700',
-			style: 'normal'
-		}
-	],
+const inter = Inter({
+	subsets: ['latin'],
 	variable: '--font-sans',
 	display: 'swap'
 })
 
-const commitMono = localFont({
-	src: [
-		{
-			path: './fonts/commit/CommitMono-400-Regular.otf',
-			weight: '400',
-			style: 'normal'
-		},
-		{
-			path: './fonts/commit/CommitMono-400-Italic.otf',
-			weight: '400',
-			style: 'italic'
-		},
-		{
-			path: './fonts/commit/CommitMono-700-Regular.otf',
-			weight: '700',
-			style: 'normal'
-		},
-		{
-			path: './fonts/commit/CommitMono-700-Italic.otf',
-			weight: '700',
-			style: 'italic'
-		}
-	],
-	variable: '--font-mono',
+const sora = Sora({
+	subsets: ['latin'],
+	variable: '--font-heading',
 	display: 'swap'
 })
 
@@ -203,7 +156,7 @@ export default function RootLayout({children}: RootLayoutProps) {
 	return (
 		<html
 			lang="en"
-			className={`${wotfard.variable} ${commitMono.variable} bg-background text-foreground scroll-smooth antialiased`}
+			className={`${inter.variable} ${sora.variable} bg-background text-foreground scroll-smooth antialiased`}
 			suppressHydrationWarning // Add this to suppress hydration warnings related to theme
 		>
 			<body>

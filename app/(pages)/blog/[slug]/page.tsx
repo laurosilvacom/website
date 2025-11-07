@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import {notFound} from 'next/navigation'
-import Image from 'next/image'
 import {type Metadata} from 'next'
 import Container from '@/components/container'
 import {CustomMDX} from '@/components/mdx'
@@ -14,8 +13,7 @@ interface BlogHeaderProps {
 	date: string
 	readingTime: string | undefined
 	title: string
-	description?: string
-	coverImage?: string
+	summary: string
 	tags?: string[]
 }
 
@@ -23,8 +21,7 @@ function BlogHeader({
 	date,
 	readingTime,
 	title,
-	description,
-	coverImage,
+	summary,
 	tags
 }: BlogHeaderProps) {
 	return (
@@ -34,14 +31,12 @@ function BlogHeader({
 					<time className="text-muted-foreground text-sm">
 						{formatDate(date)}
 					</time>
-					<h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+					<h1 className="text-2xl font-semibold leading-tight text-foreground sm:text-3xl">
 						{title}
 					</h1>
-					{description && (
-						<p className="text-muted-foreground text-lg leading-relaxed sm:text-xl">
-							{description}
-						</p>
-					)}
+					<p className="text-muted-foreground text-lg leading-relaxed sm:text-xl">
+						{summary}
+					</p>
 				</div>
 
 				<div className="flex flex-wrap items-center gap-5 text-sm text-muted-foreground">
@@ -60,18 +55,6 @@ function BlogHeader({
 					)}
 				</div>
 			</div>
-
-			{coverImage && (
-				<div className="relative aspect-video overflow-hidden rounded-lg">
-					<Image
-						src={coverImage}
-						alt=""
-						fill
-						priority
-						className="object-cover"
-					/>
-				</div>
-			)}
 		</header>
 	)
 }
@@ -104,17 +87,15 @@ export async function generateMetadata(
 	const {
 		title,
 		publishedAt,
-		summary: description,
-		image,
+		summary,
 		tags
 	} = post.metadata
 
 	return generateBlogPostMetadata(
 		title,
-		description,
+		summary,
 		params.slug,
 		publishedAt,
-		image,
 		tags
 	)
 }
@@ -134,13 +115,7 @@ export default async function Blog(props: Props) {
 				type="article"
 				title={post.metadata.title}
 				description={post.metadata.summary}
-				image={
-					post.metadata.image
-						? `${baseUrl}${post.metadata.image}`
-						: `${baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}${
-								post.metadata.icon ? `&icon=${encodeURIComponent(post.metadata.icon)}` : ''
-							}`
-				}
+				image={`${baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}`}
 				datePublished={post.metadata.publishedAt}
 				dateModified={post.metadata.publishedAt}
 				author="Lauro Silva"
@@ -152,8 +127,7 @@ export default async function Blog(props: Props) {
 					date={post.metadata.publishedAt}
 					readingTime={post.metadata.readingTime}
 					title={post.metadata.title}
-					description={post.metadata.description}
-					coverImage={post.metadata.coverImage}
+					summary={post.metadata.summary}
 					tags={post.metadata.tags}
 				/>
 

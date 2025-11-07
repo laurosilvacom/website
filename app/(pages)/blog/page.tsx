@@ -34,7 +34,7 @@ export default async function Page() {
 			/>
 			<main className="py-16">
 				<section className="mb-14">
-					<h1 className="mb-3 text-4xl font-semibold leading-tight tracking-tight">
+					<h1 className="mb-3 text-2xl font-semibold leading-tight">
 						Writing
 					</h1>
 					<p className="text-muted-foreground text-lg leading-relaxed">
