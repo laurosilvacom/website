@@ -10,7 +10,14 @@ type ImageProps = Omit<NextImageProps, 'width' | 'height'> & {
 	height?: number
 }
 
-function CustomLink({href, children, ...props}) {
+function CustomLink({
+	href,
+	children,
+	...props
+}: {
+	href: string
+	children: ReactNode
+} & React.AnchorHTMLAttributes<HTMLAnchorElement>) {
 	const isInternal = href.startsWith('/') || href.startsWith('#')
 
 	if (isInternal) {
@@ -52,7 +59,12 @@ function RoundedImage({alt, ...imageProps}: ImageProps) {
 	)
 }
 
-function Code({children, ...props}) {
+function Code({
+	children,
+	...props
+}: {
+	children: string
+} & React.HTMLAttributes<HTMLElement>) {
 	const codeHTML = highlight(children)
 	const isInPre = props.className?.includes('language-')
 
@@ -158,13 +170,17 @@ function createHeading(level: number) {
 	}
 }
 
-function Table({data}) {
+function Table({
+	data
+}: {
+	data: {headers: string[]; rows: string[][]}
+}) {
 	return (
 		<div className="my-7 overflow-x-auto">
 			<table className="w-full">
 				<thead>
 					<tr className="border-b">
-						{data.headers.map((header, i) => (
+						{data.headers.map((header: string, i: number) => (
 							<th
 								key={`header-${i}`}
 								className="px-4 py-3 text-left text-sm font-medium">
@@ -174,9 +190,9 @@ function Table({data}) {
 					</tr>
 				</thead>
 				<tbody>
-					{data.rows.map((row, i) => (
+					{data.rows.map((row: string[], i: number) => (
 						<tr key={`row-${i}`} className="border-b last:border-0">
-							{row.map((cell, j) => (
+							{row.map((cell: string, j: number) => (
 								<td key={`cell-${i}-${j}`} className="px-4 py-3 text-sm">
 									{cell}
 								</td>

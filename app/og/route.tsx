@@ -134,7 +134,8 @@ export async function GET(request: Request) {
 		)
 	} catch (e) {
 		console.error('OG Error:', e)
-		return new Response(`Failed to generate image: ${e.message}`, {
+		const message = e instanceof Error ? e.message : 'Unknown error'
+		return new Response(`Failed to generate image: ${message}`, {
 			status: 500
 		})
 	}

@@ -1,0 +1,32 @@
+# Cursor Rules
+
+## Code Style
+- Use Prettier formatting (tabs, no semicolons, single quotes)
+- Be terse and direct
+- Provide actual code, not high-level explanations
+
+## Communication
+- Be casual unless specified otherwise
+- Treat user as expert
+- Give answers immediately, explain after if needed
+- No moral lectures or unnecessary disclaimers
+
+## Code Changes
+- Don't repeat entire code blocks unnecessarily
+- Show only changed lines with context (before/after)
+- Multiple code blocks are fine when needed
+
+## Technical Preferences
+- Use Next.js 16+ documentation: https://nextjs.org/docs
+- TypeScript strict mode enabled
+- Prefer type imports: `import {type X}`
+- Minimal dependencies, clean code
+
+## Project Context
+- Next.js 16 App Router
+- React 19
+- TypeScript strict mode
+- Tailwind CSS 4
+- shadcn/ui components
+- MDX for blog content
+

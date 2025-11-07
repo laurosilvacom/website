@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md,mjs}\""
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md,mjs}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md,mjs}\"",
+    "clean": "rm -rf .next out node_modules/.cache"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

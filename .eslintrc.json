@@ -1,59 +1,15 @@
 {
 	"extends": ["next/core-web-vitals", "next/typescript"],
-	"plugins": ["import", "react-hooks", "@typescript-eslint"],
 	"rules": {
-		"comma-dangle": ["error", "never"],
-		"no-unexpected-multiline": "error",
-		"no-warning-comments": [
-			"error",
-			{"terms": ["FIXME"], "location": "anywhere"}
+		"@typescript-eslint/no-unused-vars": [
+			"warn",
+			{"argsIgnorePattern": "^_", "varsIgnorePattern": "^_"}
+		],
+		"@typescript-eslint/consistent-type-imports": [
+			"warn",
+			{"prefer": "type-imports", "fixStyle": "inline-type-imports"}
 		],
 		"import/no-duplicates": ["warn", {"prefer-inline": true}],
-		"import/order": "off",
-		"react-hooks/rules-of-hooks": "error",
-		"react-hooks/exhaustive-deps": "warn",
-		"react/jsx-key": "warn",
-		"no-undef": "error"
-	},
-	"overrides": [
-		{
-			"files": ["**/*.ts", "**/*.tsx"],
-			"rules": {
-				"@typescript-eslint/no-unused-vars": [
-					"warn",
-					{
-						"args": "after-used",
-						"argsIgnorePattern": "^_",
-						"ignoreRestSiblings": true,
-						"varsIgnorePattern": "^ignored"
-					}
-				],
-				"import/consistent-type-specifier-style": ["warn", "prefer-inline"],
-				"@typescript-eslint/consistent-type-imports": [
-					"warn",
-					{
-						"prefer": "type-imports",
-						"disallowTypeAnnotations": true,
-						"fixStyle": "inline-type-imports"
-					}
-				],
-				"@typescript-eslint/no-floating-promises": "off"
-			}
-		}
-	],
-	"ignorePatterns": [
-		"**/.cache/**",
-		"**/node_modules/**",
-		"**/build/**",
-		"**/public/build/**",
-		"**/playwright-report/**",
-		"**/server-build/**",
-		"**/dist/**",
-		"**/coverage/**"
-	],
-	"settings": {
-		"react": {
-			"version": "detect"
-		}
+		"react-hooks/exhaustive-deps": "warn"
 	}
 }
