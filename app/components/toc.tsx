@@ -2,6 +2,12 @@
 
 import {ChevronDown} from 'lucide-react'
 import {useEffect, useState} from 'react'
+import {
+	Collapsible,
+	CollapsibleContent,
+	CollapsibleTrigger
+} from '@/components/ui/collapsible'
+import {cn} from '@/lib/utils'
 
 interface HeadingData {
 	id: string
@@ -12,6 +18,7 @@ interface HeadingData {
 export function TableOfContents() {
 	const [headings, setHeadings] = useState<HeadingData[]>([])
 	const [activeId, setActiveId] = useState<string>('')
+	const [isOpen, setIsOpen] = useState(false)
 
 	useEffect(() => {
 		const elements = Array.from(document.querySelectorAll('h2, h3, h4'))
@@ -45,10 +52,9 @@ export function TableOfContents() {
 
 	return (
 		<nav className="relative font-sans" aria-label="Table of contents">
-			<details className="group [&_summary::-webkit-details-marker]:hidden">
-				<summary className="bg-secondary/30 border-border ring-border/40 flex cursor-pointer items-center justify-between rounded-xl border p-3 ring-1 shadow-sm">
+			<Collapsible open={isOpen} onOpenChange={setIsOpen}>
+				<CollapsibleTrigger className="bg-secondary/30 border-border ring-border/40 flex w-full cursor-pointer items-center justify-between rounded-xl border p-3 ring-1 shadow-sm hover:bg-secondary/40 transition-colors">
 					<div className="flex items-center gap-2">
-						{/* Simple dot indicator to match code block */}
 						<div className="bg-primary/60 h-2 w-2 rounded-full"></div>
 						<h2
 							id="toc-title"
@@ -56,55 +62,58 @@ export function TableOfContents() {
 							Table of Contents
 						</h2>
 					</div>
-					<ChevronDown className="text-primary/70 h-4 w-4 transition-transform duration-200 group-open:rotate-180" />
-				</summary>
+					<ChevronDown className="text-primary/70 h-4 w-4 transition-transform duration-200 data-[state=open]:rotate-180" />
+				</CollapsibleTrigger>
 
-				<ul
-					className="mt-3 space-y-1 text-[0.85rem]"
-					role="list"
-					aria-labelledby="toc-title">
-					{headings.map((heading) => {
-						const isActive = activeId === heading.id
+				<CollapsibleContent>
+					<ul
+						className="mt-3 space-y-1 text-[0.85rem]"
+						role="list"
+						aria-labelledby="toc-title">
+						{headings.map((heading) => {
+							const isActive = activeId === heading.id
 
-						return (
-							<li
-								key={`${heading.id}-${heading.text}`}
-								style={{marginLeft: `${(heading.level - 2) * 12}px`}}>
-								<a
-									href={`#${heading.id}`}
-									className={`hover:text-primary relative flex items-center py-1.5 pl-3 transition-colors duration-150 ${
-										isActive
-											? 'text-primary font-medium'
-											: 'text-muted-foreground'
-									}`}
-									onClick={(e) => {
-										e.preventDefault()
-										const element = document.getElementById(heading.id)
-										if (element) {
-											element.scrollIntoView({
-												behavior: 'smooth',
-												block: 'start'
-											})
-											window.history.pushState(null, '', `#${heading.id}`)
-											element.focus({preventScroll: true})
-											element.setAttribute('tabindex', '-1')
-										}
-									}}
-									aria-current={isActive ? 'location' : undefined}>
-									{/* Simple active indicator */}
-									<span
-										className={`bg-primary/60 absolute left-0 h-full w-0.5 rounded-full transition-opacity duration-150 ${
-											isActive ? 'opacity-100' : 'opacity-0'
-										}`}
-										aria-hidden="true"
-									/>
-									{heading.text}
-								</a>
-							</li>
-						)
-					})}
-				</ul>
-			</details>
+							return (
+								<li
+									key={`${heading.id}-${heading.text}`}
+									style={{marginLeft: `${(heading.level - 2) * 12}px`}}>
+									<a
+										href={`#${heading.id}`}
+										className={cn(
+											'hover:text-primary relative flex items-center py-1.5 pl-3 transition-colors duration-150',
+											isActive
+												? 'text-primary font-medium'
+												: 'text-muted-foreground'
+										)}
+										onClick={(e) => {
+											e.preventDefault()
+											const element = document.getElementById(heading.id)
+											if (element) {
+												element.scrollIntoView({
+													behavior: 'smooth',
+													block: 'start'
+												})
+												window.history.pushState(null, '', `#${heading.id}`)
+												element.focus({preventScroll: true})
+												element.setAttribute('tabindex', '-1')
+											}
+										}}
+										aria-current={isActive ? 'location' : undefined}>
+										<span
+											className={cn(
+												'bg-primary/60 absolute left-0 h-full w-0.5 rounded-full transition-opacity duration-150',
+												isActive ? 'opacity-100' : 'opacity-0'
+											)}
+											aria-hidden="true"
+										/>
+										{heading.text}
+									</a>
+								</li>
+							)
+						})}
+					</ul>
+				</CollapsibleContent>
+			</Collapsible>
 		</nav>
 	)
 }

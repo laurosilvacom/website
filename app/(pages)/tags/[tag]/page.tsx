@@ -7,7 +7,6 @@ import {
 } from '@/app/(pages)/blog/utils'
 import Container from '@/app/components/container'
 import {Card} from '@/app/components/card'
-import {CardGrid} from '@/app/components/card-grid'
 import {TagFooter} from '@/app/components/tag-footer'
 import {type Metadata} from 'next'
 
@@ -77,7 +76,7 @@ export default async function TagPage({params}: TagPageProps) {
 
 				<section>
 					{taggedPosts.length > 0 ? (
-						<CardGrid>
+						<div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 							{taggedPosts.map((post) => (
 								<Card
 									key={post.slug}
@@ -95,7 +94,7 @@ export default async function TagPage({params}: TagPageProps) {
 									}
 								/>
 							))}
-						</CardGrid>
+						</div>
 					) : (
 						<div className="bg-muted/30 rounded-lg p-10 text-center">
 							<h3 className="mb-2 text-xl font-medium">No articles found</h3>

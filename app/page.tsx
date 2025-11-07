@@ -2,7 +2,6 @@ import {ArrowRight} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {Card} from 'app/components/card'
-import {CardGrid} from 'app/components/card-grid'
 import Container from 'app/components/container'
 import {Button} from 'app/components/ui/button'
 import {formatDate, getBlogPosts} from './(pages)/blog/utils'
@@ -56,12 +55,6 @@ export default async function Page() {
 											<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 										</Link>
 									</Button>
-
-									<Button asChild variant="outline" size="lg">
-										<Link href="/workshops" className="group">
-											Explore workshops
-										</Link>
-									</Button>
 								</div>
 							</div>
 						</div>
@@ -109,7 +102,7 @@ export default async function Page() {
 								</Button>
 							</div>
 
-							<CardGrid>
+							<div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 								{latestPosts.map((post) => (
 									<Card
 										key={post.slug}
@@ -120,7 +113,7 @@ export default async function Page() {
 										date={formatDate(post.metadata.publishedAt, false)}
 									/>
 								))}
-							</CardGrid>
+							</div>
 						</div>
 					</div>
 				</section>

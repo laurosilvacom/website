@@ -71,20 +71,6 @@ const TutorialIcon = () => (
 	</svg>
 )
 
-const WorkshopIcon = () => (
-	<svg
-		className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
-		viewBox="0 0 24 24"
-		fill="none"
-		stroke="currentColor">
-		<path
-			d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-			strokeWidth="2"
-			strokeLinecap="round"
-		/>
-	</svg>
-)
-
 const GithubIcon = () => (
 	<svg
 		className="h-4 w-4 transition-transform duration-200 group-hover:scale-110"
@@ -177,9 +163,6 @@ const FooterSection = ({
 								{title === 'Resources' && link.text === 'Tutorials' && (
 									<TutorialIcon />
 								)}
-								{title === 'Services' && link.text === 'Workshops' && (
-									<WorkshopIcon />
-								)}
 								{title === 'Social' && link.text === 'GitHub' && <GithubIcon />}
 								{title === 'Social' && link.text === 'Bsky' && <SocialIcon />}
 								{title === 'Social' && link.text === 'RSS' && <RssIcon />}
@@ -198,9 +181,6 @@ const FooterSection = ({
 								)}
 								{title === 'Services' && link.text === 'Hire Me' && (
 									<HireIcon />
-								)}
-								{title === 'Services' && link.text === 'Workshops' && (
-									<WorkshopIcon />
 								)}
 								{title === 'Social' && link.text === 'GitHub' && <GithubIcon />}
 								{title === 'Social' && link.text === 'Bsky' && <SocialIcon />}
@@ -228,8 +208,7 @@ export default function Footer() {
 	const sections: FooterSections = {
 		Resources: [{href: '/blog', text: 'Blog'}],
 		Services: [
-			{href: '/hire-lauro', text: 'Hire Me'},
-			{href: '/workshops', text: 'Workshops'}
+			{href: '/hire-lauro', text: 'Hire Me'}
 		],
 		Social: [
 			{

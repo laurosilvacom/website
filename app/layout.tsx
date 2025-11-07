@@ -1,5 +1,3 @@
-import {Analytics} from '@vercel/analytics/react'
-import {SpeedInsights} from '@vercel/speed-insights/next'
 import localFont from 'next/font/local'
 import {type Metadata} from 'next/types'
 import {type ReactNode} from 'react'
@@ -223,8 +221,6 @@ export default function RootLayout({children}: RootLayoutProps) {
 				</ThemeProvider>
 				<StructuredData type="website" />
 				<StructuredData type="person" />
-				<Analytics />
-				<SpeedInsights />
 				<Toaster />
 			</body>
 		</html>
