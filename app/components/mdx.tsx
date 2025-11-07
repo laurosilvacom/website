@@ -56,13 +56,13 @@ function StackBlitz({
 		: `https://stackblitz.com/edit/${id}`
 
 	return (
-		<div className="bg-card text-card-foreground border-border my-8 overflow-hidden rounded-xl border shadow-xs">
-			<div className="bg-muted border-border border-b px-4 py-2">
-				<div className="text-muted-foreground text-sm">StackBlitz Example</div>
+		<div className="my-8 overflow-hidden rounded-lg border">
+			<div className="border-b px-4 py-2">
+				<div className="text-sm">StackBlitz Example</div>
 			</div>
 			<iframe
 				src={`${baseUrl}?${params.toString()}`}
-				className="bg-card w-full"
+				className="w-full"
 				style={{height}}
 				title="StackBlitz Example"
 				loading="lazy"
@@ -78,7 +78,7 @@ type ImageProps = Omit<NextImageProps, 'width' | 'height'> & {
 
 function Table({data}) {
 	return (
-		<div className="bg-card text-foreground border-border my-8 overflow-hidden rounded-xl border shadow-xs">
+		<div className="my-8 overflow-hidden rounded-lg border">
 			<div className="overflow-x-auto">
 				<table className="w-full">
 					<thead>
@@ -86,7 +86,7 @@ function Table({data}) {
 							{data.headers.map((header, i) => (
 								<th
 									key={`header-${i}`}
-									className="border-border text-foreground bg-muted text-md border-b px-4 py-3 text-left font-medium">
+									className="border-b px-4 py-3 text-left font-medium">
 									{header}
 								</th>
 							))}
@@ -94,9 +94,7 @@ function Table({data}) {
 					</thead>
 					<tbody>
 						{data.rows.map((row, i) => (
-							<tr
-								key={`row-${i}`}
-								className="border-border hover:bg-muted/50 border-b transition-colors last:border-0">
+							<tr key={`row-${i}`} className="border-b last:border-0">
 								{row.map((cell, j) => (
 									<td key={`cell-${i}-${j}`} className="px-4 py-3">
 										{cell}
@@ -115,8 +113,7 @@ function CustomLink({href, children, ...props}) {
 	const isInternal = href.startsWith('/')
 	const isAnchor = href.startsWith('#')
 
-	const linkClass =
-		'text-primary hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm transition-colors'
+	const linkClass = 'text-primary hover:underline'
 
 	if (isInternal) {
 		return (
@@ -149,7 +146,7 @@ function CustomLink({href, children, ...props}) {
 
 function RoundedImage({alt, ...imageProps}: ImageProps) {
 	return (
-		<figure className="bg-card border-border my-8 overflow-hidden rounded-xl border">
+		<figure className="my-8 overflow-hidden rounded-lg border">
 			<Image
 				className="w-full"
 				width={1200}
@@ -159,7 +156,7 @@ function RoundedImage({alt, ...imageProps}: ImageProps) {
 				{...imageProps}
 			/>
 			{alt && (
-				<figcaption className="bg-muted border-border text-muted-foreground mt-0 border-t p-3 text-center text-sm">
+				<figcaption className="border-t p-3 text-center text-sm">
 					{alt}
 				</figcaption>
 			)}
@@ -178,7 +175,7 @@ function Code({children, ...props}) {
 	// Josh-style inline code
 	return (
 		<code
-			className="bg-secondary/70 text-secondary-foreground ring-border/40 relative inline-block rounded px-1.5 py-0.5 font-mono text-sm font-medium ring-1"
+			className="rounded px-1.5 py-0.5 font-mono text-sm"
 			dangerouslySetInnerHTML={{__html: codeHTML}}
 		/>
 	)
@@ -233,32 +230,23 @@ function Pre({
 	}
 
 	return (
-		<div className="not-prose border-border bg-card ring-border/40 my-10 overflow-hidden rounded-xl border ring-1 shadow-sm">
-			{/* Josh-style header */}
-			<div className="border-border bg-secondary/30 flex items-center justify-between border-b px-4 py-2.5">
+		<div className="my-10 overflow-hidden rounded-lg border">
+			<div className="flex items-center justify-between border-b px-4 py-2.5">
 				<div className="flex items-center space-x-2">
-					{/* Simple dot indicator */}
-					<div className="bg-primary/60 h-2 w-2 rounded-full"></div>
-
-					{/* File path takes precedence over language badge */}
 					{filePath ? (
-						<span className="text-primary/60 font-mono text-xs font-semibold">
+						<span className="font-mono text-xs font-semibold">
 							{filePath}
 						</span>
 					) : (
 						language && (
-							<span className="text-primary/60 font-mono text-xs font-semibold">
+							<span className="font-mono text-xs font-semibold">
 								{language}
 							</span>
 						)
 					)}
 				</div>
-
-				{/* Copy button - always use the original code for copying */}
 				<CodeCopyButton code={originalCode} />
 			</div>
-
-			{/* Code content with refined styling - manually render the highlighted code */}
 			<div className="relative">
 				<pre className="overflow-auto p-4 text-sm leading-relaxed" {...props}>
 					<code
@@ -321,7 +309,7 @@ function createHeading(level: number) {
 			`h${level}`,
 			{
 				id: slug,
-				className: `text-foreground group relative my-6 font-bold scroll-mt-20`,
+				className: `my-6 font-bold scroll-mt-20`,
 				...props
 			},
 			React.createElement(
@@ -329,7 +317,7 @@ function createHeading(level: number) {
 				{
 					href: `#${slug}`,
 					key: `link-${slug}`,
-					className: `absolute -left-5 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-primary transition-opacity`
+					className: `absolute -left-5 opacity-0 hover:opacity-100 text-muted-foreground`
 				},
 				'#'
 			),
@@ -340,41 +328,22 @@ function createHeading(level: number) {
 
 function Blockquote({children}: {children: ReactNode}) {
 	return (
-		<blockquote className="bg-card border-primary text-card-foreground my-8 border-l-4 py-4 pl-6">
+		<blockquote className="my-8 border-l-4 py-4 pl-6">
 			{children}
 		</blockquote>
 	)
 }
 
 function Em({children}) {
-	return (
-		<em className="bg-secondary text-secondary-foreground rounded-sm px-2 py-0.5 not-italic">
-			{children}
-		</em>
-	)
+	return <em className="not-italic">{children}</em>
 }
 
 function Strong({children}: {children: ReactNode}) {
-	return (
-		<strong className="relative inline-block font-bold">
-			<span className="text-primary relative z-10">{children}</span>
-			<span className="bg-primary/15 absolute bottom-0.5 left-0 z-0 h-3 w-full rounded-sm"></span>
-		</strong>
-	)
+	return <strong className="font-bold">{children}</strong>
 }
 
 function Hr() {
-	return (
-		<div className="my-12 flex items-center">
-			<div className="border-border flex-grow border-t"></div>
-			<div className="mx-4 flex space-x-1.5">
-				<div className="bg-primary/30 h-1.5 w-1.5 rounded-full"></div>
-				<div className="bg-primary/50 h-1.5 w-1.5 rounded-full"></div>
-				<div className="bg-primary/30 h-1.5 w-1.5 rounded-full"></div>
-			</div>
-			<div className="border-border flex-grow border-t"></div>
-		</div>
-	)
+	return <hr className="my-12" />
 }
 
 function UnorderedList({children}: {children: ReactNode}) {
@@ -383,7 +352,7 @@ function UnorderedList({children}: {children: ReactNode}) {
 
 function OrderedList({children}: {children: ReactNode}) {
 	return (
-		<ol className="marker:text-primary my-6 ml-6 list-decimal space-y-3 marker:font-medium">
+		<ol className="my-6 ml-6 list-decimal space-y-3">
 			{children}
 		</ol>
 	)
@@ -402,20 +371,18 @@ function Alert({
 }) {
 	// Enhanced styling with better contrast
 	const styles = {
-		info: 'bg-primary/5 border-primary/20 text-foreground',
-		warning: 'bg-destructive/5 border-destructive/20 text-foreground',
-		error: 'bg-destructive/10 border-destructive/30 text-foreground',
-		success: 'bg-primary/5 border-primary/20 text-foreground'
+		info: 'border-primary/20',
+		warning: 'border-destructive/20',
+		error: 'border-destructive/30',
+		success: 'border-primary/20'
 	}
 
 	// Icon mapping using Lucide icons
 	const icons = {
-		info: <AlertCircle className="text-primary h-5 w-5 flex-shrink-0" />,
-		warning: (
-			<AlertTriangle className="text-destructive/70 h-5 w-5 flex-shrink-0" />
-		),
-		error: <XCircle className="text-destructive h-5 w-5 flex-shrink-0" />,
-		success: <CheckCircle className="text-primary/70 h-5 w-5 flex-shrink-0" />
+		info: <AlertCircle className="h-5 w-5 flex-shrink-0" />,
+		warning: <AlertTriangle className="h-5 w-5 flex-shrink-0" />,
+		error: <XCircle className="h-5 w-5 flex-shrink-0" />,
+		success: <CheckCircle className="h-5 w-5 flex-shrink-0" />
 	}
 
 	// Labels for screen readers
@@ -429,10 +396,7 @@ function Alert({
 	return (
 		<div className={`my-8 rounded-lg border p-4 ${styles[type]}`}>
 			<div className="flex items-center">
-				{/* Icon with flex-shrink-0 to prevent distortion */}
 				<div className="flex-shrink-0">{icons[type]}</div>
-
-				{/* Content with proper spacing */}
 				<div className="ml-3">
 					<span className="sr-only">{ariaLabels[type]}</span>
 					<div>{children}</div>
@@ -444,18 +408,12 @@ function Alert({
 
 function Callout({children, emoji}: {children: ReactNode; emoji: string}) {
 	return (
-		<div className="bg-muted/40 border-border my-8 overflow-hidden rounded-lg border">
+		<div className="my-8 overflow-hidden rounded-lg border">
 			<div className="flex items-center gap-4 p-5">
-				{/* Emoji container - perfectly centered */}
-				<div
-					className="bg-card flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-xl"
-					role="img"
-					aria-label={`Callout emoji: ${emoji}`}>
+				<div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-xl">
 					{emoji}
 				</div>
-
-				{/* Content container */}
-				<div className="text-foreground flex-1">{children}</div>
+				<div className="flex-1">{children}</div>
 			</div>
 		</div>
 	)
@@ -463,8 +421,8 @@ function Callout({children, emoji}: {children: ReactNode; emoji: string}) {
 
 function Demo({children}) {
 	return (
-		<div className="bg-card my-8 overflow-hidden rounded-lg border">
-			<div className="bg-card border-b p-3 text-sm font-medium">Demo</div>
+		<div className="my-8 overflow-hidden rounded-lg border">
+			<div className="border-b p-3 text-sm font-medium">Demo</div>
 			<div className="p-4">{children}</div>
 		</div>
 	)
@@ -472,7 +430,7 @@ function Demo({children}) {
 
 function Kbd({children}) {
 	return (
-		<kbd className="bg-secondary text-secondary-foreground rounded border px-1.5 py-0.5 font-mono text-xs">
+		<kbd className="rounded border px-1.5 py-0.5 font-mono text-xs">
 			{children}
 		</kbd>
 	)
@@ -480,8 +438,8 @@ function Kbd({children}) {
 
 function Details({children, title}: {children: ReactNode; title: string}) {
 	return (
-		<details className="bg-card my-6 overflow-hidden rounded-lg border">
-			<summary className="bg-muted cursor-pointer px-4 py-3 font-medium">
+		<details className="my-6 overflow-hidden rounded-lg border">
+			<summary className="cursor-pointer px-4 py-3 font-medium">
 				{title}
 			</summary>
 			<div className="p-4">{children}</div>

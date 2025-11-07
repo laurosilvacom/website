@@ -7,9 +7,13 @@ const nextConfig: NextConfig = {
 				protocol: 'https',
 				hostname: 'res.cloudinary.com'
 			}
-		]
+		],
+		formats: ['image/avif', 'image/webp']
 	},
-	transpilePackages: ['next-mdx-remote']
+	transpilePackages: ['next-mdx-remote'],
+	experimental: {
+		optimizePackageImports: ['lucide-react']
+	}
 }
 
 export default nextConfig

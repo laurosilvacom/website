@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import {notFound} from 'next/dist/client/components/not-found'
+import {notFound} from 'next/navigation'
 import Image from 'next/image'
-import {type Metadata} from 'next/types'
+import {type Metadata} from 'next'
 import Container from 'app/components/container'
 import {CustomMDX} from 'app/components/mdx'
 import {TableOfContents} from 'app/components/toc'
@@ -168,7 +168,7 @@ export async function generateMetadata(
 export default async function Blog(props: Props) {
 	const params = await props.params
 	const posts = await getBlogPosts()
-	const post = posts.find((post) => post.slug === params.slug)
+	const post = posts.find((p) => p.slug === params.slug)
 
 	if (!post) {
 		notFound()
@@ -178,18 +178,18 @@ export default async function Blog(props: Props) {
 		<Container className="m-auto min-h-screen">
 			<StructuredData 
 				type="article"
-				title={post!.metadata.title}
-				description={post!.metadata.summary}
-				image={post!.metadata.image 
-					? `${baseUrl}${post!.metadata.image}`
-					: `${baseUrl}/og?title=${encodeURIComponent(post!.metadata.title)}${
-						post!.metadata.icon ? `&icon=${encodeURIComponent(post!.metadata.icon)}` : ''
+				title={post.metadata.title}
+				description={post.metadata.summary}
+				image={post.metadata.image 
+					? `${baseUrl}${post.metadata.image}`
+					: `${baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}${
+						post.metadata.icon ? `&icon=${encodeURIComponent(post.metadata.icon)}` : ''
 					}`
 				}
-				datePublished={post!.metadata.publishedAt}
-				dateModified={post!.metadata.publishedAt}
+				datePublished={post.metadata.publishedAt}
+				dateModified={post.metadata.publishedAt}
 				author="Lauro Silva"
-				url={`${baseUrl}/blog/${post!.slug}`}
+				url={`${baseUrl}/blog/${post.slug}`}
 			/>
 
 			{/* Maintained original layout structure for proper alignment */}
@@ -202,13 +202,13 @@ export default async function Blog(props: Props) {
 							{/* Header section */}
 							<div className="relative mb-16">
 								<BlogHeader
-									date={post!.metadata.publishedAt}
-									readingTime={post!.metadata.readingTime}
-									icon={post!.metadata.icon}
-									title={post!.metadata.title}
-									description={post!.metadata.description}
-									coverImage={post!.metadata.coverImage}
-									tags={post!.metadata.tags} // Pass tags to the BlogHeader component
+									date={post.metadata.publishedAt}
+									readingTime={post.metadata.readingTime}
+									icon={post.metadata.icon}
+									title={post.metadata.title}
+									description={post.metadata.description}
+									coverImage={post.metadata.coverImage}
+									tags={post.metadata.tags}
 								/>
 
 								{/* Mobile TOC - kept original placement */}
@@ -223,7 +223,7 @@ export default async function Blog(props: Props) {
 
 							{/* Article content - maintained prose settings */}
 							<article className="prose prose-lg text-foreground !max-w-none">
-								<CustomMDX source={post!.content} />
+								<CustomMDX source={post.content} />
 							</article>
 						</div>
 

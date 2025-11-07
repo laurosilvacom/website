@@ -8,7 +8,8 @@ import 'app/globals.css'
 import {Toaster} from 'app/components/toaster'
 import {StructuredData} from 'app/components/structured-data'
 import {baseUrl} from 'app/sitemap'
-import {LayoutContents} from './layout-contents'
+import {Navbar} from 'app/components/nav'
+import Footer from 'app/components/footer'
 
 const wotfard = localFont({
 	src: [
@@ -193,8 +194,6 @@ export const metadata: Metadata = {
 	}
 }
 
-const cx = (...classes: (string | false | null | undefined)[]) =>
-	classes.filter(Boolean).join(' ')
 
 type RootLayoutProps = {
 	children: ReactNode
@@ -204,21 +203,21 @@ export default function RootLayout({children}: RootLayoutProps) {
 	return (
 		<html
 			lang="en"
-			className={cx(
-				wotfard.variable,
-				commitMono.variable,
-				'bg-background text-foreground scroll-smooth antialiased'
-			)}
+			className={`${wotfard.variable} ${commitMono.variable} bg-background text-foreground scroll-smooth antialiased`}
 			suppressHydrationWarning // Add this to suppress hydration warnings related to theme
 		>
 			<body>
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="system"
-					enableSystem
-					disableTransitionOnChange>
-					<LayoutContents>{children}</LayoutContents>
-				</ThemeProvider>
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange>
+						<main className="min-w-0">
+							<Navbar />
+							{children}
+							<Footer />
+						</main>
+					</ThemeProvider>
 				<StructuredData type="website" />
 				<StructuredData type="person" />
 				<Toaster />

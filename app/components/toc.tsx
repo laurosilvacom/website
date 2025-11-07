@@ -51,28 +51,16 @@ export function TableOfContents() {
 	}, [])
 
 	return (
-		<nav className="relative font-sans" aria-label="Table of contents">
+		<nav aria-label="Table of contents">
 			<Collapsible open={isOpen} onOpenChange={setIsOpen}>
-				<CollapsibleTrigger className="bg-secondary/30 border-border ring-border/40 flex w-full cursor-pointer items-center justify-between rounded-xl border p-3 ring-1 shadow-sm hover:bg-secondary/40 transition-colors">
-					<div className="flex items-center gap-2">
-						<div className="bg-primary/60 h-2 w-2 rounded-full"></div>
-						<h2
-							id="toc-title"
-							className="text-foreground text-[0.85rem] font-medium">
-							Table of Contents
-						</h2>
-					</div>
-					<ChevronDown className="text-primary/70 h-4 w-4 transition-transform duration-200 data-[state=open]:rotate-180" />
+				<CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg border p-3">
+					<h2 className="text-sm font-medium">Table of Contents</h2>
+					<ChevronDown className="h-4 w-4" />
 				</CollapsibleTrigger>
-
 				<CollapsibleContent>
-					<ul
-						className="mt-3 space-y-1 text-[0.85rem]"
-						role="list"
-						aria-labelledby="toc-title">
+					<ul className="mt-3 space-y-1 text-sm">
 						{headings.map((heading) => {
 							const isActive = activeId === heading.id
-
 							return (
 								<li
 									key={`${heading.id}-${heading.text}`}
@@ -80,32 +68,17 @@ export function TableOfContents() {
 									<a
 										href={`#${heading.id}`}
 										className={cn(
-											'hover:text-primary relative flex items-center py-1.5 pl-3 transition-colors duration-150',
-											isActive
-												? 'text-primary font-medium'
-												: 'text-muted-foreground'
+											'block py-1',
+											isActive ? 'text-foreground font-medium' : 'text-muted-foreground'
 										)}
 										onClick={(e) => {
 											e.preventDefault()
 											const element = document.getElementById(heading.id)
 											if (element) {
-												element.scrollIntoView({
-													behavior: 'smooth',
-													block: 'start'
-												})
+												element.scrollIntoView({behavior: 'smooth'})
 												window.history.pushState(null, '', `#${heading.id}`)
-												element.focus({preventScroll: true})
-												element.setAttribute('tabindex', '-1')
 											}
-										}}
-										aria-current={isActive ? 'location' : undefined}>
-										<span
-											className={cn(
-												'bg-primary/60 absolute left-0 h-full w-0.5 rounded-full transition-opacity duration-150',
-												isActive ? 'opacity-100' : 'opacity-0'
-											)}
-											aria-hidden="true"
-										/>
+										}}>
 										{heading.text}
 									</a>
 								</li>

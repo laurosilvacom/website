@@ -1,26 +1,22 @@
-import React from 'react'
+import {type ReactNode} from 'react'
 import {cn} from '@/lib/utils'
 
 type ContainerProps = {
 	className?: string
-	wrapperClassName?: string
 	as?: keyof React.JSX.IntrinsicElements | React.ComponentType<unknown>
-} & React.PropsWithChildren
+} & {children: ReactNode}
 
-const Container: React.FC<ContainerProps> = ({
+export default function Container({
 	children,
 	className = '',
-	wrapperClassName = '',
 	as: Component = 'div',
 	...props
-}) => {
+}: ContainerProps) {
 	return (
-		<div className={cn('w-full px-2 sm:px-5 lg:px-8', wrapperClassName)}>
+		<div className="w-full px-2 sm:px-5 lg:px-8">
 			<Component className={cn('container h-full', className)} {...props}>
 				{children}
 			</Component>
 		</div>
 	)
 }
-
-export default Container
