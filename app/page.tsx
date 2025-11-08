@@ -63,7 +63,7 @@ export default async function Page() {
 								src="/photos/website-photo-1.jpg"
 								alt="Lauro Silva"
 								fill
-								className="rounded-2xl object-cover shadow-lg"
+								className="rounded-lg object-cover shadow-lg"
 								priority
 								sizes="(max-width: 1024px) 100vw, 80vw"
 							/>

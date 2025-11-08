@@ -39,7 +39,7 @@ export default function ServicesPage() {
 				{/* Photo */}
 				<section className="py-12">
 					<div className="max-w-2xl">
-						<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+						<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
 							<Image
 								src="/photos/website-photo-2.jpg"
 								alt="Lauro Silva"
@@ -58,7 +58,7 @@ export default function ServicesPage() {
 							<div className="absolute left-0 top-0 bottom-0 w-1 bg-primary/20 rounded-full" />
 							<div className="pl-8 space-y-12">
 								{/* Photo */}
-								<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+								<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
 									<Image
 										src="/photos/website-photo-7.jpg"
 										alt=""
@@ -232,7 +232,7 @@ export default function ServicesPage() {
 							<div className="absolute left-0 top-0 bottom-0 w-1 bg-primary/20 rounded-full" />
 							<div className="pl-8 space-y-12">
 								{/* Photo */}
-								<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+								<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
 									<Image
 										src="/photos/website-photo-12.jpg"
 										alt=""

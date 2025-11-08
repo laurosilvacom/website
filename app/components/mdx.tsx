@@ -43,14 +43,14 @@ function RoundedImage({alt, ...imageProps}: ImageProps) {
 	return (
 		<figure className="my-9">
 			<Image
-				className="w-full rounded-lg"
+				className="w-full rounded-lg shadow-lg"
 				width={1200}
 				height={675}
 				quality={95}
 				alt={alt || ''}
 				{...imageProps}
 			/>
-			{alt && (
+			{alt && alt.toLowerCase() !== 'description' && (
 				<figcaption className="text-muted-foreground mt-3 text-center text-sm">
 					{alt}
 				</figcaption>

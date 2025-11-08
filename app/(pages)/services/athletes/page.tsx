@@ -35,7 +35,7 @@ export default function AthletesPage() {
 					{/* Photo */}
 					<section className="py-12">
 						<div className="max-w-2xl">
-							<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+							<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
 								<Image
 									src="/photos/website-photo-5.jpg"
 									alt=""
@@ -77,7 +77,7 @@ export default function AthletesPage() {
 					{/* Photo */}
 					<section className="py-12">
 						<div className="max-w-2xl">
-							<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+							<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
 								<Image
 									src="/photos/website-photo-10.jpg"
 									alt=""

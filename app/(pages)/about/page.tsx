@@ -51,7 +51,7 @@ export default function AboutPage() {
 				{/* Photo */}
 				<section className="py-12">
 					<div className="max-w-2xl">
-						<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+						<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
 							<Image
 								src="/photos/website-photo-6.jpg"
 								alt="Lauro Silva"
@@ -109,7 +109,7 @@ export default function AboutPage() {
 								</div>
 
 								{/* Photo */}
-								<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+								<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
 									<Image
 										src="/photos/website-photo-9.jpg"
 										alt=""
@@ -147,7 +147,7 @@ export default function AboutPage() {
 								</div>
 
 								{/* Photo */}
-								<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+								<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
 									<Image
 										src="/photos/website-photo-4.jpg"
 										alt=""
@@ -185,7 +185,7 @@ export default function AboutPage() {
 								</div>
 
 								{/* Photo */}
-								<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+								<div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
 									<Image
 										src="/photos/website-photo-11.jpg"
 										alt=""
