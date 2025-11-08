@@ -16,6 +16,7 @@ const navItems = {
 export function Navbar() {
 	const pathname = usePathname()
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
+	const [isScrolled, setIsScrolled] = useState(false)
 
 	const closeMenu = useCallback(() => {
 		setIsMenuOpen(false)
@@ -33,18 +34,46 @@ export function Navbar() {
 		}
 	}, [isMenuOpen])
 
+	useEffect(() => {
+		const handleScroll = () => {
+			setIsScrolled(window.scrollY > 10)
+		}
+
+		window.addEventListener('scroll', handleScroll)
+		return () => window.removeEventListener('scroll', handleScroll)
+	}, [])
+
 	return (
 		<>
 			<nav
 				role="navigation"
 				aria-label="Main navigation"
-				className="sticky top-0 z-40 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 print:hidden">
+				className={`lg:hidden sticky top-0 z-40 w-full transition-all duration-300 print:hidden border-b ${
+					isScrolled
+						? 'bg-background/80 backdrop-blur-md border-border/50'
+						: 'bg-background/40 backdrop-blur-sm border-border/30'
+				}`}>
 				<div className="mx-auto flex max-w-7xl items-center justify-between h-16 px-4 sm:px-6">
 					<Link
 						href="/"
 						aria-label="Home"
-						className="text-lg font-semibold hover:opacity-80 transition-opacity -ml-1">
-						Lauro Silva
+						className="flex items-center gap-3 hover:opacity-80 transition-opacity -ml-1">
+						<svg
+							width="16"
+							height="26"
+							viewBox="0 0 385 655"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							className="fill-foreground dark:fill-foreground flex-shrink-0">
+							<path
+								fillRule="evenodd"
+								clipRule="evenodd"
+								d="M385 357.926L43.7135 655L149.934 395.013L0 297.046L341.286 0L225.757 276.58L385 357.926Z"
+							/>
+						</svg>
+						<span className="text-sm font-semibold leading-tight tracking-tight">
+							Lauro Silva
+						</span>
 					</Link>
 
 					<div className="hidden items-center gap-6 md:flex" role="menubar">
@@ -114,7 +143,7 @@ export function Navbar() {
 					isMenuOpen ? 'translate-x-0' : 'translate-x-full'
 				}`}>
 				<div className="flex h-16 items-center justify-between px-6 mb-8">
-					<span className="text-lg font-semibold">Menu</span>
+					<span className="text-lg font-normal">Menu</span>
 					<button
 						onClick={closeMenu}
 						aria-label="Close menu"

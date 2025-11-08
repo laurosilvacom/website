@@ -16,7 +16,7 @@ export default function Container({
 	...props
 }: ContainerProps) {
 	return (
-		<div className="w-full px-4 sm:px-6">
+		<div className="w-full px-4 sm:px-6 lg:px-8">
 			<Component
 				className={cn('mx-auto', CONTENT_WIDTH, className)}
 				{...props}>

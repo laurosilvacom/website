@@ -57,10 +57,10 @@ export default async function Page() {
 			<main>
 				<section className="py-24">
 					<div className="space-y-6">
-						<h1 className="text-2xl font-semibold leading-tight sm:text-3xl">
+						<h1 className="text-xl font-semibold leading-tight sm:text-2xl tracking-tight">
 							Learn, build, and grow as a developer
 						</h1>
-						<p className="text-muted-foreground text-lg leading-relaxed">
+						<p className="text-muted-foreground text-base leading-relaxed mt-3">
 							Technical insights and real experiences. Great software comes from understanding both the code and the people who write it.
 						</p>
 						<div className="pt-2">
@@ -77,7 +77,7 @@ export default async function Page() {
 				<section className="py-16 mt-16">
 					<div className="space-y-10">
 						<div className="flex items-center justify-between">
-							<h2 className="text-xl font-semibold leading-tight">Recent Writings</h2>
+							<h2 className="text-lg font-semibold leading-tight tracking-tight">Recent Writings</h2>
 							<Button variant="ghost" asChild>
 								<Link href="/blog">
 									View all

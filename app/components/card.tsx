@@ -32,11 +32,11 @@ export function Card({
 						{date}
 					</time>
 				)}
-				<h3 className="text-xl font-semibold leading-tight group-hover:text-foreground/80 transition-colors">
+				<h3 className="text-lg font-semibold leading-tight tracking-tight group-hover:text-foreground/80 transition-colors">
 					{title}
 				</h3>
 				{description && (
-					<p className="text-muted-foreground text-base leading-relaxed">
+					<p className="text-muted-foreground text-sm leading-relaxed mt-1.5">
 						{description}
 					</p>
 				)}

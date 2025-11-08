@@ -1,4 +1,3 @@
-import {Inter, Sora} from 'next/font/google'
 import {type Metadata} from 'next/types'
 import {type ReactNode} from 'react'
 import {ThemeProvider} from '@/components/theme-provider'
@@ -9,19 +8,7 @@ import {Toaster} from '@/components/toaster'
 import {StructuredData} from '@/components/structured-data'
 import {baseUrl} from '@/app/sitemap'
 import {Navbar} from '@/components/nav'
-import Footer from '@/components/footer'
-
-const inter = Inter({
-	subsets: ['latin'],
-	variable: '--font-sans',
-	display: 'swap'
-})
-
-const sora = Sora({
-	subsets: ['latin'],
-	variable: '--font-heading',
-	display: 'swap'
-})
+import {Sidebar} from '@/components/sidebar'
 
 export const metadata: Metadata = {
 	metadataBase: new URL(baseUrl),
@@ -156,7 +143,7 @@ export default function RootLayout({children}: RootLayoutProps) {
 	return (
 		<html
 			lang="en"
-			className={`${inter.variable} ${sora.variable} bg-background text-foreground scroll-smooth antialiased`}
+			className="bg-background text-foreground scroll-smooth antialiased"
 			suppressHydrationWarning // Add this to suppress hydration warnings related to theme
 		>
 			<body>
@@ -165,11 +152,18 @@ export default function RootLayout({children}: RootLayoutProps) {
 						defaultTheme="system"
 						enableSystem
 						disableTransitionOnChange>
-						<main className="min-w-0">
-							<Navbar />
-							{children}
-							<Footer />
-						</main>
+						<div className="flex min-h-screen justify-center">
+							<div className="flex w-full max-w-[1600px] relative">
+								<Sidebar />
+								<main className="flex-1 min-w-0 flex relative">
+									<div className="flex-1 min-w-0">
+										<Navbar />
+										{children}
+									</div>
+									<div className="hidden xl:block xl:w-64 flex-shrink-0" />
+								</main>
+							</div>
+						</div>
 					</ThemeProvider>
 				<StructuredData type="website" />
 				<StructuredData type="person" />

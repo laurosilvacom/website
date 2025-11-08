@@ -17,9 +17,9 @@ export async function GET(request: Request) {
 			url.searchParams.get('title') || 'Lauro Silva'
 		)
 
-		// Load fonts - using Wotfard for headings (matches site)
+		// Load Bitter for headings (matches site - modern, bold, elegant serif)
 		const fontData = await fetch(
-			new URL('/wotfard/Wotfard-SemiBold.ttf', request.url)
+			'https://fonts.gstatic.com/s/bitter/v33/raxhHiqOu8IVPmnRc6SY1KXhnF_Y8fbeLIvQ.woff2'
 		).then((res) => res.arrayBuffer()).catch(() => null)
 
 		return new ImageResponse(
@@ -51,10 +51,10 @@ export async function GET(request: Request) {
 								style={{
 									fontSize: '48px',
 									fontWeight: 600,
-									letterSpacing: '-0.015em',
+									letterSpacing: '-0.01em',
 									color: textLight,
-									lineHeight: '1.35',
-									fontFamily: fontData ? 'Wotfard' : 'system-ui',
+									lineHeight: '1.3',
+									fontFamily: fontData ? 'Bitter' : 'Georgia, serif',
 									margin: 0
 								}}>
 								{title}
@@ -93,7 +93,8 @@ export async function GET(request: Request) {
 										fontSize: '18px',
 										fontWeight: 600,
 										letterSpacing: '-0.01em',
-										lineHeight: '1.4'
+										lineHeight: '1.4',
+										fontFamily: fontData ? 'Bitter' : 'Georgia, serif'
 									}}>
 									Lauro Silva
 								</span>
@@ -116,7 +117,7 @@ export async function GET(request: Request) {
 				height: 630,
 				fonts: fontData ? [
 					{
-						name: 'Wotfard',
+						name: 'Bitter',
 						data: fontData,
 						style: 'normal',
 						weight: 600

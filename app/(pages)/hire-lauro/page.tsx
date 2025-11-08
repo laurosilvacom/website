@@ -1,420 +1,257 @@
-'use client'
-
-import {ArrowDown, ArrowRight, CheckCircle} from 'lucide-react'
+import {ArrowRight, CheckCircle} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, {type JSX} from 'react'
 import Container from '@/components/container'
 import {Button} from '@/components/ui/button'
 
-export default function ServicesPage(): JSX.Element {
+export default function ServicesPage() {
 	return (
-		<Container className="mx-auto max-w-screen-xl">
-			<section className="relative py-16 sm:py-20 md:py-32">
-				<div className="mx-auto">
-					<div className="flex flex-col space-y-16 sm:space-y-20">
+		<Container>
+			<main>
+				{/* Hero Section */}
+				<section className="py-24">
+					<div className="space-y-6">
 						<div className="inline-flex">
-							<div className="border-primary/10 bg-primary/5 inline-flex items-center gap-2 rounded-full border px-3 py-1.5">
-								<div className="bg-primary h-1.5 w-1.5 rounded-full"></div>
-								<span className="text-primary text-xs font-medium">
+							<div className="bg-primary/10 text-primary inline-flex items-center gap-2 rounded-full px-3 py-1.5">
+								<div className="bg-primary h-1.5 w-1.5 rounded-full" />
+								<span className="text-xs font-medium">
 									Available for new projects
 								</span>
 							</div>
 						</div>
 
-						{/* Main content grid */}
-						<div className="grid gap-12 md:grid-cols-[1.5fr_1fr] md:gap-20">
-							<div className="space-y-10 sm:space-y-12">
-								{/* Heading */}
-								<div className="space-y-6">
-									<h1 className="text-foreground">
-										<span className="block text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-											Hey! I&apos;m Lauro<span className="text-primary">.</span>
-										</span>
-										<span className="mt-2 block text-3xl font-bold sm:mt-3 sm:text-4xl md:text-5xl lg:text-6xl">
-											An educator &{' '}
-											<span className="text-primary">engineer</span>
-										</span>
-									</h1>
-									<p className="text-muted-foreground text-lg leading-relaxed sm:text-xl md:text-2xl">
-										I help companies build products and upskill developer communities through engineering and education.
-									</p>
-								</div>
-
-								{/* CTAs */}
-								<div className="flex flex-col gap-4 sm:flex-row">
-									<Button asChild size="lg">
-										<Link
-											href="https://cal.com/laurosilvacom/chat"
-											target="_blank"
-											rel="noopener noreferrer">
-											<span className="flex items-center gap-2">
-												Book a free consultation
-												<ArrowRight />
-											</span>
-										</Link>
-									</Button>
-
-									<Button asChild variant="outline" size="lg">
-										<Link href="#services-section">
-											<span className="flex items-center gap-2">
-												View services
-												<ArrowDown />
-											</span>
-										</Link>
-									</Button>
-								</div>
-							</div>
-
-							{/* Hero image */}
-							<div className="hidden md:block">
-								<div className="relative aspect-square overflow-hidden rounded-3xl">
-									<Image
-										src="/conference.png"
-										alt="Lauro Silva"
-										fill
-										className="rounded-3xl object-cover"
-										priority
-									/>
-								</div>
-							</div>
+						<div className="space-y-5">
+							<h1 className="text-xl font-semibold leading-tight sm:text-2xl tracking-tight">
+								Hey! I&apos;m Lauro<span className="text-primary">.</span>
+							</h1>
+							<h2 className="text-lg font-semibold leading-tight sm:text-xl tracking-tight mt-2">
+								An educator &{' '}
+								<span className="text-primary">engineer</span>
+							</h2>
+							<p className="text-muted-foreground text-base leading-relaxed mt-3">
+								I help companies build products and upskill developer communities through engineering and education.
+							</p>
 						</div>
 
-						{/* Companies section */}
-						<div className="pt-8 sm:pt-12">
-							<p className="text-muted-foreground mb-8 text-sm font-medium tracking-wide uppercase">
-								Working with teams at:
-							</p>
-							<div className="grid grid-cols-2 items-center justify-items-center gap-8 sm:grid-cols-4 sm:gap-12">
-								{[
-									{src: '/google.png', alt: 'Google', width: 90},
-									{src: '/oreilly.svg', alt: "O'Reilly", width: 90},
-									{src: '/sentry.png', alt: 'Sentry', width: 110},
-									{src: '/hoka-logo.png', alt: 'Hoka', width: 80}
-								].map((logo) => (
-									<div key={logo.alt} className="w-20 sm:w-28">
-										<Image
-											src={logo.src}
-											alt={logo.alt}
-											width={logo.width}
-											height={30}
-											className="w-full opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
-										/>
-									</div>
-								))}
-							</div>
+						<div className="flex flex-col gap-4 sm:flex-row pt-2">
+							<Button asChild size="lg">
+								<Link
+									href="https://cal.com/laurosilvacom/chat"
+									target="_blank"
+									rel="noopener noreferrer">
+									Book a free consultation
+									<ArrowRight className="ml-2 h-4 w-4" />
+								</Link>
+							</Button>
+							<Button asChild variant="ghost" size="lg">
+								<Link href="#services">
+									View services
+								</Link>
+							</Button>
 						</div>
 					</div>
-				</div>
-			</section>
+				</section>
 
-			{/* Services Section */}
-			<section className="py-32" id="services-section">
-				<div className="mx-auto max-w-7xl">
-					{/* Services Overview */}
-					<div className="relative mb-32 text-center">
-						<h2 className="text-foreground relative z-10 text-5xl font-bold tracking-tight sm:text-6xl">
-							Services & Expertise
-						</h2>
-						<p className="text-muted-foreground mx-auto mt-6 max-w-3xl text-lg leading-relaxed sm:text-xl">
-							Full-stack engineering and developer education. Building products and teaching developers.
-						</p>
-						<div className="mx-auto mt-20 grid gap-8 sm:gap-12 md:grid-cols-2">
-							{unifiedServices.map((service, index) => (
-								<div
-									key={index}
-									className="border-muted bg-card relative overflow-hidden rounded-3xl border p-8 sm:p-10">
-									{/* Content Container */}
-									<div className="relative space-y-8">
-										{/* Title */}
-										<h3 className="text-foreground text-2xl leading-tight font-bold sm:text-3xl">
-											{service.title}
-										</h3>
+				{/* Companies Section */}
+				<section className="py-16 mt-16">
+					<p className="text-muted-foreground mb-10 text-sm font-medium uppercase tracking-wider">
+						Working with teams at:
+					</p>
+					<div className="grid grid-cols-2 items-center justify-items-center gap-12 sm:grid-cols-4">
+						{[
+							{src: '/google.png', alt: 'Google', width: 90},
+							{src: '/oreilly.svg', alt: "O'Reilly", width: 90},
+							{src: '/sentry.png', alt: 'Sentry', width: 110},
+							{src: '/hoka-logo.png', alt: 'Hoka', width: 80}
+						].map((logo) => (
+							<div key={logo.alt} className="w-20 sm:w-28">
+								<Image
+									src={logo.src}
+									alt={logo.alt}
+									width={logo.width}
+									height={30}
+									className="w-full opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+								/>
+							</div>
+						))}
+					</div>
+				</section>
 
-										{/* Description */}
-										<p className="text-muted-foreground text-base leading-relaxed sm:text-lg">
-											{service.description}
-										</p>
+				{/* Developer Education Pillar */}
+				<section className="py-16 mt-16" id="services">
+					<div className="space-y-14">
+						{/* Section Header */}
+						<div className="space-y-4">
+							<h2 className="text-lg font-semibold leading-tight sm:text-xl tracking-tight">
+								Developer Education
+							</h2>
+							<p className="text-muted-foreground text-base leading-relaxed mt-2">
+								Partner with me to build educational initiatives for your developer community. I manage content production, create learning experiences, and design curriculum.
+							</p>
+						</div>
 
-										{/* Tags */}
-										<div className="flex flex-wrap items-center gap-3 pt-4">
-											{service.tags.map((tag) => (
-												<span
-													key={tag}
-													className="border-muted bg-secondary text-muted-foreground hover:text-foreground inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-all">
-													{tag}
-												</span>
-											))}
+						{/* Services */}
+						<div className="space-y-10">
+							{educationServices.map((service) => (
+								<div key={service.title} className="space-y-4 pb-10">
+									<div className="flex items-start gap-4">
+										<span className="text-2xl flex-shrink-0">{service.icon}</span>
+										<div className="space-y-3 flex-1">
+											<h3 className="text-base font-semibold leading-tight tracking-tight">
+												{service.title}
+											</h3>
+											<p className="text-muted-foreground text-sm leading-relaxed mt-1.5">
+												{service.description}
+											</p>
+											<div className="flex flex-wrap gap-2 pt-1">
+												{service.features.map((feature, idx) => (
+													<span
+														key={feature}
+														className="text-muted-foreground text-sm">
+														{feature}{idx < service.features.length - 1 && ' •'}
+													</span>
+												))}
+											</div>
+										</div>
+									</div>
+								</div>
+							))}
+						</div>
+
+						{/* Testimonials - Key ones that relate to education */}
+						<div className="space-y-10 pt-4">
+							{EducationTestimonials.slice(0, 4).map((testimonial) => (
+								<div key={testimonial.author} className="space-y-4 pb-10">
+									<p className="text-base leading-relaxed">
+										{testimonial.quote}
+									</p>
+									<div className="flex items-center gap-3">
+										<div className="relative h-10 w-10 overflow-hidden rounded-full">
+											<Image
+												src={testimonial.image}
+												alt={testimonial.author}
+												fill
+												className="object-cover"
+											/>
+										</div>
+										<div className="space-y-0.5">
+											<p className="text-sm font-medium">
+												{testimonial.author}
+											</p>
+											<p className="text-muted-foreground text-xs">
+												{testimonial.role}
+											</p>
 										</div>
 									</div>
 								</div>
 							))}
 						</div>
 					</div>
+				</section>
 
-					{/* Education Section */}
-					<div className="relative mb-32">
-						<div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
-							{/* Testimonials */}
-							<div className="space-y-12">
-								{EducationTestimonials.map((testimonial, index) => (
-									<div
-										key={index}
-										className={`relative overflow-hidden rounded-3xl border p-8 sm:p-10`}>
-										{/* Content Container */}
-										<div className="relative space-y-8">
-											{/* Company Logo */}
-											<div className="h-8">
-												<Image
-													src={testimonial.logo}
-													alt="Company logo"
-													width={120}
-													height={30}
-													className="h-full w-auto object-contain"
-												/>
-											</div>
+				{/* Engineering Pillar */}
+				<section className="py-16 mt-16">
+					<div className="space-y-14">
+						{/* Section Header */}
+						<div className="space-y-4">
+							<h2 className="text-lg font-semibold leading-tight sm:text-xl tracking-tight">
+								Engineering
+							</h2>
+							<p className="text-muted-foreground text-base leading-relaxed mt-2">
+								Full-stack development with React, Next.js, and Node.js. Available for product development, consulting, and technical leadership.
+							</p>
+						</div>
 
-											{/* Quote */}
-											<div className="space-y-6">
-												<p className="text-foreground text-lg leading-relaxed font-medium">
-													{testimonial.quote}
-												</p>
-											</div>
-
-											{/* Author Info */}
-											<div className="flex items-center gap-4 pt-2">
-												<div className="bg-secondary relative h-12 w-12 overflow-hidden rounded-full">
-													<Image
-														src={testimonial.image}
-														alt={testimonial.author}
-														fill
-														className="object-cover"
-													/>
-												</div>
-
-												<div className="space-y-1">
-													<p className="text-foreground font-medium">
-														{testimonial.author}
-													</p>
-													<p className="text-primary text-sm font-medium">
-														{testimonial.role}
-													</p>
-												</div>
+						{/* Services */}
+						<div className="space-y-10">
+							{engineeringServices.map((service) => (
+								<div key={service.title} className="space-y-4 pb-10">
+									<div className="flex items-start gap-4">
+										<span className="text-2xl flex-shrink-0">{service.icon}</span>
+										<div className="space-y-3 flex-1">
+											<h3 className="text-base font-semibold leading-tight tracking-tight">
+												{service.title}
+											</h3>
+											<p className="text-muted-foreground text-sm leading-relaxed mt-1.5">
+												{service.description}
+											</p>
+											<div className="flex flex-wrap gap-2 pt-1">
+												{service.features.map((feature, idx) => (
+													<span
+														key={feature}
+														className="text-muted-foreground text-sm">
+														{feature}{idx < service.features.length - 1 && ' •'}
+													</span>
+												))}
 											</div>
 										</div>
 									</div>
-								))}
-							</div>
-							{/* Services Details */}
-							<div>
-								<h3 className="text-muted-foreground text-base font-semibold tracking-wide uppercase">
-									Developer Education
-								</h3>
-								<h2 className="text-foreground mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-									Upskill Your Teams
-								</h2>
-								<div className="mt-12 space-y-6">
-									{educationServices.map((service, index) => (
-										<div
-											key={index}
-											className="border-muted bg-card relative overflow-hidden rounded-3xl border p-8 sm:p-10">
-											{/* Content Container */}
-											<div className="relative flex gap-8">
-												{/* Icon with fixed width */}
-												<div className="bg-secondary flex h-14 w-14 flex-none items-center justify-center rounded-2xl">
-													<span className="text-primary text-2xl">
-														{service.icon}
-													</span>
-												</div>
-
-												{/* Text Content */}
-												<div className="space-y-6">
-													<div className="space-y-3">
-														<h3 className="text-foreground text-xl leading-tight font-bold sm:text-2xl">
-															{service.title}
-														</h3>
-														<p className="text-muted-foreground text-base leading-relaxed sm:text-lg">
-															{service.description}
-														</p>
-													</div>
-
-													{/* Features */}
-													<div className="flex flex-wrap gap-3">
-														{service.features.map((feature) => (
-															<span
-																key={feature}
-																className="border-muted bg-secondary text-muted-foreground hover:text-foreground inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-all">
-																{feature}
-															</span>
-														))}
-													</div>
-												</div>
-											</div>
-										</div>
-									))}
 								</div>
-							</div>
+							))}
 						</div>
-					</div>
 
-					{/* Engineering Section */}
-					<div className="relative mb-32">
-						<div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
-							{/* Services Details */}
-							<div>
-								<h3 className="text-muted-foreground text-base font-semibold tracking-wide uppercase">
-									Engineering
-								</h3>
-								<h2 className="text-foreground mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-									Build Products
-								</h2>
-								<div className="mt-12 space-y-6">
-									{engineeringServices.map((service, index) => (
-										<div
-											key={index}
-											className="border-muted bg-card relative overflow-hidden rounded-3xl border p-8 transition-all hover:-translate-y-1 sm:p-10">
-											{/* Content Container */}
-											<div className="relative flex gap-8">
-												{/* Icon */}
-												<div className="bg-secondary flex h-14 w-14 flex-none items-center justify-center rounded-2xl">
-													<span className="text-primary text-2xl">
-														{service.icon}
-													</span>
-												</div>
-
-												{/* Text Content */}
-												<div className="space-y-6">
-													<div className="space-y-3">
-														<h3 className="text-foreground text-xl leading-tight font-bold sm:text-2xl">
-															{service.title}
-														</h3>
-														<p className="text-muted-foreground text-base leading-relaxed sm:text-lg">
-															{service.description}
-														</p>
-													</div>
-
-													{/* Features */}
-													<div className="flex flex-wrap gap-3">
-														{service.features.map((feature) => (
-															<span
-																key={feature}
-																className="border-muted bg-secondary text-muted-foreground hover:text-foreground inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-all">
-																{feature}
-															</span>
-														))}
-													</div>
-												</div>
-											</div>
+						{/* Testimonials - Key ones that relate to engineering */}
+						<div className="space-y-10 pt-4">
+							{EngineeringTestimonials.slice(0, 4).map((testimonial) => (
+								<div key={testimonial.author} className="space-y-4 pb-10">
+									<p className="text-base leading-relaxed">
+										{testimonial.quote}
+									</p>
+									<div className="flex items-center gap-3">
+										<div className="relative h-10 w-10 overflow-hidden rounded-full">
+											<Image
+												src={testimonial.image}
+												alt={testimonial.author}
+												fill
+												className="object-cover"
+											/>
 										</div>
-									))}
-								</div>
-							</div>
-							{/* Testimonials */}
-							<div className="space-y-12">
-								{EngineeringTestimonials.map((testimonial, index) => (
-									<div
-										key={index}
-										className={`relative overflow-hidden rounded-3xl border p-8 sm:p-10`}>
-										{/* Content Container */}
-										<div className="relative space-y-8">
-											{/* Company Logo */}
-											<div className="h-10">
-												<Image
-													src={testimonial.logo}
-													alt="Company logo"
-													width={40}
-													height={40}
-													className="h-full w-auto object-contain"
-												/>
-											</div>
-
-											{/* Quote Container */}
-											<div className="space-y-6">
-												{/* Quote Text */}
-												<blockquote>
-													<p className="text-foreground text-lg leading-relaxed font-medium">
-														{testimonial.quote}
-													</p>
-												</blockquote>
-											</div>
-
-											{/* Author Info */}
-											<div className="flex items-center gap-4 pt-2">
-												<div className="border-border relative h-12 w-12 overflow-hidden rounded-full border">
-													<Image
-														src={testimonial.image}
-														alt={testimonial.author}
-														fill
-														className="object-cover"
-													/>
-												</div>
-
-												<div className="space-y-1">
-													<p className="text-foreground font-semibold">
-														{testimonial.author}
-													</p>
-													<p className="text-primary text-sm font-medium">
-														{testimonial.role}
-													</p>
-												</div>
-											</div>
+										<div className="space-y-0.5">
+											<p className="text-sm font-medium">
+												{testimonial.author}
+											</p>
+											<p className="text-muted-foreground text-xs">
+												{testimonial.role}
+											</p>
 										</div>
 									</div>
-								))}
-							</div>
+								</div>
+							))}
 						</div>
 					</div>
-				</div>
-			</section>
+				</section>
 
-			{/* CTA Section */}
-			<section className="border-muted bg-card relative mx-6 mb-20 rounded-2xl border p-10">
-				<div className="mx-auto max-w-[1200px]">
-					{/* Content container */}
-					<div className="relative space-y-12 text-center">
-						{/* Badge */}
-						<div className="inline-flex">
-							<div className="border-muted bg-secondary inline-flex items-center gap-2 rounded-full border px-4 py-2">
-								<div className="bg-primary h-2 w-2 rounded-full" />
-								<span className="text-primary text-sm font-medium">
-									Available for new projects
-								</span>
-							</div>
-						</div>
-
-						{/* Main content */}
-						<div className="space-y-6">
-							<h2 className="text-foreground mx-auto max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+				{/* CTA Section */}
+				<section className="py-16 mt-16">
+					<div className="space-y-10 text-center">
+						<div className="space-y-4">
+							<h2 className="text-xl font-normal leading-relaxed sm:text-2xl">
 								Let&apos;s work together
 							</h2>
-							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
+							<p className="text-muted-foreground text-base leading-relaxed mt-2">
 								Start with a conversation about your goals and how I can help.
 							</p>
 						</div>
 
-						{/* CTA Section */}
-						<div className="space-y-8">
+						<div className="space-y-6">
 							<Button asChild size="lg">
-								<a
+								<Link
 									href="https://cal.com/laurosilvacom/chat"
 									target="_blank"
 									rel="noopener noreferrer">
-									<span className="flex items-center gap-2">
-										Book a free consultation
-										<ArrowRight />
-									</span>
-								</a>
+									Book a free consultation
+									<ArrowRight className="ml-2 h-4 w-4" />
+								</Link>
 							</Button>
 
-							{/* Features */}
-							<div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-8">
-								<div className="border-muted bg-secondary inline-flex items-center gap-2 rounded-full border px-4 py-2">
+							<div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+								<div className="flex items-center gap-2">
 									<CheckCircle className="text-primary h-4 w-4" />
 									<span className="text-muted-foreground text-sm">
 										No commitment required
 									</span>
 								</div>
-								<div className="border-muted bg-secondary inline-flex items-center gap-2 rounded-full border px-4 py-2">
+								<div className="flex items-center gap-2">
 									<CheckCircle className="text-primary h-4 w-4" />
 									<span className="text-muted-foreground text-sm">
 										Free initial consultation
@@ -423,18 +260,10 @@ export default function ServicesPage(): JSX.Element {
 							</div>
 						</div>
 					</div>
-				</div>
-			</section>
+				</section>
+			</main>
 		</Container>
 	)
-}
-
-// Define TypeScript interfaces
-interface UnifiedService {
-	title: string
-	description: string
-	tags: string[]
-	gradient: string
 }
 
 interface Service {
@@ -450,24 +279,7 @@ interface Testimonial {
 	role: string
 	image: string
 	logo: string
-	gradient: string
 }
-
-// Data Arrays
-const unifiedServices: UnifiedService[] = [
-	{
-		title: 'Developer Education',
-		description: `Partner with me to build educational initiatives for your developer community. I manage content production, create learning experiences, and design curriculum.`,
-		tags: ['Workshops', 'Content', 'Training', 'Community'],
-		gradient: 'bg-gradient-to-bl from-primary/5 via-transparent to-transparent'
-	},
-	{
-		title: 'Engineering',
-		description: `Full-stack development with React, Next.js, and Node.js. Available for product development, consulting, and technical leadership.`,
-		tags: ['React', 'Next.js', 'Performance', 'Architecture'],
-		gradient: 'bg-gradient-to-br from-primary/5 via-transparent to-transparent'
-	}
-]
 
 const engineeringServices: Service[] = [
 	{
@@ -475,7 +287,7 @@ const engineeringServices: Service[] = [
 		description: `Specializing in large-scale React applications. Available for full-stack development, product work, and React migrations.`,
 		features: [
 			'Full-Stack Development',
-			'Product Development ',
+			'Product Development',
 			'Tech Stack Migrations to React'
 		],
 		icon: '⚛️'
@@ -535,8 +347,7 @@ const EducationTestimonials: Testimonial[] = [
 		role: 'Assistiv Labs',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/ok4aceenrvijrjcafxba.jpg',
-		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731436605/laurosilvacom/hire-me-page/logos/bgrbziwzsvlkarpbxu9b.png',
-		gradient: 'from-[#D8B4FE] to-[#818CF8]'
+		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731436605/laurosilvacom/hire-me-page/logos/bgrbziwzsvlkarpbxu9b.png'
 	},
 	{
 		quote:
@@ -545,8 +356,7 @@ const EducationTestimonials: Testimonial[] = [
 		role: 'Learn With Jason',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/py2kbwptjbxfdqpoepkj.jpg',
-		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731437039/laurosilvacom/hire-me-page/logos/wj4oxrqh2dizrv7p1deb.png',
-		gradient: 'from-[#FDEB71] to-[#ffeb17]'
+		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731437039/laurosilvacom/hire-me-page/logos/wj4oxrqh2dizrv7p1deb.png'
 	},
 	{
 		quote:
@@ -555,8 +365,7 @@ const EducationTestimonials: Testimonial[] = [
 		role: 'Total TypeScript',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435977/laurosilvacom/hire-me-page/d2czubfk8lipnflorffc.jpg',
-		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731440026/laurosilvacom/hire-me-page/logos/psi8rml6dekvhgjjyfu4.ico',
-		gradient: 'from-[#90F7EC] to-[#32CCBC]'
+		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731440026/laurosilvacom/hire-me-page/logos/psi8rml6dekvhgjjyfu4.ico'
 	},
 	{
 		quote: `Lauro has an exceptional grasp of developer education. He understands that if you want developers to truly tune in, you need to think beyond the code. Lauro's ability to bridge that gap is has been so helpful.`,
@@ -564,8 +373,7 @@ const EducationTestimonials: Testimonial[] = [
 		role: `O'Reilly Media`,
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/sfb3bpsb8cyawhjckqzp.jpg',
-		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731436408/laurosilvacom/hire-me-page/logos/vsh30exulie54cn3go8v.png',
-		gradient: 'from-[#ff9bb0] to-[#ffc3c3]'
+		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731436408/laurosilvacom/hire-me-page/logos/vsh30exulie54cn3go8v.png'
 	},
 	{
 		quote: `Lauro introduced me to the world of creating courses and I couldn't be happier for that. I've learned a lot from him, but I feel like I barely scratched the surface of his knowledge and expertise. If I need help around content creation, I wouldn't think twice about hiring him ⭐️`,
@@ -573,17 +381,15 @@ const EducationTestimonials: Testimonial[] = [
 		role: 'Developer Advocate',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/feghewn8upq5agudmjue.jpg',
-		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731441696/laurosilvacom/hire-me-page/logos/rvgpyjc0d4z4yslaw0p8.png',
-		gradient: 'from-[#cba1fd] to-[#c8c3ff]'
+		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731441696/laurosilvacom/hire-me-page/logos/rvgpyjc0d4z4yslaw0p8.png'
 	},
 	{
 		quote: `@laurosilvacom is the reason my TypeScript course even exists. He is one of the best in the industry in terms of creating high-quality education and content. If your team needs an expert, he's your person :)`,
 		author: 'Joe Previte',
-		role: 'TypeScript Engineer ',
+		role: 'TypeScript Engineer',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435977/laurosilvacom/hire-me-page/qvv2x8w69azainacmu9d.jpg',
-		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731440270/laurosilvacom/hire-me-page/logos/gjfkx65vcsmp2ksjygzk.png',
-		gradient: 'from-[#bffaff] to-[#a3ceff]'
+		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731440270/laurosilvacom/hire-me-page/logos/gjfkx65vcsmp2ksjygzk.png'
 	}
 ]
 
@@ -595,8 +401,7 @@ const EngineeringTestimonials: Testimonial[] = [
 		role: 'LOTUS Humanitarian',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435977/laurosilvacom/hire-me-page/gbwkf4uzwmxomngxhkj6.png',
-		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731442726/laurosilvacom/hire-me-page/logos/v7qtumbo3bm57svns3b7.jpg',
-		gradient: 'from-[#814d98] to-[#ab77c2]'
+		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731442726/laurosilvacom/hire-me-page/logos/v7qtumbo3bm57svns3b7.jpg'
 	},
 	{
 		quote:
@@ -605,8 +410,7 @@ const EngineeringTestimonials: Testimonial[] = [
 		role: 'HOKA',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731436030/laurosilvacom/hire-me-page/ru1j6csfgvj2af4b1dn6.webp',
-		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731442307/laurosilvacom/hire-me-page/logos/vupwji6g7e9qt6dp4pep.png',
-		gradient: 'from-[#0781ca] to-[#90c7f7]'
+		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731442307/laurosilvacom/hire-me-page/logos/vupwji6g7e9qt6dp4pep.png'
 	},
 	{
 		quote: `Thanks for all your help and patience @laurosilvacom - you're the real MVP.`,
@@ -614,8 +418,7 @@ const EngineeringTestimonials: Testimonial[] = [
 		role: 'Staff Engineer',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/p3eglqeb7qfvsfzvh3qr.jpg',
-		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731441786/laurosilvacom/hire-me-page/logos/lj1kfzowxpqyindsneoe.webp',
-		gradient: 'from-[#f7e01b] to-[#efff7a]'
+		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731441786/laurosilvacom/hire-me-page/logos/lj1kfzowxpqyindsneoe.webp'
 	},
 	{
 		quote:
@@ -624,8 +427,7 @@ const EngineeringTestimonials: Testimonial[] = [
 		role: 'SRE / Platform Engineer',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435977/laurosilvacom/hire-me-page/bk8b2qxymdq5hzrx41yo.jpg',
-		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731445516/laurosilvacom/hire-me-page/logos/tu5beel5k6xpeds5jrea.png',
-		gradient: 'from-[#60dafa] to-[#29d3ff]'
+		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731445516/laurosilvacom/hire-me-page/logos/tu5beel5k6xpeds5jrea.png'
 	},
 	{
 		quote:
@@ -634,7 +436,6 @@ const EngineeringTestimonials: Testimonial[] = [
 		role: 'JavaScript Engineer',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435977/laurosilvacom/hire-me-page/vtnslxxf2ahtn0qmp39c.jpg',
-		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731441786/laurosilvacom/hire-me-page/logos/lj1kfzowxpqyindsneoe.webp',
-		gradient: 'from-[#f7e01b] to-[#efff7a]'
+		logo: 'https://res.cloudinary.com/laurosilvacom/image/upload/v1731441786/laurosilvacom/hire-me-page/logos/lj1kfzowxpqyindsneoe.webp'
 	}
 ]

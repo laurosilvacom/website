@@ -33,7 +33,7 @@ export default async function TagsPage() {
 						← Back to writing
 					</Link>
 
-					<h1 className="mb-3 text-2xl font-semibold leading-tight">
+					<h1 className="mb-3 text-2xl font-normal leading-relaxed">
 						Tags
 					</h1>
 					<p className="text-muted-foreground text-lg leading-relaxed">
