@@ -8,7 +8,8 @@ const nextConfig: NextConfig = {
 				hostname: 'res.cloudinary.com'
 			}
 		],
-		formats: ['image/avif', 'image/webp']
+		formats: ['image/avif', 'image/webp'],
+		qualities: [70, 75, 95]
 	},
 	transpilePackages: ['next-mdx-remote'],
 	experimental: {
