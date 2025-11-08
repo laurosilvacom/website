@@ -13,7 +13,7 @@ app/
       [slug]/        # Dynamic blog post pages
       posts/          # MDX blog posts (organized by date)
     tags/             # Tag pages
-    hire-lauro/       # Hire page
+    services/         # Services page
   components/         # React components
     ui/               # shadcn/ui components
   lib/                # Utilities & helpers

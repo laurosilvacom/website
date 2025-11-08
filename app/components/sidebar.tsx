@@ -11,8 +11,11 @@ const navItems = {
 	'/blog': {
 		name: 'Writing'
 	},
-	'/hire-lauro': {
-		name: 'Hire Me'
+	'/about': {
+		name: 'About'
+	},
+	'/services': {
+		name: 'Services'
 	}
 }
 
@@ -47,9 +50,9 @@ export function Sidebar() {
 
 				{/* About */}
 				<div className="mb-12">
-					<h2 className="text-sm font-semibold mb-3">About</h2>
+					<h2 className="text-sm font-semibold mb-3">What this is</h2>
 					<p className="text-muted-foreground text-sm leading-relaxed">
-						Software engineer and developer educator. Building products and teaching developers.
+						A digital garden for learning in public. Ideas evolve here, interconnected and growing over time. Work, writing, and thinking at the intersection of technology and the outdoor industry.
 					</p>
 				</div>
 

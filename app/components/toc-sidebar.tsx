@@ -60,7 +60,7 @@ export function TocSidebar() {
 			<div className="flex flex-col h-full px-6 py-8 overflow-y-auto">
 				<nav aria-label="Table of contents">
 					<Collapsible open={isOpen} onOpenChange={setIsOpen}>
-						<CollapsibleTrigger className="flex w-full items-center justify-between mb-4 text-sm font-semibold text-foreground hover:opacity-80 transition-opacity">
+						<CollapsibleTrigger className="flex w-full items-center justify-between mb-12 text-sm font-semibold text-foreground hover:opacity-80 transition-opacity">
 							<span>Table of Contents</span>
 							<ChevronDown className={cn('h-4 w-4 transition-transform', isOpen && 'rotate-180')} />
 						</CollapsibleTrigger>

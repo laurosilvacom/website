@@ -62,75 +62,73 @@
 
 :root {
   --radius: 0.5rem;
-  /* Soft warm background with subtle red tint - not white */
-  --background: oklch(0.96 0.008 12);
-  /* Rich dark text with subtle red undertone - excellent contrast */
-  --foreground: oklch(0.20 0.014 20);
-  /* Subtle elevated cards */
-  --card: oklch(0.98 0.006 12);
-  --card-foreground: oklch(0.20 0.014 20);
-  --popover: oklch(0.98 0.006 12);
-  --popover-foreground: oklch(0.20 0.014 20);
-  /* Bold vibrant pink-red - brighter and slightly pink */
-  --primary: oklch(0.58 0.26 15);
-  --primary-foreground: oklch(0.98 0.002 85);
-  /* Warm gray secondary with red tint */
-  --secondary: oklch(0.92 0.006 12);
-  --secondary-foreground: oklch(0.25 0.014 20);
-  /* Muted warm tones - accessible contrast for secondary text */
-  --muted: oklch(0.94 0.006 12);
-  --muted-foreground: oklch(0.42 0.012 20);
-  /* Subtle accent */
-  --accent: oklch(0.90 0.006 12);
-  --accent-foreground: oklch(0.25 0.014 20);
-  /* Vibrant pink-red for destructive */
-  --destructive: oklch(0.58 0.28 15);
-  /* Warm borders with red tint */
-  --border: oklch(0.88 0.008 12);
-  --input: oklch(0.88 0.008 12);
-  /* Focus ring */
-  --ring: oklch(0.58 0.26 15 / 0.3);
-  --chart-1: oklch(0.60 0.26 15);
-  --chart-2: oklch(0.58 0.24 10);
-  --chart-3: oklch(0.62 0.24 35);
-  --chart-4: oklch(0.56 0.22 5);
-  --chart-5: oklch(0.54 0.20 45);
+  /* Light mode - Night Owl Light inspired */
+  --background: oklch(0.92 0.008 250);
+  --foreground: oklch(0.25 0.02 260);
+  --card: oklch(0.94 0.006 250);
+  --card-foreground: oklch(0.25 0.02 260);
+  --popover: oklch(0.94 0.006 250);
+  --popover-foreground: oklch(0.25 0.02 260);
+  --primary: oklch(0.62 0.24 280);
+  --primary-foreground: oklch(0.95 0.005 250);
+  --secondary: oklch(0.88 0.01 250);
+  --secondary-foreground: oklch(0.25 0.02 260);
+  --muted: oklch(0.87 0.01 250);
+  --muted-foreground: oklch(0.45 0.02 260);
+  --accent: oklch(0.85 0.012 250);
+  --accent-foreground: oklch(0.25 0.02 260);
+  --destructive: oklch(0.55 0.22 25);
+  --border: oklch(0.82 0.015 250);
+  --input: oklch(0.82 0.015 250);
+  --ring: oklch(0.62 0.24 280);
+  --chart-1: oklch(0.60 0.18 250);
+  --chart-2: oklch(0.55 0.15 180);
+  --chart-3: oklch(0.50 0.12 320);
+  --chart-4: oklch(0.65 0.20 40);
+  --chart-5: oklch(0.58 0.18 280);
+  --sidebar: oklch(0.90 0.008 250);
+  --sidebar-foreground: oklch(0.25 0.02 260);
+  --sidebar-primary: oklch(0.62 0.24 280);
+  --sidebar-primary-foreground: oklch(0.95 0.005 250);
+  --sidebar-accent: oklch(0.87 0.01 250);
+  --sidebar-accent-foreground: oklch(0.25 0.02 260);
+  --sidebar-border: oklch(0.82 0.015 250);
+  --sidebar-ring: oklch(0.62 0.24 280);
 }
 
 .dark {
-  /* Deep warm dark background with red undertone - not black */
-  --background: oklch(0.16 0.014 20);
-  /* Soft warm off-white text with subtle red undertone - excellent contrast */
-  --foreground: oklch(0.94 0.006 12);
-  /* Elevated dark cards */
-  --card: oklch(0.20 0.016 20);
-  --card-foreground: oklch(0.94 0.006 12);
-  --popover: oklch(0.20 0.016 20);
-  --popover-foreground: oklch(0.94 0.006 12);
-  /* Bold vibrant pink-red - brighter and slightly pink in dark mode */
-  --primary: oklch(0.75 0.30 15);
-  --primary-foreground: oklch(0.98 0.002 85);
-  /* Dark warm gray secondary with red tint */
-  --secondary: oklch(0.24 0.016 20);
-  --secondary-foreground: oklch(0.92 0.006 12);
-  /* Muted dark warm tones - accessible contrast for secondary text */
-  --muted: oklch(0.26 0.016 20);
-  --muted-foreground: oklch(0.68 0.010 20);
-  /* Accent */
-  --accent: oklch(0.24 0.016 20);
-  --accent-foreground: oklch(0.92 0.006 12);
-  /* Vibrant pink-red */
-  --destructive: oklch(0.72 0.30 15);
-  /* Warm borders with red tint */
-  --border: oklch(0.30 0.018 20);
-  --input: oklch(0.30 0.018 20);
-  /* Bold pink-red focus ring */
-  --ring: oklch(0.75 0.30 15 / 0.5);
-  --chart-1: oklch(0.77 0.28 15);
-  --chart-2: oklch(0.75 0.26 10);
-  --chart-3: oklch(0.79 0.28 35);
-  --chart-4: oklch(0.73 0.24 5);
-  --chart-5: oklch(0.71 0.22 45);
+  /* Dark mode - Night Owl inspired */
+  --background: oklch(0.08 0.02 250);
+  --foreground: oklch(0.85 0.01 250);
+  --card: oklch(0.10 0.02 250);
+  --card-foreground: oklch(0.85 0.01 250);
+  --popover: oklch(0.10 0.02 250);
+  --popover-foreground: oklch(0.85 0.01 250);
+  --primary: oklch(0.72 0.24 280);
+  --primary-foreground: oklch(0.08 0.02 250);
+  --secondary: oklch(0.15 0.02 250);
+  --secondary-foreground: oklch(0.85 0.01 250);
+  --muted: oklch(0.15 0.02 250);
+  --muted-foreground: oklch(0.60 0.01 250);
+  --accent: oklch(0.18 0.02 250);
+  --accent-foreground: oklch(0.85 0.01 250);
+  --destructive: oklch(0.65 0.22 25);
+  --border: oklch(0.20 0.02 250);
+  --input: oklch(0.20 0.02 250);
+  --ring: oklch(0.72 0.24 280);
+  --chart-1: oklch(0.70 0.20 280);
+  --chart-2: oklch(0.65 0.18 180);
+  --chart-3: oklch(0.75 0.22 320);
+  --chart-4: oklch(0.68 0.20 40);
+  --chart-5: oklch(0.72 0.18 150);
+  --sidebar: oklch(0.10 0.02 250);
+  --sidebar-foreground: oklch(0.85 0.01 250);
+  --sidebar-primary: oklch(0.72 0.24 280);
+  --sidebar-primary-foreground: oklch(0.08 0.02 250);
+  --sidebar-accent: oklch(0.15 0.02 250);
+  --sidebar-accent-foreground: oklch(0.85 0.01 250);
+  --sidebar-border: oklch(0.20 0.02 250);
+  --sidebar-ring: oklch(0.72 0.24 280);
 }
 
 
@@ -193,12 +191,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::selection {
-	background-color: oklch(0.58 0.26 15 / 0.3);
+	background-color: oklch(0.62 0.24 280 / 0.3);
 	color: var(--foreground);
 }
 
 .dark ::selection {
-	background-color: oklch(0.75 0.30 15 / 0.4);
+	background-color: oklch(0.72 0.24 280 / 0.4);
 	color: var(--foreground);
 }
 
@@ -241,11 +239,11 @@ pre {
 	margin-top: 2rem;
 	margin-bottom: 1rem;
 	letter-spacing: -0.022em;
-	color: oklch(0.20 0.014 20);
+	color: oklch(0.25 0.02 260);
 }
 
 .dark .prose h1 {
-	color: oklch(0.94 0.006 12);
+	color: oklch(0.90 0.01 250);
 }
 
 .prose h2 {
@@ -256,11 +254,11 @@ pre {
 	margin-top: 1.75rem;
 	margin-bottom: 0.875rem;
 	letter-spacing: -0.022em;
-	color: oklch(0.20 0.014 20);
+	color: oklch(0.25 0.02 260);
 }
 
 .dark .prose h2 {
-	color: oklch(0.94 0.006 12);
+	color: oklch(0.90 0.01 250);
 }
 
 .prose h3 {
@@ -271,11 +269,11 @@ pre {
 	margin-top: 1.5rem;
 	margin-bottom: 0.75rem;
 	letter-spacing: -0.019em;
-	color: oklch(0.20 0.014 20);
+	color: oklch(0.25 0.02 260);
 }
 
 .dark .prose h3 {
-	color: oklch(0.94 0.006 12);
+	color: oklch(0.90 0.01 250);
 }
 
 .prose h4 {
@@ -286,11 +284,11 @@ pre {
 	margin-top: 1.25rem;
 	margin-bottom: 0.625rem;
 	letter-spacing: -0.011em;
-	color: oklch(0.20 0.014 20);
+	color: oklch(0.25 0.02 260);
 }
 
 .dark .prose h4 {
-	color: oklch(0.94 0.006 12);
+	color: oklch(0.90 0.01 250);
 }
 
 .prose h5 {
@@ -301,11 +299,11 @@ pre {
 	margin-top: 1rem;
 	margin-bottom: 0.5rem;
 	letter-spacing: -0.006em;
-	color: oklch(0.20 0.014 20);
+	color: oklch(0.25 0.02 260);
 }
 
 .dark .prose h5 {
-	color: oklch(0.94 0.006 12);
+	color: oklch(0.90 0.01 250);
 }
 
 .prose h6 {
@@ -316,11 +314,11 @@ pre {
 	margin-top: 0.875rem;
 	margin-bottom: 0.5rem;
 	letter-spacing: -0.003em;
-	color: oklch(0.20 0.014 20);
+	color: oklch(0.25 0.02 260);
 }
 
 .dark .prose h6 {
-	color: oklch(0.94 0.006 12);
+	color: oklch(0.90 0.01 250);
 }
 
 .prose ul,
@@ -335,31 +333,31 @@ pre {
 
 .prose blockquote {
 	@apply border-l-4 pl-6 italic my-6;
-	border-color: oklch(0.58 0.26 15 / 0.5);
-	color: oklch(0.38 0.014 20);
+	border-color: oklch(0.62 0.24 280 / 0.5);
+	color: oklch(0.40 0.02 260);
 	line-height: 1.75;
 }
 
 .dark .prose blockquote {
-	border-color: oklch(0.75 0.30 15 / 0.6);
-	color: oklch(0.86 0.008 12);
+	border-color: oklch(0.72 0.24 280 / 0.6);
+	color: oklch(0.75 0.01 250);
 }
 
 .prose code,
 .inline-code {
-	background-color: oklch(0.90 0.008 12);
-	color: oklch(0.42 0.22 15);
+	background-color: oklch(0.94 0.008 250);
+	color: oklch(0.62 0.24 280);
 	@apply px-1.5 py-0.5 rounded text-[0.9em];
 	font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace;
 	font-weight: 500;
-	border: 1px solid oklch(0.84 0.010 12);
+	border: 1px solid oklch(0.88 0.01 250);
 }
 
 .dark .prose code,
 .dark .inline-code {
-	background-color: oklch(0.24 0.016 20);
-	color: oklch(0.78 0.26 15);
-	border-color: oklch(0.30 0.018 20);
+	background-color: oklch(0.15 0.02 250);
+	color: oklch(0.78 0.24 280);
+	border-color: oklch(0.20 0.02 250);
 }
 
 .prose pre {
@@ -395,74 +393,74 @@ pre {
 
 .prose pre code .token.string,
 .prose pre code .token.char {
-	color: oklch(0.45 0.15 150);
+	color: oklch(0.55 0.15 150);
 }
 
 .dark .prose pre code .token.string,
 .dark .prose pre code .token.char {
-	color: oklch(0.70 0.15 150);
+	color: oklch(0.75 0.18 150);
 }
 
 .prose pre code .token.keyword,
 .prose pre code .token.operator {
-	color: oklch(0.58 0.26 15);
+	color: oklch(0.62 0.24 280);
 }
 
 .dark .prose pre code .token.keyword,
 .dark .prose pre code .token.operator {
-	color: oklch(0.80 0.30 15);
+	color: oklch(0.78 0.24 280);
 }
 
 .prose pre code .token.number,
 .prose pre code .token.boolean {
-	color: oklch(0.48 0.20 35);
+	color: oklch(0.55 0.18 40);
 }
 
 .dark .prose pre code .token.number,
 .dark .prose pre code .token.boolean {
-	color: oklch(0.75 0.18 35);
+	color: oklch(0.78 0.20 40);
 }
 
 .prose pre code .token.comment {
-	color: oklch(0.45 0.008 250);
+	color: oklch(0.50 0.01 250);
 	opacity: 0.7;
 }
 
 .dark .prose pre code .token.comment {
-	color: oklch(0.65 0.006 250);
+	color: oklch(0.55 0.01 250);
 	opacity: 0.6;
 }
 
 .prose pre code .token.function,
 .prose pre code .token.class-name {
-	color: oklch(0.48 0.14 200);
+	color: oklch(0.52 0.14 200);
 }
 
 .dark .prose pre code .token.function,
 .dark .prose pre code .token.class-name {
-	color: oklch(0.72 0.16 200);
+	color: oklch(0.75 0.18 200);
 }
 
 .prose a {
-	color: oklch(0.58 0.26 15);
+	color: oklch(0.62 0.24 280);
 	@apply underline underline-offset-3 transition-colors;
 	text-decoration-thickness: 1.5px;
-	text-decoration-color: oklch(0.58 0.26 15 / 0.5);
+	text-decoration-color: oklch(0.62 0.24 280 / 0.5);
 }
 
 .prose a:hover {
-	color: oklch(0.53 0.26 15);
-	text-decoration-color: oklch(0.53 0.26 15 / 0.8);
+	color: oklch(0.58 0.24 280);
+	text-decoration-color: oklch(0.58 0.24 280 / 0.8);
 }
 
 .dark .prose a {
-	color: oklch(0.75 0.30 15);
-	text-decoration-color: oklch(0.75 0.30 15 / 0.6);
+	color: oklch(0.72 0.24 280);
+	text-decoration-color: oklch(0.72 0.24 280 / 0.6);
 }
 
 .dark .prose a:hover {
-	color: oklch(0.80 0.30 15);
-	text-decoration-color: oklch(0.80 0.30 15 / 0.8);
+	color: oklch(0.76 0.24 280);
+	text-decoration-color: oklch(0.76 0.24 280 / 0.8);
 }
 
 .prose img {
@@ -475,12 +473,12 @@ pre {
 
 .prose strong {
 	@apply font-semibold;
-	color: oklch(0.20 0.014 20);
+	color: oklch(0.25 0.02 260);
 	font-weight: 600;
 }
 
 .dark .prose strong {
-	color: oklch(0.94 0.006 12);
+	color: oklch(0.90 0.01 250);
 }
 
 .prose em {

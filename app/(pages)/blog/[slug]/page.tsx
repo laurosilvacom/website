@@ -137,7 +137,7 @@ export default async function Blog(props: Props) {
 					</div>
 				</article>
 			</Container>
-			<div className="hidden xl:block xl:absolute xl:right-0 xl:top-0 xl:bottom-0 xl:z-10">
+			<div className="hidden xl:block xl:absolute xl:-right-64 xl:top-0 xl:bottom-0 xl:w-64 xl:z-10">
 				<TocSidebar />
 			</div>
 		</>
