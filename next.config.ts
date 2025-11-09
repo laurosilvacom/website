@@ -11,7 +11,6 @@ const nextConfig: NextConfig = {
 		formats: ['image/avif', 'image/webp'],
 		qualities: [70, 75, 95]
 	},
-	transpilePackages: ['next-mdx-remote'],
 	experimental: {
 		optimizePackageImports: ['lucide-react']
 	}

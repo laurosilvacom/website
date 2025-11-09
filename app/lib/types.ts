@@ -8,9 +8,11 @@ export type BlogMetadata = {
 	image?: string
 }
 
+import {type PortableTextBlock} from '@sanity/types'
+
 export type BlogPost = {
 	metadata: BlogMetadata
 	slug: string
-	content: string
+	content: PortableTextBlock[]
 }
 

@@ -14,7 +14,7 @@ export default async function TagsPage() {
 	// Get tag counts
 	const tagCounts = allTags.reduce(
 		(acc, tag) => {
-			const count = posts.filter((post) =>
+			const count = posts.filter((post: any) =>
 				post.metadata.tags?.includes(tag)
 			).length
 			acc[tag] = count

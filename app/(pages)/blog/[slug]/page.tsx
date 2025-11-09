@@ -2,12 +2,12 @@ import Link from 'next/link'
 import {notFound} from 'next/navigation'
 import {type Metadata} from 'next'
 import Container from '@/components/container'
-import {CustomMDX} from '@/components/mdx'
+import {PortableText} from '@/components/portable-text'
 import {TocSidebar} from '@/components/toc-sidebar'
 import {StructuredData} from '@/components/structured-data'
 import {generateBlogPostMetadata} from '@/lib/metadata'
 import {baseUrl} from '@/app/sitemap'
-import {formatDate, getBlogPosts} from '@/lib/blog'
+import {formatDate, getBlogPosts, getBlogPostBySlug} from '@/lib/blog'
 
 interface BlogHeaderProps {
 	date: string
@@ -75,7 +75,7 @@ interface Props {
 
 export async function generateStaticParams() {
 	const posts = await getBlogPosts()
-	return posts.map((post) => ({
+	return posts.map((post: any) => ({
 		slug: post.slug
 	}))
 }
@@ -84,8 +84,7 @@ export async function generateMetadata(props: Props): Promise<Metadata | null> {
 	const params = await props.params
 	if (!params || !params.slug) return null
 
-	const posts = await getBlogPosts()
-	const post = posts.find((post) => post.slug === params.slug)
+	const post = await getBlogPostBySlug(params.slug)
 	if (!post) return null
 
 	const {title, publishedAt, summary, tags} = post.metadata
@@ -101,8 +100,7 @@ export async function generateMetadata(props: Props): Promise<Metadata | null> {
 
 export default async function Blog(props: Props) {
 	const params = await props.params
-	const posts = await getBlogPosts()
-	const post = posts.find((p) => p.slug === params.slug)
+	const post = await getBlogPostBySlug(params.slug)
 
 	if (!post) {
 		notFound()
@@ -132,7 +130,7 @@ export default async function Blog(props: Props) {
 					/>
 
 					<div className="prose prose-headings:mt-0 max-w-none">
-						<CustomMDX source={post.content} />
+						<PortableText blocks={post.content} />
 					</div>
 				</article>
 			</Container>

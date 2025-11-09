@@ -12,7 +12,7 @@ async function BlogPosts() {
 	const allBlogs = await getBlogPosts()
 	const latestPosts = allBlogs
 		.sort(
-			(a, b) =>
+			(a: any, b: any) =>
 				new Date(b.metadata.publishedAt).getTime() -
 				new Date(a.metadata.publishedAt).getTime()
 		)
