@@ -1,9 +1,8 @@
 import Link from 'next/link'
 import {notFound} from 'next/navigation'
 import Container from '@/components/container'
-import {Card} from '@/components/card'
-import {TagFooter} from '@/components/tag-footer'
 import {formatDate} from '@/lib/blog'
+import {ArrowRight} from 'lucide-react'
 import {type Metadata} from 'next'
 import {
 	getBlogPosts,
@@ -54,43 +53,61 @@ export default async function TagPage({params}: TagPageProps) {
 	})
 
 	return (
-		<Container>
-			<main className="py-16">
-				<section className="mb-14">
-					<Link
-						href="/blog"
-						className="text-muted-foreground mb-5 inline-block text-sm hover:text-foreground transition-colors">
-						← Back to all posts
-					</Link>
+		<>
+			<section className="pt-32 lg:pt-40 pb-16 lg:pb-24 border-b border-border/50">
+				<Container size="lg">
+					<div className="space-y-6">
+						<Link
+							href="/blog"
+							className="text-muted-foreground inline-flex items-center gap-2 text-sm hover:text-foreground transition-colors mb-4">
+							← Back to all posts
+						</Link>
+						<h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
+							Posts tagged with &ldquo;{tag}&rdquo;
+						</h1>
+						<p className="text-lg lg:text-xl text-muted-foreground max-w-2xl">
+							{taggedPosts.length} writing{taggedPosts.length !== 1 ? 's' : ''} with this tag
+						</p>
+					</div>
+				</Container>
+			</section>
 
-					<h1 className="mb-3 text-2xl font-normal leading-relaxed">
-						Posts tagged with &ldquo;{tag}&rdquo;
-					</h1>
-					<p className="text-muted-foreground text-lg leading-relaxed">
-						{taggedPosts.length} writing{taggedPosts.length !== 1 ? 's' : ''}{' '}
-						with this tag
-					</p>
-				</section>
-
-				<section>
-					<div className="space-y-10">
-						{taggedPosts.map((post) => (
-							<Card
+			<section className="py-16 lg:py-24">
+				<Container size="lg">
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+						{taggedPosts.map((post: any, index: number) => (
+							<article
 								key={post.slug}
-								href={`/blog/${post.slug}`}
-								title={post.metadata.title}
-								description={post.metadata.summary}
-								date={formatDate(post.metadata.publishedAt, false)}
-								footer={
-									post.metadata.tags && post.metadata.tags.length > 0 ? (
-										<TagFooter tags={post.metadata.tags} />
-									) : undefined
-								}
-							/>
+								className="group relative"
+								style={{
+									animationDelay: `${index * 50}ms`
+								}}>
+								<Link
+									href={`/blog/${post.slug}`}
+									className="block h-full">
+									<div className="flex flex-col h-full">
+										<div className="mb-4">
+											<time className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+												{formatDate(post.metadata.publishedAt, false)}
+											</time>
+										</div>
+										<h2 className="text-xl lg:text-2xl font-semibold mb-3 leading-tight group-hover:text-primary transition-colors">
+											{post.metadata.title}
+										</h2>
+										<p className="text-muted-foreground text-sm lg:text-base leading-relaxed flex-grow mb-4 line-clamp-3">
+											{post.metadata.summary}
+										</p>
+										<div className="flex items-center text-sm font-medium text-primary group-hover:gap-2 transition-all">
+											Read more
+											<ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+										</div>
+									</div>
+								</Link>
+							</article>
 						))}
 					</div>
-				</section>
-			</main>
-		</Container>
+				</Container>
+			</section>
+		</>
 	)
 }

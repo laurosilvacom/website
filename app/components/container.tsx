@@ -2,26 +2,36 @@ import {type ReactNode} from 'react'
 import {cn} from '@/lib/utils'
 
 type ContainerProps = {
+	children: ReactNode
 	className?: string
-	as?: keyof React.JSX.IntrinsicElements | React.ComponentType<unknown>
-} & {children: ReactNode}
+	as?: 'div' | 'section' | 'article' | 'header' | 'footer'
+	size?: 'sm' | 'md' | 'lg' | 'xl' | 'full'
+}
 
-// Substack-like consistent width: 680px (perfect reading width)
-const CONTENT_WIDTH = 'max-w-[680px]'
+const sizeClasses = {
+	sm: 'max-w-4xl', // 896px - Narrow focused content
+	md: 'max-w-6xl', // 1152px - Article/reading width
+	lg: 'max-w-7xl', // 1280px - List/grid pages
+	xl: 'max-w-[1920px]', // 1920px - Hero sections
+	full: 'max-w-full'
+}
 
 export default function Container({
 	children,
 	className = '',
 	as: Component = 'div',
+	size = 'lg',
 	...props
 }: ContainerProps) {
 	return (
-		<div className="w-full px-4 sm:px-6 lg:px-8">
-			<Component
-				className={cn('mx-auto', CONTENT_WIDTH, className)}
-				{...props}>
-				{children}
-			</Component>
-		</div>
+		<Component
+			className={cn(
+				'mx-auto w-full px-6 lg:px-12 xl:px-16',
+				sizeClasses[size],
+				className
+			)}
+			{...props}>
+			{children}
+		</Component>
 	)
 }

@@ -24,36 +24,39 @@ export default async function TagsPage() {
 	)
 
 	return (
-		<Container>
-			<main className="py-16">
-				<section className="mb-14">
-					<Link
-						href="/blog"
-						className="text-muted-foreground mb-5 inline-block text-sm hover:text-foreground transition-colors">
-						← Back to writing
-					</Link>
+		<>
+			<section className="pt-32 lg:pt-40 pb-16 lg:pb-24 border-b border-border/50">
+				<Container size="lg">
+					<div className="space-y-6">
+						<Link
+							href="/blog"
+							className="text-muted-foreground inline-flex items-center gap-2 text-sm hover:text-foreground transition-colors mb-4">
+							← Back to writing
+						</Link>
+						<h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
+							Tags
+						</h1>
+						<p className="text-lg lg:text-xl text-muted-foreground max-w-2xl">
+							Browse writing by topic
+						</p>
+					</div>
+				</Container>
+			</section>
 
-					<h1 className="mb-3 text-2xl font-normal leading-relaxed">
-						Tags
-					</h1>
-					<p className="text-muted-foreground text-lg leading-relaxed">
-						Browse writing by topic
-					</p>
-				</section>
-
-				<section>
+			<section className="py-16 lg:py-24">
+				<Container size="lg">
 					<div className="flex flex-wrap gap-3">
 						{allTags.map((tag) => (
 							<Link
 								key={tag}
 								href={`/tags/${encodeURIComponent(tag)}`}
-								className="bg-card hover:bg-secondary/80 text-foreground border-border rounded-full border px-4 py-1.5 text-sm font-medium transition-colors">
-								{tag} ({tagCounts[tag]})
+								className="group bg-card hover:bg-card/80 text-foreground border border-border/50 hover:border-border rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300">
+								{tag} <span className="text-muted-foreground">({tagCounts[tag]})</span>
 							</Link>
 						))}
 					</div>
-				</section>
-			</main>
-		</Container>
+				</Container>
+			</section>
+		</>
 	)
 }

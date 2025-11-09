@@ -7,8 +7,7 @@ import '@/app/globals.css'
 import {Toaster} from '@/components/toaster'
 import {StructuredData} from '@/components/structured-data'
 import {baseUrl} from '@/app/sitemap'
-import {Navbar} from '@/components/nav'
-import {Sidebar} from '@/components/sidebar'
+import {Navigation} from '@/components/navigation'
 
 export const metadata: Metadata = {
 	metadataBase: new URL(baseUrl),
@@ -134,7 +133,6 @@ export const metadata: Metadata = {
 	}
 }
 
-
 type RootLayoutProps = {
 	children: ReactNode
 }
@@ -144,27 +142,18 @@ export default function RootLayout({children}: RootLayoutProps) {
 		<html
 			lang="en"
 			className="bg-background text-foreground scroll-smooth antialiased"
-			suppressHydrationWarning // Add this to suppress hydration warnings related to theme
-		>
-			<body>
-					<ThemeProvider
-						attribute="class"
-						defaultTheme="system"
-						enableSystem
-						disableTransitionOnChange>
-						<div className="flex min-h-screen justify-center">
-							<div className="flex w-full max-w-[1600px] relative">
-								<Sidebar />
-								<main className="flex-1 min-w-0 flex relative">
-									<div className="flex-1 min-w-0 relative">
-										<Navbar />
-										{children}
-									</div>
-									<div className="hidden xl:block xl:w-64 flex-shrink-0" />
-								</main>
-							</div>
-						</div>
-					</ThemeProvider>
+			suppressHydrationWarning>
+			<body className="min-h-screen">
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem
+					disableTransitionOnChange>
+					<div className="relative min-h-screen">
+						<Navigation />
+						<main className="relative">{children}</main>
+					</div>
+				</ThemeProvider>
 				<StructuredData type="website" />
 				<StructuredData type="person" />
 				<Toaster />
