@@ -5,6 +5,7 @@ export type BlogMetadata = {
 	tags?: string[]
 	draft?: boolean
 	readingTime?: string
+	image?: string
 }
 
 export type BlogPost = {

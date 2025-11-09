@@ -25,33 +25,39 @@ function BlogHeader({
 	tags
 }: BlogHeaderProps) {
 	return (
-		<header className="mb-14 space-y-7">
-			<div className="space-y-5">
-				<div className="space-y-4">
-					<time className="text-muted-foreground text-sm">
-						{formatDate(date)}
-					</time>
-					<h1 className="text-xl font-semibold leading-tight text-foreground sm:text-2xl tracking-tight">
+		<header className="mb-16">
+			<div className="space-y-8">
+				<div className="space-y-6">
+					<h1 className="text-foreground text-2xl leading-tight font-semibold tracking-tight sm:text-3xl">
 						{title}
 					</h1>
-					<p className="text-muted-foreground text-base leading-relaxed sm:text-lg mt-3">
+					<p className="text-muted-foreground max-w-2xl text-base leading-relaxed sm:text-lg">
 						{summary}
 					</p>
 				</div>
 
-				<div className="flex flex-wrap items-center gap-5 text-sm text-muted-foreground">
-					{readingTime && <span>{readingTime}</span>}
+				<div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+					<time className="text-muted-foreground">{formatDate(date)}</time>
+					{readingTime && (
+						<>
+							<span className="text-muted-foreground/40">·</span>
+							<span className="text-muted-foreground">{readingTime}</span>
+						</>
+					)}
 					{tags && tags.length > 0 && (
-						<div className="flex flex-wrap gap-2.5">
-							{tags.map((tag) => (
-								<Link
-									key={tag}
-									href={`/tags/${encodeURIComponent(tag)}`}
-									className="hover:text-foreground transition-colors">
-									#{tag}
-								</Link>
-							))}
-						</div>
+						<>
+							<span className="text-muted-foreground/40">·</span>
+							<div className="flex flex-wrap gap-x-3 gap-y-1">
+								{tags.map((tag) => (
+									<Link
+										key={tag}
+										href={`/tags/${encodeURIComponent(tag)}`}
+										className="text-muted-foreground hover:text-foreground transition-colors">
+										{tag}
+									</Link>
+								))}
+							</div>
+						</>
 					)}
 				</div>
 			</div>
@@ -74,9 +80,7 @@ export async function generateStaticParams() {
 	}))
 }
 
-export async function generateMetadata(
-	props: Props
-): Promise<Metadata | null> {
+export async function generateMetadata(props: Props): Promise<Metadata | null> {
 	const params = await props.params
 	if (!params || !params.slug) return null
 
@@ -84,12 +88,7 @@ export async function generateMetadata(
 	const post = posts.find((post) => post.slug === params.slug)
 	if (!post) return null
 
-	const {
-		title,
-		publishedAt,
-		summary,
-		tags
-	} = post.metadata
+	const {title, publishedAt, summary, tags} = post.metadata
 
 	return generateBlogPostMetadata(
 		title,
@@ -132,12 +131,12 @@ export default async function Blog(props: Props) {
 						tags={post.metadata.tags}
 					/>
 
-					<div className="prose max-w-none">
+					<div className="prose prose-headings:mt-0 max-w-none">
 						<CustomMDX source={post.content} />
 					</div>
 				</article>
 			</Container>
-			<div className="hidden xl:block xl:absolute xl:-right-64 xl:top-0 xl:bottom-0 xl:w-64 xl:z-10">
+			<div className="hidden xl:absolute xl:top-0 xl:-right-64 xl:bottom-0 xl:z-10 xl:block xl:w-64">
 				<TocSidebar />
 			</div>
 		</>

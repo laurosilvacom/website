@@ -4,6 +4,7 @@ import {MDXRemote, type MDXRemoteProps} from 'next-mdx-remote/rsc'
 import React, {type ReactNode} from 'react'
 import {highlight} from 'sugar-high'
 import {CodeCopyButton} from './copy-button'
+import {Footnote} from './footnote'
 
 type ImageProps = Omit<NextImageProps, 'width' | 'height'> & {
 	width?: number
@@ -281,7 +282,8 @@ const components = {
 	Demo,
 	Kbd,
 	StackBlitz,
-	Details
+	Details,
+	Footnote
 }
 
 export function CustomMDX(props: MDXRemoteProps) {
