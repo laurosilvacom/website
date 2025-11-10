@@ -30,52 +30,58 @@ export default function AboutPage() {
 			/>
 			<main>
 				{/* Hero Section */}
-				<section className="pt-32 lg:pt-40 pb-16 lg:pb-24 border-b border-border">
-					<Container size="lg">
-						<div className="max-w-3xl space-y-8">
-							<div className="space-y-6">
-								<h1 className="text-3xl lg:text-5xl xl:text-6xl font-bold leading-tight tracking-tight">
-									Building at the intersection of code, community, and trails
-								</h1>
-								<div className="space-y-4 text-lg lg:text-xl leading-relaxed text-muted-foreground">
-									<p>
-										I&apos;m Lauro Silva. I write software, build communities, and run trails. These three things aren&apos;t separate parts of my life. They inform and strengthen each other in ways that continue to surprise me.
-									</p>
-									<p>
-										The same curiosity that drives me to understand how systems work in code also pushes me to understand how communities form and grow. The discipline and problem-solving I learn on long trail runs translates directly to how I approach building products. And the values I hold as an athlete, accessibility, inclusion, and genuine connection, are the same values I bring to my work.
-									</p>
+				<section className="relative flex min-h-[85vh] items-center overflow-hidden pt-24 pb-16 lg:min-h-screen lg:pt-32 lg:pb-24">
+					<div className="from-background via-background/95 to-background pointer-events-none absolute inset-0 bg-gradient-to-b" />
+					
+					<Container size="xl" className="relative z-10">
+						<div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+							{/* Content */}
+							<div className="space-y-8 lg:col-span-7 lg:space-y-12">
+								<div className="space-y-6 lg:space-y-8">
+									<h1 className="text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-7xl xl:text-8xl">
+										Building at the intersection of
+										<br />
+										<span className="text-primary">code, community, and trails</span>
+									</h1>
+									
+									<div className="space-y-4 text-lg leading-relaxed text-muted-foreground lg:text-xl">
+										<p>
+											I&apos;m Lauro Silva. I write software, build communities, and run trails. These three things aren&apos;t separate parts of my life. They inform and strengthen each other in ways that continue to surprise me.
+										</p>
+										<p>
+											The same curiosity that drives me to understand how systems work in code also pushes me to understand how communities form and grow. The discipline and problem-solving I learn on long trail runs translates directly to how I approach building products.
+										</p>
+									</div>
+								</div>
+							</div>
+
+							{/* Image */}
+							<div className="lg:col-span-5">
+								<div className="relative aspect-[4/5] lg:aspect-[3/4]">
+									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+									<Image
+										src="/photos/website-photo-6.jpg"
+										alt="Lauro Silva"
+										fill
+										className="rounded-2xl object-cover"
+										priority
+										sizes="(max-width: 1024px) 100vw, 40vw"
+									/>
 								</div>
 							</div>
 						</div>
 					</Container>
 				</section>
 
-				{/* Photo */}
-				<section className="py-16 lg:py-24 border-b border-border">
-					<Container size="lg">
-						<div className="max-w-3xl">
-							<div className="relative w-full aspect-[4/3] lg:aspect-[16/10] rounded-2xl overflow-hidden">
-								<Image
-									src="/photos/website-photo-6.jpg"
-									alt="Lauro Silva"
-									fill
-									className="object-cover"
-									sizes="(max-width: 1024px) 100vw, 80vw"
-								/>
-							</div>
-						</div>
-					</Container>
-				</section>
-
 				{/* Values Section */}
-				<section className="py-24 lg:py-32">
-					<Container size="lg">
-						<div className="max-w-3xl space-y-12">
+				<section className="py-24 lg:py-32 border-t border-border">
+					<Container size="xl">
+						<div className="max-w-4xl space-y-12 lg:space-y-16">
 							<div className="space-y-6">
-								<h2 className="text-3xl lg:text-5xl xl:text-6xl font-bold tracking-tight">
+								<h2 className="text-3xl font-bold tracking-tight lg:text-5xl xl:text-6xl">
 									What I believe
 								</h2>
-								<div className="space-y-4 text-lg leading-relaxed text-muted-foreground">
+								<div className="space-y-6 text-lg leading-relaxed text-muted-foreground lg:text-xl">
 									<p>
 										Technology should serve people, not the other way around. The best software I&apos;ve built has always started with understanding the humans who will use it. Their needs, their constraints, their aspirations.
 									</p>
@@ -93,14 +99,14 @@ export default function AboutPage() {
 
 				{/* Software Engineer Section */}
 				<section className="py-24 lg:py-32 border-t border-border">
-					<Container size="lg">
-						<div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-							<div className="lg:col-span-7 space-y-12">
+					<Container size="xl">
+						<div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+							<div className="space-y-12 lg:col-span-7">
 								<div className="space-y-6">
-									<h2 className="text-3xl lg:text-5xl xl:text-6xl font-bold tracking-tight">
+									<h2 className="text-3xl font-bold tracking-tight lg:text-5xl xl:text-6xl">
 										As a software engineer
 									</h2>
-									<div className="space-y-4 text-lg leading-relaxed text-muted-foreground">
+									<div className="space-y-6 text-lg leading-relaxed text-muted-foreground lg:text-xl">
 										<p>
 											I build products for the outdoor industry. My focus is on creating software that helps brands, athletes, and communities connect more meaningfully with their audiences.
 										</p>
@@ -115,13 +121,13 @@ export default function AboutPage() {
 							</div>
 							<div className="lg:col-span-5">
 								<div className="sticky top-32">
-									<div className="relative aspect-[4/5] lg:aspect-[3/4] group">
-										<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-muted to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+									<div className="group relative aspect-[4/5] lg:aspect-[3/4]">
+										<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 										<Image
 											src="/photos/website-photo-9.jpg"
 											alt="Software engineering"
 											fill
-											className="object-cover rounded-2xl transition-transform duration-300 group-hover:scale-[1.02]"
+											className="rounded-2xl object-cover transition-transform duration-300 group-hover:scale-[1.02]"
 											sizes="(max-width: 1024px) 100vw, 40vw"
 										/>
 									</div>
@@ -133,28 +139,28 @@ export default function AboutPage() {
 
 				{/* Community Builder Section */}
 				<section className="py-24 lg:py-32 border-t border-border">
-					<Container size="lg">
-						<div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-							<div className="lg:col-span-5 order-2 lg:order-1">
+					<Container size="xl">
+						<div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+							<div className="order-2 lg:order-1 lg:col-span-5">
 								<div className="sticky top-32">
-									<div className="relative aspect-[4/5] lg:aspect-[3/4] group">
-										<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-muted to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+									<div className="group relative aspect-[4/5] lg:aspect-[3/4]">
+										<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 										<Image
 											src="/photos/website-photo-4.jpg"
 											alt="Community building"
 											fill
-											className="object-cover rounded-2xl transition-transform duration-300 group-hover:scale-[1.02]"
+											className="rounded-2xl object-cover transition-transform duration-300 group-hover:scale-[1.02]"
 											sizes="(max-width: 1024px) 100vw, 40vw"
 										/>
 									</div>
 								</div>
 							</div>
-							<div className="lg:col-span-7 order-1 lg:order-2 space-y-12">
+							<div className="order-1 space-y-12 lg:order-2 lg:col-span-7">
 								<div className="space-y-6">
-									<h2 className="text-3xl lg:text-5xl xl:text-6xl font-bold tracking-tight">
+									<h2 className="text-3xl font-bold tracking-tight lg:text-5xl xl:text-6xl">
 										As a community builder
 									</h2>
-									<div className="space-y-4 text-lg leading-relaxed text-muted-foreground">
+									<div className="space-y-6 text-lg leading-relaxed text-muted-foreground lg:text-xl">
 										<p>
 											I started Tierra Libre Run because I saw a gap. Trail running is an incredible sport, but it hasn&apos;t always been accessible to runners of color. The barriers are real. Financial constraints, lack of representation, simply not knowing where to start.
 										</p>
@@ -173,14 +179,14 @@ export default function AboutPage() {
 
 				{/* Athlete Section */}
 				<section className="py-24 lg:py-32 border-t border-border">
-					<Container size="lg">
-						<div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-							<div className="lg:col-span-7 space-y-12">
+					<Container size="xl">
+						<div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+							<div className="space-y-12 lg:col-span-7">
 								<div className="space-y-6">
-									<h2 className="text-3xl lg:text-5xl xl:text-6xl font-bold tracking-tight">
+									<h2 className="text-3xl font-bold tracking-tight lg:text-5xl xl:text-6xl">
 										As an athlete
 									</h2>
-									<div className="space-y-4 text-lg leading-relaxed text-muted-foreground">
+									<div className="space-y-6 text-lg leading-relaxed text-muted-foreground lg:text-xl">
 										<p>
 											I&apos;m a semi-professional trail runner. The trails have taught me about persistence, about problem-solving when things get hard, and about the importance of showing up even when you don&apos;t feel like it.
 										</p>
@@ -195,13 +201,13 @@ export default function AboutPage() {
 							</div>
 							<div className="lg:col-span-5">
 								<div className="sticky top-32">
-									<div className="relative aspect-[4/5] lg:aspect-[3/4] group">
-										<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-muted to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+									<div className="group relative aspect-[4/5] lg:aspect-[3/4]">
+										<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 										<Image
 											src="/photos/website-photo-11.jpg"
 											alt="Trail running"
 											fill
-											className="object-cover rounded-2xl transition-transform duration-300 group-hover:scale-[1.02]"
+											className="rounded-2xl object-cover transition-transform duration-300 group-hover:scale-[1.02]"
 											sizes="(max-width: 1024px) 100vw, 40vw"
 										/>
 									</div>
@@ -213,8 +219,8 @@ export default function AboutPage() {
 
 				{/* Closing Section */}
 				<section className="py-24 lg:py-32 border-t border-border">
-					<Container size="lg">
-						<div className="max-w-3xl space-y-6 text-lg lg:text-xl leading-relaxed text-muted-foreground">
+					<Container size="xl">
+						<div className="max-w-4xl space-y-8 text-lg leading-relaxed text-muted-foreground lg:text-xl">
 							<p>
 								These three roles, engineer, community builder, athlete, aren&apos;t separate. They&apos;re all part of how I approach the world and how I do my work. They inform each other, challenge each other, and make me better at all of them.
 							</p>
