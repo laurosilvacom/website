@@ -48,35 +48,35 @@ export function Navbar() {
 			<nav
 				role="navigation"
 				aria-label="Main navigation"
-				className={`lg:hidden sticky top-0 z-40 w-full transition-all duration-300 print:hidden border-b ${
+				className={`sticky top-0 z-40 w-full border-b transition-all duration-500 ease-in-out lg:hidden print:hidden ${
 					isScrolled
-						? 'bg-background/80 backdrop-blur-md border-border/50'
-						: 'bg-background/40 backdrop-blur-sm border-border/30'
+						? 'bg-background/70 border-border/40 shadow-lg shadow-black/5 backdrop-blur-xl'
+						: 'bg-background/50 border-border/20 backdrop-blur-lg'
 				}`}>
-				<div className="mx-auto flex max-w-7xl items-center justify-between h-16 px-4 sm:px-6">
+				<div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 sm:px-8">
 					<Link
 						href="/"
 						aria-label="Home"
-						className="flex items-center gap-3 hover:opacity-80 transition-opacity -ml-1">
+						className="-ml-1 flex items-center gap-3.5 transition-opacity duration-300 hover:opacity-80">
 						<svg
-							width="16"
-							height="26"
+							width="18"
+							height="28"
 							viewBox="0 0 385 655"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
-							className="fill-foreground dark:fill-foreground flex-shrink-0">
+							className="fill-foreground dark:fill-foreground flex-shrink-0 transition-transform duration-300 hover:scale-110">
 							<path
 								fillRule="evenodd"
 								clipRule="evenodd"
 								d="M385 357.926L43.7135 655L149.934 395.013L0 297.046L341.286 0L225.757 276.58L385 357.926Z"
 							/>
 						</svg>
-						<span className="text-sm font-semibold leading-tight tracking-tight">
+						<span className="text-base leading-tight font-semibold tracking-tight">
 							Lauro Silva
 						</span>
 					</Link>
 
-					<div className="hidden items-center gap-6 md:flex" role="menubar">
+					<div className="hidden items-center gap-8 md:flex" role="menubar">
 						{Object.entries(navItems).map(([path, {name}]) => {
 							const isActive = pathname === path
 							return (
@@ -85,10 +85,10 @@ export function Navbar() {
 									href={path}
 									role="menuitem"
 									aria-current={isActive ? 'page' : undefined}
-									className={`text-sm transition-colors ${
+									className={`rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ${
 										isActive
-											? 'text-foreground font-medium'
-											: 'text-muted-foreground hover:text-foreground'
+											? 'text-foreground bg-primary/10'
+											: 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
 									}`}>
 									{name}
 								</Link>
@@ -97,27 +97,27 @@ export function Navbar() {
 					</div>
 
 					<button
-						className="relative z-50 flex h-10 w-10 items-center justify-center md:hidden"
+						className="hover:bg-accent/50 relative z-50 flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 md:hidden"
 						onClick={() => setIsMenuOpen(!isMenuOpen)}
 						aria-expanded={isMenuOpen}
 						aria-controls="mobile-menu"
 						aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}>
-						<div className="relative flex w-5 items-center justify-center">
+						<div className="relative flex w-6 items-center justify-center">
 							<span
-								className={`bg-foreground absolute h-0.5 w-5 transition-all ${
-									isMenuOpen ? 'translate-y-0 rotate-45' : '-translate-y-1.5'
+								className={`bg-foreground absolute h-0.5 w-6 transition-all duration-500 ease-in-out ${
+									isMenuOpen ? 'translate-y-0 rotate-45' : '-translate-y-2'
 								}`}
 								aria-hidden="true"
 							/>
 							<span
-								className={`bg-foreground absolute h-0.5 w-5 transition-all ${
-									isMenuOpen ? 'opacity-0' : 'opacity-100'
+								className={`bg-foreground absolute h-0.5 w-6 transition-all duration-500 ease-in-out ${
+									isMenuOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
 								}`}
 								aria-hidden="true"
 							/>
 							<span
-								className={`bg-foreground absolute h-0.5 w-5 transition-all ${
-									isMenuOpen ? 'translate-y-0 -rotate-45' : 'translate-y-1.5'
+								className={`bg-foreground absolute h-0.5 w-6 transition-all duration-500 ease-in-out ${
+									isMenuOpen ? 'translate-y-0 -rotate-45' : 'translate-y-2'
 								}`}
 								aria-hidden="true"
 							/>
@@ -128,7 +128,7 @@ export function Navbar() {
 
 			{isMenuOpen && (
 				<div
-					className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm md:hidden"
+					className="bg-background/60 fixed inset-0 z-40 backdrop-blur-md transition-opacity duration-500 ease-in-out md:hidden"
 					onClick={closeMenu}
 					aria-hidden="true"
 				/>
@@ -139,15 +139,15 @@ export function Navbar() {
 				role="dialog"
 				aria-label="Mobile menu"
 				aria-modal="true"
-				className={`bg-background fixed top-0 right-0 z-40 h-full w-[280px] md:hidden transition-transform duration-200 ${
+				className={`bg-background/95 border-border/40 fixed top-0 right-0 z-40 h-full w-[320px] border-l shadow-2xl backdrop-blur-xl transition-transform duration-500 ease-in-out md:hidden ${
 					isMenuOpen ? 'translate-x-0' : 'translate-x-full'
 				}`}>
-				<div className="flex h-16 items-center justify-between px-6 mb-8">
-					<span className="text-lg font-normal">Menu</span>
+				<div className="border-border/40 mb-12 flex h-20 items-center justify-between border-b px-8">
+					<span className="text-lg font-semibold">Menu</span>
 					<button
 						onClick={closeMenu}
 						aria-label="Close menu"
-						className="text-muted-foreground hover:text-foreground transition-colors">
+						className="text-muted-foreground hover:text-foreground hover:bg-accent/50 rounded-xl p-2 transition-colors duration-300">
 						<svg
 							className="h-5 w-5"
 							fill="none"
@@ -166,7 +166,7 @@ export function Navbar() {
 				<nav
 					role="navigation"
 					aria-label="Mobile navigation"
-					className="flex flex-col p-6">
+					className="flex flex-col gap-2 px-8">
 					{Object.entries(navItems).map(([path, {name}]) => {
 						const isActive = pathname === path
 						return (
@@ -175,10 +175,10 @@ export function Navbar() {
 								href={path}
 								aria-current={isActive ? 'page' : undefined}
 								onClick={closeMenu}
-								className={`py-3 text-base transition-colors ${
+								className={`rounded-xl px-4 py-4 text-base font-medium transition-all duration-300 ${
 									isActive
-										? 'text-foreground font-medium'
-										: 'text-muted-foreground hover:text-foreground'
+										? 'text-foreground bg-primary/10'
+										: 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
 								}`}>
 								{name}
 							</Link>

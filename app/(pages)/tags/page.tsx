@@ -26,14 +26,14 @@ export default async function TagsPage() {
 	return (
 		<>
 			<section className="pt-32 lg:pt-40 pb-16 lg:pb-24 border-b border-border">
-				<Container size="lg">
+				<Container size="xl">
 					<div className="space-y-6">
 						<Link
 							href="/blog"
 							className="text-muted-foreground inline-flex items-center gap-2 text-sm hover:text-foreground transition-colors mb-4">
 							← Back to writing
 						</Link>
-						<h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
+						<h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold tracking-tight max-w-5xl">
 							Tags
 						</h1>
 						<p className="text-lg lg:text-xl text-muted-foreground max-w-2xl">
@@ -44,7 +44,7 @@ export default async function TagsPage() {
 			</section>
 
 			<section className="py-16 lg:py-24">
-				<Container size="lg">
+				<Container size="xl">
 					<div className="flex flex-wrap gap-3">
 						{allTags.map((tag) => (
 							<Link

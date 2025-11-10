@@ -17,7 +17,7 @@ async function BlogPosts() {
 		.slice(0, 6)
 
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+		<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-12">
 			{latestPosts.map((post, index) => (
 				<article
 					key={post.slug}
@@ -25,24 +25,22 @@ async function BlogPosts() {
 					style={{
 						animationDelay: `${index * 100}ms`
 					}}>
-					<Link
-						href={`/blog/${post.slug}`}
-						className="block h-full">
-						<div className="flex flex-col h-full">
+					<Link href={`/blog/${post.slug}`} className="block h-full">
+						<div className="flex h-full flex-col">
 							<div className="mb-4">
-								<time className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+								<time className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
 									{formatDate(post.metadata.publishedAt, false)}
 								</time>
 							</div>
-							<h3 className="text-xl lg:text-2xl font-semibold mb-3 leading-tight group-hover:text-primary transition-colors">
+							<h3 className="group-hover:text-primary mb-3 text-xl leading-tight font-semibold transition-colors lg:text-2xl">
 								{post.metadata.title}
 							</h3>
-							<p className="text-muted-foreground text-sm lg:text-base leading-relaxed flex-grow mb-4 line-clamp-3">
+							<p className="text-muted-foreground mb-4 line-clamp-3 flex-grow text-sm leading-relaxed lg:text-base">
 								{post.metadata.summary}
 							</p>
-							<div className="flex items-center text-sm font-medium text-primary group-hover:gap-2 transition-all">
+							<div className="text-primary flex items-center text-sm font-medium transition-all group-hover:gap-2">
 								Read more
-								<ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+								<ArrowRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
 							</div>
 						</div>
 					</Link>
@@ -54,7 +52,7 @@ async function BlogPosts() {
 
 function BlogPostsFallback() {
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+		<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-12">
 			{Array.from({length: 6}).map((_, i) => (
 				<div key={i} className="space-y-4">
 					<div className="bg-muted h-4 w-24 animate-pulse rounded" />
@@ -70,19 +68,20 @@ export default async function Page() {
 	return (
 		<>
 			{/* Hero Section */}
-			<section className="relative min-h-[85vh] lg:min-h-screen flex items-center justify-center pt-24 lg:pt-32 pb-16 lg:pb-24 overflow-hidden">
-				<div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background pointer-events-none" />
-				
+			<section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden pt-24 pb-16 lg:min-h-screen lg:pt-32 lg:pb-24">
+				<div className="from-background via-background/95 to-background pointer-events-none absolute inset-0 bg-gradient-to-b" />
+
 				<Container size="xl" className="relative z-10">
-					<div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+					<div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
 						{/* Image */}
-						<div className="lg:col-span-5 order-2 lg:order-1">
+						<div className="order-2 lg:order-1 lg:col-span-5">
 							<div className="relative aspect-[4/5] lg:aspect-[3/4]">
 								<Image
 									src="/photos/website-photo-1.jpg"
 									alt="Lauro Silva"
 									fill
-									className="object-cover rounded-2xl"
+									className="rounded-2xl object-cover"
+									style={{objectPosition: 'right center'}}
 									priority
 									sizes="(max-width: 1024px) 100vw, 40vw"
 								/>
@@ -90,24 +89,25 @@ export default async function Page() {
 						</div>
 
 						{/* Content */}
-						<div className="lg:col-span-7 order-1 lg:order-2 space-y-8 lg:space-y-12">
+						<div className="order-1 space-y-8 lg:order-2 lg:col-span-7 lg:space-y-12">
 							<div className="space-y-6 lg:space-y-8">
-								<h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight">
-									Cultivating ideas in the open,
-									<br />
-									<span className="text-primary">learning in public</span>
+								<h1 className="max-w-5xl text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-7xl xl:text-8xl">
+									Hey, I'm Lauro!
 								</h1>
-								<div className="space-y-4 text-lg lg:text-xl leading-relaxed text-muted-foreground max-w-2xl">
+								<div className="text-muted-foreground max-w-2xl space-y-4 text-lg leading-relaxed lg:text-xl">
 									<p>
-										I&apos;m <strong className="text-foreground">Lauro Silva</strong>. This is a digital garden where I share my work, writing, and learning process at the intersection of technology and the outdoor industry.
+										This is a{' '}
+										<strong className="text-foreground">digital garden</strong>.
+										where I share my work, writing, and learning process at the
+										intersection of technology and the outdoor industry.
 									</p>
 									<p>
-										Ideas evolve here. Some are polished, others are works in progress. This is learning in public.
+										I work as a software engineer building cutting-edge
+										technology for the outdoor industry, help professional
+										athletes use technology to build brands, and build inclusive
+										communities in the trail running space.
 									</p>
 								</div>
-								<p className="text-base lg:text-lg text-muted-foreground/80 max-w-2xl">
-									I work as a software engineer building cutting-edge technology for the outdoor industry, help professional athletes use technology to build brands and communities, and build communities in the trail running space.
-								</p>
 							</div>
 							<div className="pt-4">
 								<Button asChild size="lg" className="group">
@@ -123,12 +123,12 @@ export default async function Page() {
 			</section>
 
 			{/* Recent Writings */}
-			<section className="py-24 lg:py-32 border-t border-border/50">
+			<section className="border-border/50 border-t py-24 lg:py-32">
 				<Container size="xl">
 					<div className="space-y-12 lg:space-y-16">
 						<div className="flex items-end justify-between">
 							<div>
-								<h2 className="text-3xl lg:text-5xl font-bold tracking-tight mb-2">
+								<h2 className="mb-2 text-3xl font-bold tracking-tight lg:text-5xl">
 									Recent Writings
 								</h2>
 								<p className="text-muted-foreground text-lg">

@@ -121,14 +121,14 @@ export default async function Blog(props: Props) {
 
 			<article>
 				{/* Header */}
-				<header className="pt-32 lg:pt-40 pb-12 lg:pb-16 border-b border-border">
+				<header className="pt-32 lg:pt-40 pb-16 lg:pb-20 border-b border-border">
 					<Container size="md">
-						<div className="space-y-8">
+						<div className="max-w-4xl space-y-8">
 							<div className="space-y-6">
 								<h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight tracking-tight">
 									{post.metadata.title}
 								</h1>
-								<p className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl">
+								<p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
 									{post.metadata.summary}
 								</p>
 							</div>
@@ -163,20 +163,27 @@ export default async function Blog(props: Props) {
 					</Container>
 				</header>
 
-				{/* Content */}
-				<div className="py-12 lg:py-16">
+				{/* Content with TOC */}
+				<div className="py-16 lg:py-24">
 					<Container size="md">
-						<div className="prose prose-headings:mt-0 max-w-none">
-							<PortableText blocks={post.content} />
+						<div className="grid gap-16 lg:grid-cols-12 lg:gap-20">
+							{/* Main Content */}
+							<div className="lg:col-span-8">
+								<div className="prose prose-headings:mt-0 max-w-none">
+									<PortableText blocks={post.content} />
+								</div>
+							</div>
+
+							{/* TOC Sidebar - Sticky */}
+							<div className="lg:col-span-4">
+								<div className="lg:sticky lg:top-32 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto">
+									<TocSidebar />
+								</div>
+							</div>
 						</div>
 					</Container>
 				</div>
 			</article>
-
-			{/* TOC Sidebar */}
-			<div className="hidden xl:fixed xl:top-0 xl:right-0 xl:bottom-0 xl:z-10 xl:block xl:w-64">
-				<TocSidebar />
-			</div>
 		</>
 	)
 }

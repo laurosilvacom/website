@@ -55,15 +55,15 @@ export default async function TagPage({params}: TagPageProps) {
 	return (
 		<>
 			<section className="pt-32 lg:pt-40 pb-16 lg:pb-24 border-b border-border">
-				<Container size="lg">
+				<Container size="xl">
 					<div className="space-y-6">
 						<Link
 							href="/blog"
 							className="text-muted-foreground inline-flex items-center gap-2 text-sm hover:text-foreground transition-colors mb-4">
 							← Back to all posts
 						</Link>
-						<h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
-							Posts tagged with &ldquo;{tag}&rdquo;
+						<h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold tracking-tight max-w-5xl">
+							Posts Tagged With &ldquo;{tag}&rdquo;
 						</h1>
 						<p className="text-lg lg:text-xl text-muted-foreground max-w-2xl">
 							{taggedPosts.length} writing{taggedPosts.length !== 1 ? 's' : ''} with this tag
@@ -73,7 +73,7 @@ export default async function TagPage({params}: TagPageProps) {
 			</section>
 
 			<section className="py-16 lg:py-24">
-				<Container size="lg">
+				<Container size="xl">
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
 						{taggedPosts.map((post: any, index: number) => (
 							<article

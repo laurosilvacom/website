@@ -5,6 +5,7 @@ import {usePathname} from 'next/navigation'
 import {useEffect, useState} from 'react'
 import {ChevronDown, Building2, Users, Briefcase} from 'lucide-react'
 import {ModeToggle} from './toggle'
+import Container from '@/components/container'
 import {cn} from '@/lib/utils'
 import {
 	DropdownMenu,
@@ -62,15 +63,15 @@ export function Navigation() {
 					'fixed top-0 right-0 left-0 z-50 hidden lg:block',
 					isScrolled ? 'py-4' : 'py-6'
 				)}
-				style={{transition: 'padding 0.5s ease'}}>
-				<div className="mx-auto max-w-[1920px] px-6 lg:px-12 xl:px-16">
+				style={{transition: 'padding 0.5s ease', paddingRight: '10px'}}>
+				<Container size="xl">
 					<div
 						className={cn(
 							'flex items-center rounded-full border backdrop-blur-xl',
 							'min-w-0',
 							isScrolled
-								? 'bg-background/80 border-border/50 px-6 py-3 shadow-lg shadow-black/5'
-								: 'bg-background/40 border-border/30 px-8 py-4'
+								? 'bg-background/60 border-border/50 px-6 py-3 shadow-lg shadow-black/5'
+								: 'bg-background/40 border-border/40 px-8 py-4'
 						)}
 						style={{
 							transition:
@@ -191,7 +192,7 @@ export function Navigation() {
 							<ModeToggle />
 						</div>
 					</div>
-				</div>
+				</Container>
 			</nav>
 
 			{/* Mobile Navigation */}

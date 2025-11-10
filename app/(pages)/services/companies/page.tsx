@@ -74,10 +74,10 @@ export default function CompaniesPage() {
 
 							{/* Heading and Description */}
 							<div className="space-y-6 lg:space-y-8">
-								<h1 className="text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-7xl xl:text-8xl">
+								<h1 className="max-w-5xl text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-7xl xl:text-8xl">
 									Technical Leadership
 									<br />
-									<span className="text-primary">& Team Development</span>
+									<span className="text-primary">& Developer Training</span>
 								</h1>
 
 								<div className="text-muted-foreground max-w-2xl space-y-4 text-lg leading-relaxed lg:text-xl">
@@ -638,8 +638,8 @@ export default function CompaniesPage() {
 									<div className="space-y-3 pt-2">
 										<p className="text-muted-foreground text-base leading-relaxed">
 											Pricing varies based on platform complexity, content
-											creation needs, integrations, user management systems,
-											and timeline.
+											creation needs, integrations, user management systems, and
+											timeline.
 										</p>
 									</div>
 								</div>
@@ -647,11 +647,11 @@ export default function CompaniesPage() {
 						</div>
 
 						<div className="pt-8">
-							<p className="text-muted-foreground max-w-3xl text-base italic leading-relaxed">
+							<p className="text-muted-foreground max-w-3xl text-base leading-relaxed italic">
 								Please consider exploring any learning and professional
-								development funds offered by your employer. If this pricing feels
-								challenging, reach out anyway. We can explore what&apos;s possible
-								and discuss options that work for your budget.
+								development funds offered by your employer. If this pricing
+								feels challenging, reach out anyway. We can explore what&apos;s
+								possible and discuss options that work for your budget.
 							</p>
 						</div>
 					</div>
@@ -660,11 +660,11 @@ export default function CompaniesPage() {
 
 			{/* Getting Started Section */}
 			<section className="border-border border-t py-24 lg:py-32">
-				<Container size="lg">
-					<div className="max-w-3xl space-y-12">
-						<div className="space-y-6">
+				<Container size="xl">
+					<div className="mx-auto max-w-3xl space-y-12">
+						<div className="space-y-6 text-center">
 							<h2 className="text-3xl font-bold tracking-tight lg:text-5xl xl:text-6xl">
-								Getting started
+								Getting Started
 							</h2>
 						</div>
 
@@ -717,7 +717,7 @@ export default function CompaniesPage() {
 
 			{/* CTA Section */}
 			<section className="border-border from-background to-background border-t bg-gradient-to-b py-24 lg:py-32">
-				<Container size="lg">
+				<Container size="xl">
 					<div className="mx-auto max-w-4xl">
 						<div className="border-border bg-muted space-y-8 rounded-3xl border p-12 text-center backdrop-blur-sm lg:p-16">
 							<div className="space-y-6">

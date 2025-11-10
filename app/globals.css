@@ -64,7 +64,7 @@
 	--radius: 0.75rem;
 	/* Light mode - Bold, vibrant, modern */
 	--background: oklch(
-		0.96 0.008 270
+		0.93 0.008 270
 	); /* Softer off-white for better contrast */
 	--foreground: oklch(0.15 0.035 270); /* Deep, rich text with bold contrast */
 	--card: oklch(0.99 0.005 270); /* Pure card background */

@@ -19,9 +19,9 @@ export default async function BlogPage() {
 	return (
 		<>
 			<section className="pt-32 lg:pt-40 pb-16 lg:pb-24 border-b border-border">
-				<Container size="lg">
+				<Container size="xl">
 					<div className="space-y-6">
-						<h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
+						<h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold tracking-tight max-w-5xl">
 							Writing
 						</h1>
 						<p className="text-lg lg:text-xl text-muted-foreground max-w-2xl">
@@ -32,7 +32,7 @@ export default async function BlogPage() {
 			</section>
 
 			<section className="py-16 lg:py-24">
-				<Container size="lg">
+				<Container size="xl">
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
 						{sortedPosts.map((post: any, index: number) => (
 							<article

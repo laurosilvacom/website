@@ -27,28 +27,28 @@ export default function ServicesPage() {
 
 							{/* Heading and Description */}
 							<div className="space-y-6 lg:space-y-8">
-								<h1 className="text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-7xl xl:text-8xl">
-									Technical leadership.
+								<h1 className="max-w-5xl text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-7xl xl:text-8xl">
+									Enterprise Expertise,
 									<br />
-									<span className="text-primary">Custom platforms.</span>
+									<span className="text-primary">Outdoor Focus</span>
 								</h1>
 
 								<div className="text-muted-foreground max-w-2xl space-y-4 text-lg leading-relaxed lg:text-xl">
 									<p>
-										I help companies build better products and develop stronger
-										teams through technical leadership, developer experience
-										consulting, and educational services. I&apos;ve worked with
-										teams at{' '}
+										I&apos;ve worked with teams at{' '}
 										<strong className="text-foreground">
 											Google, Shopify, O&apos;Reilly, and Sentry
 										</strong>
-										.
+										. Now I&apos;m bringing all that expertise to the outdoor
+										industry.
 									</p>
 									<p>
-										I also build custom platforms for professional athletes in
-										the outdoor industry. These are complete solutions that
-										professional athletes own, designed to support their brand
-										and connect with their community.
+										I help companies build better products and develop stronger
+										teams through technical leadership, developer experience
+										consulting, and educational services. I also build custom
+										platforms for professional athletes—complete solutions they
+										own, designed to support their brand and connect with their
+										community.
 									</p>
 								</div>
 							</div>
@@ -92,7 +92,7 @@ export default function ServicesPage() {
 					<div className="mb-16 lg:mb-24">
 						<div className="max-w-3xl">
 							<h2 className="mb-6 text-3xl font-bold tracking-tight lg:text-5xl xl:text-6xl">
-								Technical expertise and team development
+								Building Better Teams
 							</h2>
 							<div className="text-muted-foreground space-y-4 text-lg leading-relaxed lg:text-xl">
 								<p>
@@ -102,15 +102,6 @@ export default function ServicesPage() {
 									large-scale, full-stack educational products and working with
 									subject matter experts to create learning experiences that are
 									effective and add real value.
-								</p>
-								<p>
-									I&apos;ve worked on projects for companies like{' '}
-									<strong className="text-foreground">
-										Google, Shopify, O&apos;Reilly, and Sentry
-									</strong>
-									. I bring that enterprise-level expertise, especially in
-									developer experience and educational product development, to
-									companies in the outdoor industry and beyond.
 								</p>
 							</div>
 						</div>
@@ -144,7 +135,7 @@ export default function ServicesPage() {
 										<div className="mb-6 flex items-center gap-3">
 											<div className="bg-primary h-2.5 w-2.5 rounded-full transition-transform group-hover:scale-125" />
 											<h3 className="text-xl font-semibold tracking-tight lg:text-2xl">
-												Technical Leadership & Consulting
+												Technical Leadership
 											</h3>
 										</div>
 										<div className="text-muted-foreground space-y-4 text-base leading-relaxed">
@@ -187,7 +178,7 @@ export default function ServicesPage() {
 										<div className="mb-6 flex items-center gap-3">
 											<div className="bg-primary h-2.5 w-2.5 rounded-full transition-transform group-hover:scale-125" />
 											<h3 className="text-xl font-semibold tracking-tight lg:text-2xl">
-												Educational Services & Team Upskilling
+												Developer Training
 											</h3>
 										</div>
 										<div className="text-muted-foreground space-y-4 text-base leading-relaxed">
@@ -234,24 +225,26 @@ export default function ServicesPage() {
 										</div>
 										<div className="relative z-10">
 											<p className="text-foreground text-lg leading-relaxed">
-												Lauro&apos;s expertise bridges technology and brand
-												strategy. He understands how to connect technical
-												excellence with authentic storytelling.
+												Working with Lauro is always a great experience. His
+												technical guidance and patience make complex projects
+												feel manageable.
 											</p>
 											<div className="border-muted mt-6 flex items-center gap-4 border-t pt-6">
 												<div className="ring-border group-hover:ring-primary relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full ring-2 transition-all">
 													<Image
-														src="https://res.cloudinary.com/laurosilvacom/image/upload/v1731436030/laurosilvacom/hire-me-page/ru1j6csfgvj2af4b1dn6.webp"
-														alt="Emily Schmitz"
+														src="https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/p3eglqeb7qfvsfzvh3qr.jpg"
+														alt="Alejandro Nanez"
 														fill
 														className="object-cover"
 													/>
 												</div>
 												<div className="min-w-0 space-y-1">
 													<p className="text-base font-semibold">
-														Emily Schmitz
+														Alejandro Nanez
 													</p>
-													<p className="text-muted-foreground text-sm">HOKA</p>
+													<p className="text-muted-foreground text-sm">
+														Staff Engineer
+													</p>
 												</div>
 											</div>
 										</div>
@@ -351,29 +344,16 @@ export default function ServicesPage() {
 					<div className="mb-16 lg:mb-24">
 						<div className="max-w-3xl">
 							<h2 className="mb-6 text-3xl font-bold tracking-tight lg:text-5xl xl:text-6xl">
-								Custom platforms that you own
+								Own Your Platform
 							</h2>
 							<div className="text-muted-foreground space-y-4 text-lg leading-relaxed lg:text-xl">
 								<p>
-									I work with professional athletes in the outdoor industry to
-									build custom platforms that go far beyond a simple website.
-									These are complete solutions that professional athletes own,
-									designed to support their brand and connect with their
-									community.
-								</p>
-								<p>
-									At a certain stage in your career, you&apos;ve already built
-									your brand. What you need is a platform you own. Instagram,
-									Substack, YouTube. These are amazing places to create content,
-									but they&apos;re not your platform. The only thing you truly
-									own is your domain name. That&apos;s your internet real
-									estate.
-								</p>
-								<p>
-									I build custom software that meets your exact needs. Whether
-									you need to publish coaching content, create educational
-									materials, build an audience, or manage your brand, I create a
-									platform that grows with your career.
+									I build custom platforms for professional athletes, complete
+									solutions you own. Your digital home base to grow your brand,
+									connect with your community, and share what matters. Tailored
+									to your needs: coaching content, educational resources,
+									audience building, brand management. Designed to grow with you
+									as your career evolves.
 								</p>
 							</div>
 						</div>
@@ -394,27 +374,15 @@ export default function ServicesPage() {
 									</div>
 									<div className="text-muted-foreground space-y-4 text-base leading-relaxed">
 										<p>
-											I create custom platforms built with React and modern web
-											technologies. These aren&apos;t templates or generic
-											solutions. They&apos;re built specifically to reflect your
-											unique story, support your content strategy, and connect
+											Custom platforms built with React and modern web
+											technologies. Not templates. Built specifically to reflect
+											your story, support your content strategy, and connect
 											with your community.
 										</p>
 										<p>
-											For example, I worked with Emily Schromm to build her
-											content platform. As an athlete, she needed to create an
-											audience and build her brand. As a coach, she wanted to
-											publish her coaching content. She needed something more
-											than a simple website. She needed a complete solution that
-											integrated her content strategy, educational materials,
-											and brand narrative.
-										</p>
-										<p>
-											I also provide consulting on how to use these tools to
-											build out a marketing strategy that benefits your overall
-											brand. The platform is just the foundation. I help you
-											think through how it fits into your broader content and
-											brand strategy.
+											I also provide consulting on marketing strategy and how
+											the platform fits into your broader content and brand
+											goals.
 										</p>
 									</div>
 									<div className="flex flex-wrap gap-2 pt-6">
@@ -478,23 +446,23 @@ export default function ServicesPage() {
 								</div>
 								<div className="relative z-10">
 									<p className="text-foreground text-lg leading-relaxed">
-										Working with Lauro is always a great experience. His
-										technical guidance and patience make complex projects feel
-										manageable.
+										Lauro&apos;s expertise bridges technology and brand
+										strategy. He understands how to connect technical excellence
+										with authentic storytelling.
 									</p>
 									<div className="border-muted mt-6 flex items-center gap-4 border-t pt-6">
 										<div className="ring-border group-hover:ring-primary relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full ring-2 transition-all">
 											<Image
-												src="https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/p3eglqeb7qfvsfzvh3qr.jpg"
-												alt="Alejandro Nanez"
+												src="https://res.cloudinary.com/laurosilvacom/image/upload/v1731436030/laurosilvacom/hire-me-page/ru1j6csfgvj2af4b1dn6.webp"
+												alt="Emily Schmitz"
 												fill
 												className="object-cover"
 											/>
 										</div>
 										<div className="min-w-0 space-y-1">
-											<p className="text-base font-semibold">Alejandro Nanez</p>
+											<p className="text-base font-semibold">Emily Schmitz</p>
 											<p className="text-muted-foreground text-sm">
-												Staff Engineer
+												HOKA Athlete
 											</p>
 										</div>
 									</div>
@@ -502,7 +470,7 @@ export default function ServicesPage() {
 							</blockquote>
 
 							<div className="pt-4">
-								<Button asChild size="lg" variant="outline" className="group">
+								<Button asChild size="lg" variant="default" className="group">
 									<Link href="/services/athletes">
 										Learn more about athlete platforms
 										<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -532,7 +500,7 @@ export default function ServicesPage() {
 
 			{/* Clients Section */}
 			<section className="border-border border-t py-24 lg:py-32">
-				<Container size="lg">
+				<Container size="xl">
 					<div className="space-y-12">
 						<div className="space-y-4 text-center">
 							<p className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
@@ -545,9 +513,7 @@ export default function ServicesPage() {
 								{src: '/oreilly.svg', alt: "O'Reilly", width: 90},
 								{src: '/sentry.png', alt: 'Sentry', width: 110}
 							].map((logo) => (
-								<div
-									key={logo.alt}
-									className="w-24 opacity-60 transition-opacity duration-300 hover:opacity-100 sm:w-32 lg:w-36">
+								<div key={logo.alt} className="w-24 sm:w-32 lg:w-36">
 									<Image
 										src={logo.src}
 										alt={logo.alt}
@@ -564,7 +530,7 @@ export default function ServicesPage() {
 
 			{/* CTA Section */}
 			<section className="border-border from-background to-background border-t bg-gradient-to-b py-24 lg:py-32">
-				<Container size="lg">
+				<Container size="xl">
 					<div className="mx-auto max-w-4xl">
 						<div className="border-border bg-muted space-y-8 rounded-3xl border p-12 text-center backdrop-blur-sm lg:p-16">
 							<div className="space-y-6">
