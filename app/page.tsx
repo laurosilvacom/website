@@ -35,7 +35,7 @@ async function BlogPosts() {
 							<h3 className="group-hover:text-primary mb-3 text-xl leading-tight font-semibold transition-colors lg:text-2xl">
 								{post.metadata.title}
 							</h3>
-							<p className="text-muted-foreground mb-4 line-clamp-3 flex-grow text-sm leading-relaxed lg:text-base">
+							<p className="text-muted-foreground mb-4 line-clamp-3 grow text-sm leading-relaxed lg:text-base">
 								{post.metadata.summary}
 							</p>
 							<div className="text-primary flex items-center text-sm font-medium transition-all group-hover:gap-2">
@@ -69,13 +69,13 @@ export default async function Page() {
 		<>
 			{/* Hero Section */}
 			<section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden pt-24 pb-16 lg:min-h-screen lg:pt-32 lg:pb-24">
-				<div className="from-background via-background/95 to-background pointer-events-none absolute inset-0 bg-gradient-to-b" />
+				<div className="from-background via-background/95 to-background pointer-events-none absolute inset-0 bg-linear-to-b" />
 
 				<Container size="xl" className="relative z-10">
 					<div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
 						{/* Image */}
 						<div className="order-2 lg:order-1 lg:col-span-5">
-							<div className="relative aspect-[4/5] lg:aspect-[3/4]">
+							<div className="relative aspect-4/5 lg:aspect-3/4">
 								<Image
 									src="/photos/website-photo-1.jpg"
 									alt="Lauro Silva"

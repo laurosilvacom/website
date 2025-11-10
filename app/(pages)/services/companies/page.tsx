@@ -56,7 +56,7 @@ export default function CompaniesPage() {
 		<>
 			{/* Hero Section */}
 			<section className="relative flex min-h-[85vh] items-center overflow-hidden pt-24 pb-16 lg:min-h-screen lg:pt-32 lg:pb-24">
-				<div className="from-background via-background/95 to-background pointer-events-none absolute inset-0 bg-gradient-to-b" />
+				<div className="from-background via-background/95 to-background pointer-events-none absolute inset-0 bg-linear-to-b" />
 
 				<Container size="xl" className="relative z-10">
 					<div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
@@ -108,8 +108,8 @@ export default function CompaniesPage() {
 
 						{/* Image */}
 						<div className="lg:col-span-5">
-							<div className="relative aspect-[4/5] lg:aspect-[3/4]">
-								<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+							<div className="relative aspect-4/5 lg:aspect-3/4">
+								<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 								<Image
 									src="/photos/website-photo-15.jpg"
 									alt="Technical leadership and team development"
@@ -167,8 +167,8 @@ export default function CompaniesPage() {
 						{/* Image */}
 						<div className="lg:col-span-5">
 							<div className="sticky top-32">
-								<div className="group relative aspect-[4/5] lg:aspect-[3/4]">
-									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+								<div className="group relative aspect-4/5 lg:aspect-3/4">
+									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 									<Image
 										src="/photos/website-photo-15.jpg"
 										alt="Technical leadership"
@@ -217,14 +217,14 @@ export default function CompaniesPage() {
 								<div className="relative z-10">
 									<ul className="space-y-6 text-lg leading-relaxed">
 										<li className="flex items-start gap-4">
-											<div className="bg-primary mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full" />
+											<div className="bg-primary mt-2 h-2.5 w-2.5 shrink-0 rounded-full" />
 											<span className="text-foreground">
 												You need technical leadership or consulting to improve
 												your developer experience and build products that scale
 											</span>
 										</li>
 										<li className="flex items-start gap-4">
-											<div className="bg-primary mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full" />
+											<div className="bg-primary mt-2 h-2.5 w-2.5 shrink-0 rounded-full" />
 											<span className="text-foreground">
 												You want to upskill your team on modern web development
 												(React, Next.js, TypeScript) or integrate AI into
@@ -232,7 +232,7 @@ export default function CompaniesPage() {
 											</span>
 										</li>
 										<li className="flex items-start gap-4">
-											<div className="bg-primary mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full" />
+											<div className="bg-primary mt-2 h-2.5 w-2.5 shrink-0 rounded-full" />
 											<span className="text-foreground">
 												You&apos;re building educational products or learning
 												platforms and need expertise in creating effective
@@ -240,7 +240,7 @@ export default function CompaniesPage() {
 											</span>
 										</li>
 										<li className="flex items-start gap-4">
-											<div className="bg-primary mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full" />
+											<div className="bg-primary mt-2 h-2.5 w-2.5 shrink-0 rounded-full" />
 											<span className="text-foreground">
 												You work with subject matter experts and need help
 												translating complex concepts into practical, actionable
@@ -248,7 +248,7 @@ export default function CompaniesPage() {
 											</span>
 										</li>
 										<li className="flex items-start gap-4">
-											<div className="bg-primary mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full" />
+											<div className="bg-primary mt-2 h-2.5 w-2.5 shrink-0 rounded-full" />
 											<span className="text-foreground">
 												You&apos;re in the outdoor industry and want to bring
 												enterprise-level technical expertise to your products
@@ -263,8 +263,8 @@ export default function CompaniesPage() {
 						{/* Image */}
 						<div className="order-1 lg:order-2 lg:col-span-5">
 							<div className="sticky top-32">
-								<div className="group relative aspect-[4/5] lg:aspect-[3/4]">
-									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+								<div className="group relative aspect-4/5 lg:aspect-3/4">
+									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 									<Image
 										src="/photos/website-photo-14.jpg"
 										alt="Team development"
@@ -505,7 +505,7 @@ export default function CompaniesPage() {
 											{testimonial.quote}
 										</p>
 										<div className="border-muted mt-6 flex items-center gap-4 border-t pt-6">
-											<div className="ring-border group-hover:ring-primary relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full ring-2 transition-all">
+											<div className="ring-border group-hover:ring-primary relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 transition-all">
 												<Image
 													src={testimonial.image}
 													alt={testimonial.author}
@@ -539,7 +539,7 @@ export default function CompaniesPage() {
 										{testimonial.quote}
 									</p>
 									<div className="border-muted mt-6 flex items-center gap-4 border-t pt-6">
-										<div className="ring-border group-hover:ring-primary relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full ring-2 transition-all">
+										<div className="ring-border group-hover:ring-primary relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 transition-all">
 											<Image
 												src={testimonial.image}
 												alt={testimonial.author}
@@ -694,7 +694,7 @@ export default function CompaniesPage() {
 									className="group border-border bg-muted hover:bg-card hover:border-border relative overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
 									<div className="bg-muted absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 									<div className="relative z-10 flex items-start gap-6">
-										<div className="bg-muted flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full transition-transform group-hover:scale-110">
+										<div className="bg-muted flex h-12 w-12 shrink-0 items-center justify-center rounded-full transition-transform group-hover:scale-110">
 											<span className="text-primary text-lg font-semibold">
 												{item.step}
 											</span>
@@ -716,7 +716,7 @@ export default function CompaniesPage() {
 			</section>
 
 			{/* CTA Section */}
-			<section className="border-border from-background to-background border-t bg-gradient-to-b py-24 lg:py-32">
+			<section className="border-border from-background to-background border-t bg-linear-to-b py-24 lg:py-32">
 				<Container size="xl">
 					<div className="mx-auto max-w-4xl">
 						<div className="border-border bg-muted space-y-8 rounded-3xl border p-12 text-center backdrop-blur-sm lg:p-16">

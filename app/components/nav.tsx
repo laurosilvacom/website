@@ -64,7 +64,7 @@ export function Navbar() {
 							viewBox="0 0 385 655"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
-							className="fill-foreground dark:fill-foreground flex-shrink-0 transition-transform duration-300 hover:scale-110">
+							className="fill-foreground dark:fill-foreground shrink-0 transition-transform duration-300 hover:scale-110">
 							<path
 								fillRule="evenodd"
 								clipRule="evenodd"

@@ -94,7 +94,7 @@ export default async function TagPage({params}: TagPageProps) {
 										<h2 className="text-xl lg:text-2xl font-semibold mb-3 leading-tight group-hover:text-primary transition-colors">
 											{post.metadata.title}
 										</h2>
-										<p className="text-muted-foreground text-sm lg:text-base leading-relaxed flex-grow mb-4 line-clamp-3">
+										<p className="text-muted-foreground text-sm lg:text-base leading-relaxed grow mb-4 line-clamp-3">
 											{post.metadata.summary}
 										</p>
 										<div className="flex items-center text-sm font-medium text-primary group-hover:gap-2 transition-all">

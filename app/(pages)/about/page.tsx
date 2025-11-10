@@ -34,7 +34,7 @@ export default function AboutPage() {
 			<main>
 				{/* Hero Section */}
 				<section className="relative flex min-h-[85vh] items-center overflow-hidden pt-24 pb-16 lg:min-h-screen lg:pt-32 lg:pb-24">
-					<div className="from-background via-background/95 to-background pointer-events-none absolute inset-0 bg-gradient-to-b" />
+					<div className="from-background via-background/95 to-background pointer-events-none absolute inset-0 bg-linear-to-b" />
 
 					<Container size="xl" className="relative z-10">
 						<div className="mx-auto max-w-4xl space-y-12 lg:space-y-16">
@@ -56,8 +56,8 @@ export default function AboutPage() {
 							</div>
 
 							{/* Hero Image - Full Width */}
-							<div className="relative aspect-[16/10] lg:aspect-[21/9]">
-								<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+							<div className="relative aspect-16/10 lg:aspect-21/9">
+								<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 								<Image
 									src="/photos/website-photo-6.jpg"
 									alt="Lauro Silva"
@@ -125,8 +125,8 @@ export default function AboutPage() {
 					<Container size="xl">
 						<div className="space-y-12 lg:space-y-16">
 							{/* Image at Top */}
-							<div className="relative aspect-[16/10] lg:aspect-[21/9]">
-								<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+							<div className="relative aspect-16/10 lg:aspect-21/9">
+								<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 								<Image
 									src="/photos/website-photo-9.jpg"
 									alt="Software engineering"
@@ -198,8 +198,8 @@ export default function AboutPage() {
 								</div>
 							</div>
 							<div className="lg:col-span-5">
-								<div className="group relative aspect-[4/5] lg:aspect-[3/4]">
-									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+								<div className="group relative aspect-4/5 lg:aspect-3/4">
+									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 									<Image
 										src="/photos/website-photo-4.jpg"
 										alt="Community building"
@@ -254,8 +254,8 @@ export default function AboutPage() {
 								</div>
 							</div>
 							<div className="lg:col-span-5">
-								<div className="group relative aspect-[4/5] lg:aspect-[3/4]">
-									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+								<div className="group relative aspect-4/5 lg:aspect-3/4">
+									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 									<Image
 										src="/photos/website-photo-11.jpg"
 										alt="Trail running"

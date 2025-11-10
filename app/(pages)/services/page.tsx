@@ -9,7 +9,7 @@ export default function ServicesPage() {
 		<>
 			{/* Hero Section */}
 			<section className="relative flex min-h-[85vh] items-center overflow-hidden pt-24 pb-16 lg:min-h-screen lg:pt-32 lg:pb-24">
-				<div className="from-background via-background/95 to-background pointer-events-none absolute inset-0 bg-gradient-to-b" />
+				<div className="from-background via-background/95 to-background pointer-events-none absolute inset-0 bg-linear-to-b" />
 
 				<Container size="xl" className="relative z-10">
 					<div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
@@ -69,8 +69,8 @@ export default function ServicesPage() {
 
 						{/* Image */}
 						<div className="lg:col-span-5">
-							<div className="relative aspect-[4/5] lg:aspect-[3/4]">
-								<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+							<div className="relative aspect-4/5 lg:aspect-3/4">
+								<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 								<Image
 									src="/photos/website-photo-7.jpg"
 									alt="Technical leadership and custom platforms"
@@ -111,8 +111,8 @@ export default function ServicesPage() {
 						{/* Image */}
 						<div className="lg:col-span-5">
 							<div className="sticky top-32">
-								<div className="group relative aspect-[4/5] lg:aspect-[3/4]">
-									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+								<div className="group relative aspect-4/5 lg:aspect-3/4">
+									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 									<Image
 										src="/photos/website-photo-7.jpg"
 										alt="Technical leadership"
@@ -230,7 +230,7 @@ export default function ServicesPage() {
 												feel manageable.
 											</p>
 											<div className="border-muted mt-6 flex items-center gap-4 border-t pt-6">
-												<div className="ring-border group-hover:ring-primary relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full ring-2 transition-all">
+												<div className="ring-border group-hover:ring-primary relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 transition-all">
 													<Image
 														src="https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/p3eglqeb7qfvsfzvh3qr.jpg"
 														alt="Alejandro Nanez"
@@ -261,7 +261,7 @@ export default function ServicesPage() {
 												capability to create additional content independently.
 											</p>
 											<div className="border-muted mt-6 flex items-center gap-4 border-t pt-6">
-												<div className="ring-border group-hover:ring-primary relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full ring-2 transition-all">
+												<div className="ring-border group-hover:ring-primary relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 transition-all">
 													<Image
 														src="https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/ok4aceenrvijrjcafxba.jpg"
 														alt="Andrew Hedges"
@@ -293,7 +293,7 @@ export default function ServicesPage() {
 											he&apos;s your person.
 										</p>
 										<div className="border-muted mt-6 flex items-center gap-4 border-t pt-6">
-											<div className="ring-border group-hover:ring-primary relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full ring-2 transition-all">
+											<div className="ring-border group-hover:ring-primary relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 transition-all">
 												<Image
 													src="https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/py2kbwptjbxfdqpoepkj.jpg"
 													alt="Jason Lengstorf"
@@ -329,7 +329,7 @@ export default function ServicesPage() {
 
 			{/* Divider */}
 			<div className="relative py-12 lg:py-16">
-				<div className="via-border absolute top-1/2 right-0 left-0 h-px bg-gradient-to-r from-transparent to-transparent" />
+				<div className="via-border absolute top-1/2 right-0 left-0 h-px bg-linear-to-r from-transparent to-transparent" />
 				<div className="relative flex items-center justify-center">
 					<div className="bg-background px-6">
 						<div className="bg-primary h-3 w-3 rounded-full" />
@@ -451,7 +451,7 @@ export default function ServicesPage() {
 										with authentic storytelling.
 									</p>
 									<div className="border-muted mt-6 flex items-center gap-4 border-t pt-6">
-										<div className="ring-border group-hover:ring-primary relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full ring-2 transition-all">
+										<div className="ring-border group-hover:ring-primary relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 transition-all">
 											<Image
 												src="https://res.cloudinary.com/laurosilvacom/image/upload/v1731436030/laurosilvacom/hire-me-page/ru1j6csfgvj2af4b1dn6.webp"
 												alt="Emily Schmitz"
@@ -482,8 +482,8 @@ export default function ServicesPage() {
 						{/* Image */}
 						<div className="order-1 lg:order-2 lg:col-span-5">
 							<div className="sticky top-32">
-								<div className="group relative aspect-[4/5] lg:aspect-[3/4]">
-									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+								<div className="group relative aspect-4/5 lg:aspect-3/4">
+									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 									<Image
 										src="/photos/website-photo-12.jpg"
 										alt="Custom athlete platforms"
@@ -529,7 +529,7 @@ export default function ServicesPage() {
 			</section>
 
 			{/* CTA Section */}
-			<section className="border-border from-background to-background border-t bg-gradient-to-b py-24 lg:py-32">
+			<section className="border-border from-background to-background border-t bg-linear-to-b py-24 lg:py-32">
 				<Container size="xl">
 					<div className="mx-auto max-w-4xl">
 						<div className="border-border bg-muted space-y-8 rounded-3xl border p-12 text-center backdrop-blur-sm lg:p-16">

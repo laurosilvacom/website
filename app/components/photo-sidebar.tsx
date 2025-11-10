@@ -47,7 +47,7 @@ export function PhotoSidebar() {
 	return (
 		<aside className="flex flex-col w-80 sticky top-0 h-screen border-l border-border/30 bg-background/40 backdrop-blur-sm pointer-events-auto">
 			<div className="flex items-center justify-center h-full px-8 py-8">
-				<div className="relative w-full aspect-[3/4] max-w-[280px]">
+				<div className="relative w-full aspect-3/4 max-w-[280px]">
 					{photos.map((photo, index) => (
 						<div
 							key={photo}
