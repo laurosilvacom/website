@@ -8,58 +8,78 @@ export default function ServicesPage() {
 	return (
 		<>
 			{/* Hero Section */}
-			<section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden pt-24 pb-16 lg:min-h-[90vh] lg:pt-32 lg:pb-24">
-				<div className="from-background via-background to-background pointer-events-none absolute inset-0 bg-gradient-to-b" />
+			<section className="relative flex min-h-[85vh] items-center overflow-hidden pt-24 pb-16 lg:min-h-screen lg:pt-32 lg:pb-24">
+				<div className="from-background via-background/95 to-background pointer-events-none absolute inset-0 bg-gradient-to-b" />
 
 				<Container size="xl" className="relative z-10">
-					<div className="mx-auto max-w-4xl space-y-8 text-center lg:space-y-12">
-						<div className="inline-flex">
-							<div className="bg-muted text-primary border-border inline-flex items-center gap-2 rounded-full border px-4 py-2">
-								<div className="bg-primary h-2 w-2 animate-pulse rounded-full" />
-								<span className="text-sm font-medium">
-									Available for new projects
-								</span>
+					<div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+						{/* Content */}
+						<div className="space-y-8 lg:col-span-7 lg:space-y-12">
+							{/* Status Badge */}
+							<div className="inline-flex">
+								<div className="bg-muted text-primary border-border inline-flex items-center gap-2 rounded-full border px-4 py-2">
+									<div className="bg-primary h-2 w-2 animate-pulse rounded-full" />
+									<span className="text-sm font-medium">
+										Available for new projects
+									</span>
+								</div>
+							</div>
+
+							{/* Heading and Description */}
+							<div className="space-y-6 lg:space-y-8">
+								<h1 className="text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-7xl xl:text-8xl">
+									Technical leadership.
+									<br />
+									<span className="text-primary">Custom platforms.</span>
+								</h1>
+
+								<div className="text-muted-foreground max-w-2xl space-y-4 text-lg leading-relaxed lg:text-xl">
+									<p>
+										I help companies build better products and develop stronger
+										teams through technical leadership, developer experience
+										consulting, and educational services. I&apos;ve worked with
+										teams at{' '}
+										<strong className="text-foreground">
+											Google, Shopify, O&apos;Reilly, and Sentry
+										</strong>
+										.
+									</p>
+									<p>
+										I also build custom platforms for professional athletes in
+										the outdoor industry. These are complete solutions that
+										professional athletes own, designed to support their brand
+										and connect with their community.
+									</p>
+								</div>
+							</div>
+
+							{/* CTA */}
+							<div className="pt-4">
+								<Button asChild size="lg" className="group">
+									<Link
+										href="https://cal.com/laurosilvacom/chat"
+										target="_blank"
+										rel="noopener noreferrer">
+										Book a free consultation
+										<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+									</Link>
+								</Button>
 							</div>
 						</div>
 
-						<div className="space-y-6 lg:space-y-8">
-							<h1 className="text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-7xl xl:text-8xl">
-								Technical leadership for companies.
-								<br />
-								<span className="text-primary">
-									Custom platforms for athletes.
-								</span>
-							</h1>
-							<div className="text-muted-foreground mx-auto max-w-3xl space-y-4 text-lg leading-relaxed lg:text-xl">
-								<p>
-									I help companies build better products and develop stronger
-									teams through technical leadership, developer experience
-									consulting, and educational services. I&apos;ve worked with
-									teams at{' '}
-									<strong className="text-foreground">
-										Google, Shopify, O&apos;Reilly, and Sentry
-									</strong>
-									.
-								</p>
-								<p>
-									I also build custom platforms for professional athletes in the
-									outdoor industry. These are complete solutions that
-									professional athletes own, designed to support their brand and
-									connect with their community.
-								</p>
+						{/* Image */}
+						<div className="lg:col-span-5">
+							<div className="relative aspect-[4/5] lg:aspect-[3/4]">
+								<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+								<Image
+									src="/photos/website-photo-7.jpg"
+									alt="Technical leadership and custom platforms"
+									fill
+									className="rounded-2xl object-cover"
+									priority
+									sizes="(max-width: 1024px) 100vw, 40vw"
+								/>
 							</div>
-						</div>
-
-						<div className="pt-4">
-							<Button asChild size="lg" className="group">
-								<Link
-									href="https://cal.com/laurosilvacom/chat"
-									target="_blank"
-									rel="noopener noreferrer">
-									Book a free consultation
-									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-								</Link>
-							</Button>
 						</div>
 					</div>
 				</Container>

@@ -55,48 +55,70 @@ export default function CompaniesPage() {
 	return (
 		<>
 			{/* Hero Section */}
-			<section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden pt-24 pb-16 lg:min-h-[90vh] lg:pt-32 lg:pb-24">
-				<div className="from-background via-background to-background pointer-events-none absolute inset-0 bg-gradient-to-b" />
+			<section className="relative flex min-h-[85vh] items-center overflow-hidden pt-24 pb-16 lg:min-h-screen lg:pt-32 lg:pb-24">
+				<div className="from-background via-background/95 to-background pointer-events-none absolute inset-0 bg-gradient-to-b" />
 
 				<Container size="xl" className="relative z-10">
-					<div className="mx-auto max-w-4xl space-y-8 text-center lg:space-y-12">
-						<div className="inline-flex">
-							<div className="bg-muted text-primary border-border inline-flex items-center gap-2 rounded-full border px-4 py-2">
-								<div className="bg-primary h-2 w-2 animate-pulse rounded-full" />
-								<span className="text-sm font-medium">
-									Available for new projects
-								</span>
+					<div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+						{/* Content */}
+						<div className="space-y-8 lg:col-span-7 lg:space-y-12">
+							{/* Status Badge */}
+							<div className="inline-flex">
+								<div className="bg-muted text-primary border-border inline-flex items-center gap-2 rounded-full border px-4 py-2">
+									<div className="bg-primary h-2 w-2 animate-pulse rounded-full" />
+									<span className="text-sm font-medium">
+										Available for new projects
+									</span>
+								</div>
+							</div>
+
+							{/* Heading and Description */}
+							<div className="space-y-6 lg:space-y-8">
+								<h1 className="text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-7xl xl:text-8xl">
+									Technical Leadership
+									<br />
+									<span className="text-primary">& Team Development</span>
+								</h1>
+
+								<div className="text-muted-foreground max-w-2xl space-y-4 text-lg leading-relaxed lg:text-xl">
+									<p>
+										I bring enterprise-level expertise from{' '}
+										<strong className="text-foreground">
+											Google, Shopify, O&apos;Reilly, and Sentry
+										</strong>{' '}
+										to help your team build better products, improve developer
+										experience, and create effective learning experiences.
+									</p>
+								</div>
+							</div>
+
+							{/* CTA */}
+							<div className="pt-4">
+								<Button asChild size="lg" className="group">
+									<Link
+										href="https://cal.com/laurosilvacom/chat"
+										target="_blank"
+										rel="noopener noreferrer">
+										Book a free consultation
+										<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+									</Link>
+								</Button>
 							</div>
 						</div>
 
-						<div className="space-y-6 lg:space-y-8">
-							<h1 className="text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-7xl xl:text-8xl">
-								Technical Leadership and
-								<br />
-								<span className="text-primary">Team Development</span>
-							</h1>
-							<div className="text-muted-foreground mx-auto max-w-3xl space-y-4 text-lg leading-relaxed lg:text-xl">
-								<p>
-									I bring enterprise-level expertise from{' '}
-									<strong className="text-foreground">
-										Google, Shopify, O&apos;Reilly, and Sentry
-									</strong>{' '}
-									to help your team build better products, improve developer
-									experience, and create effective learning experiences.
-								</p>
+						{/* Image */}
+						<div className="lg:col-span-5">
+							<div className="relative aspect-[4/5] lg:aspect-[3/4]">
+								<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+								<Image
+									src="/photos/website-photo-15.jpg"
+									alt="Technical leadership and team development"
+									fill
+									className="rounded-2xl object-cover"
+									priority
+									sizes="(max-width: 1024px) 100vw, 40vw"
+								/>
 							</div>
-						</div>
-
-						<div className="pt-4">
-							<Button asChild size="lg" className="group">
-								<Link
-									href="https://cal.com/laurosilvacom/chat"
-									target="_blank"
-									rel="noopener noreferrer">
-									Book a free consultation
-									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-								</Link>
-							</Button>
 						</div>
 					</div>
 				</Container>
@@ -543,13 +565,13 @@ export default function CompaniesPage() {
 
 			{/* Pricing Section */}
 			<section className="border-border border-t py-24 lg:py-32">
-				<Container size="lg">
-					<div className="max-w-3xl space-y-12">
+				<Container size="xl">
+					<div className="max-w-5xl space-y-16 lg:space-y-20">
 						<div className="space-y-6">
 							<h2 className="text-3xl font-bold tracking-tight lg:text-5xl xl:text-6xl">
 								How much it costs
 							</h2>
-							<div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
+							<div className="text-muted-foreground max-w-3xl space-y-4 text-lg leading-relaxed lg:text-xl">
 								<p>
 									Pricing varies based on scope, timeline, and specific needs.
 									Here&apos;s a general guide:
@@ -557,65 +579,81 @@ export default function CompaniesPage() {
 							</div>
 						</div>
 
-						<div className="grid gap-8 md:grid-cols-3">
-							<div className="group border-border bg-muted hover:bg-card hover:border-border relative overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
+						<div className="grid gap-12 lg:grid-cols-2">
+							<div className="group border-border bg-muted hover:bg-card hover:border-border relative overflow-hidden rounded-2xl border p-10 transition-all duration-300 lg:p-12">
 								<div className="bg-muted absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
-								<div className="relative z-10 space-y-4">
-									<h3 className="text-xl font-semibold tracking-tight">
-										Technical Leadership & Consulting
-									</h3>
-									<p className="text-foreground text-lg font-medium">
-										$150 to $250 per hour
-									</p>
-									<p className="text-muted-foreground text-sm">
-										Project-based pricing available. Example projects:
-										Architecture reviews ($2,000 to $5,000), Developer
-										experience audits ($3,000 to $8,000).
-									</p>
+								<div className="relative z-10 space-y-6">
+									<div className="space-y-3">
+										<h3 className="text-2xl font-semibold tracking-tight lg:text-3xl">
+											Technical Leadership & Consulting
+										</h3>
+										<p className="text-foreground text-2xl font-bold lg:text-3xl">
+											$150 to $250 per hour
+										</p>
+									</div>
+									<div className="space-y-3 pt-2">
+										<p className="text-muted-foreground text-base leading-relaxed">
+											Project-based pricing available. Example projects:
+										</p>
+										<ul className="text-muted-foreground space-y-2 text-base leading-relaxed">
+											<li>• Architecture reviews: $2,000 to $5,000</li>
+											<li>• Developer experience audits: $3,000 to $8,000</li>
+										</ul>
+									</div>
 								</div>
 							</div>
 
-							<div className="group border-border bg-muted hover:bg-card hover:border-border relative overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
+							<div className="group border-border bg-muted hover:bg-card hover:border-border relative overflow-hidden rounded-2xl border p-10 transition-all duration-300 lg:p-12">
 								<div className="bg-muted absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
-								<div className="relative z-10 space-y-4">
-									<h3 className="text-xl font-semibold tracking-tight">
-										Educational Services & Workshops
-									</h3>
-									<p className="text-foreground text-lg font-medium">
-										$3,000 to $8,000 per day
-									</p>
-									<p className="text-muted-foreground text-sm">
-										Curriculum development: $5,000 to $15,000+ depending on
-										scope. Multi-day workshops or ongoing training programs can
-										be structured as packages.
-									</p>
+								<div className="relative z-10 space-y-6">
+									<div className="space-y-3">
+										<h3 className="text-2xl font-semibold tracking-tight lg:text-3xl">
+											Educational Services & Workshops
+										</h3>
+										<p className="text-foreground text-2xl font-bold lg:text-3xl">
+											$3,000 to $8,000 per day
+										</p>
+									</div>
+									<div className="space-y-3 pt-2">
+										<p className="text-muted-foreground text-base leading-relaxed">
+											Curriculum development: $5,000 to $15,000+ depending on
+											scope. Multi-day workshops or ongoing training programs
+											can be structured as packages.
+										</p>
+									</div>
 								</div>
 							</div>
 
-							<div className="group border-border bg-muted hover:bg-card hover:border-border relative overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
+							<div className="group border-border bg-muted hover:bg-card hover:border-border relative overflow-hidden rounded-2xl border p-10 transition-all duration-300 lg:col-span-2 lg:p-12">
 								<div className="bg-muted absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
-								<div className="relative z-10 space-y-4">
-									<h3 className="text-xl font-semibold tracking-tight">
-										Educational Product Development
-									</h3>
-									<p className="text-foreground text-lg font-medium">
-										$20,000 to $100,000+
-									</p>
-									<p className="text-muted-foreground text-sm">
-										Pricing varies based on platform complexity, content
-										creation needs, integrations, user management systems, and
-										timeline.
-									</p>
+								<div className="relative z-10 space-y-6">
+									<div className="space-y-3">
+										<h3 className="text-2xl font-semibold tracking-tight lg:text-3xl">
+											Educational Product Development
+										</h3>
+										<p className="text-foreground text-2xl font-bold lg:text-3xl">
+											$20,000 to $100,000+
+										</p>
+									</div>
+									<div className="space-y-3 pt-2">
+										<p className="text-muted-foreground text-base leading-relaxed">
+											Pricing varies based on platform complexity, content
+											creation needs, integrations, user management systems,
+											and timeline.
+										</p>
+									</div>
 								</div>
 							</div>
 						</div>
 
-						<p className="text-muted-foreground text-sm italic">
-							Please consider exploring any learning and professional
-							development funds offered by your employer. If this pricing feels
-							challenging, reach out anyway. We can explore what&apos;s possible
-							and discuss options that work for your budget.
-						</p>
+						<div className="pt-8">
+							<p className="text-muted-foreground max-w-3xl text-base italic leading-relaxed">
+								Please consider exploring any learning and professional
+								development funds offered by your employer. If this pricing feels
+								challenging, reach out anyway. We can explore what&apos;s possible
+								and discuss options that work for your budget.
+							</p>
+						</div>
 					</div>
 				</Container>
 			</section>

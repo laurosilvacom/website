@@ -8,43 +8,67 @@ export default function AthletesPage() {
 	return (
 		<>
 			{/* Hero Section */}
-			<section className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center pt-24 lg:pt-32 pb-16 lg:pb-24 overflow-hidden">
-				<div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
-				
+			<section className="relative flex min-h-[85vh] items-center overflow-hidden pt-24 pb-16 lg:min-h-screen lg:pt-32 lg:pb-24">
+				<div className="from-background via-background/95 to-background pointer-events-none absolute inset-0 bg-gradient-to-b" />
+
 				<Container size="xl" className="relative z-10">
-					<div className="max-w-4xl mx-auto space-y-8 lg:space-y-12 text-center">
-						<div className="inline-flex">
-							<div className="bg-muted text-primary inline-flex items-center gap-2 rounded-full px-4 py-2 border border-border">
-								<div className="bg-primary h-2 w-2 rounded-full animate-pulse" />
-								<span className="text-sm font-medium">
-									Available for new projects
-								</span>
+					<div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+						{/* Content */}
+						<div className="space-y-8 lg:col-span-7 lg:space-y-12">
+							{/* Status Badge */}
+							<div className="inline-flex">
+								<div className="bg-muted text-primary border-border inline-flex items-center gap-2 rounded-full border px-4 py-2">
+									<div className="bg-primary h-2 w-2 animate-pulse rounded-full" />
+									<span className="text-sm font-medium">
+										Available for new projects
+									</span>
+								</div>
+							</div>
+
+							{/* Heading and Description */}
+							<div className="space-y-6 lg:space-y-8">
+								<h1 className="text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-7xl xl:text-8xl">
+									Custom Platforms
+									<br />
+									<span className="text-primary">for Athletes</span>
+								</h1>
+
+								<div className="text-muted-foreground max-w-2xl space-y-4 text-lg leading-relaxed lg:text-xl">
+									<p>
+										Custom technology designed to support your brand and connect
+										with your community. This goes far beyond a website.
+										It&apos;s software that builds lasting relationships.
+									</p>
+								</div>
+							</div>
+
+							{/* CTA */}
+							<div className="pt-4">
+								<Button asChild size="lg" className="group">
+									<Link
+										href="https://cal.com/laurosilvacom/chat"
+										target="_blank"
+										rel="noopener noreferrer">
+										Book a free consultation
+										<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+									</Link>
+								</Button>
 							</div>
 						</div>
 
-						<div className="space-y-6 lg:space-y-8">
-							<h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight">
-								Custom Software Platforms
-								<br />
-								<span className="text-primary">for Professional Athletes</span>
-							</h1>
-							<div className="space-y-4 text-lg lg:text-xl leading-relaxed text-muted-foreground max-w-3xl mx-auto">
-								<p>
-									Custom technology designed to support your brand and connect with your community. This goes far beyond a website. It&apos;s software that builds lasting relationships.
-								</p>
+						{/* Image */}
+						<div className="lg:col-span-5">
+							<div className="relative aspect-[4/5] lg:aspect-[3/4]">
+								<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+								<Image
+									src="/photos/website-photo-5.jpg"
+									alt="Custom athlete platforms"
+									fill
+									className="rounded-2xl object-cover"
+									priority
+									sizes="(max-width: 1024px) 100vw, 40vw"
+								/>
 							</div>
-						</div>
-
-						<div className="pt-4">
-							<Button asChild size="lg" className="group">
-								<Link
-									href="https://cal.com/laurosilvacom/chat"
-									target="_blank"
-									rel="noopener noreferrer">
-									Book a free consultation
-									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-								</Link>
-							</Button>
 						</div>
 					</div>
 				</Container>
@@ -244,64 +268,78 @@ export default function AthletesPage() {
 
 			{/* Pricing Section */}
 			<section className="py-24 lg:py-32 border-t border-border">
-				<Container size="lg">
-					<div className="max-w-3xl space-y-12">
+				<Container size="xl">
+					<div className="max-w-5xl space-y-16 lg:space-y-20">
 						<div className="space-y-6">
-							<h2 className="text-3xl lg:text-5xl xl:text-6xl font-bold tracking-tight">
+							<h2 className="text-3xl font-bold tracking-tight lg:text-5xl xl:text-6xl">
 								How much it costs
 							</h2>
-							<div className="space-y-4 text-lg leading-relaxed text-muted-foreground">
+							<div className="text-muted-foreground max-w-3xl space-y-4 text-lg leading-relaxed lg:text-xl">
 								<p>
-									Every platform is unique, and pricing reflects the scope and complexity of your needs. To begin, I ask that you commit to a discovery phase where we define your vision, technical requirements, and desired outcomes.
+									Every platform is unique, and pricing reflects the scope and
+									complexity of your needs. To begin, I ask that you commit to
+									a discovery phase where we define your vision, technical
+									requirements, and desired outcomes.
 								</p>
 							</div>
 						</div>
 
-						<div className="grid md:grid-cols-2 gap-8">
-							<div className="group relative p-8 lg:p-10 rounded-2xl border border-border bg-muted hover:bg-card hover:border-border transition-all duration-300 overflow-hidden">
-								<div className="absolute top-0 right-0 w-32 h-32 bg-muted rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2" />
-								<div className="relative z-10 space-y-4">
-									<h3 className="text-xl lg:text-2xl font-semibold tracking-tight">
-										Discovery & Planning Phase
-									</h3>
-									<p className="text-lg font-medium text-foreground">
-										Investment: $2,000
-									</p>
-									<p className="text-sm text-muted-foreground">
-										What&apos;s included:
-									</p>
-									<ul className="space-y-2 text-sm text-muted-foreground">
-										<li>• Discovery Questionnaire to clarify your vision and goals</li>
-										<li>• 2 Strategy Sessions (60 minutes each)</li>
-										<li>• Technical requirements & architecture planning</li>
-										<li>• Brand narrative & content strategy</li>
-										<li>• Detailed project proposal with timeline and pricing</li>
-									</ul>
+						<div className="grid gap-12 lg:grid-cols-2">
+							<div className="group relative overflow-hidden rounded-2xl border border-border bg-muted p-10 transition-all duration-300 hover:bg-card hover:border-border lg:p-12">
+								<div className="absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full bg-muted opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+								<div className="relative z-10 space-y-6">
+									<div className="space-y-3">
+										<h3 className="text-2xl font-semibold tracking-tight lg:text-3xl">
+											Discovery & Planning Phase
+										</h3>
+										<p className="text-foreground text-2xl font-bold lg:text-3xl">
+											Investment: $2,000
+										</p>
+									</div>
+									<div className="space-y-4 pt-2">
+										<p className="text-muted-foreground text-base font-medium">
+											What&apos;s included:
+										</p>
+										<ul className="text-muted-foreground space-y-3 text-base leading-relaxed">
+											<li>• Discovery Questionnaire to clarify your vision and goals</li>
+											<li>• 2 Strategy Sessions (60 minutes each)</li>
+											<li>• Technical requirements & architecture planning</li>
+											<li>• Brand narrative & content strategy</li>
+											<li>• Detailed project proposal with timeline and pricing</li>
+										</ul>
+									</div>
 								</div>
 							</div>
 
-							<div className="group relative p-8 lg:p-10 rounded-2xl border border-border bg-muted hover:bg-card hover:border-border transition-all duration-300 overflow-hidden">
-								<div className="absolute top-0 right-0 w-32 h-32 bg-muted rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2" />
-								<div className="relative z-10 space-y-4">
-									<h3 className="text-xl lg:text-2xl font-semibold tracking-tight">
-										Platform Development
-									</h3>
-									<p className="text-lg font-medium text-foreground">
-										Pricing varies based on scope
-									</p>
-									<p className="text-sm text-muted-foreground">
-										Typical range: $15,000 - $50,000+
-									</p>
-									<p className="text-sm text-muted-foreground">
-										Factors include: feature complexity, content migration, integrations, design requirements, and timeline.
-									</p>
+							<div className="group relative overflow-hidden rounded-2xl border border-border bg-muted p-10 transition-all duration-300 hover:bg-card hover:border-border lg:p-12">
+								<div className="absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full bg-muted opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+								<div className="relative z-10 space-y-6">
+									<div className="space-y-3">
+										<h3 className="text-2xl font-semibold tracking-tight lg:text-3xl">
+											Platform Development
+										</h3>
+										<p className="text-foreground text-2xl font-bold lg:text-3xl">
+											$15,000 to $50,000+
+										</p>
+									</div>
+									<div className="space-y-3 pt-2">
+										<p className="text-muted-foreground text-base leading-relaxed">
+											Pricing varies based on scope. Factors include: feature
+											complexity, content migration, integrations, design
+											requirements, and timeline.
+										</p>
+									</div>
 								</div>
 							</div>
 						</div>
 
-						<p className="text-sm text-muted-foreground italic">
-							Please consider exploring any brand partnership or business development funds available to you. If this pricing feels challenging, reach out anyway. We can explore what&apos;s possible.
-						</p>
+						<div className="pt-8">
+							<p className="text-muted-foreground max-w-3xl text-base italic leading-relaxed">
+								Please consider exploring any brand partnership or business
+								development funds available to you. If this pricing feels
+								challenging, reach out anyway. We can explore what&apos;s possible.
+							</p>
+						</div>
 					</div>
 				</Container>
 			</section>
