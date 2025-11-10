@@ -56,12 +56,12 @@ export default function CompaniesPage() {
 		<>
 			{/* Hero Section */}
 			<section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden pt-24 pb-16 lg:min-h-[90vh] lg:pt-32 lg:pb-24">
-				<div className="from-background via-background/95 to-background pointer-events-none absolute inset-0 bg-gradient-to-b" />
+				<div className="from-background via-background to-background pointer-events-none absolute inset-0 bg-gradient-to-b" />
 
 				<Container size="xl" className="relative z-10">
 					<div className="mx-auto max-w-4xl space-y-8 text-center lg:space-y-12">
 						<div className="inline-flex">
-							<div className="bg-primary/10 text-primary border-primary/20 inline-flex items-center gap-2 rounded-full border px-4 py-2">
+							<div className="bg-muted text-primary border-border inline-flex items-center gap-2 rounded-full border px-4 py-2">
 								<div className="bg-primary h-2 w-2 animate-pulse rounded-full" />
 								<span className="text-sm font-medium">
 									Available for new projects
@@ -103,7 +103,7 @@ export default function CompaniesPage() {
 			</section>
 
 			{/* What I Believe Section */}
-			<section className="border-border/50 border-t py-24 lg:py-32">
+			<section className="border-border border-t py-24 lg:py-32">
 				<Container size="xl">
 					{/* Section Header */}
 					<div className="mb-16 lg:mb-24">
@@ -146,7 +146,7 @@ export default function CompaniesPage() {
 						<div className="lg:col-span-5">
 							<div className="sticky top-32">
 								<div className="group relative aspect-[4/5] lg:aspect-[3/4]">
-									<div className="from-primary/5 absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 									<Image
 										src="/photos/website-photo-15.jpg"
 										alt="Technical leadership"
@@ -173,7 +173,7 @@ export default function CompaniesPage() {
 			</section>
 
 			{/* Who I Support Section */}
-			<section className="border-border/50 border-t py-24 lg:py-32">
+			<section className="border-border border-t py-24 lg:py-32">
 				<Container size="xl">
 					{/* Section Header */}
 					<div className="mb-16 lg:mb-24">
@@ -190,8 +190,8 @@ export default function CompaniesPage() {
 					<div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
 						{/* Content */}
 						<div className="order-2 space-y-12 lg:order-1 lg:col-span-7 lg:space-y-16">
-							<div className="group border-border/50 bg-card/50 hover:bg-card/70 hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-								<div className="bg-primary/5 absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+							<div className="group border-border bg-muted hover:bg-card hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
+								<div className="bg-muted absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 								<div className="relative z-10">
 									<ul className="space-y-6 text-lg leading-relaxed">
 										<li className="flex items-start gap-4">
@@ -242,7 +242,7 @@ export default function CompaniesPage() {
 						<div className="order-1 lg:order-2 lg:col-span-5">
 							<div className="sticky top-32">
 								<div className="group relative aspect-[4/5] lg:aspect-[3/4]">
-									<div className="from-primary/5 absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 									<Image
 										src="/photos/website-photo-14.jpg"
 										alt="Team development"
@@ -258,7 +258,7 @@ export default function CompaniesPage() {
 			</section>
 
 			{/* What I Offer Section */}
-			<section className="border-border/50 border-t py-24 lg:py-32">
+			<section className="border-border border-t py-24 lg:py-32">
 				<Container size="xl">
 					{/* Section Header */}
 					<div className="mb-16 lg:mb-24">
@@ -271,8 +271,8 @@ export default function CompaniesPage() {
 
 					<div className="grid gap-8 md:grid-cols-2 lg:gap-12">
 						{/* Technical Leadership */}
-						<div className="group border-border/50 bg-card/50 hover:bg-card/70 hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-							<div className="bg-primary/5 absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+						<div className="group border-border bg-muted hover:bg-card hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
+							<div className="bg-muted absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 							<div className="relative z-10">
 								<div className="mb-6 flex items-center gap-3">
 									<div className="bg-primary h-2.5 w-2.5 rounded-full transition-transform group-hover:scale-125" />
@@ -352,7 +352,7 @@ export default function CompaniesPage() {
 									].map((tag) => (
 										<span
 											key={tag}
-											className="bg-primary/10 text-primary border-primary/20 rounded-full border px-3 py-1.5 text-xs font-medium">
+											className="bg-muted text-primary border-border rounded-full border px-3 py-1.5 text-xs font-medium">
 											{tag}
 										</span>
 									))}
@@ -361,8 +361,8 @@ export default function CompaniesPage() {
 						</div>
 
 						{/* Educational Services */}
-						<div className="group border-border/50 bg-card/50 hover:bg-card/70 hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-							<div className="bg-primary/5 absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+						<div className="group border-border bg-muted hover:bg-card hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
+							<div className="bg-muted absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 							<div className="relative z-10">
 								<div className="mb-6 flex items-center gap-3">
 									<div className="bg-primary h-2.5 w-2.5 rounded-full transition-transform group-hover:scale-125" />
@@ -446,7 +446,7 @@ export default function CompaniesPage() {
 									].map((tag) => (
 										<span
 											key={tag}
-											className="bg-primary/10 text-primary border-primary/20 rounded-full border px-3 py-1.5 text-xs font-medium">
+											className="bg-muted text-primary border-border rounded-full border px-3 py-1.5 text-xs font-medium">
 											{tag}
 										</span>
 									))}
@@ -458,7 +458,7 @@ export default function CompaniesPage() {
 			</section>
 
 			{/* Testimonials Section */}
-			<section className="border-border/50 border-t py-24 lg:py-32">
+			<section className="border-border border-t py-24 lg:py-32">
 				<Container size="xl">
 					{/* Section Header */}
 					<div className="mb-16 lg:mb-24">
@@ -474,16 +474,16 @@ export default function CompaniesPage() {
 							{testimonials.slice(0, 2).map((testimonial, idx) => (
 								<blockquote
 									key={idx}
-									className="group border-border/50 bg-card/30 hover:bg-card/50 hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-									<div className="text-primary/5 absolute top-0 right-0 -mt-4 -mr-4 font-serif text-8xl leading-none select-none">
+									className="group border-border bg-muted hover:bg-card hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
+									<div className="text-muted absolute top-0 right-0 -mt-4 -mr-4 font-serif text-8xl leading-none select-none">
 										&ldquo;
 									</div>
 									<div className="relative z-10">
 										<p className="text-foreground text-lg leading-relaxed">
 											{testimonial.quote}
 										</p>
-										<div className="border-border/30 mt-6 flex items-center gap-4 border-t pt-6">
-											<div className="ring-border/50 group-hover:ring-primary/30 relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full ring-2 transition-all">
+										<div className="border-muted mt-6 flex items-center gap-4 border-t pt-6">
+											<div className="ring-border group-hover:ring-primary relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full ring-2 transition-all">
 												<Image
 													src={testimonial.image}
 													alt={testimonial.author}
@@ -508,16 +508,16 @@ export default function CompaniesPage() {
 						{testimonials.slice(2).map((testimonial, idx) => (
 							<blockquote
 								key={idx + 2}
-								className="group border-border/50 bg-card/30 hover:bg-card/50 hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-								<div className="text-primary/5 absolute top-0 right-0 -mt-4 -mr-4 font-serif text-8xl leading-none select-none">
+								className="group border-border bg-muted hover:bg-card hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
+								<div className="text-muted absolute top-0 right-0 -mt-4 -mr-4 font-serif text-8xl leading-none select-none">
 									&ldquo;
 								</div>
 								<div className="relative z-10">
 									<p className="text-foreground text-lg leading-relaxed">
 										{testimonial.quote}
 									</p>
-									<div className="border-border/30 mt-6 flex items-center gap-4 border-t pt-6">
-										<div className="ring-border/50 group-hover:ring-primary/30 relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full ring-2 transition-all">
+									<div className="border-muted mt-6 flex items-center gap-4 border-t pt-6">
+										<div className="ring-border group-hover:ring-primary relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-full ring-2 transition-all">
 											<Image
 												src={testimonial.image}
 												alt={testimonial.author}
@@ -542,7 +542,7 @@ export default function CompaniesPage() {
 			</section>
 
 			{/* Pricing Section */}
-			<section className="border-border/50 border-t py-24 lg:py-32">
+			<section className="border-border border-t py-24 lg:py-32">
 				<Container size="lg">
 					<div className="max-w-3xl space-y-12">
 						<div className="space-y-6">
@@ -558,8 +558,8 @@ export default function CompaniesPage() {
 						</div>
 
 						<div className="grid gap-8 md:grid-cols-3">
-							<div className="group border-border/50 bg-card/50 hover:bg-card/70 hover:border-border relative overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-								<div className="bg-primary/5 absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+							<div className="group border-border bg-muted hover:bg-card hover:border-border relative overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
+								<div className="bg-muted absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 								<div className="relative z-10 space-y-4">
 									<h3 className="text-xl font-semibold tracking-tight">
 										Technical Leadership & Consulting
@@ -575,8 +575,8 @@ export default function CompaniesPage() {
 								</div>
 							</div>
 
-							<div className="group border-border/50 bg-card/50 hover:bg-card/70 hover:border-border relative overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-								<div className="bg-primary/5 absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+							<div className="group border-border bg-muted hover:bg-card hover:border-border relative overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
+								<div className="bg-muted absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 								<div className="relative z-10 space-y-4">
 									<h3 className="text-xl font-semibold tracking-tight">
 										Educational Services & Workshops
@@ -592,8 +592,8 @@ export default function CompaniesPage() {
 								</div>
 							</div>
 
-							<div className="group border-border/50 bg-card/50 hover:bg-card/70 hover:border-border relative overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-								<div className="bg-primary/5 absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+							<div className="group border-border bg-muted hover:bg-card hover:border-border relative overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
+								<div className="bg-muted absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 								<div className="relative z-10 space-y-4">
 									<h3 className="text-xl font-semibold tracking-tight">
 										Educational Product Development
@@ -621,7 +621,7 @@ export default function CompaniesPage() {
 			</section>
 
 			{/* Getting Started Section */}
-			<section className="border-border/50 border-t py-24 lg:py-32">
+			<section className="border-border border-t py-24 lg:py-32">
 				<Container size="lg">
 					<div className="max-w-3xl space-y-12">
 						<div className="space-y-6">
@@ -653,10 +653,10 @@ export default function CompaniesPage() {
 							].map((item, index) => (
 								<div
 									key={index}
-									className="group border-border/50 bg-card/50 hover:bg-card/70 hover:border-border relative overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-									<div className="bg-primary/5 absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+									className="group border-border bg-muted hover:bg-card hover:border-border relative overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
+									<div className="bg-muted absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 									<div className="relative z-10 flex items-start gap-6">
-										<div className="bg-primary/10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full transition-transform group-hover:scale-110">
+										<div className="bg-muted flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full transition-transform group-hover:scale-110">
 											<span className="text-primary text-lg font-semibold">
 												{item.step}
 											</span>
@@ -678,10 +678,10 @@ export default function CompaniesPage() {
 			</section>
 
 			{/* CTA Section */}
-			<section className="border-border/50 from-background to-background/95 border-t bg-gradient-to-b py-24 lg:py-32">
+			<section className="border-border from-background to-background border-t bg-gradient-to-b py-24 lg:py-32">
 				<Container size="lg">
 					<div className="mx-auto max-w-4xl">
-						<div className="border-border/50 bg-card/30 space-y-8 rounded-3xl border p-12 text-center backdrop-blur-sm lg:p-16">
+						<div className="border-border bg-muted space-y-8 rounded-3xl border p-12 text-center backdrop-blur-sm lg:p-16">
 							<div className="space-y-6">
 								<h2 className="text-3xl font-bold tracking-tight lg:text-5xl xl:text-6xl">
 									Ready to work together?

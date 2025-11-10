@@ -42,9 +42,11 @@ export function Navigation() {
 
 	useEffect(() => {
 		if (isMenuOpen) {
+			document.documentElement.style.overflow = 'hidden'
 			document.body.style.overflow = 'hidden'
 		} else {
-			document.body.style.overflow = 'unset'
+			document.documentElement.style.overflow = ''
+			document.body.style.overflow = ''
 		}
 	}, [isMenuOpen])
 
@@ -57,22 +59,28 @@ export function Navigation() {
 			{/* Desktop Navigation - Floating */}
 			<nav
 				className={cn(
-					'fixed top-0 right-0 left-0 z-50 hidden transition-all duration-500 lg:block',
+					'fixed top-0 right-0 left-0 z-50 hidden lg:block',
 					isScrolled ? 'py-4' : 'py-6'
-				)}>
+				)}
+				style={{transition: 'padding 0.5s ease'}}>
 				<div className="mx-auto max-w-[1920px] px-6 lg:px-12 xl:px-16">
 					<div
 						className={cn(
-							'flex items-center justify-between rounded-full border backdrop-blur-xl transition-all duration-500',
+							'flex items-center rounded-full border backdrop-blur-xl',
+							'min-w-0',
 							isScrolled
 								? 'bg-background/80 border-border/50 px-6 py-3 shadow-lg shadow-black/5'
 								: 'bg-background/40 border-border/30 px-8 py-4'
-						)}>
+						)}
+						style={{
+							transition:
+								'background-color 0.5s ease, border-color 0.5s ease, padding 0.5s ease, box-shadow 0.5s ease'
+						}}>
 						<Link
 							href="/"
-							className="group flex items-center gap-2.5"
+							className="group flex shrink-0 items-center gap-2.5"
 							aria-label="Home">
-							<div className="relative">
+							<div className="relative shrink-0">
 								<svg
 									width="20"
 									height="32"
@@ -87,12 +95,14 @@ export function Navigation() {
 									/>
 								</svg>
 							</div>
-							<span className="text-sm font-semibold tracking-tight">
+							<span className="text-sm font-semibold tracking-tight whitespace-nowrap">
 								Lauro Silva
 							</span>
 						</Link>
 
-						<div className="flex items-center gap-1">
+						<div
+							className="ml-auto flex shrink-0 items-center gap-1"
+							style={{width: 'auto', minWidth: 0}}>
 							{navItems.map(({path, name}) => {
 								const isActive = pathname === path
 								return (
@@ -100,7 +110,7 @@ export function Navigation() {
 										key={path}
 										href={path}
 										className={cn(
-											'relative rounded-full px-4 py-2 text-sm font-medium transition-colors',
+											'relative shrink-0 rounded-full px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors',
 											isActive
 												? 'text-foreground'
 												: 'text-muted-foreground hover:text-foreground'
@@ -116,23 +126,26 @@ export function Navigation() {
 							{/* Services Dropdown */}
 							<DropdownMenu
 								open={isServicesOpen}
-								onOpenChange={setIsServicesOpen}>
+								onOpenChange={setIsServicesOpen}
+								modal={false}>
 								<DropdownMenuTrigger asChild>
 									<button
+										type="button"
 										className={cn(
-											'relative flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all',
+											'relative flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors',
 											pathname.startsWith('/services')
 												? 'text-foreground'
 												: 'text-muted-foreground hover:text-foreground'
-										)}>
+										)}
+										style={{minWidth: '100px', width: 'auto'}}>
 										{pathname.startsWith('/services') && (
 											<span className="bg-primary/10 absolute inset-0 -z-10 rounded-full" />
 										)}
-										<Briefcase className="h-3.5 w-3.5" />
-										Services
+										<Briefcase className="h-3.5 w-3.5 shrink-0" />
+										<span className="whitespace-nowrap">Services</span>
 										<ChevronDown
 											className={cn(
-												'h-3 w-3 opacity-60 transition-transform duration-200',
+												'h-3 w-3 shrink-0 opacity-60 transition-transform duration-200',
 												isServicesOpen && 'rotate-180'
 											)}
 										/>
@@ -140,6 +153,8 @@ export function Navigation() {
 								</DropdownMenuTrigger>
 								<DropdownMenuContent
 									align="end"
+									sideOffset={8}
+									avoidCollisions={true}
 									className="bg-background/95 border-border/50 min-w-[220px] p-2 shadow-xl backdrop-blur-xl">
 									{serviceItems.map(({path, name, icon: Icon}) => {
 										const isActive = pathname === path
@@ -170,7 +185,9 @@ export function Navigation() {
 							</DropdownMenu>
 						</div>
 
-						<div className="flex items-center gap-3">
+						<div
+							className="ml-4 flex shrink-0 items-center gap-3"
+							style={{width: 'auto', minWidth: 0}}>
 							<ModeToggle />
 						</div>
 					</div>

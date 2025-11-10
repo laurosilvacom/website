@@ -40,13 +40,13 @@ function BlogHeader({
 					<time className="text-muted-foreground">{formatDate(date)}</time>
 					{readingTime && (
 						<>
-							<span className="text-muted-foreground/40">·</span>
+							<span className="text-muted-foreground">·</span>
 							<span className="text-muted-foreground">{readingTime}</span>
 						</>
 					)}
 					{tags && tags.length > 0 && (
 						<>
-							<span className="text-muted-foreground/40">·</span>
+							<span className="text-muted-foreground">·</span>
 							<div className="flex flex-wrap gap-x-3 gap-y-1">
 								{tags.map((tag) => (
 									<Link
@@ -121,7 +121,7 @@ export default async function Blog(props: Props) {
 
 			<article>
 				{/* Header */}
-				<header className="pt-32 lg:pt-40 pb-12 lg:pb-16 border-b border-border/50">
+				<header className="pt-32 lg:pt-40 pb-12 lg:pb-16 border-b border-border">
 					<Container size="md">
 						<div className="space-y-8">
 							<div className="space-y-6">
@@ -139,13 +139,13 @@ export default async function Blog(props: Props) {
 								</time>
 								{post.metadata.readingTime && (
 									<>
-										<span className="text-muted-foreground/40">·</span>
+										<span className="text-muted-foreground">·</span>
 										<span className="text-muted-foreground">{post.metadata.readingTime}</span>
 									</>
 								)}
 								{post.metadata.tags && post.metadata.tags.length > 0 && (
 									<>
-										<span className="text-muted-foreground/40">·</span>
+										<span className="text-muted-foreground">·</span>
 										<div className="flex flex-wrap gap-x-3 gap-y-1">
 											{post.metadata.tags.map((tag: string) => (
 												<Link

@@ -9,12 +9,12 @@ export default function AthletesPage() {
 		<>
 			{/* Hero Section */}
 			<section className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center pt-24 lg:pt-32 pb-16 lg:pb-24 overflow-hidden">
-				<div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background pointer-events-none" />
+				<div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background pointer-events-none" />
 				
 				<Container size="xl" className="relative z-10">
 					<div className="max-w-4xl mx-auto space-y-8 lg:space-y-12 text-center">
 						<div className="inline-flex">
-							<div className="bg-primary/10 text-primary inline-flex items-center gap-2 rounded-full px-4 py-2 border border-primary/20">
+							<div className="bg-muted text-primary inline-flex items-center gap-2 rounded-full px-4 py-2 border border-border">
 								<div className="bg-primary h-2 w-2 rounded-full animate-pulse" />
 								<span className="text-sm font-medium">
 									Available for new projects
@@ -51,7 +51,7 @@ export default function AthletesPage() {
 			</section>
 
 			{/* What I Believe Section */}
-			<section className="py-24 lg:py-32 border-t border-border/50">
+			<section className="py-24 lg:py-32 border-t border-border">
 				<Container size="xl">
 					{/* Section Header */}
 					<div className="mb-16 lg:mb-24">
@@ -78,7 +78,7 @@ export default function AthletesPage() {
 						<div className="lg:col-span-5">
 							<div className="sticky top-32">
 								<div className="relative aspect-[4/5] lg:aspect-[3/4] group">
-									<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+									<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-muted to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
 									<Image
 										src="/photos/website-photo-5.jpg"
 										alt="Custom athlete platforms"
@@ -103,7 +103,7 @@ export default function AthletesPage() {
 			</section>
 
 			{/* Who I Support Section */}
-			<section className="py-24 lg:py-32 border-t border-border/50">
+			<section className="py-24 lg:py-32 border-t border-border">
 				<Container size="xl">
 					{/* Section Header */}
 					<div className="mb-16 lg:mb-24">
@@ -120,8 +120,8 @@ export default function AthletesPage() {
 					<div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 						{/* Content */}
 						<div className="lg:col-span-7 space-y-12 lg:space-y-16 order-2 lg:order-1">
-							<div className="group relative space-y-6 p-8 lg:p-10 rounded-2xl border border-border/50 bg-card/50 hover:bg-card/70 hover:border-border transition-all duration-300 overflow-hidden">
-								<div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2" />
+							<div className="group relative space-y-6 p-8 lg:p-10 rounded-2xl border border-border bg-muted hover:bg-card hover:border-border transition-all duration-300 overflow-hidden">
+								<div className="absolute top-0 right-0 w-32 h-32 bg-muted rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2" />
 								<div className="relative z-10">
 									<ul className="space-y-6 text-lg leading-relaxed">
 										<li className="flex items-start gap-4">
@@ -163,7 +163,7 @@ export default function AthletesPage() {
 						<div className="lg:col-span-5 order-1 lg:order-2">
 							<div className="sticky top-32">
 								<div className="relative aspect-[4/5] lg:aspect-[3/4] group">
-									<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+									<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-muted to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
 									<Image
 										src="/photos/website-photo-10.jpg"
 										alt="Professional athletes"
@@ -179,7 +179,7 @@ export default function AthletesPage() {
 			</section>
 
 			{/* What We Can Build Section */}
-			<section className="py-24 lg:py-32 border-t border-border/50">
+			<section className="py-24 lg:py-32 border-t border-border">
 				<Container size="xl">
 					{/* Section Header */}
 					<div className="mb-16 lg:mb-24">
@@ -223,8 +223,8 @@ export default function AthletesPage() {
 						].map((feature, index) => (
 							<div
 								key={index}
-								className="group relative space-y-4 p-8 lg:p-10 rounded-2xl border border-border/50 bg-card/50 hover:bg-card/70 hover:border-border transition-all duration-300 overflow-hidden">
-								<div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2" />
+								className="group relative space-y-4 p-8 lg:p-10 rounded-2xl border border-border bg-muted hover:bg-card hover:border-border transition-all duration-300 overflow-hidden">
+								<div className="absolute top-0 right-0 w-32 h-32 bg-muted rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2" />
 								<div className="relative z-10">
 									<div className="flex items-center gap-3 mb-4">
 										<div className="h-2.5 w-2.5 rounded-full bg-primary group-hover:scale-125 transition-transform" />
@@ -243,7 +243,7 @@ export default function AthletesPage() {
 			</section>
 
 			{/* Pricing Section */}
-			<section className="py-24 lg:py-32 border-t border-border/50">
+			<section className="py-24 lg:py-32 border-t border-border">
 				<Container size="lg">
 					<div className="max-w-3xl space-y-12">
 						<div className="space-y-6">
@@ -258,8 +258,8 @@ export default function AthletesPage() {
 						</div>
 
 						<div className="grid md:grid-cols-2 gap-8">
-							<div className="group relative p-8 lg:p-10 rounded-2xl border border-border/50 bg-card/50 hover:bg-card/70 hover:border-border transition-all duration-300 overflow-hidden">
-								<div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2" />
+							<div className="group relative p-8 lg:p-10 rounded-2xl border border-border bg-muted hover:bg-card hover:border-border transition-all duration-300 overflow-hidden">
+								<div className="absolute top-0 right-0 w-32 h-32 bg-muted rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2" />
 								<div className="relative z-10 space-y-4">
 									<h3 className="text-xl lg:text-2xl font-semibold tracking-tight">
 										Discovery & Planning Phase
@@ -280,8 +280,8 @@ export default function AthletesPage() {
 								</div>
 							</div>
 
-							<div className="group relative p-8 lg:p-10 rounded-2xl border border-border/50 bg-card/50 hover:bg-card/70 hover:border-border transition-all duration-300 overflow-hidden">
-								<div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2" />
+							<div className="group relative p-8 lg:p-10 rounded-2xl border border-border bg-muted hover:bg-card hover:border-border transition-all duration-300 overflow-hidden">
+								<div className="absolute top-0 right-0 w-32 h-32 bg-muted rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2" />
 								<div className="relative z-10 space-y-4">
 									<h3 className="text-xl lg:text-2xl font-semibold tracking-tight">
 										Platform Development
@@ -307,7 +307,7 @@ export default function AthletesPage() {
 			</section>
 
 			{/* Getting Started Section */}
-			<section className="py-24 lg:py-32 border-t border-border/50">
+			<section className="py-24 lg:py-32 border-t border-border">
 				<Container size="lg">
 					<div className="max-w-3xl space-y-12">
 						<div className="space-y-6">
@@ -334,10 +334,10 @@ export default function AthletesPage() {
 									description: 'After our discovery phase, we&apos;ll have a clear roadmap. I&apos;ll build your platform with regular check-ins, ensuring it reflects your brand and serves your community. Your platform will evolve with your career.'
 								}
 							].map((item, index) => (
-								<div key={index} className="group relative p-8 lg:p-10 rounded-2xl border border-border/50 bg-card/50 hover:bg-card/70 hover:border-border transition-all duration-300 overflow-hidden">
-									<div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2" />
+								<div key={index} className="group relative p-8 lg:p-10 rounded-2xl border border-border bg-muted hover:bg-card hover:border-border transition-all duration-300 overflow-hidden">
+									<div className="absolute top-0 right-0 w-32 h-32 bg-muted rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-1/2 translate-x-1/2" />
 									<div className="relative z-10 flex items-start gap-6">
-										<div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+										<div className="flex-shrink-0 w-12 h-12 rounded-full bg-muted flex items-center justify-center group-hover:scale-110 transition-transform">
 											<span className="text-lg font-semibold text-primary">{item.step}</span>
 										</div>
 										<div className="space-y-3 flex-1">
@@ -357,10 +357,10 @@ export default function AthletesPage() {
 			</section>
 
 			{/* CTA Section */}
-			<section className="py-24 lg:py-32 border-t border-border/50 bg-gradient-to-b from-background to-background/95">
+			<section className="py-24 lg:py-32 border-t border-border bg-gradient-to-b from-background to-background">
 				<Container size="lg">
 					<div className="max-w-4xl mx-auto">
-						<div className="p-12 lg:p-16 rounded-3xl border border-border/50 bg-card/30 backdrop-blur-sm text-center space-y-8">
+						<div className="p-12 lg:p-16 rounded-3xl border border-border bg-muted backdrop-blur-sm text-center space-y-8">
 							<div className="space-y-6">
 								<h2 className="text-3xl lg:text-5xl xl:text-6xl font-bold tracking-tight">
 									Ready to build your platform?

@@ -30,7 +30,7 @@ export default function AboutPage() {
 			/>
 			<main>
 				{/* Hero Section */}
-				<section className="pt-32 lg:pt-40 pb-16 lg:pb-24 border-b border-border/50">
+				<section className="pt-32 lg:pt-40 pb-16 lg:pb-24 border-b border-border">
 					<Container size="lg">
 						<div className="max-w-3xl space-y-8">
 							<div className="space-y-6">
@@ -51,7 +51,7 @@ export default function AboutPage() {
 				</section>
 
 				{/* Photo */}
-				<section className="py-16 lg:py-24 border-b border-border/50">
+				<section className="py-16 lg:py-24 border-b border-border">
 					<Container size="lg">
 						<div className="max-w-3xl">
 							<div className="relative w-full aspect-[4/3] lg:aspect-[16/10] rounded-2xl overflow-hidden">
@@ -92,7 +92,7 @@ export default function AboutPage() {
 				</section>
 
 				{/* Software Engineer Section */}
-				<section className="py-24 lg:py-32 border-t border-border/50">
+				<section className="py-24 lg:py-32 border-t border-border">
 					<Container size="lg">
 						<div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 							<div className="lg:col-span-7 space-y-12">
@@ -116,7 +116,7 @@ export default function AboutPage() {
 							<div className="lg:col-span-5">
 								<div className="sticky top-32">
 									<div className="relative aspect-[4/5] lg:aspect-[3/4] group">
-										<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+										<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-muted to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
 										<Image
 											src="/photos/website-photo-9.jpg"
 											alt="Software engineering"
@@ -132,13 +132,13 @@ export default function AboutPage() {
 				</section>
 
 				{/* Community Builder Section */}
-				<section className="py-24 lg:py-32 border-t border-border/50">
+				<section className="py-24 lg:py-32 border-t border-border">
 					<Container size="lg">
 						<div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 							<div className="lg:col-span-5 order-2 lg:order-1">
 								<div className="sticky top-32">
 									<div className="relative aspect-[4/5] lg:aspect-[3/4] group">
-										<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+										<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-muted to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
 										<Image
 											src="/photos/website-photo-4.jpg"
 											alt="Community building"
@@ -172,7 +172,7 @@ export default function AboutPage() {
 				</section>
 
 				{/* Athlete Section */}
-				<section className="py-24 lg:py-32 border-t border-border/50">
+				<section className="py-24 lg:py-32 border-t border-border">
 					<Container size="lg">
 						<div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 							<div className="lg:col-span-7 space-y-12">
@@ -196,7 +196,7 @@ export default function AboutPage() {
 							<div className="lg:col-span-5">
 								<div className="sticky top-32">
 									<div className="relative aspect-[4/5] lg:aspect-[3/4] group">
-										<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+										<div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-muted to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
 										<Image
 											src="/photos/website-photo-11.jpg"
 											alt="Trail running"
@@ -212,7 +212,7 @@ export default function AboutPage() {
 				</section>
 
 				{/* Closing Section */}
-				<section className="py-24 lg:py-32 border-t border-border/50">
+				<section className="py-24 lg:py-32 border-t border-border">
 					<Container size="lg">
 						<div className="max-w-3xl space-y-6 text-lg lg:text-xl leading-relaxed text-muted-foreground">
 							<p>

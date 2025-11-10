@@ -18,7 +18,7 @@ export default async function BlogPage() {
 
 	return (
 		<>
-			<section className="pt-32 lg:pt-40 pb-16 lg:pb-24 border-b border-border/50">
+			<section className="pt-32 lg:pt-40 pb-16 lg:pb-24 border-b border-border">
 				<Container size="lg">
 					<div className="space-y-6">
 						<h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold tracking-tight">

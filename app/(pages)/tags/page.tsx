@@ -25,7 +25,7 @@ export default async function TagsPage() {
 
 	return (
 		<>
-			<section className="pt-32 lg:pt-40 pb-16 lg:pb-24 border-b border-border/50">
+			<section className="pt-32 lg:pt-40 pb-16 lg:pb-24 border-b border-border">
 				<Container size="lg">
 					<div className="space-y-6">
 						<Link
@@ -50,7 +50,7 @@ export default async function TagsPage() {
 							<Link
 								key={tag}
 								href={`/tags/${encodeURIComponent(tag)}`}
-								className="group bg-card hover:bg-card/80 text-foreground border border-border/50 hover:border-border rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300">
+								className="group bg-card hover:bg-muted text-foreground border border-border hover:border-border rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300">
 								{tag} <span className="text-muted-foreground">({tagCounts[tag]})</span>
 							</Link>
 						))}
