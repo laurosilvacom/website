@@ -5,29 +5,28 @@ type ContainerProps = {
 	children: ReactNode
 	className?: string
 	as?: 'div' | 'section' | 'article' | 'header' | 'footer'
-	size?: 'sm' | 'md' | 'lg' | 'xl' | 'full'
+	width?: 'narrow' | 'base' | 'wide' | 'full'
 }
 
-const sizeClasses = {
-	sm: 'max-w-4xl', // 896px - Narrow focused content
-	md: 'max-w-6xl', // 1152px - Article/reading width
-	lg: 'max-w-7xl', // 1280px - List/grid pages
-	xl: 'max-w-[1920px]', // 1920px - Hero sections
-	full: 'max-w-full'
+const widthClasses = {
+	narrow: 'max-w-[680px]', // Reading width - blog posts, long-form content
+	base: 'max-w-[1080px]', // Default - forms, single column pages
+	wide: 'max-w-[1400px]', // Multi-column - grids, marketing pages
+	full: 'max-w-none' // Full bleed - hero sections, images
 }
 
 export default function Container({
 	children,
 	className = '',
 	as: Component = 'div',
-	size = 'lg',
+	width = 'base',
 	...props
 }: ContainerProps) {
 	return (
 		<Component
 			className={cn(
-				'mx-auto w-full px-6 lg:px-12 xl:px-16',
-				sizeClasses[size],
+				'mx-auto w-full px-6 lg:px-12',
+				widthClasses[width],
 				className
 			)}
 			{...props}>

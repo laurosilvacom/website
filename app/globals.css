@@ -62,77 +62,73 @@
 
 :root {
 	--radius: 0.75rem;
-	/* Light mode - Bold, vibrant, modern */
-	--background: oklch(
-		0.93 0.008 270
-	); /* Softer off-white for better contrast */
-	--foreground: oklch(0.15 0.035 270); /* Deep, rich text with bold contrast */
-	--card: oklch(0.99 0.005 270); /* Pure card background */
-	--card-foreground: oklch(0.15 0.035 270);
-	--popover: oklch(0.99 0.005 270);
-	--popover-foreground: oklch(0.15 0.035 270);
-	--primary: oklch(0.55 0.28 280); /* Bold, vibrant purple */
-	--primary-foreground: oklch(0.99 0.002 270);
-	--secondary: oklch(0.92 0.015 270); /* Subtle secondary */
-	--secondary-foreground: oklch(0.2 0.03 270);
-	--muted: oklch(0.94 0.01 270); /* Clean muted areas */
-	--muted-foreground: oklch(0.45 0.025 270);
-	--accent: oklch(0.9 0.02 270); /* Strong accent */
-	--accent-foreground: oklch(0.15 0.035 270);
-	--destructive: oklch(0.6 0.25 15); /* Bold red */
-	--border: oklch(0.88 0.015 270); /* Clear borders */
-	--input: oklch(0.88 0.015 270);
-	--ring: oklch(0.55 0.28 280); /* Vibrant ring */
+	/* Light mode - Clean neutrals, vibrant purple accent */
+	--background: oklch(0.98 0.003 270); /* Crisp white */
+	--foreground: oklch(0.15 0.008 270); /* Deep neutral text */
+	--card: oklch(1 0 0); /* Pure white cards */
+	--card-foreground: oklch(0.15 0.008 270);
+	--popover: oklch(1 0 0);
+	--popover-foreground: oklch(0.15 0.008 270);
+	--primary: oklch(0.55 0.28 280); /* Vibrant purple - keep this! */
+	--primary-foreground: oklch(0.98 0.003 270);
+	--secondary: oklch(0.96 0.004 270); /* Light neutral */
+	--secondary-foreground: oklch(0.15 0.008 270);
+	--muted: oklch(0.97 0.003 270); /* Very light neutral */
+	--muted-foreground: oklch(0.48 0.006 270); /* Medium neutral */
+	--accent: oklch(0.95 0.004 270); /* Subtle accent */
+	--accent-foreground: oklch(0.15 0.008 270);
+	--destructive: oklch(0.58 0.22 15); /* Balanced red */
+	--border: oklch(0.91 0.004 270); /* Subtle border */
+	--input: oklch(0.91 0.004 270);
+	--ring: oklch(0.55 0.28 280); /* Vibrant ring - matches primary */
 	--chart-1: oklch(0.55 0.28 280);
-	--chart-2: oklch(0.5 0.25 200);
-	--chart-3: oklch(0.6 0.22 320);
-	--chart-4: oklch(0.55 0.2 40);
-	--chart-5: oklch(0.58 0.24 280);
-	--sidebar: oklch(0.96 0.01 270);
-	--sidebar-foreground: oklch(0.15 0.035 270);
+	--chart-2: oklch(0.52 0.24 200);
+	--chart-3: oklch(0.58 0.26 320);
+	--chart-4: oklch(0.54 0.22 40);
+	--chart-5: oklch(0.56 0.26 280);
+	--sidebar: oklch(0.98 0.003 270);
+	--sidebar-foreground: oklch(0.15 0.008 270);
 	--sidebar-primary: oklch(0.55 0.28 280);
-	--sidebar-primary-foreground: oklch(0.99 0.002 270);
-	--sidebar-accent: oklch(0.92 0.015 270);
-	--sidebar-accent-foreground: oklch(0.15 0.035 270);
-	--sidebar-border: oklch(0.88 0.015 270);
+	--sidebar-primary-foreground: oklch(0.98 0.003 270);
+	--sidebar-accent: oklch(0.96 0.004 270);
+	--sidebar-accent-foreground: oklch(0.15 0.008 270);
+	--sidebar-border: oklch(0.91 0.004 270);
 	--sidebar-ring: oklch(0.55 0.28 280);
 }
 
 .dark {
-	/* Dark mode - Bold, deep, modern */
-	--background: oklch(0.12 0.02 270); /* Deep, rich dark */
-	--foreground: oklch(0.95 0.01 270); /* Bright, crisp text */
-	--card: oklch(0.14 0.022 270); /* Elevated card */
-	--card-foreground: oklch(0.95 0.01 270);
-	--popover: oklch(0.14 0.022 270);
-	--popover-foreground: oklch(0.95 0.01 270);
-	--primary: oklch(0.7 0.3 280); /* Vibrant, electric purple */
-	--primary-foreground: oklch(0.12 0.02 270);
-	--secondary: oklch(
-		0.22 0.025 270
-	); /* Lighter secondary for better visibility */
-	--secondary-foreground: oklch(0.95 0.01 270);
-	--muted: oklch(0.16 0.02 270); /* Subtle muted */
-	--muted-foreground: oklch(0.7 0.015 270);
-	--accent: oklch(0.2 0.03 270); /* Strong accent */
-	--accent-foreground: oklch(0.95 0.01 270);
-	--destructive: oklch(0.65 0.28 15); /* Bold red */
-	--border: oklch(0.22 0.025 270); /* Clear borders */
-	--input: oklch(0.22 0.025 270);
-	--ring: oklch(0.7 0.3 280); /* Electric ring */
-	--chart-1: oklch(0.7 0.3 280);
-	--chart-2: oklch(0.65 0.28 200);
-	--chart-3: oklch(0.75 0.25 320);
-	--chart-4: oklch(0.68 0.22 40);
-	--chart-5: oklch(0.72 0.26 280);
-	--sidebar: oklch(0.14 0.022 270);
-	--sidebar-foreground: oklch(0.95 0.01 270);
-	--sidebar-primary: oklch(0.7 0.3 280);
-	--sidebar-primary-foreground: oklch(0.12 0.02 270);
-	--sidebar-accent: oklch(0.22 0.025 270);
-	--sidebar-accent-foreground: oklch(0.95 0.01 270);
-	--sidebar-border: oklch(0.22 0.025 270);
-	--sidebar-ring: oklch(0.7 0.3 280);
+	/* Dark mode - Deep neutrals, vibrant purple accent */
+	--background: oklch(0.11 0.008 270); /* True deep dark */
+	--foreground: oklch(0.94 0.004 270); /* Soft white text */
+	--card: oklch(0.14 0.01 270); /* Elevated cards */
+	--card-foreground: oklch(0.94 0.004 270);
+	--popover: oklch(0.14 0.01 270);
+	--popover-foreground: oklch(0.94 0.004 270);
+	--primary: oklch(0.68 0.29 280); /* Vibrant purple - bright but not neon */
+	--primary-foreground: oklch(0.11 0.008 270);
+	--secondary: oklch(0.2 0.01 270); /* Dark neutral */
+	--secondary-foreground: oklch(0.94 0.004 270);
+	--muted: oklch(0.17 0.009 270); /* Subtle muted */
+	--muted-foreground: oklch(0.65 0.005 270); /* Medium gray */
+	--accent: oklch(0.22 0.012 270); /* Gentle accent */
+	--accent-foreground: oklch(0.94 0.004 270);
+	--destructive: oklch(0.62 0.24 15); /* Bright red */
+	--border: oklch(0.25 0.01 270); /* Subtle border */
+	--input: oklch(0.25 0.01 270);
+	--ring: oklch(0.68 0.29 280); /* Vibrant ring - matches primary */
+	--chart-1: oklch(0.68 0.29 280);
+	--chart-2: oklch(0.64 0.27 200);
+	--chart-3: oklch(0.72 0.26 320);
+	--chart-4: oklch(0.66 0.24 40);
+	--chart-5: oklch(0.69 0.28 280);
+	--sidebar: oklch(0.14 0.01 270);
+	--sidebar-foreground: oklch(0.94 0.004 270);
+	--sidebar-primary: oklch(0.68 0.29 280);
+	--sidebar-primary-foreground: oklch(0.11 0.008 270);
+	--sidebar-accent: oklch(0.2 0.01 270);
+	--sidebar-accent-foreground: oklch(0.94 0.004 270);
+	--sidebar-border: oklch(0.25 0.01 270);
+	--sidebar-ring: oklch(0.68 0.29 280);
 }
 
 @theme inline {
@@ -293,7 +289,6 @@ pre {
 /* Typography for optimal reading experience - readable and elegant */
 .prose {
 	@apply text-foreground;
-	max-width: 65ch;
 	line-height: 1.8;
 	font-size: 17px;
 	font-family:
@@ -564,6 +559,12 @@ pre {
 
 .prose img {
 	@apply my-9 rounded-lg shadow-lg;
+	filter: grayscale(100%);
+	transition: filter 0.6s ease;
+}
+
+.prose img:hover {
+	filter: grayscale(0%);
 }
 
 .prose hr {
@@ -757,6 +758,16 @@ body::before {
 
 button {
 	-webkit-tap-highlight-color: transparent;
+}
+
+/* Brutalist grayscale images - color on hover */
+img {
+	filter: grayscale(100%);
+	transition: filter 0.6s ease;
+}
+
+img:hover {
+	filter: grayscale(0%);
 }
 
 /* Prevent layout shifts from dropdown menus */

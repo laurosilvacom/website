@@ -18,22 +18,23 @@ export default async function BlogPage() {
 
 	return (
 		<>
-			<section className="pt-32 lg:pt-40 pb-16 lg:pb-24 border-b border-border">
-				<Container size="xl">
+			<section className="border-border border-b pt-32 pb-16 lg:pt-40 lg:pb-24">
+				<Container width="wide">
 					<div className="space-y-6">
-						<h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold tracking-tight max-w-5xl">
+						<h1 className="text-4xl font-bold tracking-tight lg:text-6xl xl:text-7xl">
 							Writing
 						</h1>
-						<p className="text-lg lg:text-xl text-muted-foreground max-w-2xl">
-							Thoughts, ideas, and explorations at the intersection of technology and the outdoor industry.
+						<p className="text-muted-foreground text-lg lg:text-xl">
+							Thoughts, ideas, and explorations at the intersection of
+							technology and the outdoor industry.
 						</p>
 					</div>
 				</Container>
 			</section>
 
 			<section className="py-16 lg:py-24">
-				<Container size="xl">
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+				<Container width="wide">
+					<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-12">
 						{sortedPosts.map((post: any, index: number) => (
 							<article
 								key={post.slug}
@@ -41,24 +42,22 @@ export default async function BlogPage() {
 								style={{
 									animationDelay: `${index * 50}ms`
 								}}>
-								<Link
-									href={`/blog/${post.slug}`}
-									className="block h-full">
-									<div className="flex flex-col h-full">
+								<Link href={`/blog/${post.slug}`} className="block h-full">
+									<div className="flex h-full flex-col">
 										<div className="mb-4">
-											<time className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+											<time className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
 												{formatDate(post.metadata.publishedAt, false)}
 											</time>
 										</div>
-										<h2 className="text-xl lg:text-2xl font-semibold mb-3 leading-tight group-hover:text-primary transition-colors">
+										<h2 className="group-hover:text-primary mb-3 text-xl leading-tight font-semibold transition-colors lg:text-2xl">
 											{post.metadata.title}
 										</h2>
-										<p className="text-muted-foreground text-sm lg:text-base leading-relaxed flex-grow mb-4 line-clamp-3">
+										<p className="text-muted-foreground mb-4 line-clamp-3 flex-grow text-sm leading-relaxed lg:text-base">
 											{post.metadata.summary}
 										</p>
-										<div className="flex items-center text-sm font-medium text-primary group-hover:gap-2 transition-all">
+										<div className="text-primary flex items-center text-sm font-medium transition-all group-hover:gap-2">
 											Read more
-											<ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+											<ArrowRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
 										</div>
 									</div>
 								</Link>

@@ -4,11 +4,7 @@ import Container from '@/components/container'
 import {formatDate} from '@/lib/blog'
 import {ArrowRight} from 'lucide-react'
 import {type Metadata} from 'next'
-import {
-	getBlogPosts,
-	extractTagsFromPosts,
-	filterBlogPosts
-} from '@/lib/blog'
+import {getBlogPosts, extractTagsFromPosts, filterBlogPosts} from '@/lib/blog'
 
 interface TagPageProps {
 	params: Promise<{
@@ -23,7 +19,7 @@ export async function generateMetadata({
 	const tag = decodeURIComponent(resolvedParams.tag)
 
 	return {
-		title: `${tag} - Blog Posts`,
+		title: `${tag}`,
 		description: `Writing tagged with ${tag}`
 	}
 }
@@ -52,29 +48,78 @@ export default async function TagPage({params}: TagPageProps) {
 		sortBy: 'newest'
 	})
 
+	// Get related tags (tags that appear in same posts)
+	const relatedTagsMap = new Map<string, number>()
+	taggedPosts.forEach((post: any) => {
+		post.metadata.tags?.forEach((t: string) => {
+			if (t !== tag) {
+				relatedTagsMap.set(t, (relatedTagsMap.get(t) || 0) + 1)
+			}
+		})
+	})
+
+	const relatedTags = Array.from(relatedTagsMap.entries())
+		.sort((a, b) => b[1] - a[1])
+		.slice(0, 5)
+		.map(([t]) => t)
+
 	return (
 		<>
-			<section className="pt-32 lg:pt-40 pb-16 lg:pb-24 border-b border-border">
-				<Container size="xl">
-					<div className="space-y-6">
-						<Link
-							href="/blog"
-							className="text-muted-foreground inline-flex items-center gap-2 text-sm hover:text-foreground transition-colors mb-4">
-							← Back to all posts
-						</Link>
-						<h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold tracking-tight max-w-5xl">
-							Posts Tagged With &ldquo;{tag}&rdquo;
-						</h1>
-						<p className="text-lg lg:text-xl text-muted-foreground max-w-2xl">
-							{taggedPosts.length} writing{taggedPosts.length !== 1 ? 's' : ''} with this tag
-						</p>
+			{/* Hero */}
+			<section className="border-border border-b pt-32 pb-24 lg:pt-40 lg:pb-32">
+				<Container width="base">
+					<div className="mx-auto max-w-3xl space-y-8 text-center">
+						<div className="space-y-4">
+							<Link
+								href="/tags"
+								className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-sm transition-colors">
+								← All topics
+							</Link>
+							<div className="space-y-3">
+								<div className="inline-flex items-center gap-2">
+									<div className="bg-primary h-2 w-2 rounded-full" />
+									<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+										Topic
+									</span>
+								</div>
+								<h1 className="text-5xl leading-[1.1] font-bold tracking-tight lg:text-6xl xl:text-7xl">
+									{tag}
+								</h1>
+								<p className="text-muted-foreground text-xl leading-relaxed">
+									{taggedPosts.length}{' '}
+									{taggedPosts.length === 1 ? 'writing' : 'writings'}
+								</p>
+							</div>
+						</div>
+
+						{/* Related Tags */}
+						{relatedTags.length > 0 && (
+							<div className="border-border border-t pt-8">
+								<div className="space-y-4">
+									<p className="text-muted-foreground text-sm font-medium">
+										Related topics
+									</p>
+									<div className="flex flex-wrap justify-center gap-2">
+										{relatedTags.map((relatedTag) => (
+											<Link
+												key={relatedTag}
+												href={`/tags/${encodeURIComponent(relatedTag)}`}
+												className="border-border hover:border-foreground/20 hover:bg-muted/50 rounded-full border px-3 py-1.5 text-xs font-medium transition-all">
+												{relatedTag}
+											</Link>
+										))}
+									</div>
+								</div>
+							</div>
+						)}
 					</div>
 				</Container>
 			</section>
 
-			<section className="py-16 lg:py-24">
-				<Container size="xl">
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+			{/* Posts Grid */}
+			<section className="py-24 lg:py-32">
+				<Container width="wide">
+					<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-12">
 						{taggedPosts.map((post: any, index: number) => (
 							<article
 								key={post.slug}
@@ -82,24 +127,22 @@ export default async function TagPage({params}: TagPageProps) {
 								style={{
 									animationDelay: `${index * 50}ms`
 								}}>
-								<Link
-									href={`/blog/${post.slug}`}
-									className="block h-full">
-									<div className="flex flex-col h-full">
+								<Link href={`/blog/${post.slug}`} className="block h-full">
+									<div className="flex h-full flex-col">
 										<div className="mb-4">
-											<time className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+											<time className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
 												{formatDate(post.metadata.publishedAt, false)}
 											</time>
 										</div>
-										<h2 className="text-xl lg:text-2xl font-semibold mb-3 leading-tight group-hover:text-primary transition-colors">
+										<h2 className="group-hover:text-primary mb-3 text-xl leading-tight font-semibold transition-colors lg:text-2xl">
 											{post.metadata.title}
 										</h2>
-										<p className="text-muted-foreground text-sm lg:text-base leading-relaxed grow mb-4 line-clamp-3">
+										<p className="text-muted-foreground mb-4 line-clamp-3 grow text-sm leading-relaxed lg:text-base">
 											{post.metadata.summary}
 										</p>
-										<div className="flex items-center text-sm font-medium text-primary group-hover:gap-2 transition-all">
+										<div className="text-primary flex items-center text-sm font-medium transition-all group-hover:gap-2">
 											Read more
-											<ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+											<ArrowRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
 										</div>
 									</div>
 								</Link>

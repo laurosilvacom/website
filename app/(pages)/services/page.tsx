@@ -8,489 +8,198 @@ export default function ServicesPage() {
 	return (
 		<>
 			{/* Hero Section */}
-			<section className="relative flex min-h-[85vh] items-center overflow-hidden pt-24 pb-16 lg:min-h-screen lg:pt-32 lg:pb-24">
-				<div className="from-background via-background/95 to-background pointer-events-none absolute inset-0 bg-linear-to-b" />
-
-				<Container size="xl" className="relative z-10">
-					<div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-						{/* Content */}
-						<div className="space-y-8 lg:col-span-7 lg:space-y-12">
-							{/* Status Badge */}
-							<div className="inline-flex">
-								<div className="bg-muted text-primary border-border inline-flex items-center gap-2 rounded-full border px-4 py-2">
-									<div className="bg-primary h-2 w-2 animate-pulse rounded-full" />
-									<span className="text-sm font-medium">
-										Available for new projects
-									</span>
-								</div>
-							</div>
-
-							{/* Heading and Description */}
-							<div className="space-y-6 lg:space-y-8">
-								<h1 className="max-w-5xl text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-7xl xl:text-8xl">
-									Enterprise Expertise,
-									<br />
-									<span className="text-primary">Outdoor Focus</span>
-								</h1>
-
-								<div className="text-muted-foreground max-w-2xl space-y-4 text-lg leading-relaxed lg:text-xl">
-									<p>
-										I&apos;ve worked with teams at{' '}
-										<strong className="text-foreground">
-											Google, Shopify, O&apos;Reilly, and Sentry
-										</strong>
-										. Now I&apos;m bringing all that expertise to the outdoor
-										industry.
-									</p>
-									<p>
-										I help companies build better products and develop stronger
-										teams through technical leadership, developer experience
-										consulting, and educational services. I also build custom
-										platforms for professional athletes—complete solutions they
-										own, designed to support their brand and connect with their
-										community.
-									</p>
-								</div>
-							</div>
-
-							{/* CTA */}
-							<div className="pt-4">
-								<Button asChild size="lg" className="group">
-									<Link
-										href="https://cal.com/laurosilvacom/chat"
-										target="_blank"
-										rel="noopener noreferrer">
-										Book a free consultation
-										<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-									</Link>
-								</Button>
+			<section className="border-border border-b pt-32 pb-24 lg:pt-40 lg:pb-32">
+				<Container width="base">
+					<div className="mx-auto max-w-4xl space-y-12 text-center">
+						{/* Status Badge */}
+						<div className="inline-flex">
+							<div className="bg-muted text-primary border-border inline-flex items-center gap-2 rounded-full border px-4 py-2">
+								<div className="bg-primary h-2 w-2 animate-pulse rounded-full" />
+								<span className="text-sm font-medium">
+									Available for new projects
+								</span>
 							</div>
 						</div>
 
-						{/* Image */}
-						<div className="lg:col-span-5">
-							<div className="relative aspect-4/5 lg:aspect-3/4">
-								<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-								<Image
-									src="/photos/website-photo-7.jpg"
-									alt="Technical leadership and custom platforms"
-									fill
-									className="rounded-2xl object-cover"
-									priority
-									sizes="(max-width: 1024px) 100vw, 40vw"
-								/>
-							</div>
+						{/* Heading */}
+						<div className="space-y-8">
+							<h1 className="text-5xl leading-[1.1] font-bold tracking-tight lg:text-6xl xl:text-7xl">
+								Building Better Products
+								<br />
+								<span className="text-primary">For the Outdoor Industry</span>
+							</h1>
+							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
+								I help companies strengthen their engineering teams and develop
+								better products. I also build custom platforms for professional
+								athletes—complete solutions they own.
+							</p>
+						</div>
+
+						{/* CTA */}
+						<div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+							<Button asChild size="lg" className="group">
+								<Link
+									href="https://cal.com/laurosilvacom/chat"
+									target="_blank"
+									rel="noopener noreferrer">
+									Schedule a consultation
+									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+								</Link>
+							</Button>
+							<Button asChild size="lg" variant="ghost">
+								<Link href="#services">View services</Link>
+							</Button>
 						</div>
 					</div>
 				</Container>
 			</section>
 
-			{/* Companies Section */}
-			<section className="border-border border-t py-24 lg:py-32">
-				<Container size="xl">
-					{/* Section Header */}
-					<div className="mb-16 lg:mb-24">
-						<div className="max-w-3xl">
-							<h2 className="mb-6 text-3xl font-bold tracking-tight lg:text-5xl xl:text-6xl">
-								Building Better Teams
-							</h2>
-							<div className="text-muted-foreground space-y-4 text-lg leading-relaxed lg:text-xl">
-								<p>
-									I provide technical leadership, developer experience
-									consulting, and educational services to help your team build
-									better products. My expertise comes from years of building
-									large-scale, full-stack educational products and working with
-									subject matter experts to create learning experiences that are
-									effective and add real value.
-								</p>
-							</div>
-						</div>
-					</div>
-
-					<div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
-						{/* Image */}
-						<div className="lg:col-span-5">
-							<div className="sticky top-32">
-								<div className="group relative aspect-4/5 lg:aspect-3/4">
-									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-									<Image
-										src="/photos/website-photo-7.jpg"
-										alt="Technical leadership"
-										fill
-										className="rounded-2xl object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-										sizes="(max-width: 1024px) 100vw, 40vw"
-									/>
-								</div>
-							</div>
-						</div>
-
-						{/* Content */}
-						<div className="space-y-12 lg:col-span-7 lg:space-y-16">
-							{/* Services Grid */}
-							<div className="grid gap-8 md:grid-cols-2 lg:gap-12">
-								{/* Technical Leadership */}
-								<div className="group border-border bg-muted hover:bg-card hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-									<div className="bg-muted absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
-									<div className="relative z-10">
-										<div className="mb-6 flex items-center gap-3">
-											<div className="bg-primary h-2.5 w-2.5 rounded-full transition-transform group-hover:scale-125" />
-											<h3 className="text-xl font-semibold tracking-tight lg:text-2xl">
-												Technical Leadership
-											</h3>
-										</div>
-										<div className="text-muted-foreground space-y-4 text-base leading-relaxed">
-											<p>
-												I come in as a technical lead or consultant to help your
-												team make better decisions, improve your developer
-												experience, and build products that scale. This includes
-												architecture planning, code reviews, technical strategy,
-												and hands-on development when needed.
-											</p>
-											<p>
-												My focus is on making your team more efficient and
-												practical. I help you integrate modern tools and
-												practices, from React and Next.js to AI integration into
-												existing enterprise applications, in ways that actually
-												work for your team and your users.
-											</p>
-										</div>
-										<div className="flex flex-wrap gap-2 pt-6">
-											{[
-												'Architecture',
-												'Code Reviews',
-												'Technical Strategy',
-												'Hands-on Development'
-											].map((tag) => (
-												<span
-													key={tag}
-													className="bg-muted text-primary border-border rounded-full border px-3 py-1.5 text-xs font-medium">
-													{tag}
-												</span>
-											))}
-										</div>
-									</div>
-								</div>
-
-								{/* Educational Services */}
-								<div className="group border-border bg-muted hover:bg-card hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-									<div className="bg-muted absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
-									<div className="relative z-10">
-										<div className="mb-6 flex items-center gap-3">
-											<div className="bg-primary h-2.5 w-2.5 rounded-full transition-transform group-hover:scale-125" />
-											<h3 className="text-xl font-semibold tracking-tight lg:text-2xl">
-												Developer Training
-											</h3>
-										</div>
-										<div className="text-muted-foreground space-y-4 text-base leading-relaxed">
-											<p>
-												I create and deliver educational content and workshops
-												focused on full-stack development with React, Next.js,
-												and TypeScript. I also help teams integrate AI into
-												their existing applications and improve their overall
-												developer experience.
-											</p>
-											<p>
-												This includes remote workshops, custom curriculum
-												development tailored to your team&apos;s needs, and
-												educational content creation. My experience building
-												large-scale educational products means I understand how
-												to create learning experiences that are effective, not
-												just informative.
-											</p>
-										</div>
-										<div className="flex flex-wrap gap-2 pt-6">
-											{[
-												'Workshops',
-												'Curriculum Development',
-												'Content Creation',
-												'AI Integration'
-											].map((tag) => (
-												<span
-													key={tag}
-													className="bg-muted text-primary border-border rounded-full border px-3 py-1.5 text-xs font-medium">
-													{tag}
-												</span>
-											))}
-										</div>
-									</div>
-								</div>
-							</div>
-
-							{/* Testimonials */}
+			{/* Services Overview */}
+			<section id="services" className="border-border border-t py-24 lg:py-32">
+				<Container width="base">
+					<div className="space-y-16">
+						{/* For Companies */}
+						<div className="group border-border hover:border-primary/20 from-background to-muted/30 relative overflow-hidden rounded-2xl border bg-gradient-to-br p-12 transition-all duration-300 lg:p-16">
 							<div className="space-y-8">
-								<div className="grid gap-8 md:grid-cols-2">
-									<blockquote className="group border-border bg-muted hover:bg-card hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-										<div className="text-muted absolute top-0 right-0 -mt-4 -mr-4 font-serif text-8xl leading-none select-none">
-											&ldquo;
-										</div>
-										<div className="relative z-10">
-											<p className="text-foreground text-lg leading-relaxed">
-												Working with Lauro is always a great experience. His
-												technical guidance and patience make complex projects
-												feel manageable.
-											</p>
-											<div className="border-muted mt-6 flex items-center gap-4 border-t pt-6">
-												<div className="ring-border group-hover:ring-primary relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 transition-all">
-													<Image
-														src="https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/p3eglqeb7qfvsfzvh3qr.jpg"
-														alt="Alejandro Nanez"
-														fill
-														className="object-cover"
-													/>
-												</div>
-												<div className="min-w-0 space-y-1">
-													<p className="text-base font-semibold">
-														Alejandro Nanez
-													</p>
-													<p className="text-muted-foreground text-sm">
-														Staff Engineer
-													</p>
-												</div>
-											</div>
-										</div>
-									</blockquote>
-
-									<blockquote className="group border-border bg-muted hover:bg-card hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-										<div className="text-muted absolute top-0 right-0 -mt-4 -mr-4 font-serif text-8xl leading-none select-none">
-											&ldquo;
-										</div>
-										<div className="relative z-10">
-											<p className="text-foreground text-lg leading-relaxed">
-												Lauro is a total pro. His guidance helped us not only
-												create polished onboarding videos, but also build the
-												capability to create additional content independently.
-											</p>
-											<div className="border-muted mt-6 flex items-center gap-4 border-t pt-6">
-												<div className="ring-border group-hover:ring-primary relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 transition-all">
-													<Image
-														src="https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/ok4aceenrvijrjcafxba.jpg"
-														alt="Andrew Hedges"
-														fill
-														className="object-cover"
-													/>
-												</div>
-												<div className="min-w-0 space-y-1">
-													<p className="text-base font-semibold">
-														Andrew Hedges
-													</p>
-													<p className="text-muted-foreground text-sm">
-														Assistiv Labs
-													</p>
-												</div>
-											</div>
-										</div>
-									</blockquote>
+								<div className="space-y-4">
+									<div className="inline-flex items-center gap-2">
+										<div className="bg-primary h-2 w-2 rounded-full" />
+										<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+											For Companies
+										</span>
+									</div>
+									<h2 className="text-3xl font-bold tracking-tight lg:text-5xl">
+										Ship Faster, Build Smarter
+									</h2>
+									<p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
+										Technical leadership and developer training to help your
+										team make better decisions, improve your stack, and deliver
+										products that actually work.
+									</p>
 								</div>
 
-								<blockquote className="group border-border bg-muted hover:bg-card hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-									<div className="text-muted absolute top-0 right-0 -mt-4 -mr-4 font-serif text-8xl leading-none select-none">
-										&ldquo;
-									</div>
-									<div className="relative z-10">
-										<p className="text-foreground text-lg leading-relaxed">
-											An hour with Lauro helped me untangle my thoughts and make
-											a concrete plan. If you need dev content strategy,
-											he&apos;s your person.
-										</p>
-										<div className="border-muted mt-6 flex items-center gap-4 border-t pt-6">
-											<div className="ring-border group-hover:ring-primary relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 transition-all">
-												<Image
-													src="https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/py2kbwptjbxfdqpoepkj.jpg"
-													alt="Jason Lengstorf"
-													fill
-													className="object-cover"
-												/>
-											</div>
-											<div className="min-w-0 space-y-1">
-												<p className="text-base font-semibold">
-													Jason Lengstorf
-												</p>
-												<p className="text-muted-foreground text-sm">
-													Learn With Jason
-												</p>
-											</div>
-										</div>
-									</div>
-								</blockquote>
-							</div>
-
-							<div className="pt-4">
-								<Button asChild size="lg" variant="default" className="group">
-									<Link href="/services/companies">
-										Learn more about company services
-										<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-									</Link>
-								</Button>
-							</div>
-						</div>
-					</div>
-				</Container>
-			</section>
-
-			{/* Divider */}
-			<div className="relative py-12 lg:py-16">
-				<div className="via-border absolute top-1/2 right-0 left-0 h-px bg-linear-to-r from-transparent to-transparent" />
-				<div className="relative flex items-center justify-center">
-					<div className="bg-background px-6">
-						<div className="bg-primary h-3 w-3 rounded-full" />
-					</div>
-				</div>
-			</div>
-
-			{/* Athletes Section */}
-			<section className="py-24 lg:py-32">
-				<Container size="xl">
-					{/* Section Header */}
-					<div className="mb-16 lg:mb-24">
-						<div className="max-w-3xl">
-							<h2 className="mb-6 text-3xl font-bold tracking-tight lg:text-5xl xl:text-6xl">
-								Own Your Platform
-							</h2>
-							<div className="text-muted-foreground space-y-4 text-lg leading-relaxed lg:text-xl">
-								<p>
-									I build custom platforms for professional athletes, complete
-									solutions you own. Your digital home base to grow your brand,
-									connect with your community, and share what matters. Tailored
-									to your needs: coaching content, educational resources,
-									audience building, brand management. Designed to grow with you
-									as your career evolves.
-								</p>
-							</div>
-						</div>
-					</div>
-
-					<div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
-						{/* Content */}
-						<div className="order-2 space-y-16 lg:order-1 lg:col-span-7 lg:space-y-20">
-							{/* What I Build */}
-							<div className="group border-border bg-muted hover:bg-card hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-								<div className="bg-muted absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
-								<div className="relative z-10">
-									<div className="mb-6 flex items-center gap-3">
-										<div className="bg-primary h-2.5 w-2.5 rounded-full transition-transform group-hover:scale-125" />
-										<h3 className="text-xl font-semibold tracking-tight lg:text-2xl">
-											What I build
+								<div className="grid gap-6 md:grid-cols-2">
+									<div className="space-y-3">
+										<h3 className="text-foreground text-lg font-semibold">
+											Technical Leadership
 										</h3>
-									</div>
-									<div className="text-muted-foreground space-y-4 text-base leading-relaxed">
-										<p>
-											Custom platforms built with React and modern web
-											technologies. Not templates. Built specifically to reflect
-											your story, support your content strategy, and connect
-											with your community.
-										</p>
-										<p>
-											I also provide consulting on marketing strategy and how
-											the platform fits into your broader content and brand
-											goals.
+										<p className="text-muted-foreground text-base leading-relaxed">
+											Architecture planning, code reviews, technical strategy,
+											and hands-on development. I help teams make better
+											decisions and build products that scale.
 										</p>
 									</div>
-									<div className="flex flex-wrap gap-2 pt-6">
+
+									<div className="space-y-3">
+										<h3 className="text-foreground text-lg font-semibold">
+											Developer Training
+										</h3>
+										<p className="text-muted-foreground text-base leading-relaxed">
+											Workshops and curriculum focused on React, Next.js,
+											TypeScript, and AI integration. Educational content that's
+											effective, not just informative.
+										</p>
+									</div>
+								</div>
+
+								<div className="border-border flex flex-wrap items-center justify-between gap-6 border-t pt-8">
+									<div className="flex flex-wrap gap-2">
 										{[
-											'Custom Platforms',
-											'Content Strategy',
-											'Brand Narrative',
-											'Community Building'
+											'React',
+											'Next.js',
+											'TypeScript',
+											'Architecture',
+											'AI Integration'
 										].map((tag) => (
 											<span
 												key={tag}
-												className="bg-muted text-primary border-border rounded-full border px-3 py-1.5 text-xs font-medium">
+												className="bg-muted text-muted-foreground rounded-full px-3 py-1 text-xs font-medium">
 												{tag}
 											</span>
 										))}
 									</div>
+									<Button
+										asChild
+										variant="ghost"
+										className="group/btn text-primary hover:text-primary">
+										<Link href="/services/companies">
+											Learn more
+											<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+										</Link>
+									</Button>
 								</div>
 							</div>
+						</div>
 
-							{/* Who I Work With */}
-							<div className="group border-border bg-muted hover:bg-card hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-								<div className="bg-muted absolute top-0 right-0 h-32 w-32 translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
-								<div className="relative z-10">
-									<div className="mb-6 flex items-center gap-3">
-										<div className="bg-primary h-2.5 w-2.5 rounded-full transition-transform group-hover:scale-125" />
-										<h3 className="text-xl font-semibold tracking-tight lg:text-2xl">
-											Who I work with
-										</h3>
+						{/* For Athletes */}
+						<div className="group border-border hover:border-primary/20 from-background to-muted/30 relative overflow-hidden rounded-2xl border bg-gradient-to-br p-12 transition-all duration-300 lg:p-16">
+							<div className="space-y-8">
+								<div className="space-y-4">
+									<div className="inline-flex items-center gap-2">
+										<div className="bg-primary h-2 w-2 rounded-full" />
+										<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+											For Athletes
+										</span>
 									</div>
-									<div className="text-muted-foreground space-y-4 text-base leading-relaxed">
-										<p>
-											I work exclusively with professional athletes in the
-											outdoor industry, across multiple sports including trail
-											running, climbing, cycling, and more. If you&apos;re at a
-											stage where you need to own your platform and build
-											something custom that reflects your brand and supports
-											your career, we might be a good fit.
+									<h2 className="text-3xl font-bold tracking-tight lg:text-5xl">
+										Your Platform, Your Rules
+									</h2>
+									<p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
+										Custom platforms built for professional athletes. Not
+										templates. Not rentals. Complete solutions you own that grow
+										with your career.
+									</p>
+								</div>
+
+								<div className="grid gap-6 md:grid-cols-2">
+									<div className="space-y-3">
+										<h3 className="text-foreground text-lg font-semibold">
+											Custom Development
+										</h3>
+										<p className="text-muted-foreground text-base leading-relaxed">
+											Built specifically to reflect your story and support your
+											content strategy. Not templates. Complete solutions you
+											own.
 										</p>
 									</div>
-									<div className="flex flex-wrap gap-2 pt-6">
+
+									<div className="space-y-3">
+										<h3 className="text-foreground text-lg font-semibold">
+											Strategy & Support
+										</h3>
+										<p className="text-muted-foreground text-base leading-relaxed">
+											Marketing strategy, content planning, and how the platform
+											fits into your broader brand goals. Built to grow with
+											your career.
+										</p>
+									</div>
+								</div>
+
+								<div className="border-border flex flex-wrap items-center justify-between gap-6 border-t pt-8">
+									<div className="flex flex-wrap gap-2">
 										{[
 											'Trail Running',
 											'Climbing',
 											'Cycling',
-											'Outdoor Sports'
+											'Brand Strategy',
+											'Community'
 										].map((tag) => (
 											<span
 												key={tag}
-												className="bg-muted text-primary border-border rounded-full border px-3 py-1.5 text-xs font-medium">
+												className="bg-muted text-muted-foreground rounded-full px-3 py-1 text-xs font-medium">
 												{tag}
 											</span>
 										))}
 									</div>
-								</div>
-							</div>
-
-							{/* Testimonial */}
-							<blockquote className="group border-border bg-muted hover:bg-card hover:border-border relative space-y-6 overflow-hidden rounded-2xl border p-8 transition-all duration-300 lg:p-10">
-								<div className="text-muted absolute top-0 right-0 -mt-4 -mr-4 font-serif text-8xl leading-none select-none">
-									&ldquo;
-								</div>
-								<div className="relative z-10">
-									<p className="text-foreground text-lg leading-relaxed">
-										Lauro&apos;s expertise bridges technology and brand
-										strategy. He understands how to connect technical excellence
-										with authentic storytelling.
-									</p>
-									<div className="border-muted mt-6 flex items-center gap-4 border-t pt-6">
-										<div className="ring-border group-hover:ring-primary relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 transition-all">
-											<Image
-												src="https://res.cloudinary.com/laurosilvacom/image/upload/v1731436030/laurosilvacom/hire-me-page/ru1j6csfgvj2af4b1dn6.webp"
-												alt="Emily Schmitz"
-												fill
-												className="object-cover"
-											/>
-										</div>
-										<div className="min-w-0 space-y-1">
-											<p className="text-base font-semibold">Emily Schmitz</p>
-											<p className="text-muted-foreground text-sm">
-												HOKA Athlete
-											</p>
-										</div>
-									</div>
-								</div>
-							</blockquote>
-
-							<div className="pt-4">
-								<Button asChild size="lg" variant="default" className="group">
-									<Link href="/services/athletes">
-										Learn more about athlete platforms
-										<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-									</Link>
-								</Button>
-							</div>
-						</div>
-
-						{/* Image */}
-						<div className="order-1 lg:order-2 lg:col-span-5">
-							<div className="sticky top-32">
-								<div className="group relative aspect-4/5 lg:aspect-3/4">
-									<div className="from-muted absolute inset-0 -z-10 rounded-2xl bg-linear-to-br to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-									<Image
-										src="/photos/website-photo-12.jpg"
-										alt="Custom athlete platforms"
-										fill
-										className="rounded-2xl object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-										sizes="(max-width: 1024px) 100vw, 40vw"
-									/>
+									<Button
+										asChild
+										variant="ghost"
+										className="group/btn text-primary hover:text-primary">
+										<Link href="/services/athletes">
+											Learn more
+											<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+										</Link>
+									</Button>
 								</div>
 							</div>
 						</div>
@@ -498,61 +207,124 @@ export default function ServicesPage() {
 				</Container>
 			</section>
 
-			{/* Clients Section */}
+			{/* Technologies & Companies */}
 			<section className="border-border border-t py-24 lg:py-32">
-				<Container size="xl">
-					<div className="space-y-12">
-						<div className="space-y-4 text-center">
-							<p className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
-								Working with teams at
+				<Container width="base">
+					<div className="grid gap-16 lg:grid-cols-2">
+						{/* Technologies */}
+						<div className="space-y-8">
+							<div className="space-y-4">
+								<div className="inline-flex items-center gap-2">
+									<div className="bg-primary h-2 w-2 rounded-full" />
+									<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+										Tech Stack
+									</span>
+								</div>
+								<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
+									Technologies I Work With
+								</h2>
+							</div>
+
+							<div className="flex flex-wrap gap-3">
+								{[
+									{name: 'React', domain: 'react.dev'},
+									{name: 'Next.js', domain: 'nextjs.org'},
+									{name: 'TypeScript', domain: 'typescriptlang.org'},
+									{name: 'Node.js', domain: 'nodejs.org'},
+									{name: 'Tailwind CSS', domain: 'tailwindcss.com'},
+									{name: 'Sanity', domain: 'sanity.io'},
+									{name: 'Vercel', domain: 'vercel.com'}
+								].map((tech) => (
+									<div
+										key={tech.name}
+										className="border-border bg-muted/50 flex items-center gap-2 rounded-full border px-4 py-2">
+										<img
+											src={`https://www.google.com/s2/favicons?domain=${tech.domain}&sz=16`}
+											alt={tech.name}
+											className="h-4 w-4"
+										/>
+										<span className="text-sm font-medium">{tech.name}</span>
+									</div>
+								))}
+								<div className="border-border bg-muted/50 flex items-center gap-2 rounded-full border px-4 py-2">
+									<span className="text-sm font-medium">Claude & GPT-4</span>
+								</div>
+							</div>
+
+							<p className="text-muted-foreground text-base leading-relaxed">
+								Practical, production-ready solutions using battle-tested tools
+								your team can maintain long-term.
 							</p>
 						</div>
-						<div className="grid grid-cols-2 items-center justify-items-center gap-12 md:grid-cols-3 lg:gap-16">
-							{[
-								{src: '/google.png', alt: 'Google', width: 90},
-								{src: '/oreilly.svg', alt: "O'Reilly", width: 90},
-								{src: '/sentry.png', alt: 'Sentry', width: 110}
-							].map((logo) => (
-								<div key={logo.alt} className="w-24 sm:w-32 lg:w-36">
-									<Image
-										src={logo.src}
-										alt={logo.alt}
-										width={logo.width}
-										height={30}
-										className="h-auto w-full"
-									/>
+
+						{/* Companies */}
+						<div className="space-y-8">
+							<div className="space-y-4">
+								<div className="inline-flex items-center gap-2">
+									<div className="bg-primary h-2 w-2 rounded-full" />
+									<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+										Experience
+									</span>
 								</div>
-							))}
+								<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
+									Companies I&apos;ve Worked With
+								</h2>
+							</div>
+
+							<div className="flex flex-wrap gap-3">
+								{[
+									{name: 'Google', domain: 'google.com'},
+									{name: "O'Reilly", domain: 'oreilly.com'},
+									{name: 'Sentry', domain: 'sentry.io'},
+									{name: 'HOKA', domain: 'hoka.com'},
+									{name: 'egghead', domain: 'egghead.io'},
+									{name: 'Test Double', domain: 'testdouble.com'}
+								].map((company) => (
+									<div
+										key={company.name}
+										className="border-border bg-muted/50 flex items-center gap-2 rounded-full border px-4 py-2">
+										<img
+											src={`https://www.google.com/s2/favicons?domain=${company.domain}&sz=16`}
+											alt={company.name}
+											className="h-4 w-4"
+										/>
+										<span className="text-sm font-medium">{company.name}</span>
+									</div>
+								))}
+							</div>
+
+							<p className="text-muted-foreground text-base leading-relaxed">
+								Enterprise-level expertise helping teams build better products
+								and stronger engineering capabilities.
+							</p>
 						</div>
 					</div>
 				</Container>
 			</section>
 
-			{/* CTA Section */}
-			<section className="border-border from-background to-background border-t bg-linear-to-b py-24 lg:py-32">
-				<Container size="xl">
-					<div className="mx-auto max-w-4xl">
-						<div className="border-border bg-muted space-y-8 rounded-3xl border p-12 text-center backdrop-blur-sm lg:p-16">
-							<div className="space-y-6">
-								<h2 className="text-3xl font-bold tracking-tight lg:text-5xl xl:text-6xl">
-									Ready to work together?
-								</h2>
-								<p className="text-muted-foreground mx-auto max-w-2xl text-lg leading-relaxed lg:text-xl">
-									Let&apos;s discuss how I can help your team build better
-									products or create a custom platform that supports your brand.
-								</p>
-							</div>
-							<div className="pt-4">
-								<Button asChild size="lg" className="group">
-									<Link
-										href="https://cal.com/laurosilvacom/chat"
-										target="_blank"
-										rel="noopener noreferrer">
-										Book a free consultation
-										<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-									</Link>
-								</Button>
-							</div>
+			{/* CTA */}
+			<section className="border-border border-t py-24 lg:py-32">
+				<Container width="base">
+					<div className="border-border bg-muted/50 space-y-8 rounded-2xl border p-12 text-center lg:p-16">
+						<div className="space-y-6">
+							<h2 className="text-3xl font-bold tracking-tight lg:text-5xl">
+								Ready to work together?
+							</h2>
+							<p className="text-muted-foreground mx-auto max-w-2xl text-lg leading-relaxed lg:text-xl">
+								Let&apos;s discuss how I can help your team build better
+								products or create a custom platform that supports your brand.
+							</p>
+						</div>
+						<div className="pt-4">
+							<Button asChild size="lg" className="group">
+								<Link
+									href="https://cal.com/laurosilvacom/chat"
+									target="_blank"
+									rel="noopener noreferrer">
+									Schedule a free consultation
+									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+								</Link>
+							</Button>
 						</div>
 					</div>
 				</Container>

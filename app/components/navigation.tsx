@@ -57,38 +57,38 @@ export function Navigation() {
 
 	return (
 		<>
-			{/* Desktop Navigation - Floating */}
+			{/* Desktop Navigation */}
 			<nav
 				className={cn(
 					'fixed top-0 right-0 left-0 z-50 hidden lg:block',
-					isScrolled ? 'py-4' : 'py-6'
+					isScrolled ? 'py-3' : 'py-5'
 				)}
-				style={{transition: 'padding 0.5s ease', paddingRight: '10px'}}>
-				<Container size="xl">
+				style={{transition: 'padding 0.3s ease'}}>
+				<Container width="wide">
 					<div
 						className={cn(
-							'flex items-center rounded-full border backdrop-blur-xl',
-							'min-w-0',
+							'flex items-center gap-8 rounded-full border backdrop-blur-xl',
 							isScrolled
-								? 'bg-background/60 border-border/50 px-6 py-3 shadow-lg shadow-black/5'
-								: 'bg-background/40 border-border/40 px-8 py-4'
+								? 'bg-background/90 border-border/60 px-5 py-2.5 shadow-sm'
+								: 'bg-background/60 border-border/40 px-6 py-3'
 						)}
 						style={{
 							transition:
-								'background-color 0.5s ease, border-color 0.5s ease, padding 0.5s ease, box-shadow 0.5s ease'
+								'background-color 0.3s ease, border-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease'
 						}}>
+						{/* Logo */}
 						<Link
 							href="/"
-							className="group flex shrink-0 items-center gap-2.5"
+							className="group flex shrink-0 items-center gap-3"
 							aria-label="Home">
 							<div className="relative shrink-0">
 								<svg
-									width="20"
-									height="32"
+									width="18"
+									height="30"
 									viewBox="0 0 385 655"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
-									className="fill-foreground transition-transform duration-300 group-hover:scale-110">
+									className="fill-foreground transition-transform duration-200 group-hover:scale-105">
 									<path
 										fillRule="evenodd"
 										clipRule="evenodd"
@@ -96,14 +96,18 @@ export function Navigation() {
 									/>
 								</svg>
 							</div>
-							<span className="text-sm font-semibold tracking-tight whitespace-nowrap">
+							<span
+								className="text-foreground text-base font-bold tracking-tight whitespace-nowrap"
+								style={{
+									fontFamily: "'Elan ITC Std', serif",
+									letterSpacing: '-0.02em'
+								}}>
 								Lauro Silva
 							</span>
 						</Link>
 
-						<div
-							className="ml-auto flex shrink-0 items-center gap-1"
-							style={{width: 'auto', minWidth: 0}}>
+						{/* Navigation Links */}
+						<div className="flex flex-1 items-center justify-center gap-1">
 							{navItems.map(({path, name}) => {
 								const isActive = pathname === path
 								return (
@@ -111,15 +115,15 @@ export function Navigation() {
 										key={path}
 										href={path}
 										className={cn(
-											'relative shrink-0 rounded-full px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors',
+											'relative rounded-full px-4 py-1.5 text-sm font-medium transition-colors',
 											isActive
 												? 'text-foreground'
 												: 'text-muted-foreground hover:text-foreground'
 										)}>
 										{isActive && (
-											<span className="bg-primary/10 absolute inset-0 -z-10 rounded-full" />
+											<span className="border-border absolute inset-0 -z-10 rounded-full border" />
 										)}
-										{name}
+										<span className="relative">{name}</span>
 									</Link>
 								)
 							})}
@@ -133,30 +137,27 @@ export function Navigation() {
 									<button
 										type="button"
 										className={cn(
-											'relative flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors',
+											'relative flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium transition-colors',
 											pathname.startsWith('/services')
 												? 'text-foreground'
 												: 'text-muted-foreground hover:text-foreground'
-										)}
-										style={{minWidth: '100px', width: 'auto'}}>
+										)}>
 										{pathname.startsWith('/services') && (
-											<span className="bg-primary/10 absolute inset-0 -z-10 rounded-full" />
+											<span className="border-border absolute inset-0 -z-10 rounded-full border" />
 										)}
-										<Briefcase className="h-3.5 w-3.5 shrink-0" />
-										<span className="whitespace-nowrap">Services</span>
+										<span className="relative">Services</span>
 										<ChevronDown
 											className={cn(
-												'h-3 w-3 shrink-0 opacity-60 transition-transform duration-200',
+												'relative h-3 w-3 opacity-50 transition-transform duration-200',
 												isServicesOpen && 'rotate-180'
 											)}
 										/>
 									</button>
 								</DropdownMenuTrigger>
 								<DropdownMenuContent
-									align="end"
-									sideOffset={8}
-									avoidCollisions={true}
-									className="bg-background/95 border-border/50 min-w-[220px] p-2 shadow-xl backdrop-blur-xl">
+									align="center"
+									sideOffset={12}
+									className="bg-background/95 border-border/60 min-w-[200px] backdrop-blur-xl">
 									{serviceItems.map(({path, name, icon: Icon}) => {
 										const isActive = pathname === path
 										return (
@@ -164,20 +165,20 @@ export function Navigation() {
 												<Link
 													href={path}
 													className={cn(
-														'flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 transition-all',
+														'flex cursor-pointer items-center gap-3 px-3 py-2.5 transition-colors',
 														isActive
-															? 'bg-primary/10 text-foreground font-medium'
-															: 'hover:bg-accent/50 text-muted-foreground hover:text-foreground'
+															? 'text-foreground bg-muted/50 font-medium'
+															: 'text-muted-foreground hover:bg-muted/30 hover:text-foreground'
 													)}>
 													<Icon
 														className={cn(
-															'h-4 w-4 shrink-0',
+															'h-4 w-4',
 															isActive
 																? 'text-primary'
 																: 'text-muted-foreground'
 														)}
 													/>
-													<span>{name}</span>
+													<span className="text-sm">{name}</span>
 												</Link>
 											</DropdownMenuItem>
 										)
@@ -186,9 +187,8 @@ export function Navigation() {
 							</DropdownMenu>
 						</div>
 
-						<div
-							className="ml-4 flex shrink-0 items-center gap-3"
-							style={{width: 'auto', minWidth: 0}}>
+						{/* Theme Toggle */}
+						<div className="flex shrink-0">
 							<ModeToggle />
 						</div>
 					</div>
@@ -200,8 +200,8 @@ export function Navigation() {
 				className={cn(
 					'fixed top-0 right-0 left-0 z-50 transition-all duration-300 lg:hidden',
 					isScrolled
-						? 'bg-background/80 border-border/50 border-b backdrop-blur-xl'
-						: 'bg-background/40 border-border/30 border-b backdrop-blur-sm'
+						? 'bg-background/90 border-border/60 border-b backdrop-blur-xl'
+						: 'bg-background/60 border-border/40 border-b backdrop-blur-sm'
 				)}>
 				<div className="flex h-16 items-center justify-between px-4 sm:px-6">
 					<Link
@@ -209,8 +209,8 @@ export function Navigation() {
 						className="flex items-center gap-2.5"
 						aria-label="Home">
 						<svg
-							width="18"
-							height="28"
+							width="16"
+							height="26"
 							viewBox="0 0 385 655"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
@@ -221,7 +221,12 @@ export function Navigation() {
 								d="M385 357.926L43.7135 655L149.934 395.013L0 297.046L341.286 0L225.757 276.58L385 357.926Z"
 							/>
 						</svg>
-						<span className="text-sm font-semibold tracking-tight">
+						<span
+							className="text-foreground text-sm font-bold tracking-tight whitespace-nowrap"
+							style={{
+								fontFamily: "'Elan ITC Std', serif",
+								letterSpacing: '-0.02em'
+							}}>
 							Lauro Silva
 						</span>
 					</Link>
@@ -236,7 +241,7 @@ export function Navigation() {
 							<div className="relative h-5 w-5">
 								<span
 									className={cn(
-										'bg-foreground absolute top-0 left-0 h-0.5 w-5 transition-all duration-300',
+										'bg-foreground absolute left-0 h-0.5 w-5 transition-all duration-300',
 										isMenuOpen ? 'top-2 rotate-45' : 'top-0'
 									)}
 								/>
@@ -248,7 +253,7 @@ export function Navigation() {
 								/>
 								<span
 									className={cn(
-										'bg-foreground absolute top-4 left-0 h-0.5 w-5 transition-all duration-300',
+										'bg-foreground absolute left-0 h-0.5 w-5 transition-all duration-300',
 										isMenuOpen ? 'top-2 -rotate-45' : 'top-4'
 									)}
 								/>
@@ -260,9 +265,9 @@ export function Navigation() {
 
 			{/* Mobile Menu Overlay */}
 			{isMenuOpen && (
-				<div className="bg-background/95 fixed inset-0 z-40 backdrop-blur-xl lg:hidden">
+				<div className="bg-background/98 fixed inset-0 z-40 backdrop-blur-xl lg:hidden">
 					<div className="flex h-full flex-col px-6 pt-20">
-						<nav className="flex flex-col gap-1">
+						<nav className="flex flex-col gap-2">
 							{navItems.map(({path, name}) => {
 								const isActive = pathname === path
 								return (
@@ -271,7 +276,7 @@ export function Navigation() {
 										href={path}
 										onClick={() => setIsMenuOpen(false)}
 										className={cn(
-											'py-4 text-2xl font-semibold transition-colors',
+											'border-border/50 border-b py-4 text-2xl font-semibold transition-colors',
 											isActive ? 'text-foreground' : 'text-muted-foreground'
 										)}>
 										{name}
@@ -280,12 +285,12 @@ export function Navigation() {
 							})}
 
 							{/* Services Section */}
-							<div className="pt-2">
-								<div className="text-foreground flex items-center gap-2 py-4 text-2xl font-semibold">
-									<Briefcase className="h-5 w-5" />
+							<div className="border-border/50 border-b pt-4">
+								<div className="text-foreground flex items-center gap-2 pb-3 text-lg font-semibold tracking-wide uppercase">
+									<Briefcase className="h-4 w-4" />
 									Services
 								</div>
-								<div className="flex flex-col gap-1 pl-4">
+								<div className="flex flex-col gap-1 pb-4">
 									{serviceItems.map(({path, name, icon: Icon}) => {
 										const isActive = pathname === path
 										return (
@@ -294,14 +299,14 @@ export function Navigation() {
 												href={path}
 												onClick={() => setIsMenuOpen(false)}
 												className={cn(
-													'flex items-center gap-3 rounded-lg px-2 py-2.5 text-lg transition-all',
+													'flex items-center gap-3 rounded-lg px-3 py-3 text-lg transition-colors',
 													isActive
-														? 'text-foreground bg-primary/10 font-medium'
-														: 'text-muted-foreground hover:text-foreground hover:bg-accent/30'
+														? 'text-foreground bg-muted/50 font-medium'
+														: 'text-muted-foreground hover:bg-muted/30 hover:text-foreground'
 												)}>
 												<Icon
 													className={cn(
-														'h-4 w-4 shrink-0',
+														'h-4 w-4',
 														isActive ? 'text-primary' : 'text-muted-foreground'
 													)}
 												/>

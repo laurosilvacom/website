@@ -68,72 +68,110 @@ export default async function Page() {
 	return (
 		<>
 			{/* Hero Section */}
-			<section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden pt-24 pb-16 lg:min-h-screen lg:pt-32 lg:pb-24">
-				<div className="from-background via-background/95 to-background pointer-events-none absolute inset-0 bg-linear-to-b" />
+			<section className="border-border border-b pt-32 pb-24 lg:pt-40 lg:pb-32">
+				<Container width="base">
+					<div className="mx-auto max-w-4xl space-y-12 text-center">
+						<div className="space-y-8">
+							<h1 className="text-5xl leading-[1.1] font-bold tracking-tight lg:text-6xl xl:text-7xl">
+								Build Software,
+								<br />
+								Grow Communities,
+								<br />
+								Shred Trails
+							</h1>
+							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
+								I'm Lauro Silva. I write code for the outdoor industry, founded
+								Tierra Libre Run to make trail running more accessible, and race
+								as a semi-pro athlete. This is where I share what I'm learning.
+							</p>
+						</div>
+						<div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+							<Button asChild size="lg" className="group">
+								<Link href="/blog">
+									Read my writing
+									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+								</Link>
+							</Button>
+							<Button asChild size="lg" variant="ghost">
+								<Link href="/about">About me</Link>
+							</Button>
+						</div>
+					</div>
+				</Container>
+			</section>
 
-				<Container size="xl" className="relative z-10">
-					<div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-						{/* Image */}
-						<div className="order-2 lg:order-1 lg:col-span-5">
-							<div className="relative aspect-4/5 lg:aspect-3/4">
-								<Image
-									src="/photos/website-photo-1.jpg"
-									alt="Lauro Silva"
-									fill
-									className="rounded-2xl object-cover"
-									style={{objectPosition: 'right center'}}
-									priority
-									sizes="(max-width: 1024px) 100vw, 40vw"
-								/>
+			{/* Hero Image */}
+			<section className="border-border border-b py-24 lg:py-32">
+				<Container width="wide">
+					<div className="relative aspect-4/3 overflow-hidden rounded-2xl lg:aspect-16/9">
+						<Image
+							src="/photos/website-photo-1.jpg"
+							alt="Lauro Silva"
+							fill
+							className="object-cover"
+							style={{objectPosition: 'center'}}
+							priority
+							sizes="100vw"
+						/>
+					</div>
+				</Container>
+			</section>
+
+			{/* What I Do */}
+			<section className="border-border border-b py-24 lg:py-32">
+				<Container width="base">
+					<div className="grid gap-8 md:grid-cols-3">
+						<div className="space-y-3">
+							<div className="flex items-center gap-2">
+								<div className="bg-primary h-2 w-2 rounded-full" />
+								<h3 className="text-lg font-semibold">Software Engineer</h3>
 							</div>
+							<p className="text-muted-foreground text-base leading-relaxed">
+								I build products for companies like HOKA and Sentry, and custom
+								platforms for professional athletes.
+							</p>
 						</div>
 
-						{/* Content */}
-						<div className="order-1 space-y-8 lg:order-2 lg:col-span-7 lg:space-y-12">
-							<div className="space-y-6 lg:space-y-8">
-								<h1 className="max-w-5xl text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-7xl xl:text-8xl">
-									Hey, I'm Lauro!
-								</h1>
-								<div className="text-muted-foreground max-w-2xl space-y-4 text-lg leading-relaxed lg:text-xl">
-									<p>
-										This is a{' '}
-										<strong className="text-foreground">digital garden</strong>.
-										where I share my work, writing, and learning process at the
-										intersection of technology and the outdoor industry.
-									</p>
-									<p>
-										I work as a software engineer building cutting-edge
-										technology for the outdoor industry, help professional
-										athletes use technology to build brands, and build inclusive
-										communities in the trail running space.
-									</p>
-								</div>
+						<div className="space-y-3">
+							<div className="flex items-center gap-2">
+								<div className="bg-primary h-2 w-2 rounded-full" />
+								<h3 className="text-lg font-semibold">Community Builder</h3>
 							</div>
-							<div className="pt-4">
-								<Button asChild size="lg" className="group">
-									<Link href="/blog">
-										Explore the garden
-										<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-									</Link>
-								</Button>
+							<p className="text-muted-foreground text-base leading-relaxed">
+								Founded Tierra Libre Run, a nonprofit expanding access to trail
+								running for BIPOC athletes across the Pacific Northwest.
+							</p>
+						</div>
+
+						<div className="space-y-3">
+							<div className="flex items-center gap-2">
+								<div className="bg-primary h-2 w-2 rounded-full" />
+								<h3 className="text-lg font-semibold">Trail Runner</h3>
 							</div>
+							<p className="text-muted-foreground text-base leading-relaxed">
+								Racing ultras and mountain races while helping other athletes
+								build their brands through technology.
+							</p>
 						</div>
 					</div>
 				</Container>
 			</section>
 
 			{/* Recent Writings */}
-			<section className="border-border/50 border-t py-24 lg:py-32">
-				<Container size="xl">
+			<section className="py-24 lg:py-32">
+				<Container width="wide">
 					<div className="space-y-12 lg:space-y-16">
 						<div className="flex items-end justify-between">
-							<div>
-								<h2 className="mb-2 text-3xl font-bold tracking-tight lg:text-5xl">
-									Recent Writings
+							<div className="space-y-2">
+								<div className="inline-flex items-center gap-2">
+									<div className="bg-primary h-2 w-2 rounded-full" />
+									<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+										Writing
+									</span>
+								</div>
+								<h2 className="text-3xl font-bold tracking-tight lg:text-4xl">
+									Recent Posts
 								</h2>
-								<p className="text-muted-foreground text-lg">
-									Latest thoughts and explorations
-								</p>
 							</div>
 							<Button variant="ghost" asChild className="hidden lg:flex">
 								<Link href="/blog">
