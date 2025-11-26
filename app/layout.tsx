@@ -2,6 +2,7 @@ import {type Metadata} from 'next/types'
 import {type ReactNode} from 'react'
 import {ThemeProvider} from '@/components/theme-provider'
 import Script from 'next/script'
+import {Analytics} from '@vercel/analytics/next'
 
 import '@/app/globals.css'
 
@@ -188,6 +189,7 @@ export default function RootLayout({children}: RootLayoutProps) {
 				<StructuredData type="website" />
 				<StructuredData type="person" />
 				<Toaster />
+				<Analytics />
 			</body>
 		</html>
 	)
