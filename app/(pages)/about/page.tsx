@@ -115,7 +115,7 @@ export default function AboutPage() {
 								</div>
 								<div className="relative aspect-4/5 overflow-hidden rounded-2xl lg:aspect-3/4">
 									<Image
-										src="/photos/website-photo-9.jpg"
+										src="/photos/website-photo-1.jpg"
 										alt="Software engineering"
 										fill
 										className="object-cover"
@@ -129,7 +129,7 @@ export default function AboutPage() {
 								<div className="order-2 space-y-6 lg:order-1">
 									<div className="relative aspect-4/5 overflow-hidden rounded-2xl lg:aspect-3/4">
 										<Image
-											src="/photos/website-photo-4.jpg"
+											src="/photos/website-photo-16.jpg"
 											alt="Community building"
 											fill
 											className="object-cover"
@@ -216,7 +216,7 @@ export default function AboutPage() {
 								</div>
 								<div className="relative aspect-4/5 overflow-hidden rounded-2xl lg:aspect-3/4">
 									<Image
-										src="/photos/website-photo-11.jpg"
+										src="/photos/website-photo-7.jpg"
 										alt="Trail running"
 										fill
 										className="object-cover"
@@ -234,8 +234,8 @@ export default function AboutPage() {
 						<div className="grid gap-4 md:grid-cols-3">
 							{[
 								'/photos/website-photo-2.jpg',
-								'/photos/website-photo-3.jpg',
-								'/photos/website-photo-4.jpg'
+								'/photos/website-photo-17.jpg',
+								'/photos/website-photo-18.jpg'
 							].map((src, idx) => (
 								<div
 									key={src}

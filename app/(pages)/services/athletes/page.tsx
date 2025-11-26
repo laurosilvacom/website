@@ -57,10 +57,11 @@ export default function AthletesPage() {
 				<Container width="base">
 					<div className="relative aspect-16/10 overflow-hidden rounded-2xl lg:aspect-21/9">
 						<Image
-							src="/photos/website-photo-5.jpg"
+							src="/photos/website-photo-12.jpg"
 							alt="Custom athlete platforms"
 							fill
 							className="object-cover"
+							style={{objectPosition: 'center middle'}}
 							priority
 							sizes="100vw"
 						/>

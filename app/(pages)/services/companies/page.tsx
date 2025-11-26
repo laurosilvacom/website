@@ -57,10 +57,11 @@ export default function CompaniesPage() {
 				<Container width="base">
 					<div className="relative aspect-16/10 overflow-hidden rounded-2xl lg:aspect-21/9">
 						<Image
-							src="/photos/website-photo-7.jpg"
+							src="/photos/website-photo-4.jpg"
 							alt="Technical leadership"
 							fill
 							className="object-cover"
+							style={{objectPosition: 'center top'}}
 							priority
 							sizes="100vw"
 						/>
