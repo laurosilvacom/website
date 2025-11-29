@@ -1,6 +1,7 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {schemaTypes} from './sanity/schemas'
+import {codeInput} from '@sanity/code-input'
 
 export default defineConfig({
 	name: 'default',
@@ -8,9 +9,8 @@ export default defineConfig({
 	projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'ql7nlbjf',
 	dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
 	basePath: '/studio',
-	plugins: [structureTool()],
+	plugins: [structureTool(), codeInput()],
 	schema: {
 		types: schemaTypes
 	}
 })
-

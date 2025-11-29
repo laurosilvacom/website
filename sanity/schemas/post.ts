@@ -82,6 +82,9 @@ export default defineType({
 					]
 				},
 				{
+					type: 'code'
+				},
+				{
 					type: 'footnote'
 				}
 			]
