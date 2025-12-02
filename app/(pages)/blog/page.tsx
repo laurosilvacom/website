@@ -3,6 +3,8 @@ import Container from '@/components/container'
 import {formatDate, getBlogPosts} from '@/lib/blog'
 import {ArrowRight} from 'lucide-react'
 
+export const revalidate = 300 // Revalidate every 5 minutes
+
 export const metadata = {
 	title: 'Writing',
 	description: 'All writings and thoughts from Lauro Silva'

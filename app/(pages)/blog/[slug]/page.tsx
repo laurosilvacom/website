@@ -9,6 +9,8 @@ import {generateBlogPostMetadata} from '@/lib/metadata'
 import {baseUrl} from '@/app/sitemap'
 import {formatDate, getBlogPosts, getBlogPostBySlug} from '@/lib/blog'
 
+export const revalidate = 300 // Revalidate every 5 minutes
+
 interface BlogHeaderProps {
 	date: string
 	readingTime: string | undefined
