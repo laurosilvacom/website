@@ -58,9 +58,7 @@ function transformSanityPost(post: SanityPost): BlogPost {
  */
 export const getAllBlogPosts = cache(async (): Promise<BlogPost[]> => {
 	try {
-		const posts = await client.fetch<SanityPost[]>(postsQuery, {
-			next: {tags: ['post']}
-		})
+		const posts = await client.fetch<SanityPost[]>(postsQuery)
 		return posts.map(transformSanityPost)
 	} catch (error) {
 		console.error('Error fetching blog posts from Sanity:', error)
@@ -73,9 +71,7 @@ export const getAllBlogPosts = cache(async (): Promise<BlogPost[]> => {
  */
 export const getBlogPosts = cache(async (): Promise<BlogPost[]> => {
 	try {
-		const posts = await client.fetch<SanityPost[]>(postsQuery, {
-			next: {tags: ['post']}
-		})
+		const posts = await client.fetch<SanityPost[]>(postsQuery)
 		return posts
 			.filter((post) => !post.draft)
 			.map(transformSanityPost)
@@ -92,8 +88,7 @@ export const getBlogPostBySlug = cache(
 	async (slug: string): Promise<BlogPost | null> => {
 		try {
 			const post = await client.fetch<SanityPost | null>(postBySlugQuery, {
-				slug,
-				next: {tags: ['post']}
+				slug
 			})
 			if (!post) return null
 			return transformSanityPost(post)
