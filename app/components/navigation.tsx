@@ -17,7 +17,8 @@ import {
 const navItems = [
 	{path: '/', name: 'Home'},
 	{path: '/blog', name: 'Writing'},
-	{path: '/about', name: 'About'}
+	{path: '/about', name: 'About'},
+	{path: '/newsletter', name: 'Newsletter'}
 ]
 
 const serviceItems = [
@@ -67,10 +68,10 @@ export function Navigation() {
 				<Container width="wide">
 					<div
 						className={cn(
-							'flex items-center gap-8 rounded-full border backdrop-blur-xl',
+							'flex items-center gap-8 rounded-full border backdrop-blur-md',
 							isScrolled
-								? 'bg-background/90 border-border/60 px-5 py-2.5 shadow-sm'
-								: 'bg-background/60 border-border/40 px-6 py-3'
+								? 'bg-background/80 border-border/50 px-5 py-2.5 shadow-lg'
+								: 'bg-background/70 border-border/30 px-6 py-3'
 						)}
 						style={{
 							transition:
@@ -200,8 +201,8 @@ export function Navigation() {
 				className={cn(
 					'fixed top-0 right-0 left-0 z-50 transition-all duration-300 lg:hidden',
 					isScrolled
-						? 'bg-background/90 border-border/60 border-b backdrop-blur-xl'
-						: 'bg-background/60 border-border/40 border-b backdrop-blur-sm'
+						? 'bg-background/80 border-border/50 border-b backdrop-blur-md shadow-lg'
+						: 'bg-background/70 border-border/30 border-b backdrop-blur-sm'
 				)}>
 				<div className="flex h-16 items-center justify-between px-4 sm:px-6">
 					<Link
