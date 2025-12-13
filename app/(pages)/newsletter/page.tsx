@@ -2,11 +2,12 @@ import { type Metadata } from 'next';
 import Container from '@/components/container';
 import { NewsletterForm } from '@/components/newsletter-form';
 import { createMetadata } from '@/lib/metadata';
+import { baseUrl } from '@/app/sitemap';
 
 export const metadata: Metadata = createMetadata({
   title: 'Newsletter',
   description: 'Get updates on software, trails, and community. Subscribe to receive the latest posts and insights.',
-  path: '/newsletter',
+  canonical: `${baseUrl}/newsletter`,
 });
 
 export default function NewsletterPage() {
