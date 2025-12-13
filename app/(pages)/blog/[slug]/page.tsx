@@ -5,6 +5,7 @@ import Container from '@/components/container'
 import {PortableText} from '@/components/portable-text'
 import {TocSidebar} from '@/components/toc-sidebar'
 import {StructuredData} from '@/components/structured-data'
+import {NewsletterPopup} from '@/components/newsletter-popup'
 import {generateBlogPostMetadata, defaultOgImageUrl} from '@/lib/metadata'
 import {baseUrl} from '@/app/sitemap'
 import {formatDate, getBlogPosts, getBlogPostBySlug} from '@/lib/blog'
@@ -188,6 +189,9 @@ export default async function Blog(props: Props) {
 					</Container>
 				</div>
 			</article>
+			
+			{/* Newsletter Popup */}
+			<NewsletterPopup />
 		</>
 	)
 }

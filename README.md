@@ -31,7 +31,8 @@ pnpm lint
 - **TypeScript**: Strict mode enabled
 - **Styling**: Tailwind CSS 4
 - **UI**: shadcn/ui components
-- **Content**: MDX for blog posts
+- **Content**: Sanity CMS
+- **Newsletter**: Resend
 
 ## Project Structure
 
@@ -56,3 +57,20 @@ app/
 - `format` - Format all files with Prettier
 - `format:check` - Check formatting
 - `clean` - Remove build artifacts
+
+## Environment Variables
+
+Copy `.env.example` to `.env.local` and fill in your values:
+
+```bash
+# Sanity CMS
+NEXT_PUBLIC_SANITY_PROJECT_ID=
+NEXT_PUBLIC_SANITY_DATASET=
+SANITY_API_TOKEN=
+
+# Resend (Newsletter)
+RESEND_API_KEY=re_MXNHa13A_EoVftdhpj4TW7yXQmZPZPZrP
+RESEND_AUDIENCE_ID=
+```
+
+Get your Resend API key from [resend.com/api-keys](https://resend.com/api-keys) and create an audience to get the audience ID.
