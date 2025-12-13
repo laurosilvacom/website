@@ -8,6 +8,25 @@ function joinUrl(base: string, path: string): string {
 	return `${cleanBase}${cleanPath}`
 }
 
+const DEFAULT_OG_IMAGE_PATH = '/photos/optimized/website-photo-4.webp'
+export const defaultOgImageUrl = joinUrl(baseUrl, DEFAULT_OG_IMAGE_PATH)
+
+const IMAGE_MIME_TYPES: Record<string, string> = {
+	gif: 'image/gif',
+	jpeg: 'image/jpeg',
+	jpg: 'image/jpeg',
+	png: 'image/png',
+	webp: 'image/webp'
+}
+
+function getImageMimeType(imageUrl: string): string | undefined {
+	const [urlWithoutQuery] = imageUrl.split('?')
+	if (!urlWithoutQuery) return undefined
+
+	const extension = urlWithoutQuery.split('.').pop()?.toLowerCase()
+	return extension ? IMAGE_MIME_TYPES[extension] : undefined
+}
+
 type MetadataProps = {
 	title?: string
 	description?: string
@@ -39,7 +58,13 @@ export function createMetadata({
 }: MetadataProps = {}): Metadata {
 	const metaTitle = title || 'Lauro Silva - Software Engineer & Developer Educator'
 
-	const ogImage = image || `${joinUrl(baseUrl, 'og')}?title=${encodeURIComponent(title || 'Lauro Silva - Software Engineer & Developer Educator')}`
+	const ogImage = image
+		? image.startsWith('http')
+			? image
+			: joinUrl(baseUrl, image)
+		: defaultOgImageUrl
+
+	const ogImageType = getImageMimeType(ogImage)
 
 	const defaultKeywords = [
 		'software engineer',
@@ -84,7 +109,7 @@ export function createMetadata({
 					width: 1200,
 					height: 630,
 					alt: metaTitle,
-					type: 'image/png'
+					type: ogImageType
 				}
 			]
 		},

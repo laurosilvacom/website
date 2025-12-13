@@ -5,7 +5,7 @@ import Container from '@/components/container'
 import {PortableText} from '@/components/portable-text'
 import {TocSidebar} from '@/components/toc-sidebar'
 import {StructuredData} from '@/components/structured-data'
-import {generateBlogPostMetadata} from '@/lib/metadata'
+import {generateBlogPostMetadata, defaultOgImageUrl} from '@/lib/metadata'
 import {baseUrl} from '@/app/sitemap'
 import {formatDate, getBlogPosts, getBlogPostBySlug} from '@/lib/blog'
 
@@ -114,7 +114,7 @@ export default async function Blog(props: Props) {
 				type="article"
 				title={post.metadata.title}
 				description={post.metadata.summary}
-				image={`${baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}`}
+				image={defaultOgImageUrl}
 				datePublished={post.metadata.publishedAt}
 				dateModified={post.metadata.publishedAt}
 				author="Lauro Silva"

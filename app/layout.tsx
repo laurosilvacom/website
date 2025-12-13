@@ -10,6 +10,7 @@ import {Toaster} from '@/components/toaster'
 import {StructuredData} from '@/components/structured-data'
 import {baseUrl} from '@/app/sitemap'
 import {Navigation} from '@/components/navigation'
+import {defaultOgImageUrl} from '@/lib/metadata'
 
 export const metadata: Metadata = {
 	metadataBase: new URL(baseUrl),
@@ -59,11 +60,11 @@ export const metadata: Metadata = {
 		type: 'website',
 		images: [
 			{
-				url: `${baseUrl}og?title=${encodeURIComponent('Lauro Silva - Software Engineer & Developer Educator')}`,
+				url: defaultOgImageUrl,
 				width: 1200,
 				height: 630,
 				alt: 'Lauro Silva - Software Engineer & Developer Educator',
-				type: 'image/png'
+				type: 'image/webp'
 			}
 		]
 	},
@@ -74,7 +75,7 @@ export const metadata: Metadata = {
 			'Learn, build, and grow as a developer. Deep technical insights mixed with real experiences.',
 		images: [
 			{
-				url: `${baseUrl}og?title=${encodeURIComponent('Lauro Silva - Software Engineer & Developer Educator')}`,
+				url: defaultOgImageUrl,
 				width: 1200,
 				height: 630,
 				alt: 'Lauro Silva - Software Engineer & Developer Educator'
