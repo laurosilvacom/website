@@ -189,7 +189,7 @@ export default async function Blog(props: Props) {
 					</Container>
 				</div>
 			</article>
-			
+
 			{/* Newsletter Popup */}
 			<NewsletterPopup />
 		</>

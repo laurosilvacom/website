@@ -47,8 +47,8 @@ function CodeBlock({value}: {value: any}) {
 	const codeHTML = highlight(code)
 
 	return (
-		<div className="my-7 overflow-hidden rounded-lg border border-border bg-card">
-			<div className="flex items-center justify-between border-b border-border px-4 py-2">
+		<div className="border-border bg-card my-7 overflow-hidden rounded-lg border">
+			<div className="border-border flex items-center justify-between border-b px-4 py-2">
 				{language && (
 					<span className="text-muted-foreground font-mono text-xs">
 						{language}
@@ -89,7 +89,10 @@ function FootnoteReference({value, children}: {value: any; children: any}) {
 			{children}
 			<Footnote id={footnoteId}>
 				{footnoteContent ? (
-					<SanityPortableText value={footnoteContent} components={createComponents()} />
+					<SanityPortableText
+						value={footnoteContent}
+						components={createComponents()}
+					/>
 				) : (
 					'Footnote content not found'
 				)}
@@ -162,7 +165,7 @@ function createComponents() {
 				const text = typeof children === 'string' ? children : String(children)
 				const slug = slugify(text)
 				return (
-					<h1 id={slug} className="scroll-mt-20 text-foreground">
+					<h1 id={slug} className="text-foreground scroll-mt-20">
 						{children}
 					</h1>
 				)
@@ -171,7 +174,7 @@ function createComponents() {
 				const text = typeof children === 'string' ? children : String(children)
 				const slug = slugify(text)
 				return (
-					<h2 id={slug} className="scroll-mt-20 text-foreground">
+					<h2 id={slug} className="text-foreground scroll-mt-20">
 						{children}
 					</h2>
 				)
@@ -180,7 +183,7 @@ function createComponents() {
 				const text = typeof children === 'string' ? children : String(children)
 				const slug = slugify(text)
 				return (
-					<h3 id={slug} className="scroll-mt-20 text-foreground">
+					<h3 id={slug} className="text-foreground scroll-mt-20">
 						{children}
 					</h3>
 				)
@@ -189,7 +192,7 @@ function createComponents() {
 				const text = typeof children === 'string' ? children : String(children)
 				const slug = slugify(text)
 				return (
-					<h4 id={slug} className="scroll-mt-20 text-foreground">
+					<h4 id={slug} className="text-foreground scroll-mt-20">
 						{children}
 					</h4>
 				)
@@ -198,7 +201,7 @@ function createComponents() {
 				const text = typeof children === 'string' ? children : String(children)
 				const slug = slugify(text)
 				return (
-					<h5 id={slug} className="scroll-mt-20 text-foreground">
+					<h5 id={slug} className="text-foreground scroll-mt-20">
 						{children}
 					</h5>
 				)
@@ -207,13 +210,13 @@ function createComponents() {
 				const text = typeof children === 'string' ? children : String(children)
 				const slug = slugify(text)
 				return (
-					<h6 id={slug} className="scroll-mt-20 text-foreground">
+					<h6 id={slug} className="text-foreground scroll-mt-20">
 						{children}
 					</h6>
 				)
 			},
 			blockquote: ({children}: any) => (
-				<blockquote className="my-7 border-l-3 border-muted-foreground/30 pl-6 italic">
+				<blockquote className="border-muted-foreground/30 my-7 border-l-3 pl-6 italic">
 					{children}
 				</blockquote>
 			)
@@ -225,15 +228,14 @@ function createComponents() {
 export function PortableText({blocks}: PortableTextProps) {
 	// Clear footnote definitions before rendering
 	footnoteDefinitions.clear()
-	
+
 	// First pass: collect all footnote definitions
 	blocks.forEach((block: any) => {
 		if (block._type === 'footnote' && block.id) {
 			footnoteDefinitions.set(block.id, block)
 		}
 	})
-	
+
 	const components = createComponents()
 	return <SanityPortableText value={blocks} components={components} />
 }
-

@@ -15,4 +15,3 @@ export type BlogPost = {
 	slug: string
 	content: PortableTextBlock[]
 }
-

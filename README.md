@@ -1,6 +1,7 @@
 # Lauro Silva - Personal Website
 
-Minimal, elegant personal website built with Next.js 16, React 19, and TypeScript.
+Minimal, elegant personal website built with Next.js 16, React 19, and
+TypeScript.
 
 ## Quick Start
 
@@ -73,4 +74,5 @@ RESEND_API_KEY=re_MXNHa13A_EoVftdhpj4TW7yXQmZPZPZrP
 RESEND_AUDIENCE_ID=
 ```
 
-Get your Resend API key from [resend.com/api-keys](https://resend.com/api-keys) and create an audience to get the audience ID.
+Get your Resend API key from [resend.com/api-keys](https://resend.com/api-keys)
+and create an audience to get the audience ID.

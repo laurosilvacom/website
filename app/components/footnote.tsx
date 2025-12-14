@@ -26,7 +26,9 @@ export function getActiveFootnote() {
 	return activeFootnoteId
 }
 
-export function subscribeToActiveFootnote(listener: (id: string | null) => void) {
+export function subscribeToActiveFootnote(
+	listener: (id: string | null) => void
+) {
 	listeners.add(listener)
 	return () => {
 		listeners.delete(listener)
@@ -90,10 +92,10 @@ export function Footnote({id, children}: FootnoteProps) {
 				id={`footnote-ref-${footnoteId}`}
 				onClick={handleClick}
 				className={cn(
-					'inline-flex items-center justify-center h-5 w-5 rounded-full text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
+					'focus:ring-primary inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-medium transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none',
 					isActive
 						? 'bg-primary text-primary-foreground hover:bg-primary/90'
-						: 'bg-transparent text-muted-foreground hover:text-foreground border border-border/50 hover:border-border'
+						: 'text-muted-foreground hover:text-foreground border-border/50 hover:border-border border bg-transparent'
 				)}>
 				{footnoteNumber}
 			</button>
@@ -101,10 +103,16 @@ export function Footnote({id, children}: FootnoteProps) {
 	)
 }
 
-export function getFootnotes(): Array<{id: string; content: React.ReactNode; number: number}> {
+export function getFootnotes(): Array<{
+	id: string
+	content: React.ReactNode
+	number: number
+}> {
 	return Array.from(footnotesMap.values()).sort((a, b) => a.number - b.number)
 }
 
-export function getFootnoteById(id: string): {id: string; content: React.ReactNode; number: number} | undefined {
+export function getFootnoteById(
+	id: string
+): {id: string; content: React.ReactNode; number: number} | undefined {
 	return footnotesMap.get(id)
 }

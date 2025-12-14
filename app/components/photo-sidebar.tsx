@@ -45,21 +45,21 @@ export function PhotoSidebar() {
 	}, [])
 
 	return (
-		<aside className="flex flex-col w-80 sticky top-0 h-screen border-l border-border/30 bg-background/40 backdrop-blur-sm pointer-events-auto">
-			<div className="flex items-center justify-center h-full px-8 py-8">
-				<div className="relative w-full aspect-3/4 max-w-[280px]">
+		<aside className="border-border/30 bg-background/40 pointer-events-auto sticky top-0 flex h-screen w-80 flex-col border-l backdrop-blur-sm">
+			<div className="flex h-full items-center justify-center px-8 py-8">
+				<div className="relative aspect-3/4 w-full max-w-[280px]">
 					{photos.map((photo, index) => (
 						<div
 							key={photo}
 							className={cn(
-								'absolute inset-0 transition-opacity duration-1000 ease-in-out rounded-lg overflow-hidden',
-								index === activeIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+								'absolute inset-0 overflow-hidden rounded-lg transition-opacity duration-1000 ease-in-out',
+								index === activeIndex ? 'z-10 opacity-100' : 'z-0 opacity-0'
 							)}>
 							<Image
 								src={photo}
 								alt=""
 								fill
-								className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+								className="object-cover grayscale transition-all duration-500 hover:grayscale-0"
 								sizes="320px"
 								priority={index === 0}
 							/>

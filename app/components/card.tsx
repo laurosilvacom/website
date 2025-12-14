@@ -20,23 +20,14 @@ export function Card({
 	className = ''
 }: CardProps) {
 	return (
-		<Link
-			href={href}
-			className={cn(
-				'group block pb-10',
-				className
-			)}>
+		<Link href={href} className={cn('group block pb-10', className)}>
 			<article className="space-y-2.5">
-				{date && (
-					<time className="text-muted-foreground text-sm">
-						{date}
-					</time>
-				)}
-				<h3 className="text-lg font-semibold leading-tight tracking-tight group-hover:text-foreground/80 transition-colors">
+				{date && <time className="text-muted-foreground text-sm">{date}</time>}
+				<h3 className="group-hover:text-foreground/80 text-lg leading-tight font-semibold tracking-tight transition-colors">
 					{title}
 				</h3>
 				{description && (
-					<p className="text-muted-foreground text-sm leading-relaxed mt-1.5">
+					<p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
 						{description}
 					</p>
 				)}

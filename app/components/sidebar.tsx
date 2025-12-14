@@ -23,13 +23,13 @@ export function Sidebar() {
 	const pathname = usePathname()
 
 	return (
-		<aside className="hidden lg:flex lg:flex-col lg:w-64 lg:sticky lg:top-0 lg:h-screen lg:border-r lg:border-border/30 lg:bg-background/40 lg:backdrop-blur-sm">
-			<div className="flex flex-col h-full px-6 py-8 overflow-y-auto">
+		<aside className="lg:border-border/30 lg:bg-background/40 hidden lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-64 lg:flex-col lg:border-r lg:backdrop-blur-sm">
+			<div className="flex h-full flex-col overflow-y-auto px-6 py-8">
 				{/* Logo */}
 				<Link
 					href="/"
 					aria-label="Home"
-					className="flex items-center gap-3 mb-12 hover:opacity-80 transition-opacity">
+					className="mb-12 flex items-center gap-3 transition-opacity hover:opacity-80">
 					<svg
 						width="16"
 						height="26"
@@ -43,22 +43,24 @@ export function Sidebar() {
 							d="M385 357.926L43.7135 655L149.934 395.013L0 297.046L341.286 0L225.757 276.58L385 357.926Z"
 						/>
 					</svg>
-					<span className="text-sm font-semibold leading-tight tracking-tight">
+					<span className="text-sm leading-tight font-semibold tracking-tight">
 						Lauro Silva
 					</span>
 				</Link>
 
 				{/* About */}
 				<div className="mb-12">
-					<h2 className="text-sm font-semibold mb-3">What this is</h2>
+					<h2 className="mb-3 text-sm font-semibold">What this is</h2>
 					<p className="text-muted-foreground text-sm leading-relaxed">
-						A digital garden for learning in public. Ideas evolve here, interconnected and growing over time. Work, writing, and thinking at the intersection of technology and the outdoor industry.
+						A digital garden for learning in public. Ideas evolve here,
+						interconnected and growing over time. Work, writing, and thinking at
+						the intersection of technology and the outdoor industry.
 					</p>
 				</div>
 
 				{/* Navigation */}
 				<nav className="mb-12">
-					<h2 className="text-sm font-semibold mb-4">Navigation</h2>
+					<h2 className="mb-4 text-sm font-semibold">Navigation</h2>
 					<ul className="space-y-2">
 						{Object.entries(navItems).map(([path, {name}]) => {
 							const isActive = pathname === path
@@ -66,7 +68,7 @@ export function Sidebar() {
 								<li key={path}>
 									<Link
 										href={path}
-										className={`block text-sm transition-colors py-1.5 ${
+										className={`block py-1.5 text-sm transition-colors ${
 											isActive
 												? 'text-foreground font-medium'
 												: 'text-muted-foreground hover:text-foreground'
@@ -82,7 +84,7 @@ export function Sidebar() {
 				{/* Footer Links */}
 				<div className="mt-auto space-y-8">
 					<div>
-						<h2 className="text-sm font-semibold mb-4">Connect</h2>
+						<h2 className="mb-4 text-sm font-semibold">Connect</h2>
 						<ul className="space-y-2">
 							<li>
 								<a
@@ -112,7 +114,7 @@ export function Sidebar() {
 						</ul>
 					</div>
 
-					<div className="flex items-center justify-between pt-4 border-t border-border/30">
+					<div className="border-border/30 flex items-center justify-between border-t pt-4">
 						<span className="text-muted-foreground text-xs">
 							© {new Date().getFullYear()}
 						</span>
@@ -123,4 +125,3 @@ export function Sidebar() {
 		</aside>
 	)
 }
-

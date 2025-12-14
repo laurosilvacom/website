@@ -72,9 +72,7 @@ export const getAllBlogPosts = cache(async (): Promise<BlogPost[]> => {
 export const getBlogPosts = cache(async (): Promise<BlogPost[]> => {
 	try {
 		const posts = await client.fetch<SanityPost[]>(postsQuery)
-		return posts
-			.filter((post) => !post.draft)
-			.map(transformSanityPost)
+		return posts.filter((post) => !post.draft).map(transformSanityPost)
 	} catch (error) {
 		console.error('Error fetching blog posts from Sanity:', error)
 		return []
@@ -169,4 +167,3 @@ export function filterBlogPosts(
 
 	return filtered
 }
-

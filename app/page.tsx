@@ -72,14 +72,10 @@ export default async function Page() {
 				<Container width="base">
 					<div className="mx-auto max-w-4xl space-y-12 text-center">
 						<div className="space-y-8">
-							<h1 className="text-5xl leading-[1.1] font-bold tracking-tight lg:text-6xl xl:text-7xl">
-								Build Software,
-								<br />
-								Grow Communities,
-								<br />
-								Shred Trails
+							<h1 className="text-4xl leading-[1.15] font-bold tracking-tight sm:text-5xl sm:leading-[1.1] lg:text-6xl xl:text-7xl">
+								Where Software, Belonging, and Trail Running Converge
 							</h1>
-							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
+							<p className="text-muted-foreground mx-auto max-w-2xl text-lg leading-relaxed sm:text-xl">
 								I'm Lauro Silva. I write code for the outdoor industry, founded
 								Tierra Libre Run to make trail running more accessible, and race
 								as a semi-pro athlete. This is where I share what I'm learning.

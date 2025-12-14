@@ -201,7 +201,7 @@ export function Navigation() {
 				className={cn(
 					'fixed top-0 right-0 left-0 z-50 transition-all duration-300 lg:hidden',
 					isScrolled
-						? 'bg-background/80 border-border/50 border-b backdrop-blur-md shadow-lg'
+						? 'bg-background/80 border-border/50 border-b shadow-lg backdrop-blur-md'
 						: 'bg-background/70 border-border/30 border-b backdrop-blur-sm'
 				)}>
 				<div className="flex h-16 items-center justify-between px-4 sm:px-6">

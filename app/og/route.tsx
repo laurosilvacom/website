@@ -20,7 +20,9 @@ export async function GET(request: Request) {
 		// Load Bitter for headings (matches site - modern, bold, elegant serif)
 		const fontData = await fetch(
 			'https://fonts.gstatic.com/s/bitter/v33/raxhHiqOu8IVPmnRc6SY1KXhnF_Y8fbeLIvQ.woff2'
-		).then((res) => res.arrayBuffer()).catch(() => null)
+		)
+			.then((res) => res.arrayBuffer())
+			.catch(() => null)
 
 		return new ImageResponse(
 			(
@@ -86,7 +88,8 @@ export async function GET(request: Request) {
 								}}>
 								LS
 							</div>
-							<div style={{display: 'flex', flexDirection: 'column', gap: '2px'}}>
+							<div
+								style={{display: 'flex', flexDirection: 'column', gap: '2px'}}>
 								<span
 									style={{
 										color: textLight,
@@ -115,14 +118,16 @@ export async function GET(request: Request) {
 			{
 				width: 1200,
 				height: 630,
-				fonts: fontData ? [
-					{
-						name: 'Bitter',
-						data: fontData,
-						style: 'normal',
-						weight: 600
-					}
-				] : []
+				fonts: fontData
+					? [
+							{
+								name: 'Bitter',
+								data: fontData,
+								style: 'normal',
+								weight: 600
+							}
+						]
+					: []
 			}
 		)
 	} catch (e) {

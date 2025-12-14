@@ -56,7 +56,8 @@ export function createMetadata({
 	tags = [],
 	type = 'website'
 }: MetadataProps = {}): Metadata {
-	const metaTitle = title || 'Lauro Silva - Software Engineer & Developer Educator'
+	const metaTitle =
+		title || 'Lauro Silva - Software Engineer & Developer Educator'
 
 	const ogImage = image
 		? image.startsWith('http')
@@ -88,13 +89,17 @@ export function createMetadata({
 		title: metaTitle,
 		description,
 		keywords: allKeywords,
-		authors: authors.map(author => ({name: author})),
+		authors: authors.map((author) => ({name: author})),
 		creator: 'Lauro Silva',
 		publisher: 'Lauro Silva',
 		openGraph: {
 			title: metaTitle,
 			description,
-			url: canonical ? (canonical.startsWith('http') ? canonical : joinUrl(baseUrl, canonical)) : baseUrl,
+			url: canonical
+				? canonical.startsWith('http')
+					? canonical
+					: joinUrl(baseUrl, canonical)
+				: baseUrl,
 			siteName: 'Lauro Silva',
 			locale: 'en_US',
 			type: type === 'article' ? 'article' : 'website',
@@ -138,7 +143,11 @@ export function createMetadata({
 			}
 		},
 		alternates: {
-			canonical: canonical ? (canonical.startsWith('http') ? canonical : joinUrl(baseUrl, canonical)) : baseUrl
+			canonical: canonical
+				? canonical.startsWith('http')
+					? canonical
+					: joinUrl(baseUrl, canonical)
+				: baseUrl
 		}
 	}
 }
@@ -171,6 +180,6 @@ export function generateBlogPostMetadata(
 		type: 'article',
 		section: 'Technology',
 		tags,
-		keywords: ['blog post', 'tutorial', 'programming', ...tags || []]
+		keywords: ['blog post', 'tutorial', 'programming', ...(tags || [])]
 	})
 }

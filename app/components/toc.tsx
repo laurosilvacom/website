@@ -55,9 +55,14 @@ export function TableOfContents() {
 	return (
 		<nav aria-label="Table of contents">
 			<Collapsible open={isOpen} onOpenChange={setIsOpen}>
-				<CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg p-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+				<CollapsibleTrigger className="text-muted-foreground hover:text-foreground flex w-full items-center justify-between rounded-lg p-2 text-sm font-medium transition-colors">
 					<span>Contents</span>
-					<ChevronDown className={cn('h-4 w-4 transition-transform', isOpen && 'rotate-180')} />
+					<ChevronDown
+						className={cn(
+							'h-4 w-4 transition-transform',
+							isOpen && 'rotate-180'
+						)}
+					/>
 				</CollapsibleTrigger>
 				<CollapsibleContent>
 					<ul className="mt-4 space-y-2 text-sm">

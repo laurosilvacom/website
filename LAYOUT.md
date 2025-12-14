@@ -2,7 +2,8 @@
 
 ## Container Widths
 
-The site uses a single `Container` component with semantic width presets. No nested max-widths allowed.
+The site uses a single `Container` component with semantic width presets. No
+nested max-widths allowed.
 
 ### Width Presets
 
@@ -25,23 +26,27 @@ import Container from '@/components/container'
 ### Horizontal Padding
 
 Consistent across all widths:
+
 - Mobile: `px-6` (24px)
 - Desktop: `lg:px-12` (48px)
 
 ### Page Types
 
-| Page Type | Width | Usage |
-|-----------|-------|-------|
-| Blog post content | `narrow` | Optimal reading experience, ~65 characters per line |
-| About, Services, Contact | `base` | Single-column pages with mixed content |
-| Blog list, Tags, Grid layouts | `wide` | Multi-column card grids |
-| Hero sections | `wide` or `full` | Large headers with imagery |
+| Page Type                     | Width            | Usage                                               |
+| ----------------------------- | ---------------- | --------------------------------------------------- |
+| Blog post content             | `narrow`         | Optimal reading experience, ~65 characters per line |
+| About, Services, Contact      | `base`           | Single-column pages with mixed content              |
+| Blog list, Tags, Grid layouts | `wide`           | Multi-column card grids                             |
+| Hero sections                 | `wide` or `full` | Large headers with imagery                          |
 
 ### Rules
 
-1. **One container, one width** - Never nest `max-w-*` utilities inside `Container`
-2. **No arbitrary widths** - Use semantic presets, not `max-w-3xl` or `max-w-[680px]`
-3. **Prose inherits** - `.prose` class has no width constraint, inherits from container
+1. **One container, one width** - Never nest `max-w-*` utilities inside
+   `Container`
+2. **No arbitrary widths** - Use semantic presets, not `max-w-3xl` or
+   `max-w-[680px]`
+3. **Prose inherits** - `.prose` class has no width constraint, inherits from
+   container
 4. **Content flows** - Let typography breathe within the container boundaries
 
 ### Example: Blog Post
@@ -94,6 +99,7 @@ Consistent across all widths:
 ## Vertical Spacing
 
 Consistent section spacing:
+
 - Mobile: `py-16` (64px)
 - Desktop: `lg:py-24` (96px)
 - Headers: `pt-32 pb-16 lg:pt-40 lg:pb-24`
@@ -104,15 +110,16 @@ Use Tailwind grid utilities inside containers:
 
 ```tsx
 <Container width="wide">
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-    {/* Cards */}
-  </div>
+	<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-12">
+		{/* Cards */}
+	</div>
 </Container>
 ```
 
 ## Migration Checklist
 
 When updating pages:
+
 1. ✅ Remove all `mx-auto max-w-*` wrapper divs
 2. ✅ Change `size="sm|md|lg|xl"` to `width="narrow|base|wide|full"`
 3. ✅ Remove nested `max-w-*` utilities from child elements

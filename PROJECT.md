@@ -55,4 +55,3 @@ app/
 - Server-side rendering with `getBlogPosts()`
 - Date-based organization (shoebox method)
 - Drafts in `posts/drafts/`
-

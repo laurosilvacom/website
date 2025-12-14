@@ -8,4 +8,3 @@ type ErrorBoundaryProps = {
 export function ErrorBoundary({children, fallback}: ErrorBoundaryProps) {
 	return <>{children}</>
 }
-

@@ -16,13 +16,10 @@ interface FooterSectionProps {
 	links: FooterLink[]
 }
 
-const FooterSection = ({
-	title,
-	links
-}: FooterSectionProps) => {
+const FooterSection = ({title, links}: FooterSectionProps) => {
 	return (
 		<div>
-			<h3 className="text-muted-foreground mb-4 text-xs font-medium uppercase tracking-wider">
+			<h3 className="text-muted-foreground mb-4 text-xs font-medium tracking-wider uppercase">
 				{title}
 			</h3>
 			<ul className="space-y-3" role="menu">
@@ -55,9 +52,7 @@ const FooterSection = ({
 export default function Footer() {
 	const sections: FooterSections = {
 		Content: [{href: '/blog', text: 'Writing'}],
-		Work: [
-			{href: '/services', text: 'Services'}
-		],
+		Work: [{href: '/services', text: 'Services'}],
 		Connect: [
 			{
 				href: 'https://github.com/laurosilvacom',
@@ -80,21 +75,18 @@ export default function Footer() {
 					<div className="space-y-4">
 						<Link
 							href="/"
-							className="text-xl font-semibold hover:opacity-80 transition-opacity">
+							className="text-xl font-semibold transition-opacity hover:opacity-80">
 							Lauro Silva
 						</Link>
 						<p className="text-muted-foreground max-w-md text-sm leading-relaxed">
-							Software engineer and developer educator. Building products and teaching developers.
+							Software engineer and developer educator. Building products and
+							teaching developers.
 						</p>
 					</div>
 
 					<div className="grid grid-cols-3 gap-12">
 						{Object.entries(sections).map(([title, links]) => (
-							<FooterSection
-								key={title}
-								title={title}
-								links={links}
-							/>
+							<FooterSection key={title} title={title} links={links} />
 						))}
 					</div>
 

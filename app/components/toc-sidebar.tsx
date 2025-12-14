@@ -8,7 +8,13 @@ import {
 	CollapsibleTrigger
 } from '@/components/ui/collapsible'
 import {cn} from '@/lib/utils'
-import {getFootnotes, getFootnoteById, subscribeToActiveFootnote, getActiveFootnote, setActiveFootnote} from './footnote'
+import {
+	getFootnotes,
+	getFootnoteById,
+	subscribeToActiveFootnote,
+	getActiveFootnote,
+	setActiveFootnote
+} from './footnote'
 
 interface HeadingData {
 	id: string
@@ -20,7 +26,11 @@ export function TocSidebar() {
 	const [headings, setHeadings] = useState<HeadingData[]>([])
 	const [activeId, setActiveId] = useState<string>('')
 	const [isOpen, setIsOpen] = useState(true)
-	const [activeFootnote, setActiveFootnote] = useState<{id: string; content: React.ReactNode; number: number} | null>(null)
+	const [activeFootnote, setActiveFootnote] = useState<{
+		id: string
+		content: React.ReactNode
+		number: number
+	} | null>(null)
 
 	useEffect(() => {
 		const article = document.querySelector('article')
@@ -105,12 +115,17 @@ export function TocSidebar() {
 			{headings.length > 0 && (
 				<nav aria-label="Table of contents">
 					<Collapsible open={isOpen} onOpenChange={setIsOpen}>
-						<CollapsibleTrigger className="flex w-full items-center justify-between mb-4 text-sm font-semibold text-foreground hover:opacity-80 transition-opacity group">
+						<CollapsibleTrigger className="text-foreground group mb-4 flex w-full items-center justify-between text-sm font-semibold transition-opacity hover:opacity-80">
 							<span>Table of Contents</span>
-							<ChevronDown className={cn('h-4 w-4 transition-transform text-muted-foreground group-hover:text-foreground', isOpen && 'rotate-180')} />
+							<ChevronDown
+								className={cn(
+									'text-muted-foreground group-hover:text-foreground h-4 w-4 transition-transform',
+									isOpen && 'rotate-180'
+								)}
+							/>
 						</CollapsibleTrigger>
 						<CollapsibleContent>
-							<ul className="space-y-1.5 text-sm pt-2">
+							<ul className="space-y-1.5 pt-2 text-sm">
 								{headings.map((heading) => {
 									const isActive = activeId === heading.id
 									return (
@@ -119,21 +134,24 @@ export function TocSidebar() {
 											style={{paddingLeft: `${(heading.level - 2) * 16}px`}}
 											className="relative">
 											{isActive && (
-												<span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-primary" />
+												<span className="bg-primary absolute top-1/2 left-0 h-1 w-1 -translate-y-1/2 rounded-full" />
 											)}
 											<a
 												href={`#${heading.id}`}
 												className={cn(
-													'block py-1.5 leading-relaxed transition-colors rounded-md px-2 -ml-2',
+													'-ml-2 block rounded-md px-2 py-1.5 leading-relaxed transition-colors',
 													isActive
-														? 'text-foreground font-medium bg-primary/10'
+														? 'text-foreground bg-primary/10 font-medium'
 														: 'text-muted-foreground hover:text-foreground hover:bg-muted'
 												)}
 												onClick={(e) => {
 													e.preventDefault()
 													const element = document.getElementById(heading.id)
 													if (element) {
-														element.scrollIntoView({behavior: 'smooth', block: 'start'})
+														element.scrollIntoView({
+															behavior: 'smooth',
+															block: 'start'
+														})
 														window.history.pushState(null, '', `#${heading.id}`)
 													}
 												}}>
@@ -149,11 +167,11 @@ export function TocSidebar() {
 			)}
 
 			{activeFootnote && (
-				<div className="mt-6 pt-6 border-t border-border/50 animate-[fadeIn_0.3s_ease-out_forwards,slideUp_0.3s_ease-out_forwards]">
-					<div className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wider">
+				<div className="border-border/50 mt-6 animate-[fadeIn_0.3s_ease-out_forwards,slideUp_0.3s_ease-out_forwards] border-t pt-6">
+					<div className="text-muted-foreground mb-3 text-xs font-medium tracking-wider uppercase">
 						Footnote {activeFootnote.number}
 					</div>
-					<div className="text-sm text-foreground leading-relaxed space-y-3 [&_img]:rounded-lg [&_img]:shadow-lg [&_img]:w-full [&_img]:h-auto [&_img]:my-3">
+					<div className="text-foreground space-y-3 text-sm leading-relaxed [&_img]:my-3 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-lg [&_img]:shadow-lg">
 						{activeFootnote.content}
 					</div>
 				</div>

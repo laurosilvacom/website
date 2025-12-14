@@ -40,9 +40,12 @@ function groupPostsByDate(posts: BlogPost[]): GroupedPosts[] {
 					.sort((a, b) => Number(b) - Number(a))
 					.map((month) => ({
 						month,
-						monthName: new Date(`${year}-${month}-01`).toLocaleDateString('en-us', {
-							month: 'long'
-						}),
+						monthName: new Date(`${year}-${month}-01`).toLocaleDateString(
+							'en-us',
+							{
+								month: 'long'
+							}
+						),
 						posts: yearData[month]!.sort(
 							(a, b) =>
 								new Date(b.metadata.publishedAt).getTime() -
@@ -75,10 +78,10 @@ export function BlogPostsByDate({posts}: BlogPostsByDateProps) {
 		<div className="space-y-20">
 			{grouped.map(({year, months}) => (
 				<div key={year} className="space-y-14">
-					<h2 className="text-xl font-semibold leading-tight">{year}</h2>
+					<h2 className="text-xl leading-tight font-semibold">{year}</h2>
 					{months.map(({month, monthName, posts: monthPosts}) => (
 						<div key={month} className="space-y-10">
-							<h3 className="text-lg font-medium text-muted-foreground">
+							<h3 className="text-muted-foreground text-lg font-medium">
 								{monthName}
 							</h3>
 							<div className="space-y-10">
