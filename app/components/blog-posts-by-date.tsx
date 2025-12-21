@@ -1,4 +1,4 @@
-import {type BlogPost} from '@/lib/types'
+import {type BlogPost} from '@/lib/blog'
 import {Card} from '@/components/card'
 import {TagFooter} from '@/components/tag-footer'
 import {formatDate} from '@/lib/blog'

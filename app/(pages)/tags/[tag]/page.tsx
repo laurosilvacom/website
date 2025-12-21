@@ -5,6 +5,7 @@ import {formatDate} from '@/lib/blog'
 import {ArrowRight} from 'lucide-react'
 import {type Metadata} from 'next'
 import {getBlogPosts, extractTagsFromPosts, filterBlogPosts} from '@/lib/blog'
+import {type BlogPost} from '@/lib/blog'
 
 interface TagPageProps {
 	params: Promise<{
@@ -50,7 +51,7 @@ export default async function TagPage({params}: TagPageProps) {
 
 	// Get related tags (tags that appear in same posts)
 	const relatedTagsMap = new Map<string, number>()
-	taggedPosts.forEach((post: any) => {
+	taggedPosts.forEach((post: BlogPost) => {
 		post.metadata.tags?.forEach((t: string) => {
 			if (t !== tag) {
 				relatedTagsMap.set(t, (relatedTagsMap.get(t) || 0) + 1)
@@ -120,7 +121,7 @@ export default async function TagPage({params}: TagPageProps) {
 			<section className="py-24 lg:py-32">
 				<Container width="wide">
 					<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-12">
-						{taggedPosts.map((post: any, index: number) => (
+						{taggedPosts.map((post: BlogPost, index: number) => (
 							<article
 								key={post.slug}
 								className="group relative"

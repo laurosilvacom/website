@@ -106,7 +106,7 @@ export function Sidebar() {
 							</li>
 							<li>
 								<Link
-									href="/rss"
+									href="/blog/rss.xml"
 									className="text-muted-foreground hover:text-foreground text-sm transition-colors">
 									RSS Feed
 								</Link>

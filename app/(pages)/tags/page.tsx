@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Container from '@/components/container'
 import {getBlogPosts, extractTagsFromPosts} from '@/lib/blog'
+import {type BlogPost} from '@/lib/blog'
 
 export const metadata = {
 	title: 'Tags',
@@ -14,7 +15,7 @@ export default async function TagsPage() {
 	// Get tag counts and sort by count
 	const tagCounts = allTags.reduce(
 		(acc, tag) => {
-			const count = posts.filter((post: any) =>
+			const count = posts.filter((post: BlogPost) =>
 				post.metadata.tags?.includes(tag)
 			).length
 			acc[tag] = count

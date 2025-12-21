@@ -5,12 +5,13 @@ import Container from '@/components/container'
 import {Button} from '@/components/ui/button'
 import {formatDate, getBlogPosts} from '@/lib/blog'
 import {ArrowRight} from 'lucide-react'
+import {type BlogPost} from '@/lib/blog'
 
 async function BlogPosts() {
 	const allBlogs = await getBlogPosts()
 	const latestPosts = allBlogs
 		.sort(
-			(a: any, b: any) =>
+			(a: BlogPost, b: BlogPost) =>
 				new Date(b.metadata.publishedAt).getTime() -
 				new Date(a.metadata.publishedAt).getTime()
 		)

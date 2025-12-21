@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Container from '@/components/container'
 import {formatDate, getBlogPosts} from '@/lib/blog'
 import {ArrowRight} from 'lucide-react'
+import {type BlogPost} from '@/lib/blog'
 
 export const revalidate = 300 // Revalidate every 5 minutes
 
@@ -13,7 +14,7 @@ export const metadata = {
 export default async function BlogPage() {
 	const posts = await getBlogPosts()
 	const sortedPosts = posts.sort(
-		(a: any, b: any) =>
+		(a: BlogPost, b: BlogPost) =>
 			new Date(b.metadata.publishedAt).getTime() -
 			new Date(a.metadata.publishedAt).getTime()
 	)
@@ -37,7 +38,7 @@ export default async function BlogPage() {
 			<section className="py-16 lg:py-24">
 				<Container width="wide">
 					<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-12">
-						{sortedPosts.map((post: any, index: number) => (
+						{sortedPosts.map((post: BlogPost, index: number) => (
 							<article
 								key={post.slug}
 								className="group relative"

@@ -101,7 +101,7 @@ export const metadata: Metadata = {
 	alternates: {
 		canonical: baseUrl,
 		types: {
-			'application/rss+xml': `${baseUrl}rss`
+			'application/rss+xml': `${baseUrl}blog/rss.xml`
 		}
 	},
 	icons: {

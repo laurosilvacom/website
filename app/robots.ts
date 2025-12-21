@@ -13,7 +13,7 @@ export default function robots() {
 					'/private/',
 					'*.json',
 					'/og',
-					'/rss'
+					'/blog/rss.xml'
 				]
 			},
 			{

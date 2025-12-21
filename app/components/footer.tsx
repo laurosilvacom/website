@@ -64,7 +64,7 @@ export default function Footer() {
 				text: 'Bsky',
 				external: true
 			},
-			{href: '/rss', text: 'RSS'}
+			{href: '/blog/rss.xml', text: 'RSS'}
 		]
 	}
 
