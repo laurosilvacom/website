@@ -36,7 +36,7 @@ export function Sidebar() {
 						viewBox="0 0 385 655"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
-						className="fill-foreground dark:fill-foreground flex-shrink-0">
+						className="fill-foreground dark:fill-foreground shrink-0">
 						<path
 							fillRule="evenodd"
 							clipRule="evenodd"

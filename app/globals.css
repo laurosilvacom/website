@@ -410,7 +410,11 @@ pre {
 	color: oklch(0.75 0.01 250);
 }
 
-.prose code,
+/* Inline code ONLY (never code inside pre, never anything inside .not-prose) */
+.prose
+	:where(code):not(
+		:where(pre code, [class~='not-prose'], [class~='not-prose'] *)
+	),
 .inline-code {
 	background: linear-gradient(
 		135deg,
@@ -425,7 +429,12 @@ pre {
 	box-shadow: 0 1px 2px oklch(0.55 0.28 280 / 0.1);
 }
 
-.dark .prose code,
+/* FIX: dark rule must match the same exclusions as light */
+.dark
+	.prose
+	:where(code):not(
+		:where(pre code, [class~='not-prose'], [class~='not-prose'] *)
+	),
 .dark .inline-code {
 	background: linear-gradient(
 		135deg,
@@ -439,6 +448,15 @@ pre {
 		inset 0 1px 0 oklch(0.2 0.025 270 / 0.5);
 }
 
+/* Hard reset for block code text (kills the “background on tokens/lines”) */
+pre code,
+pre code * {
+	background: none !important;
+	background-color: transparent !important;
+	box-shadow: none !important;
+	border: 0 !important;
+}
+
 .prose pre {
 	background-color: transparent;
 	border: none;
@@ -448,8 +466,9 @@ pre {
 }
 
 .prose pre code {
-	background-color: transparent !important;
+	background: transparent !important; /* was background-color only */
 	border: none;
+	box-shadow: none;
 	color: var(--foreground);
 	font-size: 0.9em;
 	padding: 0;
@@ -457,7 +476,14 @@ pre {
 }
 
 .prose pre code * {
+	background: transparent !important; /* was background-color only */
+	box-shadow: none !important;
+}
+
+/* Force transparent backgrounds on all syntax highlighting tokens */
+pre code span {
 	background-color: transparent !important;
+	background: none !important;
 }
 
 .dark .prose pre code {
@@ -750,4 +776,152 @@ button {
 	contain: layout style paint;
 	transform-origin: var(--radix-dropdown-menu-content-transform-origin);
 	max-height: calc(100vh - 1rem) !important;
+}
+
+/* =========================================================
+   Code blocks — High Density, Vercel-like Design
+   ========================================================= */
+
+:root {
+	--code-bg: oklch(0.985 0.002 270);
+	--code-header-bg: oklch(0.97 0.003 270);
+	--code-border: oklch(0.92 0.005 270);
+	--code-ln-text: oklch(0.65 0.005 270);
+	--code-ln-bg: oklch(0.96 0.003 270);
+}
+
+.dark {
+	--code-bg: oklch(0.13 0.01 270);
+	--code-header-bg: oklch(0.15 0.01 270);
+	--code-border: oklch(0.22 0.01 270);
+	--code-ln-text: oklch(0.4 0.01 270);
+	--code-ln-bg: oklch(0.16 0.01 270);
+}
+
+/* Container */
+.code-block {
+	margin: 1.5rem 0;
+	background: var(--code-bg);
+	border: 1px solid var(--code-border);
+	border-radius: 0.75rem;
+	overflow: hidden;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.dark .code-block {
+	box-shadow:
+		0 0 0 1px rgba(255, 255, 255, 0.05),
+		0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Header */
+.code-block-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.5rem 1rem;
+	background: var(--code-header-bg);
+	border-bottom: 1px solid var(--code-border);
+	min-height: 40px;
+}
+
+.code-block-lang {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: var(--muted-foreground);
+}
+
+/* Content Area */
+.code-block-content {
+	position: relative;
+	overflow-x: auto;
+	/* Subtle scrollbar for code blocks */
+	scrollbar-width: thin;
+	scrollbar-color: var(--code-border) transparent;
+}
+
+/* Webkit scrollbar overrides for code blocks */
+.code-block-content::-webkit-scrollbar {
+	height: 6px; /* Horizontal scrollbar height */
+	width: 6px;
+}
+
+.code-block-content::-webkit-scrollbar-track {
+	background: transparent;
+	border-radius: 0;
+}
+
+.code-block-content::-webkit-scrollbar-thumb {
+	background: var(--code-border);
+	border-radius: 3px;
+	border: none;
+}
+
+.code-block-content::-webkit-scrollbar-thumb:hover {
+	background: var(--muted-foreground);
+}
+
+/* Override Shiki's default <pre> styles */
+.code-block-content pre {
+	margin: 0 !important;
+	padding: 0.75rem 0 !important;
+	background: transparent !important;
+	overflow: visible !important;
+	border-radius: 0 !important;
+	/* CRITICAL FIX: Collapse whitespace between block-level lines to prevent double spacing */
+	white-space: normal !important;
+}
+
+/* Code Font & Spacing */
+.code-block-content code {
+	display: block;
+	font-family:
+		'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+		monospace !important;
+	font-size: 13px !important;
+	line-height: 1.5 !important;
+	font-weight: 400 !important;
+	/* CRITICAL FIX: Inherit normal whitespace */
+	white-space: inherit !important;
+	tab-size: 2;
+	counter-reset: line;
+}
+
+/* Line Styling */
+.code-block-content .line {
+	display: block;
+	padding: 0 1.5rem 0 3.5rem; /* Right padding for scroll, Left for numbers */
+	min-height: 1.5em; /* Matches line-height */
+	width: 100%;
+	/* CRITICAL FIX: Restore pre-formatting for the actual code content */
+	white-space: pre !important;
+}
+
+/* Line Numbers */
+.code-block-content .line::before {
+	counter-increment: line;
+	content: counter(line);
+	position: absolute;
+	left: 0;
+	width: 2.5rem; /* Fixed width for number column */
+	text-align: right;
+	color: var(--code-ln-text);
+	font-size: 11px;
+	line-height: 1.5; /* Align with code */
+	user-select: none;
+	opacity: 0.6;
+}
+
+/* Highlighted Line (optional, if Shiki adds 'highlighted' class) */
+.code-block-content .line.highlighted {
+	background-color: var(--code-ln-bg);
+	border-left: 2px solid var(--primary);
+}
+
+/* Hover Effect */
+.code-block-content .line:hover {
+	background-color: var(--code-ln-bg);
 }

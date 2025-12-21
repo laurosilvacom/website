@@ -45,9 +45,9 @@
     "react-dom": "^19.2.0",
     "resend": "^6.6.0",
     "sanity": "^4.14.2",
+    "shiki": "^1.29.2",
     "sonner": "^2.0.7",
     "styled-components": "^6.1.19",
-    "sugar-high": "^0.9.4",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7"
   },

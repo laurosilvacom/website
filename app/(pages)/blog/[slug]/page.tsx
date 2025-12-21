@@ -3,14 +3,13 @@ import {notFound} from 'next/navigation'
 import {type Metadata} from 'next'
 import Container from '@/components/container'
 import {PortableText} from '@/components/portable-text'
-import {TocSidebar} from '@/components/toc-sidebar'
 import {StructuredData} from '@/components/structured-data'
-import {NewsletterPopup} from '@/components/newsletter-popup'
 import {generateBlogPostMetadata, defaultOgImageUrl} from '@/lib/metadata'
 import {baseUrl} from '@/app/sitemap'
 import {formatDate, getBlogPostBySlug, getBlogPostSlugs} from '@/lib/blog'
 import Image from 'next/image'
-import {type SanityImage} from '@/lib/types'
+import {highlightCode} from '@/lib/highlight-code'
+import {Button} from '@/components/ui/button'
 
 export const revalidate = 300 // Revalidate every 5 minutes
 
@@ -47,22 +46,37 @@ export async function generateMetadata(props: Props): Promise<Metadata | null> {
 	)
 }
 
-export default async function BlogPostPage(props: {
-	params: Promise<{slug: string}>
-}) {
-	const params = await props.params
-	const post = await getBlogPostBySlug(params.slug)
+export default async function BlogPost({params}: Props) {
+	const {slug} = await params
+	const post = await getBlogPostBySlug(slug)
 
 	if (!post) {
 		notFound()
 	}
 
-	const hero: SanityImage | undefined = post.heroImage
-	const heroUrl: string | undefined = hero?.asset?.url
-	const heroAlt: string = hero?.alt ?? post.metadata.title
-	const heroLqip: string | undefined = hero?.asset?.metadata?.lqip
-	const heroCaption: string | undefined = hero?.caption
-	const articleImage = heroUrl ?? defaultOgImageUrl
+	// Pre-highlight all code blocks server-side
+	const processedBlocks = await Promise.all(
+		post.content.map(async (block: any) => {
+			if (block._type === 'code' && block.code) {
+				const highlightedHTML = await highlightCode(
+					block.code,
+					block.language || 'plaintext'
+				)
+				return {...block, highlightedHTML}
+			}
+			return block
+		})
+	)
+
+	// Robust reading time calculation
+	const readingTime =
+		(post as any).readingTime ||
+		(post.metadata as any).readingTime ||
+		Math.ceil(JSON.stringify(post.content).length / 1500) ||
+		5
+
+	const heroUrl = post.heroImage?.asset?.url
+	const heroAlt = post.heroImage?.alt || post.metadata.title
 
 	return (
 		<>
@@ -70,7 +84,7 @@ export default async function BlogPostPage(props: {
 				type="article"
 				title={post.metadata.title}
 				description={post.metadata.summary}
-				image={articleImage}
+				image={heroUrl ?? defaultOgImageUrl}
 				datePublished={post.metadata.publishedAt}
 				dateModified={post.metadata.publishedAt}
 				author="Lauro Silva"
@@ -78,99 +92,84 @@ export default async function BlogPostPage(props: {
 			/>
 
 			<article>
-				{/* Hero (Title + Meta + Image) */}
-				<header className="border-border relative overflow-hidden border-b pt-32 pb-24 lg:pt-40 lg:pb-32">
-					{heroUrl ? (
-						<>
-							<div className="absolute inset-0">
+				{/* Header Section - Wider and cleaner (Substack style) */}
+				<header className="pt-24 pb-12 lg:pt-32 lg:pb-16">
+					<Container width="base">
+						<div className="mx-auto max-w-4xl space-y-8 text-center">
+							<div className="text-muted-foreground flex items-center justify-center gap-3 text-sm font-medium uppercase tracking-widest">
+								<time dateTime={post.metadata.publishedAt}>
+									{formatDate(post.metadata.publishedAt)}
+								</time>
+								<span>&middot;</span>
+								<span>{readingTime} min read</span>
+							</div>
+
+							<h1 className="text-foreground text-balance text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+								{post.metadata.title}
+							</h1>
+
+							<p className="text-muted-foreground text-balance mx-auto max-w-2xl text-xl leading-relaxed md:text-2xl">
+								{post.metadata.summary}
+							</p>
+
+							{/* Author block could go here */}
+						</div>
+					</Container>
+
+					{/* Hero Image - Optimized for LCP */}
+					{heroUrl && (
+						<Container width="base" className="mt-12 lg:mt-16">
+							<div className="bg-muted relative aspect-[2/1] w-full overflow-hidden rounded-xl shadow-sm">
 								<Image
 									src={heroUrl}
 									alt={heroAlt}
 									fill
 									priority
 									className="object-cover"
-									sizes="100vw"
-									placeholder={heroLqip ? 'blur' : 'empty'}
-									blurDataURL={heroLqip}
+									sizes="(min-width: 1280px) 1200px, (min-width: 1024px) 960px, 100vw"
 								/>
 							</div>
-							<div className="from-background/60 via-background/85 to-background absolute inset-0 bg-linear-to-b" />
-						</>
-					) : null}
-
-					<Container width="base">
-						<div className="relative space-y-10">
-							<div className="space-y-6">
-								<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
-									{post.metadata.title}
-								</h1>
-								<p className="text-muted-foreground max-w-2xl text-lg leading-relaxed lg:text-xl">
-									{post.metadata.summary}
-								</p>
-							</div>
-
-							<div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
-								<time className="text-muted-foreground">
-									{formatDate(post.metadata.publishedAt)}
-								</time>
-								{post.metadata.readingTime ? (
-									<>
-										<span className="text-muted-foreground">·</span>
-										<span className="text-muted-foreground">
-											{post.metadata.readingTime}
-										</span>
-									</>
-								) : null}
-								{post.metadata.tags && post.metadata.tags.length > 0 ? (
-									<>
-										<span className="text-muted-foreground">·</span>
-										<div className="flex flex-wrap gap-x-3 gap-y-1">
-											{post.metadata.tags.map((tag: string) => (
-												<Link
-													key={tag}
-													href={`/tags/${encodeURIComponent(tag)}`}
-													className="text-muted-foreground hover:text-foreground underline-offset-4 transition-colors hover:underline">
-													{tag}
-												</Link>
-											))}
-										</div>
-									</>
-								) : null}
-							</div>
-
-							{heroCaption ? (
-								<p className="text-muted-foreground max-w-2xl text-sm leading-relaxed">
-									{heroCaption}
-								</p>
-							) : null}
-						</div>
-					</Container>
+							{(post.heroImage as any)?.caption && (
+								<figcaption className="text-muted-foreground mt-4 text-center text-sm">
+									{(post.heroImage as any).caption}
+								</figcaption>
+							)}
+						</Container>
+					)}
 				</header>
 
-				{/* Content with TOC */}
-				<div className="py-16 lg:py-24">
-					<Container width="base">
-						<div className="grid gap-16 lg:grid-cols-12 lg:gap-20">
-							{/* Main Content */}
-							<div className="lg:col-span-8">
-								<div className="prose">
-									<PortableText blocks={post.content} />
-								</div>
-							</div>
-
-							{/* TOC Sidebar - Sticky */}
-							<div className="lg:col-span-4">
-								<div className="lg:sticky lg:top-32 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto">
-									<TocSidebar />
-								</div>
-							</div>
+				{/* Content Section - Narrow for readability */}
+				<section className="pb-24 lg:pb-32">
+					<Container width="narrow">
+						<div className="prose prose-lg mx-auto">
+							<PortableText blocks={processedBlocks} />
 						</div>
 					</Container>
-				</div>
+				</section>
 			</article>
 
-			{/* Newsletter Popup */}
-			<NewsletterPopup />
+			<section className="bg-muted/30 border-border border-t py-16 lg:py-24">
+				<Container width="narrow">
+					<div className="flex flex-col items-center justify-between gap-8 md:flex-row">
+						<div className="max-w-md space-y-2 text-center md:text-left">
+							<h3 className="text-2xl font-bold">Have questions?</h3>
+							<p className="text-muted-foreground">
+								Feel free to reach out on LinkedIn or send me an email.
+							</p>
+						</div>
+						<div className="flex gap-4">
+							<Button asChild size="lg">
+								<a
+									href="https://www.linkedin.com/in/laurosilvacom/"
+									target="_blank"
+									rel="noopener noreferrer">
+									Follow on LinkedIn
+								</a>
+							</Button>
+						</div>
+					</div>
+				</Container>
+			</section>
 		</>
 	)
 }

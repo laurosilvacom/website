@@ -1,34 +1,23 @@
 'use client'
 
-import {successToast, errorToast} from '@/components/toaster'
+import {useState} from 'react'
+import {Check, Copy} from 'lucide-react'
 
 export function CodeCopyButton({code}: {code: string}) {
-	const handleCopy = async () => {
-		try {
-			await navigator.clipboard.writeText(code)
-			successToast('Code copied')
-		} catch {
-			errorToast('Failed to copy')
-		}
+	const [copied, setCopied] = useState(false)
+
+	const copy = async () => {
+		await navigator.clipboard.writeText(code)
+		setCopied(true)
+		setTimeout(() => setCopied(false), 2000)
 	}
 
 	return (
 		<button
-			onClick={handleCopy}
-			className="text-muted-foreground hover:text-foreground flex h-6 w-6 items-center justify-center rounded transition-colors"
+			onClick={copy}
+			className="hover:text-foreground text-muted-foreground flex h-6 w-6 items-center justify-center rounded transition-colors"
 			aria-label="Copy code">
-			<svg
-				width="14"
-				height="14"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				strokeWidth="2"
-				strokeLinecap="round"
-				strokeLinejoin="round">
-				<rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-				<path d="M4 16c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h8c1.1 0 2 .9 2 2" />
-			</svg>
+			{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
 		</button>
 	)
 }

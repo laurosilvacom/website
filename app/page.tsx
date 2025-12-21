@@ -100,7 +100,7 @@ export default async function Page() {
 			{/* Hero Image */}
 			<section className="border-border border-b py-24 lg:py-32">
 				<Container width="wide">
-					<div className="relative aspect-4/3 overflow-hidden rounded-2xl lg:aspect-16/9">
+					<div className="relative aspect-4/3 overflow-hidden rounded-2xl lg:aspect-video">
 						<Image
 							src="/photos/website-photo-1.jpg"
 							alt="Lauro Silva"

@@ -4,7 +4,6 @@ import {PortableText as SanityPortableText} from '@portabletext/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {type PortableTextBlock} from '@sanity/types'
-import {highlight} from 'sugar-high'
 import {urlForImage} from '@/lib/sanity/image'
 import {CodeCopyButton} from './copy-button'
 import {Footnote} from './footnote'
@@ -13,7 +12,6 @@ interface PortableTextProps {
 	blocks: PortableTextBlock[]
 }
 
-// Store footnote definitions for reference lookups
 let footnoteDefinitions = new Map<string, any>()
 
 function RoundedImage({value}: {value: any}) {
@@ -43,25 +41,20 @@ function RoundedImage({value}: {value: any}) {
 
 function CodeBlock({value}: {value: any}) {
 	const code = value?.code || ''
-	const language = value?.language || ''
-	const codeHTML = highlight(code)
+	const language = value?.language || 'plaintext'
+	const highlightedHTML =
+		value?.highlightedHTML || `<pre><code>${code}</code></pre>`
 
 	return (
-		<div className="border-border bg-card my-7 overflow-hidden rounded-lg border">
-			<div className="border-border flex items-center justify-between border-b px-4 py-2">
-				{language && (
-					<span className="text-muted-foreground font-mono text-xs">
-						{language}
-					</span>
-				)}
+		<div className="code-block not-prose group">
+			<div className="code-block-header">
+				<span className="code-block-lang">{language}</span>
 				<CodeCopyButton code={code} />
 			</div>
-			<pre className="overflow-auto p-4 text-sm leading-relaxed">
-				<code
-					className={`language-${language}`}
-					dangerouslySetInnerHTML={{__html: codeHTML}}
-				/>
-			</pre>
+			<div
+				className="code-block-content"
+				dangerouslySetInnerHTML={{__html: highlightedHTML}}
+			/>
 		</div>
 	)
 }
@@ -78,12 +71,9 @@ function FootnoteReference({value, children}: {value: any; children: any}) {
 	const footnoteId = value?.footnoteId
 	if (!footnoteId) return <>{children}</>
 
-	// Find the footnote definition
 	const definition = footnoteDefinitions.get(footnoteId)
 	const footnoteContent = definition?.content
 
-	// Render the footnote button inline with the text
-	// The footnote definition will be rendered separately as a type
 	return (
 		<>
 			{children}
@@ -107,7 +97,6 @@ function FootnoteDefinition({value}: {value: any}) {
 
 	if (!footnoteId || !content) return null
 
-	// Store the footnote definition for reference lookups
 	footnoteDefinitions.set(footnoteId, {id: footnoteId, content})
 
 	const components = createComponents()
@@ -128,7 +117,6 @@ function slugify(str: string) {
 		.replace(/\-\-+/g, '-')
 }
 
-// Create components object that can reference itself for nested rendering
 let components: any = null
 
 function createComponents() {
@@ -252,11 +240,10 @@ function createComponents() {
 
 	return components
 }
+
 export function PortableText({blocks}: PortableTextProps) {
-	// Clear footnote definitions before rendering
 	footnoteDefinitions.clear()
 
-	// First pass: collect all footnote definitions
 	blocks.forEach((block: any) => {
 		if (block._type === 'footnote' && block.id) {
 			footnoteDefinitions.set(block.id, block)
