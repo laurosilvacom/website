@@ -6,11 +6,12 @@ import {StructuredData} from '@/components/structured-data'
 import {generateBlogPostMetadata, defaultOgImageUrl} from '@/lib/metadata'
 import {baseUrl} from '@/app/sitemap'
 import {formatDate, getBlogPostBySlug, getBlogPostSlugs} from '@/lib/blog'
+import {getImageClass} from '@/lib/image-utils'
 import Image from 'next/image'
 import {highlightCode} from '@/lib/highlight-code'
 import {Button} from '@/components/ui/button'
 
-export const revalidate = 300 // Revalidate every 5 minutes
+export const revalidate = 30
 
 interface Params {
 	slug: string
@@ -90,58 +91,74 @@ export default async function BlogPost({params}: Props) {
 				url={`${baseUrl}/blog/${post.slug}`}
 			/>
 
-			<article>
-				{/* Header Section - Wider and cleaner (Substack style) */}
-				<header className="pt-24 pb-12 lg:pt-32 lg:pb-16">
-					<Container width="base">
-						<div className="mx-auto max-w-4xl space-y-8 text-center">
-							<div className="text-muted-foreground flex items-center justify-center gap-3 text-sm font-medium tracking-widest uppercase">
+			<article className="bg-background">
+				{/* Header Section - Title and Information */}
+				<header className="py-16 sm:py-20 lg:py-32">
+					<Container width="wide">
+						<div className="mx-auto max-w-4xl space-y-6 text-center sm:space-y-8">
+							<div className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
 								<time dateTime={post.metadata.publishedAt}>
 									{formatDate(post.metadata.publishedAt)}
 								</time>
-								<span>&middot;</span>
+								<span className="mx-3">•</span>
 								<span>{readingTime} min read</span>
 							</div>
 
-							<h1 className="text-foreground text-4xl leading-[1.1] font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
+							<h1 className="text-foreground text-3xl leading-tight font-bold tracking-tight text-balance sm:text-4xl sm:leading-[1.05] lg:text-6xl">
 								{post.metadata.title}
 							</h1>
 
-							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed text-balance md:text-2xl">
+							<p className="text-muted-foreground mx-auto max-w-3xl text-lg leading-relaxed text-balance sm:text-xl lg:text-2xl">
 								{post.metadata.summary}
 							</p>
 
-							{/* Author block could go here */}
+							{post.metadata.tags && post.metadata.tags.length > 0 && (
+								<div className="flex flex-wrap items-center justify-center gap-3">
+									{post.metadata.tags.slice(0, 3).map((tag) => (
+										<span
+											key={tag}
+											className="bg-muted text-muted-foreground rounded-full border px-4 py-2 text-sm font-medium">
+											{tag}
+										</span>
+									))}
+								</div>
+							)}
 						</div>
 					</Container>
-
-					{/* Hero Image - Optimized for LCP */}
-					{heroUrl && (
-						<Container width="base" className="mt-12 lg:mt-16">
-							<div className="bg-muted relative aspect-2/1 w-full overflow-hidden rounded-xl shadow-sm">
-								<Image
-									src={heroUrl}
-									alt={heroAlt}
-									fill
-									priority
-									className="object-cover"
-									sizes="(min-width: 1280px) 1200px, (min-width: 1024px) 960px, 100vw"
-								/>
-							</div>
-							{(post.heroImage as any)?.caption && (
-								<figcaption className="text-muted-foreground mt-4 text-center text-sm">
-									{(post.heroImage as any).caption}
-								</figcaption>
-							)}
-						</Container>
-					)}
 				</header>
 
-				{/* Content Section - Narrow for readability - NO TOC */}
-				<section className="pb-24 lg:pb-32">
-					<Container width="narrow">
-						<div className="prose prose-lg mx-auto">
-							<PortableText blocks={processedBlocks} />
+				{/* Cover Image Section */}
+				{heroUrl && (
+					<section className="py-8 sm:py-12 lg:py-16">
+						<Container width="wide">
+							<div className="mx-auto max-w-5xl">
+								<div className="relative aspect-video overflow-hidden rounded-2xl">
+									<Image
+										src={heroUrl}
+										alt={heroAlt}
+										fill
+										priority
+										className={`object-cover ${getImageClass('EDITORIAL_BW')}`}
+										sizes="(min-width: 1024px) 1000px, 100vw"
+									/>
+								</div>
+								{(post.heroImage as any)?.caption && (
+									<figcaption className="text-muted-foreground mx-auto mt-4 max-w-3xl text-center text-sm italic">
+										{(post.heroImage as any).caption}
+									</figcaption>
+								)}
+							</div>
+						</Container>
+					</section>
+				)}
+
+				{/* Content Section */}
+				<section className="py-16 sm:py-20 lg:py-24">
+					<Container width="wide">
+						<div className="mx-auto max-w-3xl px-6 sm:px-8 lg:px-12">
+							<div className="prose prose-lg prose-xl max-w-none">
+								<PortableText blocks={processedBlocks} />
+							</div>
 						</div>
 					</Container>
 				</section>

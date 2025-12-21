@@ -21,7 +21,7 @@ function RoundedImage({value}: {value: any}) {
 	const alt = value.alt || ''
 
 	return (
-		<figure className="my-9">
+		<figure className="-mx-6 my-12 sm:-mx-16 lg:-mx-24">
 			<Image
 				src={imageUrl}
 				alt={alt}
@@ -29,9 +29,10 @@ function RoundedImage({value}: {value: any}) {
 				height={675}
 				quality={95}
 				className="w-full rounded-lg shadow-lg"
+				sizes="(min-width: 1024px) 1200px, 100vw"
 			/>
 			{alt && alt.toLowerCase() !== 'description' && (
-				<figcaption className="text-muted-foreground mt-3 text-center text-sm">
+				<figcaption className="text-muted-foreground mt-4 px-6 text-center text-sm italic sm:px-16 lg:px-24">
 					{alt}
 				</figcaption>
 			)}
@@ -135,17 +136,17 @@ function createComponents() {
 				if (!src) return null
 
 				return (
-					<figure className="my-8">
+					<figure className="-mx-6 my-12 sm:-mx-16 lg:-mx-24">
 						<Image
 							src={src}
 							alt={value?.alt ?? ''}
 							width={width}
 							height={height}
-							className="h-auto w-full"
-							sizes="(min-width: 1024px) 768px, 100vw"
+							className="h-auto w-full rounded-2xl"
+							sizes="(min-width: 1024px) 1200px, 100vw"
 						/>
 						{value?.caption ? (
-							<figcaption className="text-muted-foreground mt-2 text-sm">
+							<figcaption className="text-muted-foreground mt-4 px-6 text-sm italic sm:px-16 lg:px-24">
 								{value.caption}
 							</figcaption>
 						) : null}
