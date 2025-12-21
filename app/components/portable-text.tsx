@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {type PortableTextBlock} from '@sanity/types'
 import {highlight} from 'sugar-high'
-import {urlFor} from '@/lib/sanity/image'
+import {urlForImage} from '@/lib/sanity/image'
 import {CodeCopyButton} from './copy-button'
 import {Footnote} from './footnote'
 
@@ -19,7 +19,7 @@ let footnoteDefinitions = new Map<string, any>()
 function RoundedImage({value}: {value: any}) {
 	if (!value?.asset) return null
 
-	const imageUrl = urlFor(value.asset).url()
+	const imageUrl = urlForImage(value.asset).url()
 	const alt = value.alt || ''
 
 	return (
@@ -136,7 +136,34 @@ function createComponents() {
 
 	components = {
 		types: {
-			image: RoundedImage,
+			image: ({value}: {value: any}) => {
+				const width = value?.asset?.metadata?.dimensions?.width ?? 1600
+				const height = value?.asset?.metadata?.dimensions?.height ?? 900
+
+				const src =
+					value?.asset?.url ??
+					urlForImage(value).width(1600).fit('max').auto('format').url()
+
+				if (!src) return null
+
+				return (
+					<figure className="my-8">
+						<Image
+							src={src}
+							alt={value?.alt ?? ''}
+							width={width}
+							height={height}
+							className="h-auto w-full"
+							sizes="(min-width: 1024px) 768px, 100vw"
+						/>
+						{value?.caption ? (
+							<figcaption className="text-muted-foreground mt-2 text-sm">
+								{value.caption}
+							</figcaption>
+						) : null}
+					</figure>
+				)
+			},
 			code: CodeBlock,
 			footnote: FootnoteDefinition
 		},

@@ -1,19 +1,26 @@
-import {defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export default defineType({
 	name: 'post',
 	title: 'Post',
 	type: 'document',
+
+	fieldsets: [
+		{
+			name: 'media',
+			title: 'Media',
+			options: {collapsible: true, collapsed: false}
+		}
+	],
+
 	fields: [
 		defineField({
 			name: 'title',
-			title: 'Title',
 			type: 'string',
 			validation: (Rule) => Rule.required()
 		}),
 		defineField({
 			name: 'slug',
-			title: 'Slug',
 			type: 'slug',
 			options: {
 				source: 'title',
@@ -23,24 +30,41 @@ export default defineType({
 		}),
 		defineField({
 			name: 'publishedAt',
-			title: 'Published at',
 			type: 'datetime',
-			initialValue: () => new Date().toISOString(),
 			validation: (Rule) => Rule.required()
 		}),
 		defineField({
 			name: 'summary',
-			title: 'Summary',
 			type: 'text',
-			rows: 3,
+			rows: 2,
 			validation: (Rule) => Rule.required()
 		}),
+
+		defineField({
+			name: 'heroImage',
+			title: 'Hero image',
+			type: 'image',
+			fieldset: 'media',
+			options: {hotspot: true},
+			validation: (Rule) => Rule.required(),
+			fields: [
+				defineField({
+					name: 'alt',
+					type: 'string',
+					validation: (Rule) => Rule.required()
+				}),
+				defineField({
+					name: 'caption',
+					type: 'string'
+				})
+			]
+		}),
+
 		defineField({
 			name: 'content',
-			title: 'Content',
 			type: 'array',
 			of: [
-				{
+				defineArrayMember({
 					type: 'block',
 					marks: {
 						annotations: [
@@ -70,23 +94,27 @@ export default defineType({
 							}
 						]
 					}
-				},
-				{
+				}),
+
+				defineArrayMember({type: 'code'}),
+
+				defineArrayMember({
 					type: 'image',
+					options: {hotspot: true},
 					fields: [
-						{
+						defineField({
 							name: 'alt',
 							type: 'string',
-							title: 'Alternative text'
-						}
+							validation: (Rule) => Rule.required()
+						}),
+						defineField({
+							name: 'caption',
+							type: 'string'
+						})
 					]
-				},
-				{
-					type: 'code'
-				},
-				{
-					type: 'footnote'
-				}
+				}),
+
+				defineArrayMember({type: 'footnote'})
 			]
 		}),
 		defineField({
@@ -94,9 +122,7 @@ export default defineType({
 			title: 'Tags',
 			type: 'array',
 			of: [{type: 'string'}],
-			options: {
-				layout: 'tags'
-			}
+			options: {layout: 'tags'}
 		}),
 		defineField({
 			name: 'draft',
@@ -105,18 +131,14 @@ export default defineType({
 			initialValue: false
 		})
 	],
+
 	preview: {
 		select: {
 			title: 'title',
-			publishedAt: 'publishedAt'
+			media: 'heroImage'
 		},
-		prepare({title, publishedAt}) {
-			return {
-				title,
-				subtitle: publishedAt
-					? new Date(publishedAt).toLocaleDateString()
-					: 'No publish date'
-			}
+		prepare({title, media}) {
+			return {title, media}
 		}
 	}
 })

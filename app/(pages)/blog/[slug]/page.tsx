@@ -8,65 +8,11 @@ import {StructuredData} from '@/components/structured-data'
 import {NewsletterPopup} from '@/components/newsletter-popup'
 import {generateBlogPostMetadata, defaultOgImageUrl} from '@/lib/metadata'
 import {baseUrl} from '@/app/sitemap'
-import {formatDate, getBlogPosts, getBlogPostBySlug} from '@/lib/blog'
+import {formatDate, getBlogPostBySlug, getBlogPostSlugs} from '@/lib/blog'
+import Image from 'next/image'
+import {type SanityImage} from '@/lib/types'
 
 export const revalidate = 300 // Revalidate every 5 minutes
-
-interface BlogHeaderProps {
-	date: string
-	readingTime: string | undefined
-	title: string
-	summary: string
-	tags?: string[]
-}
-
-function BlogHeader({
-	date,
-	readingTime,
-	title,
-	summary,
-	tags
-}: BlogHeaderProps) {
-	return (
-		<header className="mb-16">
-			<div className="space-y-8">
-				<div className="space-y-6">
-					<h1 className="text-foreground text-2xl leading-tight font-semibold tracking-tight sm:text-3xl">
-						{title}
-					</h1>
-					<p className="text-muted-foreground max-w-2xl text-base leading-relaxed sm:text-lg">
-						{summary}
-					</p>
-				</div>
-
-				<div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
-					<time className="text-muted-foreground">{formatDate(date)}</time>
-					{readingTime && (
-						<>
-							<span className="text-muted-foreground">·</span>
-							<span className="text-muted-foreground">{readingTime}</span>
-						</>
-					)}
-					{tags && tags.length > 0 && (
-						<>
-							<span className="text-muted-foreground">·</span>
-							<div className="flex flex-wrap gap-x-3 gap-y-1">
-								{tags.map((tag) => (
-									<Link
-										key={tag}
-										href={`/tags/${encodeURIComponent(tag)}`}
-										className="text-muted-foreground hover:text-foreground transition-colors">
-										{tag}
-									</Link>
-								))}
-							</div>
-						</>
-					)}
-				</div>
-			</div>
-		</header>
-	)
-}
 
 interface Params {
 	slug: string
@@ -77,10 +23,8 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-	const posts = await getBlogPosts()
-	return posts.map((post: any) => ({
-		slug: post.slug
-	}))
+	const slugs = await getBlogPostSlugs()
+	return slugs.map((slug) => ({slug}))
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata | null> {
@@ -91,17 +35,21 @@ export async function generateMetadata(props: Props): Promise<Metadata | null> {
 	if (!post) return null
 
 	const {title, publishedAt, summary, tags} = post.metadata
+	const heroUrl = post.heroImage?.asset?.url
 
 	return generateBlogPostMetadata(
 		title,
 		summary,
 		params.slug,
 		publishedAt,
-		tags
+		tags,
+		heroUrl
 	)
 }
 
-export default async function Blog(props: Props) {
+export default async function BlogPostPage(props: {
+	params: Promise<{slug: string}>
+}) {
 	const params = await props.params
 	const post = await getBlogPostBySlug(params.slug)
 
@@ -109,13 +57,20 @@ export default async function Blog(props: Props) {
 		notFound()
 	}
 
+	const hero: SanityImage | undefined = post.heroImage
+	const heroUrl: string | undefined = hero?.asset?.url
+	const heroAlt: string = hero?.alt ?? post.metadata.title
+	const heroLqip: string | undefined = hero?.asset?.metadata?.lqip
+	const heroCaption: string | undefined = hero?.caption
+	const articleImage = heroUrl ?? defaultOgImageUrl
+
 	return (
 		<>
 			<StructuredData
 				type="article"
 				title={post.metadata.title}
 				description={post.metadata.summary}
-				image={defaultOgImageUrl}
+				image={articleImage}
 				datePublished={post.metadata.publishedAt}
 				dateModified={post.metadata.publishedAt}
 				author="Lauro Silva"
@@ -123,32 +78,50 @@ export default async function Blog(props: Props) {
 			/>
 
 			<article>
-				{/* Header */}
-				<header className="border-border border-b pt-32 pb-16 lg:pt-40 lg:pb-20">
+				{/* Hero (Title + Meta + Image) */}
+				<header className="border-border relative overflow-hidden border-b pt-32 pb-24 lg:pt-40 lg:pb-32">
+					{heroUrl ? (
+						<>
+							<div className="absolute inset-0">
+								<Image
+									src={heroUrl}
+									alt={heroAlt}
+									fill
+									priority
+									className="object-cover"
+									sizes="100vw"
+									placeholder={heroLqip ? 'blur' : 'empty'}
+									blurDataURL={heroLqip}
+								/>
+							</div>
+							<div className="from-background/60 via-background/85 to-background absolute inset-0 bg-linear-to-b" />
+						</>
+					) : null}
+
 					<Container width="base">
-						<div className="space-y-8">
+						<div className="relative space-y-10">
 							<div className="space-y-6">
-								<h1 className="text-3xl leading-tight font-bold tracking-tight sm:text-4xl lg:text-5xl xl:text-6xl">
+								<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
 									{post.metadata.title}
 								</h1>
-								<p className="text-muted-foreground text-lg leading-relaxed lg:text-xl">
+								<p className="text-muted-foreground max-w-2xl text-lg leading-relaxed lg:text-xl">
 									{post.metadata.summary}
 								</p>
 							</div>
 
-							<div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+							<div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
 								<time className="text-muted-foreground">
 									{formatDate(post.metadata.publishedAt)}
 								</time>
-								{post.metadata.readingTime && (
+								{post.metadata.readingTime ? (
 									<>
 										<span className="text-muted-foreground">·</span>
 										<span className="text-muted-foreground">
 											{post.metadata.readingTime}
 										</span>
 									</>
-								)}
-								{post.metadata.tags && post.metadata.tags.length > 0 && (
+								) : null}
+								{post.metadata.tags && post.metadata.tags.length > 0 ? (
 									<>
 										<span className="text-muted-foreground">·</span>
 										<div className="flex flex-wrap gap-x-3 gap-y-1">
@@ -156,14 +129,20 @@ export default async function Blog(props: Props) {
 												<Link
 													key={tag}
 													href={`/tags/${encodeURIComponent(tag)}`}
-													className="text-muted-foreground hover:text-foreground transition-colors">
+													className="text-muted-foreground hover:text-foreground underline-offset-4 transition-colors hover:underline">
 													{tag}
 												</Link>
 											))}
 										</div>
 									</>
-								)}
+								) : null}
 							</div>
+
+							{heroCaption ? (
+								<p className="text-muted-foreground max-w-2xl text-sm leading-relaxed">
+									{heroCaption}
+								</p>
+							) : null}
 						</div>
 					</Container>
 				</header>

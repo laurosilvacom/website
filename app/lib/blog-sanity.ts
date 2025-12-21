@@ -1,7 +1,12 @@
 import {cache} from 'react'
 import {client} from './sanity/client'
-import {postsQuery, postBySlugQuery, allPostsSlugsQuery} from './sanity/queries'
-import {type BlogPost, type BlogMetadata} from './types'
+import {
+	allPostsQuery,
+	postsQuery,
+	postBySlugQuery,
+	allPostsSlugsQuery
+} from './sanity/queries'
+import {type BlogPost, type BlogMetadata, type SanityImage} from './types'
 import {type PortableTextBlock} from '@sanity/types'
 
 function calculateReadingTime(content: PortableTextBlock[]): string {
@@ -28,11 +33,14 @@ interface SanityPost {
 	slug: {current: string}
 	publishedAt: string
 	summary: string
+	heroImage?: SanityImage
 	content: PortableTextBlock[]
 	tags?: string[]
 	draft?: boolean
 	readingTime?: number
 }
+
+type SanitySlugResult = {slug: string}
 
 function transformSanityPost(post: SanityPost): BlogPost {
 	const readingTime = post.readingTime
@@ -49,6 +57,7 @@ function transformSanityPost(post: SanityPost): BlogPost {
 			draft: post.draft || false,
 			readingTime
 		},
+		heroImage: post.heroImage,
 		content: post.content
 	}
 }
@@ -58,10 +67,23 @@ function transformSanityPost(post: SanityPost): BlogPost {
  */
 export const getAllBlogPosts = cache(async (): Promise<BlogPost[]> => {
 	try {
-		const posts = await client.fetch<SanityPost[]>(postsQuery)
+		const posts = await client.fetch<SanityPost[]>(allPostsQuery)
 		return posts.map(transformSanityPost)
 	} catch (error) {
 		console.error('Error fetching blog posts from Sanity:', error)
+		return []
+	}
+})
+
+/**
+ * Get all published blog post slugs (for generateStaticParams)
+ */
+export const getBlogPostSlugs = cache(async (): Promise<string[]> => {
+	try {
+		const results = await client.fetch<SanitySlugResult[]>(allPostsSlugsQuery)
+		return results.map((r) => r.slug).filter(Boolean)
+	} catch (error) {
+		console.error('Error fetching blog post slugs from Sanity:', error)
 		return []
 	}
 })

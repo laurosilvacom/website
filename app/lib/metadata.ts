@@ -169,11 +169,13 @@ export function generateBlogPostMetadata(
 	description: string,
 	slug: string,
 	publishedAt: string,
-	tags?: string[]
+	tags?: string[],
+	image?: string
 ): Metadata {
 	return createMetadata({
 		title,
 		description,
+		image,
 		canonical: joinUrl(baseUrl, `/blog/${slug}`),
 		publishedTime: publishedAt,
 		modifiedTime: publishedAt,
