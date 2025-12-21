@@ -26,11 +26,10 @@
 - Post detail pages
   ([app/(pages)/blog/[slug]/page.tsx](<app/(pages)/blog/[slug]/page.tsx>))
   preload paths with `generateStaticParams`, hydrate metadata, and render Sanity
-  Portable Text with a sticky TOC; mirror this structure for future long-form
-  content.
+  Portable Text; mirror this structure for future long-form content.
 - Rich text rendering lives in
   [app/components/portable-text.tsx](app/components/portable-text.tsx): it
-  decorates Sanity blocks with custom images, code blocks (via Sugar High +
+  decorates Sanity blocks with custom images, code blocks (via Shiki +
   `CodeCopyButton`), and interactive footnotes. Extend this file instead of
   rolling ad-hoc renderers.
 

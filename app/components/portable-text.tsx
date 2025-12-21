@@ -176,60 +176,12 @@ function createComponents() {
 			code: InlineCode
 		},
 		block: {
-			h1: ({children}: any) => {
-				const text = typeof children === 'string' ? children : String(children)
-				const slug = slugify(text)
-				return (
-					<h1 id={slug} className="text-foreground scroll-mt-20">
-						{children}
-					</h1>
-				)
-			},
-			h2: ({children}: any) => {
-				const text = typeof children === 'string' ? children : String(children)
-				const slug = slugify(text)
-				return (
-					<h2 id={slug} className="text-foreground scroll-mt-20">
-						{children}
-					</h2>
-				)
-			},
-			h3: ({children}: any) => {
-				const text = typeof children === 'string' ? children : String(children)
-				const slug = slugify(text)
-				return (
-					<h3 id={slug} className="text-foreground scroll-mt-20">
-						{children}
-					</h3>
-				)
-			},
-			h4: ({children}: any) => {
-				const text = typeof children === 'string' ? children : String(children)
-				const slug = slugify(text)
-				return (
-					<h4 id={slug} className="text-foreground scroll-mt-20">
-						{children}
-					</h4>
-				)
-			},
-			h5: ({children}: any) => {
-				const text = typeof children === 'string' ? children : String(children)
-				const slug = slugify(text)
-				return (
-					<h5 id={slug} className="text-foreground scroll-mt-20">
-						{children}
-					</h5>
-				)
-			},
-			h6: ({children}: any) => {
-				const text = typeof children === 'string' ? children : String(children)
-				const slug = slugify(text)
-				return (
-					<h6 id={slug} className="text-foreground scroll-mt-20">
-						{children}
-					</h6>
-				)
-			},
+			h1: ({children}: any) => <h1 className="text-foreground">{children}</h1>,
+			h2: ({children}: any) => <h2 className="text-foreground">{children}</h2>,
+			h3: ({children}: any) => <h3 className="text-foreground">{children}</h3>,
+			h4: ({children}: any) => <h4 className="text-foreground">{children}</h4>,
+			h5: ({children}: any) => <h5 className="text-foreground">{children}</h5>,
+			h6: ({children}: any) => <h6 className="text-foreground">{children}</h6>,
 			blockquote: ({children}: any) => (
 				<blockquote className="border-muted-foreground/30 my-7 border-l-3 pl-6 italic">
 					{children}

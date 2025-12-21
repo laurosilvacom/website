@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import {notFound} from 'next/navigation'
 import {type Metadata} from 'next'
 import Container from '@/components/container'
@@ -96,7 +95,7 @@ export default async function BlogPost({params}: Props) {
 				<header className="pt-24 pb-12 lg:pt-32 lg:pb-16">
 					<Container width="base">
 						<div className="mx-auto max-w-4xl space-y-8 text-center">
-							<div className="text-muted-foreground flex items-center justify-center gap-3 text-sm font-medium uppercase tracking-widest">
+							<div className="text-muted-foreground flex items-center justify-center gap-3 text-sm font-medium tracking-widest uppercase">
 								<time dateTime={post.metadata.publishedAt}>
 									{formatDate(post.metadata.publishedAt)}
 								</time>
@@ -104,11 +103,11 @@ export default async function BlogPost({params}: Props) {
 								<span>{readingTime} min read</span>
 							</div>
 
-							<h1 className="text-foreground text-balance text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+							<h1 className="text-foreground text-4xl leading-[1.1] font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
 								{post.metadata.title}
 							</h1>
 
-							<p className="text-muted-foreground text-balance mx-auto max-w-2xl text-xl leading-relaxed md:text-2xl">
+							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed text-balance md:text-2xl">
 								{post.metadata.summary}
 							</p>
 
@@ -119,7 +118,7 @@ export default async function BlogPost({params}: Props) {
 					{/* Hero Image - Optimized for LCP */}
 					{heroUrl && (
 						<Container width="base" className="mt-12 lg:mt-16">
-							<div className="bg-muted relative aspect-[2/1] w-full overflow-hidden rounded-xl shadow-sm">
+							<div className="bg-muted relative aspect-2/1 w-full overflow-hidden rounded-xl shadow-sm">
 								<Image
 									src={heroUrl}
 									alt={heroAlt}
@@ -138,7 +137,7 @@ export default async function BlogPost({params}: Props) {
 					)}
 				</header>
 
-				{/* Content Section - Narrow for readability */}
+				{/* Content Section - Narrow for readability - NO TOC */}
 				<section className="pb-24 lg:pb-32">
 					<Container width="narrow">
 						<div className="prose prose-lg mx-auto">
