@@ -62,73 +62,73 @@
 
 :root {
 	--radius: 0.75rem;
-	/* Light mode - Clean neutrals, vibrant purple accent */
-	--background: oklch(0.98 0.003 270); /* Crisp white */
-	--foreground: oklch(0.15 0.008 270); /* Deep neutral text */
-	--card: oklch(1 0 0); /* Pure white cards */
-	--card-foreground: oklch(0.15 0.008 270);
-	--popover: oklch(1 0 0);
-	--popover-foreground: oklch(0.15 0.008 270);
-	--primary: oklch(0.55 0.28 280); /* Vibrant purple - keep this! */
-	--primary-foreground: oklch(0.98 0.003 270);
-	--secondary: oklch(0.96 0.004 270); /* Light neutral */
-	--secondary-foreground: oklch(0.15 0.008 270);
-	--muted: oklch(0.97 0.003 270); /* Very light neutral */
-	--muted-foreground: oklch(0.48 0.006 270); /* Medium neutral */
-	--accent: oklch(0.95 0.004 270); /* Subtle accent */
-	--accent-foreground: oklch(0.15 0.008 270);
-	--destructive: oklch(0.58 0.22 15); /* Balanced red */
-	--border: oklch(0.91 0.004 270); /* Subtle border */
-	--input: oklch(0.91 0.004 270);
-	--ring: oklch(0.55 0.28 280); /* Vibrant ring - matches primary */
+	/* Light mode - Warm cream base with vibrant purple accent */
+	--background: oklch(0.97 0.008 85);
+	--foreground: oklch(0.2 0.015 280);
+	--card: oklch(0.99 0.005 85);
+	--card-foreground: oklch(0.2 0.015 280);
+	--popover: oklch(0.99 0.005 85);
+	--popover-foreground: oklch(0.2 0.015 280);
+	--primary: oklch(0.55 0.28 280);
+	--primary-foreground: oklch(0.99 0.005 85);
+	--secondary: oklch(0.93 0.012 300);
+	--secondary-foreground: oklch(0.2 0.015 280);
+	--muted: oklch(0.95 0.01 85);
+	--muted-foreground: oklch(0.45 0.02 280);
+	--accent: oklch(0.92 0.015 320);
+	--accent-foreground: oklch(0.2 0.015 280);
+	--destructive: oklch(0.58 0.22 15);
+	--border: oklch(0.88 0.012 280);
+	--input: oklch(0.88 0.012 280);
+	--ring: oklch(0.55 0.28 280);
 	--chart-1: oklch(0.55 0.28 280);
 	--chart-2: oklch(0.52 0.24 200);
 	--chart-3: oklch(0.58 0.26 320);
 	--chart-4: oklch(0.54 0.22 40);
 	--chart-5: oklch(0.56 0.26 280);
-	--sidebar: oklch(0.98 0.003 270);
-	--sidebar-foreground: oklch(0.15 0.008 270);
+	--sidebar: oklch(0.97 0.008 85);
+	--sidebar-foreground: oklch(0.2 0.015 280);
 	--sidebar-primary: oklch(0.55 0.28 280);
-	--sidebar-primary-foreground: oklch(0.98 0.003 270);
-	--sidebar-accent: oklch(0.96 0.004 270);
-	--sidebar-accent-foreground: oklch(0.15 0.008 270);
-	--sidebar-border: oklch(0.91 0.004 270);
+	--sidebar-primary-foreground: oklch(0.99 0.005 85);
+	--sidebar-accent: oklch(0.93 0.012 300);
+	--sidebar-accent-foreground: oklch(0.2 0.015 280);
+	--sidebar-border: oklch(0.88 0.012 280);
 	--sidebar-ring: oklch(0.55 0.28 280);
 }
 
 .dark {
-	/* Dark mode - Deep neutrals, vibrant purple accent */
-	--background: oklch(0.11 0.008 270); /* True deep dark */
-	--foreground: oklch(0.94 0.004 270); /* Soft white text */
-	--card: oklch(0.14 0.01 270); /* Elevated cards */
-	--card-foreground: oklch(0.94 0.004 270);
-	--popover: oklch(0.14 0.01 270);
-	--popover-foreground: oklch(0.94 0.004 270);
-	--primary: oklch(0.68 0.29 280); /* Vibrant purple - bright but not neon */
-	--primary-foreground: oklch(0.11 0.008 270);
-	--secondary: oklch(0.2 0.01 270); /* Dark neutral */
-	--secondary-foreground: oklch(0.94 0.004 270);
-	--muted: oklch(0.17 0.009 270); /* Subtle muted */
-	--muted-foreground: oklch(0.65 0.005 270); /* Medium gray */
-	--accent: oklch(0.22 0.012 270); /* Gentle accent */
-	--accent-foreground: oklch(0.94 0.004 270);
-	--destructive: oklch(0.62 0.24 15); /* Bright red */
-	--border: oklch(0.25 0.01 270); /* Subtle border */
-	--input: oklch(0.25 0.01 270);
-	--ring: oklch(0.68 0.29 280); /* Vibrant ring - matches primary */
-	--chart-1: oklch(0.68 0.29 280);
-	--chart-2: oklch(0.64 0.27 200);
-	--chart-3: oklch(0.72 0.26 320);
-	--chart-4: oklch(0.66 0.24 40);
-	--chart-5: oklch(0.69 0.28 280);
-	--sidebar: oklch(0.14 0.01 270);
-	--sidebar-foreground: oklch(0.94 0.004 270);
-	--sidebar-primary: oklch(0.68 0.29 280);
-	--sidebar-primary-foreground: oklch(0.11 0.008 270);
-	--sidebar-accent: oklch(0.2 0.01 270);
-	--sidebar-accent-foreground: oklch(0.94 0.004 270);
-	--sidebar-border: oklch(0.25 0.01 270);
-	--sidebar-ring: oklch(0.68 0.29 280);
+	/* Dark mode - Rich deep purple-navy with warm undertones */
+	--background: oklch(0.15 0.02 280);
+	--foreground: oklch(0.95 0.008 85);
+	--card: oklch(0.18 0.025 280);
+	--card-foreground: oklch(0.95 0.008 85);
+	--popover: oklch(0.18 0.025 280);
+	--popover-foreground: oklch(0.95 0.008 85);
+	--primary: oklch(0.55 0.28 280);
+	--primary-foreground: oklch(0.99 0.005 85);
+	--secondary: oklch(0.22 0.03 290);
+	--secondary-foreground: oklch(0.95 0.008 85);
+	--muted: oklch(0.2 0.025 280);
+	--muted-foreground: oklch(0.65 0.015 280);
+	--accent: oklch(0.25 0.035 320);
+	--accent-foreground: oklch(0.95 0.008 85);
+	--destructive: oklch(0.58 0.22 15);
+	--border: oklch(0.25 0.03 280);
+	--input: oklch(0.25 0.03 280);
+	--ring: oklch(0.55 0.28 280);
+	--chart-1: oklch(0.55 0.28 280);
+	--chart-2: oklch(0.52 0.24 200);
+	--chart-3: oklch(0.58 0.26 320);
+	--chart-4: oklch(0.54 0.22 40);
+	--chart-5: oklch(0.56 0.26 280);
+	--sidebar: oklch(0.15 0.02 280);
+	--sidebar-foreground: oklch(0.95 0.008 85);
+	--sidebar-primary: oklch(0.55 0.28 280);
+	--sidebar-primary-foreground: oklch(0.99 0.005 85);
+	--sidebar-accent: oklch(0.22 0.03 290);
+	--sidebar-accent-foreground: oklch(0.95 0.008 85);
+	--sidebar-border: oklch(0.25 0.03 280);
+	--sidebar-ring: oklch(0.55 0.28 280);
 }
 
 @theme inline {
@@ -169,18 +169,12 @@
 		text-rendering: optimizeLegibility;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		overflow-y: scroll;
-		scrollbar-gutter: stable;
 	}
 }
 
 html {
 	min-width: 360px;
-	scrollbar-gutter: stable;
-	overflow-y: scroll;
 	font-size: 16px;
-	background-color: var(--background);
-	color: var(--foreground);
 	font-family:
 		'Wotfard',
 		-apple-system,
@@ -194,60 +188,17 @@ html {
 	line-height: 1.6;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	/* Force scrollbar to always reserve space - scrollbar-gutter handles this */
 }
 
-/* Base heading styles - consistent hierarchy across all pages */
-h1 {
-	font-family: 'Elan ITC Std', serif;
-	font-weight: 700;
-	letter-spacing: -0.04em;
-	line-height: 1.1;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-}
-
-h2 {
-	font-family: 'Elan ITC Std', serif;
-	font-weight: 700;
-	letter-spacing: -0.035em;
-	line-height: 1.15;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-}
-
-h3 {
-	font-family: 'Elan ITC Std', serif;
-	font-weight: 600;
-	letter-spacing: -0.03em;
-	line-height: 1.2;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-}
-
-h4 {
-	font-family: 'Elan ITC Std', serif;
-	font-weight: 600;
-	letter-spacing: -0.025em;
-	line-height: 1.25;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-}
-
-h5 {
-	font-family: 'Elan ITC Std', serif;
-	font-weight: 500;
-	letter-spacing: -0.02em;
-	line-height: 1.3;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-}
-
+/* Base heading styles */
+h1,
+h2,
+h3,
+h4,
+h5,
 h6 {
 	font-family: 'Elan ITC Std', serif;
-	font-weight: 500;
-	letter-spacing: -0.015em;
-	line-height: 1.35;
+	font-weight: 700;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 }
@@ -257,671 +208,67 @@ h6 {
 	color: var(--primary-foreground);
 }
 
-.dark ::selection {
-	background: var(--primary);
-	color: var(--primary-foreground);
-}
-
-pre {
-	background-color: var(--card);
-	color: var(--card-foreground);
-	overflow-x: auto;
-	border-radius: 0.75rem;
-}
-
-.prose
-	:where(code):not(:where([class~='not-prose'], [class~='not-prose'] *)):before,
-.prose
-	:where(code):not(:where([class~='not-prose'], [class~='not-prose'] *)):after {
-	content: none;
-}
-
-/* Typography for optimal reading experience - readable and elegant */
-.prose {
-	@apply text-foreground;
-	line-height: 1.8;
-	font-size: 17px;
-	font-family:
-		'Wotfard',
-		-apple-system,
-		BlinkMacSystemFont,
-		'SF Pro Display',
-		'SF Pro Text',
-		system-ui,
-		sans-serif;
-	letter-spacing: -0.011em;
-}
-
-.prose p {
-	@apply mb-10;
-	line-height: 1.8;
-	letter-spacing: -0.011em;
-	font-size: 17px;
-}
-
-/* Prose heading styles - consistent with base styles but optimized for content */
-.prose h1 {
-	font-size: 2rem;
-	line-height: 1.1;
-	font-weight: 700;
-	margin-top: 5rem;
-	margin-bottom: 2.5rem;
-	letter-spacing: -0.04em;
-	color: oklch(0.25 0.02 260);
-}
-
-.prose h1:first-child {
-	margin-top: 0;
-}
-
-.dark .prose h1 {
-	color: oklch(0.9 0.01 250);
-}
-
-.prose h2 {
-	font-size: 1.5rem;
-	line-height: 1.15;
-	font-weight: 700;
-	margin-top: 4.5rem;
-	margin-bottom: 2rem;
-	letter-spacing: -0.035em;
-	color: oklch(0.25 0.02 260);
-}
-
-.dark .prose h2 {
-	color: oklch(0.9 0.01 250);
-}
-
-.prose h3 {
-	font-size: 1.25rem;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-top: 3.5rem;
-	margin-bottom: 1.5rem;
-	letter-spacing: -0.03em;
-	color: oklch(0.25 0.02 260);
-}
-
-.dark .prose h3 {
-	color: oklch(0.9 0.01 250);
-}
-
-.prose h4 {
-	font-size: 1.125rem;
-	line-height: 1.25;
-	font-weight: 600;
-	margin-top: 3rem;
-	margin-bottom: 1.25rem;
-	letter-spacing: -0.025em;
-	color: oklch(0.25 0.02 260);
-}
-
-.dark .prose h4 {
-	color: oklch(0.9 0.01 250);
-}
-
-.prose h5 {
-	font-size: 1rem;
-	line-height: 1.3;
-	font-weight: 500;
-	margin-top: 2.5rem;
-	margin-bottom: 1rem;
-	letter-spacing: -0.02em;
-	color: oklch(0.25 0.02 260);
-}
-
-.dark .prose h5 {
-	color: oklch(0.9 0.01 250);
-}
-
-.prose h6 {
-	font-size: 0.875rem;
-	line-height: 1.35;
-	font-weight: 500;
-	margin-top: 0.875rem;
-	margin-bottom: 0.5rem;
-	letter-spacing: -0.015em;
-	color: oklch(0.25 0.02 260);
-}
-
-.dark .prose h6 {
-	color: oklch(0.9 0.01 250);
-}
-
-.prose ul,
-.prose ol {
-	@apply mb-10 ml-6;
-}
-
-.prose li {
-	@apply mb-3;
-	line-height: 1.8;
-}
-
-.prose blockquote {
-	@apply my-12 border-l-4 pl-8 italic;
-	border-color: oklch(0.62 0.24 280 / 0.5);
-	color: oklch(0.4 0.02 260);
-	line-height: 1.8;
-}
-
-.dark .prose blockquote {
-	border-color: oklch(0.72 0.24 280 / 0.6);
-	color: oklch(0.75 0.01 250);
-}
-
-/* Inline code ONLY (never code inside pre, never anything inside .not-prose) */
-.prose
-	:where(code):not(
-		:where(pre code, [class~='not-prose'], [class~='not-prose'] *)
-	),
-.inline-code {
-	background: linear-gradient(
-		135deg,
-		oklch(0.94 0.008 270),
-		oklch(0.92 0.01 270)
-	);
-	color: oklch(0.55 0.28 280);
-	@apply rounded-md px-1.5 py-0.5 text-[0.9em];
-	font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace;
-	font-weight: 600;
-	border: 1.5px solid oklch(0.88 0.015 270);
-	box-shadow: 0 1px 2px oklch(0.55 0.28 280 / 0.1);
-}
-
-/* FIX: dark rule must match the same exclusions as light */
-.dark
-	.prose
-	:where(code):not(
-		:where(pre code, [class~='not-prose'], [class~='not-prose'] *)
-	),
-.dark .inline-code {
-	background: linear-gradient(
-		135deg,
-		oklch(0.16 0.02 270),
-		oklch(0.18 0.022 270)
-	);
-	color: oklch(0.75 0.3 280);
-	border-color: oklch(0.22 0.025 270);
-	box-shadow:
-		0 1px 3px oklch(0.75 0.3 280 / 0.2),
-		inset 0 1px 0 oklch(0.2 0.025 270 / 0.5);
-}
-
-/* Hard reset for block code text (kills the “background on tokens/lines”) */
-pre code,
-pre code * {
-	background: none !important;
-	background-color: transparent !important;
-	box-shadow: none !important;
-	border: 0 !important;
-}
-
-.prose pre {
-	background-color: transparent;
-	border: none;
-	margin: 0;
-	@apply overflow-x-auto;
-	line-height: 1.6;
-}
-
-.prose pre code {
-	background: transparent !important; /* was background-color only */
-	border: none;
-	box-shadow: none;
-	color: var(--foreground);
-	font-size: 0.9em;
-	padding: 0;
-	font-weight: 400;
-}
-
-.prose pre code * {
-	background: transparent !important; /* was background-color only */
-	box-shadow: none !important;
-}
-
-/* Force transparent backgrounds on all syntax highlighting tokens */
-pre code span {
-	background-color: transparent !important;
-	background: none !important;
-}
-
-.dark .prose pre code {
-	color: oklch(0.95 0.002 85);
-}
-
-/* Syntax highlighting colors - ensure visibility */
-.prose pre code .token {
-	color: inherit;
-	background-color: transparent !important;
-}
-
-.prose pre code .token.string,
-.prose pre code .token.char {
-	color: oklch(0.55 0.15 150);
-}
-
-.dark .prose pre code .token.string,
-.dark .prose pre code .token.char {
-	color: oklch(0.75 0.18 150);
-}
-
-.prose pre code .token.keyword,
-.prose pre code .token.operator {
-	color: oklch(0.62 0.24 280);
-}
-
-.dark .prose pre code .token.keyword,
-.dark .prose pre code .token.operator {
-	color: oklch(0.78 0.24 280);
-}
-
-.prose pre code .token.number,
-.prose pre code .token.boolean {
-	color: oklch(0.55 0.18 40);
-}
-
-.dark .prose pre code .token.number,
-.dark .prose pre code .token.boolean {
-	color: oklch(0.78 0.2 40);
-}
-
-.prose pre code .token.comment {
-	color: oklch(0.5 0.01 250);
-	opacity: 0.7;
-}
-
-.dark .prose pre code .token.comment {
-	color: oklch(0.55 0.01 250);
-	opacity: 0.6;
-}
-
-.prose pre code .token.function,
-.prose pre code .token.class-name {
-	color: oklch(0.52 0.14 200);
-}
-
-.dark .prose pre code .token.function,
-.dark .prose pre code .token.class-name {
-	color: oklch(0.75 0.18 200);
-}
-
-.prose a {
-	color: oklch(0.55 0.28 280);
-	@apply underline underline-offset-3 transition-all;
-	text-decoration-thickness: 2px;
-	text-decoration-color: oklch(0.55 0.28 280 / 0.6);
-	font-weight: 500;
-	position: relative;
-}
-
-.prose a:hover {
-	color: oklch(0.5 0.3 280);
-	text-decoration-color: oklch(0.5 0.3 280);
-	text-decoration-thickness: 3px;
-	transform: translateY(-1px);
-}
-
-.dark .prose a {
-	color: oklch(0.7 0.3 280);
-	text-decoration-color: oklch(0.7 0.3 280 / 0.7);
-}
-
-.dark .prose a:hover {
-	color: oklch(0.75 0.32 280);
-	text-decoration-color: oklch(0.75 0.32 280);
-	text-shadow: 0 0 8px oklch(0.75 0.32 280 / 0.4);
-}
-
-.prose hr {
-	@apply border-border my-10;
-}
-
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
-@keyframes slideUp {
-	from {
-		opacity: 0;
-		transform: translateY(20px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-@keyframes fadeInUp {
-	from {
-		opacity: 0;
-		transform: translateY(30px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-@keyframes shimmer {
-	0% {
-		background-position: -1000px 0;
-	}
-	100% {
-		background-position: 1000px 0;
-	}
-}
-
-@keyframes glow {
-	0%,
-	100% {
-		opacity: 1;
-		filter: brightness(1);
-	}
-	50% {
-		opacity: 0.8;
-		filter: brightness(1.2);
-	}
-}
-
-@keyframes float {
-	0%,
-	100% {
-		transform: translateY(0px);
-	}
-	50% {
-		transform: translateY(-10px);
-	}
-}
-
-@keyframes pulse-glow {
-	0%,
-	100% {
-		box-shadow: 0 0 0 0 oklch(0.55 0.28 280 / 0.4);
-	}
-	50% {
-		box-shadow: 0 0 20px 5px oklch(0.55 0.28 280 / 0.6);
-	}
-}
-
-@keyframes pulse-glow-dark {
-	0%,
-	100% {
-		box-shadow: 0 0 0 0 oklch(0.7 0.3 280 / 0.4);
-	}
-	50% {
-		box-shadow: 0 0 20px 5px oklch(0.7 0.3 280 / 0.6);
-	}
-}
-
-/* Smooth scroll animations */
-@media (prefers-reduced-motion: no-preference) {
-	html {
-		scroll-behavior: smooth;
-	}
-
-	article[style*='animationDelay'] {
-		animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-		opacity: 0;
-	}
-}
-
-/* Creative gradient backgrounds */
-body::before {
-	content: '';
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 100vh;
-	background: radial-gradient(
-		ellipse at top,
-		oklch(0.15 0.08 280 / 0.15) 0%,
-		transparent 50%
-	);
-	pointer-events: none;
-	z-index: -1;
-	opacity: 0.6;
-	transition: opacity 0.3s ease;
-}
-
-.dark body::before {
-	background: radial-gradient(
-		ellipse at top,
-		oklch(0.25 0.12 280 / 0.2) 0%,
-		transparent 50%
-	);
-	opacity: 0.4;
-}
-
-/* Bold focus states */
-*:focus-visible {
-	outline: 2px solid var(--ring);
-	outline-offset: 2px;
-	border-radius: calc(var(--radius) * 0.5);
-	box-shadow: 0 0 0 4px oklch(0.55 0.28 280 / 0.2);
-}
-
-.dark *:focus-visible {
-	box-shadow: 0 0 0 4px oklch(0.7 0.3 280 / 0.2);
-}
-
-/* Creative scrollbar */
-::-webkit-scrollbar {
-	width: 10px;
-	height: 10px;
-}
-
-::-webkit-scrollbar-track {
-	background: var(--muted);
-	border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-	background: linear-gradient(to bottom, var(--primary), oklch(0.6 0.28 280));
-	border-radius: 10px;
-	border: 2px solid var(--muted);
-}
-
-::-webkit-scrollbar-thumb:hover {
-	background: linear-gradient(
-		to bottom,
-		oklch(0.5 0.3 280),
-		oklch(0.65 0.3 280)
-	);
-}
-
-.dark ::-webkit-scrollbar-thumb {
-	background: linear-gradient(to bottom, var(--primary), oklch(0.75 0.32 280));
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-	background: linear-gradient(
-		to bottom,
-		oklch(0.65 0.32 280),
-		oklch(0.8 0.32 280)
-	);
-}
-
-.prose strong {
-	@apply font-semibold;
-	color: oklch(0.25 0.02 260);
-	font-weight: 600;
-}
-
-.dark .prose strong {
-	color: oklch(0.9 0.01 250);
-}
-
-.prose em {
-	@apply italic;
-}
-
-button {
-	-webkit-tap-highlight-color: transparent;
-}
-
-/* Prevent layout shifts from dropdown menus */
-[data-radix-popper-content-wrapper] {
-	contain: layout style paint;
-}
-
-/* Ensure dropdown content doesn't affect layout or cause scrollbar */
-[data-radix-dropdown-menu-content] {
-	contain: layout style paint;
-	transform-origin: var(--radix-dropdown-menu-content-transform-origin);
-	max-height: calc(100vh - 1rem) !important;
-}
-
-/* =========================================================
-   Code blocks — High Density, Vercel-like Design
-   ========================================================= */
-
-:root {
-	--code-bg: oklch(0.985 0.002 270);
-	--code-header-bg: oklch(0.97 0.003 270);
-	--code-border: oklch(0.92 0.005 270);
-	--code-ln-text: oklch(0.65 0.005 270);
-	--code-ln-bg: oklch(0.96 0.003 270);
-}
-
-.dark {
-	--code-bg: oklch(0.13 0.01 270);
-	--code-header-bg: oklch(0.15 0.01 270);
-	--code-border: oklch(0.22 0.01 270);
-	--code-ln-text: oklch(0.4 0.01 270);
-	--code-ln-bg: oklch(0.16 0.01 270);
-}
-
-/* Container */
+/* Essential Code Block Styling */
 .code-block {
 	margin: 1.5rem 0;
-	background: var(--code-bg);
-	border: 1px solid var(--code-border);
+	background: var(--card);
+	border: 1px solid var(--border);
 	border-radius: 0.75rem;
 	overflow: hidden;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
-.dark .code-block {
-	box-shadow:
-		0 0 0 1px rgba(255, 255, 255, 0.05),
-		0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Header */
 .code-block-header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 0.5rem 1rem;
-	background: var(--code-header-bg);
-	border-bottom: 1px solid var(--code-border);
-	min-height: 40px;
+	background: var(--muted);
+	border-bottom: 1px solid var(--border);
 }
 
 .code-block-lang {
-	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-family: ui-monospace, monospace;
 	font-size: 0.75rem;
 	font-weight: 600;
-	letter-spacing: 0.05em;
 	text-transform: uppercase;
 	color: var(--muted-foreground);
 }
 
-/* Content Area */
 .code-block-content {
-	position: relative;
 	overflow-x: auto;
-	/* Subtle scrollbar for code blocks */
-	scrollbar-width: thin;
-	scrollbar-color: var(--code-border) transparent;
 }
 
-/* Webkit scrollbar overrides for code blocks */
-.code-block-content::-webkit-scrollbar {
-	height: 6px; /* Horizontal scrollbar height */
-	width: 6px;
-}
-
-.code-block-content::-webkit-scrollbar-track {
-	background: transparent;
-	border-radius: 0;
-}
-
-.code-block-content::-webkit-scrollbar-thumb {
-	background: var(--code-border);
-	border-radius: 3px;
-	border: none;
-}
-
-.code-block-content::-webkit-scrollbar-thumb:hover {
-	background: var(--muted-foreground);
-}
-
-/* Override Shiki's default <pre> styles */
 .code-block-content pre {
 	margin: 0 !important;
-	padding: 0.75rem 0 !important;
+	padding: 0.5rem 0 !important;
 	background: transparent !important;
-	overflow: visible !important;
-	border-radius: 0 !important;
-	/* CRITICAL FIX: Collapse whitespace between block-level lines to prevent double spacing */
-	white-space: normal !important;
 }
 
-/* Code Font & Spacing */
 .code-block-content code {
 	display: block;
-	font-family:
-		'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-		monospace !important;
+	font-family: ui-monospace, monospace !important;
 	font-size: 13px !important;
-	line-height: 1.5 !important;
-	font-weight: 400 !important;
-	/* CRITICAL FIX: Inherit normal whitespace */
-	white-space: inherit !important;
-	tab-size: 2;
+	line-height: 1.3 !important;
 	counter-reset: line;
 }
 
-/* Line Styling */
 .code-block-content .line {
 	display: block;
-	padding: 0 1.5rem 0 3.5rem; /* Right padding for scroll, Left for numbers */
-	min-height: 1.5em; /* Matches line-height */
-	width: 100%;
-	/* CRITICAL FIX: Restore pre-formatting for the actual code content */
+	padding: 0 1.5rem 0 3.5rem;
+	min-height: 1.3em;
 	white-space: pre !important;
 }
 
-/* Line Numbers */
 .code-block-content .line::before {
 	counter-increment: line;
 	content: counter(line);
 	position: absolute;
 	left: 0;
-	width: 2.5rem; /* Fixed width for number column */
+	width: 2.5rem;
 	text-align: right;
-	color: var(--code-ln-text);
+	color: var(--muted-foreground);
 	font-size: 11px;
-	line-height: 1.5; /* Align with code */
-	user-select: none;
+	line-height: 1.3;
 	opacity: 0.6;
-}
-
-/* Highlighted Line (optional, if Shiki adds 'highlighted' class) */
-.code-block-content .line.highlighted {
-	background-color: var(--code-ln-bg);
-	border-left: 2px solid var(--primary);
-}
-
-/* Hover Effect */
-.code-block-content .line:hover {
-	background-color: var(--code-ln-bg);
+	user-select: none;
 }
