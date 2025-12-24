@@ -204,5 +204,9 @@ export function PortableText({blocks}: PortableTextProps) {
 	})
 
 	const components = createComponents()
-	return <SanityPortableText value={blocks} components={components} />
+	return (
+		<div className="prose prose-lg prose-headings:font-serif prose-headings:font-bold prose-headings:tracking-tight prose-h1:text-4xl prose-h1:mt-20 prose-h1:mb-10 prose-h1:leading-tight prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-8 prose-h2:leading-tight prose-h3:text-2xl prose-h3:mt-14 prose-h3:mb-6 prose-h3:leading-snug prose-h4:text-xl prose-h4:mt-12 prose-h4:mb-5 prose-h5:text-lg prose-h5:mt-10 prose-h5:mb-4 prose-h6:text-base prose-h6:mt-8 prose-h6:mb-3 prose-h6:uppercase prose-h6:text-muted-foreground prose-p:text-base prose-p:leading-relaxed prose-p:mb-10 prose-p:tracking-tight prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:font-semibold prose-strong:text-foreground prose-code:text-sm prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-img:rounded-2xl sm:prose-p:text-lg sm:prose-p:leading-relaxed lg:prose-p:text-lg lg:prose-p:leading-loose sm:prose-h1:text-5xl sm:prose-h2:text-4xl sm:prose-h3:text-3xl lg:prose-h1:text-6xl lg:prose-h2:text-5xl lg:prose-h3:text-4xl dark:prose-invert dark:prose-p:text-muted-foreground max-w-none">
+			<SanityPortableText value={blocks} components={components} />
+		</div>
+	)
 }
