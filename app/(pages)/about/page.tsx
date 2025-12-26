@@ -34,7 +34,7 @@ export default function AboutPage() {
 				<section className="relative flex min-h-[85vh] items-center justify-center px-6 pt-32 pb-24 lg:pt-40 lg:pb-32">
 					<div className="mx-auto max-w-4xl text-center">
 						<div className="animate-in fade-in slide-in-from-bottom-4 space-y-12 duration-1000">
-							<h1 className="text-5xl leading-[1.1] font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-8xl">
+							<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
 								Build & Run
 							</h1>
 							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
@@ -87,7 +87,7 @@ export default function AboutPage() {
 										<span className="text-muted-foreground text-sm font-medium">
 											01
 										</span>
-										<h2 className="text-4xl font-bold tracking-tight lg:text-5xl">
+										<h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
 											Software Engineer
 										</h2>
 									</div>
@@ -136,7 +136,7 @@ export default function AboutPage() {
 										<span className="text-muted-foreground text-sm font-medium">
 											02
 										</span>
-										<h2 className="text-4xl font-bold tracking-tight lg:text-5xl">
+										<h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
 											Community Builder
 										</h2>
 									</div>
@@ -176,7 +176,7 @@ export default function AboutPage() {
 										<span className="text-muted-foreground text-sm font-medium">
 											03
 										</span>
-										<h2 className="text-4xl font-bold tracking-tight lg:text-5xl">
+										<h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
 											Trail Runner
 										</h2>
 									</div>
@@ -247,7 +247,7 @@ export default function AboutPage() {
 								<span className="text-muted-foreground text-sm font-medium">
 									What I Believe
 								</span>
-								<h2 className="text-4xl font-bold tracking-tight lg:text-5xl">
+								<h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
 									The work should matter
 								</h2>
 							</div>

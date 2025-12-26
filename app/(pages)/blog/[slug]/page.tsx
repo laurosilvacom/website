@@ -104,7 +104,7 @@ export default async function BlogPost({params}: Props) {
 								<span>{readingTime} min read</span>
 							</div>
 
-							<h1 className="text-foreground text-4xl leading-tight font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl xl:text-7xl">
+							<h1 className="text-foreground text-4xl leading-tight font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
 								{post.metadata.title}
 							</h1>
 

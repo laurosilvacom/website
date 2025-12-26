@@ -18,7 +18,7 @@ export default function NewsletterPage() {
 			<section className="relative flex min-h-[75vh] items-center justify-center px-6 pt-32 pb-24 lg:pt-40 lg:pb-32">
 				<div className="mx-auto max-w-3xl text-center">
 					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-12 duration-1000">
-						<h1 className="text-5xl font-bold tracking-tight lg:text-6xl xl:text-7xl">
+						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
 							Newsletter
 						</h1>
 						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
@@ -37,7 +37,7 @@ export default function NewsletterPage() {
 			{/* What You'll Get Section */}
 			<section className="bg-muted py-24 lg:py-32">
 				<Container width="base">
-					<h2 className="text-foreground mb-16 text-center text-3xl font-bold lg:text-4xl">
+					<h2 className="text-foreground mb-16 text-center text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">
 						What you'll get
 					</h2>
 

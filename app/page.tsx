@@ -72,7 +72,7 @@ export default async function Page() {
 			<section className="relative flex min-h-[90vh] items-center justify-center px-4 pt-32 pb-20 lg:pt-40 lg:pb-32">
 				<div className="mx-auto max-w-5xl text-center">
 					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
-						<h1 className="text-5xl leading-[1.1] font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
+						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
 							Building Software,
 							<br />
 							Growing Communities,
@@ -153,7 +153,7 @@ export default async function Page() {
 					<div className="space-y-16">
 						<div className="flex items-end justify-between">
 							<div className="space-y-3">
-								<h2 className="text-4xl font-bold tracking-tight lg:text-5xl">
+								<h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
 									Recent Posts
 								</h2>
 								<p className="text-muted-foreground text-lg">

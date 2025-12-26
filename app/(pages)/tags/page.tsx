@@ -42,7 +42,7 @@ export default async function TagsPage() {
 									Topics
 								</span>
 							</div>
-							<h1 className="text-5xl leading-[1.1] font-bold tracking-tight lg:text-6xl xl:text-7xl">
+							<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
 								Explore by Tag
 							</h1>
 							<p className="text-muted-foreground text-xl leading-relaxed">

@@ -19,7 +19,7 @@ export default function AthletesPage() {
 								</span>
 							</div>
 						</div>
-						<h1 className="text-5xl leading-[1.1] font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-8xl">
+						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
 							Your Brand,
 							<br />
 							Your Platform

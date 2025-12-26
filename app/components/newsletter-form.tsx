@@ -1,6 +1,7 @@
 'use client'
 
 import {useState} from 'react'
+import {Button} from './ui/button'
 
 export function NewsletterForm() {
 	const [email, setEmail] = useState('')
@@ -118,13 +119,13 @@ export function NewsletterForm() {
 				</div>
 
 				{/* Submit Button */}
-				<button
+				<Button
 					type="submit"
 					disabled={status === 'loading'}
-					className="bg-foreground text-background focus:ring-ring rounded-md px-8 py-3 text-base font-medium transition-all hover:opacity-90 focus:ring-2 focus:ring-offset-2 active:scale-[0.98] disabled:transform-none disabled:cursor-not-allowed disabled:opacity-50 sm:flex-shrink-0"
+					className="px-8 py-3 text-base font-medium sm:shrink-0"
 					aria-busy={status === 'loading'}>
 					{status === 'loading' ? 'Subscribing...' : 'Subscribe'}
-				</button>
+				</Button>
 			</div>
 
 			{/* Error Message */}

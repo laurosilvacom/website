@@ -19,10 +19,10 @@ export default function ServicesPage() {
 								</span>
 							</div>
 						</div>
-						<h1 className="text-5xl leading-[1.1] font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-8xl">
+						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
 							Building Better Products
 							<br />
-							For the Outdoor Industry
+							in the Outdoor Industry
 						</h1>
 						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
 							I help companies strengthen their engineering teams and develop
@@ -61,7 +61,7 @@ export default function ServicesPage() {
 											For Companies
 										</span>
 									</div>
-									<h2 className="text-3xl font-bold tracking-tight lg:text-5xl">
+									<h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
 										Ship Faster, Build Smarter
 									</h2>
 									<p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
@@ -134,7 +134,7 @@ export default function ServicesPage() {
 											For Athletes
 										</span>
 									</div>
-									<h2 className="text-3xl font-bold tracking-tight lg:text-5xl">
+									<h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
 										Your Platform, Your Rules
 									</h2>
 									<p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">

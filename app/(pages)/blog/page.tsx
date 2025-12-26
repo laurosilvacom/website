@@ -38,7 +38,7 @@ export default async function BlogPage() {
 			<section className="relative flex min-h-[60vh] items-center justify-center px-4 pt-32 pb-20 lg:pt-40">
 				<div className="mx-auto max-w-3xl text-center">
 					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-6 duration-1000">
-						<h1 className="text-5xl font-bold tracking-tight lg:text-6xl xl:text-7xl">
+						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
 							Writing
 						</h1>
 						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
@@ -86,7 +86,7 @@ export default async function BlogPage() {
 											)}
 										</div>
 
-										<h1 className="text-foreground text-3xl leading-[1.1] font-bold tracking-tight transition-colors lg:text-5xl">
+										<h1 className="text-foreground text-2xl leading-[1.1] font-bold tracking-tight transition-colors sm:text-3xl lg:text-4xl">
 											{sortedPosts[0].metadata.title}
 										</h1>
 
@@ -118,7 +118,7 @@ export default async function BlogPage() {
 					{/* Secondary Posts Grid */}
 					<div className="space-y-12">
 						<div className="space-y-3">
-							<h2 className="text-foreground text-3xl font-bold tracking-tight lg:text-4xl">
+							<h2 className="text-foreground text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
 								Recent Posts
 							</h2>
 						</div>
@@ -140,7 +140,7 @@ export default async function BlogPage() {
 														{formatDate(post.metadata.publishedAt)}
 													</time>
 												</div>
-												<h3 className="mb-3 text-2xl leading-tight font-bold transition-colors">
+												<h3 className="mb-3 text-xl leading-tight font-bold transition-colors sm:text-2xl">
 													{post.metadata.title}
 												</h3>
 												<p className="text-muted-foreground mb-6 line-clamp-3 grow text-base leading-relaxed">
@@ -173,7 +173,7 @@ export default async function BlogPage() {
 					{sortedPosts.length > 5 && (
 						<div className="mt-20 space-y-8">
 							<div className="space-y-3">
-								<h2 className="text-foreground text-2xl font-bold tracking-tight lg:text-3xl">
+								<h2 className="text-foreground text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">
 									More Posts
 								</h2>
 							</div>
