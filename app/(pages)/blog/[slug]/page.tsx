@@ -10,6 +10,7 @@ import {getImageClass} from '@/lib/image-utils'
 import Image from 'next/image'
 import {highlightCode} from '@/lib/highlight-code'
 import {Button} from '@/components/ui/button'
+import Link from 'next/link'
 
 export const revalidate = 30
 
@@ -115,11 +116,12 @@ export default async function BlogPost({params}: Props) {
 							{post.metadata.tags && post.metadata.tags.length > 0 && (
 								<div className="flex flex-wrap items-center justify-center gap-2">
 									{post.metadata.tags.slice(0, 3).map((tag) => (
-										<span
+										<Link
 											key={tag}
+											href={`/tags/${encodeURIComponent(tag)}`}
 											className="bg-background/70 border-border/30 text-muted-foreground rounded-full border px-4 py-1.5 text-xs font-medium tracking-wider uppercase backdrop-blur-xl">
 											{tag}
-										</span>
+										</Link>
 									))}
 								</div>
 							)}
