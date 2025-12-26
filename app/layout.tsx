@@ -1,8 +1,9 @@
 import {type Metadata} from 'next/types'
 import {type ReactNode} from 'react'
 import {ThemeProvider} from '@/components/theme-provider'
-import Script from 'next/script'
 import {Analytics} from '@vercel/analytics/next'
+import {GeistSans} from 'geist/font/sans'
+import {GeistMono} from 'geist/font/mono'
 
 import '@/app/globals.css'
 
@@ -144,38 +145,8 @@ export default function RootLayout({children}: RootLayoutProps) {
 	return (
 		<html
 			lang="en"
-			className="bg-background text-foreground scroll-smooth antialiased"
+			className={`${GeistSans.variable} ${GeistMono.variable} bg-background text-foreground scroll-smooth antialiased`}
 			suppressHydrationWarning>
-			<head>
-				<link
-					rel="preload"
-					href="/wotfard/Wotfard-Regular.ttf"
-					as="font"
-					type="font/ttf"
-					crossOrigin="anonymous"
-				/>
-				<link
-					rel="preload"
-					href="/wotfard/Wotfard-SemiBold.ttf"
-					as="font"
-					type="font/ttf"
-					crossOrigin="anonymous"
-				/>
-				<link
-					rel="preload"
-					href="/wotfard/Wotfard-Bold.ttf"
-					as="font"
-					type="font/ttf"
-					crossOrigin="anonymous"
-				/>
-				<link
-					rel="preload"
-					href="/elan/Elan ITC Std Bold.ttf"
-					as="font"
-					type="font/ttf"
-					crossOrigin="anonymous"
-				/>
-			</head>
 			<body className="min-h-screen">
 				<ThemeProvider
 					attribute="class"

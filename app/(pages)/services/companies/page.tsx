@@ -8,54 +8,46 @@ export default function CompaniesPage() {
 	return (
 		<>
 			{/* Hero Section */}
-			<section className="border-border border-b pt-32 pb-24 lg:pt-40 lg:pb-32">
-				<Container width="base">
-					<div className="mx-auto max-w-4xl space-y-12 text-center">
-						{/* Status Badge */}
+			<section className="relative flex min-h-[85vh] items-center justify-center px-6 pt-32 pb-24 lg:pt-40 lg:pb-32">
+				<div className="mx-auto max-w-6xl text-center">
+					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-12 duration-1000">
 						<div className="inline-flex">
-							<div className="bg-muted text-primary border-border inline-flex items-center gap-2 rounded-full border px-4 py-2">
+							<div className="bg-muted border-border inline-flex items-center gap-2 rounded-full border px-4 py-2">
 								<div className="bg-primary h-2 w-2 animate-pulse rounded-full" />
 								<span className="text-sm font-medium">
 									Available for new projects
 								</span>
 							</div>
 						</div>
-
-						{/* Heading and Description */}
-						<div className="space-y-8">
-							<h1 className="text-5xl leading-[1.1] font-bold tracking-tight lg:text-6xl xl:text-7xl">
-								Build Products That
-								<br />
-								<span className="text-primary">Actually Ship</span>
-							</h1>
-
-							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
-								Technical leadership, hands-on development, and team training to
-								help you make better decisions, ship faster, and build products
-								that work.
-							</p>
-						</div>
-
-						{/* CTA */}
-						<div className="pt-4">
-							<Button asChild size="lg" className="group">
-								<Link
-									href="https://cal.com/laurosilvacom/chat"
-									target="_blank"
-									rel="noopener noreferrer">
-									Schedule a consultation
-									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-								</Link>
-							</Button>
-						</div>
+						<h1 className="text-5xl leading-[1.1] font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-8xl">
+							Build Products That
+							<br />
+							Actually Ship
+						</h1>
+						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
+							Technical leadership, hands-on development, and team training to
+							help you make better decisions, ship faster, and build products
+							that work.
+						</p>
 					</div>
-				</Container>
+					<div className="animate-in fade-in slide-in-from-bottom-4 pt-12 delay-150 duration-1000">
+						<Button asChild size="lg" className="group">
+							<Link
+								href="https://cal.com/laurosilvacom/chat"
+								target="_blank"
+								rel="noopener noreferrer">
+								Schedule a consultation
+								<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+							</Link>
+						</Button>
+					</div>
+				</div>
 			</section>
 
 			{/* Hero Image */}
-			<section className="border-border border-b py-16 lg:py-24">
+			<section className="py-12 lg:py-20">
 				<Container width="base">
-					<div className="relative aspect-16/10 overflow-hidden rounded-2xl lg:aspect-21/9">
+					<div className="border-border-subtle relative aspect-video overflow-hidden rounded-3xl border shadow-2xl">
 						<Image
 							src="/photos/website-photo-4.jpg"
 							alt="Technical leadership"
@@ -70,7 +62,7 @@ export default function CompaniesPage() {
 			</section>
 
 			{/* Philosophy */}
-			<section className="border-border border-b py-24 lg:py-32">
+			<section className="py-24 lg:py-32">
 				<Container width="base">
 					<div className="space-y-8">
 						<div className="space-y-4">
@@ -89,7 +81,7 @@ export default function CompaniesPage() {
 							<p>
 								I believe that great products come from understanding both the
 								technology and the people who use it. The best engineering teams
-								aren&apos;t just technically skilled—they understand how to
+								aren&apos;t just technically skilled - they understand how to
 								build software that solves real problems.
 							</p>
 							<p>
@@ -125,7 +117,7 @@ export default function CompaniesPage() {
 						</div>
 
 						<div className="grid gap-8 md:grid-cols-2">
-							<div className="border-border bg-muted/50 space-y-4 rounded-2xl border p-8">
+							<div className="border-border bg-card space-y-4 rounded-2xl border p-8">
 								<div className="bg-primary/10 text-primary inline-flex h-12 w-12 items-center justify-center rounded-xl">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +143,7 @@ export default function CompaniesPage() {
 								</p>
 							</div>
 
-							<div className="border-border bg-muted/50 space-y-4 rounded-2xl border p-8">
+							<div className="border-border bg-card space-y-4 rounded-2xl border p-8">
 								<div className="bg-primary/10 text-primary inline-flex h-12 w-12 items-center justify-center rounded-xl">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -177,7 +169,7 @@ export default function CompaniesPage() {
 								</p>
 							</div>
 
-							<div className="border-border bg-muted/50 space-y-4 rounded-2xl border p-8">
+							<div className="border-border bg-card space-y-4 rounded-2xl border p-8">
 								<div className="bg-primary/10 text-primary inline-flex h-12 w-12 items-center justify-center rounded-xl">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -203,7 +195,7 @@ export default function CompaniesPage() {
 								</p>
 							</div>
 
-							<div className="border-border bg-muted/50 space-y-4 rounded-2xl border p-8">
+							<div className="border-border bg-card space-y-4 rounded-2xl border p-8">
 								<div className="bg-primary/10 text-primary inline-flex h-12 w-12 items-center justify-center rounded-xl">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -303,7 +295,7 @@ export default function CompaniesPage() {
 							].map((feature, index) => (
 								<div
 									key={index}
-									className="border-border bg-muted/50 space-y-3 rounded-2xl border p-6">
+									className="border-border bg-card space-y-3 rounded-2xl border p-6">
 									<h3 className="text-lg font-semibold">{feature.title}</h3>
 									<p className="text-muted-foreground text-sm leading-relaxed">
 										{feature.description}
@@ -375,7 +367,7 @@ export default function CompaniesPage() {
 							].map((step, index) => (
 								<div
 									key={index}
-									className="border-border bg-muted/50 grid gap-6 rounded-2xl border p-8 md:grid-cols-12">
+									className="border-border bg-card grid gap-6 rounded-2xl border p-8 md:grid-cols-12">
 									<div className="md:col-span-2">
 										<span className="text-primary/40 text-5xl font-bold">
 											{step.number}
@@ -408,7 +400,7 @@ export default function CompaniesPage() {
 						</div>
 
 						<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-							<blockquote className="border-border bg-muted/50 space-y-6 rounded-2xl border p-8">
+							<blockquote className="border-border bg-card space-y-6 rounded-2xl border p-8">
 								<div className="text-primary">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -441,7 +433,7 @@ export default function CompaniesPage() {
 								</div>
 							</blockquote>
 
-							<blockquote className="border-border bg-muted/50 space-y-6 rounded-2xl border p-8">
+							<blockquote className="border-border bg-card space-y-6 rounded-2xl border p-8">
 								<div className="text-primary">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -474,7 +466,7 @@ export default function CompaniesPage() {
 								</div>
 							</blockquote>
 
-							<blockquote className="border-border bg-muted/50 space-y-6 rounded-2xl border p-8">
+							<blockquote className="border-border bg-card space-y-6 rounded-2xl border p-8">
 								<div className="text-primary">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -513,7 +505,7 @@ export default function CompaniesPage() {
 			{/* CTA */}
 			<section className="py-24 lg:py-32">
 				<Container width="base">
-					<div className="border-border bg-muted/50 space-y-8 rounded-2xl border p-12 text-center lg:p-16">
+					<div className="border-border bg-card space-y-8 rounded-3xl border p-12 text-center lg:p-16">
 						<div className="space-y-6">
 							<h2 className="text-3xl font-bold tracking-tight lg:text-5xl">
 								Ready to work together?

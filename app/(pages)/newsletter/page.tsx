@@ -15,97 +15,58 @@ export default function NewsletterPage() {
 	return (
 		<>
 			{/* Hero Section */}
-			<section className="pt-32 pb-16">
-				<Container width="base">
-					<div className="flex flex-col items-center text-center">
-						{/* Illustration */}
-						<div className="mb-12 sm:mb-16">
-							<img
-								src="/newsletter-icon.png"
-								alt=""
-								role="presentation"
-								className="h-40 w-40 animate-[float_3s_ease-in-out_infinite] object-contain sm:h-48 sm:w-48"
-								style={{filter: 'none'}}
-							/>
-						</div>
-
-						{/* Heading */}
-						<h1
-							className="text-foreground mb-6 max-w-3xl text-3xl leading-tight font-bold sm:text-4xl lg:text-5xl"
-							style={{
-								fontFamily: 'Elan ITC Std, serif',
-								letterSpacing: '-0.04em'
-							}}>
-							The Newsletter
+			<section className="relative flex min-h-[75vh] items-center justify-center px-6 pt-32 pb-24 lg:pt-40 lg:pb-32">
+				<div className="mx-auto max-w-3xl text-center">
+					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-12 duration-1000">
+						<h1 className="text-5xl font-bold tracking-tight lg:text-6xl xl:text-7xl">
+							Newsletter
 						</h1>
-
-						{/* Subheading */}
-						<p className="text-foreground/80 mb-12 max-w-2xl text-base leading-relaxed sm:mb-16 sm:text-lg">
+						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
 							I write about building software for the outdoor industry, lessons
 							from the trails, and what I'm learning about growing inclusive
 							communities. Subscribers get new posts and occasional insights
 							that don't make it to the blog.
 						</p>
-
-						{/* Newsletter Form */}
+					</div>
+					<div className="animate-in fade-in slide-in-from-bottom-4 pt-12 delay-150 duration-1000">
 						<NewsletterForm />
 					</div>
-				</Container>
+				</div>
 			</section>
 
 			{/* What You'll Get Section */}
-			<section className="border-border border-t py-16 lg:py-24">
+			<section className="bg-muted py-24 lg:py-32">
 				<Container width="base">
-					<h2
-						className="text-foreground mb-12 text-center text-2xl font-bold sm:text-3xl"
-						style={{
-							fontFamily: 'Elan ITC Std, serif',
-							letterSpacing: '-0.035em'
-						}}>
+					<h2 className="text-foreground mb-16 text-center text-3xl font-bold lg:text-4xl">
 						What you'll get
 					</h2>
 
-					<div className="mx-auto grid max-w-5xl gap-8 sm:gap-12 md:grid-cols-3">
-						<div>
-							<h3
-								className="text-foreground mb-3 text-lg font-semibold sm:text-xl"
-								style={{
-									fontFamily: 'Elan ITC Std, serif',
-									letterSpacing: '-0.025em'
-								}}>
+					<div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-3">
+						<div className="space-y-4">
+							<h3 className="text-foreground text-xl font-bold">
 								New posts in your inbox
 							</h3>
-							<p className="text-foreground/80 text-[15px] leading-relaxed">
+							<p className="text-muted-foreground text-base leading-relaxed">
 								Every time I publish something new, you'll be the first to know.
-								No algorithms, no feeds—just direct delivery of new content.
+								No algorithms, no feeds - just direct delivery of new content.
 							</p>
 						</div>
 
-						<div>
-							<h3
-								className="text-foreground mb-3 text-lg font-semibold sm:text-xl"
-								style={{
-									fontFamily: 'Elan ITC Std, serif',
-									letterSpacing: '-0.025em'
-								}}>
+						<div className="space-y-4">
+							<h3 className="text-foreground text-xl font-bold">
 								Exclusive insights
 							</h3>
-							<p className="text-foreground/80 text-[15px] leading-relaxed">
+							<p className="text-muted-foreground text-base leading-relaxed">
 								Occasional thoughts, lessons, and discoveries that don't make it
 								to the blog but are worth sharing with the community.
 							</p>
 						</div>
 
-						<div>
-							<h3
-								className="text-foreground mb-3 text-lg font-semibold sm:text-xl"
-								style={{
-									fontFamily: 'Elan ITC Std, serif',
-									letterSpacing: '-0.025em'
-								}}>
+						<div className="space-y-4">
+							<h3 className="text-foreground text-xl font-bold">
 								No spam, ever
 							</h3>
-							<p className="text-foreground/80 text-[15px] leading-relaxed">
+							<p className="text-muted-foreground text-base leading-relaxed">
 								I only email when I have something worth sharing. Your inbox is
 								sacred, and I respect that. Unsubscribe anytime with one click.
 							</p>

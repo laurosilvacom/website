@@ -28,7 +28,7 @@ export function Toaster() {
 
 export function successToast(message: string) {
 	toast.custom(() => (
-		<div className="border-primary/20 bg-card hover:border-primary/40 hover:shadow-primary/5 flex items-center gap-3 rounded-lg border p-4 font-sans shadow-lg transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-xl">
+		<div className="border-primary/20 bg-card flex items-center gap-3 rounded-lg border p-4 font-sans shadow-lg transition-all duration-200">
 			<div className="relative flex h-8 w-8 items-center justify-center">
 				<div className="animate-in fade-in-0 zoom-in-50 absolute h-8 w-8 duration-300">
 					<div className="bg-primary/20 h-full w-full rounded-full transition-transform duration-300 ease-out group-hover:scale-110" />
@@ -52,7 +52,7 @@ export function successToast(message: string) {
 
 export function errorToast(message: string) {
 	toast.custom(() => (
-		<div className="border-destructive/20 bg-card hover:border-destructive/40 hover:shadow-destructive/5 flex items-center gap-3 rounded-lg border p-4 font-sans shadow-lg transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-xl">
+		<div className="border-destructive/20 bg-card flex items-center gap-3 rounded-lg border p-4 font-sans shadow-lg transition-all duration-200">
 			<div className="relative flex h-8 w-8 items-center justify-center">
 				<div className="animate-in fade-in-0 zoom-in-50 absolute h-8 w-8 duration-300">
 					<div className="bg-destructive/20 h-full w-full rounded-full transition-transform duration-300 ease-out group-hover:scale-110" />

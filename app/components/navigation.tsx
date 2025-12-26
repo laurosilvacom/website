@@ -62,53 +62,49 @@ export function Navigation() {
 			<nav
 				className={cn(
 					'fixed top-0 right-0 left-0 z-50 hidden lg:block',
-					isScrolled ? 'py-3' : 'py-5'
+					isScrolled ? 'py-3' : 'py-6'
 				)}
-				style={{transition: 'padding 0.3s ease'}}>
+				style={{transition: 'padding 0.3s cubic-bezier(0.4, 0, 0.2, 1)'}}>
 				<Container width="wide">
 					<div
 						className={cn(
-							'flex items-center gap-8 rounded-full border backdrop-blur-md',
+							'flex items-center gap-8 rounded-2xl backdrop-blur-xl transition-all duration-300 ease-out',
 							isScrolled
-								? 'bg-background/80 border-border/50 px-5 py-2.5 shadow-lg'
-								: 'bg-background/70 border-border/30 px-6 py-3'
+								? 'bg-background/98 border-border/80 scale-[0.98] border px-6 py-3 shadow-[0_2px_8px_rgba(0,0,0,0.04)]'
+								: 'bg-background/70 border-border/30 scale-100 border px-6 py-4 shadow-[0_1px_2px_rgba(0,0,0,0.02)]'
 						)}
 						style={{
-							transition:
-								'background-color 0.3s ease, border-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease'
+							transformOrigin: 'top center'
 						}}>
 						{/* Logo */}
 						<Link
 							href="/"
-							className="group flex shrink-0 items-center gap-3"
+							className="group flex shrink-0 items-center gap-3 transition-opacity hover:opacity-80"
 							aria-label="Home">
-							<div className="relative shrink-0">
-								<svg
-									width="18"
-									height="30"
-									viewBox="0 0 385 655"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-									className="fill-foreground transition-transform duration-200 group-hover:scale-105">
-									<path
-										fillRule="evenodd"
-										clipRule="evenodd"
-										d="M385 357.926L43.7135 655L149.934 395.013L0 297.046L341.286 0L225.757 276.58L385 357.926Z"
-									/>
-								</svg>
-							</div>
+							<svg
+								width="20"
+								height="32"
+								viewBox="0 0 385 655"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								className="fill-foreground transition-colors">
+								<path
+									fillRule="evenodd"
+									clipRule="evenodd"
+									d="M385 357.926L43.7135 655L149.934 395.013L0 297.046L341.286 0L225.757 276.58L385 357.926Z"
+								/>
+							</svg>
 							<span
-								className="text-foreground text-base font-bold tracking-tight whitespace-nowrap"
+								className="text-foreground text-lg font-bold tracking-tight whitespace-nowrap"
 								style={{
-									fontFamily: "'Elan ITC Std', serif",
-									letterSpacing: '-0.02em'
+									letterSpacing: '-0.03em'
 								}}>
 								Lauro Silva
 							</span>
 						</Link>
 
 						{/* Navigation Links */}
-						<div className="flex flex-1 items-center justify-center gap-1">
+						<div className="flex flex-1 items-center justify-center gap-2">
 							{navItems.map(({path, name}) => {
 								const isActive = pathname === path
 								return (
@@ -116,13 +112,13 @@ export function Navigation() {
 										key={path}
 										href={path}
 										className={cn(
-											'relative rounded-full px-4 py-1.5 text-sm font-medium transition-colors',
+											'relative px-4 py-2 text-sm font-medium transition-all duration-200',
 											isActive
 												? 'text-foreground'
 												: 'text-muted-foreground hover:text-foreground'
 										)}>
 										{isActive && (
-											<span className="border-border absolute inset-0 -z-10 rounded-full border" />
+											<span className="bg-foreground absolute inset-x-0 -bottom-0.5 h-px" />
 										)}
 										<span className="relative">{name}</span>
 									</Link>
@@ -138,13 +134,13 @@ export function Navigation() {
 									<button
 										type="button"
 										className={cn(
-											'relative flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium transition-colors',
+											'relative flex items-center gap-1.5 px-4 py-2 text-sm font-medium transition-all duration-200',
 											pathname.startsWith('/services')
 												? 'text-foreground'
 												: 'text-muted-foreground hover:text-foreground'
 										)}>
 										{pathname.startsWith('/services') && (
-											<span className="border-border absolute inset-0 -z-10 rounded-full border" />
+											<span className="bg-foreground absolute inset-x-0 -bottom-0.5 h-px" />
 										)}
 										<span className="relative">Services</span>
 										<ChevronDown
@@ -157,8 +153,8 @@ export function Navigation() {
 								</DropdownMenuTrigger>
 								<DropdownMenuContent
 									align="center"
-									sideOffset={12}
-									className="bg-background/95 border-border/60 min-w-[200px] backdrop-blur-xl">
+									sideOffset={16}
+									className="bg-background/95 border-border min-w-[220px] rounded-xl p-2 backdrop-blur-xl">
 									{serviceItems.map(({path, name, icon: Icon}) => {
 										const isActive = pathname === path
 										return (
@@ -166,16 +162,16 @@ export function Navigation() {
 												<Link
 													href={path}
 													className={cn(
-														'flex cursor-pointer items-center gap-3 px-3 py-2.5 transition-colors',
+														'flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 transition-all duration-200',
 														isActive
-															? 'text-foreground bg-muted/50 font-medium'
-															: 'text-muted-foreground hover:bg-muted/30 hover:text-foreground'
+															? 'text-foreground bg-muted font-medium'
+															: 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
 													)}>
 													<Icon
 														className={cn(
 															'h-4 w-4',
 															isActive
-																? 'text-primary'
+																? 'text-foreground'
 																: 'text-muted-foreground'
 														)}
 													/>
@@ -199,10 +195,10 @@ export function Navigation() {
 			{/* Mobile Navigation */}
 			<nav
 				className={cn(
-					'fixed top-0 right-0 left-0 z-50 transition-all duration-300 lg:hidden',
+					'fixed top-0 right-0 left-0 z-50 transition-all duration-200 lg:hidden',
 					isScrolled
-						? 'bg-background/80 border-border/50 border-b shadow-lg backdrop-blur-md'
-						: 'bg-background/70 border-border/30 border-b backdrop-blur-sm'
+						? 'bg-background/95 border-border border-b backdrop-blur-xl'
+						: 'bg-background/80 border-border/50 border-b backdrop-blur-lg'
 				)}>
 				<div className="flex h-16 items-center justify-between px-4 sm:px-6">
 					<Link
@@ -210,24 +206,19 @@ export function Navigation() {
 						className="flex items-center gap-2.5"
 						aria-label="Home">
 						<svg
-							width="16"
-							height="26"
+							width="18"
+							height="30"
 							viewBox="0 0 385 655"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
-							className="fill-foreground">
+							className="fill-foreground transition-colors">
 							<path
 								fillRule="evenodd"
 								clipRule="evenodd"
 								d="M385 357.926L43.7135 655L149.934 395.013L0 297.046L341.286 0L225.757 276.58L385 357.926Z"
 							/>
 						</svg>
-						<span
-							className="text-foreground text-sm font-bold tracking-tight whitespace-nowrap"
-							style={{
-								fontFamily: "'Elan ITC Std', serif",
-								letterSpacing: '-0.02em'
-							}}>
+						<span className="text-foreground text-sm font-bold tracking-tight whitespace-nowrap">
 							Lauro Silva
 						</span>
 					</Link>

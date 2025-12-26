@@ -8,58 +8,51 @@ export default function ServicesPage() {
 	return (
 		<>
 			{/* Hero Section */}
-			<section className="border-border border-b pt-32 pb-24 lg:pt-40 lg:pb-32">
-				<Container width="base">
-					<div className="mx-auto max-w-4xl space-y-12 text-center">
-						{/* Status Badge */}
+			<section className="relative flex min-h-[85vh] items-center justify-center px-6 pt-32 pb-24 lg:pt-40 lg:pb-32">
+				<div className="mx-auto max-w-6xl text-center">
+					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-12 duration-1000">
 						<div className="inline-flex">
-							<div className="bg-muted text-primary border-border inline-flex items-center gap-2 rounded-full border px-4 py-2">
+							<div className="bg-muted border-border inline-flex items-center gap-2 rounded-full border px-4 py-2">
 								<div className="bg-primary h-2 w-2 animate-pulse rounded-full" />
 								<span className="text-sm font-medium">
 									Available for new projects
 								</span>
 							</div>
 						</div>
-
-						{/* Heading */}
-						<div className="space-y-8">
-							<h1 className="text-5xl leading-[1.1] font-bold tracking-tight lg:text-6xl xl:text-7xl">
-								Building Better Products
-								<br />
-								<span className="text-primary">For the Outdoor Industry</span>
-							</h1>
-							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
-								I help companies strengthen their engineering teams and develop
-								better products. I also build custom platforms for professional
-								athletes—complete solutions they own.
-							</p>
-						</div>
-
-						{/* CTA */}
-						<div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-							<Button asChild size="lg" className="group">
-								<Link
-									href="https://cal.com/laurosilvacom/chat"
-									target="_blank"
-									rel="noopener noreferrer">
-									Schedule a consultation
-									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-								</Link>
-							</Button>
-							<Button asChild size="lg" variant="ghost">
-								<Link href="#services">View services</Link>
-							</Button>
-						</div>
+						<h1 className="text-5xl leading-[1.1] font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-8xl">
+							Building Better Products
+							<br />
+							For the Outdoor Industry
+						</h1>
+						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
+							I help companies strengthen their engineering teams and develop
+							better products. I also build custom platforms for professional
+							athletes - complete solutions they own.
+						</p>
 					</div>
-				</Container>
+					<div className="animate-in fade-in slide-in-from-bottom-4 flex flex-wrap items-center justify-center gap-4 pt-12 delay-150 duration-1000">
+						<Button asChild size="lg" className="group">
+							<Link
+								href="https://cal.com/laurosilvacom/chat"
+								target="_blank"
+								rel="noopener noreferrer">
+								Schedule a consultation
+								<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+							</Link>
+						</Button>
+						<Button asChild size="lg" variant="outline">
+							<Link href="#services">View services</Link>
+						</Button>
+					</div>
+				</div>
 			</section>
 
 			{/* Services Overview */}
-			<section id="services" className="border-border border-t py-24 lg:py-32">
+			<section id="services" className="py-24 lg:py-32">
 				<Container width="base">
 					<div className="space-y-16">
 						{/* For Companies */}
-						<div className="group border-border hover:border-primary/20 from-background to-muted/30 relative overflow-hidden rounded-2xl border bg-gradient-to-br p-12 transition-all duration-300 lg:p-16">
+						<div className="group border-border-subtle bg-card hover:border-border relative overflow-hidden rounded-3xl border p-12 transition-all duration-200 lg:p-16">
 							<div className="space-y-8">
 								<div className="space-y-4">
 									<div className="inline-flex items-center gap-2">
@@ -132,7 +125,7 @@ export default function ServicesPage() {
 						</div>
 
 						{/* For Athletes */}
-						<div className="group border-border hover:border-primary/20 from-background to-muted/30 relative overflow-hidden rounded-2xl border bg-gradient-to-br p-12 transition-all duration-300 lg:p-16">
+						<div className="group border-border-subtle bg-card hover:border-border relative overflow-hidden rounded-3xl border p-12 transition-all duration-200 lg:p-16">
 							<div className="space-y-8">
 								<div className="space-y-4">
 									<div className="inline-flex items-center gap-2">
@@ -208,7 +201,7 @@ export default function ServicesPage() {
 			</section>
 
 			{/* Technologies & Companies */}
-			<section className="border-border border-t py-24 lg:py-32">
+			<section className="bg-muted py-24 lg:py-32">
 				<Container width="base">
 					<div className="grid gap-16 lg:grid-cols-2">
 						{/* Technologies */}
@@ -237,7 +230,7 @@ export default function ServicesPage() {
 								].map((tech) => (
 									<div
 										key={tech.name}
-										className="border-border bg-muted/50 flex items-center gap-2 rounded-full border px-4 py-2">
+										className="border-border bg-card flex items-center gap-2 rounded-full border px-4 py-2">
 										<img
 											src={`https://www.google.com/s2/favicons?domain=${tech.domain}&sz=16`}
 											alt={tech.name}
@@ -282,7 +275,7 @@ export default function ServicesPage() {
 								].map((company) => (
 									<div
 										key={company.name}
-										className="border-border bg-muted/50 flex items-center gap-2 rounded-full border px-4 py-2">
+										className="border-border bg-card flex items-center gap-2 rounded-full border px-4 py-2">
 										<img
 											src={`https://www.google.com/s2/favicons?domain=${company.domain}&sz=16`}
 											alt={company.name}
@@ -303,9 +296,9 @@ export default function ServicesPage() {
 			</section>
 
 			{/* CTA */}
-			<section className="border-border border-t py-24 lg:py-32">
+			<section className="py-24 lg:py-32">
 				<Container width="base">
-					<div className="border-border bg-muted/50 space-y-8 rounded-2xl border p-12 text-center lg:p-16">
+					<div className="bg-card border-border-subtle space-y-8 rounded-3xl border p-12 text-center lg:p-16">
 						<div className="space-y-6">
 							<h2 className="text-3xl font-bold tracking-tight lg:text-5xl">
 								Ready to work together?

@@ -35,28 +35,28 @@ export default async function BlogPage() {
 
 	return (
 		<>
-			<section className="border-border border-b pt-32 pb-16 lg:pt-40 lg:pb-24">
-				<Container width="narrow">
-					<div className="space-y-6 text-center">
-						<h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
+			<section className="relative flex min-h-[60vh] items-center justify-center px-4 pt-32 pb-20 lg:pt-40">
+				<div className="mx-auto max-w-3xl text-center">
+					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-6 duration-1000">
+						<h1 className="text-5xl font-bold tracking-tight lg:text-6xl xl:text-7xl">
 							Writing
 						</h1>
-						<p className="text-muted-foreground mx-auto max-w-lg text-lg leading-relaxed">
+						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
 							Thoughts, ideas, and explorations at the intersection of
 							technology and the outdoor industry.
 						</p>
 					</div>
-				</Container>
+				</div>
 			</section>
 
-			<section className="py-16 lg:py-24">
+			<section className="py-12 lg:py-20">
 				<Container width="wide">
 					{/* Featured Post - Large Hero */}
 					{sortedPosts[0] && (
 						<article className="group mb-16 lg:mb-24">
 							<Link href={`/blog/${sortedPosts[0].slug}`} className="block">
-								<div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-									<div className="relative aspect-4/3 overflow-hidden rounded-2xl">
+								<div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
+									<div className="border-border-subtle relative aspect-4/3 overflow-hidden rounded-3xl border">
 										<Image
 											src={sortedPosts[0].heroImage?.asset?.url || ''}
 											alt={
@@ -72,7 +72,7 @@ export default async function BlogPage() {
 									</div>
 
 									<div className="space-y-6">
-										<div className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
+										<div className="text-muted-foreground text-sm font-medium">
 											<time dateTime={sortedPosts[0].metadata.publishedAt}>
 												{formatDate(sortedPosts[0].metadata.publishedAt)}
 											</time>
@@ -86,7 +86,7 @@ export default async function BlogPage() {
 											)}
 										</div>
 
-										<h1 className="text-foreground group-hover:text-primary text-3xl leading-[1.1] font-bold tracking-tight transition-colors lg:text-5xl">
+										<h1 className="text-foreground text-3xl leading-[1.1] font-bold tracking-tight transition-colors lg:text-5xl">
 											{sortedPosts[0].metadata.title}
 										</h1>
 
@@ -94,8 +94,8 @@ export default async function BlogPage() {
 											{sortedPosts[0].metadata.summary}
 										</p>
 
-										<div className="text-primary flex items-center gap-2 font-medium">
-											<span>Read featured story</span>
+										<div className="flex items-center gap-2 font-medium">
+											<span>Read article</span>
 											<svg
 												className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
 												fill="none"
@@ -117,11 +117,10 @@ export default async function BlogPage() {
 
 					{/* Secondary Posts Grid */}
 					<div className="space-y-12">
-						<div className="flex items-center justify-between">
-							<h2 className="text-foreground text-2xl font-bold tracking-tight">
-								Recent Stories
+						<div className="space-y-3">
+							<h2 className="text-foreground text-3xl font-bold tracking-tight lg:text-4xl">
+								Recent Posts
 							</h2>
-							<div className="bg-border ml-8 h-px flex-1" />
 						</div>
 
 						<div className="grid gap-8 md:grid-cols-2 lg:gap-12">
@@ -131,41 +130,26 @@ export default async function BlogPage() {
 								const hasImage = !!heroUrl
 
 								return (
-									<article
-										key={post.slug}
-										className="group bg-card border-border hover:border-primary/20 hover:shadow-primary/5 relative flex overflow-hidden rounded-xl border transition-all duration-300 hover:shadow-lg">
-										<Link href={`/blog/${post.slug}`} className="flex w-full">
-											{hasImage && (
-												<div className="bg-muted relative aspect-square w-32 shrink-0 overflow-hidden sm:w-40">
-													<Image
-														src={heroUrl}
-														alt={heroAlt}
-														fill
-														className={`object-cover ${getImageClass('FEATURED_HERO')}`}
-														sizes="(min-width: 768px) 160px, 128px"
-													/>
-												</div>
-											)}
-
-											<div className="flex flex-1 flex-col p-6">
-												<div className="text-muted-foreground mb-2 text-xs font-medium tracking-wider uppercase">
-													<time dateTime={post.metadata.publishedAt}>
+									<article key={post.slug} className="group relative">
+										<Link href={`/blog/${post.slug}`} className="block h-full">
+											<div className="border-border-subtle bg-card hover:border-border flex h-full flex-col rounded-2xl border p-6 transition-all duration-200">
+												<div className="mb-4">
+													<time
+														className="text-muted-foreground text-sm font-medium"
+														dateTime={post.metadata.publishedAt}>
 														{formatDate(post.metadata.publishedAt)}
 													</time>
 												</div>
-
-												<h3 className="text-card-foreground group-hover:text-primary mb-2 line-clamp-2 text-lg leading-tight font-bold transition-colors">
+												<h3 className="mb-3 text-2xl leading-tight font-bold transition-colors">
 													{post.metadata.title}
 												</h3>
-
-												<p className="text-muted-foreground mb-auto line-clamp-2 text-sm leading-relaxed">
+												<p className="text-muted-foreground mb-6 line-clamp-3 grow text-base leading-relaxed">
 													{post.metadata.summary}
 												</p>
-
-												<div className="text-primary mt-3 flex items-center gap-1 text-xs font-medium">
-													<span>Read more</span>
+												<div className="flex items-center text-sm font-medium transition-all group-hover:gap-2">
+													Read more
 													<svg
-														className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1"
+														className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1"
 														fill="none"
 														viewBox="0 0 24 24"
 														stroke="currentColor">
@@ -188,31 +172,28 @@ export default async function BlogPage() {
 					{/* More Posts - Minimal Grid */}
 					{sortedPosts.length > 5 && (
 						<div className="mt-20 space-y-8">
-							<div className="flex items-center justify-between">
-								<h2 className="text-foreground text-xl font-bold tracking-tight">
-									Archive
+							<div className="space-y-3">
+								<h2 className="text-foreground text-2xl font-bold tracking-tight lg:text-3xl">
+									More Posts
 								</h2>
-								<div className="bg-border ml-8 h-px flex-1" />
 							</div>
 
-							<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+							<div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 								{sortedPosts.slice(5).map((post: BlogPost) => (
-									<article key={post.slug} className="group text-center">
+									<article key={post.slug} className="group">
 										<Link
 											href={`/blog/${post.slug}`}
-											className="block space-y-3">
+											className="block space-y-4">
 											<div className="text-muted-foreground text-sm font-medium">
 												<time dateTime={post.metadata.publishedAt}>
 													{formatDate(post.metadata.publishedAt)}
 												</time>
 											</div>
-
-											<h3 className="text-foreground group-hover:text-primary line-clamp-2 text-lg leading-tight font-bold transition-colors">
+											<h3 className="text-foreground line-clamp-2 text-xl leading-tight font-bold transition-colors">
 												{post.metadata.title}
 											</h3>
-
-											<div className="text-primary text-sm font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-												Read →
+											<div className="text-sm font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+												Read article →
 											</div>
 										</Link>
 									</article>

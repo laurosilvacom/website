@@ -193,11 +193,7 @@ export function NewsletterPopup() {
 									</div>
 									<h2
 										id="modal-heading"
-										className="text-foreground mb-2 text-xl font-bold sm:mb-3 sm:text-2xl"
-										style={{
-											fontFamily: 'Elan ITC Std, serif',
-											letterSpacing: '-0.03em'
-										}}>
+										className="text-foreground mb-2 text-xl font-bold sm:mb-3 sm:text-2xl">
 										You're subscribed!
 									</h2>
 									<p className="text-muted-foreground text-sm sm:text-base">
@@ -209,11 +205,7 @@ export function NewsletterPopup() {
 									{/* Heading */}
 									<h2
 										id="modal-heading"
-										className="text-foreground mb-6 text-xl leading-tight font-bold sm:mb-8 sm:text-2xl"
-										style={{
-											fontFamily: 'Elan ITC Std, serif',
-											letterSpacing: '-0.03em'
-										}}>
+										className="text-foreground mb-6 text-xl leading-tight font-bold sm:mb-8 sm:text-2xl">
 										Get insights on software, trails, and community
 									</h2>
 

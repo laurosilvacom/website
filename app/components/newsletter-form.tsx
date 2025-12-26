@@ -51,12 +51,7 @@ export function NewsletterForm() {
 				<div className="mb-6 text-6xl" role="img" aria-label="Party popper">
 					🎉
 				</div>
-				<h2
-					className="text-foreground mb-3 text-2xl font-bold"
-					style={{
-						fontFamily: 'Elan ITC Std, serif',
-						letterSpacing: '-0.03em'
-					}}>
+				<h2 className="text-foreground mb-3 text-2xl font-bold">
 					You're subscribed!
 				</h2>
 				<p className="text-muted-foreground text-base">

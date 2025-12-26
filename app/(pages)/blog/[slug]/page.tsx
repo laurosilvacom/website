@@ -91,12 +91,12 @@ export default async function BlogPost({params}: Props) {
 				url={`${baseUrl}/blog/${post.slug}`}
 			/>
 
-			<article className="bg-background">
+			<article>
 				{/* Header Section - Title and Information */}
-				<header className="py-16 sm:py-20 lg:py-32">
+				<header className="pt-32 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24">
 					<Container width="wide">
-						<div className="mx-auto max-w-4xl space-y-6 text-center sm:space-y-8">
-							<div className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
+						<div className="mx-auto max-w-7xl space-y-8 text-center">
+							<div className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
 								<time dateTime={post.metadata.publishedAt}>
 									{formatDate(post.metadata.publishedAt)}
 								</time>
@@ -104,20 +104,20 @@ export default async function BlogPost({params}: Props) {
 								<span>{readingTime} min read</span>
 							</div>
 
-							<h1 className="text-foreground text-3xl leading-tight font-bold tracking-tight text-balance sm:text-4xl sm:leading-[1.05] lg:text-6xl">
+							<h1 className="text-foreground text-4xl leading-tight font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl xl:text-7xl">
 								{post.metadata.title}
 							</h1>
 
-							<p className="text-muted-foreground mx-auto max-w-3xl text-lg leading-relaxed text-balance sm:text-xl lg:text-2xl">
+							<p className="text-muted-foreground mx-auto max-w-3xl text-xl leading-relaxed text-balance sm:text-2xl">
 								{post.metadata.summary}
 							</p>
 
 							{post.metadata.tags && post.metadata.tags.length > 0 && (
-								<div className="flex flex-wrap items-center justify-center gap-3">
+								<div className="flex flex-wrap items-center justify-center gap-2">
 									{post.metadata.tags.slice(0, 3).map((tag) => (
 										<span
 											key={tag}
-											className="bg-muted text-muted-foreground rounded-full border px-4 py-2 text-sm font-medium">
+											className="bg-background/70 border-border/30 text-muted-foreground rounded-full border px-4 py-1.5 text-xs font-medium tracking-wider uppercase backdrop-blur-xl">
 											{tag}
 										</span>
 									))}
@@ -129,10 +129,10 @@ export default async function BlogPost({params}: Props) {
 
 				{/* Cover Image Section */}
 				{heroUrl && (
-					<section className="py-8 sm:py-12 lg:py-16">
+					<section className="pb-16 sm:pb-20 lg:pb-24">
 						<Container width="wide">
 							<div className="mx-auto max-w-5xl">
-								<div className="relative aspect-video overflow-hidden rounded-2xl">
+								<div className="border-border/30 relative aspect-video overflow-hidden rounded-2xl border shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
 									<Image
 										src={heroUrl}
 										alt={heroAlt}
@@ -143,7 +143,7 @@ export default async function BlogPost({params}: Props) {
 									/>
 								</div>
 								{(post.heroImage as any)?.caption && (
-									<figcaption className="text-muted-foreground mx-auto mt-4 max-w-3xl text-center text-sm italic">
+									<figcaption className="text-muted-foreground mx-auto mt-4 max-w-3xl text-center text-sm">
 										{(post.heroImage as any).caption}
 									</figcaption>
 								)}
@@ -164,23 +164,28 @@ export default async function BlogPost({params}: Props) {
 				</section>
 			</article>
 
-			<section className="bg-muted/30 border-border border-t py-16 lg:py-24">
+			<section className="py-24 lg:py-32">
 				<Container width="narrow">
-					<div className="flex flex-col items-center justify-between gap-8 md:flex-row">
-						<div className="max-w-md space-y-2 text-center md:text-left">
-							<h3 className="text-2xl font-bold">Have questions?</h3>
-							<p className="text-muted-foreground">
+					<div className="bg-background/70 border-border/30 mx-auto max-w-2xl space-y-8 rounded-2xl border p-12 text-center shadow-[0_2px_8px_rgba(0,0,0,0.04)] backdrop-blur-xl lg:p-16">
+						<div className="space-y-6">
+							<h3 className="text-3xl font-bold tracking-tight lg:text-4xl">
+								Have questions?
+							</h3>
+							<p className="text-muted-foreground text-lg leading-relaxed">
 								Feel free to reach out on LinkedIn or send me an email.
 							</p>
 						</div>
-						<div className="flex gap-4">
+						<div className="flex flex-wrap items-center justify-center gap-4">
 							<Button asChild size="lg">
 								<a
 									href="https://www.linkedin.com/in/laurosilvacom/"
 									target="_blank"
 									rel="noopener noreferrer">
-									Follow on LinkedIn
+									Connect on LinkedIn
 								</a>
+							</Button>
+							<Button asChild size="lg" variant="outline">
+								<a href="mailto:hello@laurosilva.com">Send an email</a>
 							</Button>
 						</div>
 					</div>
