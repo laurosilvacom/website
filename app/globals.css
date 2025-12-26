@@ -242,7 +242,7 @@ samp {
 }
 
 .code-block-content .line:empty {
-	display: none;
+	min-height: 1.45em;
 }
 
 .code-block-content .line::before {

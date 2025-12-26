@@ -47,15 +47,17 @@ function CodeBlock({value}: {value: any}) {
 		value?.highlightedHTML || `<pre><code>${code}</code></pre>`
 
 	return (
-		<div className="code-block not-prose group">
-			<div className="code-block-header">
-				<span className="code-block-lang">{language}</span>
-				<CodeCopyButton code={code} />
+		<div className="not-prose -mx-6 my-16 sm:-mx-10 lg:-mx-12">
+			<div className="code-block group">
+				<div className="code-block-header">
+					<span className="code-block-lang">{language}</span>
+					<CodeCopyButton code={code} />
+				</div>
+				<div
+					className="code-block-content"
+					dangerouslySetInnerHTML={{__html: highlightedHTML}}
+				/>
 			</div>
-			<div
-				className="code-block-content"
-				dangerouslySetInnerHTML={{__html: highlightedHTML}}
-			/>
 		</div>
 	)
 }
@@ -205,7 +207,7 @@ export function PortableText({blocks}: PortableTextProps) {
 
 	const components = createComponents()
 	return (
-		<div className="prose prose-lg prose-headings:font-serif prose-headings:font-bold prose-headings:tracking-tight prose-h1:text-4xl prose-h1:mt-20 prose-h1:mb-10 prose-h1:leading-tight prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-8 prose-h2:leading-tight prose-h3:text-2xl prose-h3:mt-14 prose-h3:mb-6 prose-h3:leading-snug prose-h4:text-xl prose-h4:mt-12 prose-h4:mb-5 prose-h5:text-lg prose-h5:mt-10 prose-h5:mb-4 prose-h6:text-base prose-h6:mt-8 prose-h6:mb-3 prose-h6:uppercase prose-h6:text-muted-foreground prose-p:text-base prose-p:leading-relaxed prose-p:mb-10 prose-p:tracking-tight prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:font-semibold prose-strong:text-foreground prose-code:text-sm prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-img:rounded-2xl sm:prose-p:text-lg sm:prose-p:leading-relaxed lg:prose-p:text-lg lg:prose-p:leading-loose sm:prose-h1:text-5xl sm:prose-h2:text-4xl sm:prose-h3:text-3xl lg:prose-h1:text-6xl lg:prose-h2:text-5xl lg:prose-h3:text-4xl dark:prose-invert dark:prose-p:text-muted-foreground max-w-none">
+		<div className="prose prose-headings:font-sans prose-headings:font-bold prose-headings:tracking-[-0.04em] prose-headings:text-foreground prose-h1:text-3xl prose-h1:mt-16 prose-h1:mb-6 prose-h1:leading-[1.1] prose-h2:text-2xl prose-h2:mt-14 prose-h2:mb-5 prose-h2:leading-[1.1] prose-h3:text-xl prose-h3:mt-12 prose-h3:mb-4 prose-h3:leading-[1.1] prose-h4:text-lg prose-h4:mt-10 prose-h4:mb-3 prose-h4:font-semibold prose-h5:text-base prose-h5:mt-8 prose-h5:mb-2 prose-h5:font-semibold prose-h6:text-xs prose-h6:mt-6 prose-h6:mb-2 prose-h6:uppercase prose-h6:tracking-widest prose-h6:text-muted-foreground prose-h6:font-medium prose-p:text-base prose-p:leading-relaxed prose-p:mb-8 prose-p:tracking-tight prose-p:text-muted-foreground prose-li:text-muted-foreground prose-a:text-foreground prose-a:font-medium prose-a:underline prose-a:underline-offset-4 prose-a:decoration-border hover:prose-a:decoration-foreground prose-strong:font-semibold prose-strong:text-foreground prose-code:text-sm prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-img:rounded-2xl sm:prose-p:text-base sm:prose-p:leading-relaxed lg:prose-p:text-lg lg:prose-p:leading-relaxed dark:prose-invert dark:prose-p:text-muted-foreground max-w-none">
 			<SanityPortableText value={blocks} components={components} />
 		</div>
 	)
