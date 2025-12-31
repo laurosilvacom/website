@@ -1,6 +1,7 @@
 'use client'
 
 import {useState, useEffect} from 'react'
+import Image from 'next/image'
 import {cn} from '@/lib/utils'
 
 export function NewsletterPopup() {
@@ -99,10 +100,13 @@ export function NewsletterPopup() {
 					aria-labelledby="bubble-heading"
 					aria-describedby="bubble-description">
 					<div className="flex flex-col items-center gap-4 sm:flex-row sm:items-end">
-						<img
+						<Image
 							src="/newsletter-icon.png"
 							alt=""
-							role="presentation"
+							aria-hidden="true"
+							width={80}
+							height={80}
+							sizes="80px"
 							className="h-16 w-16 animate-[float_3s_ease-in-out_infinite] object-contain sm:h-20 sm:w-20"
 							style={{filter: 'none'}}
 						/>
@@ -171,11 +175,14 @@ export function NewsletterPopup() {
 						</button>
 
 						{/* Header with illustration */}
-						<div className="from-primary/20 to-primary/10 -mt-12 flex items-center justify-center rounded-t-xl bg-gradient-to-br px-6 py-12 sm:px-10 sm:py-16">
-							<img
+						<div className="from-primary/20 to-primary/10 -mt-12 flex items-center justify-center rounded-t-xl bg-linear-to-br px-6 py-12 sm:px-10 sm:py-16">
+							<Image
 								src="/newsletter-icon.png"
 								alt=""
-								role="presentation"
+								aria-hidden="true"
+								width={128}
+								height={128}
+								sizes="128px"
 								className="h-24 w-24 animate-[float_3s_ease-in-out_infinite] object-contain sm:h-32 sm:w-32"
 								style={{filter: 'none'}}
 							/>

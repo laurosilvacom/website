@@ -97,7 +97,7 @@ export function NewsletterForm() {
 				</div>
 
 				{/* Email */}
-				<div className="flex-[2]">
+				<div className="flex-2">
 					<label htmlFor="newsletter-email" className="sr-only">
 						Email address (required)
 					</label>
