@@ -24,6 +24,7 @@
 	--border: 229 229 229;
 	--input: 229 229 229;
 	--ring: 10 10 10;
+	--brand-blue: 0 112 243;
 	--code-surface: var(--card);
 	--code-header: var(--muted);
 	--code-gutter: var(--muted);
@@ -51,6 +52,7 @@
 	--border: 38 38 38;
 	--input: 38 38 38;
 	--ring: 255 255 255;
+	--brand-blue: 0 112 243;
 	--code-surface: var(--card);
 	--code-header: var(--secondary);
 	--code-gutter: var(--secondary);
@@ -78,6 +80,7 @@
 	--color-border-subtle: rgb(var(--border) / 0.5);
 	--color-input: rgb(var(--input));
 	--color-ring: rgb(var(--ring));
+	--color-brand-blue: rgb(var(--brand-blue));
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);

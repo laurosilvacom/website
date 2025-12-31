@@ -3,18 +3,16 @@ import {createResendContact} from '@/lib/resend'
 
 export async function POST(request: Request) {
 	try {
-		const {email, firstName} = await request.json()
+		const {email, firstName, workshopSlug, audienceId} = await request.json()
 
 		if (!email) {
 			return NextResponse.json({error: 'Email is required'}, {status: 400})
 		}
 
-		const audienceId = process.env.RESEND_AUDIENCE_ID
 		if (!audienceId) {
-			console.error('RESEND_AUDIENCE_ID is not configured')
 			return NextResponse.json(
-				{error: 'Newsletter service not configured'},
-				{status: 500}
+				{error: 'Audience ID is required for this workshop'},
+				{status: 400}
 			)
 		}
 
@@ -31,7 +29,9 @@ export async function POST(request: Request) {
 
 		return NextResponse.json({success: true, data}, {status: 200})
 	} catch (error) {
-		console.error('Newsletter signup error:', error)
-		return NextResponse.json({error: 'Failed to subscribe'}, {status: 500})
+		console.error('Workshop newsletter signup error:', error)
+		const message =
+			error instanceof Error ? error.message : 'Failed to subscribe'
+		return NextResponse.json({error: message}, {status: 500})
 	}
 }

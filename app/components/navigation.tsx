@@ -56,6 +56,11 @@ export function Navigation() {
 		setIsMenuOpen(false)
 	}, [pathname])
 
+	// Hide navigation in Sanity Studio
+	if (pathname.startsWith('/studio')) {
+		return null
+	}
+
 	return (
 		<>
 			{/* Desktop Navigation */}

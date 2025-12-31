@@ -231,9 +231,11 @@ export default function ServicesPage() {
 									<div
 										key={tech.name}
 										className="border-border bg-card flex items-center gap-2 rounded-full border px-4 py-2">
-										<img
+										<Image
 											src={`https://www.google.com/s2/favicons?domain=${tech.domain}&sz=16`}
 											alt={tech.name}
+											width={16}
+											height={16}
 											className="h-4 w-4"
 										/>
 										<span className="text-sm font-medium">{tech.name}</span>
@@ -276,9 +278,11 @@ export default function ServicesPage() {
 									<div
 										key={company.name}
 										className="border-border bg-card flex items-center gap-2 rounded-full border px-4 py-2">
-										<img
+										<Image
 											src={`https://www.google.com/s2/favicons?domain=${company.domain}&sz=16`}
 											alt={company.name}
+											width={16}
+											height={16}
 											className="h-4 w-4"
 										/>
 										<span className="text-sm font-medium">{company.name}</span>
