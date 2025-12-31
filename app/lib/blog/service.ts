@@ -4,7 +4,7 @@ import {
 	fetchPostBySlug,
 	fetchPublishedPosts,
 	fetchPublishedSlugs
-} from '@/lib/blog/sanity/repository'
+} from '@/lib/blog/repository'
 import {type BlogPost} from './domain'
 
 /**

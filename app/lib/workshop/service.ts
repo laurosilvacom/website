@@ -4,7 +4,7 @@ import {
 	fetchModuleBySlug,
 	fetchModules,
 	fetchModulesSlugs
-} from './sanity/repository'
+} from './repository'
 import {type Workshop} from './domain'
 
 /**
