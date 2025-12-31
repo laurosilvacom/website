@@ -112,6 +112,9 @@ export function WorkshopNewsletterBar({
 							<form
 								onSubmit={handleSubmit}
 								className="flex flex-1 items-center gap-3">
+								<label htmlFor="bottom-firstName" className="sr-only">
+									First name
+								</label>
 								<Input
 									id="bottom-firstName"
 									type="text"
@@ -122,6 +125,9 @@ export function WorkshopNewsletterBar({
 									className="h-9 flex-1 border-white/20 bg-white/10 text-sm text-white placeholder:text-white/60"
 								/>
 
+								<label htmlFor="bottom-email" className="sr-only">
+									Email address
+								</label>
 								<Input
 									id="bottom-email"
 									type="email"

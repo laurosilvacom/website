@@ -1,10 +1,6 @@
 import {client} from '@/lib/sanity/client'
 import {unstable_cache} from 'next/cache'
-import {
-	modulesQuery,
-	moduleBySlugQuery,
-	allModulesSlugsQuery
-} from '@/lib/blog/sanity/queries'
+import {modulesQuery, moduleBySlugQuery, allModulesSlugsQuery} from './queries'
 import {type Workshop} from '../domain'
 
 type SanitySlugResult = {slug: string}

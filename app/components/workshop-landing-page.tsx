@@ -167,6 +167,8 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 				</div>
 			</section>
 
+			<div id="signup-form" className="sr-only" />
+
 			<WorkshopNewsletterBar
 				workshopSlug={workshop.slug.current}
 				audienceId={workshop.resendAudienceId}

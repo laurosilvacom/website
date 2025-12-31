@@ -3,6 +3,7 @@ import {createResendContact, sendResendEmail} from '@/lib/resend'
 
 const TOKEN_TTL_SECONDS = 60 * 60 * 48 // 48 hours
 const OPT_IN_PREFIX = 'workshop-optin'
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export type WorkshopOptInRequestBody = {
 	email?: unknown
@@ -28,6 +29,16 @@ export function getOptionalAppUrl() {
 	return process.env.NEXT_PUBLIC_APP_URL || process.env.NEXT_PUBLIC_SITE_URL
 }
 
+export function getRequiredAppUrl() {
+	const appUrl = getOptionalAppUrl()
+	if (!appUrl) {
+		throw new Error(
+			'NEXT_PUBLIC_APP_URL or NEXT_PUBLIC_SITE_URL is not configured'
+		)
+	}
+	return appUrl
+}
+
 export function getBlobToken() {
 	const token = process.env.BLOB_READ_WRITE_TOKEN
 	if (!token) {
@@ -40,10 +51,38 @@ export function getWorkshopResendFrom() {
 	return process.env.RESEND_FROM || 'Workshops <me@laurosilva.com>'
 }
 
+function sanitizeName(input: string) {
+	// Allow letters, numbers, spaces, apostrophes, and hyphens; strip other characters.
+	return input
+		.replace(/[^\p{L}\p{N}\s'-]/gu, '')
+		.trim()
+		.slice(0, 80)
+}
+
+function isValidEmail(email: string) {
+	if (email.length > 320) return false
+	return EMAIL_PATTERN.test(email)
+}
+
+function isTrustedVercelBlobUrl(urlString: string, expectedPathname: string) {
+	let url: URL
+	try {
+		url = new URL(urlString)
+	} catch {
+		return false
+	}
+
+	if (url.protocol !== 'https:') return false
+	if (!url.hostname.endsWith('blob.vercel-storage.com')) return false
+	if (url.pathname !== `/${expectedPathname}`) return false
+
+	return true
+}
+
 export function parseWorkshopOptInBody(body: WorkshopOptInRequestBody) {
 	const email = typeof body.email === 'string' ? body.email.trim() : ''
 	const firstName =
-		typeof body.firstName === 'string' ? body.firstName.trim() : ''
+		typeof body.firstName === 'string' ? sanitizeName(body.firstName) : ''
 	const workshopSlug =
 		typeof body.workshopSlug === 'string' ? body.workshopSlug.trim() : ''
 	const audienceId =
@@ -75,10 +114,10 @@ export async function deleteOptInRecord(token: string) {
 
 export async function readOptInRecord(token: string) {
 	const blobToken = getBlobToken()
-	const meta = await head(getOptInPath(token), {token: blobToken}).catch(
-		() => undefined
-	)
+	const pathname = getOptInPath(token)
+	const meta = await head(pathname, {token: blobToken}).catch(() => undefined)
 	if (!meta?.url) return null
+	if (!isTrustedVercelBlobUrl(meta.url, pathname)) return null
 
 	const response = await fetch(meta.url, {cache: 'no-store'})
 	if (!response.ok) return null
@@ -112,21 +151,19 @@ export async function startWorkshopOptIn(args: {
 	if (!args.email) {
 		throw new Error('Email is required')
 	}
+	if (!isValidEmail(args.email)) {
+		throw new Error('Invalid email format')
+	}
 	if (!args.audienceId) {
 		throw new Error('Audience ID is required for this workshop')
 	}
 
-	const appUrl = getOptionalAppUrl()
-	if (!appUrl) {
-		throw new Error(
-			'NEXT_PUBLIC_APP_URL or NEXT_PUBLIC_SITE_URL is not configured'
-		)
-	}
+	const appUrl = getRequiredAppUrl()
 
 	const token = crypto.randomUUID()
 	const record: WorkshopOptInRecord = {
 		email: args.email,
-		firstName: args.firstName || '',
+		firstName: args.firstName ? sanitizeName(args.firstName) : '',
 		workshopSlug: args.workshopSlug || '',
 		audienceId: args.audienceId,
 		expiresAt: Date.now() + TOKEN_TTL_SECONDS * 1000

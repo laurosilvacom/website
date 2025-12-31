@@ -1,12 +1,26 @@
 import {NextResponse} from 'next/server'
 import {createResendContact} from '@/lib/resend'
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+function sanitizeName(input: string) {
+	return input
+		.replace(/[^\p{L}\p{N}\s'-]/gu, '')
+		.trim()
+		.slice(0, 80)
+}
+
 export async function POST(request: Request) {
 	try {
 		const {email, firstName} = await request.json()
 
-		if (!email) {
+		if (typeof email !== 'string' || !email.trim()) {
 			return NextResponse.json({error: 'Email is required'}, {status: 400})
+		}
+
+		const normalizedEmail = email.trim()
+		if (normalizedEmail.length > 320 || !EMAIL_PATTERN.test(normalizedEmail)) {
+			return NextResponse.json({error: 'Invalid email format'}, {status: 400})
 		}
 
 		const audienceId = process.env.RESEND_AUDIENCE_ID
@@ -18,10 +32,16 @@ export async function POST(request: Request) {
 			)
 		}
 
+		let sanitizedFirstName: string | undefined
+		if (typeof firstName === 'string') {
+			const cleaned = sanitizeName(firstName)
+			if (cleaned) sanitizedFirstName = cleaned
+		}
+
 		const {data, error} = await createResendContact({
-			email,
+			email: normalizedEmail,
 			audienceId,
-			firstName: firstName || undefined
+			firstName: sanitizedFirstName
 		})
 
 		if (error) {

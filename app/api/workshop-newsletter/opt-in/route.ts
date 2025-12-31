@@ -1,12 +1,13 @@
 import {NextResponse} from 'next/server'
 import {
 	parseWorkshopOptInBody,
-	startWorkshopOptIn
+	startWorkshopOptIn,
+	type WorkshopOptInRequestBody
 } from '@/lib/workshop-newsletter'
 
 export async function POST(request: Request) {
 	try {
-		const rawBody = (await request.json()) as any
+		const rawBody = (await request.json()) as WorkshopOptInRequestBody
 		const {email, firstName, workshopSlug, audienceId} =
 			parseWorkshopOptInBody(rawBody)
 
