@@ -6,7 +6,7 @@ type ClassValue =
 	| boolean
 	| null
 	| undefined
-	| {[key: string]: any}
+	| Record<string, unknown>
 	| ClassValue[]
 
 function clsx(...inputs: ClassValue[]): string {

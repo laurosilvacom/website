@@ -1,3 +1,3 @@
-import {type SanityModule} from '@/lib/types'
+import {type SanityModule} from '@/lib/sanity/types'
 
 export type Workshop = SanityModule

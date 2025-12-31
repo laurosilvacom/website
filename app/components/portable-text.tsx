@@ -1,8 +1,15 @@
 'use client'
 
-import {PortableText as SanityPortableText} from '@portabletext/react'
+import {
+	PortableText as SanityPortableText,
+	type PortableTextComponents,
+	type PortableTextComponentProps,
+	type PortableTextMarkComponentProps,
+	type PortableTextTypeComponentProps
+} from '@portabletext/react'
 import Image from 'next/image'
 import Link from 'next/link'
+import type {ReactNode} from 'react'
 import {type PortableTextBlock} from '@sanity/types'
 import {urlForImage} from '@/lib/sanity/image'
 import {CodeCopyButton} from './copy-button'
@@ -12,13 +19,70 @@ interface PortableTextProps {
 	blocks: PortableTextBlock[]
 }
 
-let footnoteDefinitions = new Map<string, any>()
+type FootnoteDefinitionRecord = {
+	id: string
+	content: PortableTextBlock[]
+}
 
-function RoundedImage({value}: {value: any}) {
-	if (!value?.asset) return null
+type PortableTextImageValue = {
+	asset?: {
+		url?: string
+		metadata?: {
+			dimensions?: {
+				width?: number
+				height?: number
+			}
+		}
+	}
+	alt?: string
+	caption?: string
+}
+
+type CodeBlockValue = {
+	code?: string
+	language?: string
+	highlightedHTML?: string
+}
+
+type MarkLinkValue = {
+	_type: 'link'
+	href?: string
+}
+
+type MarkFootnoteValue = {
+	_type: 'footnote'
+	footnoteId?: string
+}
+
+type FootnoteBlock = PortableTextBlock & {
+	_type: 'footnote'
+	id: string
+	content: PortableTextBlock[]
+}
+
+function isFootnoteBlock(block: PortableTextBlock): block is FootnoteBlock {
+	const maybe = block as unknown as {
+		_type?: unknown
+		id?: unknown
+		content?: unknown
+	}
+
+	return (
+		maybe._type === 'footnote' &&
+		typeof maybe.id === 'string' &&
+		Array.isArray(maybe.content)
+	)
+}
+
+const footnoteDefinitions = new Map<string, FootnoteDefinitionRecord>()
+
+function RoundedImage({
+	value
+}: PortableTextTypeComponentProps<PortableTextImageValue>) {
+	if (!value.asset) return null
 
 	const imageUrl = urlForImage(value.asset).url()
-	const alt = value.alt || ''
+	const alt = value.alt ?? ''
 
 	return (
 		<figure className="-mx-6 my-12 sm:-mx-16 lg:-mx-24">
@@ -40,11 +104,11 @@ function RoundedImage({value}: {value: any}) {
 	)
 }
 
-function CodeBlock({value}: {value: any}) {
-	const code = value?.code || ''
-	const language = value?.language || 'plaintext'
+function CodeBlock({value}: PortableTextTypeComponentProps<CodeBlockValue>) {
+	const code = value.code ?? ''
+	const language = value.language ?? 'plaintext'
 	const highlightedHTML =
-		value?.highlightedHTML || `<pre><code>${code}</code></pre>`
+		value.highlightedHTML ?? `<pre><code>${code}</code></pre>`
 
 	return (
 		<div className="not-prose -mx-6 my-16 sm:-mx-10 lg:-mx-12">
@@ -62,7 +126,7 @@ function CodeBlock({value}: {value: any}) {
 	)
 }
 
-function InlineCode({children}: {children: any}) {
+function InlineCode({children}: PortableTextMarkComponentProps) {
 	return (
 		<code className="inline-code rounded px-1.5 py-0.5 font-mono text-[0.9em] font-medium">
 			{children}
@@ -70,7 +134,10 @@ function InlineCode({children}: {children: any}) {
 	)
 }
 
-function FootnoteReference({value, children}: {value: any; children: any}) {
+function FootnoteReference({
+	value,
+	children
+}: PortableTextMarkComponentProps<MarkFootnoteValue>) {
 	const footnoteId = value?.footnoteId
 	if (!footnoteId) return <>{children}</>
 
@@ -94,9 +161,11 @@ function FootnoteReference({value, children}: {value: any; children: any}) {
 	)
 }
 
-function FootnoteDefinition({value}: {value: any}) {
-	const footnoteId = value?.id
-	const content = value?.content
+function FootnoteDefinition({
+	value
+}: PortableTextTypeComponentProps<FootnoteDefinitionRecord>) {
+	const footnoteId = value.id
+	const content = value.content
 
 	if (!footnoteId || !content) return null
 
@@ -120,19 +189,21 @@ function slugify(str: string) {
 		.replace(/\-\-+/g, '-')
 }
 
-let components: any = null
+let components: PortableTextComponents | undefined
 
-function createComponents() {
+function createComponents(): PortableTextComponents {
 	if (components) return components
 
-	components = {
+	const created: PortableTextComponents = {
 		types: {
-			image: ({value}: {value: any}) => {
-				const width = value?.asset?.metadata?.dimensions?.width ?? 1600
-				const height = value?.asset?.metadata?.dimensions?.height ?? 900
+			image: ({
+				value
+			}: PortableTextTypeComponentProps<PortableTextImageValue>) => {
+				const width = value.asset?.metadata?.dimensions?.width ?? 1600
+				const height = value.asset?.metadata?.dimensions?.height ?? 900
 
 				const src =
-					value?.asset?.url ??
+					value.asset?.url ??
 					urlForImage(value).width(1600).fit('max').auto('format').url()
 
 				if (!src) return null
@@ -141,13 +212,13 @@ function createComponents() {
 					<figure className="-mx-6 my-12 sm:-mx-16 lg:-mx-24">
 						<Image
 							src={src}
-							alt={value?.alt ?? ''}
+							alt={value.alt ?? ''}
 							width={width}
 							height={height}
 							className="h-auto w-full rounded-2xl"
 							sizes="(min-width: 1024px) 1200px, 100vw"
 						/>
-						{value?.caption ? (
+						{value.caption ? (
 							<figcaption className="text-muted-foreground mt-4 px-6 text-sm italic sm:px-16 lg:px-24">
 								{value.caption}
 							</figcaption>
@@ -159,8 +230,11 @@ function createComponents() {
 			footnote: FootnoteDefinition
 		},
 		marks: {
-			link: ({value, children}: any) => {
-				const href = value?.href || ''
+			link: ({
+				value,
+				children
+			}: PortableTextMarkComponentProps<MarkLinkValue>) => {
+				const href = value?.href ?? ''
 				const isInternal = href.startsWith('/') || href.startsWith('#')
 
 				if (isInternal) {
@@ -174,36 +248,51 @@ function createComponents() {
 				)
 			},
 			footnote: FootnoteReference,
-			strong: ({children}: any) => <strong>{children}</strong>,
-			em: ({children}: any) => <em>{children}</em>,
+			strong: ({children}: PortableTextMarkComponentProps) => (
+				<strong>{children}</strong>
+			),
+			em: ({children}: PortableTextMarkComponentProps) => <em>{children}</em>,
 			code: InlineCode
 		},
 		block: {
-			h1: ({children}: any) => <h1 className="text-foreground">{children}</h1>,
-			h2: ({children}: any) => <h2 className="text-foreground">{children}</h2>,
-			h3: ({children}: any) => <h3 className="text-foreground">{children}</h3>,
-			h4: ({children}: any) => <h4 className="text-foreground">{children}</h4>,
-			h5: ({children}: any) => <h5 className="text-foreground">{children}</h5>,
-			h6: ({children}: any) => <h6 className="text-foreground">{children}</h6>,
-			blockquote: ({children}: any) => (
+			h1: ({children}: PortableTextComponentProps<any>) => (
+				<h1 className="text-foreground">{children ?? null}</h1>
+			),
+			h2: ({children}: PortableTextComponentProps<any>) => (
+				<h2 className="text-foreground">{children ?? null}</h2>
+			),
+			h3: ({children}: PortableTextComponentProps<any>) => (
+				<h3 className="text-foreground">{children ?? null}</h3>
+			),
+			h4: ({children}: PortableTextComponentProps<any>) => (
+				<h4 className="text-foreground">{children ?? null}</h4>
+			),
+			h5: ({children}: PortableTextComponentProps<any>) => (
+				<h5 className="text-foreground">{children ?? null}</h5>
+			),
+			h6: ({children}: PortableTextComponentProps<any>) => (
+				<h6 className="text-foreground">{children ?? null}</h6>
+			),
+			blockquote: ({children}: PortableTextComponentProps<any>) => (
 				<blockquote className="border-muted-foreground/30 my-7 border-l-3 pl-6 italic">
-					{children}
+					{children ?? null}
 				</blockquote>
 			)
 		}
 	}
 
-	return components
+	components = created
+	return created
 }
 
 export function PortableText({blocks}: PortableTextProps) {
 	footnoteDefinitions.clear()
 
-	blocks.forEach((block: any) => {
-		if (block._type === 'footnote' && block.id) {
-			footnoteDefinitions.set(block.id, block)
+	for (const block of blocks) {
+		if (isFootnoteBlock(block)) {
+			footnoteDefinitions.set(block.id, {id: block.id, content: block.content})
 		}
-	})
+	}
 
 	const components = createComponents()
 	return (

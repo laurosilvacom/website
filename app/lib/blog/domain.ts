@@ -1,5 +1,5 @@
 import {type PortableTextBlock} from '@sanity/types'
-import {type SanityImage} from '@/lib/types'
+import {type SanityImage} from '@/lib/sanity/types'
 
 export type BlogTag = string
 

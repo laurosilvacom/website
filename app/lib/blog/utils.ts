@@ -5,12 +5,25 @@ interface PortableTextChildWithText {
 	text?: string
 }
 
+function isTextBlock(
+	block: PortableTextBlock
+): block is PortableTextBlock & {
+	_type: 'block'
+	children: PortableTextChildWithText[]
+} {
+	const maybe = block as unknown as {
+		_type?: unknown
+		children?: unknown
+	}
+
+	return maybe._type === 'block' && Array.isArray(maybe.children)
+}
+
 export function calculateReadingTime(content: PortableTextBlock[]): string {
 	const text = content
 		.map((block) => {
-			const maybeBlock = block as any
-			if (maybeBlock?._type === 'block' && Array.isArray(maybeBlock.children)) {
-				return maybeBlock.children
+			if (isTextBlock(block)) {
+				return block.children
 					.map((child: PortableTextChildWithText) =>
 						typeof child?.text === 'string' ? child.text : ''
 					)

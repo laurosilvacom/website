@@ -9,7 +9,7 @@ import {
 import {BLOG_CACHE_TAG, BLOG_REVALIDATE_SECONDS} from '@/lib/blog/config'
 import {calculateReadingTime} from '@/lib/blog/utils'
 import {type PortableTextBlock} from '@sanity/types'
-import {type SanityImage} from '@/lib/types'
+import {type SanityImage} from '@/lib/sanity/types'
 import {type BlogPost} from '@/lib/blog/domain'
 
 interface SanityPost {
