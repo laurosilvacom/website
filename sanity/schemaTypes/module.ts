@@ -120,6 +120,72 @@ export default defineType({
 			fieldset: 'landing',
 			description:
 				"The Resend audience ID for this workshop's newsletter subscribers"
+		}),
+		defineField({
+			name: 'testSequence',
+			title: 'Test drip sequence',
+			type: 'boolean',
+			fieldset: 'landing',
+			description:
+				'When on, new signups receive the email sequence every minute instead of daily. Turn off for production.',
+			initialValue: false
+		}),
+		defineField({
+			name: 'emailLessons',
+			title: 'Email Drip Sequence',
+			type: 'array',
+			fieldset: 'landing',
+			description:
+				'Ordered lessons to drip after signup. Default cadence sends one per day in this order.',
+			of: [
+				defineArrayMember({
+					name: 'emailLesson',
+					type: 'object',
+					fields: [
+						defineField({
+							name: 'post',
+							title: 'Post',
+							type: 'reference',
+							to: [{type: 'post'}],
+							validation: (Rule) => Rule.required()
+						}),
+						defineField({
+							name: 'subject',
+							type: 'string',
+							description: 'Optional subject override for the email send'
+						}),
+						defineField({
+							name: 'preheader',
+							type: 'string',
+							description: 'Optional preheader / preview text'
+						}),
+						defineField({
+							name: 'sendOffsetDays',
+							title: 'Send offset (days)',
+							type: 'number',
+							description:
+								'Days after signup to send. Leave blank to use position-based cadence.',
+							validation: (Rule) => Rule.min(0).max(60)
+						})
+					],
+					preview: {
+						select: {
+							title: 'subject',
+							postTitle: 'post.title',
+							offset: 'sendOffsetDays'
+						},
+						prepare({title, postTitle, offset}) {
+							return {
+								title: title || postTitle,
+								subtitle:
+									typeof offset === 'number'
+										? `Send +${offset}d`
+										: 'Default cadence'
+							}
+						}
+					}
+				})
+			]
 		})
 	],
 

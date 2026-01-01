@@ -13,6 +13,7 @@
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md,mjs}\"",
     "clean": "rm -rf .next out node_modules/.cache",
     "studio": "sanity dev --port 3333",
+    "workshop:drip:cron": "tsx scripts/workshop-drip-cron.ts",
     "setup:token": "bash scripts/setup-token.sh",
     "migrate:code-blocks": "tsx scripts/fix-code-blocks.ts",
     "migrate:code-blocks:cli": "sanity exec scripts/fix-code-blocks-cli.ts --with-user-token"
@@ -32,6 +33,7 @@
     "@sanity/code-input": "^6.0.3",
     "@sanity/image-url": "^1.2.0",
     "@sanity/types": "^4.14.2",
+    "@upstash/redis": "^1.36.0",
     "@vercel/analytics": "^1.5.0",
     "@vercel/blob": "^2.0.0",
     "@vercel/kv": "^1.0.1",

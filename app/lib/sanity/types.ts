@@ -26,6 +26,24 @@ export type SanityProductContributor = {
 	}
 }
 
+export type SanityEmailLessonPost = {
+	_id: string
+	title: string
+	summary?: string
+	slug?: {
+		current: string
+	}
+	content?: PortableTextBlock[]
+}
+
+export type SanityModuleEmailLesson = {
+	_key?: string
+	subject?: string
+	preheader?: string
+	sendOffsetDays?: number
+	post?: SanityEmailLessonPost
+}
+
 export type SanityModule = {
 	_id: string
 	title: string
@@ -40,4 +58,6 @@ export type SanityModule = {
 		title: string
 	}[]
 	resendAudienceId?: string
+	testSequence?: boolean
+	emailLessons?: SanityModuleEmailLesson[]
 }

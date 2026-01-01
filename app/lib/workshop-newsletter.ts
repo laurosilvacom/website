@@ -1,55 +1,31 @@
 import {del, head, put} from '@vercel/blob'
 import {createResendContact, sendResendEmail} from '@/lib/resend'
+import {
+	enqueueWorkshopDripCampaign,
+	processWorkshopDripQueue,
+	inspectWorkshopDripQueue
+} from './workshop-newsletter/queue'
+import {
+	EMAIL_PATTERN,
+	OPT_IN_PREFIX,
+	TOKEN_TTL_SECONDS,
+	type WorkshopOptInRecord,
+	type WorkshopOptInRequestBody,
+	type WorkshopOptInStartResult
+} from './workshop-newsletter/types'
+import {
+	getBlobToken,
+	getRequiredAppUrl,
+	getWorkshopResendFrom
+} from './workshop-newsletter/config'
 
-const TOKEN_TTL_SECONDS = 60 * 60 * 48 // 48 hours
-const OPT_IN_PREFIX = 'workshop-optin'
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-export type WorkshopOptInRequestBody = {
-	email?: unknown
-	firstName?: unknown
-	workshopSlug?: unknown
-	audienceId?: unknown
+export {
+	enqueueWorkshopDripCampaign,
+	processWorkshopDripQueue,
+	inspectWorkshopDripQueue
 }
-
-export type WorkshopOptInRecord = {
-	email: string
-	firstName: string
-	workshopSlug: string
-	audienceId: string
-	expiresAt: number
-}
-
-export type WorkshopOptInStartResult = {
-	token: string
-	confirmUrl: string
-}
-
-export function getOptionalAppUrl() {
-	return process.env.NEXT_PUBLIC_APP_URL || process.env.NEXT_PUBLIC_SITE_URL
-}
-
-export function getRequiredAppUrl() {
-	const appUrl = getOptionalAppUrl()
-	if (!appUrl) {
-		throw new Error(
-			'NEXT_PUBLIC_APP_URL or NEXT_PUBLIC_SITE_URL is not configured'
-		)
-	}
-	return appUrl
-}
-
-export function getBlobToken() {
-	const token = process.env.BLOB_READ_WRITE_TOKEN
-	if (!token) {
-		throw new Error('BLOB_READ_WRITE_TOKEN is not configured')
-	}
-	return token
-}
-
-export function getWorkshopResendFrom() {
-	return process.env.RESEND_FROM || 'Workshops <me@laurosilva.com>'
-}
+export {getOptionalAppUrl} from './workshop-newsletter/config'
+export type {WorkshopOptInRequestBody} from './workshop-newsletter/types'
 
 function sanitizeName(input: string) {
 	// Allow letters, numbers, spaces, apostrophes, and hyphens; strip other characters.
@@ -177,12 +153,31 @@ export async function startWorkshopOptIn(args: {
 	const {error} = await sendResendEmail({
 		from: fromAddress,
 		to: args.email,
-		subject: 'Confirm your subscription',
+		subject: 'Confirm your email to start learning',
 		html: `
-			<h2>Confirm your subscription</h2>
-			<p>Thanks for joining the waitlist. Please confirm your email to finish signing up.</p>
-			<p><a href="${confirmUrl}" style="color:#0070f3;font-weight:600">Confirm subscription</a></p>
-			<p style="color:#666;font-size:12px">If you did not request this, you can ignore this email.</p>
+			<!doctype html>
+			<html lang="en">
+				<body style="margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8f9fb;">
+					<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
+						<tr>
+							<td align="center" style="padding:40px 16px;">
+								<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:480px;width:100%;border-collapse:collapse;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(15,23,42,0.08);">
+									<tr>
+										<td style="padding:32px;">
+											<h1 style="margin:0 0 16px 0;font-size:24px;font-weight:700;color:#0f172a;text-align:center;">One click to start</h1>
+											<p style="margin:0 0 24px 0;font-size:16px;line-height:1.6;color:#475569;text-align:center;">Confirm your email to begin your free email course. Your first lesson is ready to go.</p>
+											<div style="text-align:center;">
+												<a href="${confirmUrl}" style="display:inline-block;padding:14px 32px;background:#0f172a;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:600;font-size:16px;">Start Learning →</a>
+											</div>
+										</td>
+									</tr>
+								</table>
+								<p style="margin:24px 0 0 0;font-size:12px;color:#94a3b8;text-align:center;">Didn't request this? You can safely ignore this email.</p>
+							</td>
+						</tr>
+					</table>
+				</body>
+			</html>
 		`
 	})
 
@@ -214,6 +209,25 @@ export async function confirmWorkshopOptIn(token: string) {
 		if (!isDuplicate) {
 			return {status: 'error', errorMessage: message} as const
 		}
+	}
+
+	try {
+		const enqueueResult = await enqueueWorkshopDripCampaign({
+			email: record.email,
+			firstName: record.firstName,
+			workshopSlug: record.workshopSlug
+		})
+
+		// In test mode, send ALL emails immediately (no cron needed for testing)
+		if (enqueueResult?.status === 'queued' && enqueueResult.isTest) {
+			// Wait for all emails to become due (1 sec stagger per email)
+			const waitMs = enqueueResult.count * 1_000 + 500
+			await new Promise((r) => setTimeout(r, waitMs))
+			// Now process all
+			await processWorkshopDripQueue()
+		}
+	} catch (enqueueError) {
+		console.error('Workshop drip enqueue error', enqueueError)
 	}
 
 	await deleteOptInRecord(token)

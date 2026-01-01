@@ -1,0 +1,8 @@
+{
+	"crons": [
+		{
+			"path": "/api/workshop-newsletter/process",
+			"schedule": "*/1 * * * *"
+		}
+	]
+}

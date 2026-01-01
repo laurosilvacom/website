@@ -9,6 +9,7 @@ import {cn} from '@/lib/utils'
 interface WorkshopNewsletterBarProps {
 	workshopSlug: string
 	audienceId?: string
+	lessonCount?: number
 	preface?: string
 	ctaLabel?: string
 	scrollOffset?: number
@@ -18,8 +19,9 @@ interface WorkshopNewsletterBarProps {
 export function WorkshopNewsletterBar({
 	workshopSlug,
 	audienceId,
-	preface = 'Get early access',
-	ctaLabel = 'Join the Waitlist',
+	lessonCount,
+	preface = 'Free Email Course',
+	ctaLabel = 'Start Learning',
 	scrollOffset = 400,
 	apiPath = '/api/workshop-newsletter/opt-in'
 }: WorkshopNewsletterBarProps) {
@@ -100,7 +102,12 @@ export function WorkshopNewsletterBar({
 							</div>
 							<div>
 								<p className="text-sm font-semibold text-white">
-									Check your email to confirm
+									Check your email to confirm!
+								</p>
+								<p className="text-xs text-white/70">
+									{lessonCount
+										? `You'll receive ${lessonCount} lessons, one per day.`
+										: 'Your first lesson will arrive shortly.'}
 								</p>
 							</div>
 						</div>

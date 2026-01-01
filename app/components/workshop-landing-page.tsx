@@ -118,7 +118,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 									})
 								}}
 								className="h-14 px-8 text-base font-semibold shadow-lg">
-								Get Early Access
+								Start Free Email Course
 							</Button>
 						</div>
 					</div>
@@ -172,8 +172,9 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 			<WorkshopNewsletterBar
 				workshopSlug={workshop.slug.current}
 				audienceId={workshop.resendAudienceId}
-				preface="Get early access"
-				ctaLabel="Join the Waitlist"
+				lessonCount={workshop.emailLessons?.length}
+				preface="Free Email Course"
+				ctaLabel="Start Learning"
 				scrollOffset={400}
 			/>
 		</div>
