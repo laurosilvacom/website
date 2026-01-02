@@ -1,3 +1,4 @@
+import {defineQuery} from 'next-sanity'
 import {groq} from 'next-sanity'
 
 const sanityImageFields = groq`
@@ -23,7 +24,8 @@ const portableTextWithImages = groq`
   },
 `
 
-export const postsQuery = groq`*[_type == "post" && !draft] | order(publishedAt desc) {
+export const postsQuery =
+	defineQuery(groq`*[_type == "post" && !draft] | order(publishedAt desc) {
   _id,
   title,
   slug,
@@ -33,22 +35,10 @@ export const postsQuery = groq`*[_type == "post" && !draft] | order(publishedAt 
   ${portableTextWithImages}
   tags,
   "readingTime": round(length(pt::text(content)) / 5 / 180 )
-}`
+}`)
 
-export const allPostsQuery = groq`*[_type == "post"] | order(publishedAt desc) {
-  _id,
-  title,
-  slug,
-  publishedAt,
-  summary,
-  heroImage{ ${sanityImageFields} },
-  ${portableTextWithImages}
-  tags,
-  draft,
-  "readingTime": round(length(pt::text(content)) / 5 / 180 )
-}`
-
-export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][0] {
+export const allPostsQuery =
+	defineQuery(groq`*[_type == "post"] | order(publishedAt desc) {
   _id,
   title,
   slug,
@@ -59,8 +49,23 @@ export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][
   tags,
   draft,
   "readingTime": round(length(pt::text(content)) / 5 / 180 )
-}`
+}`)
 
-export const allPostsSlugsQuery = groq`*[_type == "post" && !draft] {
+export const postBySlugQuery =
+	defineQuery(groq`*[_type == "post" && slug.current == $slug][0] {
+  _id,
+  title,
+  slug,
+  publishedAt,
+  summary,
+  heroImage{ ${sanityImageFields} },
+  ${portableTextWithImages}
+  tags,
+  draft,
+  "readingTime": round(length(pt::text(content)) / 5 / 180 )
+}`)
+
+export const allPostsSlugsQuery =
+	defineQuery(groq`*[_type == "post" && !draft && defined(slug.current)] {
   "slug": slug.current
-}`
+}`)

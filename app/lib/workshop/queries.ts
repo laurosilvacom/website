@@ -1,10 +1,12 @@
+import {defineQuery} from 'next-sanity'
 import {groq} from 'next-sanity'
 
-export const modulesQuery = groq`
-	*[_type == "module"] | order(metadata.publishedAt desc) {
-		...,
+export const modulesQuery = defineQuery(groq`
+	*[_type == "module"] | order(_createdAt desc) {
+		_id,
+		title,
 		slug,
-		metadata,
+		shortDescription,
 		image{
 			...,
 			"asset": asset->{
@@ -24,7 +26,9 @@ export const modulesQuery = groq`
 		contributors[]{
 			...,
 			contributor->{
-				...,
+				_id,
+				name,
+				bio,
 				picture{
 					...,
 					"asset": asset->{
@@ -42,13 +46,17 @@ export const modulesQuery = groq`
 				}
 			}
 		}
-	}`
+	}`)
 
-export const moduleBySlugQuery = groq`
+export const moduleBySlugQuery = defineQuery(groq`
 	*[_type == "module" && slug.current == $slug][0] {
-		...,
+		_id,
+		title,
 		slug,
-		metadata,
+		shortDescription,
+		wipLandingPageDescription,
+		resendAudienceId,
+		testSequence,
 		image{
 			...,
 			"asset": asset->{
@@ -68,7 +76,9 @@ export const moduleBySlugQuery = groq`
 		contributors[]{
 			...,
 			contributor->{
-				...,
+				_id,
+				name,
+				bio,
 				picture{
 					...,
 					"asset": asset->{
@@ -85,10 +95,23 @@ export const moduleBySlugQuery = groq`
 					}
 				}
 			}
+		},
+		emailLessons[]{
+			_key,
+			subject,
+			preheader,
+			sendOffsetDays,
+			post->{
+				_id,
+				title,
+				summary,
+				slug,
+				content
+			}
 		}
-	}`
+	}`)
 
-export const allModulesSlugsQuery = groq`
-	*[_type == "module" && defined(slug.current)][]{
+export const allModulesSlugsQuery = defineQuery(groq`
+	*[_type == "module" && defined(slug.current)] {
 		"slug": slug.current
-	}`
+	}`)
