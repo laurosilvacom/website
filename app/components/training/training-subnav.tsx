@@ -5,19 +5,10 @@ import {usePathname} from 'next/navigation'
 import {cn} from '@/lib/utils'
 
 const items = [
-	{href: '/training', label: 'Overview'},
-	{href: '/training/guide', label: 'Guide'},
-	{href: '/training/td', label: 'TD'},
-	{href: '/training/totals', label: 'Totals'},
-	{href: '/training/season', label: 'Season'},
-	{href: '/training/profile', label: 'My Profile'},
-	{href: '/training/metabolism', label: 'Metabolism'},
-	{href: '/training/races', label: 'Races'},
-	{href: '/training/activities', label: 'Activities'},
-	{href: '/training/vo2-tests', label: 'VO2 Tests'},
-	{href: '/training/blood-tests', label: 'Blood Tests'},
-	{href: '/training/injuries', label: 'Injuries'},
-	{href: '/training/close-calls', label: 'Close Calls'}
+	{href: '/training', label: 'Dashboard'},
+	{href: '/training/log', label: 'Log'},
+	{href: '/training/cycles', label: 'Cycles'},
+	{href: '/training/review', label: 'Review'}
 ]
 
 export function TrainingSubnav() {
