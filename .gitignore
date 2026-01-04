@@ -23,6 +23,10 @@
 # misc
 .DS_Store
 *.pem
+*.xlsx
+
+# local scratch
+/tmp
 
 # debug
 npm-debug.log*

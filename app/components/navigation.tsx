@@ -17,6 +17,7 @@ import {
 const navItems = [
 	{path: '/', name: 'Home'},
 	{path: '/blog', name: 'Writing'},
+	{path: '/training', name: 'Training'},
 	{path: '/about', name: 'About'},
 	{path: '/newsletter', name: 'Newsletter'}
 ]
