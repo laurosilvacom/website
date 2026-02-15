@@ -97,8 +97,9 @@ export default async function Page() {
 	return (
 		<>
 			{/* Hero Section */}
-			<section className="px-4 pt-32 pb-16 lg:pt-40 lg:pb-20">
-				<div className="mx-auto max-w-5xl text-center">
+			<section className="pt-40 pb-24 lg:pt-48 lg:pb-40">
+				<Container width="base">
+					<div className="mx-auto max-w-4xl text-center">
 					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
 						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
 							I build products and
@@ -113,32 +114,33 @@ export default async function Page() {
 						</p>
 					</div>
 					<div className="animate-in fade-in slide-in-from-bottom-4 flex flex-wrap items-center justify-center gap-4 pt-12 delay-150 duration-1000">
-						<Button asChild size="lg" className="group">
-							<Link href="/work">
-								See my work
-								<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-							</Link>
-						</Button>
-						<Button asChild size="lg" variant="outline">
-							<Link
-								href="https://cal.com/laurosilvacom/chat"
-								target="_blank"
-								rel="noopener noreferrer">
-								Hire me
-							</Link>
-						</Button>
+							<Button asChild size="lg" className="group">
+								<Link href="/work">
+									See my work
+									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+								</Link>
+							</Button>
+							<Button asChild size="lg" variant="outline">
+								<Link
+									href="https://cal.com/laurosilvacom/chat"
+									target="_blank"
+									rel="noopener noreferrer">
+									Hire me
+								</Link>
+							</Button>
+						</div>
+						<div className="animate-in fade-in slide-in-from-bottom-4 pt-12 delay-200 duration-1000">
+							<p className="text-muted-foreground text-sm font-medium">
+								{clients.map((name, i) => (
+									<span key={name}>
+										{name}
+										{i < clients.length - 1 && <span className="mx-2.5 opacity-30">·</span>}
+									</span>
+								))}
+							</p>
+						</div>
 					</div>
-					<div className="animate-in fade-in slide-in-from-bottom-4 pt-10 delay-200 duration-1000">
-						<p className="text-muted-foreground text-sm font-medium">
-							{clients.map((name, i) => (
-								<span key={name}>
-									{name}
-									{i < clients.length - 1 && <span className="mx-2.5 opacity-30">·</span>}
-								</span>
-							))}
-						</p>
-					</div>
-				</div>
+				</Container>
 			</section>
 
 			{/* What I Do */}

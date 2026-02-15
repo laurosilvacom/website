@@ -91,13 +91,13 @@ export default function WorkPage() {
 	return (
 		<>
 			{/* Header */}
-			<section className="px-4 pt-32 pb-12 lg:pt-40 lg:pb-16">
+			<section className="pt-40 pb-24 lg:pt-48 lg:pb-40">
 				<Container width="base">
-					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-4 duration-1000">
+					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
 						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 							Work
 						</h1>
-						<p className="text-muted-foreground max-w-2xl text-lg leading-relaxed sm:text-xl">
+						<p className="text-muted-foreground max-w-2xl text-xl leading-relaxed sm:text-2xl">
 							I&apos;ve helped companies like Google, O&apos;Reilly, Sentry, and HOKA ship
 							products and level up their engineering teams.
 						</p>

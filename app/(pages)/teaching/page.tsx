@@ -93,18 +93,20 @@ export default function TeachingPage() {
 	return (
 		<>
 			{/* Hero */}
-			<section className="px-4 pt-32 pb-12 lg:pt-40 lg:pb-16">
-				<div className="mx-auto max-w-4xl text-center">
-					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-6 duration-1000">
-						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-							Workshops & Training
-						</h1>
-						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
-							I teach engineering teams to build better software. From half-day workshops
-							to multi-week training programs. Previously taught at O&apos;Reilly and
-							egghead.
-						</p>
-						<div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+			<section className="pt-40 pb-24 lg:pt-48 lg:pb-40">
+				<Container width="base">
+					<div className="mx-auto max-w-4xl text-center">
+						<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
+							<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+								Workshops & Training
+							</h1>
+							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
+								I teach engineering teams to build better software. From half-day workshops
+								to multi-week training programs. Previously taught at O&apos;Reilly and
+								egghead.
+							</p>
+						</div>
+						<div className="animate-in fade-in slide-in-from-bottom-4 flex flex-wrap items-center justify-center gap-4 pt-12 delay-150 duration-1000">
 							<Button asChild size="lg" className="group">
 								<Link
 									href="https://cal.com/laurosilvacom/chat"
@@ -116,7 +118,7 @@ export default function TeachingPage() {
 							</Button>
 						</div>
 					</div>
-				</div>
+				</Container>
 			</section>
 
 			{/* Current Offerings */}

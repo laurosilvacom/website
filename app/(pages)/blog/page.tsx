@@ -50,18 +50,20 @@ export default async function BlogPage() {
 
 	return (
 		<>
-			<section className="relative flex min-h-[60vh] items-center justify-center px-4 pt-32 pb-20 lg:pt-40">
-				<div className="mx-auto max-w-3xl text-center">
-					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-6 duration-1000">
-						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-							Writing
-						</h1>
-						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
-							Thoughts, ideas, and explorations at the intersection of technology and the
-							outdoor industry.
-						</p>
+			<section className="pt-40 pb-24 lg:pt-48 lg:pb-40">
+				<Container width="base">
+					<div className="mx-auto max-w-4xl text-center">
+						<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
+							<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+								Writing
+							</h1>
+							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
+								Thoughts, ideas, and explorations at the intersection of technology and the
+								outdoor industry.
+							</p>
+						</div>
 					</div>
-				</div>
+				</Container>
 			</section>
 
 			<section className="py-12 lg:py-20">

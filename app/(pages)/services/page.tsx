@@ -26,34 +26,36 @@ export default function ServicesPage() {
 	return (
 		<>
 			{/* Hero Section */}
-			<section className="px-6 pt-32 pb-16 lg:pt-40 lg:pb-20">
-				<div className="mx-auto max-w-6xl text-center">
-					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
-						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-							Ship faster. Build smarter.
-							<br />
-							Level up your team.
-						</h1>
-						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
-							I help small and medium companies ship production software, make better
-							technical decisions, and build stronger engineering teams.
-						</p>
+			<section className="pt-40 pb-24 lg:pt-48 lg:pb-40">
+				<Container width="base">
+					<div className="mx-auto max-w-4xl text-center">
+						<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
+							<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+								Ship faster. Build smarter.
+								<br />
+								Level up your team.
+							</h1>
+							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
+								I help small and medium companies ship production software, make better
+								technical decisions, and build stronger engineering teams.
+							</p>
+						</div>
+						<div className="animate-in fade-in slide-in-from-bottom-4 flex flex-wrap items-center justify-center gap-4 pt-12 delay-150 duration-1000">
+							<Button asChild size="lg" className="group">
+								<Link
+									href="https://cal.com/laurosilvacom/chat"
+									target="_blank"
+									rel="noopener noreferrer">
+									Schedule a consultation
+									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+								</Link>
+							</Button>
+							<Button asChild size="lg" variant="outline">
+								<Link href="#services">View services</Link>
+							</Button>
+						</div>
 					</div>
-					<div className="animate-in fade-in slide-in-from-bottom-4 flex flex-wrap items-center justify-center gap-4 pt-12 delay-150 duration-1000">
-						<Button asChild size="lg" className="group">
-							<Link
-								href="https://cal.com/laurosilvacom/chat"
-								target="_blank"
-								rel="noopener noreferrer">
-								Schedule a consultation
-								<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-							</Link>
-						</Button>
-						<Button asChild size="lg" variant="outline">
-							<Link href="#services">View services</Link>
-						</Button>
-					</div>
-				</div>
+				</Container>
 			</section>
 
 			{/* Services Overview */}

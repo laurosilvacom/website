@@ -8,38 +8,40 @@ export default function AthletesPage() {
 	return (
 		<>
 			{/* Hero Section */}
-			<section className="relative flex min-h-[85vh] items-center justify-center px-6 pt-32 pb-24 lg:pt-40 lg:pb-32">
-				<div className="mx-auto max-w-5xl text-center">
-					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-12 duration-1000">
-						<div className="inline-flex">
-							<div className="bg-muted border-border inline-flex items-center gap-2 rounded-full border px-4 py-2">
-								<div className="bg-primary h-2 w-2 animate-pulse rounded-full" />
-								<span className="text-sm font-medium">Available for new projects</span>
+			<section className="pt-40 pb-24 lg:pt-48 lg:pb-40">
+				<Container width="base">
+					<div className="mx-auto max-w-4xl text-center">
+						<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
+							<div className="inline-flex">
+								<div className="bg-muted border-border inline-flex items-center gap-2 rounded-full border px-4 py-2">
+									<div className="bg-primary h-2 w-2 animate-pulse rounded-full" />
+									<span className="text-sm font-medium">Available for new projects</span>
+								</div>
 							</div>
+							<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+								Your Brand,
+								<br />
+								Your Platform
+							</h1>
+							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
+								Custom platforms built specifically for professional athletes. Not
+								templates. Not rentals. Complete solutions you own that grow with your
+								career and connect with your community.
+							</p>
 						</div>
-						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-							Your Brand,
-							<br />
-							Your Platform
-						</h1>
-						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
-							Custom platforms built specifically for professional athletes. Not
-							templates. Not rentals. Complete solutions you own that grow with your
-							career and connect with your community.
-						</p>
+						<div className="animate-in fade-in slide-in-from-bottom-4 pt-12 delay-150 duration-1000">
+							<Button asChild size="lg" className="group">
+								<Link
+									href="https://cal.com/laurosilvacom/chat"
+									target="_blank"
+									rel="noopener noreferrer">
+									Schedule a consultation
+									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+								</Link>
+							</Button>
+						</div>
 					</div>
-					<div className="animate-in fade-in slide-in-from-bottom-4 pt-12 delay-150 duration-1000">
-						<Button asChild size="lg" className="group">
-							<Link
-								href="https://cal.com/laurosilvacom/chat"
-								target="_blank"
-								rel="noopener noreferrer">
-								Schedule a consultation
-								<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-							</Link>
-						</Button>
-					</div>
-				</div>
+				</Container>
 			</section>
 
 			{/* Hero Image */}

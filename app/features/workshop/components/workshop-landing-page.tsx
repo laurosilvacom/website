@@ -24,19 +24,19 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 	return (
 		<div className="relative min-h-screen pb-32">
 			{/* Hero Section */}
-			<section className="relative">
-				<div className="mx-auto max-w-7xl px-4 pt-20 pb-12 sm:px-6 lg:px-8 lg:pt-32 lg:pb-20">
-					<div className="text-center">
-						<div className="animate-in fade-in slide-in-from-bottom-4 duration-1000">
+			<section className="pt-40 pb-24 lg:pt-48 lg:pb-40">
+				<div className="mx-auto max-w-[1080px] w-full px-6 lg:px-12">
+					<div className="mx-auto max-w-4xl text-center">
+						<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
 							<Link
 								href="/workshops"
-								className="text-muted-foreground hover:text-foreground mb-6 inline-flex items-center gap-2 text-xs font-medium tracking-wider uppercase transition-colors">
+								className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-xs font-medium tracking-wider uppercase transition-colors">
 								{workshop.audience && workshop.audience.length > 0 && workshop.audience[0]
 									? `For ${workshop.audience[0].title}`
 									: 'Pro Workshop'}
 							</Link>
 
-							<div className="mb-6 flex justify-center">
+							<div className="flex justify-center">
 								<Badge
 									variant="outline"
 									className="bg-accent text-accent-foreground border-border px-4 py-1.5">
@@ -45,12 +45,12 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 								</Badge>
 							</div>
 
-							<h1 className="text-foreground mx-auto mb-6 max-w-4xl text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
+							<h1 className="text-foreground text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
 								{workshop.title}
 							</h1>
 
 							{workshop.shortDescription && (
-								<p className="text-muted-foreground mx-auto mb-12 max-w-2xl text-lg leading-relaxed sm:text-xl">
+								<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
 									{workshop.shortDescription}
 								</p>
 							)}
@@ -58,7 +58,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 
 						{/* Contributors */}
 						{workshop.contributors && workshop.contributors.length > 0 && (
-							<div className="animate-in fade-in slide-in-from-bottom-4 mb-12 flex justify-center delay-150 duration-1000">
+							<div className="animate-in fade-in slide-in-from-bottom-4 flex justify-center pt-12 delay-150 duration-1000">
 								<div className="flex items-center gap-2">
 									<span className="text-muted-foreground text-sm font-medium">
 										Taught by
@@ -104,7 +104,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 						)}
 
 						{/* CTA Button */}
-						<div className="animate-in fade-in slide-in-from-bottom-4 flex justify-center delay-300 duration-1000">
+						<div className="animate-in fade-in slide-in-from-bottom-4 flex justify-center pt-12 delay-300 duration-1000">
 							<Button
 								size="lg"
 								onClick={() => {

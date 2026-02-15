@@ -30,10 +30,10 @@ export default async function TagsPage() {
 	return (
 		<>
 			{/* Hero */}
-			<section className="border-border border-b pt-32 pb-24 lg:pt-40 lg:pb-32">
+			<section className="pt-40 pb-24 lg:pt-48 lg:pb-40">
 				<Container width="base">
-					<div className="mx-auto max-w-3xl space-y-8 text-center">
-						<div className="space-y-4">
+					<div className="mx-auto max-w-4xl space-y-8 text-center">
+						<div className="space-y-8">
 							<div className="inline-flex items-center gap-2">
 								<div className="bg-primary h-2 w-2 rounded-full" />
 								<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
@@ -43,11 +43,11 @@ export default async function TagsPage() {
 							<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
 								Explore by Tag
 							</h1>
-							<p className="text-muted-foreground text-xl leading-relaxed">
+							<p className="text-muted-foreground text-xl leading-relaxed sm:text-2xl">
 								Browse {allTags.length} topics across {posts.length} writings
 							</p>
 						</div>
-						<div className="pt-4">
+						<div>
 							<Link
 								href="/blog"
 								className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-sm transition-colors">

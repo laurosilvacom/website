@@ -65,16 +65,16 @@ export default async function TagPage({params}: TagPageProps) {
 	return (
 		<>
 			{/* Hero */}
-			<section className="border-border border-b pt-32 pb-24 lg:pt-40 lg:pb-32">
+			<section className="pt-40 pb-24 lg:pt-48 lg:pb-40">
 				<Container width="base">
-					<div className="mx-auto max-w-3xl space-y-8 text-center">
-						<div className="space-y-4">
+					<div className="mx-auto max-w-4xl space-y-8 text-center">
+						<div className="space-y-8">
 							<Link
 								href="/tags"
 								className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-sm transition-colors">
 								← All topics
 							</Link>
-							<div className="space-y-3">
+							<div className="space-y-8">
 								<div className="inline-flex items-center gap-2">
 									<div className="bg-primary h-2 w-2 rounded-full" />
 									<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
@@ -84,7 +84,7 @@ export default async function TagPage({params}: TagPageProps) {
 								<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
 									{tag}
 								</h1>
-								<p className="text-muted-foreground text-xl leading-relaxed">
+								<p className="text-muted-foreground text-xl leading-relaxed sm:text-2xl">
 									{taggedPosts.length} {taggedPosts.length === 1 ? 'writing' : 'writings'}
 								</p>
 							</div>
@@ -92,21 +92,19 @@ export default async function TagPage({params}: TagPageProps) {
 
 						{/* Related Tags */}
 						{relatedTags.length > 0 && (
-							<div className="border-border border-t pt-8">
-								<div className="space-y-4">
-									<p className="text-muted-foreground text-sm font-medium">
-										Related topics
-									</p>
-									<div className="flex flex-wrap justify-center gap-2">
-										{relatedTags.map((relatedTag) => (
-											<Link
-												key={relatedTag}
-												href={`/tags/${encodeURIComponent(relatedTag)}`}
-												className="border-border hover:border-foreground/20 hover:bg-muted/50 rounded-full border px-3 py-1.5 text-xs font-medium transition-all">
-												{relatedTag}
-											</Link>
-										))}
-									</div>
+							<div className="space-y-4">
+								<p className="text-muted-foreground text-sm font-medium">
+									Related topics
+								</p>
+								<div className="flex flex-wrap justify-center gap-2">
+									{relatedTags.map((relatedTag) => (
+										<Link
+											key={relatedTag}
+											href={`/tags/${encodeURIComponent(relatedTag)}`}
+											className="border-border hover:border-foreground/20 hover:bg-muted/50 rounded-full border px-3 py-1.5 text-xs font-medium transition-all">
+											{relatedTag}
+										</Link>
+									))}
 								</div>
 							</div>
 						)}

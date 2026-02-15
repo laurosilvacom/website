@@ -200,7 +200,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 	return (
 		<>
 			{/* Back Link */}
-			<section className="px-6 pt-32 lg:pt-40">
+			<section className="pt-40 lg:pt-48">
 				<Container width="narrow">
 					<Link
 						href="/work"
@@ -212,7 +212,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 			</section>
 
 			{/* Hero */}
-			<section className="px-6 pt-12 pb-16 lg:pb-24">
+			<section className="pt-8 pb-24 lg:pb-40">
 				<Container width="narrow">
 					<div className="space-y-8">
 						<div className="flex items-center gap-2">
@@ -222,7 +222,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 							<span className="text-muted-foreground text-sm opacity-40">·</span>
 							<span className="text-muted-foreground text-sm">{study.type}</span>
 						</div>
-						<h1 className="text-4xl leading-[1.1] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 							{study.title}
 						</h1>
 						<div className="flex flex-wrap gap-2">

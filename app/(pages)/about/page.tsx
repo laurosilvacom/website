@@ -33,18 +33,20 @@ export default function AboutPage() {
 			/>
 			<main>
 				{/* Hero Section */}
-				<section className="px-6 pt-32 pb-12 lg:pt-40 lg:pb-16">
-					<div className="mx-auto max-w-4xl text-center">
-						<div className="animate-in fade-in slide-in-from-bottom-4 space-y-6 duration-1000">
-							<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-								Build & Teach
-							</h1>
-							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
-								I&apos;m a senior full-stack engineer and developer educator based in
-								Portland. I build products and teach the teams behind them.
-							</p>
+				<section className="pt-40 pb-24 lg:pt-48 lg:pb-40">
+					<Container width="base">
+						<div className="mx-auto max-w-4xl text-center">
+							<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
+								<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+									Build & Teach
+								</h1>
+								<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
+									I&apos;m a senior full-stack engineer and developer educator based in
+									Portland. I build products and teach the teams behind them.
+								</p>
+							</div>
 						</div>
-					</div>
+					</Container>
 				</section>
 
 				{/* Hero Image */}

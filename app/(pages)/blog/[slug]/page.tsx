@@ -110,9 +110,9 @@ export default async function BlogPost({params}: Props) {
 
 			<article>
 				{/* Header Section - Title and Information */}
-				<header className="pt-32 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24">
-					<Container width="wide">
-						<div className="mx-auto max-w-7xl space-y-8 text-center">
+				<header className="pt-40 pb-24 lg:pt-48 lg:pb-40">
+					<Container width="base">
+						<div className="mx-auto max-w-4xl space-y-8 text-center">
 							<div className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
 								<time dateTime={post.metadata.publishedAt}>
 									{formatDate(post.metadata.publishedAt)}
@@ -121,11 +121,11 @@ export default async function BlogPost({params}: Props) {
 								<span>{readingTime}</span>
 							</div>
 
-							<h1 className="text-foreground text-4xl leading-tight font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
+							<h1 className="text-foreground text-4xl leading-[1.05] font-bold tracking-tight text-balance sm:text-5xl md:text-6xl lg:text-7xl">
 								{post.metadata.title}
 							</h1>
 
-							<p className="text-muted-foreground mx-auto max-w-3xl text-xl leading-relaxed text-balance sm:text-2xl">
+							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed text-balance sm:text-2xl">
 								{post.metadata.summary}
 							</p>
 
