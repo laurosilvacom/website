@@ -1,10 +1,10 @@
 import {Suspense} from 'react'
 import Link from 'next/link'
-import Container from '@/components/container'
-import {Button} from '@/components/ui/button'
-import {formatDate, getBlogPosts} from '@/lib/blog'
+import Container from '@/shared/components/container'
+import {Button} from '@/shared/ui/button'
+import {formatDate, getBlogPosts} from '@/features/blog/server'
 import {ArrowRight} from 'lucide-react'
-import {type BlogPost} from '@/lib/blog'
+import {type BlogPost} from '@/features/blog/server'
 
 async function BlogPosts() {
 	const allBlogs = await getBlogPosts()
@@ -12,7 +12,7 @@ async function BlogPosts() {
 		.sort(
 			(a: BlogPost, b: BlogPost) =>
 				new Date(b.metadata.publishedAt).getTime() -
-				new Date(a.metadata.publishedAt).getTime()
+				new Date(a.metadata.publishedAt).getTime(),
 		)
 		.slice(0, 6)
 
@@ -23,7 +23,7 @@ async function BlogPosts() {
 					key={post.slug}
 					className="group relative"
 					style={{
-						animationDelay: `${index * 100}ms`
+						animationDelay: `${index * 100}ms`,
 					}}>
 					<Link href={`/blog/${post.slug}`} className="block h-full">
 						<div className="border-border-subtle bg-card hover:border-border flex h-full flex-col rounded-2xl border p-6 transition-all duration-200">
@@ -64,14 +64,7 @@ function BlogPostsFallback() {
 	)
 }
 
-const clients = [
-	'Google',
-	"O'Reilly",
-	'Sentry',
-	'HOKA',
-	'egghead',
-	'Test Double'
-]
+const clients = ['Google', "O'Reilly", 'Sentry', 'HOKA', 'egghead', 'Test Double']
 
 const caseStudies = [
 	{
@@ -80,15 +73,15 @@ const caseStudies = [
 		summary:
 			'Built developer education content and tooling for Google, helping engineers learn and adopt modern web technologies at scale.',
 		tags: ['React', 'TypeScript', 'Education'],
-		href: '/work/google'
+		href: '/work/google',
 	},
 	{
 		client: "O'Reilly",
 		title: 'Live Workshops for Engineers',
 		summary:
-			'Designed and delivered live technical workshops on React, TypeScript, and modern web development for O\'Reilly\'s engineering audience.',
+			"Designed and delivered live technical workshops on React, TypeScript, and modern web development for O'Reilly's engineering audience.",
 		tags: ['Workshops', 'React', 'TypeScript'],
-		href: '/work/oreilly'
+		href: '/work/oreilly',
 	},
 	{
 		client: 'HOKA',
@@ -96,8 +89,8 @@ const caseStudies = [
 		summary:
 			'Led full-stack development for digital products at HOKA, building performant web experiences for one of the fastest-growing brands in running.',
 		tags: ['Next.js', 'Full-Stack', 'E-commerce'],
-		href: '/work/hoka'
-	}
+		href: '/work/hoka',
+	},
 ]
 
 export default async function Page() {
@@ -115,9 +108,8 @@ export default async function Page() {
 							behind them.
 						</h1>
 						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
-							Senior full-stack engineer and developer educator. I help
-							companies ship better software and level up their engineering
-							teams.
+							Senior full-stack engineer and developer educator. I help companies ship
+							better software and level up their engineering teams.
 						</p>
 					</div>
 					<div className="animate-in fade-in slide-in-from-bottom-4 flex flex-wrap items-center justify-center gap-4 pt-12 delay-150 duration-1000">
@@ -141,9 +133,7 @@ export default async function Page() {
 							{clients.map((name, i) => (
 								<span key={name}>
 									{name}
-									{i < clients.length - 1 && (
-										<span className="mx-2.5 opacity-30">·</span>
-									)}
+									{i < clients.length - 1 && <span className="mx-2.5 opacity-30">·</span>}
 								</span>
 							))}
 						</p>
@@ -161,8 +151,8 @@ export default async function Page() {
 							</span>
 							<h3 className="text-2xl font-bold">Build</h3>
 							<p className="text-muted-foreground text-lg leading-relaxed">
-								I embed with your team and ship production software. React,
-								Next.js, TypeScript, Node.js. From architecture to deployment.
+								I embed with your team and ship production software. React, Next.js,
+								TypeScript, Node.js. From architecture to deployment.
 							</p>
 						</div>
 
@@ -172,9 +162,8 @@ export default async function Page() {
 							</span>
 							<h3 className="text-2xl font-bold">Lead</h3>
 							<p className="text-muted-foreground text-lg leading-relaxed">
-								Architecture reviews, technical strategy, code audits. Senior
-								guidance without a full-time hire. I help teams make better
-								decisions.
+								Architecture reviews, technical strategy, code audits. Senior guidance
+								without a full-time hire. I help teams make better decisions.
 							</p>
 						</div>
 
@@ -184,9 +173,8 @@ export default async function Page() {
 							</span>
 							<h3 className="text-2xl font-bold">Teach</h3>
 							<p className="text-muted-foreground text-lg leading-relaxed">
-								Workshops and training for engineering teams. React, Next.js,
-								TypeScript, AI integration. Previously taught at O&apos;Reilly
-								and egghead.
+								Workshops and training for engineering teams. React, Next.js, TypeScript,
+								AI integration. Previously taught at O&apos;Reilly and egghead.
 							</p>
 						</div>
 					</div>
@@ -216,10 +204,7 @@ export default async function Page() {
 
 						<div className="grid gap-8 md:grid-cols-3">
 							{caseStudies.map((study) => (
-								<Link
-									key={study.client}
-									href={study.href}
-									className="group block">
+								<Link key={study.client} href={study.href} className="group block">
 									<div className="border-border-subtle bg-card hover:border-border flex h-full flex-col rounded-2xl border p-8 transition-all duration-200">
 										<span className="text-muted-foreground mb-3 text-sm font-medium">
 											{study.client}
@@ -232,7 +217,7 @@ export default async function Page() {
 											{study.tags.map((tag) => (
 												<span
 													key={tag}
-													className="bg-muted text-muted-foreground font-mono rounded-full px-3 py-1 text-xs font-medium">
+													className="bg-muted text-muted-foreground rounded-full px-3 py-1 font-mono text-xs font-medium">
 													{tag}
 												</span>
 											))}
@@ -264,8 +249,8 @@ export default async function Page() {
 									Technical Writing
 								</h2>
 								<p className="text-muted-foreground text-lg">
-									Deep dives into architecture, full-stack patterns, and
-									engineering leadership
+									Deep dives into architecture, full-stack patterns, and engineering
+									leadership
 								</p>
 							</div>
 							<Button variant="ghost" asChild className="hidden lg:flex">

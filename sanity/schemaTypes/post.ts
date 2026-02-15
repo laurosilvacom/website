@@ -9,35 +9,35 @@ export default defineType({
 		{
 			name: 'media',
 			title: 'Media',
-			options: {collapsible: true, collapsed: false}
-		}
+			options: {collapsible: true, collapsed: false},
+		},
 	],
 
 	fields: [
 		defineField({
 			name: 'title',
 			type: 'string',
-			validation: (Rule) => Rule.required()
+			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: 'slug',
 			type: 'slug',
 			options: {
 				source: 'title',
-				maxLength: 96
+				maxLength: 96,
 			},
-			validation: (Rule) => Rule.required()
+			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: 'publishedAt',
 			type: 'datetime',
-			validation: (Rule) => Rule.required()
+			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: 'summary',
 			type: 'text',
 			rows: 2,
-			validation: (Rule) => Rule.required()
+			validation: (Rule) => Rule.required(),
 		}),
 
 		defineField({
@@ -51,13 +51,13 @@ export default defineType({
 				defineField({
 					name: 'alt',
 					type: 'string',
-					validation: (Rule) => Rule.required()
+					validation: (Rule) => Rule.required(),
 				}),
 				defineField({
 					name: 'caption',
-					type: 'string'
-				})
-			]
+					type: 'string',
+				}),
+			],
 		}),
 
 		defineField({
@@ -77,9 +77,9 @@ export default defineType({
 										name: 'footnoteId',
 										type: 'string',
 										title: 'Footnote ID',
-										description: 'ID of the footnote to reference'
-									}
-								]
+										description: 'ID of the footnote to reference',
+									},
+								],
 							},
 							{
 								name: 'link',
@@ -88,12 +88,12 @@ export default defineType({
 									{
 										name: 'href',
 										type: 'url',
-										title: 'URL'
-									}
-								]
-							}
-						]
-					}
+										title: 'URL',
+									},
+								],
+							},
+						],
+					},
 				}),
 
 				defineArrayMember({type: 'code'}),
@@ -105,40 +105,40 @@ export default defineType({
 						defineField({
 							name: 'alt',
 							type: 'string',
-							validation: (Rule) => Rule.required()
+							validation: (Rule) => Rule.required(),
 						}),
 						defineField({
 							name: 'caption',
-							type: 'string'
-						})
-					]
+							type: 'string',
+						}),
+					],
 				}),
 
-				defineArrayMember({type: 'footnote'})
-			]
+				defineArrayMember({type: 'footnote'}),
+			],
 		}),
 		defineField({
 			name: 'tags',
 			title: 'Tags',
 			type: 'array',
 			of: [{type: 'string'}],
-			options: {layout: 'tags'}
+			options: {layout: 'tags'},
 		}),
 		defineField({
 			name: 'draft',
 			title: 'Draft',
 			type: 'boolean',
-			initialValue: false
-		})
+			initialValue: false,
+		}),
 	],
 
 	preview: {
 		select: {
 			title: 'title',
-			media: 'heroImage'
+			media: 'heroImage',
 		},
 		prepare({title, media}) {
 			return {title, media}
-		}
-	}
+		},
+	},
 })

@@ -1,57 +1,49 @@
-# Project Structure
+# Project Architecture
 
-## Architecture
+Next.js 16 App Router with TypeScript strict mode and a feature-first module
+layout.
 
-Next.js 16 App Router with TypeScript strict mode.
-
-### Directory Structure
+## Directory Structure
 
 ```
 app/
-  (pages)/          # Route groups (not in URL)
-    blog/            # Blog routes
-      [slug]/        # Dynamic blog post pages
-      posts/          # MDX blog posts (organized by date)
-    tags/             # Tag pages
-    services/         # Services page
-  components/         # React components
-    ui/               # shadcn/ui components
-  lib/                # Utilities & helpers
-    blog.ts           # Blog post utilities
-    metadata.ts       # SEO metadata helpers
-    types.ts          # TypeScript types
-    utils.ts          # General utilities (cn, etc.)
-  hooks/              # Custom React hooks
-  globals.css         # Global styles + Tailwind
-  layout.tsx          # Root layout
-  page.tsx            # Home page
+  (pages)/                    # Route entrypoints only (thin composition layer)
+  api/                        # HTTP handlers
+  features/                   # Domain modules (business behavior)
+    blog/
+      components/             # Blog-specific UI
+      server/                 # Blog domain + data access
+    workshop/
+      components/
+      server/
+    workshop-newsletter/
+      server/
+  shared/                     # Reusable primitives across features
+    components/               # Layout and global app components
+    hooks/                    # Reusable hooks
+    integrations/             # External providers (Sanity, Resend, etc.)
+    lib/                      # Generic utilities and metadata helpers
+    ui/                       # Design-system primitives
+  globals.css
+  layout.tsx
+  page.tsx
 ```
 
-### Key Patterns
+## Architectural Rules
 
-- **Route Groups**: `(pages)` doesn't appear in URL
-- **Path Aliases**: Use `@/` for imports (`@/components`, `@/lib`)
-- **Server Components**: Default (no 'use client')
-- **Client Components**: Mark with `'use client'` when needed
-- **MDX Posts**: Organized by date in `app/(pages)/blog/posts/YYYY/MM/`
-- **Types**: Centralized in `app/lib/types.ts`
+- Keep routes thin: route files should compose features, not hold domain logic.
+- Put domain logic in `app/features/*/server`.
+- Put feature-specific UI in `app/features/*/components`.
+- Put cross-feature primitives in `app/shared/*`.
+- Use `@/features/*` and `@/shared/*` path aliases.
+- Legacy aliases (`@/components/*`, `@/lib/*`, `@/hooks/*`) are blocked by ESLint.
 
-### Component Organization
+## Operating Model
 
-- **UI Components**: `app/components/ui/` (shadcn)
-- **Feature Components**: `app/components/` (Card, Nav, Footer, etc.)
-- **Page Components**: Co-located with routes in `app/(pages)/`
-
-### Styling
-
-- Tailwind CSS 4 with CSS variables
-- Design system in `app/globals.css`
-- Minimal, spacing-based design (no borders)
-- Consistent 680px content width
-
-### Blog System
-
-- MDX files with frontmatter (title, publishedAt, summary, tags)
-- Server-side rendering with `getBlogPosts()`
-- Date-based organization (shoebox method)
-- Drafts in `posts/drafts/`
+- Build from the inside out:
+  1. Domain contracts in feature `server` modules.
+  2. Data/integration adapters in `shared/integrations`.
+  3. Feature UI in `features/*/components`.
+  4. Route-level composition in `app/(pages)`.
+- Prefer server components by default; use `'use client'` only when needed.
+- Keep cross-cutting code in `shared` and avoid feature-to-feature coupling.

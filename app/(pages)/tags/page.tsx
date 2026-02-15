@@ -1,11 +1,11 @@
 import Link from 'next/link'
-import Container from '@/components/container'
-import {getBlogPosts, extractTagsFromPosts} from '@/lib/blog'
-import {type BlogPost} from '@/lib/blog'
+import Container from '@/shared/components/container'
+import {getBlogPosts, extractTagsFromPosts} from '@/features/blog/server'
+import {type BlogPost} from '@/features/blog/server'
 
 export const metadata = {
 	title: 'Tags',
-	description: 'Browse writing by topic'
+	description: 'Browse writing by topic',
 }
 
 export default async function TagsPage() {
@@ -16,18 +16,16 @@ export default async function TagsPage() {
 	const tagCounts = allTags.reduce(
 		(acc, tag) => {
 			const count = posts.filter((post: BlogPost) =>
-				post.metadata.tags?.includes(tag)
+				post.metadata.tags?.includes(tag),
 			).length
 			acc[tag] = count
 			return acc
 		},
-		{} as Record<string, number>
+		{} as Record<string, number>,
 	)
 
 	// Sort tags by count (descending)
-	const sortedTags = allTags.sort(
-		(a, b) => (tagCounts[b] ?? 0) - (tagCounts[a] ?? 0)
-	)
+	const sortedTags = allTags.sort((a, b) => (tagCounts[b] ?? 0) - (tagCounts[a] ?? 0))
 
 	return (
 		<>
@@ -66,9 +64,7 @@ export default async function TagsPage() {
 					<div className="space-y-12">
 						{/* Popular Tags */}
 						<div className="space-y-6">
-							<h2 className="text-lg font-semibold tracking-tight">
-								Popular Topics
-							</h2>
+							<h2 className="text-lg font-semibold tracking-tight">Popular Topics</h2>
 							<div className="flex flex-wrap gap-3">
 								{sortedTags.slice(0, 6).map((tag) => (
 									<Link
@@ -85,9 +81,7 @@ export default async function TagsPage() {
 												</span>
 											</div>
 											<div className="text-muted-foreground text-xs">
-												{tagCounts[tag] === 1
-													? '1 post'
-													: `${tagCounts[tag]} posts`}
+												{tagCounts[tag] === 1 ? '1 post' : `${tagCounts[tag]} posts`}
 											</div>
 										</div>
 									</Link>
@@ -97,9 +91,7 @@ export default async function TagsPage() {
 
 						{/* All Tags */}
 						<div className="border-border space-y-6 border-t pt-12">
-							<h2 className="text-lg font-semibold tracking-tight">
-								All Topics
-							</h2>
+							<h2 className="text-lg font-semibold tracking-tight">All Topics</h2>
 							<div className="flex flex-wrap gap-2.5">
 								{sortedTags.map((tag) => (
 									<Link

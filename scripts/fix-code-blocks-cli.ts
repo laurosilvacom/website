@@ -55,7 +55,7 @@ function parseArgs(argv: string[]): Options {
 	const opts: Options = {
 		dryRun: argv.includes('--dry') || argv.includes('-d'),
 		threshold: 0.7,
-		publishedOnly: argv.includes('--published-only')
+		publishedOnly: argv.includes('--published-only'),
 	}
 
 	for (const arg of argv) {
@@ -96,8 +96,7 @@ function isCodeLikeBlock(block: AnyContent, threshold: number): block is Block {
 		const len = textLen(child.text || '')
 		if (len === 0) continue
 		totalChars += len
-		if (Array.isArray(child.marks) && child.marks.includes('code'))
-			codeChars += len
+		if (Array.isArray(child.marks) && child.marks.includes('code')) codeChars += len
 	}
 
 	if (totalChars === 0) return false
@@ -114,16 +113,14 @@ function detectLanguage(code: string): string {
 
 	const isSql = /\b(select|update|insert|delete)\b[\s\S]*\bfrom\b/i.test(src)
 	const isHtml = /<\w+[^>]*>[\s\S]*<\/\w+>/.test(code)
-	const isCss =
-		/{[^}]+:[^}]+;}/.test(code) && !/\b(const|let|function|=>)\b/.test(src)
+	const isCss = /{[^}]+:[^}]+;}/.test(code) && !/\b(const|let|function|=>)\b/.test(src)
 	const isBash =
-		/^\s*(#\!\/bin\/bash|echo\s|curl\s|npm\s|pnpm\s|yarn\s|git\s)/im.test(
-			code
-		) || /^\s*\$ /.test(code)
+		/^\s*(#\!\/bin\/bash|echo\s|curl\s|npm\s|pnpm\s|yarn\s|git\s)/im.test(code) ||
+		/^\s*\$ /.test(code)
 	const isPy = /\bdef\s+\w+\(|\bfrom\s+\w+\s+import\b|\bimport\s+\w+/.test(src)
 	const hasTs =
 		/\binterface\b|\btype\s+\w+\s*=|:\s*(string|number|boolean|Record|Array|unknown|any|never|void)/.test(
-			code
+			code,
 		)
 	const hasJs =
 		/\b(import|export|const|let|var|function|=>)\b/.test(src) ||
@@ -145,14 +142,11 @@ function mergeBuffered(buffer: Block[]): CodeBlock | null {
 		_type: 'code',
 		_key: genKey(),
 		language: detectLanguage(code),
-		code
+		code,
 	}
 }
 
-function convertContentArray(
-	content: AnyContent[],
-	threshold: number
-): AnyContent[] {
+function convertContentArray(content: AnyContent[], threshold: number): AnyContent[] {
 	const out: AnyContent[] = []
 	let buf: Block[] = []
 
@@ -198,8 +192,7 @@ function summarize(before: AnyContent[], after: AnyContent[]) {
 // ---------- Migration ----------
 async function fetchPosts() {
 	const constraints: string[] = []
-	if (options.publishedOnly)
-		constraints.push('(!defined(draft) || draft == false)')
+	if (options.publishedOnly) constraints.push('(!defined(draft) || draft == false)')
 
 	let filter = '*[_type == "post"'
 	if (options.onlySlug) filter += ` && slug.current == "${options.onlySlug}"`
@@ -227,7 +220,7 @@ async function run() {
 
 	console.log('🚀 Sanity migration: inline code → proper code blocks')
 	console.log(
-		`⚙️  options: dry=${options.dryRun} threshold=${options.threshold} only=${options.onlySlug ?? '-'} limit=${options.limit ?? '-'} publishedOnly=${options.publishedOnly}`
+		`⚙️  options: dry=${options.dryRun} threshold=${options.threshold} only=${options.onlySlug ?? '-'} limit=${options.limit ?? '-'} publishedOnly=${options.publishedOnly}`,
 	)
 
 	const posts = await fetchPosts()
@@ -241,9 +234,7 @@ async function run() {
 
 	for (const post of posts) {
 		const title = post.title || post.slug || post._id
-		const content: AnyContent[] = Array.isArray(post.content)
-			? post.content
-			: []
+		const content: AnyContent[] = Array.isArray(post.content) ? post.content : []
 
 		const converted = convertContentArray(content, options.threshold)
 
@@ -258,7 +249,7 @@ async function run() {
 
 		const diff = summarize(content, converted)
 		console.log(
-			`🔧 ${title} — code blocks: ${diff.before} → ${diff.after} (Δ ${diff.delta})`
+			`🔧 ${title} — code blocks: ${diff.before} → ${diff.after} (Δ ${diff.delta})`,
 		)
 
 		if (options.dryRun) {

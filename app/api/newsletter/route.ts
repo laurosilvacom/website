@@ -1,5 +1,5 @@
 import {NextResponse} from 'next/server'
-import {createResendContact} from '@/lib/resend'
+import {createResendContact} from '@/shared/integrations/resend'
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 			console.error('RESEND_AUDIENCE_ID is not configured')
 			return NextResponse.json(
 				{error: 'Newsletter service not configured'},
-				{status: 500}
+				{status: 500},
 			)
 		}
 
@@ -41,7 +41,7 @@ export async function POST(request: Request) {
 		const {data, error} = await createResendContact({
 			email: normalizedEmail,
 			audienceId,
-			firstName: sanitizedFirstName
+			firstName: sanitizedFirstName,
 		})
 
 		if (error) {

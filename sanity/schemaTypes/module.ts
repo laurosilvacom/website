@@ -9,35 +9,35 @@ export default defineType({
 		{
 			name: 'media',
 			title: 'Media',
-			options: {collapsible: true, collapsed: false}
+			options: {collapsible: true, collapsed: false},
 		},
 		{
 			name: 'landing',
 			title: 'Landing Page',
-			options: {collapsible: true, collapsed: false}
-		}
+			options: {collapsible: true, collapsed: false},
+		},
 	],
 
 	fields: [
 		defineField({
 			name: 'title',
 			type: 'string',
-			validation: (Rule) => Rule.required()
+			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: 'slug',
 			type: 'slug',
 			options: {
 				source: 'title',
-				maxLength: 96
+				maxLength: 96,
 			},
-			validation: (Rule) => Rule.required()
+			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: 'shortDescription',
 			type: 'text',
 			rows: 3,
-			validation: (Rule) => Rule.required()
+			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: 'wipLandingPageDescription',
@@ -56,14 +56,14 @@ export default defineType({
 									{
 										name: 'href',
 										type: 'url',
-										title: 'URL'
-									}
-								]
-							}
-						]
-					}
-				})
-			]
+										title: 'URL',
+									},
+								],
+							},
+						],
+					},
+				}),
+			],
 		}),
 		defineField({
 			name: 'contributors',
@@ -78,20 +78,20 @@ export default defineType({
 							name: 'contributor',
 							type: 'reference',
 							to: [{type: 'contributor'}],
-							validation: (Rule) => Rule.required()
-						})
+							validation: (Rule) => Rule.required(),
+						}),
 					],
 					preview: {
 						select: {
 							title: 'contributor.name',
-							media: 'contributor.picture'
+							media: 'contributor.picture',
 						},
 						prepare({title, media}) {
 							return {title, media}
-						}
-					}
-				})
-			]
+						},
+					},
+				}),
+			],
 		}),
 		defineField({
 			name: 'audience',
@@ -100,9 +100,9 @@ export default defineType({
 			of: [
 				defineArrayMember({
 					type: 'reference',
-					to: [{type: 'audience'}]
-				})
-			]
+					to: [{type: 'audience'}],
+				}),
+			],
 		}),
 		defineField({
 			name: 'image',
@@ -110,16 +110,15 @@ export default defineType({
 			type: 'image',
 			fieldset: 'media',
 			options: {
-				hotspot: true
-			}
+				hotspot: true,
+			},
 		}),
 		defineField({
 			name: 'resendAudienceId',
 			title: 'Resend Audience ID',
 			type: 'string',
 			fieldset: 'landing',
-			description:
-				"The Resend audience ID for this workshop's newsletter subscribers"
+			description: "The Resend audience ID for this workshop's newsletter subscribers",
 		}),
 		defineField({
 			name: 'testSequence',
@@ -128,7 +127,7 @@ export default defineType({
 			fieldset: 'landing',
 			description:
 				'When on, new signups receive the email sequence every minute instead of daily. Turn off for production.',
-			initialValue: false
+			initialValue: false,
 		}),
 		defineField({
 			name: 'emailLessons',
@@ -147,17 +146,17 @@ export default defineType({
 							title: 'Post',
 							type: 'reference',
 							to: [{type: 'post'}],
-							validation: (Rule) => Rule.required()
+							validation: (Rule) => Rule.required(),
 						}),
 						defineField({
 							name: 'subject',
 							type: 'string',
-							description: 'Optional subject override for the email send'
+							description: 'Optional subject override for the email send',
 						}),
 						defineField({
 							name: 'preheader',
 							type: 'string',
-							description: 'Optional preheader / preview text'
+							description: 'Optional preheader / preview text',
 						}),
 						defineField({
 							name: 'sendOffsetDays',
@@ -165,37 +164,35 @@ export default defineType({
 							type: 'number',
 							description:
 								'Days after signup to send. Leave blank to use position-based cadence.',
-							validation: (Rule) => Rule.min(0).max(60)
-						})
+							validation: (Rule) => Rule.min(0).max(60),
+						}),
 					],
 					preview: {
 						select: {
 							title: 'subject',
 							postTitle: 'post.title',
-							offset: 'sendOffsetDays'
+							offset: 'sendOffsetDays',
 						},
 						prepare({title, postTitle, offset}) {
 							return {
 								title: title || postTitle,
 								subtitle:
-									typeof offset === 'number'
-										? `Send +${offset}d`
-										: 'Default cadence'
+									typeof offset === 'number' ? `Send +${offset}d` : 'Default cadence',
 							}
-						}
-					}
-				})
-			]
-		})
+						},
+					},
+				}),
+			],
+		}),
 	],
 
 	preview: {
 		select: {
 			title: 'title',
-			media: 'image'
+			media: 'image',
 		},
 		prepare({title, media}) {
 			return {title, media}
-		}
-	}
+		},
+	},
 })

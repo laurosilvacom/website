@@ -1,5 +1,5 @@
 import {NextResponse} from 'next/server'
-import {processWorkshopDripQueue} from '@/lib/workshop-newsletter'
+import {processWorkshopDripQueue} from '@/features/workshop-newsletter/server'
 
 export const runtime = 'nodejs'
 

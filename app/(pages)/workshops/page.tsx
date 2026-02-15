@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import Container from '@/components/container'
-import {getWorkshops} from '@/lib/workshop'
-import {type Workshop} from '@/lib/workshop'
+import Container from '@/shared/components/container'
+import {getWorkshops} from '@/features/workshop/server'
+import {type Workshop} from '@/features/workshop/server'
 
 export const revalidate = 30
 
 export const metadata = {
 	title: 'Workshops',
-	description: 'Professional workshops and training programs.'
+	description: 'Professional workshops and training programs.',
 }
 
 export default async function WorkshopsPage() {
@@ -19,9 +19,7 @@ export default async function WorkshopsPage() {
 		return (
 			<section className="py-32">
 				<Container width="narrow">
-					<p className="text-muted-foreground text-center">
-						No workshops found.
-					</p>
+					<p className="text-muted-foreground text-center">No workshops found.</p>
 				</Container>
 			</section>
 		)
@@ -36,8 +34,7 @@ export default async function WorkshopsPage() {
 							Workshops
 						</h1>
 						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
-							Professional training programs designed to help you level up your
-							skills.
+							Professional training programs designed to help you level up your skills.
 						</p>
 					</div>
 				</div>

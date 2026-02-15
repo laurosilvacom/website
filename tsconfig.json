@@ -24,9 +24,8 @@
 		"paths": {
 			"@/*": ["./*"],
 			"@/app/*": ["./app/*"],
-			"@/components/*": ["./app/components/*"],
-			"@/lib/*": ["./app/lib/*"],
-			"@/hooks/*": ["./app/hooks/*"]
+			"@/features/*": ["./app/features/*"],
+			"@/shared/*": ["./app/shared/*"]
 		}
 	},
 	"include": [

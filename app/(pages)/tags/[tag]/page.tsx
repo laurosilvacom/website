@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import {notFound} from 'next/navigation'
-import Container from '@/components/container'
-import {formatDate} from '@/lib/blog'
+import Container from '@/shared/components/container'
+import {formatDate} from '@/features/blog/server'
 import {ArrowRight} from 'lucide-react'
 import {type Metadata} from 'next'
-import {getBlogPosts, extractTagsFromPosts, filterBlogPosts} from '@/lib/blog'
-import {type BlogPost} from '@/lib/blog'
+import {getBlogPosts, extractTagsFromPosts, filterBlogPosts} from '@/features/blog/server'
+import {type BlogPost} from '@/features/blog/server'
 
 interface TagPageProps {
 	params: Promise<{
@@ -13,15 +13,13 @@ interface TagPageProps {
 	}>
 }
 
-export async function generateMetadata({
-	params
-}: TagPageProps): Promise<Metadata> {
+export async function generateMetadata({params}: TagPageProps): Promise<Metadata> {
 	const resolvedParams = await params
 	const tag = decodeURIComponent(resolvedParams.tag)
 
 	return {
 		title: `${tag}`,
-		description: `Writing tagged with ${tag}`
+		description: `Writing tagged with ${tag}`,
 	}
 }
 
@@ -30,7 +28,7 @@ export async function generateStaticParams() {
 	const tags = extractTagsFromPosts(posts)
 
 	return tags.map((tag) => ({
-		tag: tag
+		tag: tag,
 	}))
 }
 
@@ -46,7 +44,7 @@ export default async function TagPage({params}: TagPageProps) {
 
 	const taggedPosts = filterBlogPosts(allPosts, {
 		tagFilter: tag,
-		sortBy: 'newest'
+		sortBy: 'newest',
 	})
 
 	// Get related tags (tags that appear in same posts)
@@ -87,8 +85,7 @@ export default async function TagPage({params}: TagPageProps) {
 									{tag}
 								</h1>
 								<p className="text-muted-foreground text-xl leading-relaxed">
-									{taggedPosts.length}{' '}
-									{taggedPosts.length === 1 ? 'writing' : 'writings'}
+									{taggedPosts.length} {taggedPosts.length === 1 ? 'writing' : 'writings'}
 								</p>
 							</div>
 						</div>
@@ -126,7 +123,7 @@ export default async function TagPage({params}: TagPageProps) {
 								key={post.slug}
 								className="group relative"
 								style={{
-									animationDelay: `${index * 50}ms`
+									animationDelay: `${index * 50}ms`,
 								}}>
 								<Link href={`/blog/${post.slug}`} className="block h-full">
 									<div className="flex h-full flex-col">

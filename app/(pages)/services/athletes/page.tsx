@@ -1,8 +1,8 @@
 import {ArrowRight} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import Container from '@/components/container'
-import {Button} from '@/components/ui/button'
+import Container from '@/shared/components/container'
+import {Button} from '@/shared/ui/button'
 
 export default function AthletesPage() {
 	return (
@@ -14,9 +14,7 @@ export default function AthletesPage() {
 						<div className="inline-flex">
 							<div className="bg-muted border-border inline-flex items-center gap-2 rounded-full border px-4 py-2">
 								<div className="bg-primary h-2 w-2 animate-pulse rounded-full" />
-								<span className="text-sm font-medium">
-									Available for new projects
-								</span>
+								<span className="text-sm font-medium">Available for new projects</span>
 							</div>
 						</div>
 						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
@@ -26,8 +24,8 @@ export default function AthletesPage() {
 						</h1>
 						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
 							Custom platforms built specifically for professional athletes. Not
-							templates. Not rentals. Complete solutions you own that grow with
-							your career and connect with your community.
+							templates. Not rentals. Complete solutions you own that grow with your
+							career and connect with your community.
 						</p>
 					</div>
 					<div className="animate-in fade-in slide-in-from-bottom-4 pt-12 delay-150 duration-1000">
@@ -79,21 +77,20 @@ export default function AthletesPage() {
 
 						<div className="text-muted-foreground space-y-6 text-lg leading-relaxed">
 							<p>
-								I believe that pro athletes in the outdoor industry deserve
-								better digital platforms. Not template sites. Not generic
-								solutions. Custom technology built specifically to support your
-								career and connect with your community in authentic ways.
+								I believe that pro athletes in the outdoor industry deserve better digital
+								platforms. Not template sites. Not generic solutions. Custom technology
+								built specifically to support your career and connect with your community
+								in authentic ways.
 							</p>
 							<p>
-								Your platform should reflect your story, support your goals, and
-								grow with your career. It should be something you own, something
-								you control, and something that serves you - not the other way
-								around.
+								Your platform should reflect your story, support your goals, and grow with
+								your career. It should be something you own, something you control, and
+								something that serves you - not the other way around.
 							</p>
 							<p>
-								I build platforms that matter. Technology that helps you connect
-								more deeply with your audience, share what you care about, and
-								build a sustainable career doing what you love.
+								I build platforms that matter. Technology that helps you connect more
+								deeply with your audience, share what you care about, and build a
+								sustainable career doing what you love.
 							</p>
 						</div>
 					</div>
@@ -137,9 +134,9 @@ export default function AthletesPage() {
 									You&apos;re a professional athlete
 								</h3>
 								<p className="text-muted-foreground leading-relaxed">
-									You compete in trail running, climbing, cycling, or other
-									outdoor sports. You&apos;re building a career and need
-									technology that supports your brand.
+									You compete in trail running, climbing, cycling, or other outdoor
+									sports. You&apos;re building a career and need technology that supports
+									your brand.
 								</p>
 							</div>
 
@@ -159,13 +156,10 @@ export default function AthletesPage() {
 										/>
 									</svg>
 								</div>
-								<h3 className="text-xl font-semibold">
-									You want to own your platform
-								</h3>
+								<h3 className="text-xl font-semibold">You want to own your platform</h3>
 								<p className="text-muted-foreground leading-relaxed">
-									You're ready to invest in custom technology that you control.
-									Not a template, not a rental - something built specifically
-									for you.
+									You're ready to invest in custom technology that you control. Not a
+									template, not a rental - something built specifically for you.
 								</p>
 							</div>
 
@@ -185,13 +179,10 @@ export default function AthletesPage() {
 										/>
 									</svg>
 								</div>
-								<h3 className="text-xl font-semibold">
-									You value authentic connection
-								</h3>
+								<h3 className="text-xl font-semibold">You value authentic connection</h3>
 								<p className="text-muted-foreground leading-relaxed">
-									You want technology that helps you connect more deeply with
-									your community, not just collect followers. Real relationships
-									matter.
+									You want technology that helps you connect more deeply with your
+									community, not just collect followers. Real relationships matter.
 								</p>
 							</div>
 
@@ -211,13 +202,10 @@ export default function AthletesPage() {
 										/>
 									</svg>
 								</div>
-								<h3 className="text-xl font-semibold">
-									You&apos;re thinking long-term
-								</h3>
+								<h3 className="text-xl font-semibold">You&apos;re thinking long-term</h3>
 								<p className="text-muted-foreground leading-relaxed">
-									You&apos;re building a career, not just chasing short-term
-									gains. You need a platform that can grow and evolve with you
-									over time.
+									You&apos;re building a career, not just chasing short-term gains. You
+									need a platform that can grow and evolve with you over time.
 								</p>
 							</div>
 						</div>
@@ -240,8 +228,8 @@ export default function AthletesPage() {
 								Your platform, built for you
 							</h2>
 							<p className="text-muted-foreground max-w-3xl text-lg leading-relaxed">
-								Every platform is custom-built for your specific needs. Here are
-								some of the things we typically include:
+								Every platform is custom-built for your specific needs. Here are some of
+								the things we typically include:
 							</p>
 						</div>
 
@@ -250,33 +238,33 @@ export default function AthletesPage() {
 								{
 									title: 'Race Schedule & Results',
 									description:
-										'Showcase your upcoming races, past performances, and achievements. Keep your community updated on where and when they can follow you.'
+										'Showcase your upcoming races, past performances, and achievements. Keep your community updated on where and when they can follow you.',
 								},
 								{
 									title: 'Media & Press Kit',
 									description:
-										'Professional media resources for sponsors and press. High-quality images, race stats, biography, and brand assets all in one place.'
+										'Professional media resources for sponsors and press. High-quality images, race stats, biography, and brand assets all in one place.',
 								},
 								{
 									title: 'Blog & Storytelling',
 									description:
-										'Share your journey through writing. Race reports, training updates, personal stories. Your voice, your platform.'
+										'Share your journey through writing. Race reports, training updates, personal stories. Your voice, your platform.',
 								},
 								{
 									title: 'Sponsor Showcase',
 									description:
-										'Highlight the brands that support you. Build stronger relationships with current sponsors and attract new partnerships.'
+										'Highlight the brands that support you. Build stronger relationships with current sponsors and attract new partnerships.',
 								},
 								{
 									title: 'Training & Coaching',
 									description:
-										'Offer coaching services, training plans, or educational content. Share your expertise and build additional revenue streams.'
+										'Offer coaching services, training plans, or educational content. Share your expertise and build additional revenue streams.',
 								},
 								{
 									title: 'Community Features',
 									description:
-										'Newsletter signup, social media integration, and ways for your community to connect with you and support your journey.'
-								}
+										'Newsletter signup, social media integration, and ways for your community to connect with you and support your journey.',
+								},
 							].map((feature, index) => (
 								<div
 									key={index}
@@ -291,15 +279,12 @@ export default function AthletesPage() {
 
 						<div className="border-border bg-primary/5 rounded-2xl border p-8">
 							<div className="space-y-4">
-								<h3 className="text-xl font-semibold">
-									Plus Strategy & Consulting
-								</h3>
+								<h3 className="text-xl font-semibold">Plus Strategy & Consulting</h3>
 								<p className="text-muted-foreground leading-relaxed">
-									Beyond the technical build, I provide consulting on content
-									strategy, brand narrative, and how your platform fits into
-									your broader career goals. We work together to create
-									something that serves your needs now and can grow with you in
-									the future.
+									Beyond the technical build, I provide consulting on content strategy,
+									brand narrative, and how your platform fits into your broader career
+									goals. We work together to create something that serves your needs now
+									and can grow with you in the future.
 								</p>
 							</div>
 						</div>
@@ -329,26 +314,26 @@ export default function AthletesPage() {
 									number: '01',
 									title: 'Discovery',
 									description:
-										"We start with a conversation. I want to understand your story, your goals, and what success looks like for you. What do you need from your platform? What's your content strategy? How does this fit into your broader career?"
+										"We start with a conversation. I want to understand your story, your goals, and what success looks like for you. What do you need from your platform? What's your content strategy? How does this fit into your broader career?",
 								},
 								{
 									number: '02',
 									title: 'Strategy',
 									description:
-										'Together we define the platform architecture, content structure, and technical approach. I provide recommendations based on what I know works, but ultimately we build what serves your specific needs.'
+										'Together we define the platform architecture, content structure, and technical approach. I provide recommendations based on what I know works, but ultimately we build what serves your specific needs.',
 								},
 								{
 									number: '03',
 									title: 'Development',
 									description:
-										'I build your platform using modern web technologies. Throughout development, we stay in close communication. You see progress regularly and have input on how things work and feel.'
+										'I build your platform using modern web technologies. Throughout development, we stay in close communication. You see progress regularly and have input on how things work and feel.',
 								},
 								{
 									number: '04',
 									title: 'Launch & Support',
 									description:
-										'We launch your platform and I provide training on how to manage and update it. You own everything - code, content, domain. I stay available for ongoing support as your needs evolve.'
-								}
+										'We launch your platform and I provide training on how to manage and update it. You own everything - code, content, domain. I stay available for ongoing support as your needs evolve.',
+								},
 							].map((step, index) => (
 								<div
 									key={index}
@@ -396,9 +381,9 @@ export default function AthletesPage() {
 									</svg>
 								</div>
 								<p className="text-foreground text-base leading-relaxed lg:text-lg">
-									Lauro&apos;s expertise bridges technology and brand strategy.
-									He understands how to connect technical excellence with
-									authentic storytelling.
+									Lauro&apos;s expertise bridges technology and brand strategy. He
+									understands how to connect technical excellence with authentic
+									storytelling.
 								</p>
 								<div className="border-border flex items-center gap-3 border-t pt-6">
 									<div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full">
@@ -411,9 +396,7 @@ export default function AthletesPage() {
 									</div>
 									<div className="space-y-1">
 										<p className="text-sm font-semibold">Emily Schmitz</p>
-										<p className="text-muted-foreground text-xs">
-											HOKA Athlete
-										</p>
+										<p className="text-muted-foreground text-xs">HOKA Athlete</p>
 									</div>
 								</div>
 							</blockquote>
@@ -429,9 +412,8 @@ export default function AthletesPage() {
 									</svg>
 								</div>
 								<p className="text-foreground text-base leading-relaxed lg:text-lg">
-									Lauro is an incredible engineer with a deep understanding of
-									how to leverage technology for social good. His expertise has
-									been invaluable.
+									Lauro is an incredible engineer with a deep understanding of how to
+									leverage technology for social good. His expertise has been invaluable.
 								</p>
 								<div className="border-border flex items-center gap-3 border-t pt-6">
 									<div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full">
@@ -444,9 +426,7 @@ export default function AthletesPage() {
 									</div>
 									<div className="space-y-1">
 										<p className="text-sm font-semibold">Anya Yeager</p>
-										<p className="text-muted-foreground text-xs">
-											LOTUS Humanitarian
-										</p>
+										<p className="text-muted-foreground text-xs">LOTUS Humanitarian</p>
 									</div>
 								</div>
 							</blockquote>
@@ -464,8 +444,8 @@ export default function AthletesPage() {
 								Ready to build your platform?
 							</h2>
 							<p className="text-muted-foreground mx-auto max-w-2xl text-lg leading-relaxed lg:text-xl">
-								Let&apos;s discuss how I can help you create a custom platform
-								that supports your brand and connects with your community.
+								Let&apos;s discuss how I can help you create a custom platform that
+								supports your brand and connects with your community.
 							</p>
 						</div>
 						<div className="pt-4">

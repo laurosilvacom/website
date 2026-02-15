@@ -11,6 +11,6 @@ export default defineConfig({
 	basePath: '/studio',
 	plugins: [structureTool(), codeInput()],
 	schema: {
-		types: schemaTypes
-	}
+		types: schemaTypes,
+	},
 })

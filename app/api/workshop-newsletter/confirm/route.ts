@@ -1,8 +1,8 @@
 import {NextResponse} from 'next/server'
 import {
 	confirmWorkshopOptIn,
-	getOptionalAppUrl
-} from '@/lib/workshop-newsletter'
+	getOptionalAppUrl,
+} from '@/features/workshop-newsletter/server'
 
 export async function GET(request: Request) {
 	const {searchParams} = new URL(request.url)
@@ -12,7 +12,7 @@ export async function GET(request: Request) {
 	if (!token) {
 		if (appUrl) {
 			return NextResponse.redirect(
-				new URL('/workshop-newsletter/confirmed?status=invalid', appUrl)
+				new URL('/workshop-newsletter/confirmed?status=invalid', appUrl),
 			)
 		}
 		return new NextResponse('Missing token', {status: 400})
@@ -28,15 +28,12 @@ export async function GET(request: Request) {
 					: 'error'
 
 		if (result.status === 'error') {
-			console.error(
-				'Workshop confirm error:',
-				result.errorMessage || 'Unknown error'
-			)
+			console.error('Workshop confirm error:', result.errorMessage || 'Unknown error')
 		}
 
 		if (appUrl) {
 			return NextResponse.redirect(
-				new URL(`/workshop-newsletter/confirmed?status=${status}`, appUrl)
+				new URL(`/workshop-newsletter/confirmed?status=${status}`, appUrl),
 			)
 		}
 
@@ -46,13 +43,13 @@ export async function GET(request: Request) {
 				: status === 'invalid'
 					? 'Invalid or expired token'
 					: 'Unable to confirm subscription',
-			{status: status === 'success' ? 200 : status === 'invalid' ? 400 : 500}
+			{status: status === 'success' ? 200 : status === 'invalid' ? 400 : 500},
 		)
 	} catch (error) {
 		console.error('Workshop confirm error:', error)
 		if (appUrl) {
 			return NextResponse.redirect(
-				new URL('/workshop-newsletter/confirmed?status=error', appUrl)
+				new URL('/workshop-newsletter/confirmed?status=error', appUrl),
 			)
 		}
 		return new NextResponse('Unable to confirm subscription', {status: 500})

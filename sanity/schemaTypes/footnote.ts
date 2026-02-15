@@ -9,7 +9,7 @@ export default defineType({
 			name: 'id',
 			title: 'ID',
 			type: 'string',
-			description: 'Unique identifier for the footnote'
+			description: 'Unique identifier for the footnote',
 		}),
 		defineField({
 			name: 'content',
@@ -24,7 +24,7 @@ export default defineType({
 						decorators: [
 							{title: 'Strong', value: 'strong'},
 							{title: 'Emphasis', value: 'em'},
-							{title: 'Code', value: 'code'}
+							{title: 'Code', value: 'code'},
 						],
 						annotations: [
 							{
@@ -34,12 +34,12 @@ export default defineType({
 									{
 										name: 'href',
 										type: 'url',
-										title: 'URL'
-									}
-								]
-							}
-						]
-					}
+										title: 'URL',
+									},
+								],
+							},
+						],
+					},
 				},
 				{
 					type: 'image',
@@ -47,24 +47,24 @@ export default defineType({
 						{
 							name: 'alt',
 							type: 'string',
-							title: 'Alternative text'
-						}
-					]
-				}
-			]
-		})
+							title: 'Alternative text',
+						},
+					],
+				},
+			],
+		}),
 	],
 	preview: {
 		select: {
 			id: 'id',
-			content: 'content'
+			content: 'content',
 		},
 		prepare({id, content}) {
 			const text = content?.[0]?.children?.[0]?.text || 'Empty footnote'
 			return {
 				title: `Footnote ${id || 'unnamed'}`,
-				subtitle: text.substring(0, 50)
+				subtitle: text.substring(0, 50),
 			}
-		}
-	}
+		},
+	},
 })

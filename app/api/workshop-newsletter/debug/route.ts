@@ -1,5 +1,5 @@
 import {NextResponse} from 'next/server'
-import {inspectWorkshopDripQueue} from '@/lib/workshop-newsletter'
+import {inspectWorkshopDripQueue} from '@/features/workshop-newsletter/server'
 
 export const runtime = 'nodejs'
 
@@ -12,10 +12,7 @@ export const runtime = 'nodejs'
 export async function GET() {
 	// Only allow in development
 	if (process.env.NODE_ENV === 'production') {
-		return NextResponse.json(
-			{error: 'Not available in production'},
-			{status: 403}
-		)
+		return NextResponse.json({error: 'Not available in production'}, {status: 403})
 	}
 
 	const result = await inspectWorkshopDripQueue()

@@ -9,30 +9,30 @@ export default defineType({
 		defineField({
 			name: 'name',
 			type: 'string',
-			validation: (Rule) => Rule.required()
+			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: 'picture',
 			title: 'Picture',
 			type: 'image',
 			options: {
-				hotspot: true
-			}
+				hotspot: true,
+			},
 		}),
 		defineField({
 			name: 'bio',
 			type: 'text',
-			rows: 3
-		})
+			rows: 3,
+		}),
 	],
 
 	preview: {
 		select: {
 			title: 'name',
-			media: 'picture'
+			media: 'picture',
 		},
 		prepare({title, media}) {
 			return {title, media}
-		}
-	}
+		},
+	},
 })

@@ -2,27 +2,25 @@ import {NextResponse} from 'next/server'
 import {
 	parseWorkshopOptInBody,
 	startWorkshopOptIn,
-	type WorkshopOptInRequestBody
-} from '@/lib/workshop-newsletter'
+	type WorkshopOptInRequestBody,
+} from '@/features/workshop-newsletter/server'
 
 export async function POST(request: Request) {
 	try {
 		const rawBody = (await request.json()) as WorkshopOptInRequestBody
-		const {email, firstName, workshopSlug, audienceId} =
-			parseWorkshopOptInBody(rawBody)
+		const {email, firstName, workshopSlug, audienceId} = parseWorkshopOptInBody(rawBody)
 
 		await startWorkshopOptIn({
 			email,
 			firstName,
 			workshopSlug,
-			audienceId
+			audienceId,
 		})
 
 		return NextResponse.json({success: true, pending: true}, {status: 200})
 	} catch (error) {
 		console.error('Workshop opt-in error:', error)
-		const message =
-			error instanceof Error ? error.message : 'Failed to start opt-in'
+		const message = error instanceof Error ? error.message : 'Failed to start opt-in'
 		const status =
 			message === 'Email is required' ||
 			message === 'Audience ID is required for this workshop'

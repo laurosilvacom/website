@@ -13,41 +13,35 @@ const nextConfig: NextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: 'res.cloudinary.com'
+				hostname: 'res.cloudinary.com',
 			},
 			{
 				protocol: 'https',
-				hostname: 'cdn.sanity.io'
+				hostname: 'cdn.sanity.io',
 			},
 			{
 				protocol: 'https',
-				hostname: 'www.google.com'
-			}
-		]
+				hostname: 'www.google.com',
+			},
+		],
 	},
 	experimental: {
 		optimizePackageImports: [
 			'lucide-react',
-			'@radix-ui/react-dialog',
 			'@radix-ui/react-dropdown-menu',
-			'@radix-ui/react-tooltip',
-			'@radix-ui/react-collapsible',
-			'@radix-ui/react-select',
-			'@radix-ui/react-separator',
 			'@radix-ui/react-slot',
-			'@radix-ui/react-progress'
-		]
+		],
 	},
 	reactStrictMode: true,
 	compress: true,
 	poweredByHeader: false,
 	productionBrowserSourceMaps: false,
 	compiler: {
-		removeConsole: process.env.NODE_ENV === 'production'
+		removeConsole: process.env.NODE_ENV === 'production',
 	},
 	typescript: {
-		ignoreBuildErrors: false
-	}
+		ignoreBuildErrors: false,
+	},
 }
 
 export default nextConfig

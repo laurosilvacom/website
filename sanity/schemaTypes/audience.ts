@@ -9,21 +9,21 @@ export default defineType({
 		defineField({
 			name: 'title',
 			type: 'string',
-			validation: (Rule) => Rule.required()
+			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: 'description',
 			type: 'text',
-			rows: 2
-		})
+			rows: 2,
+		}),
 	],
 
 	preview: {
 		select: {
-			title: 'title'
+			title: 'title',
 		},
 		prepare({title}) {
 			return {title}
-		}
-	}
+		},
+	},
 })

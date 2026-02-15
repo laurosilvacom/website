@@ -1,22 +1,16 @@
 {
-	"arrowParens": "always",
+	"$schema": "https://json.schemastore.org/prettierrc",
 	"bracketSameLine": true,
 	"bracketSpacing": false,
-	"embeddedLanguageFormatting": "auto",
 	"endOfLine": "lf",
-	"htmlWhitespaceSensitivity": "css",
-	"insertPragma": false,
-	"jsxSingleQuote": false,
-	"printWidth": 80,
-	"proseWrap": "always",
-	"quoteProps": "as-needed",
-	"requirePragma": false,
+	"printWidth": 90,
 	"semi": false,
-	"singleAttributePerLine": false,
 	"singleQuote": true,
 	"tabWidth": 2,
-	"trailingComma": "none",
+	"trailingComma": "all",
 	"useTabs": true,
+	"plugins": ["prettier-plugin-tailwindcss"],
+	"tailwindFunctions": ["clsx", "cn"],
 	"overrides": [
 		{
 			"files": ["**/package.json"],
@@ -25,15 +19,10 @@
 			}
 		},
 		{
-			"files": ["**/*.mdx"],
+			"files": ["**/*.{md,mdx}"],
 			"options": {
-				"printWidth": 65,
-				"proseWrap": "preserve",
-				"htmlWhitespaceSensitivity": "ignore"
+				"proseWrap": "preserve"
 			}
 		}
-	],
-	"plugins": ["prettier-plugin-tailwindcss"],
-	"tailwindAttributes": ["class", "className", "ngClass", ".*[cC]lassName"],
-	"tailwindFunctions": ["clsx", "cn"]
+	]
 }

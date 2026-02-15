@@ -1,15 +1,13 @@
 import Link from 'next/link'
-import Container from '@/components/container'
-import {Button} from '@/components/ui/button'
+import Container from '@/shared/components/container'
+import {Button} from '@/shared/ui/button'
 import {CheckCircle, AlertCircle, XCircle, Mail} from 'lucide-react'
 
 type PageProps = {
 	searchParams?: Promise<Record<string, string | string[] | undefined>>
 }
 
-export default async function WorkshopNewsletterConfirmedPage({
-	searchParams
-}: PageProps) {
+export default async function WorkshopNewsletterConfirmedPage({searchParams}: PageProps) {
 	const params = (await searchParams) || {}
 	const status = typeof params.status === 'string' ? params.status : 'success'
 
@@ -19,29 +17,29 @@ export default async function WorkshopNewsletterConfirmedPage({
 			description:
 				'Check your inbox—your lessons are on the way. Reply to any email if you have questions.',
 			icon: CheckCircle,
-			iconClass: 'text-green-500'
+			iconClass: 'text-green-500',
 		},
 		invalid: {
 			title: 'Link expired',
 			description:
 				'This link has expired or was already used. Sign up again to get a fresh confirmation link.',
 			icon: AlertCircle,
-			iconClass: 'text-amber-500'
+			iconClass: 'text-amber-500',
 		},
 		error: {
 			title: 'Something went wrong',
 			description:
 				"We couldn't confirm your subscription. Please try again or reach out if the problem persists.",
 			icon: XCircle,
-			iconClass: 'text-red-500'
-		}
+			iconClass: 'text-red-500',
+		},
 	}
 
 	const {
 		title,
 		description,
 		icon: Icon,
-		iconClass
+		iconClass,
 	} = content[status as keyof typeof content] || content.error
 
 	return (
@@ -51,9 +49,7 @@ export default async function WorkshopNewsletterConfirmedPage({
 					<div className="space-y-4">
 						<div className="flex items-center gap-3">
 							<Icon className={`h-8 w-8 ${iconClass}`} />
-							<h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-								{title}
-							</h1>
+							<h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{title}</h1>
 						</div>
 						<p className="text-muted-foreground text-base leading-relaxed">
 							{description}
@@ -64,8 +60,8 @@ export default async function WorkshopNewsletterConfirmedPage({
 						<div className="bg-brand-blue/5 border-brand-blue/20 flex items-start gap-3 rounded-lg border p-4">
 							<Mail className="text-brand-blue mt-0.5 h-5 w-5 shrink-0" />
 							<p className="text-sm leading-relaxed">
-								You'll receive one lesson per day. Each builds on the last, so
-								take your time and apply what you learn.
+								You'll receive one lesson per day. Each builds on the last, so take your
+								time and apply what you learn.
 							</p>
 						</div>
 					)}

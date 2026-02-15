@@ -1,9 +1,9 @@
 import {notFound} from 'next/navigation'
 import {type Metadata} from 'next'
-import {WorkshopLandingPage} from '@/components/workshop-landing-page'
-import {createMetadata} from '@/lib/metadata'
+import {WorkshopLandingPage} from '@/features/workshop/components/workshop-landing-page'
+import {createMetadata} from '@/shared/lib/metadata'
 import {baseUrl} from '@/app/sitemap'
-import {getWorkshopBySlug, getWorkshopSlugs} from '@/lib/workshop'
+import {getWorkshopBySlug, getWorkshopSlugs} from '@/features/workshop/server'
 
 export const revalidate = 30
 
@@ -33,7 +33,7 @@ export async function generateMetadata(props: Props): Promise<Metadata | null> {
 		title,
 		description: shortDescription || `Join the waitlist for ${title}`,
 		canonical: `${baseUrl}/workshops/${params.slug}`,
-		type: 'website'
+		type: 'website',
 	})
 }
 

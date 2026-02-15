@@ -1,13 +1,13 @@
 import {ArrowRight} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import Container from '@/components/container'
-import {Button} from '@/components/ui/button'
-import {generatePageMetadata} from '@/lib/metadata'
+import Container from '@/shared/components/container'
+import {Button} from '@/shared/ui/button'
+import {generatePageMetadata} from '@/shared/lib/metadata'
 
 export const metadata = generatePageMetadata(
 	'Services',
-	'Full-stack development, technical leadership, and developer training for small and medium companies. React, Next.js, TypeScript. Previously with Google, O\'Reilly, Sentry.',
+	"Full-stack development, technical leadership, and developer training for small and medium companies. React, Next.js, TypeScript. Previously with Google, O'Reilly, Sentry.",
 	{
 		keywords: [
 			'full-stack development',
@@ -16,10 +16,10 @@ export const metadata = generatePageMetadata(
 			'React workshops',
 			'Next.js consulting',
 			'TypeScript training',
-			'freelance senior engineer'
+			'freelance senior engineer',
 		],
-		canonical: '/services'
-	}
+		canonical: '/services',
+	},
 )
 
 export default function ServicesPage() {
@@ -35,8 +35,8 @@ export default function ServicesPage() {
 							Level up your team.
 						</h1>
 						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
-							I help small and medium companies ship production software, make
-							better technical decisions, and build stronger engineering teams.
+							I help small and medium companies ship production software, make better
+							technical decisions, and build stronger engineering teams.
 						</p>
 					</div>
 					<div className="animate-in fade-in slide-in-from-bottom-4 flex flex-wrap items-center justify-center gap-4 pt-12 delay-150 duration-1000">
@@ -74,9 +74,9 @@ export default function ServicesPage() {
 										Ship Production Software
 									</h2>
 									<p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
-										I embed with your team and build. React, Next.js,
-										TypeScript, Node.js — from architecture to deployment. You
-										get a senior engineer who ships, not just advises.
+										I embed with your team and build. React, Next.js, TypeScript, Node.js
+										— from architecture to deployment. You get a senior engineer who
+										ships, not just advises.
 									</p>
 								</div>
 
@@ -86,10 +86,9 @@ export default function ServicesPage() {
 											For Companies
 										</h3>
 										<p className="text-muted-foreground text-base leading-relaxed">
-											Need a senior engineer to join your team and ship? I
-											integrate with your existing workflows and start
-											delivering from week one. Weekly or monthly retainers
-											available.
+											Need a senior engineer to join your team and ship? I integrate with
+											your existing workflows and start delivering from week one. Weekly
+											or monthly retainers available.
 										</p>
 									</div>
 
@@ -98,28 +97,24 @@ export default function ServicesPage() {
 											For Agencies
 										</h3>
 										<p className="text-muted-foreground text-base leading-relaxed">
-											Need senior React/Next.js talent for client projects? I
-											provide white-label development support so you can take
-											on bigger projects with confidence.
+											Need senior React/Next.js talent for client projects? I provide
+											white-label development support so you can take on bigger projects
+											with confidence.
 										</p>
 									</div>
 								</div>
 
 								<div className="border-border flex flex-wrap items-center justify-between gap-6 border-t pt-8">
 									<div className="flex flex-wrap gap-2">
-										{[
-											'React',
-											'Next.js',
-											'TypeScript',
-											'Node.js',
-											'Full-Stack'
-										].map((tag) => (
-											<span
-												key={tag}
-												className="bg-muted text-muted-foreground font-mono rounded-full px-3 py-1 text-xs font-medium">
-												{tag}
-											</span>
-										))}
+										{['React', 'Next.js', 'TypeScript', 'Node.js', 'Full-Stack'].map(
+											(tag) => (
+												<span
+													key={tag}
+													className="bg-muted text-muted-foreground rounded-full px-3 py-1 font-mono text-xs font-medium">
+													{tag}
+												</span>
+											),
+										)}
 									</div>
 									<Button
 										asChild
@@ -147,10 +142,9 @@ export default function ServicesPage() {
 											Make Better Decisions
 										</h2>
 										<p className="text-muted-foreground text-base leading-relaxed">
-											Architecture reviews, code audits, technical strategy.
-											Senior-level guidance without a full-time hire. I help
-											teams make the right technical decisions at the right
-											time.
+											Architecture reviews, code audits, technical strategy. Senior-level
+											guidance without a full-time hire. I help teams make the right
+											technical decisions at the right time.
 										</p>
 									</div>
 
@@ -160,8 +154,8 @@ export default function ServicesPage() {
 												Architecture & Strategy
 											</h3>
 											<p className="text-muted-foreground text-sm leading-relaxed">
-												Architecture planning, code reviews, technical
-												strategy, and system design.
+												Architecture planning, code reviews, technical strategy, and
+												system design.
 											</p>
 										</div>
 										<div className="space-y-2">
@@ -169,22 +163,18 @@ export default function ServicesPage() {
 												Fractional CTO
 											</h3>
 											<p className="text-muted-foreground text-sm leading-relaxed">
-												For startups that need senior technical leadership
-												but aren&apos;t ready for a full-time CTO.
+												For startups that need senior technical leadership but aren&apos;t
+												ready for a full-time CTO.
 											</p>
 										</div>
 									</div>
 
 									<div className="border-border flex flex-wrap items-center justify-between gap-4 border-t pt-6">
 										<div className="flex flex-wrap gap-2">
-											{[
-												'Architecture',
-												'Code Audits',
-												'Strategy'
-											].map((tag) => (
+											{['Architecture', 'Code Audits', 'Strategy'].map((tag) => (
 												<span
 													key={tag}
-													className="bg-muted text-muted-foreground font-mono rounded-full px-3 py-1 text-xs font-medium">
+													className="bg-muted text-muted-foreground rounded-full px-3 py-1 font-mono text-xs font-medium">
 													{tag}
 												</span>
 											))}
@@ -214,9 +204,9 @@ export default function ServicesPage() {
 											Level Up Your Team
 										</h2>
 										<p className="text-muted-foreground text-base leading-relaxed">
-											Custom workshops and training programs for engineering
-											teams. I&apos;ve taught at O&apos;Reilly and egghead,
-											and I bring that same quality to your team directly.
+											Custom workshops and training programs for engineering teams.
+											I&apos;ve taught at O&apos;Reilly and egghead, and I bring that same
+											quality to your team directly.
 										</p>
 									</div>
 
@@ -226,8 +216,8 @@ export default function ServicesPage() {
 												Team Workshops
 											</h3>
 											<p className="text-muted-foreground text-sm leading-relaxed">
-												Half-day to multi-day workshops on React, Next.js,
-												TypeScript, and AI integration.
+												Half-day to multi-day workshops on React, Next.js, TypeScript, and
+												AI integration.
 											</p>
 										</div>
 										<div className="space-y-2">
@@ -235,23 +225,18 @@ export default function ServicesPage() {
 												Corporate Training
 											</h3>
 											<p className="text-muted-foreground text-sm leading-relaxed">
-												Custom training designed for your team&apos;s
-												specific needs, codebase, and skill level.
+												Custom training designed for your team&apos;s specific needs,
+												codebase, and skill level.
 											</p>
 										</div>
 									</div>
 
 									<div className="border-border flex flex-wrap items-center justify-between gap-4 border-t pt-6">
 										<div className="flex flex-wrap gap-2">
-											{[
-												'React',
-												'TypeScript',
-												'AI',
-												'Workshops'
-											].map((tag) => (
+											{['React', 'TypeScript', 'AI', 'Workshops'].map((tag) => (
 												<span
 													key={tag}
-													className="bg-muted text-muted-foreground font-mono rounded-full px-3 py-1 text-xs font-medium">
+													className="bg-muted text-muted-foreground rounded-full px-3 py-1 font-mono text-xs font-medium">
 													{tag}
 												</span>
 											))}
@@ -290,9 +275,9 @@ export default function ServicesPage() {
 						<div className="grid gap-8 md:grid-cols-3">
 							<blockquote className="border-border bg-card space-y-6 rounded-2xl border p-8">
 								<p className="text-foreground text-base leading-relaxed">
-									&ldquo;Lauro is a total pro. His guidance helped us create
-									polished onboarding videos and build the capability to create
-									content independently.&rdquo;
+									&ldquo;Lauro is a total pro. His guidance helped us create polished
+									onboarding videos and build the capability to create content
+									independently.&rdquo;
 								</p>
 								<div className="border-border flex items-center gap-3 border-t pt-6">
 									<div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
@@ -305,18 +290,16 @@ export default function ServicesPage() {
 									</div>
 									<div>
 										<p className="text-sm font-semibold">Andrew Hedges</p>
-										<p className="text-muted-foreground text-xs">
-											Assistiv Labs
-										</p>
+										<p className="text-muted-foreground text-xs">Assistiv Labs</p>
 									</div>
 								</div>
 							</blockquote>
 
 							<blockquote className="border-border bg-card space-y-6 rounded-2xl border p-8">
 								<p className="text-foreground text-base leading-relaxed">
-									&ldquo;An hour with Lauro helped me untangle my thoughts and
-									make a concrete plan. If you need dev content strategy,
-									he&apos;s your person.&rdquo;
+									&ldquo;An hour with Lauro helped me untangle my thoughts and make a
+									concrete plan. If you need dev content strategy, he&apos;s your
+									person.&rdquo;
 								</p>
 								<div className="border-border flex items-center gap-3 border-t pt-6">
 									<div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
@@ -329,18 +312,15 @@ export default function ServicesPage() {
 									</div>
 									<div>
 										<p className="text-sm font-semibold">Jason Lengstorf</p>
-										<p className="text-muted-foreground text-xs">
-											Learn With Jason
-										</p>
+										<p className="text-muted-foreground text-xs">Learn With Jason</p>
 									</div>
 								</div>
 							</blockquote>
 
 							<blockquote className="border-border bg-card space-y-6 rounded-2xl border p-8">
 								<p className="text-foreground text-base leading-relaxed">
-									&ldquo;Working with Lauro is always a great experience. His
-									technical guidance and patience make complex projects feel
-									manageable.&rdquo;
+									&ldquo;Working with Lauro is always a great experience. His technical
+									guidance and patience make complex projects feel manageable.&rdquo;
 								</p>
 								<div className="border-border flex items-center gap-3 border-t pt-6">
 									<div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
@@ -353,9 +333,7 @@ export default function ServicesPage() {
 									</div>
 									<div>
 										<p className="text-sm font-semibold">Alejandro Nanez</p>
-										<p className="text-muted-foreground text-xs">
-											Staff Engineer
-										</p>
+										<p className="text-muted-foreground text-xs">Staff Engineer</p>
 									</div>
 								</div>
 							</blockquote>
@@ -389,7 +367,7 @@ export default function ServicesPage() {
 									'Tailwind CSS',
 									'Sanity',
 									'Vercel',
-									'Claude & GPT-4'
+									'Claude & GPT-4',
 								].map((tech) => (
 									<div
 										key={tech}
@@ -399,8 +377,8 @@ export default function ServicesPage() {
 								))}
 							</div>
 							<p className="text-muted-foreground text-base leading-relaxed">
-								Production-ready solutions using battle-tested tools your team
-								can maintain long-term.
+								Production-ready solutions using battle-tested tools your team can
+								maintain long-term.
 							</p>
 						</div>
 
@@ -417,24 +395,19 @@ export default function ServicesPage() {
 								</h2>
 							</div>
 							<div className="flex flex-wrap gap-3">
-								{[
-									'Google',
-									"O'Reilly",
-									'Sentry',
-									'HOKA',
-									'egghead',
-									'Test Double'
-								].map((company) => (
-									<div
-										key={company}
-										className="border-border bg-card rounded-full border px-4 py-2">
-										<span className="text-sm font-medium">{company}</span>
-									</div>
-								))}
+								{['Google', "O'Reilly", 'Sentry', 'HOKA', 'egghead', 'Test Double'].map(
+									(company) => (
+										<div
+											key={company}
+											className="border-border bg-card rounded-full border px-4 py-2">
+											<span className="text-sm font-medium">{company}</span>
+										</div>
+									),
+								)}
 							</div>
 							<p className="text-muted-foreground text-base leading-relaxed">
-								Enterprise-level expertise helping teams build better products
-								and stronger engineering capabilities.
+								Enterprise-level expertise helping teams build better products and
+								stronger engineering capabilities.
 							</p>
 						</div>
 					</div>
@@ -450,9 +423,8 @@ export default function ServicesPage() {
 								Ready to work together?
 							</h2>
 							<p className="text-muted-foreground mx-auto max-w-2xl text-lg leading-relaxed lg:text-xl">
-								Let&apos;s discuss how I can help your team ship better
-								software, make stronger technical decisions, or level up through
-								training.
+								Let&apos;s discuss how I can help your team ship better software, make
+								stronger technical decisions, or level up through training.
 							</p>
 						</div>
 						<div className="pt-4">

@@ -5,8 +5,8 @@ config({path: '.env.local'})
 
 import {
 	processWorkshopDripQueue,
-	inspectWorkshopDripQueue
-} from '@/lib/workshop-newsletter'
+	inspectWorkshopDripQueue,
+} from '@/features/workshop-newsletter/server'
 
 function sleep(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms))
@@ -14,9 +14,7 @@ function sleep(ms: number) {
 
 async function main() {
 	// For test mode: run every 15 seconds by default (emails are 2 min apart)
-	const intervalMs = Number(
-		process.env.WORKSHOP_DRIP_CRON_INTERVAL_MS || 15_000
-	)
+	const intervalMs = Number(process.env.WORKSHOP_DRIP_CRON_INTERVAL_MS || 15_000)
 	const maxMinutes = Number(process.env.WORKSHOP_DRIP_CRON_MAX_MINUTES || 15)
 	const endAt = Date.now() + maxMinutes * 60_000
 
@@ -43,7 +41,7 @@ async function main() {
 		process.exit(1)
 	}
 	console.log(
-		`📋 Initial queue: ${initialState.totalQueued} items (${initialState.dueNow} due now)\n`
+		`📋 Initial queue: ${initialState.totalQueued} items (${initialState.dueNow} due now)\n`,
 	)
 
 	let tick = 0
@@ -56,11 +54,11 @@ async function main() {
 		const timestamp = new Date().toLocaleTimeString()
 		if (result.sent > 0 || result.failed > 0) {
 			console.log(
-				`[${timestamp}] ✉️  Tick ${tick}: sent=${result.sent}, failed=${result.failed}, remaining=${result.remaining} (${elapsedMs}ms)`
+				`[${timestamp}] ✉️  Tick ${tick}: sent=${result.sent}, failed=${result.failed}, remaining=${result.remaining} (${elapsedMs}ms)`,
 			)
 		} else {
 			console.log(
-				`[${timestamp}] ⏳ Tick ${tick}: nothing due, remaining=${result.remaining}`
+				`[${timestamp}] ⏳ Tick ${tick}: nothing due, remaining=${result.remaining}`,
 			)
 		}
 
@@ -68,7 +66,9 @@ async function main() {
 		if (result.remaining > 0 && tick % 4 === 0) {
 			const state = await inspectWorkshopDripQueue()
 			if (!('error' in state) && state.items.length > 0) {
-				const nextDue = state.items.find((i) => !i.isDue)
+				const nextDue = state.items.find(
+					(item: {isDue: boolean; delayMs: number}) => !item.isDue,
+				)
 				if (nextDue) {
 					const secsUntil = Math.round(nextDue.delayMs / 1000)
 					console.log(`     ⏰ Next email due in ${secsUntil}s`)

@@ -1,12 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import Container from '@/components/container'
-import {generatePageMetadata} from '@/lib/metadata'
-import {StructuredData} from '@/components/structured-data'
+import Container from '@/shared/components/container'
+import {generatePageMetadata} from '@/shared/lib/metadata'
+import {StructuredData} from '@/shared/components/structured-data'
 
 export const metadata = generatePageMetadata(
 	'About',
-	'Lauro Silva is a senior full-stack engineer and developer educator based in Portland. Previously with Google, O\'Reilly, Sentry, and HOKA. I build products and teach the teams behind them.',
+	"Lauro Silva is a senior full-stack engineer and developer educator based in Portland. Previously with Google, O'Reilly, Sentry, and HOKA. I build products and teach the teams behind them.",
 	{
 		keywords: [
 			'about',
@@ -16,10 +16,10 @@ export const metadata = generatePageMetadata(
 			'Next.js',
 			'TypeScript',
 			'Portland',
-			'freelance engineer'
+			'freelance engineer',
 		],
-		canonical: '/about'
-	}
+		canonical: '/about',
+	},
 )
 
 export default function AboutPage() {
@@ -40,9 +40,8 @@ export default function AboutPage() {
 								Build & Teach
 							</h1>
 							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
-								I&apos;m a senior full-stack engineer and developer educator
-								based in Portland. I build products and teach the teams behind
-								them.
+								I&apos;m a senior full-stack engineer and developer educator based in
+								Portland. I build products and teach the teams behind them.
 							</p>
 						</div>
 					</div>
@@ -69,9 +68,9 @@ export default function AboutPage() {
 					<Container width="narrow">
 						<div className="space-y-12">
 							<div className="space-y-3">
-							<span className="text-muted-foreground font-mono text-xs font-medium uppercase tracking-wide">
-								My Story
-							</span>
+								<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
+									My Story
+								</span>
 								<h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
 									Engineering & Education
 								</h2>
@@ -79,34 +78,31 @@ export default function AboutPage() {
 
 							<div className="text-muted-foreground space-y-6 text-lg leading-relaxed">
 								<p>
-									I&apos;ve spent my career at the intersection of building
-									software and teaching others how to build it better. I&apos;m
-									a senior full-stack engineer who specializes in React,
-									Next.js, TypeScript, and Node.js — and I&apos;m also a
-									developer educator who has taught at O&apos;Reilly, egghead,
-									and Google.
+									I&apos;ve spent my career at the intersection of building software and
+									teaching others how to build it better. I&apos;m a senior full-stack
+									engineer who specializes in React, Next.js, TypeScript, and Node.js —
+									and I&apos;m also a developer educator who has taught at O&apos;Reilly,
+									egghead, and Google.
 								</p>
 								<p>
-									That combination is what makes my work different. When I embed
-									with a team to ship a product, I&apos;m not just writing
-									code — I&apos;m making the team stronger in the process. When
-									I teach a workshop, I&apos;m not just explaining concepts —
-									I&apos;m drawing from real production experience to show
-									what actually works.
+									That combination is what makes my work different. When I embed with a
+									team to ship a product, I&apos;m not just writing code — I&apos;m making
+									the team stronger in the process. When I teach a workshop, I&apos;m not
+									just explaining concepts — I&apos;m drawing from real production
+									experience to show what actually works.
 								</p>
 								<p>
-									I&apos;ve worked with teams at Google, O&apos;Reilly, Sentry,
-									HOKA, egghead, and Test Double. These range from building
-									developer education platforms at Google, to delivering live
-									workshops at O&apos;Reilly, to leading full-stack development
-									at HOKA.
+									I&apos;ve worked with teams at Google, O&apos;Reilly, Sentry, HOKA,
+									egghead, and Test Double. These range from building developer education
+									platforms at Google, to delivering live workshops at O&apos;Reilly, to
+									leading full-stack development at HOKA.
 								</p>
 								<p>
-									My approach is practical and hands-on. I believe in building
-									software that&apos;s maintainable, thoughtful, and genuinely
-									useful. I care about code quality, but I care more about
-									shipping things that matter. And I believe the best way to
-									learn is by building real things, not watching tutorials.
+									My approach is practical and hands-on. I believe in building software
+									that&apos;s maintainable, thoughtful, and genuinely useful. I care about
+									code quality, but I care more about shipping things that matter. And I
+									believe the best way to learn is by building real things, not watching
+									tutorials.
 								</p>
 							</div>
 						</div>
@@ -118,9 +114,9 @@ export default function AboutPage() {
 					<Container width="base">
 						<div className="space-y-12">
 							<div className="space-y-3">
-							<span className="text-muted-foreground font-mono text-xs font-medium uppercase tracking-wide">
-								Expertise
-							</span>
+								<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
+									Expertise
+								</span>
 								<h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
 									What I Specialize In
 								</h2>
@@ -130,34 +126,33 @@ export default function AboutPage() {
 								<div className="space-y-4">
 									<h3 className="text-xl font-bold">Full-Stack Development</h3>
 									<p className="text-muted-foreground text-base leading-relaxed">
-										React, Next.js, TypeScript, Node.js. I build production
-										applications from architecture to deployment. I care about
-										performance, maintainability, and developer experience.
+										React, Next.js, TypeScript, Node.js. I build production applications
+										from architecture to deployment. I care about performance,
+										maintainability, and developer experience.
 									</p>
 								</div>
 								<div className="space-y-4">
 									<h3 className="text-xl font-bold">Developer Education</h3>
 									<p className="text-muted-foreground text-base leading-relaxed">
-										Workshops, courses, and corporate training. I&apos;ve
-										taught at O&apos;Reilly and egghead, and I bring that same
-										quality to teams directly. Hands-on, practical, and
-										principle-based.
+										Workshops, courses, and corporate training. I&apos;ve taught at
+										O&apos;Reilly and egghead, and I bring that same quality to teams
+										directly. Hands-on, practical, and principle-based.
 									</p>
 								</div>
 								<div className="space-y-4">
 									<h3 className="text-xl font-bold">Technical Leadership</h3>
 									<p className="text-muted-foreground text-base leading-relaxed">
-										Architecture reviews, code audits, technical strategy. I
-										help teams make better technical decisions and build
-										products that scale without over-engineering.
+										Architecture reviews, code audits, technical strategy. I help teams
+										make better technical decisions and build products that scale without
+										over-engineering.
 									</p>
 								</div>
 								<div className="space-y-4">
 									<h3 className="text-xl font-bold">AI Integration</h3>
 									<p className="text-muted-foreground text-base leading-relaxed">
-										Practical AI integration for real applications. I help teams
-										adopt AI tools like Claude and GPT-4 in production-ready,
-										maintainable ways — not hype, just utility.
+										Practical AI integration for real applications. I help teams adopt AI
+										tools like Claude and GPT-4 in production-ready, maintainable ways —
+										not hype, just utility.
 									</p>
 								</div>
 							</div>
@@ -171,9 +166,9 @@ export default function AboutPage() {
 						<div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
 							<div className="space-y-8">
 								<div className="space-y-3">
-								<span className="text-muted-foreground font-mono text-xs font-medium uppercase tracking-wide">
-									Beyond Code
-								</span>
+									<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
+										Beyond Code
+									</span>
 									<h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
 										What Shapes My Perspective
 									</h2>
@@ -181,10 +176,10 @@ export default function AboutPage() {
 
 								<div className="text-muted-foreground space-y-6 text-lg leading-relaxed">
 									<p>
-										I&apos;m a semi-professional trail runner. I race ultras
-										and mountain races across the Pacific Northwest. The trails
-										have taught me persistence, problem-solving under pressure,
-										and the importance of showing up consistently.
+										I&apos;m a semi-professional trail runner. I race ultras and mountain
+										races across the Pacific Northwest. The trails have taught me
+										persistence, problem-solving under pressure, and the importance of
+										showing up consistently.
 									</p>
 									<p>
 										I also founded{' '}
@@ -195,17 +190,15 @@ export default function AboutPage() {
 											className="text-foreground hover:text-primary underline transition-colors">
 											Tierra Libre Run
 										</a>
-										, a nonprofit that makes trail running more accessible to
-										runners of color. We sponsor runners, fund race entries,
-										and partner with races across the PNW to create more
-										inclusive spaces.
+										, a nonprofit that makes trail running more accessible to runners of
+										color. We sponsor runners, fund race entries, and partner with races
+										across the PNW to create more inclusive spaces.
 									</p>
 									<p>
-										These experiences directly inform how I work. Building
-										community has taught me that the best products come from
-										deeply understanding the people who use them. Running has
-										taught me that the best results come from sustained effort,
-										not shortcuts.
+										These experiences directly inform how I work. Building community has
+										taught me that the best products come from deeply understanding the
+										people who use them. Running has taught me that the best results come
+										from sustained effort, not shortcuts.
 									</p>
 								</div>
 							</div>
@@ -239,17 +232,15 @@ export default function AboutPage() {
 										Technology should serve people
 									</h3>
 									<p className="text-muted-foreground text-lg leading-relaxed">
-										The best software starts with understanding the humans who
-										will use it. I build with empathy, not just efficiency.
+										The best software starts with understanding the humans who will use
+										it. I build with empathy, not just efficiency.
 									</p>
 								</div>
 								<div className="border-border border-b pb-8">
-									<h3 className="mb-3 text-xl font-bold">
-										Ship things that matter
-									</h3>
+									<h3 className="mb-3 text-xl font-bold">Ship things that matter</h3>
 									<p className="text-muted-foreground text-lg leading-relaxed">
-										I care about code quality, but I care more about impact.
-										Great architecture means nothing if the product never ships.
+										I care about code quality, but I care more about impact. Great
+										architecture means nothing if the product never ships.
 									</p>
 								</div>
 								<div className="pb-8">
@@ -257,9 +248,9 @@ export default function AboutPage() {
 										The best way to learn is by building
 									</h3>
 									<p className="text-muted-foreground text-lg leading-relaxed">
-										Whether I&apos;m teaching a workshop or mentoring a junior
-										engineer, my approach is always hands-on. Real projects.
-										Real code. Real constraints.
+										Whether I&apos;m teaching a workshop or mentoring a junior engineer,
+										my approach is always hands-on. Real projects. Real code. Real
+										constraints.
 									</p>
 								</div>
 							</div>

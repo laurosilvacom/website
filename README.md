@@ -23,6 +23,9 @@ pnpm format
 
 # Lint
 pnpm lint
+
+# Full quality gate (types + lint + production build)
+pnpm quality
 ```
 
 ## Tech Stack
@@ -39,13 +42,27 @@ pnpm lint
 
 ```
 app/
-  (pages)/        # Route groups
-    blog/         # Blog posts
-    tags/         # Tag pages
-  components/      # React components
-  lib/            # Utilities & helpers
-  hooks/          # Custom React hooks
+  (pages)/                 # Route files and layouts only
+  api/                     # API route handlers
+  features/                # Product/domain modules
+    blog/
+      components/
+      server/
+    workshop/
+      components/
+      server/
+    workshop-newsletter/
+      server/
+  shared/                  # Cross-feature building blocks
+    components/
+    hooks/
+    integrations/
+      sanity/
+    lib/
+    ui/
 ```
+
+See `/docs/ARCHITECTURE.md` for the full architecture and module rules.
 
 ## Scripts
 
@@ -55,9 +72,17 @@ app/
 - `lint` - Run ESLint
 - `lint:fix` - Fix ESLint errors
 - `type-check` - Type check without building
+- `quality` - Run type-check, lint, and production build in sequence
 - `format` - Format all files with Prettier
 - `format:check` - Check formatting
 - `clean` - Remove build artifacts
+- `feature:new` - Scaffold a new feature module in `app/features/`
+
+Example:
+
+```bash
+pnpm feature:new case-studies
+```
 
 ## Environment Variables
 

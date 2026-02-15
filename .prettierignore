@@ -9,6 +9,7 @@ out
 dist
 build
 .vercel
+.sanity
 
 # Cache
 .cache
@@ -33,4 +34,3 @@ next-env.d.ts
 # OS
 .DS_Store
 Thumbs.db
-

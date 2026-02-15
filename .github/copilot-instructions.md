@@ -2,82 +2,59 @@
 
 ## Architecture Snapshot
 
-- Next.js 16 App Router with React 19 and strict TypeScript lives under
-  [app](app); route groups such as
-  [app/(pages)/blog](<app/(pages)/blog/page.tsx>) render server components with
-  `export const revalidate = 300` for ISR.
-- Content is sourced from Sanity via
-  [app/lib/sanity/client.ts](app/lib/sanity/client.ts) and GROQ queries in
-  [app/lib/sanity/queries.ts](app/lib/sanity/queries.ts); `cache()` wrapped
-  helpers in [app/lib/blog.ts](app/lib/blog.ts) expose `getBlogPosts`,
-  `getBlogPostBySlug`, etc.
-- Metadata and structured data are centralized in
-  [app/lib/metadata.ts](app/lib/metadata.ts) and
-  [app/components/structured-data.tsx](app/components/structured-data.tsx); new
-  pages should call `createMetadata()` or `generateBlogPostMetadata()` to stay
-  consistent.
+- The app uses a feature-first structure under `app/features/*` and shared
+  primitives under `app/shared/*`.
+- `app/(pages)` is a thin composition layer. Keep route files focused on params,
+  metadata, and feature orchestration.
+- Business/data logic belongs in `app/features/*/server`.
+- Shared integrations (Sanity, Resend) live in `app/shared/integrations`.
 
-## Content & Rendering Patterns
+## Module Boundaries
 
-- Blog listing ([app/(pages)/blog/page.tsx](<app/(pages)/blog/page.tsx>))
-  fetches posts server-side, sorts by `metadata.publishedAt`, and renders cards;
-  reuse `formatDate()` from [app/lib/blog-sanity.ts](app/lib/blog-sanity.ts) for
-  consistent labels.
-- Post detail pages
-  ([app/(pages)/blog/[slug]/page.tsx](<app/(pages)/blog/[slug]/page.tsx>))
-  preload paths with `generateStaticParams`, hydrate metadata, and render Sanity
-  Portable Text; mirror this structure for future long-form content.
-- Rich text rendering lives in
-  [app/components/portable-text.tsx](app/components/portable-text.tsx): it
-  decorates Sanity blocks with custom images, code blocks (via Shiki +
-  `CodeCopyButton`), and interactive footnotes. Extend this file instead of
-  rolling ad-hoc renderers.
+- Prefer imports from:
+  - `@/features/<feature>/server`
+  - `@/features/<feature>/components`
+  - `@/shared/components/*`
+  - `@/shared/ui/*`
+  - `@/shared/lib/*`
+- Legacy aliases are blocked and must not be used:
+  - `@/components/*`
+  - `@/lib/*`
+  - `@/hooks/*`
 
-## Styling & Layout System
+## Feature Ownership
 
-- Use the semantic `Container` from
-  [app/components/container.tsx](app/components/container.tsx):
-  `width="narrow|base|wide|full"` encapsulates the spacing rules described in
-  [LAYOUT.md](LAYOUT.md). Never combine it with `max-w-*` utilities.
-- Tailwind CSS 4 is configured globally in [app/globals.css](app/globals.css);
-  compose utilities with the `cn()` helper from
-  [app/lib/utils.ts](app/lib/utils.ts) to avoid duplicates (twMerge aware).
-- UI primitives from shadcn live under [app/components/ui](app/components/ui);
-  prefer extending these tokens over adding new design systems.
+- Blog:
+  - server: `app/features/blog/server`
+  - rendering: `app/features/blog/components/portable-text.tsx`
+- Workshops:
+  - server: `app/features/workshop/server`
+  - UI: `app/features/workshop/components`
+- Workshop newsletter flow:
+  - server: `app/features/workshop-newsletter/server`
 
-## Data & Integration Details
+## Styling & UI
 
-- Environment variables: `NEXT_PUBLIC_SANITY_PROJECT_ID`,
-  `NEXT_PUBLIC_SANITY_DATASET`, and `SANITY_API_TOKEN` feed the Sanity client.
-  Use `pnpm studio` to launch the embedded Studio at `/studio` when editing
-  content.
-- Image assets require compression via `./scripts/optimize-images.sh` (see
-  [PERFORMANCE.md](PERFORMANCE.md)); modern formats and cache hints are already
-  wired in `next.config.ts`.
-- Blog metadata includes derived reading times; `calculateReadingTime()` in
-  [app/lib/blog-sanity.ts](app/lib/blog-sanity.ts#L5-L33) runs when Sanity
-  doesn't provide one, so keep `content` populated to avoid undefined values.
+- Global Tailwind/CSS tokens live in `app/globals.css`.
+- Reusable app shell/layout components are in `app/shared/components`.
+- UI primitives are in `app/shared/ui`.
+- Use `cn()` from `app/shared/lib/utils.ts` for class composition.
 
-## Implementation Conventions
+## Tooling Workflow
 
-- Imports use path aliases (`@/components`, `@/lib`, etc.); default to server
-  components and add `'use client'` only when hooks or browser APIs are required
-  (see [app/components/portable-text.tsx](app/components/portable-text.tsx)).
-- Follow the brutalist spacing system: sections start with `pt-32 pb-16` on
-  desktop and rely on consistent `py-16 lg:py-24` rhythm; reference
-  [LAYOUT.md](LAYOUT.md) before altering page scaffolding.
-- Reusable metadata, Open Graph images, and canonical URLs must go through
-  `createMetadata()`; avoid inline `export const metadata = {...}` unless it
-  calls into that helper.
+- Core commands:
+  - `pnpm dev`
+  - `pnpm type-check`
+  - `pnpm lint`
+  - `pnpm build`
+  - `pnpm format`
+  - `pnpm quality` (type-check + lint + build)
+- Studio:
+  - `pnpm studio` serves Sanity Studio at `/studio`.
 
-## Tooling & Workflows
+## Quality Expectations
 
-- Install and run with pnpm only: `pnpm install`, `pnpm dev`, `pnpm build`,
-  `pnpm type-check`, `pnpm lint`, `pnpm format`. Clean artifacts via
-  `pnpm clean`.
-- Content migrations: `pnpm migrate:code-blocks` fixes legacy MDX code fences
-  locally, while `pnpm migrate:code-blocks:cli` runs the Sanity-side transformer
-  (requires a user token via `pnpm setup:token`).
-- Performance budgets are documented in [PERFORMANCE.md](PERFORMANCE.md); after
-  touching media-heavy pages, run `pnpm build` followed by a Lighthouse pass to
-  keep LCP < 1.2s.
+- Prefer server components by default.
+- Keep feature modules cohesive and avoid cross-feature imports unless shared.
+- Add new domains with `pnpm feature:new <feature-name>` and fill `server/`
+  before route wiring.
