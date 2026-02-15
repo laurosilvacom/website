@@ -81,7 +81,7 @@ export default function Footer() {
 	}
 
 	return (
-		<footer className="mt-32 pt-16">
+		<footer className="border-border mt-32 border-t pt-16">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6">
 				<div className="space-y-12">
 					<div className="space-y-4">

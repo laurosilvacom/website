@@ -1,8 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import Container from '@/components/container'
-import {Button} from '@/components/ui/button'
-import {ArrowRight} from 'lucide-react'
 import {generatePageMetadata} from '@/lib/metadata'
 import {StructuredData} from '@/components/structured-data'
 
@@ -35,9 +33,9 @@ export default function AboutPage() {
 			/>
 			<main>
 				{/* Hero Section */}
-				<section className="relative flex min-h-[70vh] items-center justify-center px-6 pt-32 pb-24 lg:pt-40 lg:pb-32">
+				<section className="px-6 pt-32 pb-12 lg:pt-40 lg:pb-16">
 					<div className="mx-auto max-w-4xl text-center">
-						<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
+						<div className="animate-in fade-in slide-in-from-bottom-4 space-y-6 duration-1000">
 							<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
 								Build & Teach
 							</h1>
@@ -71,9 +69,9 @@ export default function AboutPage() {
 					<Container width="narrow">
 						<div className="space-y-12">
 							<div className="space-y-3">
-								<span className="text-muted-foreground text-sm font-medium">
-									My Story
-								</span>
+							<span className="text-muted-foreground font-mono text-xs font-medium uppercase tracking-wide">
+								My Story
+							</span>
 								<h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
 									Engineering & Education
 								</h2>
@@ -120,9 +118,9 @@ export default function AboutPage() {
 					<Container width="base">
 						<div className="space-y-12">
 							<div className="space-y-3">
-								<span className="text-muted-foreground text-sm font-medium">
-									Expertise
-								</span>
+							<span className="text-muted-foreground font-mono text-xs font-medium uppercase tracking-wide">
+								Expertise
+							</span>
 								<h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
 									What I Specialize In
 								</h2>
@@ -173,9 +171,9 @@ export default function AboutPage() {
 						<div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
 							<div className="space-y-8">
 								<div className="space-y-3">
-									<span className="text-muted-foreground text-sm font-medium">
-										Beyond Code
-									</span>
+								<span className="text-muted-foreground font-mono text-xs font-medium uppercase tracking-wide">
+									Beyond Code
+								</span>
 									<h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
 										What Shapes My Perspective
 									</h2>
@@ -271,32 +269,18 @@ export default function AboutPage() {
 
 				{/* CTA */}
 				<section className="py-24 lg:py-32">
-					<Container width="base">
-						<div className="bg-card border-border-subtle space-y-8 rounded-3xl border p-12 text-center lg:p-16">
-							<div className="space-y-6">
-								<h2 className="text-3xl font-bold tracking-tight lg:text-5xl">
-									Let&apos;s work together
-								</h2>
-								<p className="text-muted-foreground mx-auto max-w-2xl text-lg leading-relaxed lg:text-xl">
-									Whether you need a senior engineer, technical advisor, or
-									workshop instructor — I&apos;d love to hear about what
-									you&apos;re building.
-								</p>
-							</div>
-							<div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-								<Button asChild size="lg" className="group">
-									<Link
-										href="https://cal.com/laurosilvacom/chat"
-										target="_blank"
-										rel="noopener noreferrer">
-										Schedule a consultation
-										<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-									</Link>
-								</Button>
-								<Button asChild size="lg" variant="outline">
-									<Link href="/services">View services</Link>
-								</Button>
-							</div>
+					<Container width="narrow">
+						<div className="text-center">
+							<p className="text-muted-foreground text-lg leading-relaxed">
+								I&apos;m always interested in hearing about new projects.{' '}
+								<a
+									href="https://cal.com/laurosilvacom/chat"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-foreground underline underline-offset-4 transition-colors hover:opacity-70">
+									Get in touch
+								</a>
+							</p>
 						</div>
 					</Container>
 				</section>

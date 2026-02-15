@@ -93,9 +93,9 @@ export default function TeachingPage() {
 	return (
 		<>
 			{/* Hero */}
-			<section className="relative flex min-h-[60vh] items-center justify-center px-4 pt-32 pb-20 lg:pt-40">
+			<section className="px-4 pt-32 pb-12 lg:pt-40 lg:pb-16">
 				<div className="mx-auto max-w-4xl text-center">
-					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
+					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-6 duration-1000">
 						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
 							Workshops & Training
 						</h1>
@@ -127,7 +127,7 @@ export default function TeachingPage() {
 							<div className="space-y-4">
 								<div className="inline-flex items-center gap-2">
 									<div className="bg-primary h-2 w-2 rounded-full" />
-									<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+									<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
 										Current Offerings
 									</span>
 								</div>
@@ -173,7 +173,7 @@ export default function TeachingPage() {
 						<div className="space-y-4">
 							<div className="inline-flex items-center gap-2">
 								<div className="bg-primary h-2 w-2 rounded-full" />
-								<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+								<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
 									Teaching Experience
 								</span>
 							</div>
@@ -205,7 +205,7 @@ export default function TeachingPage() {
 											{platform.topics.map((topic) => (
 												<span
 													key={topic}
-													className="bg-muted text-muted-foreground rounded-full px-3 py-1 text-xs font-medium">
+													className="bg-muted text-muted-foreground font-mono rounded-full px-3 py-1 text-xs font-medium">
 													{topic}
 												</span>
 											))}
@@ -225,7 +225,7 @@ export default function TeachingPage() {
 						<div className="space-y-4">
 							<div className="inline-flex items-center gap-2">
 								<div className="bg-primary h-2 w-2 rounded-full" />
-								<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+								<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
 									Workshop Topics
 								</span>
 							</div>
@@ -271,7 +271,7 @@ export default function TeachingPage() {
 
 						<div className="grid gap-8 md:grid-cols-3">
 							<div className="space-y-4">
-								<span className="text-muted-foreground text-sm font-medium">
+								<span className="text-muted-foreground font-mono text-xs font-medium">
 									01
 								</span>
 								<h3 className="text-lg font-bold">Discovery</h3>
@@ -283,7 +283,7 @@ export default function TeachingPage() {
 							</div>
 
 							<div className="space-y-4">
-								<span className="text-muted-foreground text-sm font-medium">
+								<span className="text-muted-foreground font-mono text-xs font-medium">
 									02
 								</span>
 								<h3 className="text-lg font-bold">Delivery</h3>
@@ -295,7 +295,7 @@ export default function TeachingPage() {
 							</div>
 
 							<div className="space-y-4">
-								<span className="text-muted-foreground text-sm font-medium">
+								<span className="text-muted-foreground font-mono text-xs font-medium">
 									03
 								</span>
 								<h3 className="text-lg font-bold">Follow-Up</h3>
@@ -312,29 +312,21 @@ export default function TeachingPage() {
 
 			{/* CTA */}
 			<section className="py-24 lg:py-32">
-				<Container width="base">
-					<div className="bg-card border-border-subtle space-y-8 rounded-3xl border p-12 text-center lg:p-16">
-						<div className="space-y-6">
-							<h2 className="text-3xl font-bold tracking-tight lg:text-5xl">
-								Level up your engineering team
-							</h2>
-							<p className="text-muted-foreground mx-auto max-w-2xl text-lg leading-relaxed lg:text-xl">
-								Let&apos;s design a training program that fits your
-								team&apos;s needs. From half-day workshops to week-long
-								intensives.
-							</p>
-						</div>
-						<div className="pt-4">
-							<Button asChild size="lg" className="group">
-								<Link
-									href="https://cal.com/laurosilvacom/chat"
-									target="_blank"
-									rel="noopener noreferrer">
-									Book training for your team
-									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-								</Link>
-							</Button>
-						</div>
+				<Container width="narrow">
+					<div className="space-y-6 text-center">
+						<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
+							Level up your engineering team
+						</h2>
+						<p className="text-muted-foreground mx-auto max-w-xl text-lg leading-relaxed">
+							From half-day workshops to week-long intensives.{' '}
+							<a
+								href="https://cal.com/laurosilvacom/chat"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-foreground underline underline-offset-4 transition-colors hover:opacity-70">
+								Book training for your team
+							</a>
+						</p>
 					</div>
 				</Container>
 			</section>

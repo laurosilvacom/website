@@ -1,5 +1,4 @@
 import {Suspense} from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import Container from '@/components/container'
 import {Button} from '@/components/ui/button'
@@ -66,12 +65,12 @@ function BlogPostsFallback() {
 }
 
 const clients = [
-	{name: 'Google', domain: 'google.com'},
-	{name: "O'Reilly", domain: 'oreilly.com'},
-	{name: 'Sentry', domain: 'sentry.io'},
-	{name: 'HOKA', domain: 'hoka.com'},
-	{name: 'egghead', domain: 'egghead.io'},
-	{name: 'Test Double', domain: 'testdouble.com'}
+	'Google',
+	"O'Reilly",
+	'Sentry',
+	'HOKA',
+	'egghead',
+	'Test Double'
 ]
 
 const caseStudies = [
@@ -105,7 +104,7 @@ export default async function Page() {
 	return (
 		<>
 			{/* Hero Section */}
-			<section className="relative flex min-h-[90vh] items-center justify-center px-4 pt-32 pb-20 lg:pt-40 lg:pb-32">
+			<section className="px-4 pt-32 pb-16 lg:pt-40 lg:pb-20">
 				<div className="mx-auto max-w-5xl text-center">
 					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
 						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
@@ -137,44 +136,27 @@ export default async function Page() {
 							</Link>
 						</Button>
 					</div>
+					<div className="animate-in fade-in slide-in-from-bottom-4 pt-10 delay-200 duration-1000">
+						<p className="text-muted-foreground text-sm font-medium">
+							{clients.map((name, i) => (
+								<span key={name}>
+									{name}
+									{i < clients.length - 1 && (
+										<span className="mx-2.5 opacity-30">·</span>
+									)}
+								</span>
+							))}
+						</p>
+					</div>
 				</div>
 			</section>
 
-			{/* Client Logo Bar */}
-			<section className="py-12 lg:py-16">
-				<Container width="base">
-					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 delay-200 duration-1000">
-						<p className="text-muted-foreground text-center text-sm font-medium tracking-wide uppercase">
-							Previously worked with
-						</p>
-						<div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
-							{clients.map((client) => (
-								<div
-									key={client.name}
-									className="flex items-center gap-2.5 opacity-70 transition-opacity hover:opacity-100">
-									<Image
-										src={`https://www.google.com/s2/favicons?domain=${client.domain}&sz=32`}
-										alt={client.name}
-										width={20}
-										height={20}
-										className="h-5 w-5"
-									/>
-									<span className="text-foreground text-sm font-medium">
-										{client.name}
-									</span>
-								</div>
-							))}
-						</div>
-					</div>
-				</Container>
-			</section>
-
 			{/* What I Do */}
-			<section className="py-24 lg:py-32">
+			<section className="py-16 lg:py-20">
 				<Container width="base">
 					<div className="grid gap-12 md:grid-cols-3 md:gap-16">
 						<div className="group space-y-4">
-							<span className="text-muted-foreground text-sm font-medium">
+							<span className="text-muted-foreground font-mono text-xs font-medium">
 								01
 							</span>
 							<h3 className="text-2xl font-bold">Build</h3>
@@ -185,7 +167,7 @@ export default async function Page() {
 						</div>
 
 						<div className="group space-y-4">
-							<span className="text-muted-foreground text-sm font-medium">
+							<span className="text-muted-foreground font-mono text-xs font-medium">
 								02
 							</span>
 							<h3 className="text-2xl font-bold">Lead</h3>
@@ -197,7 +179,7 @@ export default async function Page() {
 						</div>
 
 						<div className="group space-y-4">
-							<span className="text-muted-foreground text-sm font-medium">
+							<span className="text-muted-foreground font-mono text-xs font-medium">
 								03
 							</span>
 							<h3 className="text-2xl font-bold">Teach</h3>
@@ -250,7 +232,7 @@ export default async function Page() {
 											{study.tags.map((tag) => (
 												<span
 													key={tag}
-													className="bg-muted text-muted-foreground rounded-full px-3 py-1 text-xs font-medium">
+													className="bg-muted text-muted-foreground font-mono rounded-full px-3 py-1 text-xs font-medium">
 													{tag}
 												</span>
 											))}
@@ -312,29 +294,24 @@ export default async function Page() {
 
 			{/* CTA */}
 			<section className="py-24 lg:py-32">
-				<Container width="base">
-					<div className="bg-card border-border-subtle space-y-8 rounded-3xl border p-12 text-center lg:p-16">
-						<div className="space-y-6">
-							<h2 className="text-3xl font-bold tracking-tight lg:text-5xl">
-								Let&apos;s work together
-							</h2>
-							<p className="text-muted-foreground mx-auto max-w-2xl text-lg leading-relaxed lg:text-xl">
-								Whether you need a senior engineer to ship product, a technical
-								advisor to guide decisions, or a workshop to level up your
-								team — I can help.
-							</p>
-						</div>
-						<div className="pt-4">
-							<Button asChild size="lg" className="group">
-								<Link
-									href="https://cal.com/laurosilvacom/chat"
-									target="_blank"
-									rel="noopener noreferrer">
-									Schedule a free consultation
-									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-								</Link>
-							</Button>
-						</div>
+				<Container width="narrow">
+					<div className="text-center">
+						<p className="text-muted-foreground text-lg leading-relaxed">
+							Have a project in mind?{' '}
+							<a
+								href="https://cal.com/laurosilvacom/chat"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-foreground underline underline-offset-4 transition-colors hover:opacity-70">
+								Let&apos;s talk
+							</a>
+							{' · '}
+							<Link
+								href="/services"
+								className="text-foreground underline underline-offset-4 transition-colors hover:opacity-70">
+								View services
+							</Link>
+						</p>
 					</div>
 				</Container>
 			</section>

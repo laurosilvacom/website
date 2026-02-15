@@ -26,17 +26,9 @@ export default function ServicesPage() {
 	return (
 		<>
 			{/* Hero Section */}
-			<section className="relative flex min-h-[85vh] items-center justify-center px-6 pt-32 pb-24 lg:pt-40 lg:pb-32">
+			<section className="px-6 pt-32 pb-16 lg:pt-40 lg:pb-20">
 				<div className="mx-auto max-w-6xl text-center">
-					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-12 duration-1000">
-						<div className="inline-flex">
-							<div className="bg-muted border-border inline-flex items-center gap-2 rounded-full border px-4 py-2">
-								<div className="bg-primary h-2 w-2 animate-pulse rounded-full" />
-								<span className="text-sm font-medium">
-									Available for new projects
-								</span>
-							</div>
-						</div>
+					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
 						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
 							Ship faster. Build smarter.
 							<br />
@@ -67,14 +59,14 @@ export default function ServicesPage() {
 			{/* Services Overview */}
 			<section id="services" className="py-24 lg:py-32">
 				<Container width="base">
-					<div className="space-y-16">
-						{/* Full-Stack Development */}
+					<div className="space-y-8">
+						{/* Full-Stack Development — Primary */}
 						<div className="group border-border-subtle bg-card hover:border-border relative overflow-hidden rounded-3xl border p-12 transition-all duration-200 lg:p-16">
 							<div className="space-y-8">
 								<div className="space-y-4">
 									<div className="inline-flex items-center gap-2">
 										<div className="bg-primary h-2 w-2 rounded-full" />
-										<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+										<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
 											Full-Stack Development
 										</span>
 									</div>
@@ -124,7 +116,7 @@ export default function ServicesPage() {
 										].map((tag) => (
 											<span
 												key={tag}
-												className="bg-muted text-muted-foreground rounded-full px-3 py-1 text-xs font-medium">
+												className="bg-muted text-muted-foreground font-mono rounded-full px-3 py-1 text-xs font-medium">
 												{tag}
 											</span>
 										))}
@@ -142,148 +134,139 @@ export default function ServicesPage() {
 							</div>
 						</div>
 
-						{/* Technical Leadership */}
-						<div className="group border-border-subtle bg-card hover:border-border relative overflow-hidden rounded-3xl border p-12 transition-all duration-200 lg:p-16">
-							<div className="space-y-8">
-								<div className="space-y-4">
-									<div className="inline-flex items-center gap-2">
-										<div className="bg-primary h-2 w-2 rounded-full" />
-										<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+						{/* Secondary services — side by side */}
+						<div className="grid gap-8 md:grid-cols-2">
+							{/* Technical Leadership */}
+							<div className="group border-border-subtle bg-card hover:border-border relative overflow-hidden rounded-2xl border p-8 transition-all duration-200 lg:p-10">
+								<div className="space-y-6">
+									<div className="space-y-4">
+										<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
 											Technical Leadership
 										</span>
-									</div>
-									<h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-										Make Better Decisions
-									</h2>
-									<p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
-										Architecture reviews, code audits, technical strategy. Get
-										senior-level guidance without a full-time hire. I help teams
-										make the right technical decisions at the right time.
-									</p>
-								</div>
-
-								<div className="grid gap-6 md:grid-cols-2">
-									<div className="space-y-3">
-										<h3 className="text-foreground text-lg font-semibold">
-											Architecture & Strategy
-										</h3>
+										<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
+											Make Better Decisions
+										</h2>
 										<p className="text-muted-foreground text-base leading-relaxed">
-											Architecture planning, code reviews, technical strategy,
-											and system design. I help teams build products that scale
-											without over-engineering.
+											Architecture reviews, code audits, technical strategy.
+											Senior-level guidance without a full-time hire. I help
+											teams make the right technical decisions at the right
+											time.
 										</p>
 									</div>
 
-									<div className="space-y-3">
-										<h3 className="text-foreground text-lg font-semibold">
-											Fractional CTO
-										</h3>
-										<p className="text-muted-foreground text-base leading-relaxed">
-											For startups and small companies that need senior
-											technical leadership but aren&apos;t ready for a
-											full-time CTO. I guide your technical roadmap and team.
-										</p>
+									<div className="space-y-4">
+										<div className="space-y-2">
+											<h3 className="text-foreground text-sm font-semibold">
+												Architecture & Strategy
+											</h3>
+											<p className="text-muted-foreground text-sm leading-relaxed">
+												Architecture planning, code reviews, technical
+												strategy, and system design.
+											</p>
+										</div>
+										<div className="space-y-2">
+											<h3 className="text-foreground text-sm font-semibold">
+												Fractional CTO
+											</h3>
+											<p className="text-muted-foreground text-sm leading-relaxed">
+												For startups that need senior technical leadership
+												but aren&apos;t ready for a full-time CTO.
+											</p>
+										</div>
 									</div>
-								</div>
 
-								<div className="border-border flex flex-wrap items-center justify-between gap-6 border-t pt-8">
-									<div className="flex flex-wrap gap-2">
-										{[
-											'Architecture',
-											'Code Audits',
-											'Technical Strategy',
-											'Team Scaling',
-											'AI Integration'
-										].map((tag) => (
-											<span
-												key={tag}
-												className="bg-muted text-muted-foreground rounded-full px-3 py-1 text-xs font-medium">
-												{tag}
-											</span>
-										))}
+									<div className="border-border flex flex-wrap items-center justify-between gap-4 border-t pt-6">
+										<div className="flex flex-wrap gap-2">
+											{[
+												'Architecture',
+												'Code Audits',
+												'Strategy'
+											].map((tag) => (
+												<span
+													key={tag}
+													className="bg-muted text-muted-foreground font-mono rounded-full px-3 py-1 text-xs font-medium">
+													{tag}
+												</span>
+											))}
+										</div>
+										<Button
+											asChild
+											variant="ghost"
+											size="sm"
+											className="group/btn text-primary hover:text-primary">
+											<Link href="/work">
+												See past work
+												<ArrowRight className="ml-2 h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-1" />
+											</Link>
+										</Button>
 									</div>
-									<Button
-										asChild
-										variant="ghost"
-										className="group/btn text-primary hover:text-primary">
-										<Link href="/work">
-											See past work
-											<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-										</Link>
-									</Button>
 								</div>
 							</div>
-						</div>
 
-						{/* Developer Training */}
-						<div className="group border-border-subtle bg-card hover:border-border relative overflow-hidden rounded-3xl border p-12 transition-all duration-200 lg:p-16">
-							<div className="space-y-8">
-								<div className="space-y-4">
-									<div className="inline-flex items-center gap-2">
-										<div className="bg-primary h-2 w-2 rounded-full" />
-										<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+							{/* Developer Training */}
+							<div className="group border-border-subtle bg-card hover:border-border relative overflow-hidden rounded-2xl border p-8 transition-all duration-200 lg:p-10">
+								<div className="space-y-6">
+									<div className="space-y-4">
+										<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
 											Developer Training
 										</span>
-									</div>
-									<h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-										Level Up Your Team
-									</h2>
-									<p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
-										Custom workshops and training programs for engineering
-										teams. I&apos;ve taught at O&apos;Reilly and egghead, and I
-										bring that same quality to your team directly.
-									</p>
-								</div>
-
-								<div className="grid gap-6 md:grid-cols-2">
-									<div className="space-y-3">
-										<h3 className="text-foreground text-lg font-semibold">
-											Team Workshops
-										</h3>
+										<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
+											Level Up Your Team
+										</h2>
 										<p className="text-muted-foreground text-base leading-relaxed">
-											Half-day to multi-day workshops on React, Next.js,
-											TypeScript, and AI integration. Hands-on, practical
-											learning your team can apply immediately.
+											Custom workshops and training programs for engineering
+											teams. I&apos;ve taught at O&apos;Reilly and egghead,
+											and I bring that same quality to your team directly.
 										</p>
 									</div>
 
-									<div className="space-y-3">
-										<h3 className="text-foreground text-lg font-semibold">
-											Corporate Training
-										</h3>
-										<p className="text-muted-foreground text-base leading-relaxed">
-											Custom training programs designed for your team&apos;s
-											specific needs and skill level. Not generic content —
-											training built around your codebase and challenges.
-										</p>
+									<div className="space-y-4">
+										<div className="space-y-2">
+											<h3 className="text-foreground text-sm font-semibold">
+												Team Workshops
+											</h3>
+											<p className="text-muted-foreground text-sm leading-relaxed">
+												Half-day to multi-day workshops on React, Next.js,
+												TypeScript, and AI integration.
+											</p>
+										</div>
+										<div className="space-y-2">
+											<h3 className="text-foreground text-sm font-semibold">
+												Corporate Training
+											</h3>
+											<p className="text-muted-foreground text-sm leading-relaxed">
+												Custom training designed for your team&apos;s
+												specific needs, codebase, and skill level.
+											</p>
+										</div>
 									</div>
-								</div>
 
-								<div className="border-border flex flex-wrap items-center justify-between gap-6 border-t pt-8">
-									<div className="flex flex-wrap gap-2">
-										{[
-											'React',
-											'Next.js',
-											'TypeScript',
-											'AI Integration',
-											'Workshops'
-										].map((tag) => (
-											<span
-												key={tag}
-												className="bg-muted text-muted-foreground rounded-full px-3 py-1 text-xs font-medium">
-												{tag}
-											</span>
-										))}
+									<div className="border-border flex flex-wrap items-center justify-between gap-4 border-t pt-6">
+										<div className="flex flex-wrap gap-2">
+											{[
+												'React',
+												'TypeScript',
+												'AI',
+												'Workshops'
+											].map((tag) => (
+												<span
+													key={tag}
+													className="bg-muted text-muted-foreground font-mono rounded-full px-3 py-1 text-xs font-medium">
+													{tag}
+												</span>
+											))}
+										</div>
+										<Button
+											asChild
+											variant="ghost"
+											size="sm"
+											className="group/btn text-primary hover:text-primary">
+											<Link href="/teaching">
+												Teaching portfolio
+												<ArrowRight className="ml-2 h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-1" />
+											</Link>
+										</Button>
 									</div>
-									<Button
-										asChild
-										variant="ghost"
-										className="group/btn text-primary hover:text-primary">
-										<Link href="/teaching">
-											See teaching portfolio
-											<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-										</Link>
-									</Button>
 								</div>
 							</div>
 						</div>
@@ -298,7 +281,7 @@ export default function ServicesPage() {
 						<div className="space-y-4">
 							<div className="inline-flex items-center gap-2">
 								<div className="bg-primary h-2 w-2 rounded-full" />
-								<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+								<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
 									What Clients Say
 								</span>
 							</div>
@@ -389,7 +372,7 @@ export default function ServicesPage() {
 							<div className="space-y-4">
 								<div className="inline-flex items-center gap-2">
 									<div className="bg-primary h-2 w-2 rounded-full" />
-									<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+									<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
 										Tech Stack
 									</span>
 								</div>
@@ -399,30 +382,21 @@ export default function ServicesPage() {
 							</div>
 							<div className="flex flex-wrap gap-3">
 								{[
-									{name: 'React', domain: 'react.dev'},
-									{name: 'Next.js', domain: 'nextjs.org'},
-									{name: 'TypeScript', domain: 'typescriptlang.org'},
-									{name: 'Node.js', domain: 'nodejs.org'},
-									{name: 'Tailwind CSS', domain: 'tailwindcss.com'},
-									{name: 'Sanity', domain: 'sanity.io'},
-									{name: 'Vercel', domain: 'vercel.com'}
+									'React',
+									'Next.js',
+									'TypeScript',
+									'Node.js',
+									'Tailwind CSS',
+									'Sanity',
+									'Vercel',
+									'Claude & GPT-4'
 								].map((tech) => (
 									<div
-										key={tech.name}
-										className="border-border bg-card flex items-center gap-2 rounded-full border px-4 py-2">
-										<Image
-											src={`https://www.google.com/s2/favicons?domain=${tech.domain}&sz=16`}
-											alt={tech.name}
-											width={16}
-											height={16}
-											className="h-4 w-4"
-										/>
-										<span className="text-sm font-medium">{tech.name}</span>
+										key={tech}
+										className="border-border bg-card rounded-full border px-4 py-2">
+										<span className="text-sm font-medium">{tech}</span>
 									</div>
 								))}
-								<div className="border-border bg-muted/50 flex items-center gap-2 rounded-full border px-4 py-2">
-									<span className="text-sm font-medium">Claude & GPT-4</span>
-								</div>
 							</div>
 							<p className="text-muted-foreground text-base leading-relaxed">
 								Production-ready solutions using battle-tested tools your team
@@ -434,7 +408,7 @@ export default function ServicesPage() {
 							<div className="space-y-4">
 								<div className="inline-flex items-center gap-2">
 									<div className="bg-primary h-2 w-2 rounded-full" />
-									<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+									<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
 										Experience
 									</span>
 								</div>
@@ -444,26 +418,17 @@ export default function ServicesPage() {
 							</div>
 							<div className="flex flex-wrap gap-3">
 								{[
-									{name: 'Google', domain: 'google.com'},
-									{name: "O'Reilly", domain: 'oreilly.com'},
-									{name: 'Sentry', domain: 'sentry.io'},
-									{name: 'HOKA', domain: 'hoka.com'},
-									{name: 'egghead', domain: 'egghead.io'},
-									{name: 'Test Double', domain: 'testdouble.com'}
+									'Google',
+									"O'Reilly",
+									'Sentry',
+									'HOKA',
+									'egghead',
+									'Test Double'
 								].map((company) => (
 									<div
-										key={company.name}
-										className="border-border bg-card flex items-center gap-2 rounded-full border px-4 py-2">
-										<Image
-											src={`https://www.google.com/s2/favicons?domain=${company.domain}&sz=16`}
-											alt={company.name}
-											width={16}
-											height={16}
-											className="h-4 w-4"
-										/>
-										<span className="text-sm font-medium">
-											{company.name}
-										</span>
+										key={company}
+										className="border-border bg-card rounded-full border px-4 py-2">
+										<span className="text-sm font-medium">{company}</span>
 									</div>
 								))}
 							</div>

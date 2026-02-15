@@ -3,13 +3,11 @@ import {notFound} from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import Container from '@/components/container'
-import {Button} from '@/components/ui/button'
-import {ArrowRight, ArrowLeft} from 'lucide-react'
+import {ArrowLeft} from 'lucide-react'
 
 type CaseStudy = {
 	slug: string
 	client: string
-	domain: string
 	title: string
 	type: string
 	tags: string[]
@@ -29,7 +27,6 @@ const caseStudies: Record<string, CaseStudy> = {
 	google: {
 		slug: 'google',
 		client: 'Google',
-		domain: 'google.com',
 		title: 'Developer Education Platform',
 		type: 'Development & Education',
 		tags: ['React', 'TypeScript', 'Education', 'Content Engineering'],
@@ -56,7 +53,6 @@ const caseStudies: Record<string, CaseStudy> = {
 	oreilly: {
 		slug: 'oreilly',
 		client: "O'Reilly",
-		domain: 'oreilly.com',
 		title: 'Live Technical Workshops',
 		type: 'Developer Training',
 		tags: ['Workshops', 'React', 'TypeScript', 'Instructional Design'],
@@ -83,7 +79,6 @@ const caseStudies: Record<string, CaseStudy> = {
 	sentry: {
 		slug: 'sentry',
 		client: 'Sentry',
-		domain: 'sentry.io',
 		title: 'Developer Experience & Education',
 		type: 'Development & Education',
 		tags: ['Developer Experience', 'Education', 'React', 'TypeScript'],
@@ -110,7 +105,6 @@ const caseStudies: Record<string, CaseStudy> = {
 	hoka: {
 		slug: 'hoka',
 		client: 'HOKA',
-		domain: 'hoka.com',
 		title: 'Full-Stack Product Development',
 		type: 'Full-Stack Development',
 		tags: ['Next.js', 'Full-Stack', 'E-commerce', 'Performance'],
@@ -138,7 +132,6 @@ const caseStudies: Record<string, CaseStudy> = {
 	egghead: {
 		slug: 'egghead',
 		client: 'egghead',
-		domain: 'egghead.io',
 		title: 'Developer Courses at Scale',
 		type: 'Developer Education',
 		tags: ['Courses', 'React', 'TypeScript', 'Education'],
@@ -165,7 +158,6 @@ const caseStudies: Record<string, CaseStudy> = {
 	'test-double': {
 		slug: 'test-double',
 		client: 'Test Double',
-		domain: 'testdouble.com',
 		title: 'Software Consulting & Team Augmentation',
 		type: 'Consulting',
 		tags: [
@@ -241,18 +233,13 @@ export default async function CaseStudyPage({params}: PageProps) {
 			<section className="px-6 pt-12 pb-16 lg:pb-24">
 				<Container width="narrow">
 					<div className="space-y-8">
-						<div className="flex items-center gap-3">
-							<Image
-								src={`https://www.google.com/s2/favicons?domain=${study.domain}&sz=32`}
-								alt={study.client}
-								width={24}
-								height={24}
-								className="h-6 w-6"
-							/>
+						<div className="flex items-center gap-2">
 							<span className="text-muted-foreground text-sm font-medium">
 								{study.client}
 							</span>
-							<span className="text-muted-foreground text-sm">·</span>
+							<span className="text-muted-foreground text-sm opacity-40">
+								·
+							</span>
 							<span className="text-muted-foreground text-sm">
 								{study.type}
 							</span>
@@ -264,7 +251,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 							{study.tags.map((tag) => (
 								<span
 									key={tag}
-									className="bg-muted text-muted-foreground rounded-full px-3 py-1 text-sm font-medium">
+									className="bg-muted text-muted-foreground font-mono rounded-full px-3 py-1 text-xs font-medium">
 									{tag}
 								</span>
 							))}
@@ -280,9 +267,9 @@ export default async function CaseStudyPage({params}: PageProps) {
 						{/* The Challenge */}
 						<div className="space-y-6">
 							<div className="space-y-3">
-								<span className="text-muted-foreground text-sm font-medium">
-									The Challenge
-								</span>
+							<span className="text-muted-foreground font-mono text-xs font-medium uppercase tracking-wide">
+								The Challenge
+							</span>
 								<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
 									What needed to happen
 								</h2>
@@ -297,9 +284,9 @@ export default async function CaseStudyPage({params}: PageProps) {
 						{/* The Approach */}
 						<div className="space-y-6">
 							<div className="space-y-3">
-								<span className="text-muted-foreground text-sm font-medium">
-									The Approach
-								</span>
+							<span className="text-muted-foreground font-mono text-xs font-medium uppercase tracking-wide">
+								The Approach
+							</span>
 								<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
 									How I helped
 								</h2>
@@ -311,10 +298,10 @@ export default async function CaseStudyPage({params}: PageProps) {
 							</div>
 						</div>
 
-						{/* The Outcome */}
-						<div className="space-y-6">
+					{/* The Outcome */}
+						<div className="border-border space-y-6 border-l-2 pl-8">
 							<div className="space-y-3">
-								<span className="text-muted-foreground text-sm font-medium">
+								<span className="text-muted-foreground font-mono text-xs font-medium uppercase tracking-wide">
 									The Outcome
 								</span>
 								<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
@@ -335,7 +322,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 								{study.techStack.map((tech) => (
 									<span
 										key={tech}
-										className="border-border bg-card rounded-full border px-4 py-2 text-sm font-medium">
+										className="border-border bg-card font-mono rounded-full border px-4 py-2 text-xs font-medium">
 										{tech}
 									</span>
 								))}
@@ -374,32 +361,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 				</Container>
 			</section>
 
-			{/* CTA */}
-			<section className="py-24 lg:py-32">
-				<Container width="narrow">
-					<div className="bg-card border-border-subtle space-y-8 rounded-3xl border p-12 text-center lg:p-16">
-						<div className="space-y-6">
-							<h2 className="text-3xl font-bold tracking-tight lg:text-4xl">
-								Want similar results?
-							</h2>
-							<p className="text-muted-foreground text-lg leading-relaxed lg:text-xl">
-								Let&apos;s discuss how I can help your team.
-							</p>
-						</div>
-						<div className="pt-4">
-							<Button asChild size="lg" className="group">
-								<Link
-									href="https://cal.com/laurosilvacom/chat"
-									target="_blank"
-									rel="noopener noreferrer">
-									Schedule a free consultation
-									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-								</Link>
-							</Button>
-						</div>
-					</div>
-				</Container>
-			</section>
+		
 		</>
 	)
 }

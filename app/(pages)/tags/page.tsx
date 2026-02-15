@@ -38,7 +38,7 @@ export default async function TagsPage() {
 						<div className="space-y-4">
 							<div className="inline-flex items-center gap-2">
 								<div className="bg-primary h-2 w-2 rounded-full" />
-								<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+								<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
 									Topics
 								</span>
 							</div>
