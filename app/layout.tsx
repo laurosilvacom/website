@@ -4,6 +4,14 @@ import {ThemeProvider} from '@/shared/components/theme-provider'
 import {Analytics} from '@vercel/analytics/next'
 import {GeistSans} from 'geist/font/sans'
 import {GeistMono} from 'geist/font/mono'
+import {Instrument_Serif} from 'next/font/google'
+
+const instrumentSerif = Instrument_Serif({
+	weight: '400',
+	subsets: ['latin'],
+	variable: '--font-serif',
+	display: 'swap',
+})
 
 import '@/app/globals.css'
 

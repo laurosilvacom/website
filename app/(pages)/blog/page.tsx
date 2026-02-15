@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Container from '@/shared/components/container'
 import {formatDate, getBlogPosts} from '@/features/blog/server'
 import {type BlogPost} from '@/features/blog/server'
+import {Button} from '@/shared/ui/button'
 import {ArrowRight} from 'lucide-react'
 
 export const revalidate = 30
@@ -57,19 +58,19 @@ export default async function BlogPage() {
 							Thoughts, ideas, and explorations at the intersection of technology
 							and the outdoor industry.
 						</p>
-						<div className="flex items-center gap-4 pt-2">
-							<Link
-								href="/blog/rss.xml"
-								className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-sm font-medium transition-colors">
-								RSS Feed
-								<ArrowRight className="h-3.5 w-3.5" />
-							</Link>
-							<Link
-								href="/newsletter"
-								className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-sm font-medium transition-colors">
-								Newsletter
-								<ArrowRight className="h-3.5 w-3.5" />
-							</Link>
+						<div className="flex items-center gap-3 pt-2">
+							<Button asChild variant="ghost">
+								<Link href="/blog/rss.xml">
+									RSS Feed
+									<ArrowRight />
+								</Link>
+							</Button>
+							<Button asChild variant="ghost">
+								<Link href="/newsletter">
+									Newsletter
+									<ArrowRight />
+								</Link>
+							</Button>
 						</div>
 					</div>
 				</Container>

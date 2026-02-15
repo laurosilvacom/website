@@ -1,6 +1,7 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import Container from '@/shared/components/container'
-import {ArrowRight, ArrowUpRight} from 'lucide-react'
+import {ArrowRight} from 'lucide-react'
 import {generatePageMetadata} from '@/shared/lib/metadata'
 
 export const metadata = generatePageMetadata(
@@ -25,6 +26,7 @@ const caseStudies = [
 	{
 		slug: 'google',
 		client: 'Google',
+		domain: 'google.com',
 		title: 'Developer Education Platform',
 		summary:
 			'Built developer education content and tooling for Google, helping engineers learn and adopt modern web technologies at scale.',
@@ -35,6 +37,7 @@ const caseStudies = [
 	{
 		slug: 'oreilly',
 		client: "O'Reilly",
+		domain: 'oreilly.com',
 		title: 'Live Technical Workshops',
 		summary:
 			"Designed and delivered live technical workshops on React, TypeScript, and modern web development for O'Reilly's global engineering audience.",
@@ -45,6 +48,7 @@ const caseStudies = [
 	{
 		slug: 'sentry',
 		client: 'Sentry',
+		domain: 'sentry.io',
 		title: 'Developer Experience & Education',
 		summary:
 			"Created developer education content and contributed to developer experience improvements for Sentry's error monitoring platform.",
@@ -55,6 +59,7 @@ const caseStudies = [
 	{
 		slug: 'hoka',
 		client: 'HOKA',
+		domain: 'hoka.com',
 		title: 'Full-Stack Product Development',
 		summary:
 			'Led full-stack development for digital products at HOKA, building performant web experiences for one of the fastest-growing brands in running.',
@@ -65,6 +70,7 @@ const caseStudies = [
 	{
 		slug: 'egghead',
 		client: 'egghead',
+		domain: 'egghead.io',
 		title: 'Developer Courses at Scale',
 		summary:
 			"Created and published technical courses on modern web development, reaching thousands of developers through egghead's learning platform.",
@@ -75,6 +81,7 @@ const caseStudies = [
 	{
 		slug: 'test-double',
 		client: 'Test Double',
+		domain: 'testdouble.com',
 		title: 'Software Consulting & Team Augmentation',
 		summary:
 			'Provided senior engineering consulting and team augmentation, helping client teams ship better software and improve their development practices.',
@@ -140,6 +147,14 @@ export default function WorkPage() {
 									<div className="flex items-start justify-between gap-6">
 										<div className="min-w-0 space-y-3">
 											<div className="text-muted-foreground flex items-center gap-2 text-xs">
+												<Image
+													src={`https://www.google.com/s2/favicons?domain=${study.domain}&sz=64`}
+													alt=""
+													width={14}
+													height={14}
+													unoptimized
+													className="h-3.5 w-3.5 rounded-sm opacity-50 grayscale group-hover:opacity-100 group-hover:grayscale-0"
+												/>
 												<span className="font-medium">{study.client}</span>
 												<span className="opacity-40">·</span>
 												<span>{study.type}</span>
@@ -186,7 +201,15 @@ export default function WorkPage() {
 										<span className="text-foreground text-sm font-medium">
 											{study.title}
 										</span>
-										<p className="text-muted-foreground text-xs">
+										<p className="text-muted-foreground flex items-center gap-1.5 text-xs">
+											<Image
+												src={`https://www.google.com/s2/favicons?domain=${study.domain}&sz=64`}
+												alt=""
+												width={12}
+												height={12}
+												unoptimized
+												className="h-3 w-3 rounded-sm opacity-50 grayscale group-hover:opacity-100 group-hover:grayscale-0"
+											/>
 											{study.client} · {study.type}
 										</p>
 									</div>
@@ -198,29 +221,6 @@ export default function WorkPage() {
 				</section>
 			)}
 
-			{/* CTA */}
-			<section className="border-border border-t py-16 lg:py-20">
-				<Container width="base">
-					<div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-						<div>
-							<p className="text-foreground text-sm font-medium">
-								Interested in working together?
-							</p>
-							<p className="text-muted-foreground text-sm">
-								I&apos;m available for new development engagements and technical consulting.
-							</p>
-						</div>
-						<Link
-							href="https://cal.com/laurosilvacom/chat"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex shrink-0 items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors">
-							Schedule a call
-							<ArrowUpRight className="h-3.5 w-3.5" />
-						</Link>
-					</div>
-				</Container>
-			</section>
 		</>
 	)
 }

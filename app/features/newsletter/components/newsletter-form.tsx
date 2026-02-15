@@ -44,12 +44,9 @@ export function NewsletterForm() {
 
 	if (status === 'success') {
 		return (
-			<div className="w-full max-w-md py-12 text-center">
-				<div className="mb-6 text-6xl" role="img" aria-label="Party popper">
-					🎉
-				</div>
-				<h2 className="text-foreground mb-3 text-2xl font-bold">You're subscribed!</h2>
-				<p className="text-muted-foreground text-base">
+			<div className="py-4">
+				<p className="text-foreground text-sm font-medium">You&apos;re subscribed!</p>
+				<p className="text-muted-foreground text-xs">
 					Check your inbox for a confirmation email.
 				</p>
 			</div>
@@ -57,7 +54,7 @@ export function NewsletterForm() {
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className="w-full max-w-xl">
+		<form onSubmit={handleSubmit} className="max-w-lg">
 			{/* Honeypot */}
 			<input
 				type="checkbox"
@@ -70,8 +67,7 @@ export function NewsletterForm() {
 				aria-hidden="true"
 			/>
 
-			<div className="flex flex-col gap-3 sm:flex-row sm:items-start">
-				{/* First Name */}
+			<div className="flex flex-col gap-2 sm:flex-row sm:items-start">
 				<div className="flex-1">
 					<label htmlFor="newsletter-firstName" className="sr-only">
 						First Name
@@ -81,7 +77,7 @@ export function NewsletterForm() {
 						type="text"
 						value={firstName}
 						onChange={(e) => setFirstName(e.target.value)}
-						className="border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary w-full rounded-md border px-4 py-3 text-base transition-colors focus:ring-1 focus:outline-none"
+						className="border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary h-9 w-full rounded-lg border px-3 text-sm transition-colors focus:ring-1 focus:outline-none"
 						placeholder="First name"
 						aria-describedby="firstName-description"
 					/>
@@ -90,7 +86,6 @@ export function NewsletterForm() {
 					</span>
 				</div>
 
-				{/* Email */}
 				<div className="flex-2">
 					<label htmlFor="newsletter-email" className="sr-only">
 						Email address (required)
@@ -102,7 +97,7 @@ export function NewsletterForm() {
 						onChange={(e) => setEmail(e.target.value)}
 						required
 						autoComplete="email"
-						className="border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary w-full rounded-md border px-4 py-3 text-base transition-colors focus:ring-1 focus:outline-none"
+						className="border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary h-9 w-full rounded-lg border px-3 text-sm transition-colors focus:ring-1 focus:outline-none"
 						placeholder="you@example.com"
 						aria-describedby="email-description"
 						aria-required="true"
@@ -112,25 +107,25 @@ export function NewsletterForm() {
 					</span>
 				</div>
 
-				{/* Submit Button */}
 				<Button
 					type="submit"
+					size="sm"
 					disabled={status === 'loading'}
-					className="px-8 py-3 text-base font-medium sm:shrink-0"
+					className="shrink-0"
 					aria-busy={status === 'loading'}>
 					{status === 'loading' ? 'Subscribing...' : 'Subscribe'}
 				</Button>
 			</div>
 
-			{/* Error Message */}
 			{errorMessage && (
-				<div role="alert" className="text-destructive mt-3 text-sm font-medium">
+				<div role="alert" className="text-destructive mt-2 text-xs font-medium">
 					{errorMessage}
 				</div>
 			)}
 
-			{/* Privacy Note */}
-			<p className="text-muted-foreground mt-3 text-sm">No spam. Unsubscribe anytime.</p>
+			<p className="text-muted-foreground mt-2 text-xs">
+				No spam. Unsubscribe anytime.
+			</p>
 		</form>
 	)
 }

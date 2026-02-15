@@ -4,6 +4,7 @@ import type {
 	SanityModule,
 	SanityProductContributor,
 } from '@/shared/integrations/sanity/types'
+import {Button} from '@/shared/ui/button'
 import {ArrowUpRight, Mail} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -55,25 +56,24 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 								{workshop.shortDescription}
 							</p>
 						)}
-						<div className="flex items-center gap-4 pt-2">
-							<button
+						<div className="flex items-center gap-3 pt-2">
+							<Button
 								onClick={() => {
 									const formElement = document.getElementById('signup-form')
 									formElement?.scrollIntoView({
 										behavior: 'smooth',
 										block: 'center',
 									})
-								}}
-								className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors">
+								}}>
 								Start free email course
-								<Mail className="h-3.5 w-3.5" />
-							</button>
-							<Link
-								href="/teaching"
-								className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-sm font-medium transition-colors">
-								All teaching
-								<ArrowUpRight className="h-3.5 w-3.5" />
-							</Link>
+								<Mail />
+							</Button>
+							<Button asChild variant="ghost">
+								<Link href="/teaching">
+									All teaching
+									<ArrowUpRight />
+								</Link>
+							</Button>
 						</div>
 					</div>
 				</Container>
@@ -233,18 +233,18 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 									: 'Free email course — sign up below.'}
 							</p>
 						</div>
-						<button
+						<Button
+							size="sm"
 							onClick={() => {
 								const formElement = document.getElementById('signup-form')
 								formElement?.scrollIntoView({
 									behavior: 'smooth',
 									block: 'center',
 								})
-							}}
-							className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors">
+							}}>
 							Start free email course
-							<Mail className="h-3.5 w-3.5" />
-						</button>
+							<Mail />
+						</Button>
 					</div>
 				</Container>
 			</section>

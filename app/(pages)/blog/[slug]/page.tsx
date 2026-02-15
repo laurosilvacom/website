@@ -11,7 +11,7 @@ import Image from 'next/image'
 import {highlightCode} from '@/shared/lib/highlight-code'
 import Link from 'next/link'
 import {type PortableTextBlock} from '@sanity/types'
-import {ArrowLeft, ArrowUpRight} from 'lucide-react'
+import {ArrowLeft} from 'lucide-react'
 import {
 	getSanityImageBlurDataUrl,
 	getSanityImageUrl,
@@ -185,44 +185,13 @@ export default async function BlogPost({params}: Props) {
 				{/* Content */}
 				<section className="py-16 lg:py-20">
 					<Container width="base">
-						<div className="prose prose-sm dark:prose-invert prose-headings:text-foreground prose-headings:font-bold prose-headings:tracking-tight prose-p:text-muted-foreground prose-p:leading-relaxed prose-a:text-foreground prose-a:underline prose-a:underline-offset-4 prose-strong:text-foreground prose-code:text-foreground prose-pre:bg-muted prose-pre:border prose-pre:border-border prose-li:text-muted-foreground max-w-none">
+						<div className="mx-auto max-w-2xl">
 							<PortableText blocks={processedBlocks} />
 						</div>
 					</Container>
 				</section>
 			</article>
 
-			{/* CTA */}
-			<section className="border-border border-t py-16 lg:py-20">
-				<Container width="base">
-					<div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-						<div>
-							<p className="text-foreground text-sm font-medium">
-								Have questions or feedback?
-							</p>
-							<p className="text-muted-foreground text-sm">
-								Reach out on LinkedIn or send me an email.
-							</p>
-						</div>
-						<div className="flex items-center gap-3">
-							<a
-								href="https://www.linkedin.com/in/laurosilvacom/"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex shrink-0 items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors">
-								LinkedIn
-								<ArrowUpRight className="h-3.5 w-3.5" />
-							</a>
-							<a
-								href="mailto:hello@laurosilva.com"
-								className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-sm font-medium transition-colors">
-								Email
-								<ArrowUpRight className="h-3.5 w-3.5" />
-							</a>
-						</div>
-					</div>
-				</Container>
-			</section>
 		</>
 	)
 }

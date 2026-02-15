@@ -1,8 +1,9 @@
 import {Suspense} from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import Container from '@/shared/components/container'
 import {formatDate, getBlogPosts} from '@/features/blog/server'
-import {ArrowRight, ArrowUpRight} from 'lucide-react'
+import {ArrowRight} from 'lucide-react'
 import {type BlogPost} from '@/features/blog/server'
 
 async function RecentPosts() {
@@ -47,29 +48,40 @@ function PostsFallback() {
 	)
 }
 
-const clients = ['Google', "O'Reilly", 'Sentry', 'HOKA', 'egghead', 'Test Double']
+const clients = [
+	{name: 'Google', domain: 'google.com'},
+	{name: "O'Reilly", domain: 'oreilly.com'},
+	{name: 'Sentry', domain: 'sentry.io'},
+	{name: 'HOKA', domain: 'hoka.com'},
+	{name: 'egghead', domain: 'egghead.io'},
+	{name: 'Test Double', domain: 'testdouble.com'},
+]
 
 const work = [
 	{
 		client: 'Google',
+		domain: 'google.com',
 		role: 'Developer Education Platform',
 		type: 'Development & Education',
 		href: '/work/google',
 	},
 	{
 		client: "O'Reilly",
+		domain: 'oreilly.com',
 		role: 'Live Technical Workshops',
 		type: 'Developer Training',
 		href: '/work/oreilly',
 	},
 	{
 		client: 'Sentry',
+		domain: 'sentry.io',
 		role: 'Developer Experience & Education',
 		type: 'Development & Education',
 		href: '/work/sentry',
 	},
 	{
 		client: 'HOKA',
+		domain: 'hoka.com',
 		role: 'Full-Stack Product Development',
 		type: 'Full-Stack Development',
 		href: '/work/hoka',
@@ -89,26 +101,25 @@ export default async function Page() {
 							Level up teams.
 						</h1>
 						<p className="text-muted-foreground max-w-xl text-lg leading-relaxed">
-							Senior full-stack engineer and developer educator. I help
-							companies ship better software and level up their engineering
-							teams.
+							Senior full-stack engineer and developer educator. Building
+							products and teaching the teams behind them.
 						</p>
-						<div className="flex flex-wrap items-center gap-4 pt-2">
-							<Link
-								href="/work"
-								className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors">
-								See my work
-								<ArrowRight className="h-3.5 w-3.5" />
-							</Link>
-							<Link
-								href="https://cal.com/laurosilvacom/chat"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-sm font-medium transition-colors">
-								Schedule a call
-								<ArrowUpRight className="h-3.5 w-3.5" />
-							</Link>
-						</div>
+					</div>
+				</Container>
+			</section>
+
+			{/* Hero Image */}
+			<section className="border-border border-t py-10 lg:py-14">
+				<Container width="base">
+					<div className="relative aspect-21/9 overflow-hidden rounded-xl">
+						<Image
+							src="/photos/website-photo-1.jpg"
+							alt="Lauro Silva"
+							fill
+							priority
+							className="object-cover object-top"
+							sizes="(min-width: 1024px) 1080px, 100vw"
+						/>
 					</div>
 				</Container>
 			</section>
@@ -120,11 +131,21 @@ export default async function Page() {
 						<span className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
 							Worked with
 						</span>
-						{clients.map((name) => (
+						{clients.map((client) => (
 							<span
-								key={name}
-								className="text-foreground/80 text-sm font-medium">
-								{name}
+								key={client.name}
+								className="group flex items-center gap-2">
+								<Image
+									src={`https://www.google.com/s2/favicons?domain=${client.domain}&sz=64`}
+									alt=""
+									width={16}
+									height={16}
+									unoptimized
+									className="h-4 w-4 rounded-sm opacity-50 grayscale group-hover:opacity-100 group-hover:grayscale-0"
+								/>
+								<span className="text-foreground/80 text-sm font-medium">
+									{client.name}
+								</span>
 							</span>
 						))}
 					</div>
@@ -139,19 +160,19 @@ export default async function Page() {
 							{
 								n: '01',
 								title: 'Build',
-								desc: 'I embed with your team and ship production software. React, Next.js, TypeScript, Node.js — architecture to deployment.',
-								href: '/services',
+								desc: 'Production software with React, Next.js, TypeScript. Architecture to deployment.',
+								href: '/work',
 							},
 							{
 								n: '02',
 								title: 'Lead',
-								desc: 'Architecture reviews, technical strategy, code audits. Senior guidance without a full-time hire.',
-								href: '/services',
+								desc: 'Architecture reviews, technical strategy, code audits. The decisions that shape products.',
+								href: '/work',
 							},
 							{
 								n: '03',
 								title: 'Teach',
-								desc: 'Workshops and training for engineering teams. Previously taught at O\u2019Reilly and egghead.',
+								desc: "Workshops and training for engineering teams. O'Reilly, egghead, Google.",
 								href: '/teaching',
 							},
 						].map((item) => (
@@ -168,10 +189,7 @@ export default async function Page() {
 										{item.desc}
 									</p>
 								</div>
-								<div className="text-muted-foreground group-hover:text-foreground mt-6 flex items-center gap-1 text-xs font-medium transition-colors">
-									Learn more
-									<ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-								</div>
+								<ArrowRight className="text-muted-foreground mt-6 h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100" />
 							</Link>
 						))}
 					</div>
@@ -201,7 +219,17 @@ export default async function Page() {
 									<span className="text-foreground text-sm font-medium">
 										{item.role}
 									</span>
-									<p className="text-muted-foreground text-xs">{item.client}</p>
+									<p className="text-muted-foreground flex items-center gap-1.5 text-xs">
+										<Image
+											src={`https://www.google.com/s2/favicons?domain=${item.domain}&sz=64`}
+											alt=""
+											width={12}
+											height={12}
+											unoptimized
+											className="h-3 w-3 rounded-sm opacity-50 grayscale group-hover:opacity-100 group-hover:grayscale-0"
+										/>
+										{item.client}
+									</p>
 								</div>
 								<div className="flex shrink-0 items-center gap-3">
 									<span className="text-muted-foreground hidden text-xs sm:inline">
@@ -236,36 +264,6 @@ export default async function Page() {
 				</Container>
 			</section>
 
-			{/* CTA */}
-			<section className="border-border border-t py-16 lg:py-20">
-				<Container width="base">
-					<div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-						<div>
-							<p className="text-foreground text-sm font-medium">
-								Have a project in mind?
-							</p>
-							<p className="text-muted-foreground text-sm">
-								I&apos;m available for new engagements and team training.
-							</p>
-						</div>
-						<div className="flex items-center gap-4">
-							<Link
-								href="/services"
-								className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors">
-								Services
-							</Link>
-							<Link
-								href="https://cal.com/laurosilvacom/chat"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors">
-								Let&apos;s talk
-								<ArrowUpRight className="h-3.5 w-3.5" />
-							</Link>
-						</div>
-					</div>
-				</Container>
-			</section>
 		</>
 	)
 }

@@ -1,6 +1,7 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import Container from '@/shared/components/container'
-import {ArrowRight, ArrowUpRight} from 'lucide-react'
+import {ArrowRight} from 'lucide-react'
 import {generatePageMetadata} from '@/shared/lib/metadata'
 
 export const metadata = generatePageMetadata(
@@ -23,6 +24,7 @@ export const metadata = generatePageMetadata(
 const platforms = [
 	{
 		name: "O'Reilly Media",
+		domain: 'oreilly.com',
 		type: 'Live Workshops',
 		description:
 			"Live, interactive workshops on React, TypeScript, and modern web development for O'Reilly's global engineering audience.",
@@ -30,6 +32,7 @@ const platforms = [
 	},
 	{
 		name: 'egghead.io',
+		domain: 'egghead.io',
 		type: 'Video Courses',
 		description:
 			'Concise, practical video courses on modern web development. Patterns and techniques developers can apply immediately.',
@@ -95,22 +98,22 @@ export default function TeachingPage() {
 							workshops to multi-week programs. Previously at O&apos;Reilly and
 							egghead.
 						</p>
-						<div className="flex items-center gap-4 pt-2">
-							<Link
-								href="https://cal.com/laurosilvacom/chat"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors">
-								Book training
-								<ArrowUpRight className="h-3.5 w-3.5" />
-							</Link>
-							<Link
-								href="/workshops/prompt-engineering-for-everyone"
-								className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-sm font-medium transition-colors">
-								Current workshop
-								<ArrowRight className="h-3.5 w-3.5" />
-							</Link>
-						</div>
+					</div>
+				</Container>
+			</section>
+
+			{/* Hero Image */}
+			<section className="border-border border-t py-10 lg:py-14">
+				<Container width="base">
+					<div className="relative aspect-21/9 overflow-hidden rounded-xl">
+						<Image
+							src="/photos/website-photo-4.jpg"
+							alt="Teaching and workshops"
+							fill
+							priority
+							className="object-cover object-top"
+							sizes="(min-width: 1024px) 1080px, 100vw"
+						/>
 					</div>
 				</Container>
 			</section>
@@ -180,7 +183,15 @@ export default function TeachingPage() {
 								href={platform.href}
 								className="group flex items-center justify-between gap-4 py-4 transition-opacity hover:opacity-70">
 								<div className="min-w-0 space-y-1">
-									<span className="text-foreground text-sm font-medium">
+									<span className="text-foreground flex items-center gap-2 text-sm font-medium">
+										<Image
+											src={`https://www.google.com/s2/favicons?domain=${platform.domain}&sz=64`}
+											alt=""
+											width={14}
+											height={14}
+											unoptimized
+											className="h-3.5 w-3.5 rounded-sm opacity-50 grayscale group-hover:opacity-100 group-hover:grayscale-0"
+										/>
 										{platform.name}
 									</span>
 									<p className="text-muted-foreground text-xs">
@@ -262,29 +273,6 @@ export default function TeachingPage() {
 				</Container>
 			</section>
 
-			{/* CTA */}
-			<section className="border-border border-t py-16 lg:py-20">
-				<Container width="base">
-					<div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-						<div>
-							<p className="text-foreground text-sm font-medium">
-								Level up your engineering team
-							</p>
-							<p className="text-muted-foreground text-sm">
-								From half-day workshops to week-long intensives.
-							</p>
-						</div>
-						<Link
-							href="https://cal.com/laurosilvacom/chat"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex shrink-0 items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors">
-							Book training
-							<ArrowUpRight className="h-3.5 w-3.5" />
-						</Link>
-					</div>
-				</Container>
-			</section>
 		</>
 	)
 }

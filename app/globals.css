@@ -5,59 +5,59 @@
 
 :root {
 	--radius: 0.5rem;
-	/* Light mode - Clean white with subtle grays */
-	--background: 255 255 255;
-	--foreground: 10 10 10;
-	--card: 255 255 255;
-	--card-foreground: 10 10 10;
-	--popover: 255 255 255;
-	--popover-foreground: 10 10 10;
-	--primary: 10 10 10;
-	--primary-foreground: 255 255 255;
-	--secondary: 245 245 245;
-	--secondary-foreground: 10 10 10;
-	--muted: 248 248 248;
-	--muted-foreground: 115 115 115;
-	--accent: 248 248 248;
-	--accent-foreground: 10 10 10;
-	--destructive: 239 68 68;
-	--border: 229 229 229;
-	--input: 229 229 229;
-	--ring: 10 10 10;
+	/* Light — warm off-white, soft contrast */
+	--background: 252 251 249;
+	--foreground: 24 24 22;
+	--card: 255 255 253;
+	--card-foreground: 24 24 22;
+	--popover: 255 255 253;
+	--popover-foreground: 24 24 22;
+	--primary: 24 24 22;
+	--primary-foreground: 255 255 253;
+	--secondary: 244 243 241;
+	--secondary-foreground: 24 24 22;
+	--muted: 246 245 243;
+	--muted-foreground: 118 114 110;
+	--accent: 246 245 243;
+	--accent-foreground: 24 24 22;
+	--destructive: 220 56 56;
+	--border: 232 230 226;
+	--input: 232 230 226;
+	--ring: 24 24 22;
 	--brand-blue: 0 112 243;
 	--code-surface: var(--card);
 	--code-header: var(--muted);
 	--code-gutter: var(--muted);
 	--code-border: var(--border);
-	--code-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+	--code-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .dark {
-	/* Dark mode - Deep black like Cursor.com */
-	--background: 0 0 0;
-	--foreground: 255 255 255;
-	--card: 10 10 10;
-	--card-foreground: 255 255 255;
-	--popover: 10 10 10;
-	--popover-foreground: 255 255 255;
-	--primary: 255 255 255;
-	--primary-foreground: 0 0 0;
-	--secondary: 23 23 23;
-	--secondary-foreground: 255 255 255;
-	--muted: 23 23 23;
-	--muted-foreground: 163 163 163;
-	--accent: 23 23 23;
-	--accent-foreground: 255 255 255;
-	--destructive: 239 68 68;
-	--border: 38 38 38;
-	--input: 38 38 38;
-	--ring: 255 255 255;
+	/* Dark — charcoal, not pure black */
+	--background: 12 12 12;
+	--foreground: 241 241 239;
+	--card: 20 20 20;
+	--card-foreground: 241 241 239;
+	--popover: 20 20 20;
+	--popover-foreground: 241 241 239;
+	--primary: 241 241 239;
+	--primary-foreground: 12 12 12;
+	--secondary: 28 28 28;
+	--secondary-foreground: 241 241 239;
+	--muted: 28 28 28;
+	--muted-foreground: 156 153 148;
+	--accent: 28 28 28;
+	--accent-foreground: 241 241 239;
+	--destructive: 220 56 56;
+	--border: 42 40 38;
+	--input: 42 40 38;
+	--ring: 241 241 239;
 	--brand-blue: 0 112 243;
 	--code-surface: var(--card);
 	--code-header: var(--secondary);
 	--code-gutter: var(--secondary);
 	--code-border: var(--border);
-	--code-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+	--code-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 @theme inline {

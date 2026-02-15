@@ -199,37 +199,32 @@ export default async function CaseStudyPage({params}: PageProps) {
 
 	return (
 		<>
-			{/* Back Link */}
+			{/* Header */}
 			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
 				<Container width="base">
-					<Link
-						href="/work"
-						className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-sm font-medium transition-colors">
-						<ArrowLeft className="h-4 w-4" />
-						All work
-					</Link>
-				</Container>
-			</section>
+					<div className="space-y-4">
+						<Link
+							href="/work"
+							className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-xs font-medium transition-colors">
+							<ArrowLeft className="h-3 w-3" />
+							All work
+						</Link>
 
-			{/* Hero */}
-			<section className="pt-8 pb-24 lg:pb-40">
-				<Container width="base">
-					<div className="space-y-8">
-						<div className="flex items-center gap-2">
-							<span className="text-muted-foreground text-sm font-medium">
-								{study.client}
-							</span>
-							<span className="text-muted-foreground text-sm opacity-40">·</span>
-							<span className="text-muted-foreground text-sm">{study.type}</span>
+						<div className="text-muted-foreground flex items-center gap-2 text-xs">
+							<span className="font-medium">{study.client}</span>
+							<span>·</span>
+							<span>{study.type}</span>
 						</div>
-						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+
+						<h1 className="text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 							{study.title}
 						</h1>
-						<div className="flex flex-wrap gap-2">
+
+						<div className="flex flex-wrap items-center gap-2 pt-1">
 							{study.tags.map((tag) => (
 								<span
 									key={tag}
-									className="bg-muted text-muted-foreground rounded-full px-3 py-1 font-mono text-xs font-medium">
+									className="text-muted-foreground font-mono text-[10px] font-medium uppercase tracking-wider">
 									{tag}
 								</span>
 							))}
@@ -238,104 +233,102 @@ export default async function CaseStudyPage({params}: PageProps) {
 				</Container>
 			</section>
 
-			{/* Content */}
-			<section className="py-16 lg:py-24">
+			{/* Challenge */}
+			<section className="border-border border-t py-16 lg:py-20">
 				<Container width="base">
-					<div className="space-y-20">
-						{/* The Challenge */}
-						<div className="space-y-6">
-							<div className="space-y-3">
-								<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
-									The Challenge
-								</span>
-								<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
-									What needed to happen
-								</h2>
-							</div>
-							<div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-								{study.challenge.map((p, i) => (
-									<p key={i}>{p}</p>
-								))}
-							</div>
-						</div>
-
-						{/* The Approach */}
-						<div className="space-y-6">
-							<div className="space-y-3">
-								<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
-									The Approach
-								</span>
-								<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
-									How I helped
-								</h2>
-							</div>
-							<div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-								{study.approach.map((p, i) => (
-									<p key={i}>{p}</p>
-								))}
-							</div>
-						</div>
-
-						{/* The Outcome */}
-						<div className="border-border space-y-6 border-l-2 pl-8">
-							<div className="space-y-3">
-								<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
-									The Outcome
-								</span>
-								<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
-									What we achieved
-								</h2>
-							</div>
-							<div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-								{study.outcome.map((p, i) => (
-									<p key={i}>{p}</p>
-								))}
-							</div>
-						</div>
-
-						{/* Tech Stack */}
-						<div className="space-y-6">
-							<h3 className="text-lg font-bold">Tech Stack</h3>
-							<div className="flex flex-wrap gap-3">
-								{study.techStack.map((tech) => (
-									<span
-										key={tech}
-										className="border-border bg-card rounded-full border px-4 py-2 font-mono text-xs font-medium">
-										{tech}
-									</span>
-								))}
-							</div>
-						</div>
-
-						{/* Testimonial */}
-						{study.testimonial && (
-							<blockquote className="border-border bg-card space-y-6 rounded-2xl border p-8 lg:p-12">
-								<p className="text-foreground text-lg leading-relaxed italic lg:text-xl">
-									&ldquo;{study.testimonial.quote}&rdquo;
-								</p>
-								<div className="flex items-center gap-3">
-									{study.testimonial.image && (
-										<div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full">
-											<Image
-												src={study.testimonial.image}
-												alt={study.testimonial.name}
-												fill
-												className="object-cover"
-											/>
-										</div>
-									)}
-									<div>
-										<p className="text-sm font-semibold">{study.testimonial.name}</p>
-										<p className="text-muted-foreground text-sm">
-											{study.testimonial.title}
-										</p>
-									</div>
-								</div>
-							</blockquote>
-						)}
+					<h2 className="text-sm font-semibold uppercase tracking-wider">
+						The Challenge
+					</h2>
+					<div className="text-muted-foreground mt-4 max-w-xl space-y-4 text-sm leading-relaxed">
+						{study.challenge.map((p, i) => (
+							<p key={i}>{p}</p>
+						))}
 					</div>
 				</Container>
 			</section>
+
+			{/* Approach */}
+			<section className="border-border border-t py-16 lg:py-20">
+				<Container width="base">
+					<h2 className="text-sm font-semibold uppercase tracking-wider">
+						The Approach
+					</h2>
+					<div className="text-muted-foreground mt-4 max-w-xl space-y-4 text-sm leading-relaxed">
+						{study.approach.map((p, i) => (
+							<p key={i}>{p}</p>
+						))}
+					</div>
+				</Container>
+			</section>
+
+			{/* Outcome */}
+			<section className="border-border border-t py-16 lg:py-20">
+				<Container width="base">
+					<h2 className="text-sm font-semibold uppercase tracking-wider">
+						The Outcome
+					</h2>
+					<div className="text-muted-foreground mt-4 max-w-xl space-y-4 text-sm leading-relaxed">
+						{study.outcome.map((p, i) => (
+							<p key={i}>{p}</p>
+						))}
+					</div>
+				</Container>
+			</section>
+
+			{/* Tech Stack */}
+			<section className="border-border border-t py-16 lg:py-20">
+				<Container width="base">
+					<h2 className="text-sm font-semibold uppercase tracking-wider">
+						Tech Stack
+					</h2>
+					<div className="mt-4 flex flex-wrap gap-1.5">
+						{study.techStack.map((tech) => (
+							<span
+								key={tech}
+								className="border-border rounded-md border px-2.5 py-1 text-xs font-medium">
+								{tech}
+							</span>
+						))}
+					</div>
+				</Container>
+			</section>
+
+			{/* Testimonial */}
+			{study.testimonial && (
+				<section className="border-border border-t py-16 lg:py-20">
+					<Container width="base">
+						<h2 className="text-sm font-semibold uppercase tracking-wider">
+							Testimonial
+						</h2>
+						<div className="mt-4 max-w-xl space-y-4">
+							<p className="text-foreground text-sm leading-relaxed italic">
+								&ldquo;{study.testimonial.quote}&rdquo;
+							</p>
+							<div className="flex items-center gap-3">
+								{study.testimonial.image && (
+									<div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full">
+										<Image
+											src={study.testimonial.image}
+											alt={study.testimonial.name}
+											fill
+											className="object-cover"
+										/>
+									</div>
+								)}
+								<div>
+									<p className="text-foreground text-xs font-medium">
+										{study.testimonial.name}
+									</p>
+									<p className="text-muted-foreground text-xs">
+										{study.testimonial.title}
+									</p>
+								</div>
+							</div>
+						</div>
+					</Container>
+				</section>
+			)}
+
 		</>
 	)
 }

@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import {usePathname} from 'next/navigation'
 import {useEffect, useState} from 'react'
-import {ArrowRight} from 'lucide-react'
 import {ModeToggle} from './toggle'
 import Container from '@/shared/components/container'
 import {cn} from '@/shared/lib/utils'
@@ -121,17 +120,9 @@ export function Navigation() {
 							})}
 						</div>
 
-						{/* Right Side: Theme Toggle + Hire Me */}
-						<div className="flex shrink-0 items-center gap-3">
+						{/* Right Side */}
+						<div className="flex shrink-0 items-center">
 							<ModeToggle />
-							<Link
-								href="https://cal.com/laurosilvacom/chat"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors">
-								Hire me
-								<ArrowRight className="h-3.5 w-3.5" />
-							</Link>
 						</div>
 					</div>
 				</Container>
@@ -220,18 +211,6 @@ export function Navigation() {
 							})}
 						</nav>
 
-						{/* Mobile Hire Me Button */}
-						<div className="mt-8">
-							<Link
-								href="https://cal.com/laurosilvacom/chat"
-								target="_blank"
-								rel="noopener noreferrer"
-								onClick={() => setIsMenuOpen(false)}
-								className="bg-primary text-primary-foreground hover:bg-primary/90 flex w-full items-center justify-center gap-2 rounded-xl px-6 py-4 text-lg font-semibold transition-colors">
-								Hire me
-								<ArrowRight className="h-5 w-5" />
-							</Link>
-						</div>
 					</div>
 				</div>
 			)}
