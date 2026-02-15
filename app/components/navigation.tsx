@@ -3,35 +3,24 @@
 import Link from 'next/link'
 import {usePathname} from 'next/navigation'
 import {useEffect, useState} from 'react'
-import {ChevronDown, Building2, Users, Briefcase} from 'lucide-react'
+import {ArrowRight} from 'lucide-react'
 import {ModeToggle} from './toggle'
 import Container from '@/components/container'
 import {cn} from '@/lib/utils'
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
 
 const navItems = [
 	{path: '/', name: 'Home'},
-	{path: '/blog', name: 'Writing'},
-	{path: '/about', name: 'About'},
-	{path: '/newsletter', name: 'Newsletter'}
-]
-
-const serviceItems = [
-	{path: '/services', name: 'Overview', icon: Briefcase},
-	{path: '/services/companies', name: 'For Companies', icon: Building2},
-	{path: '/services/athletes', name: 'For Athletes', icon: Users}
+	{path: '/work', name: 'Work'},
+	{path: '/services', name: 'Services'},
+	{path: '/teaching', name: 'Teaching'},
+	{path: '/blog', name: 'Blog'},
+	{path: '/about', name: 'About'}
 ]
 
 export function Navigation() {
 	const pathname = usePathname()
 	const [isScrolled, setIsScrolled] = useState(false)
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
-	const [isServicesOpen, setIsServicesOpen] = useState(false)
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -109,15 +98,18 @@ export function Navigation() {
 						</Link>
 
 						{/* Navigation Links */}
-						<div className="flex flex-1 items-center justify-center gap-2">
+						<div className="flex flex-1 items-center justify-center gap-1">
 							{navItems.map(({path, name}) => {
-								const isActive = pathname === path
+								const isActive =
+									path === '/'
+										? pathname === '/'
+										: pathname.startsWith(path)
 								return (
 									<Link
 										key={path}
 										href={path}
 										className={cn(
-											'relative px-4 py-2 text-sm font-medium transition-all duration-200',
+											'relative px-3.5 py-2 text-sm font-medium transition-all duration-200',
 											isActive
 												? 'text-foreground'
 												: 'text-muted-foreground hover:text-foreground'
@@ -129,69 +121,19 @@ export function Navigation() {
 									</Link>
 								)
 							})}
-
-							{/* Services Dropdown */}
-							<DropdownMenu
-								open={isServicesOpen}
-								onOpenChange={setIsServicesOpen}
-								modal={false}>
-								<DropdownMenuTrigger asChild>
-									<button
-										type="button"
-										className={cn(
-											'relative flex items-center gap-1.5 px-4 py-2 text-sm font-medium transition-all duration-200',
-											pathname.startsWith('/services')
-												? 'text-foreground'
-												: 'text-muted-foreground hover:text-foreground'
-										)}>
-										{pathname.startsWith('/services') && (
-											<span className="bg-foreground absolute inset-x-0 -bottom-0.5 h-px" />
-										)}
-										<span className="relative">Services</span>
-										<ChevronDown
-											className={cn(
-												'relative h-3 w-3 opacity-50 transition-transform duration-200',
-												isServicesOpen && 'rotate-180'
-											)}
-										/>
-									</button>
-								</DropdownMenuTrigger>
-								<DropdownMenuContent
-									align="center"
-									sideOffset={16}
-									className="bg-background/95 border-border min-w-[220px] rounded-xl p-2 backdrop-blur-xl">
-									{serviceItems.map(({path, name, icon: Icon}) => {
-										const isActive = pathname === path
-										return (
-											<DropdownMenuItem key={path} asChild>
-												<Link
-													href={path}
-													className={cn(
-														'flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 transition-all duration-200',
-														isActive
-															? 'text-foreground bg-muted font-medium'
-															: 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
-													)}>
-													<Icon
-														className={cn(
-															'h-4 w-4',
-															isActive
-																? 'text-foreground'
-																: 'text-muted-foreground'
-														)}
-													/>
-													<span className="text-sm">{name}</span>
-												</Link>
-											</DropdownMenuItem>
-										)
-									})}
-								</DropdownMenuContent>
-							</DropdownMenu>
 						</div>
 
-						{/* Theme Toggle */}
-						<div className="flex shrink-0">
+						{/* Right Side: Theme Toggle + Hire Me */}
+						<div className="flex shrink-0 items-center gap-3">
 							<ModeToggle />
+							<Link
+								href="https://cal.com/laurosilvacom/chat"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors">
+								Hire me
+								<ArrowRight className="h-3.5 w-3.5" />
+							</Link>
 						</div>
 					</div>
 				</Container>
@@ -266,7 +208,10 @@ export function Navigation() {
 					<div className="flex h-full flex-col px-6 pt-20">
 						<nav className="flex flex-col gap-2">
 							{navItems.map(({path, name}) => {
-								const isActive = pathname === path
+								const isActive =
+									path === '/'
+										? pathname === '/'
+										: pathname.startsWith(path)
 								return (
 									<Link
 										key={path}
@@ -280,40 +225,20 @@ export function Navigation() {
 									</Link>
 								)
 							})}
-
-							{/* Services Section */}
-							<div className="border-border/50 border-b pt-4">
-								<div className="text-foreground flex items-center gap-2 pb-3 text-lg font-semibold tracking-wide uppercase">
-									<Briefcase className="h-4 w-4" />
-									Services
-								</div>
-								<div className="flex flex-col gap-1 pb-4">
-									{serviceItems.map(({path, name, icon: Icon}) => {
-										const isActive = pathname === path
-										return (
-											<Link
-												key={path}
-												href={path}
-												onClick={() => setIsMenuOpen(false)}
-												className={cn(
-													'flex items-center gap-3 rounded-lg px-3 py-3 text-lg transition-colors',
-													isActive
-														? 'text-foreground bg-muted/50 font-medium'
-														: 'text-muted-foreground hover:bg-muted/30 hover:text-foreground'
-												)}>
-												<Icon
-													className={cn(
-														'h-4 w-4',
-														isActive ? 'text-primary' : 'text-muted-foreground'
-													)}
-												/>
-												<span>{name}</span>
-											</Link>
-										)
-									})}
-								</div>
-							</div>
 						</nav>
+
+						{/* Mobile Hire Me Button */}
+						<div className="mt-8">
+							<Link
+								href="https://cal.com/laurosilvacom/chat"
+								target="_blank"
+								rel="noopener noreferrer"
+								onClick={() => setIsMenuOpen(false)}
+								className="bg-primary text-primary-foreground hover:bg-primary/90 flex w-full items-center justify-center gap-2 rounded-xl px-6 py-4 text-lg font-semibold transition-colors">
+								Hire me
+								<ArrowRight className="h-5 w-5" />
+							</Link>
+						</div>
 					</div>
 				</div>
 			)}

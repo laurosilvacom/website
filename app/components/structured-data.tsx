@@ -36,21 +36,24 @@ export function StructuredData({
 					'@type': 'WebSite',
 					name: 'Lauro Silva',
 					description:
-						'Learn, build, and grow as a developer. Deep technical insights mixed with real experiences.',
+						'Senior full-stack engineer and developer educator. I help companies ship better software and level up their engineering teams.',
 					url: baseUrl,
 					author: {
 						'@type': 'Person',
 						name: 'Lauro Silva',
 						url: baseUrl,
-						jobTitle: 'Software Engineer & Developer Educator',
+						jobTitle: 'Senior Full-Stack Engineer & Developer Educator',
 						knowsAbout: [
-							'Software Development',
+							'Full-Stack Development',
 							'Web Development',
 							'JavaScript',
 							'TypeScript',
 							'React',
 							'Next.js',
-							'Developer Education'
+							'Node.js',
+							'Developer Education',
+							'Technical Consulting',
+							'AI Integration'
 						]
 					},
 					publisher: {
@@ -99,24 +102,25 @@ export function StructuredData({
 					'@type': 'Person',
 					name: 'Lauro Silva',
 					url: baseUrl,
-					jobTitle: 'Software Engineer & Developer Educator',
+					jobTitle: 'Senior Full-Stack Engineer & Developer Educator',
 					description:
-						'Software Engineer and Developer Educator focused on helping developers learn, build, and grow.',
+						'Senior full-stack engineer and developer educator. I help companies ship better software and level up their engineering teams. Previously with Google, O\'Reilly, Sentry, and HOKA.',
 					knowsAbout: [
-						'Software Development',
+						'Full-Stack Development',
 						'Web Development',
 						'JavaScript',
 						'TypeScript',
 						'React',
 						'Next.js',
+						'Node.js',
 						'Developer Education',
-						'Technical Writing'
+						'Technical Consulting',
+						'Technical Writing',
+						'AI Integration'
 					],
 					sameAs: [
-						// Add your social media profiles here
-						// 'https://twitter.com/yourusername',
-						// 'https://github.com/yourusername',
-						// 'https://linkedin.com/in/yourusername'
+						'https://github.com/laurosilvacom',
+						'https://bsky.app/profile/laurosilva.com'
 					]
 				}
 

@@ -51,8 +51,16 @@ const FooterSection = ({title, links}: FooterSectionProps) => {
 
 export default function Footer() {
 	const sections: FooterSections = {
-		Content: [{href: '/blog', text: 'Writing'}],
-		Work: [{href: '/services', text: 'Services'}],
+		Work: [
+			{href: '/services', text: 'Services'},
+			{href: '/work', text: 'Case Studies'},
+			{href: '/teaching', text: 'Teaching'}
+		],
+		Content: [
+			{href: '/blog', text: 'Blog'},
+			{href: '/newsletter', text: 'Newsletter'},
+			{href: '/blog/rss.xml', text: 'RSS'}
+		],
 		Connect: [
 			{
 				href: 'https://github.com/laurosilvacom',
@@ -61,10 +69,14 @@ export default function Footer() {
 			},
 			{
 				href: 'https://bsky.app/profile/laurosilva.com',
-				text: 'Bsky',
+				text: 'Bluesky',
 				external: true
 			},
-			{href: '/blog/rss.xml', text: 'RSS'}
+			{
+				href: 'https://cal.com/laurosilvacom/chat',
+				text: 'Schedule a call',
+				external: true
+			}
 		]
 	}
 
@@ -79,8 +91,9 @@ export default function Footer() {
 							Lauro Silva
 						</Link>
 						<p className="text-muted-foreground max-w-md text-sm leading-relaxed">
-							Software engineer and developer educator. Building products and
-							teaching developers.
+							Senior full-stack engineer and developer educator. I help
+							companies ship better software and level up their engineering
+							teams.
 						</p>
 					</div>
 

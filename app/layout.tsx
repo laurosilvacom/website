@@ -16,25 +16,26 @@ import {defaultOgImageUrl} from '@/lib/metadata'
 export const metadata: Metadata = {
 	metadataBase: new URL(baseUrl),
 	title: {
-		default: 'Lauro Silva - Software Engineer & Developer Educator',
+		default: 'Lauro Silva - Senior Full-Stack Engineer & Developer Educator',
 		template: '%s | Lauro Silva'
 	},
 	description:
-		'Learn, build, and grow as a developer. Deep technical insights mixed with real experiences. Because great software comes from understanding both the code and the people who write it.',
+		'Senior full-stack engineer and developer educator. I help companies ship better software and level up their engineering teams. React, Next.js, TypeScript. Previously with Google, O\'Reilly, Sentry.',
 	keywords: [
-		'software engineer',
+		'senior full-stack engineer',
 		'developer educator',
-		'web development',
-		'programming tutorials',
-		'tech blog',
-		'software development',
-		'coding',
-		'JavaScript',
+		'freelance senior engineer',
+		'technical consulting',
+		'corporate developer training',
+		'React workshops',
+		'full-stack consultant',
 		'TypeScript',
 		'React',
 		'Next.js',
+		'Node.js',
 		'developer experience',
-		'technical writing'
+		'technical writing',
+		'AI integration'
 	],
 	authors: [
 		{
@@ -52,9 +53,9 @@ export const metadata: Metadata = {
 	category: 'technology',
 	classification: 'Software Development & Education',
 	openGraph: {
-		title: 'Lauro Silva - Software Engineer & Developer Educator',
+		title: 'Lauro Silva - Senior Full-Stack Engineer & Developer Educator',
 		description:
-			'Learn, build, and grow as a developer. Deep technical insights mixed with real experiences. Because great software comes from understanding both the code and the people who write it.',
+			'Senior full-stack engineer and developer educator. I help companies ship better software and level up their engineering teams. Previously with Google, O\'Reilly, Sentry.',
 		url: baseUrl,
 		siteName: 'Lauro Silva',
 		locale: 'en_US',
@@ -64,22 +65,22 @@ export const metadata: Metadata = {
 				url: defaultOgImageUrl,
 				width: 1200,
 				height: 630,
-				alt: 'Lauro Silva - Software Engineer & Developer Educator',
+				alt: 'Lauro Silva - Senior Full-Stack Engineer & Developer Educator',
 				type: 'image/webp'
 			}
 		]
 	},
 	twitter: {
 		card: 'summary_large_image',
-		title: 'Lauro Silva - Software Engineer & Developer Educator',
+		title: 'Lauro Silva - Senior Full-Stack Engineer & Developer Educator',
 		description:
-			'Learn, build, and grow as a developer. Deep technical insights mixed with real experiences.',
+			'Senior full-stack engineer and developer educator. I help companies ship better software and level up their engineering teams.',
 		images: [
 			{
 				url: defaultOgImageUrl,
 				width: 1200,
 				height: 630,
-				alt: 'Lauro Silva - Software Engineer & Developer Educator'
+				alt: 'Lauro Silva - Senior Full-Stack Engineer & Developer Educator'
 			}
 		]
 	},

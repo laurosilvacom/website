@@ -3,6 +3,24 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Container from '@/components/container'
 import {Button} from '@/components/ui/button'
+import {generatePageMetadata} from '@/lib/metadata'
+
+export const metadata = generatePageMetadata(
+	'Services',
+	'Full-stack development, technical leadership, and developer training for small and medium companies. React, Next.js, TypeScript. Previously with Google, O\'Reilly, Sentry.',
+	{
+		keywords: [
+			'full-stack development',
+			'technical consulting',
+			'developer training',
+			'React workshops',
+			'Next.js consulting',
+			'TypeScript training',
+			'freelance senior engineer'
+		],
+		canonical: '/services'
+	}
+)
 
 export default function ServicesPage() {
 	return (
@@ -20,14 +38,13 @@ export default function ServicesPage() {
 							</div>
 						</div>
 						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-							Building Better Products
+							Ship faster. Build smarter.
 							<br />
-							in the Outdoor Industry
+							Level up your team.
 						</h1>
 						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
-							I help companies strengthen their engineering teams and develop
-							better products. I also build custom platforms for professional
-							athletes - complete solutions they own.
+							I help small and medium companies ship production software, make
+							better technical decisions, and build stronger engineering teams.
 						</p>
 					</div>
 					<div className="animate-in fade-in slide-in-from-bottom-4 flex flex-wrap items-center justify-center gap-4 pt-12 delay-150 duration-1000">
@@ -51,46 +68,47 @@ export default function ServicesPage() {
 			<section id="services" className="py-24 lg:py-32">
 				<Container width="base">
 					<div className="space-y-16">
-						{/* For Companies */}
+						{/* Full-Stack Development */}
 						<div className="group border-border-subtle bg-card hover:border-border relative overflow-hidden rounded-3xl border p-12 transition-all duration-200 lg:p-16">
 							<div className="space-y-8">
 								<div className="space-y-4">
 									<div className="inline-flex items-center gap-2">
 										<div className="bg-primary h-2 w-2 rounded-full" />
 										<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
-											For Companies
+											Full-Stack Development
 										</span>
 									</div>
 									<h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-										Ship Faster, Build Smarter
+										Ship Production Software
 									</h2>
 									<p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
-										Technical leadership and developer training to help your
-										team make better decisions, improve your stack, and deliver
-										products that actually work.
+										I embed with your team and build. React, Next.js,
+										TypeScript, Node.js — from architecture to deployment. You
+										get a senior engineer who ships, not just advises.
 									</p>
 								</div>
 
 								<div className="grid gap-6 md:grid-cols-2">
 									<div className="space-y-3">
 										<h3 className="text-foreground text-lg font-semibold">
-											Technical Leadership
+											For Companies
 										</h3>
 										<p className="text-muted-foreground text-base leading-relaxed">
-											Architecture planning, code reviews, technical strategy,
-											and hands-on development. I help teams make better
-											decisions and build products that scale.
+											Need a senior engineer to join your team and ship? I
+											integrate with your existing workflows and start
+											delivering from week one. Weekly or monthly retainers
+											available.
 										</p>
 									</div>
 
 									<div className="space-y-3">
 										<h3 className="text-foreground text-lg font-semibold">
-											Developer Training
+											For Agencies
 										</h3>
 										<p className="text-muted-foreground text-base leading-relaxed">
-											Workshops and curriculum focused on React, Next.js,
-											TypeScript, and AI integration. Educational content that's
-											effective, not just informative.
+											Need senior React/Next.js talent for client projects? I
+											provide white-label development support so you can take
+											on bigger projects with confidence.
 										</p>
 									</div>
 								</div>
@@ -101,7 +119,80 @@ export default function ServicesPage() {
 											'React',
 											'Next.js',
 											'TypeScript',
+											'Node.js',
+											'Full-Stack'
+										].map((tag) => (
+											<span
+												key={tag}
+												className="bg-muted text-muted-foreground rounded-full px-3 py-1 text-xs font-medium">
+												{tag}
+											</span>
+										))}
+									</div>
+									<Button
+										asChild
+										variant="ghost"
+										className="group/btn text-primary hover:text-primary">
+										<Link href="/work">
+											See past work
+											<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+										</Link>
+									</Button>
+								</div>
+							</div>
+						</div>
+
+						{/* Technical Leadership */}
+						<div className="group border-border-subtle bg-card hover:border-border relative overflow-hidden rounded-3xl border p-12 transition-all duration-200 lg:p-16">
+							<div className="space-y-8">
+								<div className="space-y-4">
+									<div className="inline-flex items-center gap-2">
+										<div className="bg-primary h-2 w-2 rounded-full" />
+										<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+											Technical Leadership
+										</span>
+									</div>
+									<h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+										Make Better Decisions
+									</h2>
+									<p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
+										Architecture reviews, code audits, technical strategy. Get
+										senior-level guidance without a full-time hire. I help teams
+										make the right technical decisions at the right time.
+									</p>
+								</div>
+
+								<div className="grid gap-6 md:grid-cols-2">
+									<div className="space-y-3">
+										<h3 className="text-foreground text-lg font-semibold">
+											Architecture & Strategy
+										</h3>
+										<p className="text-muted-foreground text-base leading-relaxed">
+											Architecture planning, code reviews, technical strategy,
+											and system design. I help teams build products that scale
+											without over-engineering.
+										</p>
+									</div>
+
+									<div className="space-y-3">
+										<h3 className="text-foreground text-lg font-semibold">
+											Fractional CTO
+										</h3>
+										<p className="text-muted-foreground text-base leading-relaxed">
+											For startups and small companies that need senior
+											technical leadership but aren&apos;t ready for a
+											full-time CTO. I guide your technical roadmap and team.
+										</p>
+									</div>
+								</div>
+
+								<div className="border-border flex flex-wrap items-center justify-between gap-6 border-t pt-8">
+									<div className="flex flex-wrap gap-2">
+										{[
 											'Architecture',
+											'Code Audits',
+											'Technical Strategy',
+											'Team Scaling',
 											'AI Integration'
 										].map((tag) => (
 											<span
@@ -115,8 +206,8 @@ export default function ServicesPage() {
 										asChild
 										variant="ghost"
 										className="group/btn text-primary hover:text-primary">
-										<Link href="/services/companies">
-											Learn more
+										<Link href="/work">
+											See past work
 											<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
 										</Link>
 									</Button>
@@ -124,46 +215,46 @@ export default function ServicesPage() {
 							</div>
 						</div>
 
-						{/* For Athletes */}
+						{/* Developer Training */}
 						<div className="group border-border-subtle bg-card hover:border-border relative overflow-hidden rounded-3xl border p-12 transition-all duration-200 lg:p-16">
 							<div className="space-y-8">
 								<div className="space-y-4">
 									<div className="inline-flex items-center gap-2">
 										<div className="bg-primary h-2 w-2 rounded-full" />
 										<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
-											For Athletes
+											Developer Training
 										</span>
 									</div>
 									<h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-										Your Platform, Your Rules
+										Level Up Your Team
 									</h2>
 									<p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
-										Custom platforms built for professional athletes. Not
-										templates. Not rentals. Complete solutions you own that grow
-										with your career.
+										Custom workshops and training programs for engineering
+										teams. I&apos;ve taught at O&apos;Reilly and egghead, and I
+										bring that same quality to your team directly.
 									</p>
 								</div>
 
 								<div className="grid gap-6 md:grid-cols-2">
 									<div className="space-y-3">
 										<h3 className="text-foreground text-lg font-semibold">
-											Custom Development
+											Team Workshops
 										</h3>
 										<p className="text-muted-foreground text-base leading-relaxed">
-											Built specifically to reflect your story and support your
-											content strategy. Not templates. Complete solutions you
-											own.
+											Half-day to multi-day workshops on React, Next.js,
+											TypeScript, and AI integration. Hands-on, practical
+											learning your team can apply immediately.
 										</p>
 									</div>
 
 									<div className="space-y-3">
 										<h3 className="text-foreground text-lg font-semibold">
-											Strategy & Support
+											Corporate Training
 										</h3>
 										<p className="text-muted-foreground text-base leading-relaxed">
-											Marketing strategy, content planning, and how the platform
-											fits into your broader brand goals. Built to grow with
-											your career.
+											Custom training programs designed for your team&apos;s
+											specific needs and skill level. Not generic content —
+											training built around your codebase and challenges.
 										</p>
 									</div>
 								</div>
@@ -171,11 +262,11 @@ export default function ServicesPage() {
 								<div className="border-border flex flex-wrap items-center justify-between gap-6 border-t pt-8">
 									<div className="flex flex-wrap gap-2">
 										{[
-											'Trail Running',
-											'Climbing',
-											'Cycling',
-											'Brand Strategy',
-											'Community'
+											'React',
+											'Next.js',
+											'TypeScript',
+											'AI Integration',
+											'Workshops'
 										].map((tag) => (
 											<span
 												key={tag}
@@ -188,8 +279,8 @@ export default function ServicesPage() {
 										asChild
 										variant="ghost"
 										className="group/btn text-primary hover:text-primary">
-										<Link href="/services/athletes">
-											Learn more
+										<Link href="/teaching">
+											See teaching portfolio
 											<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
 										</Link>
 									</Button>
@@ -200,11 +291,100 @@ export default function ServicesPage() {
 				</Container>
 			</section>
 
+			{/* Testimonials */}
+			<section className="py-24 lg:py-32">
+				<Container width="base">
+					<div className="space-y-12">
+						<div className="space-y-4">
+							<div className="inline-flex items-center gap-2">
+								<div className="bg-primary h-2 w-2 rounded-full" />
+								<span className="text-muted-foreground text-sm font-medium tracking-wide uppercase">
+									What Clients Say
+								</span>
+							</div>
+						</div>
+
+						<div className="grid gap-8 md:grid-cols-3">
+							<blockquote className="border-border bg-card space-y-6 rounded-2xl border p-8">
+								<p className="text-foreground text-base leading-relaxed">
+									&ldquo;Lauro is a total pro. His guidance helped us create
+									polished onboarding videos and build the capability to create
+									content independently.&rdquo;
+								</p>
+								<div className="border-border flex items-center gap-3 border-t pt-6">
+									<div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
+										<Image
+											src="https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/ok4aceenrvijrjcafxba.jpg"
+											alt="Andrew Hedges"
+											fill
+											className="object-cover"
+										/>
+									</div>
+									<div>
+										<p className="text-sm font-semibold">Andrew Hedges</p>
+										<p className="text-muted-foreground text-xs">
+											Assistiv Labs
+										</p>
+									</div>
+								</div>
+							</blockquote>
+
+							<blockquote className="border-border bg-card space-y-6 rounded-2xl border p-8">
+								<p className="text-foreground text-base leading-relaxed">
+									&ldquo;An hour with Lauro helped me untangle my thoughts and
+									make a concrete plan. If you need dev content strategy,
+									he&apos;s your person.&rdquo;
+								</p>
+								<div className="border-border flex items-center gap-3 border-t pt-6">
+									<div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
+										<Image
+											src="https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/py2kbwptjbxfdqpoepkj.jpg"
+											alt="Jason Lengstorf"
+											fill
+											className="object-cover"
+										/>
+									</div>
+									<div>
+										<p className="text-sm font-semibold">Jason Lengstorf</p>
+										<p className="text-muted-foreground text-xs">
+											Learn With Jason
+										</p>
+									</div>
+								</div>
+							</blockquote>
+
+							<blockquote className="border-border bg-card space-y-6 rounded-2xl border p-8">
+								<p className="text-foreground text-base leading-relaxed">
+									&ldquo;Working with Lauro is always a great experience. His
+									technical guidance and patience make complex projects feel
+									manageable.&rdquo;
+								</p>
+								<div className="border-border flex items-center gap-3 border-t pt-6">
+									<div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
+										<Image
+											src="https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/p3eglqeb7qfvsfzvh3qr.jpg"
+											alt="Alejandro Nanez"
+											fill
+											className="object-cover"
+										/>
+									</div>
+									<div>
+										<p className="text-sm font-semibold">Alejandro Nanez</p>
+										<p className="text-muted-foreground text-xs">
+											Staff Engineer
+										</p>
+									</div>
+								</div>
+							</blockquote>
+						</div>
+					</div>
+				</Container>
+			</section>
+
 			{/* Technologies & Companies */}
-			<section className="bg-muted py-24 lg:py-32">
+			<section className="bg-muted/30 py-24 lg:py-32">
 				<Container width="base">
 					<div className="grid gap-16 lg:grid-cols-2">
-						{/* Technologies */}
 						<div className="space-y-8">
 							<div className="space-y-4">
 								<div className="inline-flex items-center gap-2">
@@ -217,7 +397,6 @@ export default function ServicesPage() {
 									Technologies I Work With
 								</h2>
 							</div>
-
 							<div className="flex flex-wrap gap-3">
 								{[
 									{name: 'React', domain: 'react.dev'},
@@ -245,14 +424,12 @@ export default function ServicesPage() {
 									<span className="text-sm font-medium">Claude & GPT-4</span>
 								</div>
 							</div>
-
 							<p className="text-muted-foreground text-base leading-relaxed">
-								Practical, production-ready solutions using battle-tested tools
-								your team can maintain long-term.
+								Production-ready solutions using battle-tested tools your team
+								can maintain long-term.
 							</p>
 						</div>
 
-						{/* Companies */}
 						<div className="space-y-8">
 							<div className="space-y-4">
 								<div className="inline-flex items-center gap-2">
@@ -265,7 +442,6 @@ export default function ServicesPage() {
 									Companies I&apos;ve Worked With
 								</h2>
 							</div>
-
 							<div className="flex flex-wrap gap-3">
 								{[
 									{name: 'Google', domain: 'google.com'},
@@ -285,11 +461,12 @@ export default function ServicesPage() {
 											height={16}
 											className="h-4 w-4"
 										/>
-										<span className="text-sm font-medium">{company.name}</span>
+										<span className="text-sm font-medium">
+											{company.name}
+										</span>
 									</div>
 								))}
 							</div>
-
 							<p className="text-muted-foreground text-base leading-relaxed">
 								Enterprise-level expertise helping teams build better products
 								and stronger engineering capabilities.
@@ -308,8 +485,9 @@ export default function ServicesPage() {
 								Ready to work together?
 							</h2>
 							<p className="text-muted-foreground mx-auto max-w-2xl text-lg leading-relaxed lg:text-xl">
-								Let&apos;s discuss how I can help your team build better
-								products or create a custom platform that supports your brand.
+								Let&apos;s discuss how I can help your team ship better
+								software, make stronger technical decisions, or level up through
+								training.
 							</p>
 						</div>
 						<div className="pt-4">

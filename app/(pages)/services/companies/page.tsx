@@ -3,6 +3,24 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Container from '@/components/container'
 import {Button} from '@/components/ui/button'
+import {generatePageMetadata} from '@/lib/metadata'
+
+export const metadata = generatePageMetadata(
+	'Services for Companies',
+	'Full-stack development, technical leadership, and developer training for companies. React, Next.js, TypeScript. Previously with Google, O\'Reilly, Sentry, HOKA.',
+	{
+		keywords: [
+			'full-stack development',
+			'technical consulting',
+			'developer training',
+			'React',
+			'Next.js',
+			'TypeScript',
+			'freelance senior engineer'
+		],
+		canonical: '/services/companies'
+	}
+)
 
 export default function CompaniesPage() {
 	return (
@@ -79,17 +97,17 @@ export default function CompaniesPage() {
 
 						<div className="text-muted-foreground space-y-6 text-lg leading-relaxed">
 							<p>
-								I believe that great products come from understanding both the
-								technology and the people who use it. The best engineering teams
-								aren&apos;t just technically skilled - they understand how to
-								build software that solves real problems.
+								Great products come from understanding both the technology and
+								the people who use it. The best engineering teams aren&apos;t
+								just technically skilled — they understand how to build software
+								that solves real problems.
 							</p>
 							<p>
 								My approach is practical and hands-on. I&apos;ve worked with
 								teams at Google, O&apos;Reilly, Sentry, and HOKA building
-								products that scale. I bring that enterprise-level experience to
-								help your team make better decisions, ship faster, and build
-								products that actually matter.
+								products that scale. I bring that experience to help your team
+								make better decisions, ship faster, and build products that
+								actually matter.
 							</p>
 							<p>
 								Technology should serve people. The work should be intentional.
@@ -118,47 +136,17 @@ export default function CompaniesPage() {
 
 						<div className="grid gap-8 md:grid-cols-2">
 							<div className="border-border bg-card space-y-4 rounded-2xl border p-8">
-								<div className="bg-primary/10 text-primary inline-flex h-12 w-12 items-center justify-center rounded-xl">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										fill="none"
-										viewBox="0 0 24 24"
-										strokeWidth={2}
-										stroke="currentColor"
-										className="h-6 w-6">
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-										/>
-									</svg>
-								</div>
 								<h3 className="text-xl font-semibold">
-									You&apos;re building for the outdoor industry
+									You need senior engineering talent
 								</h3>
 								<p className="text-muted-foreground leading-relaxed">
-									You&apos;re working on products, platforms, or services that
-									serve the outdoor industry. You understand this space matters
-									and deserves great technology.
+									Your team needs a senior full-stack engineer who can hit the
+									ground running. I embed with your team, understand your
+									codebase, and start shipping from week one.
 								</p>
 							</div>
 
 							<div className="border-border bg-card space-y-4 rounded-2xl border p-8">
-								<div className="bg-primary/10 text-primary inline-flex h-12 w-12 items-center justify-center rounded-xl">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										fill="none"
-										viewBox="0 0 24 24"
-										strokeWidth={2}
-										stroke="currentColor"
-										className="h-6 w-6">
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-										/>
-									</svg>
-								</div>
 								<h3 className="text-xl font-semibold">
 									You need technical leadership
 								</h3>
@@ -170,21 +158,6 @@ export default function CompaniesPage() {
 							</div>
 
 							<div className="border-border bg-card space-y-4 rounded-2xl border p-8">
-								<div className="bg-primary/10 text-primary inline-flex h-12 w-12 items-center justify-center rounded-xl">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										fill="none"
-										viewBox="0 0 24 24"
-										strokeWidth={2}
-										stroke="currentColor"
-										className="h-6 w-6">
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-										/>
-									</svg>
-								</div>
 								<h3 className="text-xl font-semibold">
 									You want to level up your team
 								</h3>
@@ -196,21 +169,6 @@ export default function CompaniesPage() {
 							</div>
 
 							<div className="border-border bg-card space-y-4 rounded-2xl border p-8">
-								<div className="bg-primary/10 text-primary inline-flex h-12 w-12 items-center justify-center rounded-xl">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										fill="none"
-										viewBox="0 0 24 24"
-										strokeWidth={2}
-										stroke="currentColor"
-										className="h-6 w-6">
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-										/>
-									</svg>
-								</div>
 								<h3 className="text-xl font-semibold">
 									You value practical expertise
 								</h3>
@@ -240,8 +198,8 @@ export default function CompaniesPage() {
 								How I can help
 							</h2>
 							<p className="text-muted-foreground max-w-3xl text-lg leading-relaxed">
-								I provide technical leadership, developer training, and hands-on
-								development. Here&apos;s what that looks like:
+								I provide technical leadership, developer training, and
+								hands-on development. Here&apos;s what that looks like:
 							</p>
 						</div>
 
@@ -280,7 +238,7 @@ export default function CompaniesPage() {
 								{
 									title: 'Educational Content',
 									description:
-										'Create custom curriculum, workshops, and training materials tailored to your team&apos;s specific needs and skill level.'
+										'Create custom curriculum, workshops, and training materials tailored to your team\'s specific needs and skill level.'
 								},
 								{
 									title: 'Hands-on Development',
@@ -307,14 +265,13 @@ export default function CompaniesPage() {
 						<div className="border-border bg-primary/5 rounded-2xl border p-8">
 							<div className="space-y-4">
 								<h3 className="text-xl font-semibold">
-									Enterprise Experience, Outdoor Focus
+									Enterprise Experience, Startup Speed
 								</h3>
 								<p className="text-muted-foreground leading-relaxed">
 									I bring enterprise-level expertise from Google, O&apos;Reilly,
-									Sentry, and HOKA to help companies in the outdoor industry
-									build better products. I understand both the technical
-									challenges of building at scale and the unique needs of the
-									outdoor industry.
+									Sentry, and HOKA to help your team build better products. I
+									understand both the technical challenges of building at scale
+									and the urgency of shipping fast.
 								</p>
 							</div>
 						</div>
