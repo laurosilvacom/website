@@ -201,7 +201,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 		<>
 			{/* Back Link */}
 			<section className="pt-40 lg:pt-48">
-				<Container width="narrow">
+				<Container width="base">
 					<Link
 						href="/work"
 						className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-sm font-medium transition-colors">
@@ -213,7 +213,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 
 			{/* Hero */}
 			<section className="pt-8 pb-24 lg:pb-40">
-				<Container width="narrow">
+				<Container width="base">
 					<div className="space-y-8">
 						<div className="flex items-center gap-2">
 							<span className="text-muted-foreground text-sm font-medium">
@@ -240,7 +240,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 
 			{/* Content */}
 			<section className="py-16 lg:py-24">
-				<Container width="narrow">
+				<Container width="base">
 					<div className="space-y-20">
 						{/* The Challenge */}
 						<div className="space-y-6">
