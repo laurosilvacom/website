@@ -1,16 +1,21 @@
 import {notFound} from 'next/navigation'
 import {type Metadata} from 'next'
-import Container from '@/components/container'
-import {PortableText} from '@/components/portable-text'
-import {StructuredData} from '@/components/structured-data'
-import {generateBlogPostMetadata, defaultOgImageUrl} from '@/lib/metadata'
+import Container from '@/shared/components/container'
+import {PortableText} from '@/features/blog/components/portable-text'
+import {StructuredData} from '@/shared/components/structured-data'
+import {generateBlogPostMetadata, defaultOgImageUrl} from '@/shared/lib/metadata'
 import {baseUrl} from '@/app/sitemap'
-import {formatDate, getBlogPostBySlug, getBlogPostSlugs} from '@/lib/blog'
-import {getImageClass} from '@/lib/image-utils'
+import {formatDate, getBlogPostBySlug, getBlogPostSlugs} from '@/features/blog/server'
+import {getImageClass} from '@/shared/lib/image-utils'
 import Image from 'next/image'
-import {highlightCode} from '@/lib/highlight-code'
-import {Button} from '@/components/ui/button'
+import {highlightCode} from '@/shared/lib/highlight-code'
+import {Button} from '@/shared/ui/button'
 import Link from 'next/link'
+import {type PortableTextBlock} from '@sanity/types'
+import {
+	getSanityImageBlurDataUrl,
+	getSanityImageUrl,
+} from '@/shared/integrations/sanity/image'
 
 export const revalidate = 30
 
@@ -20,6 +25,16 @@ interface Params {
 
 interface Props {
 	params: Promise<Params>
+}
+
+type PortableCodeBlock = PortableTextBlock & {
+	_type: 'code'
+	code?: string
+	language?: string
+}
+
+function isPortableCodeBlock(block: PortableTextBlock): block is PortableCodeBlock {
+	return (block as {_type?: string})._type === 'code'
 }
 
 export async function generateStaticParams() {
@@ -35,16 +50,14 @@ export async function generateMetadata(props: Props): Promise<Metadata | null> {
 	if (!post) return null
 
 	const {title, publishedAt, summary, tags} = post.metadata
-	const heroUrl = post.heroImage?.asset?.url
+	const heroUrl = getSanityImageUrl(post.heroImage, {
+		width: 1200,
+		height: 630,
+		quality: 75,
+		fit: 'crop',
+	})
 
-	return generateBlogPostMetadata(
-		title,
-		summary,
-		params.slug,
-		publishedAt,
-		tags,
-		heroUrl
-	)
+	return generateBlogPostMetadata(title, summary, params.slug, publishedAt, tags, heroUrl)
 }
 
 export default async function BlogPost({params}: Props) {
@@ -57,27 +70,30 @@ export default async function BlogPost({params}: Props) {
 
 	// Pre-highlight all code blocks server-side
 	const processedBlocks = await Promise.all(
-		post.content.map(async (block: any) => {
-			if (block._type === 'code' && block.code) {
+		post.content.map(async (block) => {
+			if (isPortableCodeBlock(block) && block.code) {
 				const highlightedHTML = await highlightCode(
 					block.code,
-					block.language || 'plaintext'
+					block.language ?? 'plaintext',
 				)
 				return {...block, highlightedHTML}
 			}
 			return block
-		})
+		}),
 	)
 
-	// Robust reading time calculation
 	const readingTime =
-		(post as any).readingTime ||
-		(post.metadata as any).readingTime ||
-		Math.ceil(JSON.stringify(post.content).length / 1500) ||
-		5
+		post.metadata.readingTime ??
+		`${Math.max(1, Math.ceil(JSON.stringify(post.content).length / 1500))} min read`
 
-	const heroUrl = post.heroImage?.asset?.url
+	const heroUrl = getSanityImageUrl(post.heroImage, {
+		width: 1600,
+		height: 900,
+		quality: 76,
+		fit: 'crop',
+	})
 	const heroAlt = post.heroImage?.alt || post.metadata.title
+	const heroLqip = getSanityImageBlurDataUrl(post.heroImage)
 
 	return (
 		<>
@@ -102,7 +118,7 @@ export default async function BlogPost({params}: Props) {
 									{formatDate(post.metadata.publishedAt)}
 								</time>
 								<span className="mx-3">•</span>
-								<span>{readingTime} min read</span>
+								<span>{readingTime}</span>
 							</div>
 
 							<h1 className="text-foreground text-4xl leading-tight font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
@@ -140,13 +156,16 @@ export default async function BlogPost({params}: Props) {
 										alt={heroAlt}
 										fill
 										priority
+										unoptimized
 										className={`object-cover ${getImageClass('EDITORIAL_BW')}`}
 										sizes="(min-width: 1024px) 1000px, 100vw"
+										placeholder={heroLqip ? 'blur' : 'empty'}
+										blurDataURL={heroLqip}
 									/>
 								</div>
-								{(post.heroImage as any)?.caption && (
+								{post.heroImage?.caption && (
 									<figcaption className="text-muted-foreground mx-auto mt-4 max-w-3xl text-center text-sm">
-										{(post.heroImage as any).caption}
+										{post.heroImage.caption}
 									</figcaption>
 								)}
 							</div>

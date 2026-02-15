@@ -1,43 +1,52 @@
 import {baseUrl} from 'app/sitemap'
 
 export default function robots() {
+	const disallowForAll = ['/api/', '/admin/', '/_next/', '/private/', '/og']
+
 	return {
 		rules: [
 			{
 				userAgent: '*',
 				allow: '/',
-				disallow: [
-					'/api/',
-					'/admin/',
-					'/_next/',
-					'/private/',
-					'*.json',
-					'/og',
-					'/blog/rss.xml'
-				]
+				disallow: disallowForAll,
 			},
 			{
 				userAgent: 'GPTBot',
-				disallow: '/'
+				allow: '/',
+				disallow: disallowForAll,
 			},
 			{
 				userAgent: 'ChatGPT-User',
-				disallow: '/'
+				allow: '/',
+				disallow: disallowForAll,
+			},
+			{
+				userAgent: 'Google-Extended',
+				allow: '/',
+				disallow: disallowForAll,
 			},
 			{
 				userAgent: 'CCBot',
-				disallow: '/'
+				allow: '/',
+				disallow: disallowForAll,
 			},
 			{
 				userAgent: 'anthropic-ai',
-				disallow: '/'
+				allow: '/',
+				disallow: disallowForAll,
 			},
 			{
 				userAgent: 'Claude-Web',
-				disallow: '/'
-			}
+				allow: '/',
+				disallow: disallowForAll,
+			},
+			{
+				userAgent: 'ClaudeBot',
+				allow: '/',
+				disallow: disallowForAll,
+			},
 		],
 		sitemap: `${baseUrl}/sitemap.xml`,
-		host: baseUrl
+		host: baseUrl,
 	}
 }

@@ -1,16 +1,19 @@
 import Link from 'next/link'
-import Container from '@/components/container'
-import {formatDate, getBlogPosts} from '@/lib/blog'
-import {type BlogPost} from '@/lib/blog'
-import {getImageClass} from '@/lib/image-utils'
+import Container from '@/shared/components/container'
+import {formatDate, getBlogPosts} from '@/features/blog/server'
+import {type BlogPost} from '@/features/blog/server'
 import Image from 'next/image'
+import {
+	getSanityImageBlurDataUrl,
+	getSanityImageUrl,
+} from '@/shared/integrations/sanity/image'
 
 export const revalidate = 30
 
 export const metadata = {
 	title: 'Writing',
 	description:
-		'Thoughts, ideas, and explorations at the intersection of technology and the outdoor industry.'
+		'Thoughts, ideas, and explorations at the intersection of technology and the outdoor industry.',
 }
 
 export default async function BlogPage() {
@@ -30,8 +33,20 @@ export default async function BlogPage() {
 	const sortedPosts = posts.sort(
 		(a: BlogPost, b: BlogPost) =>
 			new Date(b.metadata.publishedAt).getTime() -
-			new Date(a.metadata.publishedAt).getTime()
+			new Date(a.metadata.publishedAt).getTime(),
 	)
+	const featuredPost = sortedPosts[0]
+	const featuredImageSrc = featuredPost
+		? getSanityImageUrl(featuredPost.heroImage, {
+				width: 1400,
+				height: 1050,
+				quality: 75,
+				fit: 'crop',
+			})
+		: undefined
+	const featuredBlurDataUrl = featuredPost
+		? getSanityImageBlurDataUrl(featuredPost.heroImage)
+		: undefined
 
 	return (
 		<>
@@ -42,8 +57,8 @@ export default async function BlogPage() {
 							Writing
 						</h1>
 						<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
-							Thoughts, ideas, and explorations at the intersection of
-							technology and the outdoor industry.
+							Thoughts, ideas, and explorations at the intersection of technology and the
+							outdoor industry.
 						</p>
 					</div>
 				</div>
@@ -52,46 +67,48 @@ export default async function BlogPage() {
 			<section className="py-12 lg:py-20">
 				<Container width="wide">
 					{/* Featured Post - Large Hero */}
-					{sortedPosts[0] && (
+					{featuredPost && (
 						<article className="group mb-16 lg:mb-24">
-							<Link href={`/blog/${sortedPosts[0].slug}`} className="block">
+							<Link href={`/blog/${featuredPost.slug}`} prefetch className="block">
 								<div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
 									<div className="border-border-subtle relative aspect-4/3 overflow-hidden rounded-3xl border">
-										<Image
-											src={sortedPosts[0].heroImage?.asset?.url || ''}
-											alt={
-												sortedPosts[0].heroImage?.alt ||
-												sortedPosts[0].metadata.title
-											}
-											fill
-											className="object-cover brightness-[0.95] contrast-[1.4] grayscale transition-transform duration-700 group-hover:scale-105"
-											sizes="(min-width: 1024px) 600px, 100vw"
-											priority
-										/>
+										{featuredImageSrc ? (
+											<Image
+												src={featuredImageSrc}
+												alt={featuredPost.heroImage?.alt || featuredPost.metadata.title}
+												fill
+												unoptimized
+												className="object-cover brightness-[0.95] contrast-[1.4] grayscale transition-transform duration-700 group-hover:scale-105"
+												sizes="(min-width: 1024px) 600px, 100vw"
+												priority
+												placeholder={featuredBlurDataUrl ? 'blur' : 'empty'}
+												blurDataURL={featuredBlurDataUrl}
+											/>
+										) : (
+											<div className="bg-muted h-full w-full" />
+										)}
 										<div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 									</div>
 
 									<div className="space-y-6">
 										<div className="text-muted-foreground text-sm font-medium">
-											<time dateTime={sortedPosts[0].metadata.publishedAt}>
-												{formatDate(sortedPosts[0].metadata.publishedAt)}
+											<time dateTime={featuredPost.metadata.publishedAt}>
+												{formatDate(featuredPost.metadata.publishedAt)}
 											</time>
-											{sortedPosts[0].metadata.readingTime && (
+											{featuredPost.metadata.readingTime && (
 												<>
 													<span className="mx-2">•</span>
-													<span>
-														{sortedPosts[0].metadata.readingTime} min read
-													</span>
+													<span>{featuredPost.metadata.readingTime}</span>
 												</>
 											)}
 										</div>
 
 										<h1 className="text-foreground text-2xl leading-[1.1] font-bold tracking-tight transition-colors sm:text-3xl lg:text-4xl">
-											{sortedPosts[0].metadata.title}
+											{featuredPost.metadata.title}
 										</h1>
 
 										<p className="text-muted-foreground text-lg leading-relaxed lg:text-xl">
-											{sortedPosts[0].metadata.summary}
+											{featuredPost.metadata.summary}
 										</p>
 
 										<div className="flex items-center gap-2 font-medium">
@@ -124,14 +141,10 @@ export default async function BlogPage() {
 						</div>
 
 						<div className="grid gap-8 md:grid-cols-2 lg:gap-12">
-							{sortedPosts.slice(1, 5).map((post: BlogPost, index: number) => {
-								const heroUrl = post.heroImage?.asset?.url
-								const heroAlt = post.heroImage?.alt || post.metadata.title
-								const hasImage = !!heroUrl
-
+							{sortedPosts.slice(1, 5).map((post: BlogPost) => {
 								return (
 									<article key={post.slug} className="group relative">
-										<Link href={`/blog/${post.slug}`} className="block h-full">
+										<Link href={`/blog/${post.slug}`} prefetch className="block h-full">
 											<div className="border-border-subtle bg-card hover:border-border flex h-full flex-col rounded-2xl border p-6 transition-all duration-200">
 												<div className="mb-4">
 													<time
@@ -183,6 +196,7 @@ export default async function BlogPage() {
 									<article key={post.slug} className="group">
 										<Link
 											href={`/blog/${post.slug}`}
+											prefetch
 											className="block space-y-4">
 											<div className="text-muted-foreground text-sm font-medium">
 												<time dateTime={post.metadata.publishedAt}>

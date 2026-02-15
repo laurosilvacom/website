@@ -1,11 +1,21 @@
-import {getBlogPosts} from '@/lib/blog'
+import {getBlogPosts} from '@/features/blog/server'
+import {baseUrl} from '@/app/sitemap'
+
+type RssItem = {
+	slug: string
+	metadata: {
+		title: string
+		publishedAt: string
+		summary: string
+		tags?: string[]
+	}
+}
 
 export async function GET() {
 	const posts = await getBlogPosts()
-	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://laurosilva.com'
 
 	// Sort by newest first
-	const sortedPosts = posts.sort((a: any, b: any) => {
+	const sortedPosts = [...posts].sort((a: RssItem, b: RssItem) => {
 		return (
 			new Date(b.metadata.publishedAt).getTime() -
 			new Date(a.metadata.publishedAt).getTime()
@@ -24,7 +34,7 @@ export async function GET() {
     <atom:link href="${baseUrl}/blog/rss.xml" rel="self" type="application/rss+xml"/>
     ${sortedPosts
 			.map(
-				(post: any) => `
+				(post: RssItem) => `
     <item>
       <title><![CDATA[${post.metadata.title}]]></title>
       <link>${baseUrl}/blog/${post.slug}</link>
@@ -33,7 +43,7 @@ export async function GET() {
       <description><![CDATA[${post.metadata.summary}]]></description>
       ${post.metadata.tags ? post.metadata.tags.map((tag: string) => `<category>${tag}</category>`).join('') : ''}
       <content:encoded><![CDATA[${post.metadata.summary}]]></content:encoded>
-    </item>`
+    </item>`,
 			)
 			.join('')}
   </channel>
@@ -42,7 +52,7 @@ export async function GET() {
 	return new Response(rss, {
 		headers: {
 			'Content-Type': 'application/xml',
-			'Cache-Control': 'public, max-age=3600, s-maxage=18000'
-		}
+			'Cache-Control': 'public, max-age=3600, s-maxage=18000',
+		},
 	})
 }
