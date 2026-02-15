@@ -87,7 +87,7 @@ export default async function BlogPage() {
 							{year}
 						</h2>
 						<div className="divide-border mt-4 divide-y">
-							{postsByYear[year].map((post: BlogPost) => (
+							{postsByYear[year]?.map((post: BlogPost) => (
 								<Link
 									key={post.slug}
 									href={`/blog/${post.slug}`}
