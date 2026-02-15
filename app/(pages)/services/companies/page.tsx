@@ -26,7 +26,7 @@ export default function CompaniesPage() {
 	return (
 		<>
 			{/* Hero Section */}
-			<section className="pt-40 pb-24 lg:pt-48 lg:pb-40">
+			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
 				<Container width="base">
 					<div className="mx-auto max-w-4xl text-center">
 						<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">

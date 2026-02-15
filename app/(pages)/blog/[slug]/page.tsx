@@ -9,9 +9,9 @@ import {formatDate, getBlogPostBySlug, getBlogPostSlugs} from '@/features/blog/s
 import {getImageClass} from '@/shared/lib/image-utils'
 import Image from 'next/image'
 import {highlightCode} from '@/shared/lib/highlight-code'
-import {Button} from '@/shared/ui/button'
 import Link from 'next/link'
 import {type PortableTextBlock} from '@sanity/types'
+import {ArrowLeft, ArrowUpRight} from 'lucide-react'
 import {
 	getSanityImageBlurDataUrl,
 	getSanityImageUrl,
@@ -109,33 +109,44 @@ export default async function BlogPost({params}: Props) {
 			/>
 
 			<article>
-				{/* Header Section - Title and Information */}
-				<header className="pt-40 pb-24 lg:pt-48 lg:pb-40">
+				{/* Header */}
+				<header className="pt-40 pb-20 lg:pt-48 lg:pb-24">
 					<Container width="base">
-						<div className="mx-auto max-w-4xl space-y-8 text-center">
-							<div className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
-								<time dateTime={post.metadata.publishedAt}>
+						<div className="space-y-4">
+							<Link
+								href="/blog"
+								className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-xs font-medium transition-colors">
+								<ArrowLeft className="h-3 w-3" />
+								Writing
+							</Link>
+
+							<div className="flex items-center gap-2 text-xs">
+								<time
+									className="text-muted-foreground font-medium"
+									dateTime={post.metadata.publishedAt}>
 									{formatDate(post.metadata.publishedAt)}
 								</time>
-								<span className="mx-3">•</span>
-								<span>{readingTime}</span>
+								<span className="text-muted-foreground">·</span>
+								<span className="text-muted-foreground font-medium">
+									{readingTime}
+								</span>
 							</div>
 
-							<h1 className="text-foreground text-4xl leading-[1.05] font-bold tracking-tight text-balance sm:text-5xl md:text-6xl lg:text-7xl">
+							<h1 className="text-foreground text-4xl leading-[1.08] font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
 								{post.metadata.title}
 							</h1>
 
-							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed text-balance sm:text-2xl">
+							<p className="text-muted-foreground max-w-xl text-base leading-relaxed text-balance">
 								{post.metadata.summary}
 							</p>
 
 							{post.metadata.tags && post.metadata.tags.length > 0 && (
-								<div className="flex flex-wrap items-center justify-center gap-2">
-									{post.metadata.tags.slice(0, 3).map((tag) => (
+								<div className="flex flex-wrap items-center gap-2 pt-1">
+									{post.metadata.tags.slice(0, 4).map((tag) => (
 										<Link
 											key={tag}
 											href={`/tags/${encodeURIComponent(tag)}`}
-											className="bg-background/70 border-border/30 text-muted-foreground rounded-full border px-4 py-1.5 text-xs font-medium tracking-wider uppercase backdrop-blur-xl">
+											className="text-muted-foreground hover:text-foreground font-mono text-[10px] font-medium uppercase tracking-wider transition-colors">
 											{tag}
 										</Link>
 									))}
@@ -145,67 +156,69 @@ export default async function BlogPost({params}: Props) {
 					</Container>
 				</header>
 
-				{/* Cover Image Section */}
+				{/* Cover Image */}
 				{heroUrl && (
-					<section className="pb-16 sm:pb-20 lg:pb-24">
-						<Container width="wide">
-							<div className="mx-auto max-w-5xl">
-								<div className="border-border/30 relative aspect-video overflow-hidden rounded-2xl border shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-									<Image
-										src={heroUrl}
-										alt={heroAlt}
-										fill
-										priority
-										unoptimized
-										className={`object-cover ${getImageClass('EDITORIAL_BW')}`}
-										sizes="(min-width: 1024px) 1000px, 100vw"
-										placeholder={heroLqip ? 'blur' : 'empty'}
-										blurDataURL={heroLqip}
-									/>
-								</div>
-								{post.heroImage?.caption && (
-									<figcaption className="text-muted-foreground mx-auto mt-4 max-w-3xl text-center text-sm">
-										{post.heroImage.caption}
-									</figcaption>
-								)}
+					<section className="border-border border-y py-10 lg:py-14">
+						<Container width="base">
+							<div className="relative aspect-video overflow-hidden rounded-xl">
+								<Image
+									src={heroUrl}
+									alt={heroAlt}
+									fill
+									priority
+									unoptimized
+									className={`object-cover ${getImageClass('EDITORIAL_BW')}`}
+									sizes="(min-width: 1024px) 680px, 100vw"
+									placeholder={heroLqip ? 'blur' : 'empty'}
+									blurDataURL={heroLqip}
+								/>
 							</div>
+							{post.heroImage?.caption && (
+								<p className="text-muted-foreground mt-3 text-xs">
+									{post.heroImage.caption}
+								</p>
+							)}
 						</Container>
 					</section>
 				)}
 
-				{/* Content Section */}
-				<section className="py-16 sm:py-20 lg:py-24">
-					<Container width="wide">
-						<div className="mx-auto max-w-3xl">
+				{/* Content */}
+				<section className="py-16 lg:py-20">
+					<Container width="base">
+						<div className="prose prose-sm dark:prose-invert prose-headings:text-foreground prose-headings:font-bold prose-headings:tracking-tight prose-p:text-muted-foreground prose-p:leading-relaxed prose-a:text-foreground prose-a:underline prose-a:underline-offset-4 prose-strong:text-foreground prose-code:text-foreground prose-pre:bg-muted prose-pre:border prose-pre:border-border prose-li:text-muted-foreground max-w-none">
 							<PortableText blocks={processedBlocks} />
 						</div>
 					</Container>
 				</section>
 			</article>
 
-			<section className="py-24 lg:py-32">
-				<Container width="narrow">
-					<div className="bg-background/70 border-border/30 mx-auto max-w-2xl space-y-8 rounded-2xl border p-12 text-center shadow-[0_2px_8px_rgba(0,0,0,0.04)] backdrop-blur-xl lg:p-16">
-						<div className="space-y-6">
-							<h3 className="text-3xl font-bold tracking-tight lg:text-4xl">
-								Have questions?
-							</h3>
-							<p className="text-muted-foreground text-lg leading-relaxed">
-								Feel free to reach out on LinkedIn or send me an email.
+			{/* CTA */}
+			<section className="border-border border-t py-16 lg:py-20">
+				<Container width="base">
+					<div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+						<div>
+							<p className="text-foreground text-sm font-medium">
+								Have questions or feedback?
+							</p>
+							<p className="text-muted-foreground text-sm">
+								Reach out on LinkedIn or send me an email.
 							</p>
 						</div>
-						<div className="flex flex-wrap items-center justify-center gap-4">
-							<Button asChild size="lg">
-								<a
-									href="https://www.linkedin.com/in/laurosilvacom/"
-									target="_blank"
-									rel="noopener noreferrer">
-									Connect on LinkedIn
-								</a>
-							</Button>
-							<Button asChild size="lg" variant="outline">
-								<a href="mailto:hello@laurosilva.com">Send an email</a>
-							</Button>
+						<div className="flex items-center gap-3">
+							<a
+								href="https://www.linkedin.com/in/laurosilvacom/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex shrink-0 items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors">
+								LinkedIn
+								<ArrowUpRight className="h-3.5 w-3.5" />
+							</a>
+							<a
+								href="mailto:hello@laurosilva.com"
+								className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-sm font-medium transition-colors">
+								Email
+								<ArrowUpRight className="h-3.5 w-3.5" />
+							</a>
 						</div>
 					</div>
 				</Container>

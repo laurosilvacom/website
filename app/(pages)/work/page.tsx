@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Container from '@/shared/components/container'
-import {ArrowRight} from 'lucide-react'
+import {ArrowRight, ArrowUpRight} from 'lucide-react'
 import {generatePageMetadata} from '@/shared/lib/metadata'
 
 export const metadata = generatePageMetadata(
@@ -91,62 +91,76 @@ export default function WorkPage() {
 	return (
 		<>
 			{/* Header */}
-			<section className="pt-40 pb-24 lg:pt-48 lg:pb-40">
+			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
 				<Container width="base">
-					<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
-						<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+					<div className="animate-in fade-in slide-in-from-bottom-4 max-w-2xl space-y-4 duration-1000">
+						<h1 className="text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 							Work
 						</h1>
-						<p className="text-muted-foreground max-w-2xl text-xl leading-relaxed sm:text-2xl">
-							I&apos;ve helped companies like Google, O&apos;Reilly, Sentry, and HOKA ship
-							products and level up their engineering teams.
+						<p className="text-muted-foreground max-w-xl text-lg leading-relaxed">
+							I&apos;ve helped companies like Google, O&apos;Reilly, Sentry,
+							and HOKA ship products and level up their engineering teams.
 						</p>
 					</div>
 				</Container>
 			</section>
 
-			{/* Featured Case Studies */}
-			<section className="py-16 lg:py-24">
+			{/* Stats */}
+			<section className="border-border border-y">
 				<Container width="base">
-					<div className="space-y-8">
+					<div className="grid grid-cols-2 divide-x divide-border sm:grid-cols-4">
+						{[
+							{label: 'Clients', value: '6+'},
+							{label: 'Years', value: '8+'},
+							{label: 'Focus', value: 'Full-Stack'},
+							{label: 'Stack', value: 'React / Next.js'},
+						].map((stat) => (
+							<div key={stat.label} className="px-4 py-5 first:pl-0 sm:px-6">
+								<p className="text-foreground text-sm font-semibold">{stat.value}</p>
+								<p className="text-muted-foreground text-xs">{stat.label}</p>
+							</div>
+						))}
+					</div>
+				</Container>
+			</section>
+
+			{/* Featured Case Studies */}
+			<section className="py-16 lg:py-20">
+				<Container width="base">
+					<h2 className="text-sm font-semibold uppercase tracking-wider">
+						Featured
+					</h2>
+					<div className="mt-6 space-y-4">
 						{featured.map((study) => (
-							<Link key={study.slug} href={`/work/${study.slug}`} className="group block">
-								<div className="border-border-subtle bg-card hover:border-border rounded-2xl border p-8 transition-all duration-200 lg:p-12">
-									<div className="grid items-center gap-8 lg:grid-cols-12">
-										<div className="space-y-4 lg:col-span-8">
-											<div className="flex items-center gap-2">
-												<span className="text-muted-foreground text-sm font-medium">
-													{study.client}
-												</span>
-												<span className="text-muted-foreground text-sm opacity-40">
-													·
-												</span>
-												<span className="text-muted-foreground text-sm">
-													{study.type}
-												</span>
+							<Link
+								key={study.slug}
+								href={`/work/${study.slug}`}
+								className="group block">
+								<div className="border-border hover:bg-muted/40 rounded-xl border p-6 transition-all duration-200 lg:p-8">
+									<div className="flex items-start justify-between gap-6">
+										<div className="min-w-0 space-y-3">
+											<div className="text-muted-foreground flex items-center gap-2 text-xs">
+												<span className="font-medium">{study.client}</span>
+												<span className="opacity-40">·</span>
+												<span>{study.type}</span>
 											</div>
-											<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
+											<h3 className="text-foreground text-lg font-bold tracking-tight">
 												{study.title}
-											</h2>
-											<p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
+											</h3>
+											<p className="text-muted-foreground max-w-xl text-sm leading-relaxed">
 												{study.summary}
 											</p>
-											<div className="flex flex-wrap gap-2 pt-2">
+											<div className="flex flex-wrap gap-1.5 pt-1">
 												{study.tags.map((tag) => (
 													<span
 														key={tag}
-														className="bg-muted text-muted-foreground rounded-full px-3 py-1 font-mono text-xs font-medium">
+														className="bg-muted text-muted-foreground rounded px-2 py-0.5 font-mono text-[10px] font-medium">
 														{tag}
 													</span>
 												))}
 											</div>
 										</div>
-										<div className="flex lg:col-span-4 lg:justify-end">
-											<span className="text-muted-foreground group-hover:text-foreground flex items-center text-sm font-medium transition-colors">
-												View case study
-												<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-											</span>
-										</div>
+										<ArrowRight className="text-muted-foreground mt-1 h-4 w-4 shrink-0 opacity-0 transition-opacity group-hover:opacity-100" />
 									</div>
 								</div>
 							</Link>
@@ -157,43 +171,56 @@ export default function WorkPage() {
 
 			{/* Other Work */}
 			{other.length > 0 && (
-				<section className="py-16 lg:py-24">
+				<section className="border-border border-t py-16 lg:py-20">
 					<Container width="base">
-						<div className="space-y-12">
-							<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">More Work</h2>
-							<div className="grid gap-8 md:grid-cols-2">
-								{other.map((study) => (
-									<Link
-										key={study.slug}
-										href={`/work/${study.slug}`}
-										className="group block">
-										<div className="border-border-subtle bg-card hover:border-border flex h-full flex-col rounded-2xl border p-8 transition-all duration-200">
-											<div className="mb-4">
-												<span className="text-muted-foreground text-sm font-medium">
-													{study.client}
-												</span>
-											</div>
-											<h3 className="mb-3 text-xl font-bold">{study.title}</h3>
-											<p className="text-muted-foreground mb-6 grow text-base leading-relaxed">
-												{study.summary}
-											</p>
-											<div className="flex flex-wrap gap-2">
-												{study.tags.slice(0, 3).map((tag) => (
-													<span
-														key={tag}
-														className="bg-muted text-muted-foreground rounded-full px-3 py-1 font-mono text-xs font-medium">
-														{tag}
-													</span>
-												))}
-											</div>
-										</div>
-									</Link>
-								))}
-							</div>
+						<h2 className="text-sm font-semibold uppercase tracking-wider">
+							More Work
+						</h2>
+						<div className="divide-border mt-4 divide-y">
+							{other.map((study) => (
+								<Link
+									key={study.slug}
+									href={`/work/${study.slug}`}
+									className="group flex items-center justify-between gap-4 py-4 transition-opacity hover:opacity-70">
+									<div className="min-w-0">
+										<span className="text-foreground text-sm font-medium">
+											{study.title}
+										</span>
+										<p className="text-muted-foreground text-xs">
+											{study.client} · {study.type}
+										</p>
+									</div>
+									<ArrowRight className="text-muted-foreground h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity group-hover:opacity-100" />
+								</Link>
+							))}
 						</div>
 					</Container>
 				</section>
 			)}
+
+			{/* CTA */}
+			<section className="border-border border-t py-16 lg:py-20">
+				<Container width="base">
+					<div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+						<div>
+							<p className="text-foreground text-sm font-medium">
+								Interested in working together?
+							</p>
+							<p className="text-muted-foreground text-sm">
+								I&apos;m available for new development engagements and technical consulting.
+							</p>
+						</div>
+						<Link
+							href="https://cal.com/laurosilvacom/chat"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex shrink-0 items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors">
+							Schedule a call
+							<ArrowUpRight className="h-3.5 w-3.5" />
+						</Link>
+					</div>
+				</Container>
+			</section>
 		</>
 	)
 }

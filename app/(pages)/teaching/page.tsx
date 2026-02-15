@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Container from '@/shared/components/container'
-import {Button} from '@/shared/ui/button'
-import {ArrowRight, ExternalLink} from 'lucide-react'
+import {ArrowRight, ArrowUpRight} from 'lucide-react'
 import {generatePageMetadata} from '@/shared/lib/metadata'
 
 export const metadata = generatePageMetadata(
@@ -26,16 +25,14 @@ const platforms = [
 		name: "O'Reilly Media",
 		type: 'Live Workshops',
 		description:
-			"Designed and delivered live, interactive workshops on React, TypeScript, and modern web development to O'Reilly's global audience of professional engineers.",
-		topics: ['React Fundamentals', 'Advanced TypeScript', 'Modern Web Development'],
+			"Live, interactive workshops on React, TypeScript, and modern web development for O'Reilly's global engineering audience.",
 		href: '/work/oreilly',
 	},
 	{
 		name: 'egghead.io',
 		type: 'Video Courses',
 		description:
-			'Created concise, practical video courses on modern web development. Focused on patterns and techniques developers can apply immediately in production.',
-		topics: ['React Patterns', 'TypeScript', 'Web Development'],
+			'Concise, practical video courses on modern web development. Patterns and techniques developers can apply immediately.',
 		href: '/work/egghead',
 	},
 ]
@@ -43,39 +40,33 @@ const platforms = [
 const workshopTopics = [
 	{
 		title: 'React & Next.js',
-		description:
-			'From fundamentals to advanced patterns. Server components, app router, data fetching, caching strategies, and production architecture.',
 		level: 'Beginner to Advanced',
+		desc: 'Server components, app router, data fetching, caching, production architecture.',
 	},
 	{
 		title: 'TypeScript for Teams',
-		description:
-			'Practical TypeScript patterns that improve code quality and developer experience. Type-safe APIs, generics, utility types, and migration strategies.',
 		level: 'Intermediate to Advanced',
+		desc: 'Type-safe APIs, generics, utility types, migration strategies.',
 	},
 	{
 		title: 'AI Integration',
-		description:
-			'How to integrate AI tools like Claude and GPT-4 into existing applications. Prompt engineering, API patterns, and production best practices.',
 		level: 'Intermediate',
+		desc: 'Claude, GPT-4, prompt engineering, API patterns, production best practices.',
 	},
 	{
 		title: 'Architecture & System Design',
-		description:
-			'How to structure applications that scale. Monorepos, micro-frontends, API design, and the patterns that make large codebases manageable.',
 		level: 'Senior',
+		desc: 'Monorepos, micro-frontends, API design, scaling patterns.',
 	},
 	{
 		title: 'Testing Strategies',
-		description:
-			'Practical testing that actually catches bugs. Unit tests, integration tests, E2E testing, and how to build a testing culture that sticks.',
 		level: 'Intermediate to Advanced',
+		desc: 'Unit, integration, E2E testing. Building a testing culture that sticks.',
 	},
 	{
 		title: 'Developer Experience',
-		description:
-			"Improve your team's development workflows, tooling, CI/CD pipelines, and code review practices to ship faster with more confidence.",
 		level: 'All Levels',
+		desc: 'Workflows, tooling, CI/CD, code review practices.',
 	},
 ]
 
@@ -83,7 +74,7 @@ const currentOfferings = [
 	{
 		title: 'Prompt Engineering for Everyone',
 		description:
-			'Practical techniques to get consistent, high-quality results from AI tools like ChatGPT, Claude, Copilot, and Cursor — without guessing, hype, or trial and error.',
+			'Practical techniques to get consistent, high-quality results from AI tools like ChatGPT, Claude, Copilot, and Cursor.',
 		status: 'Available Now',
 		href: '/workshops/prompt-engineering-for-everyone',
 	},
@@ -92,72 +83,83 @@ const currentOfferings = [
 export default function TeachingPage() {
 	return (
 		<>
-			{/* Hero */}
-			<section className="pt-40 pb-24 lg:pt-48 lg:pb-40">
+			{/* Header */}
+			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
 				<Container width="base">
-					<div className="mx-auto max-w-4xl text-center">
-						<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
-							<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-								Workshops & Training
-							</h1>
-							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
-								I teach engineering teams to build better software. From half-day workshops
-								to multi-week training programs. Previously taught at O&apos;Reilly and
-								egghead.
-							</p>
+					<div className="animate-in fade-in slide-in-from-bottom-4 max-w-2xl space-y-4 duration-1000">
+						<h1 className="text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+							Teaching
+						</h1>
+						<p className="text-muted-foreground max-w-xl text-lg leading-relaxed">
+							I teach engineering teams to build better software. From half-day
+							workshops to multi-week programs. Previously at O&apos;Reilly and
+							egghead.
+						</p>
+						<div className="flex items-center gap-4 pt-2">
+							<Link
+								href="https://cal.com/laurosilvacom/chat"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors">
+								Book training
+								<ArrowUpRight className="h-3.5 w-3.5" />
+							</Link>
+							<Link
+								href="/workshops/prompt-engineering-for-everyone"
+								className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-sm font-medium transition-colors">
+								Current workshop
+								<ArrowRight className="h-3.5 w-3.5" />
+							</Link>
 						</div>
-						<div className="animate-in fade-in slide-in-from-bottom-4 flex flex-wrap items-center justify-center gap-4 pt-12 delay-150 duration-1000">
-							<Button asChild size="lg" className="group">
-								<Link
-									href="https://cal.com/laurosilvacom/chat"
-									target="_blank"
-									rel="noopener noreferrer">
-									Book training for your team
-									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-								</Link>
-							</Button>
-						</div>
+					</div>
+				</Container>
+			</section>
+
+			{/* Formats */}
+			<section className="border-border border-y">
+				<Container width="base">
+					<div className="grid grid-cols-3 divide-x divide-border">
+						{[
+							{label: 'Half-day', value: 'Workshop'},
+							{label: 'Multi-day', value: 'Intensive'},
+							{label: 'Ongoing', value: 'Mentorship'},
+						].map((item) => (
+							<div key={item.label} className="px-4 py-5 first:pl-0 sm:px-6">
+								<p className="text-foreground text-sm font-semibold">{item.value}</p>
+								<p className="text-muted-foreground text-xs">{item.label}</p>
+							</div>
+						))}
 					</div>
 				</Container>
 			</section>
 
 			{/* Current Offerings */}
 			{currentOfferings.length > 0 && (
-				<section className="py-16 lg:py-24">
+				<section className="py-16 lg:py-20">
 					<Container width="base">
-						<div className="space-y-12">
-							<div className="space-y-4">
-								<div className="inline-flex items-center gap-2">
-									<div className="bg-primary h-2 w-2 rounded-full" />
-									<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
-										Current Offerings
-									</span>
-								</div>
-								<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
-									Available Now
-								</h2>
-							</div>
-
+						<h2 className="text-sm font-semibold uppercase tracking-wider">
+							Available Now
+						</h2>
+						<div className="divide-border mt-4 divide-y">
 							{currentOfferings.map((offering) => (
-								<Link key={offering.title} href={offering.href} className="group block">
-									<div className="border-border bg-card hover:border-primary/50 rounded-2xl border p-8 transition-all duration-200 lg:p-12">
-										<div className="flex items-start justify-between gap-8">
-											<div className="space-y-4">
-												<div className="inline-flex">
-													<span className="bg-primary/10 text-primary rounded-full px-3 py-1 text-xs font-medium">
-														{offering.status}
-													</span>
-												</div>
-												<h3 className="text-2xl font-bold lg:text-3xl">
-													{offering.title}
-												</h3>
-												<p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
-													{offering.description}
-												</p>
-											</div>
-											<ArrowRight className="text-muted-foreground group-hover:text-foreground mt-2 h-5 w-5 shrink-0 transition-all group-hover:translate-x-1" />
+								<Link
+									key={offering.title}
+									href={offering.href}
+									className="group flex items-center justify-between gap-4 py-4 transition-opacity hover:opacity-70">
+									<div className="min-w-0 space-y-1">
+										<div className="flex items-center gap-2">
+											<span className="text-foreground text-sm font-medium">
+												{offering.title}
+											</span>
+											<span className="bg-primary/10 text-primary rounded-full px-2 py-0.5 text-[10px] font-medium">
+												{offering.status}
+											</span>
 										</div>
+										<p className="text-muted-foreground text-xs">
+											{offering.description}
+										</p>
 									</div>
+									<ArrowRight className="text-muted-foreground h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity group-hover:opacity-100" />
 								</Link>
 							))}
 						</div>
@@ -165,161 +167,121 @@ export default function TeachingPage() {
 				</section>
 			)}
 
-			{/* Past Teaching Work */}
-			<section className="bg-muted/30 py-24 lg:py-32">
+			{/* Where I've Taught */}
+			<section className="border-border border-t py-16 lg:py-20">
 				<Container width="base">
-					<div className="space-y-12">
-						<div className="space-y-4">
-							<div className="inline-flex items-center gap-2">
-								<div className="bg-primary h-2 w-2 rounded-full" />
-								<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
-									Teaching Experience
-								</span>
-							</div>
-							<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
-								Where I&apos;ve Taught
-							</h2>
-						</div>
-
-						<div className="grid gap-8 md:grid-cols-2">
-							{platforms.map((platform) => (
-								<Link key={platform.name} href={platform.href} className="group block">
-									<div className="border-border bg-card hover:border-border flex h-full flex-col rounded-2xl border p-8 transition-all duration-200">
-										<div className="mb-2 flex items-center justify-between">
-											<span className="text-muted-foreground text-sm font-medium">
-												{platform.type}
-											</span>
-											<ExternalLink className="text-muted-foreground h-4 w-4" />
-										</div>
-										<h3 className="mb-3 text-xl font-bold">{platform.name}</h3>
-										<p className="text-muted-foreground mb-6 grow text-base leading-relaxed">
-											{platform.description}
-										</p>
-										<div className="flex flex-wrap gap-2">
-											{platform.topics.map((topic) => (
-												<span
-													key={topic}
-													className="bg-muted text-muted-foreground rounded-full px-3 py-1 font-mono text-xs font-medium">
-													{topic}
-												</span>
-											))}
-										</div>
-									</div>
-								</Link>
-							))}
-						</div>
+					<h2 className="text-sm font-semibold uppercase tracking-wider">
+						Where I&apos;ve Taught
+					</h2>
+					<div className="divide-border mt-4 divide-y">
+						{platforms.map((platform) => (
+							<Link
+								key={platform.name}
+								href={platform.href}
+								className="group flex items-center justify-between gap-4 py-4 transition-opacity hover:opacity-70">
+								<div className="min-w-0 space-y-1">
+									<span className="text-foreground text-sm font-medium">
+										{platform.name}
+									</span>
+									<p className="text-muted-foreground text-xs">
+										{platform.type} · {platform.description}
+									</p>
+								</div>
+								<ArrowRight className="text-muted-foreground h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity group-hover:opacity-100" />
+							</Link>
+						))}
 					</div>
 				</Container>
 			</section>
 
-			{/* Topics Available */}
-			<section className="py-24 lg:py-32">
+			{/* Topics */}
+			<section className="border-border border-t py-16 lg:py-20">
 				<Container width="base">
-					<div className="space-y-12">
-						<div className="space-y-4">
-							<div className="inline-flex items-center gap-2">
-								<div className="bg-primary h-2 w-2 rounded-full" />
-								<span className="text-muted-foreground font-mono text-xs font-medium tracking-wide uppercase">
-									Workshop Topics
+					<h2 className="text-sm font-semibold uppercase tracking-wider">
+						Workshop Topics
+					</h2>
+					<p className="text-muted-foreground mt-1 max-w-lg text-sm">
+						Every workshop is customized to your team&apos;s needs. These are
+						the areas I cover.
+					</p>
+					<div className="divide-border mt-6 divide-y">
+						{workshopTopics.map((topic) => (
+							<div
+								key={topic.title}
+								className="flex items-baseline justify-between gap-4 py-3">
+								<div className="min-w-0">
+									<span className="text-foreground text-sm font-medium">
+										{topic.title}
+									</span>
+									<p className="text-muted-foreground text-xs">{topic.desc}</p>
+								</div>
+								<span className="text-muted-foreground shrink-0 font-mono text-[10px]">
+									{topic.level}
 								</span>
 							</div>
-							<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
-								What I Can Teach Your Team
-							</h2>
-							<p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
-								Every workshop is customized to your team&apos;s specific needs, codebase,
-								and skill level. Here are the topics I cover.
-							</p>
-						</div>
-
-						<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-							{workshopTopics.map((topic) => (
-								<div
-									key={topic.title}
-									className="border-border bg-card space-y-4 rounded-2xl border p-8">
-									<div className="space-y-2">
-										<h3 className="text-lg font-bold">{topic.title}</h3>
-										<span className="text-muted-foreground text-xs font-medium">
-											{topic.level}
-										</span>
-									</div>
-									<p className="text-muted-foreground text-sm leading-relaxed">
-										{topic.description}
-									</p>
-								</div>
-							))}
-						</div>
+						))}
 					</div>
 				</Container>
 			</section>
 
 			{/* How It Works */}
-			<section className="bg-muted/30 py-24 lg:py-32">
+			<section className="border-border border-t py-16 lg:py-20">
 				<Container width="base">
-					<div className="space-y-12">
-						<div className="space-y-4">
-							<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
-								How Corporate Training Works
-							</h2>
-						</div>
-
-						<div className="grid gap-8 md:grid-cols-3">
-							<div className="space-y-4">
-								<span className="text-muted-foreground font-mono text-xs font-medium">
-									01
+					<h2 className="text-sm font-semibold uppercase tracking-wider">
+						How It Works
+					</h2>
+					<div className="mt-6 grid gap-8 sm:grid-cols-3">
+						{[
+							{
+								n: '01',
+								title: 'Discovery',
+								desc: "We discuss your team's skills, codebase, and goals. I design the workshop around your specific context.",
+							},
+							{
+								n: '02',
+								title: 'Delivery',
+								desc: 'Hands-on workshops where your team builds real things. Practical exercises, not slides and lectures.',
+							},
+							{
+								n: '03',
+								title: 'Follow-Up',
+								desc: 'Post-workshop support — questions, code reviews, and guidance as your team applies what they learned.',
+							},
+						].map((step) => (
+							<div key={step.n} className="space-y-2">
+								<span className="text-muted-foreground font-mono text-[10px]">
+									{step.n}
 								</span>
-								<h3 className="text-lg font-bold">Discovery</h3>
-								<p className="text-muted-foreground text-base leading-relaxed">
-									We talk about your team&apos;s current skills, your codebase, and what
-									you want to achieve. I design the workshop around your specific context.
+								<h3 className="text-foreground text-sm font-semibold">{step.title}</h3>
+								<p className="text-muted-foreground text-xs leading-relaxed">
+									{step.desc}
 								</p>
 							</div>
-
-							<div className="space-y-4">
-								<span className="text-muted-foreground font-mono text-xs font-medium">
-									02
-								</span>
-								<h3 className="text-lg font-bold">Delivery</h3>
-								<p className="text-muted-foreground text-base leading-relaxed">
-									Hands-on workshops where your team builds real things. Not slides and
-									lectures — practical exercises using patterns they can apply to your
-									actual codebase.
-								</p>
-							</div>
-
-							<div className="space-y-4">
-								<span className="text-muted-foreground font-mono text-xs font-medium">
-									03
-								</span>
-								<h3 className="text-lg font-bold">Follow-Up</h3>
-								<p className="text-muted-foreground text-base leading-relaxed">
-									After the workshop, I provide follow-up support to help your team apply
-									what they learned. Questions, code reviews, and guidance as they put it
-									into practice.
-								</p>
-							</div>
-						</div>
+						))}
 					</div>
 				</Container>
 			</section>
 
 			{/* CTA */}
-			<section className="py-24 lg:py-32">
-				<Container width="narrow">
-					<div className="space-y-6 text-center">
-						<h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
-							Level up your engineering team
-						</h2>
-						<p className="text-muted-foreground mx-auto max-w-xl text-lg leading-relaxed">
-							From half-day workshops to week-long intensives.{' '}
-							<a
-								href="https://cal.com/laurosilvacom/chat"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-foreground underline underline-offset-4 transition-colors hover:opacity-70">
-								Book training for your team
-							</a>
-						</p>
+			<section className="border-border border-t py-16 lg:py-20">
+				<Container width="base">
+					<div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+						<div>
+							<p className="text-foreground text-sm font-medium">
+								Level up your engineering team
+							</p>
+							<p className="text-muted-foreground text-sm">
+								From half-day workshops to week-long intensives.
+							</p>
+						</div>
+						<Link
+							href="https://cal.com/laurosilvacom/chat"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex shrink-0 items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors">
+							Book training
+							<ArrowUpRight className="h-3.5 w-3.5" />
+						</Link>
 					</div>
 				</Container>
 			</section>

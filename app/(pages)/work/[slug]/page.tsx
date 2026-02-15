@@ -200,7 +200,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 	return (
 		<>
 			{/* Back Link */}
-			<section className="pt-40 lg:pt-48">
+			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
 				<Container width="base">
 					<Link
 						href="/work"

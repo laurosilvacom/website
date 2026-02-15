@@ -65,7 +65,7 @@ export default async function TagPage({params}: TagPageProps) {
 	return (
 		<>
 			{/* Hero */}
-			<section className="pt-40 pb-24 lg:pt-48 lg:pb-40">
+			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
 				<Container width="base">
 					<div className="mx-auto max-w-4xl space-y-8 text-center">
 						<div className="space-y-8">

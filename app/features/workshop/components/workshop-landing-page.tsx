@@ -1,17 +1,15 @@
 'use client'
 
-import {Badge} from '@/shared/ui/badge'
-import {Button} from '@/shared/ui/button'
-import {Card, CardContent} from '@/shared/ui/card'
 import type {
 	SanityModule,
 	SanityProductContributor,
 } from '@/shared/integrations/sanity/types'
-import {Sparkles, Clock, Users, Award} from 'lucide-react'
+import {ArrowUpRight, Mail} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {PortableText, type PortableTextBlock} from '@portabletext/react'
 import {WorkshopNewsletterBar} from '@/features/workshop/components/workshop-newsletter-bar'
+import Container from '@/shared/components/container'
 
 interface WorkshopLandingPageProps {
 	workshop: SanityModule
@@ -21,92 +19,44 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 	const landingDescription =
 		workshop.wipLandingPageDescription || workshop.shortDescription || ''
 
+	const audienceLabel =
+		workshop.audience && workshop.audience.length > 0 && workshop.audience[0]
+			? workshop.audience[0].title
+			: null
+
+	const lessonCount = workshop.emailLessons?.length
+
 	return (
-		<div className="relative min-h-screen pb-32">
-			{/* Hero Section */}
-			<section className="pt-40 pb-24 lg:pt-48 lg:pb-40">
-				<div className="mx-auto max-w-[1080px] w-full px-6 lg:px-12">
-					<div className="mx-auto max-w-4xl text-center">
-						<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
+		<div className="relative min-h-screen">
+			{/* Header */}
+			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
+				<Container width="base">
+					<div className="animate-in fade-in slide-in-from-bottom-4 max-w-2xl space-y-4 duration-1000">
+						<div className="flex items-center gap-2">
 							<Link
 								href="/workshops"
-								className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-xs font-medium tracking-wider uppercase transition-colors">
-								{workshop.audience && workshop.audience.length > 0 && workshop.audience[0]
-									? `For ${workshop.audience[0].title}`
-									: 'Pro Workshop'}
+								className="text-muted-foreground hover:text-foreground text-xs font-medium transition-colors">
+								Workshops
 							</Link>
-
-							<div className="flex justify-center">
-								<Badge
-									variant="outline"
-									className="bg-accent text-accent-foreground border-border px-4 py-1.5">
-									<Sparkles className="mr-1.5 h-3.5 w-3.5" />
-									Coming Soon
-								</Badge>
-							</div>
-
-							<h1 className="text-foreground text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-								{workshop.title}
-							</h1>
-
-							{workshop.shortDescription && (
-								<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
-									{workshop.shortDescription}
-								</p>
+							{audienceLabel && (
+								<>
+									<span className="text-muted-foreground text-xs">/</span>
+									<span className="text-muted-foreground text-xs">
+										For {audienceLabel}
+									</span>
+								</>
 							)}
 						</div>
-
-						{/* Contributors */}
-						{workshop.contributors && workshop.contributors.length > 0 && (
-							<div className="animate-in fade-in slide-in-from-bottom-4 flex justify-center pt-12 delay-150 duration-1000">
-								<div className="flex items-center gap-2">
-									<span className="text-muted-foreground text-sm font-medium">
-										Taught by
-									</span>
-									<div className="flex items-center gap-3">
-										{workshop.contributors.map(
-											(contributorData: SanityProductContributor) => {
-												if (!contributorData.contributor) {
-													return null
-												}
-
-												return (
-													<div
-														key={contributorData.contributor._id}
-														className="flex items-center gap-2">
-														<div className="bg-muted ring-background flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full ring-2">
-															{contributorData.contributor.picture?.asset?.url ? (
-																<Image
-																	src={contributorData.contributor.picture.asset.url}
-																	alt={contributorData.contributor.name}
-																	width={40}
-																	height={40}
-																	className="h-10 w-10 rounded-full object-cover"
-																/>
-															) : (
-																<span className="text-muted-foreground text-sm font-semibold">
-																	{contributorData.contributor.name
-																		.charAt(0)
-																		.toUpperCase()}
-																</span>
-															)}
-														</div>
-														<span className="text-foreground text-sm font-medium">
-															{contributorData.contributor.name}
-														</span>
-													</div>
-												)
-											},
-										)}
-									</div>
-								</div>
-							</div>
+						<h1 className="text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+							{workshop.title}
+						</h1>
+						{workshop.shortDescription && (
+							<p className="text-muted-foreground max-w-xl text-lg leading-relaxed">
+								{workshop.shortDescription}
+							</p>
 						)}
-
-						{/* CTA Button */}
-						<div className="animate-in fade-in slide-in-from-bottom-4 flex justify-center pt-12 delay-300 duration-1000">
-							<Button
-								size="lg"
+						<div className="flex items-center gap-4 pt-2">
+							<button
 								onClick={() => {
 									const formElement = document.getElementById('signup-form')
 									formElement?.scrollIntoView({
@@ -114,50 +64,189 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 										block: 'center',
 									})
 								}}
-								className="h-14 px-8 text-base font-semibold shadow-lg">
-								Start Free Email Course
-							</Button>
+								className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors">
+								Start free email course
+								<Mail className="h-3.5 w-3.5" />
+							</button>
+							<Link
+								href="/teaching"
+								className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-sm font-medium transition-colors">
+								All teaching
+								<ArrowUpRight className="h-3.5 w-3.5" />
+							</Link>
 						</div>
 					</div>
-				</div>
+				</Container>
 			</section>
 
-			{/* Workshop Image */}
-			{workshop.image?.asset?.url && (
-				<section className="relative py-12 lg:py-20">
-					<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-						<Card className="animate-in fade-in slide-in-from-bottom-8 overflow-hidden rounded-2xl shadow-xl delay-500 duration-1000">
-							<div className="bg-muted relative aspect-video w-full">
-								<Image
-									src={workshop.image.asset.url}
-									alt={workshop.title}
-									width={1200}
-									height={675}
-									className="h-full w-full rounded-2xl object-cover"
-									sizes="(max-width: 1280px) 100vw, 1200px"
-									priority
-								/>
+			{/* Meta strip */}
+			<section className="border-border border-y">
+				<Container width="base">
+					<div className="divide-border grid grid-cols-2 divide-x sm:grid-cols-4">
+						{[
+							{
+								label: 'Format',
+								value: 'Email Course',
+							},
+							{
+								label: 'Lessons',
+								value: lessonCount ? `${lessonCount} lessons` : 'Coming soon',
+							},
+							{
+								label: 'Price',
+								value: 'Free',
+							},
+							{
+								label: 'Status',
+								value: 'Available Now',
+							},
+						].map((item) => (
+							<div key={item.label} className="px-4 py-5 first:pl-0 sm:px-6">
+								<p className="text-foreground text-sm font-semibold">{item.value}</p>
+								<p className="text-muted-foreground text-xs">{item.label}</p>
 							</div>
-						</Card>
+						))}
 					</div>
+				</Container>
+			</section>
+
+			{/* Contributors */}
+			{workshop.contributors && workshop.contributors.length > 0 && (
+				<section className="border-border border-b py-5">
+					<Container width="base">
+						<div className="flex items-center gap-3">
+							<span className="text-muted-foreground text-xs">Taught by</span>
+							{workshop.contributors.map(
+								(contributorData: SanityProductContributor) => {
+									if (!contributorData.contributor) return null
+									return (
+										<div
+											key={contributorData.contributor._id}
+											className="flex items-center gap-2">
+											<div className="bg-muted flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-full">
+												{contributorData.contributor.picture?.asset?.url ? (
+													<Image
+														src={contributorData.contributor.picture.asset.url}
+														alt={contributorData.contributor.name}
+														width={24}
+														height={24}
+														className="h-6 w-6 rounded-full object-cover"
+													/>
+												) : (
+													<span className="text-muted-foreground text-[10px] font-semibold">
+														{contributorData.contributor.name
+															.charAt(0)
+															.toUpperCase()}
+													</span>
+												)}
+											</div>
+											<span className="text-foreground text-sm font-medium">
+												{contributorData.contributor.name}
+											</span>
+										</div>
+									)
+								},
+							)}
+						</div>
+					</Container>
 				</section>
 			)}
 
-			{/* Main Content - Single Column Layout */}
-			<section className="relative py-12 lg:py-20">
-				<div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-					{landingDescription && (
-						<div className="animate-in fade-in slide-in-from-bottom-4 mb-12 duration-1000">
-							<div className="text-muted-foreground prose prose-lg dark:prose-invert prose-p:text-muted-foreground prose-p:leading-relaxed prose-headings:text-foreground max-w-none">
+			{/* Workshop Image */}
+			{workshop.image?.asset?.url && (
+				<section className="border-border border-b py-10 lg:py-14">
+					<Container width="base">
+						<div className="overflow-hidden rounded-xl">
+							<Image
+								src={workshop.image.asset.url}
+								alt={workshop.title}
+								width={1200}
+								height={675}
+								className="h-full w-full object-cover"
+								sizes="(max-width: 768px) 100vw, 680px"
+								priority
+							/>
+						</div>
+					</Container>
+				</section>
+			)}
+
+			{/* Description */}
+			{landingDescription && (
+				<section className="border-border border-b py-16 lg:py-20">
+					<Container width="base">
+						<h2 className="text-sm font-semibold uppercase tracking-wider">
+							About This Workshop
+						</h2>
+						<div className="mt-4 max-w-xl">
+							<div className="text-muted-foreground prose prose-sm dark:prose-invert prose-p:text-muted-foreground prose-p:leading-relaxed prose-headings:text-foreground max-w-none">
 								{Array.isArray(landingDescription) ? (
 									<PortableText value={landingDescription as PortableTextBlock[]} />
 								) : (
-									<p className="text-lg leading-relaxed">{landingDescription}</p>
+									<p className="text-sm leading-relaxed">{landingDescription}</p>
 								)}
 							</div>
 						</div>
-					)}
-				</div>
+					</Container>
+				</section>
+			)}
+
+			{/* Lessons preview */}
+			{workshop.emailLessons && workshop.emailLessons.length > 0 && (
+				<section className="border-border border-b py-16 lg:py-20">
+					<Container width="base">
+						<h2 className="text-sm font-semibold uppercase tracking-wider">
+							What You&apos;ll Learn
+						</h2>
+						<p className="text-muted-foreground mt-1 text-sm">
+							{lessonCount} lessons delivered to your inbox, one per day.
+						</p>
+						<div className="divide-border mt-6 divide-y">
+							{workshop.emailLessons.map((lesson, i) => (
+								<div
+									key={lesson._key || i}
+									className="flex items-baseline gap-4 py-3">
+									<span className="text-muted-foreground w-6 shrink-0 text-right font-mono text-[10px]">
+										{String(i + 1).padStart(2, '0')}
+									</span>
+									<span className="text-foreground text-sm font-medium">
+										{lesson.subject || `Lesson ${i + 1}`}
+									</span>
+								</div>
+							))}
+						</div>
+					</Container>
+				</section>
+			)}
+
+			{/* CTA */}
+			<section className="py-16 lg:py-20">
+				<Container width="base">
+					<div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+						<div>
+							<p className="text-foreground text-sm font-medium">
+								Start learning for free
+							</p>
+							<p className="text-muted-foreground text-sm">
+								{lessonCount
+									? `${lessonCount} lessons delivered to your inbox.`
+									: 'Free email course — sign up below.'}
+							</p>
+						</div>
+						<button
+							onClick={() => {
+								const formElement = document.getElementById('signup-form')
+								formElement?.scrollIntoView({
+									behavior: 'smooth',
+									block: 'center',
+								})
+							}}
+							className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors">
+							Start free email course
+							<Mail className="h-3.5 w-3.5" />
+						</button>
+					</div>
+				</Container>
 			</section>
 
 			<div id="signup-form" className="sr-only" />
@@ -165,7 +254,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 			<WorkshopNewsletterBar
 				workshopSlug={workshop.slug.current}
 				audienceId={workshop.resendAudienceId}
-				lessonCount={workshop.emailLessons?.length}
+				lessonCount={lessonCount}
 				preface="Free Email Course"
 				ctaLabel="Start Learning"
 				scrollOffset={400}

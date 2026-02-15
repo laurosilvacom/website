@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import Container from '@/shared/components/container'
 import {getWorkshops} from '@/features/workshop/server'
 import {type Workshop} from '@/features/workshop/server'
+import {ArrowRight} from 'lucide-react'
 
 export const revalidate = 30
 
@@ -14,12 +14,11 @@ export const metadata = {
 export default async function WorkshopsPage() {
 	const workshops = await getWorkshops()
 
-	// Fix TS issue: Handle potential undefined/null return
 	if (!workshops) {
 		return (
 			<section className="py-32">
-				<Container width="narrow">
-					<p className="text-muted-foreground text-center">No workshops found.</p>
+				<Container width="base">
+					<p className="text-muted-foreground">No workshops found.</p>
 				</Container>
 			</section>
 		)
@@ -27,67 +26,53 @@ export default async function WorkshopsPage() {
 
 	return (
 		<>
-			<section className="pt-40 pb-24 lg:pt-48 lg:pb-40">
+			{/* Header */}
+			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
 				<Container width="base">
-					<div className="mx-auto max-w-4xl text-center">
-						<div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-1000">
-							<h1 className="text-4xl leading-[1.05] font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-								Workshops
-							</h1>
-							<p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
-								Professional training programs designed to help you level up your skills.
-							</p>
-						</div>
+					<div className="animate-in fade-in slide-in-from-bottom-4 max-w-2xl space-y-4 duration-1000">
+						<h1 className="text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+							Workshops
+						</h1>
+						<p className="text-muted-foreground max-w-xl text-lg leading-relaxed">
+							Professional training programs designed to help you level up your
+							skills.
+						</p>
 					</div>
 				</Container>
 			</section>
 
-			<section className="py-16 lg:py-24">
-				<Container width="wide">
+			{/* List */}
+			<section className="border-border border-t py-16 lg:py-20">
+				<Container width="base">
 					{workshops.length === 0 ? (
-						<div className="text-center">
-							<p className="text-muted-foreground">
-								No workshops available at the moment.
-							</p>
-						</div>
+						<p className="text-muted-foreground text-sm">
+							No workshops available at the moment.
+						</p>
 					) : (
-						<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+						<div className="divide-border divide-y">
 							{workshops.map((workshop: Workshop) => (
 								<Link
 									key={workshop._id}
 									href={`/workshops/${workshop.slug.current}`}
-									className="group block">
-									<div className="bg-card border-border hover:bg-accent/50 rounded-lg border p-6 transition-colors">
-										{workshop.image?.asset?.url && (
-											<div className="mb-4 aspect-video overflow-hidden rounded-md">
-												<Image
-													src={workshop.image.asset.url}
-													alt={workshop.title}
-													width={400}
-													height={225}
-													className="h-full w-full object-cover"
-													unoptimized
-												/>
-											</div>
-										)}
-										<h3 className="text-foreground group-hover:text-primary mb-2 text-xl font-semibold">
+									className="group flex items-center justify-between gap-4 py-5 transition-opacity hover:opacity-70">
+									<div className="min-w-0 space-y-1">
+										<span className="text-foreground text-sm font-medium">
 											{workshop.title}
-										</h3>
+										</span>
 										{workshop.shortDescription && (
-											<p className="text-muted-foreground text-sm leading-relaxed">
+											<p className="text-muted-foreground text-xs">
 												{workshop.shortDescription}
 											</p>
 										)}
 										{workshop.audience &&
 											workshop.audience.length > 0 &&
 											workshop.audience[0] && (
-												<div className="mt-4">
-													<span className="text-muted-foreground text-xs">
-														For {workshop.audience[0].title}
-													</span>
-												</div>
+												<p className="text-muted-foreground text-[10px] font-medium uppercase tracking-wider">
+													For {workshop.audience[0].title}
+												</p>
 											)}
 									</div>
+									<ArrowRight className="text-muted-foreground h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity group-hover:opacity-100" />
 								</Link>
 							))}
 						</div>
