@@ -1,5 +1,5 @@
 import {type Metadata} from 'next'
-import {baseUrl} from 'app/sitemap'
+import {baseUrl} from '@/app/sitemap'
 
 // Utility function to properly join URLs
 function joinUrl(base: string, path: string): string {

@@ -1,5 +1,5 @@
 import Script from 'next/script'
-import {baseUrl} from 'app/sitemap'
+import {baseUrl} from '@/app/sitemap'
 
 type StructuredDataProps = {
 	type?: 'website' | 'article' | 'person' | 'breadcrumb'
