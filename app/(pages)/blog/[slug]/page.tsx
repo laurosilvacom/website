@@ -122,17 +122,17 @@ export default async function BlogPost({params}: Props) {
 
 							<div className="flex items-center gap-2 text-xs">
 								<time
-									className="text-muted-foreground font-medium"
+									className="text-muted-foreground font-mono text-xs"
 									dateTime={post.metadata.publishedAt}>
 									{formatDate(post.metadata.publishedAt)}
 								</time>
 								<span className="text-muted-foreground">·</span>
-								<span className="text-muted-foreground font-medium">
+								<span className="text-muted-foreground font-mono text-xs">
 									{readingTime}
 								</span>
 							</div>
 
-							<h1 className="text-foreground text-4xl leading-[1.08] font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
+							<h1 className="text-foreground font-serif text-4xl leading-[1.08] font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
 								{post.metadata.title}
 							</h1>
 
@@ -146,7 +146,7 @@ export default async function BlogPost({params}: Props) {
 										<Link
 											key={tag}
 											href={`/tags/${encodeURIComponent(tag)}`}
-											className="text-muted-foreground hover:text-foreground font-mono text-[10px] font-medium uppercase tracking-wider transition-colors">
+											className="text-muted-foreground hover:text-foreground font-mono text-xs font-medium tracking-wider uppercase transition-colors">
 											{tag}
 										</Link>
 									))}
@@ -191,7 +191,6 @@ export default async function BlogPost({params}: Props) {
 					</Container>
 				</section>
 			</article>
-
 		</>
 	)
 }

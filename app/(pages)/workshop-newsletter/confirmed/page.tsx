@@ -49,7 +49,9 @@ export default async function WorkshopNewsletterConfirmedPage({searchParams}: Pa
 					<div className="space-y-4">
 						<div className="flex items-center gap-3">
 							<Icon className={`h-8 w-8 ${iconClass}`} />
-							<h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{title}</h1>
+							<h1 className="font-serif text-3xl font-bold tracking-tight sm:text-4xl">
+								{title}
+							</h1>
 						</div>
 						<p className="text-muted-foreground text-base leading-relaxed">
 							{description}

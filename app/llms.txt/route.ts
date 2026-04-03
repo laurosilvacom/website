@@ -32,7 +32,7 @@ export async function GET() {
 		`- Blog: ${baseUrl}/blog`,
 		`- Work: ${baseUrl}/work`,
 		`- Workshops: ${baseUrl}/workshops`,
-		`- Services: ${baseUrl}/services`,
+		`- Teaching: ${baseUrl}/teaching`,
 		'',
 		'## Machine-Readable Feeds',
 		`- Sitemap: ${baseUrl}/sitemap.xml`,

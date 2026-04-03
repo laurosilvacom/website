@@ -2,14 +2,26 @@ import {type Metadata} from 'next/types'
 import {type ReactNode} from 'react'
 import {ThemeProvider} from '@/shared/components/theme-provider'
 import {Analytics} from '@vercel/analytics/next'
-import {GeistSans} from 'geist/font/sans'
-import {GeistMono} from 'geist/font/mono'
-import {Instrument_Serif} from 'next/font/google'
+import {IBM_Plex_Sans, IBM_Plex_Mono, IBM_Plex_Serif} from 'next/font/google'
 
-const instrumentSerif = Instrument_Serif({
-	weight: '400',
+const ibmPlexSans = IBM_Plex_Sans({
+	weight: ['400', '500', '600', '700'],
+	subsets: ['latin'],
+	variable: '--font-sans',
+	display: 'swap',
+})
+
+const ibmPlexSerif = IBM_Plex_Serif({
+	weight: ['400', '500', '600', '700'],
 	subsets: ['latin'],
 	variable: '--font-serif',
+	display: 'swap',
+})
+
+const ibmPlexMono = IBM_Plex_Mono({
+	weight: ['400', '500', '700'],
+	subsets: ['latin'],
+	variable: '--font-mono',
 	display: 'swap',
 })
 
@@ -156,7 +168,7 @@ export default function RootLayout({children}: RootLayoutProps) {
 	return (
 		<html
 			lang="en"
-			className={`${GeistSans.variable} ${GeistMono.variable} bg-background text-foreground scroll-smooth antialiased`}
+			className={`${ibmPlexSans.variable} ${ibmPlexSerif.variable} ${ibmPlexMono.variable} bg-background text-foreground scroll-smooth antialiased`}
 			suppressHydrationWarning>
 			<head>
 				<link rel="dns-prefetch" href="https://cdn.sanity.io" />

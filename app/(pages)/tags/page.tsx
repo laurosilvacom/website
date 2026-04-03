@@ -38,10 +38,10 @@ export default async function TagsPage() {
 							<ArrowLeft className="h-3 w-3" />
 							Writing
 						</Link>
-						<h1 className="text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 							Topics
 						</h1>
-						<p className="text-muted-foreground text-lg">
+						<p className="text-muted-foreground text-base">
 							{allTags.length} topics across {posts.length} posts
 						</p>
 					</div>
@@ -51,7 +51,7 @@ export default async function TagsPage() {
 			{/* All tags */}
 			<section className="border-border border-t py-16 lg:py-20">
 				<Container width="base">
-					<h2 className="text-sm font-semibold uppercase tracking-wider">
+					<h2 className="font-mono text-xs font-medium tracking-wider uppercase">
 						All Topics
 					</h2>
 					<div className="divide-border mt-4 divide-y">
@@ -60,11 +60,9 @@ export default async function TagsPage() {
 								key={tag}
 								href={`/tags/${encodeURIComponent(tag)}`}
 								className="group flex items-center justify-between gap-4 py-3 transition-opacity hover:opacity-70">
-								<span className="text-foreground text-sm font-medium">
-									{tag}
-								</span>
+								<span className="text-foreground text-sm font-medium">{tag}</span>
 								<div className="flex shrink-0 items-center gap-3">
-									<span className="text-muted-foreground font-mono text-[10px]">
+									<span className="text-muted-foreground font-mono text-xs">
 										{tagCounts[tag]} {tagCounts[tag] === 1 ? 'post' : 'posts'}
 									</span>
 									<ArrowRight className="text-muted-foreground h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100" />

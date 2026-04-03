@@ -216,7 +216,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 							<span>{study.type}</span>
 						</div>
 
-						<h1 className="text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 							{study.title}
 						</h1>
 
@@ -224,7 +224,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 							{study.tags.map((tag) => (
 								<span
 									key={tag}
-									className="text-muted-foreground font-mono text-[10px] font-medium uppercase tracking-wider">
+									className="text-muted-foreground font-mono text-xs font-medium uppercase tracking-wider">
 									{tag}
 								</span>
 							))}
@@ -236,7 +236,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 			{/* Challenge */}
 			<section className="border-border border-t py-16 lg:py-20">
 				<Container width="base">
-					<h2 className="text-sm font-semibold uppercase tracking-wider">
+					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
 						The Challenge
 					</h2>
 					<div className="text-muted-foreground mt-4 max-w-xl space-y-4 text-sm leading-relaxed">
@@ -250,7 +250,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 			{/* Approach */}
 			<section className="border-border border-t py-16 lg:py-20">
 				<Container width="base">
-					<h2 className="text-sm font-semibold uppercase tracking-wider">
+					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
 						The Approach
 					</h2>
 					<div className="text-muted-foreground mt-4 max-w-xl space-y-4 text-sm leading-relaxed">
@@ -264,7 +264,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 			{/* Outcome */}
 			<section className="border-border border-t py-16 lg:py-20">
 				<Container width="base">
-					<h2 className="text-sm font-semibold uppercase tracking-wider">
+					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
 						The Outcome
 					</h2>
 					<div className="text-muted-foreground mt-4 max-w-xl space-y-4 text-sm leading-relaxed">
@@ -278,7 +278,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 			{/* Tech Stack */}
 			<section className="border-border border-t py-16 lg:py-20">
 				<Container width="base">
-					<h2 className="text-sm font-semibold uppercase tracking-wider">
+					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
 						Tech Stack
 					</h2>
 					<div className="mt-4 flex flex-wrap gap-1.5">
@@ -297,7 +297,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 			{study.testimonial && (
 				<section className="border-border border-t py-16 lg:py-20">
 					<Container width="base">
-						<h2 className="text-sm font-semibold uppercase tracking-wider">
+						<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
 							Testimonial
 						</h2>
 						<div className="mt-4 max-w-xl space-y-4">

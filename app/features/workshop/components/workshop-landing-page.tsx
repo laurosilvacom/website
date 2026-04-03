@@ -48,11 +48,11 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 								</>
 							)}
 						</div>
-						<h1 className="text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 							{workshop.title}
 						</h1>
 						{workshop.shortDescription && (
-							<p className="text-muted-foreground max-w-xl text-lg leading-relaxed">
+							<p className="text-muted-foreground max-w-xl text-base leading-relaxed">
 								{workshop.shortDescription}
 							</p>
 						)}
@@ -133,7 +133,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 														className="h-6 w-6 rounded-full object-cover"
 													/>
 												) : (
-													<span className="text-muted-foreground text-[10px] font-semibold">
+													<span className="text-muted-foreground text-xs font-semibold">
 														{contributorData.contributor.name
 															.charAt(0)
 															.toUpperCase()}
@@ -175,7 +175,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 			{landingDescription && (
 				<section className="border-border border-b py-16 lg:py-20">
 					<Container width="base">
-						<h2 className="text-sm font-semibold uppercase tracking-wider">
+						<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
 							About This Workshop
 						</h2>
 						<div className="mt-4 max-w-xl">
@@ -195,7 +195,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 			{workshop.emailLessons && workshop.emailLessons.length > 0 && (
 				<section className="border-border border-b py-16 lg:py-20">
 					<Container width="base">
-						<h2 className="text-sm font-semibold uppercase tracking-wider">
+						<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
 							What You&apos;ll Learn
 						</h2>
 						<p className="text-muted-foreground mt-1 text-sm">
@@ -206,7 +206,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 								<div
 									key={lesson._key || i}
 									className="flex items-baseline gap-4 py-3">
-									<span className="text-muted-foreground w-6 shrink-0 text-right font-mono text-[10px]">
+									<span className="text-muted-foreground w-6 shrink-0 text-right font-mono text-xs">
 										{String(i + 1).padStart(2, '0')}
 									</span>
 									<span className="text-foreground text-sm font-medium">

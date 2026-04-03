@@ -74,12 +74,11 @@ export default async function TagPage({params}: TagPageProps) {
 							All topics
 						</Link>
 
-						<h1 className="text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 							{tag}
 						</h1>
-						<p className="text-muted-foreground text-lg">
-							{taggedPosts.length}{' '}
-							{taggedPosts.length === 1 ? 'post' : 'posts'}
+						<p className="text-muted-foreground text-base">
+							{taggedPosts.length} {taggedPosts.length === 1 ? 'post' : 'posts'}
 						</p>
 					</div>
 				</Container>
@@ -90,7 +89,7 @@ export default async function TagPage({params}: TagPageProps) {
 				<section className="border-border border-y">
 					<Container width="base">
 						<div className="flex flex-wrap items-center gap-x-4 gap-y-2 py-5">
-							<span className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
+							<span className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
 								Related
 							</span>
 							{relatedTags.map((relatedTag) => (
@@ -109,7 +108,7 @@ export default async function TagPage({params}: TagPageProps) {
 			{/* Posts */}
 			<section className="py-16 lg:py-20">
 				<Container width="base">
-					<h2 className="text-sm font-semibold uppercase tracking-wider">
+					<h2 className="font-mono text-xs font-medium tracking-wider uppercase">
 						Posts
 					</h2>
 					<div className="divide-border mt-4 divide-y">
@@ -127,7 +126,7 @@ export default async function TagPage({params}: TagPageProps) {
 									</p>
 								</div>
 								<div className="flex shrink-0 items-center gap-3">
-									<span className="text-muted-foreground hidden font-mono text-[10px] sm:inline">
+									<span className="text-muted-foreground hidden font-mono text-xs sm:inline">
 										{formatDate(post.metadata.publishedAt, false)}
 									</span>
 									<ArrowRight className="text-muted-foreground h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100" />

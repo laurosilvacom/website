@@ -90,10 +90,10 @@ export default function TeachingPage() {
 			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
 				<Container width="base">
 					<div className="animate-in fade-in slide-in-from-bottom-4 max-w-2xl space-y-4 duration-1000">
-						<h1 className="text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 							Teaching
 						</h1>
-						<p className="text-muted-foreground max-w-xl text-lg leading-relaxed">
+						<p className="text-muted-foreground max-w-xl text-base leading-relaxed">
 							I teach engineering teams to build better software. From half-day
 							workshops to multi-week programs. Previously at O&apos;Reilly and
 							egghead.
@@ -140,7 +140,7 @@ export default function TeachingPage() {
 			{currentOfferings.length > 0 && (
 				<section className="py-16 lg:py-20">
 					<Container width="base">
-						<h2 className="text-sm font-semibold uppercase tracking-wider">
+						<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
 							Available Now
 						</h2>
 						<div className="divide-border mt-4 divide-y">
@@ -154,7 +154,7 @@ export default function TeachingPage() {
 											<span className="text-foreground text-sm font-medium">
 												{offering.title}
 											</span>
-											<span className="bg-primary/10 text-primary rounded-full px-2 py-0.5 text-[10px] font-medium">
+											<span className="bg-primary/10 text-primary rounded-full px-2 py-0.5 text-xs font-medium">
 												{offering.status}
 											</span>
 										</div>
@@ -173,7 +173,7 @@ export default function TeachingPage() {
 			{/* Where I've Taught */}
 			<section className="border-border border-t py-16 lg:py-20">
 				<Container width="base">
-					<h2 className="text-sm font-semibold uppercase tracking-wider">
+					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
 						Where I&apos;ve Taught
 					</h2>
 					<div className="divide-border mt-4 divide-y">
@@ -208,7 +208,7 @@ export default function TeachingPage() {
 			{/* Topics */}
 			<section className="border-border border-t py-16 lg:py-20">
 				<Container width="base">
-					<h2 className="text-sm font-semibold uppercase tracking-wider">
+					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
 						Workshop Topics
 					</h2>
 					<p className="text-muted-foreground mt-1 max-w-lg text-sm">
@@ -226,7 +226,7 @@ export default function TeachingPage() {
 									</span>
 									<p className="text-muted-foreground text-xs">{topic.desc}</p>
 								</div>
-								<span className="text-muted-foreground shrink-0 font-mono text-[10px]">
+								<span className="text-muted-foreground shrink-0 font-mono text-xs">
 									{topic.level}
 								</span>
 							</div>
@@ -238,7 +238,7 @@ export default function TeachingPage() {
 			{/* How It Works */}
 			<section className="border-border border-t py-16 lg:py-20">
 				<Container width="base">
-					<h2 className="text-sm font-semibold uppercase tracking-wider">
+					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
 						How It Works
 					</h2>
 					<div className="mt-6 grid gap-8 sm:grid-cols-3">
@@ -260,7 +260,7 @@ export default function TeachingPage() {
 							},
 						].map((step) => (
 							<div key={step.n} className="space-y-2">
-								<span className="text-muted-foreground font-mono text-[10px]">
+								<span className="text-muted-foreground font-mono text-xs">
 									{step.n}
 								</span>
 								<h3 className="text-foreground text-sm font-semibold">{step.title}</h3>

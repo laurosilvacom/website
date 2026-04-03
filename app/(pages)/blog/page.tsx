@@ -33,15 +33,12 @@ export default async function BlogPage() {
 	)
 
 	// Group posts by year
-	const postsByYear = sortedPosts.reduce<Record<string, BlogPost[]>>(
-		(acc, post) => {
-			const year = new Date(post.metadata.publishedAt).getFullYear().toString()
-			if (!acc[year]) acc[year] = []
-			acc[year].push(post)
-			return acc
-		},
-		{},
-	)
+	const postsByYear = sortedPosts.reduce<Record<string, BlogPost[]>>((acc, post) => {
+		const year = new Date(post.metadata.publishedAt).getFullYear().toString()
+		if (!acc[year]) acc[year] = []
+		acc[year].push(post)
+		return acc
+	}, {})
 
 	const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a))
 
@@ -51,12 +48,12 @@ export default async function BlogPage() {
 			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
 				<Container width="base">
 					<div className="animate-in fade-in slide-in-from-bottom-4 max-w-2xl space-y-4 duration-1000">
-						<h1 className="text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 							Writing
 						</h1>
-						<p className="text-muted-foreground max-w-xl text-lg leading-relaxed">
-							Thoughts, ideas, and explorations at the intersection of technology
-							and the outdoor industry.
+						<p className="text-muted-foreground max-w-xl text-base leading-relaxed">
+							Thoughts, ideas, and explorations at the intersection of technology and the
+							outdoor industry.
 						</p>
 						<div className="flex items-center gap-3 pt-2">
 							<Button asChild variant="ghost">
@@ -83,7 +80,7 @@ export default async function BlogPage() {
 			{years.map((year) => (
 				<section key={year} className="border-border border-b py-16 lg:py-20">
 					<Container width="base">
-						<h2 className="text-sm font-semibold uppercase tracking-wider">
+						<h2 className="font-mono text-xs font-medium tracking-wider uppercase">
 							{year}
 						</h2>
 						<div className="divide-border mt-4 divide-y">
@@ -102,7 +99,7 @@ export default async function BlogPage() {
 										</p>
 									</div>
 									<div className="flex shrink-0 items-center gap-3">
-										<span className="text-muted-foreground hidden font-mono text-[10px] sm:inline">
+										<span className="text-muted-foreground hidden font-mono text-xs sm:inline">
 											{formatDate(post.metadata.publishedAt)}
 										</span>
 										<ArrowRight className="text-muted-foreground h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100" />

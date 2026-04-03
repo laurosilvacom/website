@@ -21,10 +21,10 @@ export default function NewsletterPage() {
 			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
 				<Container width="base">
 					<div className="animate-in fade-in slide-in-from-bottom-4 max-w-2xl space-y-4 duration-1000">
-						<h1 className="text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 							Newsletter
 						</h1>
-						<p className="text-muted-foreground max-w-xl text-lg leading-relaxed">
+						<p className="text-muted-foreground max-w-xl text-base leading-relaxed">
 							Updates on building software, lessons from the trails, and things
 							I&apos;m learning about growing inclusive communities. Subscribers
 							get content that doesn&apos;t make it to the blog.
@@ -44,7 +44,7 @@ export default function NewsletterPage() {
 			{/* Subscribe */}
 			<section className="border-border border-t py-16 lg:py-20">
 				<Container width="base">
-					<h2 className="text-sm font-semibold uppercase tracking-wider">
+					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
 						Subscribe
 					</h2>
 					<div className="mt-6">
@@ -56,7 +56,7 @@ export default function NewsletterPage() {
 			{/* What You Get */}
 			<section className="border-border border-t py-16 lg:py-20">
 				<Container width="base">
-					<h2 className="text-sm font-semibold uppercase tracking-wider">
+					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
 						What You&apos;ll Get
 					</h2>
 					<div className="divide-border mt-4 divide-y">

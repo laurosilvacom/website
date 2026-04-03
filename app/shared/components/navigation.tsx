@@ -8,9 +8,7 @@ import Container from '@/shared/components/container'
 import {cn} from '@/shared/lib/utils'
 
 const navItems = [
-	{path: '/', name: 'Home'},
 	{path: '/work', name: 'Work'},
-	{path: '/services', name: 'Services'},
 	{path: '/teaching', name: 'Teaching'},
 	{path: '/blog', name: 'Blog'},
 	{path: '/about', name: 'About'},
@@ -88,7 +86,7 @@ export function Navigation() {
 								/>
 							</svg>
 							<span
-								className="text-foreground text-lg font-bold tracking-tight whitespace-nowrap"
+								className="text-foreground font-serif text-lg font-bold tracking-tight whitespace-nowrap"
 								style={{
 									letterSpacing: '-0.03em',
 								}}>
@@ -151,7 +149,7 @@ export function Navigation() {
 								d="M385 357.926L43.7135 655L149.934 395.013L0 297.046L341.286 0L225.757 276.58L385 357.926Z"
 							/>
 						</svg>
-						<span className="text-foreground text-sm font-bold tracking-tight whitespace-nowrap">
+						<span className="text-foreground font-serif text-sm font-bold tracking-tight whitespace-nowrap">
 							Lauro Silva
 						</span>
 					</Link>
@@ -210,7 +208,6 @@ export function Navigation() {
 								)
 							})}
 						</nav>
-
 					</div>
 				</div>
 			)}

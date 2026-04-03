@@ -85,6 +85,8 @@
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) + 4px);
+	--font-serif: var(--font-serif), 'Georgia', 'Times New Roman', serif;
+	--font-mono: var(--font-mono), ui-monospace, 'SF Mono', monospace;
 }
 
 @layer base {
@@ -106,7 +108,7 @@ html {
 	min-width: 360px;
 	font-size: 16px;
 	font-family:
-		var(--font-geist-sans),
+		var(--font-sans),
 		-apple-system,
 		BlinkMacSystemFont,
 		system-ui,
@@ -118,29 +120,26 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-/* Base heading styles - Cursor.com inspired */
+/* Base heading styles */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	font-family:
-		var(--font-geist-sans),
-		-apple-system,
-		BlinkMacSystemFont,
-		system-ui,
-		sans-serif;
 	font-weight: 600;
-	letter-spacing: -0.025em;
-	line-height: 1.1;
+	letter-spacing: -0.02em;
+	line-height: 1.15;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 }
 
-h1 {
+h1,
+h2 {
+	font-family: var(--font-serif), 'Georgia', 'Times New Roman', serif;
 	font-weight: 700;
-	letter-spacing: -0.04em;
+	letter-spacing: -0.03em;
+	line-height: 1.08;
 }
 
 code,
@@ -148,8 +147,8 @@ pre,
 kbd,
 samp {
 	font-family:
-		var(--font-geist-mono), ui-monospace, 'SF Mono', Monaco, 'Cascadia Code',
-		'Roboto Mono', Consolas, 'Courier New', monospace;
+		var(--font-mono), ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono',
+		Consolas, 'Courier New', monospace;
 }
 
 ::selection {
@@ -177,7 +176,7 @@ samp {
 }
 
 .code-block-lang {
-	font-family: var(--font-geist-mono), ui-monospace, monospace;
+	font-family: var(--font-mono), ui-monospace, monospace;
 	font-size: 0.75rem;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -210,7 +209,7 @@ samp {
 	background: transparent !important;
 	white-space: normal !important;
 	tab-size: 2;
-	font-family: var(--font-geist-mono), ui-monospace, monospace !important;
+	font-family: var(--font-mono), ui-monospace, monospace !important;
 }
 
 .code-block-content pre.shiki {
@@ -224,7 +223,7 @@ samp {
 
 .code-block-content code {
 	display: block;
-	font-family: var(--font-geist-mono), ui-monospace, monospace !important;
+	font-family: var(--font-mono), ui-monospace, monospace !important;
 	font-size: 13px !important;
 	line-height: 1.45 !important;
 	letter-spacing: -0.02em !important;
@@ -234,7 +233,7 @@ samp {
 }
 
 .code-block-content code span {
-	font-family: var(--font-geist-mono), ui-monospace, monospace !important;
+	font-family: var(--font-mono), ui-monospace, monospace !important;
 }
 
 .code-block-content .line {

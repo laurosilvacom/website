@@ -19,9 +19,7 @@ export default async function sitemap() {
 		'/llms.txt',
 		'/llms-full.txt',
 		'/newsletter',
-		'/services',
-		'/services/athletes',
-		'/services/companies',
+
 		'/tags',
 		'/teaching',
 		'/work',
