@@ -30,9 +30,9 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 	return (
 		<div className="relative min-h-screen">
 			{/* Header */}
-			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
-				<Container width="base">
-					<div className="animate-in fade-in slide-in-from-bottom-4 max-w-2xl space-y-4 duration-1000">
+			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
+				<Container>
+					<div className="space-y-4">
 						<div className="flex items-center gap-2">
 							<Link
 								href="/workshops"
@@ -52,7 +52,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 							{workshop.title}
 						</h1>
 						{workshop.shortDescription && (
-							<p className="text-muted-foreground max-w-xl text-base leading-relaxed">
+							<p className="text-muted-foreground text-base leading-relaxed">
 								{workshop.shortDescription}
 							</p>
 						)}
@@ -81,7 +81,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 
 			{/* Meta strip */}
 			<section className="border-border border-y">
-				<Container width="base">
+				<Container>
 					<div className="divide-border grid grid-cols-2 divide-x sm:grid-cols-4">
 						{[
 							{
@@ -113,7 +113,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 			{/* Contributors */}
 			{workshop.contributors && workshop.contributors.length > 0 && (
 				<section className="border-border border-b py-5">
-					<Container width="base">
+					<Container>
 						<div className="flex items-center gap-3">
 							<span className="text-muted-foreground text-xs">Taught by</span>
 							{workshop.contributors.map(
@@ -155,7 +155,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 			{/* Workshop Image */}
 			{workshop.image?.asset?.url && (
 				<section className="border-border border-b py-10 lg:py-14">
-					<Container width="base">
+					<Container>
 						<div className="overflow-hidden rounded-xl">
 							<Image
 								src={workshop.image.asset.url}
@@ -174,11 +174,11 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 			{/* Description */}
 			{landingDescription && (
 				<section className="border-border border-b py-16 lg:py-20">
-					<Container width="base">
-						<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
+					<Container>
+						<h2 className="text-foreground mb-4 text-sm font-semibold">
 							About This Workshop
 						</h2>
-						<div className="mt-4 max-w-xl">
+						<div>
 							<div className="text-muted-foreground prose prose-sm dark:prose-invert prose-p:text-muted-foreground prose-p:leading-relaxed prose-headings:text-foreground max-w-none">
 								{Array.isArray(landingDescription) ? (
 									<PortableText value={landingDescription as PortableTextBlock[]} />
@@ -194,11 +194,11 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 			{/* Lessons preview */}
 			{workshop.emailLessons && workshop.emailLessons.length > 0 && (
 				<section className="border-border border-b py-16 lg:py-20">
-					<Container width="base">
-						<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
+					<Container>
+						<h2 className="text-foreground mb-4 text-sm font-semibold">
 							What You&apos;ll Learn
 						</h2>
-						<p className="text-muted-foreground mt-1 text-sm">
+						<p className="text-muted-foreground text-sm">
 							{lessonCount} lessons delivered to your inbox, one per day.
 						</p>
 						<div className="divide-border mt-6 divide-y">
@@ -221,7 +221,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 
 			{/* CTA */}
 			<section className="py-16 lg:py-20">
-				<Container width="base">
+				<Container>
 					<div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
 						<div>
 							<p className="text-foreground text-sm font-medium">

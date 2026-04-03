@@ -17,7 +17,7 @@ export default async function WorkshopsPage() {
 	if (!workshops) {
 		return (
 			<section className="py-32">
-				<Container width="base">
+				<Container>
 					<p className="text-muted-foreground">No workshops found.</p>
 				</Container>
 			</section>
@@ -27,13 +27,13 @@ export default async function WorkshopsPage() {
 	return (
 		<>
 			{/* Header */}
-			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
-				<Container width="base">
-					<div className="animate-in fade-in slide-in-from-bottom-4 max-w-2xl space-y-4 duration-1000">
+			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
+				<Container>
+					<div className="space-y-4">
 						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 							Workshops
 						</h1>
-						<p className="text-muted-foreground max-w-xl text-base leading-relaxed">
+						<p className="text-muted-foreground text-base leading-relaxed">
 							Professional training programs designed to help you level up your
 							skills.
 						</p>
@@ -42,14 +42,14 @@ export default async function WorkshopsPage() {
 			</section>
 
 			{/* List */}
-			<section className="border-border border-t py-16 lg:py-20">
-				<Container width="base">
+			<section className="pb-16 lg:pb-20">
+				<Container>
 					{workshops.length === 0 ? (
 						<p className="text-muted-foreground text-sm">
 							No workshops available at the moment.
 						</p>
 					) : (
-						<div className="divide-border divide-y">
+						<div className="space-y-1">
 							{workshops.map((workshop: Workshop) => (
 								<Link
 									key={workshop._id}

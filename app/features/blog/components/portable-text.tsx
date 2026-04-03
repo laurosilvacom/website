@@ -85,7 +85,7 @@ function CodeBlock({value}: PortableTextTypeComponentProps<CodeBlockValue>) {
 	const highlightedHTML = value.highlightedHTML ?? `<pre><code>${code}</code></pre>`
 
 	return (
-		<div className="not-prose -mx-6 my-16 sm:-mx-10 lg:-mx-12">
+		<div className="not-prose my-10">
 			<div className="code-block group">
 				<div className="code-block-header">
 					<span className="code-block-lang">{language}</span>
@@ -178,20 +178,20 @@ function createComponents(): PortableTextComponents {
 				if (!src) return null
 
 				return (
-					<figure className="-mx-6 my-12 sm:-mx-16 lg:-mx-24">
+					<figure className="my-10">
 						<Image
 							src={src}
 							alt={value.alt ?? ''}
 							width={width}
 							height={height}
 							unoptimized
-							className="h-auto w-full rounded-2xl"
-							sizes="(min-width: 1024px) 1200px, 100vw"
+							className="h-auto w-full rounded-lg"
+							sizes="(min-width: 1024px) 680px, 100vw"
 							placeholder={blurDataURL ? 'blur' : 'empty'}
 							blurDataURL={blurDataURL}
 						/>
 						{value.caption ? (
-							<figcaption className="text-muted-foreground mt-4 px-6 text-sm italic sm:px-16 lg:px-24">
+							<figcaption className="text-muted-foreground mt-3 text-xs">
 								{value.caption}
 							</figcaption>
 						) : null}
@@ -263,7 +263,7 @@ export function PortableText({blocks}: PortableTextProps) {
 
 	const components = createComponents()
 	return (
-		<div className="prose prose-headings:font-serif prose-headings:font-bold prose-headings:tracking-[-0.03em] prose-headings:text-foreground prose-h1:text-3xl prose-h1:mt-16 prose-h1:mb-6 prose-h1:leading-[1.08] prose-h2:text-2xl prose-h2:mt-14 prose-h2:mb-5 prose-h2:leading-[1.08] prose-h3:text-xl prose-h3:mt-12 prose-h3:mb-4 prose-h3:leading-[1.15] prose-h4:text-lg prose-h4:mt-10 prose-h4:mb-3 prose-h4:font-semibold prose-h5:text-base prose-h5:mt-8 prose-h5:mb-2 prose-h5:font-semibold prose-h6:text-xs prose-h6:mt-6 prose-h6:mb-2 prose-h6:uppercase prose-h6:tracking-widest prose-h6:text-muted-foreground prose-h6:font-mono prose-h6:font-medium prose-p:text-sm prose-p:leading-[1.85] prose-p:mb-7 prose-p:text-muted-foreground prose-li:text-sm prose-li:leading-[1.85] prose-li:text-muted-foreground prose-a:text-foreground prose-a:font-medium prose-a:underline prose-a:underline-offset-4 prose-a:decoration-border hover:prose-a:decoration-foreground prose-strong:font-semibold prose-strong:text-foreground prose-code:text-xs prose-code:font-mono prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-blockquote:border-muted-foreground/20 prose-blockquote:font-serif prose-blockquote:not-italic prose-img:rounded-2xl dark:prose-invert dark:prose-p:text-muted-foreground max-w-none">
+		<div className="prose prose-headings:font-serif prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground prose-h1:text-2xl prose-h1:mt-14 prose-h1:mb-5 prose-h2:text-xl prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-lg prose-h3:mt-10 prose-h3:mb-3 prose-h4:text-base prose-h4:mt-8 prose-h4:mb-3 prose-h4:font-semibold prose-h5:text-sm prose-h5:mt-6 prose-h5:mb-2 prose-h5:font-semibold prose-h6:text-xs prose-h6:mt-6 prose-h6:mb-2 prose-h6:text-muted-foreground prose-p:text-sm prose-p:leading-[1.8] prose-p:mb-6 prose-p:text-muted-foreground prose-li:text-sm prose-li:leading-[1.8] prose-li:text-muted-foreground prose-a:text-foreground prose-a:underline prose-a:underline-offset-4 prose-a:decoration-muted-foreground/40 hover:prose-a:decoration-foreground prose-strong:font-semibold prose-strong:text-foreground prose-code:text-xs prose-code:font-mono prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-blockquote:border-muted-foreground/20 prose-blockquote:font-serif prose-blockquote:not-italic prose-img:rounded-lg dark:prose-invert dark:prose-p:text-muted-foreground max-w-none">
 			<SanityPortableText value={blocks} components={components} />
 		</div>
 	)

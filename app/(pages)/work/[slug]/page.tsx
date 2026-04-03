@@ -200,8 +200,8 @@ export default async function CaseStudyPage({params}: PageProps) {
 	return (
 		<>
 			{/* Header */}
-			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
-				<Container width="base">
+			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
+				<Container>
 					<div className="space-y-4">
 						<Link
 							href="/work"
@@ -224,7 +224,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 							{study.tags.map((tag) => (
 								<span
 									key={tag}
-									className="text-muted-foreground font-mono text-xs font-medium uppercase tracking-wider">
+									className="text-muted-foreground text-xs">
 									{tag}
 								</span>
 							))}
@@ -234,12 +234,12 @@ export default async function CaseStudyPage({params}: PageProps) {
 			</section>
 
 			{/* Challenge */}
-			<section className="border-border border-t py-16 lg:py-20">
-				<Container width="base">
-					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
+			<section className="pb-12 lg:pb-16">
+				<Container>
+					<h2 className="text-foreground mb-4 text-sm font-semibold">
 						The Challenge
 					</h2>
-					<div className="text-muted-foreground mt-4 max-w-xl space-y-4 text-sm leading-relaxed">
+					<div className="text-muted-foreground mt-4 space-y-4 text-sm leading-relaxed">
 						{study.challenge.map((p, i) => (
 							<p key={i}>{p}</p>
 						))}
@@ -248,12 +248,12 @@ export default async function CaseStudyPage({params}: PageProps) {
 			</section>
 
 			{/* Approach */}
-			<section className="border-border border-t py-16 lg:py-20">
-				<Container width="base">
-					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
+			<section className="pb-12 lg:pb-16">
+				<Container>
+					<h2 className="text-foreground mb-4 text-sm font-semibold">
 						The Approach
 					</h2>
-					<div className="text-muted-foreground mt-4 max-w-xl space-y-4 text-sm leading-relaxed">
+					<div className="text-muted-foreground mt-4 space-y-4 text-sm leading-relaxed">
 						{study.approach.map((p, i) => (
 							<p key={i}>{p}</p>
 						))}
@@ -262,12 +262,12 @@ export default async function CaseStudyPage({params}: PageProps) {
 			</section>
 
 			{/* Outcome */}
-			<section className="border-border border-t py-16 lg:py-20">
-				<Container width="base">
-					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
+			<section className="pb-12 lg:pb-16">
+				<Container>
+					<h2 className="text-foreground mb-4 text-sm font-semibold">
 						The Outcome
 					</h2>
-					<div className="text-muted-foreground mt-4 max-w-xl space-y-4 text-sm leading-relaxed">
+					<div className="text-muted-foreground mt-4 space-y-4 text-sm leading-relaxed">
 						{study.outcome.map((p, i) => (
 							<p key={i}>{p}</p>
 						))}
@@ -276,16 +276,16 @@ export default async function CaseStudyPage({params}: PageProps) {
 			</section>
 
 			{/* Tech Stack */}
-			<section className="border-border border-t py-16 lg:py-20">
-				<Container width="base">
-					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
+			<section className="pb-12 lg:pb-16">
+				<Container>
+					<h2 className="text-foreground mb-4 text-sm font-semibold">
 						Tech Stack
 					</h2>
-					<div className="mt-4 flex flex-wrap gap-1.5">
+					<div className="mt-4 flex flex-wrap gap-x-4 gap-y-1">
 						{study.techStack.map((tech) => (
 							<span
 								key={tech}
-								className="border-border rounded-md border px-2.5 py-1 text-xs font-medium">
+								className="text-muted-foreground text-sm">
 								{tech}
 							</span>
 						))}
@@ -295,12 +295,12 @@ export default async function CaseStudyPage({params}: PageProps) {
 
 			{/* Testimonial */}
 			{study.testimonial && (
-				<section className="border-border border-t py-16 lg:py-20">
-					<Container width="base">
-						<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
+				<section className="pb-16 lg:pb-20">
+					<Container>
+						<h2 className="text-foreground mb-4 text-sm font-semibold">
 							Testimonial
 						</h2>
-						<div className="mt-4 max-w-xl space-y-4">
+						<div className="mt-4 space-y-4">
 							<p className="text-foreground text-sm leading-relaxed italic">
 								&ldquo;{study.testimonial.quote}&rdquo;
 							</p>

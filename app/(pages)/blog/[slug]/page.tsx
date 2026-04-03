@@ -6,12 +6,10 @@ import {StructuredData} from '@/shared/components/structured-data'
 import {generateBlogPostMetadata, defaultOgImageUrl} from '@/shared/lib/metadata'
 import {baseUrl} from '@/app/sitemap'
 import {formatDate, getBlogPostBySlug, getBlogPostSlugs} from '@/features/blog/server'
-import {getImageClass} from '@/shared/lib/image-utils'
 import Image from 'next/image'
 import {highlightCode} from '@/shared/lib/highlight-code'
 import Link from 'next/link'
 import {type PortableTextBlock} from '@sanity/types'
-import {ArrowLeft} from 'lucide-react'
 import {
 	getSanityImageBlurDataUrl,
 	getSanityImageUrl,
@@ -109,65 +107,47 @@ export default async function BlogPost({params}: Props) {
 			/>
 
 			<article>
-				{/* Header */}
-				<header className="pt-40 pb-20 lg:pt-48 lg:pb-24">
-					<Container width="base">
+				<header className="pt-32 pb-16 lg:pt-36 lg:pb-20">
+					<Container>
 						<div className="space-y-4">
 							<Link
 								href="/blog"
-								className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-xs font-medium transition-colors">
-								<ArrowLeft className="h-3 w-3" />
-								Writing
+								className="text-muted-foreground hover:text-foreground inline-block text-sm transition-colors">
+								← Writing
 							</Link>
 
-							<div className="flex items-center gap-2 text-xs">
-								<time
-									className="text-muted-foreground font-mono text-xs"
-									dateTime={post.metadata.publishedAt}>
-									{formatDate(post.metadata.publishedAt)}
-								</time>
-								<span className="text-muted-foreground">·</span>
-								<span className="text-muted-foreground font-mono text-xs">
-									{readingTime}
-								</span>
-							</div>
-
-							<h1 className="text-foreground font-serif text-4xl leading-[1.08] font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
+							<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 								{post.metadata.title}
 							</h1>
 
-							<p className="text-muted-foreground max-w-xl text-base leading-relaxed text-balance">
-								{post.metadata.summary}
-							</p>
+							<div className="text-muted-foreground flex items-center gap-1.5 text-xs">
+								<time dateTime={post.metadata.publishedAt}>
+									{formatDate(post.metadata.publishedAt)}
+								</time>
+								<span>·</span>
+								<span>{readingTime}</span>
+							</div>
 
-							{post.metadata.tags && post.metadata.tags.length > 0 && (
-								<div className="flex flex-wrap items-center gap-2 pt-1">
-									{post.metadata.tags.slice(0, 4).map((tag) => (
-										<Link
-											key={tag}
-											href={`/tags/${encodeURIComponent(tag)}`}
-											className="text-muted-foreground hover:text-foreground font-mono text-xs font-medium tracking-wider uppercase transition-colors">
-											{tag}
-										</Link>
-									))}
-								</div>
+							{post.metadata.summary && (
+								<p className="text-muted-foreground text-base leading-relaxed">
+									{post.metadata.summary}
+								</p>
 							)}
 						</div>
 					</Container>
 				</header>
 
-				{/* Cover Image */}
 				{heroUrl && (
-					<section className="border-border border-y py-10 lg:py-14">
-						<Container width="base">
-							<div className="relative aspect-video overflow-hidden rounded-xl">
+					<section className="pb-10 lg:pb-14">
+						<Container>
+							<div className="relative aspect-video overflow-hidden rounded-lg">
 								<Image
 									src={heroUrl}
 									alt={heroAlt}
 									fill
 									priority
 									unoptimized
-									className={`object-cover ${getImageClass('EDITORIAL_BW')}`}
+									className="object-cover"
 									sizes="(min-width: 1024px) 680px, 100vw"
 									placeholder={heroLqip ? 'blur' : 'empty'}
 									blurDataURL={heroLqip}
@@ -182,14 +162,28 @@ export default async function BlogPost({params}: Props) {
 					</section>
 				)}
 
-				{/* Content */}
-				<section className="py-16 lg:py-20">
-					<Container width="base">
-						<div className="mx-auto max-w-2xl">
-							<PortableText blocks={processedBlocks} />
-						</div>
+				<section className="pb-24 lg:pb-32">
+					<Container>
+						<PortableText blocks={processedBlocks} />
 					</Container>
 				</section>
+
+				<footer className="pb-24 lg:pb-32">
+					<Container>
+						{post.metadata.tags && post.metadata.tags.length > 0 && (
+							<div className="flex flex-wrap gap-x-3 gap-y-1">
+								{post.metadata.tags.map((tag) => (
+									<Link
+										key={tag}
+										href={`/tags/${encodeURIComponent(tag)}`}
+										className="text-muted-foreground hover:text-foreground text-xs transition-colors">
+										#{tag}
+									</Link>
+								))}
+							</div>
+						)}
+					</Container>
+				</footer>
 			</article>
 		</>
 	)

@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Container from '@/shared/components/container'
-import {Button} from '@/shared/ui/button'
-import {CheckCircle, AlertCircle, XCircle, Mail} from 'lucide-react'
+import {CheckCircle, AlertCircle, XCircle} from 'lucide-react'
 
 type PageProps = {
 	searchParams?: Promise<Record<string, string | string[] | undefined>>
@@ -44,7 +43,7 @@ export default async function WorkshopNewsletterConfirmedPage({searchParams}: Pa
 
 	return (
 		<section className="pt-32 pb-16 lg:pt-40 lg:pb-24">
-			<Container width="narrow">
+			<Container>
 				<div className="space-y-6">
 					<div className="space-y-4">
 						<div className="flex items-center gap-3">
@@ -59,22 +58,15 @@ export default async function WorkshopNewsletterConfirmedPage({searchParams}: Pa
 					</div>
 
 					{status === 'success' && (
-						<div className="bg-brand-blue/5 border-brand-blue/20 flex items-start gap-3 rounded-lg border p-4">
-							<Mail className="text-brand-blue mt-0.5 h-5 w-5 shrink-0" />
-							<p className="text-sm leading-relaxed">
-								You'll receive one lesson per day. Each builds on the last, so take your
-								time and apply what you learn.
-							</p>
-						</div>
+						<p className="text-muted-foreground text-sm leading-relaxed">
+							You&apos;ll receive one lesson per day. Each builds on the last, so take your
+							time and apply what you learn.
+						</p>
 					)}
 
-					<div className="flex flex-wrap gap-3">
-						<Button asChild>
-							<Link href="/workshops">Explore courses</Link>
-						</Button>
-						<Button asChild variant="secondary">
-							<Link href="/blog">Read the blog</Link>
-						</Button>
+					<div className="flex items-center gap-4 text-sm">
+						<Link href="/workshops" className="text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors">Explore courses</Link>
+						<Link href="/blog" className="text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors">Read the blog</Link>
 					</div>
 				</div>
 			</Container>

@@ -64,9 +64,9 @@ export default async function TagPage({params}: TagPageProps) {
 	return (
 		<>
 			{/* Header */}
-			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
-				<Container width="base">
-					<div className="max-w-2xl space-y-4">
+			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
+				<Container>
+					<div className="space-y-4">
 						<Link
 							href="/tags"
 							className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-xs font-medium transition-colors">
@@ -77,7 +77,7 @@ export default async function TagPage({params}: TagPageProps) {
 						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 							{tag}
 						</h1>
-						<p className="text-muted-foreground text-base">
+						<p className="text-muted-foreground text-base leading-relaxed">
 							{taggedPosts.length} {taggedPosts.length === 1 ? 'post' : 'posts'}
 						</p>
 					</div>
@@ -86,10 +86,10 @@ export default async function TagPage({params}: TagPageProps) {
 
 			{/* Related tags */}
 			{relatedTags.length > 0 && (
-				<section className="border-border border-y">
-					<Container width="base">
-						<div className="flex flex-wrap items-center gap-x-4 gap-y-2 py-5">
-							<span className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
+				<section className="pb-6">
+					<Container>
+						<div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+							<span className="text-muted-foreground text-xs">
 								Related
 							</span>
 							{relatedTags.map((relatedTag) => (
@@ -106,12 +106,9 @@ export default async function TagPage({params}: TagPageProps) {
 			)}
 
 			{/* Posts */}
-			<section className="py-16 lg:py-20">
-				<Container width="base">
-					<h2 className="font-mono text-xs font-medium tracking-wider uppercase">
-						Posts
-					</h2>
-					<div className="divide-border mt-4 divide-y">
+			<section className="pb-16 lg:pb-20">
+				<Container>
+					<div className="space-y-1">
 						{taggedPosts.map((post: BlogPost) => (
 							<Link
 								key={post.slug}

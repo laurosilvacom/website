@@ -5,14 +5,13 @@ type ContainerProps = {
 	children: ReactNode
 	className?: string
 	as?: 'div' | 'section' | 'article' | 'header' | 'footer'
-	width?: 'narrow' | 'base' | 'wide' | 'full'
+	width?: 'narrow' | 'base' | 'full'
 }
 
 const widthClasses = {
-	narrow: 'max-w-[680px]', // Reading width - blog posts, long-form content
-	base: 'max-w-[1080px]', // Default - forms, single column pages
-	wide: 'max-w-[1400px]', // Multi-column - grids, marketing pages
-	full: 'max-w-none', // Full bleed - hero sections, images
+	narrow: 'max-w-[680px]', // Reading width - long-form content
+	base: 'max-w-[680px]', // Default - same as reading width for consistency
+	full: 'max-w-none', // Full bleed
 }
 
 export default function Container({

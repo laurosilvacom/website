@@ -2,8 +2,6 @@ import Link from 'next/link'
 import Container from '@/shared/components/container'
 import {formatDate, getBlogPosts} from '@/features/blog/server'
 import {type BlogPost} from '@/features/blog/server'
-import {Button} from '@/shared/ui/button'
-import {ArrowRight} from 'lucide-react'
 
 export const revalidate = 30
 
@@ -19,7 +17,7 @@ export default async function BlogPage() {
 	if (!posts) {
 		return (
 			<section className="py-32">
-				<Container width="base">
+				<Container>
 					<p className="text-muted-foreground">No posts found.</p>
 				</Container>
 			</section>
@@ -32,84 +30,43 @@ export default async function BlogPage() {
 			new Date(a.metadata.publishedAt).getTime(),
 	)
 
-	// Group posts by year
-	const postsByYear = sortedPosts.reduce<Record<string, BlogPost[]>>((acc, post) => {
-		const year = new Date(post.metadata.publishedAt).getFullYear().toString()
-		if (!acc[year]) acc[year] = []
-		acc[year].push(post)
-		return acc
-	}, {})
-
-	const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a))
-
 	return (
 		<>
-			{/* Header */}
-			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
-				<Container width="base">
-					<div className="animate-in fade-in slide-in-from-bottom-4 max-w-2xl space-y-4 duration-1000">
+			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
+				<Container>
+					<div className="space-y-4">
 						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 							Writing
 						</h1>
-						<p className="text-muted-foreground max-w-xl text-base leading-relaxed">
+						<p className="text-muted-foreground text-base leading-relaxed">
 							Thoughts, ideas, and explorations at the intersection of technology and the
-							outdoor industry.
+							outdoor industry.{' '}
+							<Link href="/blog/rss.xml" className="underline underline-offset-4">RSS</Link>
 						</p>
-						<div className="flex items-center gap-3 pt-2">
-							<Button asChild variant="ghost">
-								<Link href="/blog/rss.xml">
-									RSS Feed
-									<ArrowRight />
-								</Link>
-							</Button>
-							<Button asChild variant="ghost">
-								<Link href="/newsletter">
-									Newsletter
-									<ArrowRight />
-								</Link>
-							</Button>
-						</div>
 					</div>
 				</Container>
 			</section>
 
-			{/* Divider */}
-			<div className="border-border border-t" />
-
-			{/* Posts by year */}
-			{years.map((year) => (
-				<section key={year} className="border-border border-b py-16 lg:py-20">
-					<Container width="base">
-						<h2 className="font-mono text-xs font-medium tracking-wider uppercase">
-							{year}
-						</h2>
-						<div className="divide-border mt-4 divide-y">
-							{postsByYear[year]?.map((post: BlogPost) => (
-								<Link
-									key={post.slug}
-									href={`/blog/${post.slug}`}
-									prefetch
-									className="group flex items-center justify-between gap-4 py-4 transition-opacity hover:opacity-70">
-									<div className="min-w-0 space-y-1">
-										<span className="text-foreground text-sm font-medium">
-											{post.metadata.title}
-										</span>
-										<p className="text-muted-foreground line-clamp-1 text-xs">
-											{post.metadata.summary}
-										</p>
-									</div>
-									<div className="flex shrink-0 items-center gap-3">
-										<span className="text-muted-foreground hidden font-mono text-xs sm:inline">
-											{formatDate(post.metadata.publishedAt)}
-										</span>
-										<ArrowRight className="text-muted-foreground h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100" />
-									</div>
-								</Link>
-							))}
-						</div>
-					</Container>
-				</section>
-			))}
+			<section className="pb-24 lg:pb-32">
+				<Container>
+					<div className="space-y-6">
+						{sortedPosts.map((post: BlogPost) => (
+							<Link
+								key={post.slug}
+								href={`/blog/${post.slug}`}
+								prefetch
+								className="group block transition-opacity hover:opacity-60">
+								<p className="text-foreground text-sm font-medium leading-snug">
+									{post.metadata.title}
+								</p>
+								<p className="text-muted-foreground mt-0.5 text-xs">
+									{formatDate(post.metadata.publishedAt, false)}
+								</p>
+							</Link>
+						))}
+					</div>
+				</Container>
+			</section>
 		</>
 	)
 }

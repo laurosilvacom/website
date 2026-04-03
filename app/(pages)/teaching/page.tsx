@@ -87,13 +87,13 @@ export default function TeachingPage() {
 	return (
 		<>
 			{/* Header */}
-			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
-				<Container width="base">
-					<div className="animate-in fade-in slide-in-from-bottom-4 max-w-2xl space-y-4 duration-1000">
+			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
+				<Container>
+					<div className="space-y-4">
 						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 							Teaching
 						</h1>
-						<p className="text-muted-foreground max-w-xl text-base leading-relaxed">
+						<p className="text-muted-foreground text-base leading-relaxed">
 							I teach engineering teams to build better software. From half-day
 							workshops to multi-week programs. Previously at O&apos;Reilly and
 							egghead.
@@ -102,62 +102,20 @@ export default function TeachingPage() {
 				</Container>
 			</section>
 
-			{/* Hero Image */}
-			<section className="border-border border-t py-10 lg:py-14">
-				<Container width="base">
-					<div className="relative aspect-21/9 overflow-hidden rounded-xl">
-						<Image
-							src="/photos/website-photo-4.jpg"
-							alt="Teaching and workshops"
-							fill
-							priority
-							className="object-cover object-top"
-							sizes="(min-width: 1024px) 1080px, 100vw"
-						/>
-					</div>
-				</Container>
-			</section>
-
-			{/* Formats */}
-			<section className="border-border border-y">
-				<Container width="base">
-					<div className="grid grid-cols-3 divide-x divide-border">
-						{[
-							{label: 'Half-day', value: 'Workshop'},
-							{label: 'Multi-day', value: 'Intensive'},
-							{label: 'Ongoing', value: 'Mentorship'},
-						].map((item) => (
-							<div key={item.label} className="px-4 py-5 first:pl-0 sm:px-6">
-								<p className="text-foreground text-sm font-semibold">{item.value}</p>
-								<p className="text-muted-foreground text-xs">{item.label}</p>
-							</div>
-						))}
-					</div>
-				</Container>
-			</section>
-
 			{/* Current Offerings */}
 			{currentOfferings.length > 0 && (
-				<section className="py-16 lg:py-20">
-					<Container width="base">
-						<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
-							Available Now
-						</h2>
-						<div className="divide-border mt-4 divide-y">
+				<section className="pb-12 lg:pb-16">
+					<Container>
+						<div className="space-y-1">
 							{currentOfferings.map((offering) => (
 								<Link
 									key={offering.title}
 									href={offering.href}
 									className="group flex items-center justify-between gap-4 py-4 transition-opacity hover:opacity-70">
 									<div className="min-w-0 space-y-1">
-										<div className="flex items-center gap-2">
-											<span className="text-foreground text-sm font-medium">
-												{offering.title}
-											</span>
-											<span className="bg-primary/10 text-primary rounded-full px-2 py-0.5 text-xs font-medium">
-												{offering.status}
-											</span>
-										</div>
+										<span className="text-foreground text-sm font-medium">
+											{offering.title}
+										</span>
 										<p className="text-muted-foreground text-xs">
 											{offering.description}
 										</p>
@@ -171,12 +129,12 @@ export default function TeachingPage() {
 			)}
 
 			{/* Where I've Taught */}
-			<section className="border-border border-t py-16 lg:py-20">
-				<Container width="base">
-					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
+			<section className="pb-12 lg:pb-16">
+				<Container>
+					<h2 className="text-foreground mb-4 text-sm font-semibold">
 						Where I&apos;ve Taught
 					</h2>
-					<div className="divide-border mt-4 divide-y">
+					<div className="space-y-1">
 						{platforms.map((platform) => (
 							<Link
 								key={platform.name}
@@ -206,16 +164,12 @@ export default function TeachingPage() {
 			</section>
 
 			{/* Topics */}
-			<section className="border-border border-t py-16 lg:py-20">
-				<Container width="base">
-					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
+			<section className="pb-16 lg:pb-20">
+				<Container>
+					<h2 className="text-foreground mb-4 text-sm font-semibold">
 						Workshop Topics
 					</h2>
-					<p className="text-muted-foreground mt-1 max-w-lg text-sm">
-						Every workshop is customized to your team&apos;s needs. These are
-						the areas I cover.
-					</p>
-					<div className="divide-border mt-6 divide-y">
+					<div className="space-y-1">
 						{workshopTopics.map((topic) => (
 							<div
 								key={topic.title}
@@ -234,45 +188,6 @@ export default function TeachingPage() {
 					</div>
 				</Container>
 			</section>
-
-			{/* How It Works */}
-			<section className="border-border border-t py-16 lg:py-20">
-				<Container width="base">
-					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
-						How It Works
-					</h2>
-					<div className="mt-6 grid gap-8 sm:grid-cols-3">
-						{[
-							{
-								n: '01',
-								title: 'Discovery',
-								desc: "We discuss your team's skills, codebase, and goals. I design the workshop around your specific context.",
-							},
-							{
-								n: '02',
-								title: 'Delivery',
-								desc: 'Hands-on workshops where your team builds real things. Practical exercises, not slides and lectures.',
-							},
-							{
-								n: '03',
-								title: 'Follow-Up',
-								desc: 'Post-workshop support — questions, code reviews, and guidance as your team applies what they learned.',
-							},
-						].map((step) => (
-							<div key={step.n} className="space-y-2">
-								<span className="text-muted-foreground font-mono text-xs">
-									{step.n}
-								</span>
-								<h3 className="text-foreground text-sm font-semibold">{step.title}</h3>
-								<p className="text-muted-foreground text-xs leading-relaxed">
-									{step.desc}
-								</p>
-							</div>
-						))}
-					</div>
-				</Container>
-			</section>
-
 		</>
 	)
 }

@@ -4,8 +4,7 @@ import Container from '@/shared/components/container'
 import {NewsletterForm} from '@/features/newsletter/components/newsletter-form'
 import {createMetadata} from '@/shared/lib/metadata'
 import {baseUrl} from '@/app/sitemap'
-import {ArrowRight} from 'lucide-react'
-import {Button} from '@/shared/ui/button'
+
 
 export const metadata: Metadata = createMetadata({
 	title: 'Newsletter',
@@ -18,48 +17,40 @@ export default function NewsletterPage() {
 	return (
 		<>
 			{/* Header */}
-			<section className="pt-40 pb-20 lg:pt-48 lg:pb-24">
-				<Container width="base">
-					<div className="animate-in fade-in slide-in-from-bottom-4 max-w-2xl space-y-4 duration-1000">
+			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
+				<Container>
+					<div className="space-y-4">
 						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
 							Newsletter
 						</h1>
-						<p className="text-muted-foreground max-w-xl text-base leading-relaxed">
+						<p className="text-muted-foreground text-base leading-relaxed">
 							Updates on building software, lessons from the trails, and things
 							I&apos;m learning about growing inclusive communities. Subscribers
 							get content that doesn&apos;t make it to the blog.
 						</p>
-						<div className="flex items-center gap-3 pt-2">
-							<Button asChild variant="ghost">
-								<Link href="/blog">
-									Read the blog
-									<ArrowRight />
-								</Link>
-							</Button>
+						<div className="flex items-center gap-4 pt-2 text-sm">
+							<Link href="/blog" className="text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors">Read the blog</Link>
 						</div>
 					</div>
 				</Container>
 			</section>
 
 			{/* Subscribe */}
-			<section className="border-border border-t py-16 lg:py-20">
-				<Container width="base">
-					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
-						Subscribe
-					</h2>
-					<div className="mt-6">
+			<section className="pb-12 lg:pb-16">
+				<Container>
+					<div>
 						<NewsletterForm />
 					</div>
 				</Container>
 			</section>
 
 			{/* What You Get */}
-			<section className="border-border border-t py-16 lg:py-20">
-				<Container width="base">
-					<h2 className="font-mono text-xs font-medium uppercase tracking-wider">
+			<section className="pb-16 lg:pb-20">
+				<Container>
+					<h2 className="text-foreground mb-4 text-sm font-semibold">
 						What You&apos;ll Get
 					</h2>
-					<div className="divide-border mt-4 divide-y">
+					<div className="space-y-3">
 						{[
 							{
 								title: 'New posts in your inbox',
