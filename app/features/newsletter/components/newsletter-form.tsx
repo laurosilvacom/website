@@ -123,9 +123,7 @@ export function NewsletterForm() {
 				</div>
 			)}
 
-			<p className="text-muted-foreground mt-2 text-xs">
-				No spam. Unsubscribe anytime.
-			</p>
+			<p className="text-muted-foreground mt-2 text-xs">No spam. Unsubscribe anytime.</p>
 		</form>
 	)
 }
