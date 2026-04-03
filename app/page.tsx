@@ -21,7 +21,7 @@ async function BlogPosts() {
 					key={post.slug}
 					href={`/blog/${post.slug}`}
 					className="group block transition-opacity hover:opacity-60">
-					<p className="text-foreground text-sm font-medium leading-snug">
+					<p className="text-foreground text-sm leading-snug font-medium">
 						{post.metadata.title}
 					</p>
 					<p className="text-muted-foreground mt-0.5 text-xs">
@@ -52,7 +52,7 @@ export default async function Page() {
 			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
 				<Container>
 					<div className="space-y-4">
-						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+						<h1 className="font-serif text-3xl leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-5xl">
 							Lauro Silva
 						</h1>
 						<p className="text-muted-foreground text-base leading-relaxed">

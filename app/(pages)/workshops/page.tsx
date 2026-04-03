@@ -30,12 +30,11 @@ export default async function WorkshopsPage() {
 			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
 				<Container>
 					<div className="space-y-4">
-						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+						<h1 className="font-serif text-3xl leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-5xl">
 							Workshops
 						</h1>
 						<p className="text-muted-foreground text-base leading-relaxed">
-							Professional training programs designed to help you level up your
-							skills.
+							Professional training programs designed to help you level up your skills.
 						</p>
 					</div>
 				</Container>
@@ -67,7 +66,7 @@ export default async function WorkshopsPage() {
 										{workshop.audience &&
 											workshop.audience.length > 0 &&
 											workshop.audience[0] && (
-												<p className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
+												<p className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
 													For {workshop.audience[0].title}
 												</p>
 											)}

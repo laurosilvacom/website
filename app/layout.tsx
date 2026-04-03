@@ -175,11 +175,7 @@ export default function RootLayout({children}: RootLayoutProps) {
 				<link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="" />
 			</head>
 			<body className="min-h-screen">
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="system"
-					enableSystem
-					disableTransitionOnChange>
+				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 					<div className="relative min-h-screen">
 						<Navigation />
 						<main className="relative">{children}</main>

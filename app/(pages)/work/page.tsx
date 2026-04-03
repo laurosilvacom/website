@@ -95,7 +95,7 @@ export default function WorkPage() {
 			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
 				<Container>
 					<div className="space-y-4">
-						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+						<h1 className="font-serif text-3xl leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-5xl">
 							Work
 						</h1>
 						<p className="text-muted-foreground text-base leading-relaxed">

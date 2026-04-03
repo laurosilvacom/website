@@ -5,7 +5,6 @@ import {NewsletterForm} from '@/features/newsletter/components/newsletter-form'
 import {createMetadata} from '@/shared/lib/metadata'
 import {baseUrl} from '@/app/sitemap'
 
-
 export const metadata: Metadata = createMetadata({
 	title: 'Newsletter',
 	description:
@@ -20,16 +19,20 @@ export default function NewsletterPage() {
 			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
 				<Container>
 					<div className="space-y-4">
-						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+						<h1 className="font-serif text-3xl leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-5xl">
 							Newsletter
 						</h1>
 						<p className="text-muted-foreground text-base leading-relaxed">
-							Updates on building software, lessons from the trails, and things
-							I&apos;m learning about growing inclusive communities. Subscribers
-							get content that doesn&apos;t make it to the blog.
+							Updates on building software, lessons from the trails, and things I&apos;m
+							learning about growing inclusive communities. Subscribers get content that
+							doesn&apos;t make it to the blog.
 						</p>
 						<div className="flex items-center gap-4 pt-2 text-sm">
-							<Link href="/blog" className="text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors">Read the blog</Link>
+							<Link
+								href="/blog"
+								className="text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors">
+								Read the blog
+							</Link>
 						</div>
 					</div>
 				</Container>
@@ -66,9 +69,7 @@ export default function NewsletterPage() {
 							},
 						].map((item) => (
 							<div key={item.title} className="py-3">
-								<span className="text-foreground text-sm font-medium">
-									{item.title}
-								</span>
+								<span className="text-foreground text-sm font-medium">{item.title}</span>
 								<p className="text-muted-foreground text-xs">{item.desc}</p>
 							</div>
 						))}

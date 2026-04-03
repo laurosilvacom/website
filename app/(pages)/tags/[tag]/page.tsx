@@ -74,7 +74,7 @@ export default async function TagPage({params}: TagPageProps) {
 							All topics
 						</Link>
 
-						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+						<h1 className="font-serif text-3xl leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-5xl">
 							{tag}
 						</h1>
 						<p className="text-muted-foreground text-base leading-relaxed">
@@ -89,9 +89,7 @@ export default async function TagPage({params}: TagPageProps) {
 				<section className="pb-6">
 					<Container>
 						<div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-							<span className="text-muted-foreground text-xs">
-								Related
-							</span>
+							<span className="text-muted-foreground text-xs">Related</span>
 							{relatedTags.map((relatedTag) => (
 								<Link
 									key={relatedTag}

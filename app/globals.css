@@ -5,25 +5,25 @@
 
 :root {
 	--radius: 0.5rem;
-	/* Light — warm off-white, soft contrast */
-	--background: 252 251 249;
-	--foreground: 24 24 22;
-	--card: 255 255 253;
-	--card-foreground: 24 24 22;
-	--popover: 255 255 253;
-	--popover-foreground: 24 24 22;
-	--primary: 24 24 22;
-	--primary-foreground: 255 255 253;
-	--secondary: 244 243 241;
-	--secondary-foreground: 24 24 22;
-	--muted: 246 245 243;
-	--muted-foreground: 118 114 110;
-	--accent: 246 245 243;
-	--accent-foreground: 24 24 22;
-	--destructive: 220 56 56;
-	--border: 232 230 226;
-	--input: 232 230 226;
-	--ring: 24 24 22;
+	/* Light — warm stone, like aged paper */
+	--background: 247 244 240;
+	--foreground: 41 37 36;
+	--card: 252 250 247;
+	--card-foreground: 41 37 36;
+	--popover: 252 250 247;
+	--popover-foreground: 41 37 36;
+	--primary: 41 37 36;
+	--primary-foreground: 252 250 247;
+	--secondary: 240 236 230;
+	--secondary-foreground: 41 37 36;
+	--muted: 240 236 230;
+	--muted-foreground: 120 113 108;
+	--accent: 240 236 230;
+	--accent-foreground: 41 37 36;
+	--destructive: 200 50 50;
+	--border: 224 218 210;
+	--input: 224 218 210;
+	--ring: 41 37 36;
 	--brand-blue: 0 112 243;
 	--code-surface: var(--card);
 	--code-header: var(--muted);
@@ -33,31 +33,31 @@
 }
 
 .dark {
-	/* Dark — charcoal, not pure black */
-	--background: 12 12 12;
-	--foreground: 241 241 239;
-	--card: 20 20 20;
-	--card-foreground: 241 241 239;
-	--popover: 20 20 20;
-	--popover-foreground: 241 241 239;
-	--primary: 241 241 239;
-	--primary-foreground: 12 12 12;
-	--secondary: 28 28 28;
-	--secondary-foreground: 241 241 239;
-	--muted: 28 28 28;
-	--muted-foreground: 156 153 148;
-	--accent: 28 28 28;
-	--accent-foreground: 241 241 239;
+	/* Dark — deep warm charcoal, not black */
+	--background: 25 23 22;
+	--foreground: 237 233 228;
+	--card: 32 30 28;
+	--card-foreground: 237 233 228;
+	--popover: 32 30 28;
+	--popover-foreground: 237 233 228;
+	--primary: 237 233 228;
+	--primary-foreground: 25 23 22;
+	--secondary: 40 37 35;
+	--secondary-foreground: 237 233 228;
+	--muted: 40 37 35;
+	--muted-foreground: 156 150 142;
+	--accent: 40 37 35;
+	--accent-foreground: 237 233 228;
 	--destructive: 220 56 56;
-	--border: 42 40 38;
-	--input: 42 40 38;
-	--ring: 241 241 239;
+	--border: 55 51 48;
+	--input: 55 51 48;
+	--ring: 237 233 228;
 	--brand-blue: 0 112 243;
 	--code-surface: var(--card);
 	--code-header: var(--secondary);
 	--code-gutter: var(--secondary);
 	--code-border: var(--border);
-	--code-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+	--code-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 @theme inline {
@@ -97,10 +97,14 @@
 		@apply bg-background text-foreground;
 		font-feature-settings:
 			'kern' 1,
-			'liga' 1;
+			'liga' 1,
+			'calt' 1;
 		text-rendering: optimizeLegibility;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+		transition:
+			background-color 0.3s ease,
+			color 0.2s ease;
 	}
 }
 
@@ -115,7 +119,7 @@ html {
 		sans-serif;
 	font-weight: 400;
 	letter-spacing: -0.011em;
-	line-height: 1.6;
+	line-height: 1.7;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -152,8 +156,23 @@ samp {
 }
 
 ::selection {
-	background: rgb(var(--primary));
-	color: rgb(var(--primary-foreground));
+	background: rgb(var(--foreground) / 0.12);
+	color: inherit;
+}
+
+/* Inline code */
+.inline-code {
+	background: rgb(var(--muted));
+	color: rgb(var(--foreground));
+}
+
+/* Smooth theme transitions for key elements */
+nav,
+.code-block,
+.code-block-header {
+	transition:
+		background-color 0.3s ease,
+		border-color 0.3s ease;
 }
 
 /* Essential Code Block Styling */
@@ -187,7 +206,7 @@ samp {
 .code-block-content {
 	overflow-x: auto;
 	position: relative;
-	--code-gutter-width: 3.75rem;
+	--code-gutter-width: 3rem;
 	background: rgb(var(--code-surface));
 }
 
@@ -224,9 +243,9 @@ samp {
 .code-block-content code {
 	display: block;
 	font-family: var(--font-mono), ui-monospace, monospace !important;
-	font-size: 13px !important;
-	line-height: 1.45 !important;
-	letter-spacing: -0.02em !important;
+	font-size: 12px !important;
+	line-height: 1.5 !important;
+	letter-spacing: -0.01em !important;
 	counter-reset: line;
 	white-space: normal !important;
 	font-variant-ligatures: none;
@@ -239,12 +258,12 @@ samp {
 .code-block-content .line {
 	display: block;
 	position: relative;
-	padding: 0 1.25rem 0 4.25rem;
+	padding: 0 1rem 0 3.5rem;
 	white-space: pre !important;
 }
 
 .code-block-content .line:empty {
-	min-height: 1.45em;
+	min-height: 1.5em;
 }
 
 .code-block-content .line::before {
@@ -252,13 +271,50 @@ samp {
 	content: counter(line);
 	position: absolute;
 	left: 0.75rem;
-	width: 01.5rem;
+	width: 1.25rem;
 	text-align: right;
 	color: rgb(var(--muted-foreground));
 	font-size: 10px;
-	line-height: 1.3;
-	opacity: 0.6;
+	line-height: 1.5;
+	opacity: 0.45;
 	user-select: none;
+}
+
+/* Mobile: hide line numbers, tighter padding */
+@media (max-width: 640px) {
+	.code-block-content {
+		--code-gutter-width: 0;
+	}
+
+	.code-block-content::before {
+		display: none;
+	}
+
+	.code-block-content .line {
+		padding: 0 0.875rem;
+	}
+
+	.code-block-content .line::before {
+		display: none;
+	}
+
+	.code-block-header {
+		padding: 0.625rem 0.875rem;
+	}
+}
+
+/* Mobile prose refinements */
+@media (max-width: 640px) {
+	.prose p,
+	.prose li {
+		font-size: 15px !important;
+	}
+
+	.code-block {
+		border-radius: 0.5rem;
+		margin-left: -0.25rem;
+		margin-right: -0.25rem;
+	}
 }
 
 /* Smooth Animations */

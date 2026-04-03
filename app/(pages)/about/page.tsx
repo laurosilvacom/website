@@ -33,7 +33,7 @@ export default function AboutPage() {
 				<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
 					<Container>
 						<div className="space-y-4">
-							<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+							<h1 className="font-serif text-3xl leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-5xl">
 								Build & Run
 							</h1>
 							<p className="text-muted-foreground text-base leading-relaxed">
@@ -57,11 +57,10 @@ export default function AboutPage() {
 								meaningfully with their audiences.
 							</p>
 							<p>
-								I've worked with teams at Google, O'Reilly, Sentry, and HOKA to
-								build better digital experiences. My technical expertise is in
-								React, Next.js, TypeScript, and Node.js — but more than the tools, I
-								care about building software that's maintainable, thoughtful, and
-								genuinely useful.
+								I've worked with teams at Google, O'Reilly, Sentry, and HOKA to build
+								better digital experiences. My technical expertise is in React, Next.js,
+								TypeScript, and Node.js — but more than the tools, I care about building
+								software that's maintainable, thoughtful, and genuinely useful.
 							</p>
 						</div>
 					</Container>
@@ -83,19 +82,18 @@ export default function AboutPage() {
 									className="text-foreground underline underline-offset-4 transition-opacity hover:opacity-70">
 									Tierra Libre Run
 								</a>{' '}
-								because I saw a gap. Trail running is an incredible sport, but it
-								hasn't always been accessible to runners of color.
+								because I saw a gap. Trail running is an incredible sport, but it hasn't
+								always been accessible to runners of color.
 							</p>
 							<p>
-								Tierra Libre Run is a nonprofit that makes trail running more
-								accessible. We sponsor runners, provide funding for race entries,
-								and partner with races across the Pacific Northwest to create more
-								inclusive spaces.
+								Tierra Libre Run is a nonprofit that makes trail running more accessible.
+								We sponsor runners, provide funding for race entries, and partner with
+								races across the Pacific Northwest to create more inclusive spaces.
 							</p>
 							<p>
-								This work has taught me that building community isn't about grand
-								gestures — it's about showing up consistently, listening deeply, and
-								creating spaces where people can bring their whole selves.
+								This work has taught me that building community isn't about grand gestures
+								— it's about showing up consistently, listening deeply, and creating
+								spaces where people can bring their whole selves.
 							</p>
 						</div>
 					</Container>
@@ -104,24 +102,22 @@ export default function AboutPage() {
 				{/* Trail Runner */}
 				<section className="pb-12 lg:pb-16">
 					<Container>
-						<h2 className="text-foreground mb-4 text-sm font-semibold">
-							Trail Runner
-						</h2>
+						<h2 className="text-foreground mb-4 text-sm font-semibold">Trail Runner</h2>
 						<div className="text-muted-foreground mt-4 space-y-4 text-sm leading-relaxed">
 							<p>
-								I'm a semi-professional trail runner. The trails have taught me
-								about persistence, about problem-solving when things get hard, and
-								about the importance of showing up even when you don't feel like it.
+								I'm a semi-professional trail runner. The trails have taught me about
+								persistence, about problem-solving when things get hard, and about the
+								importance of showing up even when you don't feel like it.
 							</p>
 							<p>
-								Running has given me a deep appreciation for the outdoor industry
-								and the communities it serves. I understand firsthand what athletes
-								need from the products and platforms they use.
+								Running has given me a deep appreciation for the outdoor industry and the
+								communities it serves. I understand firsthand what athletes need from the
+								products and platforms they use.
 							</p>
 							<p>
-								This perspective directly informs my work. When I build platforms
-								for athletes or create products for the outdoor industry, I'm
-								building as someone who lives in this world.
+								This perspective directly informs my work. When I build platforms for
+								athletes or create products for the outdoor industry, I'm building as
+								someone who lives in this world.
 							</p>
 						</div>
 					</Container>
@@ -133,7 +129,8 @@ export default function AboutPage() {
 						<div className="max-w-xl space-y-4">
 							<p className="text-foreground text-sm leading-relaxed">
 								These three roles — engineer, community builder, athlete — aren't
-								separate. They're all part of how I approach the world and how I do my work.
+								separate. They're all part of how I approach the world and how I do my
+								work.
 							</p>
 							<Link
 								href="/work"

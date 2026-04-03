@@ -59,14 +59,22 @@ export default async function WorkshopNewsletterConfirmedPage({searchParams}: Pa
 
 					{status === 'success' && (
 						<p className="text-muted-foreground text-sm leading-relaxed">
-							You&apos;ll receive one lesson per day. Each builds on the last, so take your
-							time and apply what you learn.
+							You&apos;ll receive one lesson per day. Each builds on the last, so take
+							your time and apply what you learn.
 						</p>
 					)}
 
 					<div className="flex items-center gap-4 text-sm">
-						<Link href="/workshops" className="text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors">Explore courses</Link>
-						<Link href="/blog" className="text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors">Read the blog</Link>
+						<Link
+							href="/workshops"
+							className="text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors">
+							Explore courses
+						</Link>
+						<Link
+							href="/blog"
+							className="text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors">
+							Read the blog
+						</Link>
 					</div>
 				</div>
 			</Container>

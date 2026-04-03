@@ -23,7 +23,11 @@ export default function Container({
 }: ContainerProps) {
 	return (
 		<Component
-			className={cn('mx-auto w-full px-6 lg:px-12', widthClasses[width], className)}
+			className={cn(
+				'mx-auto w-full px-5 sm:px-6 lg:px-12',
+				widthClasses[width],
+				className,
+			)}
 			{...props}>
 			{children}
 		</Component>

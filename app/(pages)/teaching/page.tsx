@@ -90,13 +90,12 @@ export default function TeachingPage() {
 			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
 				<Container>
 					<div className="space-y-4">
-						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+						<h1 className="font-serif text-3xl leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-5xl">
 							Teaching
 						</h1>
 						<p className="text-muted-foreground text-base leading-relaxed">
-							I teach engineering teams to build better software. From half-day
-							workshops to multi-week programs. Previously at O&apos;Reilly and
-							egghead.
+							I teach engineering teams to build better software. From half-day workshops
+							to multi-week programs. Previously at O&apos;Reilly and egghead.
 						</p>
 					</div>
 				</Container>
@@ -166,9 +165,7 @@ export default function TeachingPage() {
 			{/* Topics */}
 			<section className="pb-16 lg:pb-20">
 				<Container>
-					<h2 className="text-foreground mb-4 text-sm font-semibold">
-						Workshop Topics
-					</h2>
+					<h2 className="text-foreground mb-4 text-sm font-semibold">Workshop Topics</h2>
 					<div className="space-y-1">
 						{workshopTopics.map((topic) => (
 							<div

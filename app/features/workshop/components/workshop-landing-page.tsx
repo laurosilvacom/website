@@ -48,7 +48,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 								</>
 							)}
 						</div>
-						<h1 className="font-serif text-4xl leading-[1.08] font-bold tracking-tight sm:text-5xl lg:text-6xl">
+						<h1 className="font-serif text-3xl leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-5xl">
 							{workshop.title}
 						</h1>
 						{workshop.shortDescription && (
@@ -116,37 +116,33 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 					<Container>
 						<div className="flex items-center gap-3">
 							<span className="text-muted-foreground text-xs">Taught by</span>
-							{workshop.contributors.map(
-								(contributorData: SanityProductContributor) => {
-									if (!contributorData.contributor) return null
-									return (
-										<div
-											key={contributorData.contributor._id}
-											className="flex items-center gap-2">
-											<div className="bg-muted flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-full">
-												{contributorData.contributor.picture?.asset?.url ? (
-													<Image
-														src={contributorData.contributor.picture.asset.url}
-														alt={contributorData.contributor.name}
-														width={24}
-														height={24}
-														className="h-6 w-6 rounded-full object-cover"
-													/>
-												) : (
-													<span className="text-muted-foreground text-xs font-semibold">
-														{contributorData.contributor.name
-															.charAt(0)
-															.toUpperCase()}
-													</span>
-												)}
-											</div>
-											<span className="text-foreground text-sm font-medium">
-												{contributorData.contributor.name}
-											</span>
+							{workshop.contributors.map((contributorData: SanityProductContributor) => {
+								if (!contributorData.contributor) return null
+								return (
+									<div
+										key={contributorData.contributor._id}
+										className="flex items-center gap-2">
+										<div className="bg-muted flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-full">
+											{contributorData.contributor.picture?.asset?.url ? (
+												<Image
+													src={contributorData.contributor.picture.asset.url}
+													alt={contributorData.contributor.name}
+													width={24}
+													height={24}
+													className="h-6 w-6 rounded-full object-cover"
+												/>
+											) : (
+												<span className="text-muted-foreground text-xs font-semibold">
+													{contributorData.contributor.name.charAt(0).toUpperCase()}
+												</span>
+											)}
 										</div>
-									)
-								},
-							)}
+										<span className="text-foreground text-sm font-medium">
+											{contributorData.contributor.name}
+										</span>
+									</div>
+								)
+							})}
 						</div>
 					</Container>
 				</section>
@@ -203,9 +199,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 						</p>
 						<div className="divide-border mt-6 divide-y">
 							{workshop.emailLessons.map((lesson, i) => (
-								<div
-									key={lesson._key || i}
-									className="flex items-baseline gap-4 py-3">
+								<div key={lesson._key || i} className="flex items-baseline gap-4 py-3">
 									<span className="text-muted-foreground w-6 shrink-0 text-right font-mono text-xs">
 										{String(i + 1).padStart(2, '0')}
 									</span>
