@@ -122,9 +122,9 @@ export default async function WorkPage() {
 				<Container>
 					<p className="text-muted-foreground text-sm">
 						<a
-							href="mailto:hello@laurosilva.com"
+							href="mailto:me@laurosilva.com"
 							className="text-foreground underline underline-offset-4 transition-opacity hover:opacity-70">
-							hello@laurosilva.com
+							me@laurosilva.com
 						</a>
 						{' · '}
 						<a
