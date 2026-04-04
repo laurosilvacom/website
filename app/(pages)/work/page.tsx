@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Container from '@/shared/components/container'
 import {ArrowRight} from 'lucide-react'
 import {generatePageMetadata} from '@/shared/lib/metadata'
+import {getCaseStudies} from '@/features/work/server'
 
 export const metadata = generatePageMetadata(
 	'Work',
@@ -21,51 +22,6 @@ export const metadata = generatePageMetadata(
 		canonical: '/work',
 	},
 )
-
-const caseStudies = [
-	{
-		slug: 'google',
-		client: 'Google',
-		domain: 'google.com',
-		title: 'Developer Education Platform',
-		type: 'Development & Education',
-	},
-	{
-		slug: 'oreilly',
-		client: "O'Reilly",
-		domain: 'oreilly.com',
-		title: 'Live Technical Workshops',
-		type: 'Developer Training',
-	},
-	{
-		slug: 'sentry',
-		client: 'Sentry',
-		domain: 'sentry.io',
-		title: 'Developer Experience & Education',
-		type: 'Development & Education',
-	},
-	{
-		slug: 'hoka',
-		client: 'HOKA',
-		domain: 'hoka.com',
-		title: 'Full-Stack Product Development',
-		type: 'Full-Stack Development',
-	},
-	{
-		slug: 'egghead',
-		client: 'egghead',
-		domain: 'egghead.io',
-		title: 'Developer Courses at Scale',
-		type: 'Developer Education',
-	},
-	{
-		slug: 'test-double',
-		client: 'Test Double',
-		domain: 'testdouble.com',
-		title: 'Software Consulting & Team Augmentation',
-		type: 'Consulting',
-	},
-]
 
 const testimonials = [
 	{
@@ -88,7 +44,8 @@ const testimonials = [
 	},
 ]
 
-export default function WorkPage() {
+export default async function WorkPage() {
+	const caseStudies = await getCaseStudies()
 	return (
 		<>
 			{/* Header */}
@@ -117,14 +74,16 @@ export default function WorkPage() {
 								className="group flex items-center justify-between gap-4 py-4 transition-opacity hover:opacity-70">
 								<div className="min-w-0 space-y-1">
 									<span className="text-foreground flex items-center gap-2 text-sm font-medium">
-										<Image
-											src={`https://www.google.com/s2/favicons?domain=${study.domain}&sz=64`}
-											alt=""
-											width={14}
-											height={14}
-											unoptimized
-											className="h-3.5 w-3.5 rounded-sm opacity-50 grayscale group-hover:opacity-100 group-hover:grayscale-0"
-										/>
+										{study.domain && (
+											<Image
+												src={`https://www.google.com/s2/favicons?domain=${study.domain}&sz=64`}
+												alt=""
+												width={14}
+												height={14}
+												unoptimized
+												className="h-3.5 w-3.5 rounded-sm opacity-50 grayscale group-hover:opacity-100 group-hover:grayscale-0"
+											/>
+										)}
 										{study.client}
 									</span>
 									<p className="text-muted-foreground text-xs">
