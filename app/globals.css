@@ -5,59 +5,59 @@
 
 :root {
 	--radius: 0.5rem;
-	/* Light — warm stone, like aged paper */
-	--background: 247 244 240;
-	--foreground: 41 37 36;
-	--card: 252 250 247;
-	--card-foreground: 41 37 36;
-	--popover: 252 250 247;
-	--popover-foreground: 41 37 36;
-	--primary: 41 37 36;
-	--primary-foreground: 252 250 247;
-	--secondary: 240 236 230;
-	--secondary-foreground: 41 37 36;
-	--muted: 240 236 230;
-	--muted-foreground: 120 113 108;
-	--accent: 240 236 230;
-	--accent-foreground: 41 37 36;
-	--destructive: 200 50 50;
-	--border: 224 218 210;
-	--input: 224 218 210;
-	--ring: 41 37 36;
-	--brand-blue: 0 112 243;
+	/* Light — warm parchment with depth */
+	--background: 252 250 245;
+	--foreground: 28 25 23;
+	--card: 255 253 249;
+	--card-foreground: 28 25 23;
+	--popover: 255 253 249;
+	--popover-foreground: 28 25 23;
+	--primary: 28 25 23;
+	--primary-foreground: 252 250 245;
+	--secondary: 245 241 232;
+	--secondary-foreground: 28 25 23;
+	--muted: 245 241 232;
+	--muted-foreground: 120 113 100;
+	--accent: 217 119 6;
+	--accent-foreground: 255 253 249;
+	--destructive: 185 28 28;
+	--border: 229 225 216;
+	--input: 229 225 216;
+	--ring: 217 119 6;
+	--brand-blue: 217 119 6;
 	--code-surface: var(--card);
 	--code-header: var(--muted);
 	--code-gutter: var(--muted);
 	--code-border: var(--border);
-	--code-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+	--code-shadow: 0 1px 3px rgba(28, 25, 23, 0.06);
 }
 
 .dark {
-	/* Dark — deep warm charcoal, not black */
-	--background: 25 23 22;
-	--foreground: 237 233 228;
-	--card: 32 30 28;
-	--card-foreground: 237 233 228;
-	--popover: 32 30 28;
-	--popover-foreground: 237 233 228;
-	--primary: 237 233 228;
-	--primary-foreground: 25 23 22;
-	--secondary: 40 37 35;
-	--secondary-foreground: 237 233 228;
-	--muted: 40 37 35;
-	--muted-foreground: 156 150 142;
-	--accent: 40 37 35;
-	--accent-foreground: 237 233 228;
-	--destructive: 220 56 56;
-	--border: 55 51 48;
-	--input: 55 51 48;
-	--ring: 237 233 228;
-	--brand-blue: 0 112 243;
+	/* Dark — deep warm midnight with amber glow */
+	--background: 12 10 9;
+	--foreground: 245 243 237;
+	--card: 18 16 14;
+	--card-foreground: 245 243 237;
+	--popover: 18 16 14;
+	--popover-foreground: 245 243 237;
+	--primary: 245 243 237;
+	--primary-foreground: 12 10 9;
+	--secondary: 28 25 22;
+	--secondary-foreground: 245 243 237;
+	--muted: 28 25 22;
+	--muted-foreground: 163 157 145;
+	--accent: 245 158 11;
+	--accent-foreground: 12 10 9;
+	--destructive: 239 68 68;
+	--border: 44 40 36;
+	--input: 44 40 36;
+	--ring: 245 158 11;
+	--brand-blue: 245 158 11;
 	--code-surface: var(--card);
 	--code-header: var(--secondary);
 	--code-gutter: var(--secondary);
 	--code-border: var(--border);
-	--code-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+	--code-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 @theme inline {
@@ -118,7 +118,7 @@ html {
 		system-ui,
 		sans-serif;
 	font-weight: 400;
-	letter-spacing: -0.011em;
+	letter-spacing: -0.006em;
 	line-height: 1.7;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -141,9 +141,9 @@ h6 {
 h1,
 h2 {
 	font-family: var(--font-serif), 'Georgia', 'Times New Roman', serif;
-	font-weight: 700;
-	letter-spacing: -0.03em;
-	line-height: 1.08;
+	font-weight: 400 !important;
+	letter-spacing: -0.025em;
+	line-height: 1.1;
 }
 
 code,
@@ -156,7 +156,7 @@ samp {
 }
 
 ::selection {
-	background: rgb(var(--foreground) / 0.12);
+	background: rgb(var(--accent) / 0.2);
 	color: inherit;
 }
 

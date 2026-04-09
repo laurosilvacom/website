@@ -1,29 +1,24 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import Container from '@/shared/components/container'
-import {ArrowRight} from 'lucide-react'
+import {ArrowLeft} from 'lucide-react'
 import {generatePageMetadata} from '@/shared/lib/metadata'
-import {getCaseStudies} from '@/features/work/server'
 
 export const metadata = generatePageMetadata(
-	'Work',
-	"Full-stack development, technical leadership, and developer training. Case studies from Google, O'Reilly, Sentry, HOKA, egghead, and Test Double.",
+	'Testimonials',
+	'What clients and collaborators say about working with Lauro Silva — developer education, full-stack engineering, and technical leadership.',
 	{
 		keywords: [
-			'case studies',
-			'portfolio',
-			'full-stack development',
-			'technical consulting',
+			'testimonials',
+			'client reviews',
 			'developer education',
-			'React',
-			'Next.js',
-			'TypeScript',
+			'engineering consulting',
 		],
-		canonical: '/work',
+		canonical: '/work/testimonials',
 	},
 )
 
-const testimonials = [
+const educationTestimonials = [
 	{
 		quote:
 			'Lauro is a total pro. His guidance for our team helped us not only create a polished set of onboarding videos, it helped us build the capability to create additional content on our own in the future.',
@@ -31,7 +26,6 @@ const testimonials = [
 		role: 'Assistiv Labs',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/ok4aceenrvijrjcafxba.jpg',
-		category: 'education' as const,
 	},
 	{
 		quote:
@@ -40,7 +34,6 @@ const testimonials = [
 		role: 'Learn With Jason',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/py2kbwptjbxfdqpoepkj.jpg',
-		category: 'education' as const,
 	},
 	{
 		quote:
@@ -49,7 +42,6 @@ const testimonials = [
 		role: 'Total TypeScript',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435977/laurosilvacom/hire-me-page/d2czubfk8lipnflorffc.jpg',
-		category: 'education' as const,
 	},
 	{
 		quote:
@@ -58,7 +50,6 @@ const testimonials = [
 		role: "O'Reilly Media",
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/sfb3bpsb8cyawhjckqzp.jpg',
-		category: 'education' as const,
 	},
 	{
 		quote:
@@ -67,7 +58,6 @@ const testimonials = [
 		role: 'Developer Advocate',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/feghewn8upq5agudmjue.jpg',
-		category: 'education' as const,
 	},
 	{
 		quote:
@@ -76,8 +66,10 @@ const testimonials = [
 		role: 'TypeScript Engineer',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435977/laurosilvacom/hire-me-page/qvv2x8w69azainacmu9d.jpg',
-		category: 'education' as const,
 	},
+]
+
+const engineeringTestimonials = [
 	{
 		quote:
 			'Lauro is an incredible engineer with a deep understanding of how to leverage technology for social good. Their expertise has been invaluable in advancing our mission.',
@@ -85,7 +77,6 @@ const testimonials = [
 		role: 'LOTUS Humanitarian',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435977/laurosilvacom/hire-me-page/gbwkf4uzwmxomngxhkj6.png',
-		category: 'engineering' as const,
 	},
 	{
 		quote:
@@ -94,7 +85,6 @@ const testimonials = [
 		role: 'HOKA',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731436030/laurosilvacom/hire-me-page/ru1j6csfgvj2af4b1dn6.webp',
-		category: 'engineering' as const,
 	},
 	{
 		quote: "Thanks for all your help and patience @laurosilvacom - you're the real MVP.",
@@ -102,7 +92,6 @@ const testimonials = [
 		role: 'Staff Engineer',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435976/laurosilvacom/hire-me-page/p3eglqeb7qfvsfzvh3qr.jpg',
-		category: 'engineering' as const,
 	},
 	{
 		quote:
@@ -111,7 +100,6 @@ const testimonials = [
 		role: 'SRE / Platform Engineer',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435977/laurosilvacom/hire-me-page/bk8b2qxymdq5hzrx41yo.jpg',
-		category: 'engineering' as const,
 	},
 	{
 		quote:
@@ -120,91 +108,92 @@ const testimonials = [
 		role: 'JavaScript Engineer',
 		image:
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435977/laurosilvacom/hire-me-page/vtnslxxf2ahtn0qmp39c.jpg',
-		category: 'engineering' as const,
 	},
 ]
 
-export default async function WorkPage() {
-	const caseStudies = await getCaseStudies()
+function TestimonialCard({
+	testimonial,
+}: {
+	testimonial: {quote: string; name: string; role: string; image: string}
+}) {
+	return (
+		<div className="flex gap-3 py-4">
+			<div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full">
+				<Image
+					src={testimonial.image}
+					alt={testimonial.name}
+					fill
+					className="object-cover"
+				/>
+			</div>
+			<div className="min-w-0">
+				<p className="text-foreground text-sm leading-relaxed">
+					&ldquo;{testimonial.quote}&rdquo;
+				</p>
+				<p className="text-muted-foreground mt-2 text-xs">
+					<span className="text-foreground font-medium">{testimonial.name}</span>
+					{' · '}
+					{testimonial.role}
+				</p>
+			</div>
+		</div>
+	)
+}
+
+export default function TestimonialsPage() {
 	return (
 		<>
 			{/* Header */}
 			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
 				<Container>
 					<div className="space-y-4">
+						<Link
+							href="/work"
+							className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-xs font-medium transition-colors">
+							<ArrowLeft className="h-3 w-3" />
+							All work
+						</Link>
 						<h1 className="font-serif text-3xl leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-5xl">
-							Work
+							Testimonials
 						</h1>
 						<p className="text-muted-foreground text-base leading-relaxed">
-							I take on a small number of projects at a time. Development, leadership, and
-							training for engineering teams.
+							What clients and collaborators have said about working together.
 						</p>
 					</div>
 				</Container>
 			</section>
 
-			{/* Case Studies */}
-			<section className="pb-16 lg:pb-20">
+			{/* Education Testimonials */}
+			<section className="pb-12 lg:pb-16">
 				<Container>
-					<div className="space-y-1">
-						{caseStudies.map((study) => (
-							<Link
-								key={study.slug}
-								href={`/work/${study.slug}`}
-								className="group flex items-center justify-between gap-4 py-4 transition-opacity hover:opacity-70">
-								<div className="min-w-0 space-y-1">
-									<span className="text-foreground flex items-center gap-2 text-sm font-medium">
-										{study.domain && (
-											<Image
-												src={`https://www.google.com/s2/favicons?domain=${study.domain}&sz=64`}
-												alt=""
-												width={14}
-												height={14}
-												unoptimized
-												className="h-3.5 w-3.5 rounded-sm opacity-50 grayscale group-hover:opacity-100 group-hover:grayscale-0"
-											/>
-										)}
-										{study.client}
-									</span>
-									<p className="text-muted-foreground text-xs">
-										{study.title} · {study.type}
-									</p>
-								</div>
-								<ArrowRight className="text-muted-foreground h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity group-hover:opacity-100" />
-							</Link>
+					<h2 className="text-foreground mb-2 text-sm font-semibold">
+						Developer Education & Training
+					</h2>
+					<p className="text-muted-foreground mb-6 text-xs">
+						Feedback from instructional design, content strategy, and developer training
+						engagements.
+					</p>
+					<div className="space-y-2">
+						{educationTestimonials.map((t) => (
+							<TestimonialCard key={t.name} testimonial={t} />
 						))}
 					</div>
 				</Container>
 			</section>
 
-			{/* Testimonials */}
+			{/* Engineering Testimonials */}
 			<section className="pb-16 lg:pb-20">
 				<Container>
-					<div className="mb-8 flex items-center justify-between">
-						<h2 className="text-foreground text-sm font-semibold">Testimonials</h2>
-						<Link
-							href="/work/testimonials"
-							className="text-muted-foreground hover:text-foreground text-xs transition-colors">
-							View all
-						</Link>
-					</div>
-					<div className="space-y-6">
-						{testimonials.slice(0, 5).map((t) => (
-							<div key={t.name} className="flex gap-3 py-3">
-								<div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full">
-									<Image src={t.image} alt={t.name} fill className="object-cover" />
-								</div>
-								<div className="min-w-0">
-									<p className="text-foreground text-sm leading-relaxed">
-										&ldquo;{t.quote}&rdquo;
-									</p>
-									<p className="text-muted-foreground mt-2 text-xs">
-										<span className="text-foreground font-medium">{t.name}</span>
-										{' · '}
-										{t.role}
-									</p>
-								</div>
-							</div>
+					<h2 className="text-foreground mb-2 text-sm font-semibold">
+						Full-Stack Engineering
+					</h2>
+					<p className="text-muted-foreground mb-6 text-xs">
+						Feedback from product development, consulting, and technical leadership
+						engagements.
+					</p>
+					<div className="space-y-2">
+						{engineeringTestimonials.map((t) => (
+							<TestimonialCard key={t.name} testimonial={t} />
 						))}
 					</div>
 				</Container>
