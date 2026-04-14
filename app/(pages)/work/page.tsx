@@ -7,7 +7,7 @@ import {getCaseStudies} from '@/features/work/server'
 
 export const metadata = generatePageMetadata(
 	'Work',
-	"Full-stack development, technical leadership, and developer training. Case studies from Google, O'Reilly, Sentry, HOKA, egghead, and Test Double.",
+	"Full-stack development, technical leadership, and developer training. Case studies from Google, O'Reilly, Sentry, egghead, and Test Double.",
 	{
 		keywords: [
 			'case studies',
@@ -87,15 +87,7 @@ const testimonials = [
 			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731435977/laurosilvacom/hire-me-page/gbwkf4uzwmxomngxhkj6.png',
 		category: 'engineering' as const,
 	},
-	{
-		quote:
-			'Lauro is an incredible engineer with a deep understanding of marketing for professional athletes. His expertise bridges technology and brand strategy, making them an invaluable partner.',
-		name: 'Emily Schmitz',
-		role: 'HOKA',
-		image:
-			'https://res.cloudinary.com/laurosilvacom/image/upload/v1731436030/laurosilvacom/hire-me-page/ru1j6csfgvj2af4b1dn6.webp',
-		category: 'engineering' as const,
-	},
+
 	{
 		quote: "Thanks for all your help and patience @laurosilvacom - you're the real MVP.",
 		name: 'Alejandro Nanez',

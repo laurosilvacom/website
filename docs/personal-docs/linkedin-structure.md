@@ -4,7 +4,7 @@
 
 ## Headline
 
-Senior Front-End Engineer | React, Next.js, TypeScript | Google, Sentry, HOKA | Available for Contract Work
+Senior Front-End Engineer | React, Next.js, TypeScript | Google, Sentry | Available for Contract Work
 
 ---
 
@@ -12,7 +12,7 @@ Senior Front-End Engineer | React, Next.js, TypeScript | Google, Sentry, HOKA | 
 
 I build web applications that people actually love using. I'm a senior front-end engineer specializing in React, Next.js, and TypeScript, and I get fired up about shipping clean, fast, production-ready products.
 
-I've had the privilege of working with some incredible teams. At Google, I built curriculum and technical infrastructure for their developer education program. I've also partnered with Sentry, HOKA, Test Double, and other companies on full-stack development and developer experience projects that I'm genuinely proud of.
+I've had the privilege of working with some incredible teams. At Google, I built curriculum and technical infrastructure for their developer education program. I've also partnered with Sentry, Test Double, and other companies on full-stack development and developer experience projects that I'm genuinely proud of.
 
 Teaching is a huge part of who I am. I design and deliver live workshops for O'Reilly Media and create courses on egghead.io that have reached thousands of developers worldwide. Helping engineers level up is one of the most rewarding things I do.
 
@@ -43,7 +43,7 @@ Start: [year you started freelancing]
 End: Present
 Location: Portland, OR (Remote)
 Description:
-I build fast, polished web applications for product teams and agencies using React, Next.js, and TypeScript. I've shipped production code for Google, Sentry, HOKA, and Test Double, working across full-stack development, developer experience, and infrastructure.
+I build fast, polished web applications for product teams and agencies using React, Next.js, and TypeScript. I've shipped production code for Google, Sentry, and Test Double, working across full-stack development, developer experience, and infrastructure.
 
 I also teach what I build. I design and deliver live workshops for O'Reilly Media and create video courses on egghead.io reaching thousands of developers. Whether I'm writing code or teaching it, I care about making complex things clear and useful.
 
@@ -62,14 +62,6 @@ Start: [month/year]
 End: [month/year]
 Description:
 Helped make Sentry easier to adopt by redesigning developer education, documentation, and onboarding. Built best-practice examples and technical content that reduced time-to-value for new users.
-
-HOKA — Senior Engineer
-
-Employment type: Contract
-Start: [month/year]
-End: [month/year]
-Description:
-Built high-performance digital experiences for one of the fastest-growing running brands in the world. Full-stack development with Next.js, React, TypeScript, and Tailwind CSS on Vercel.
 
 Test Double — Senior Consultant
 

@@ -104,7 +104,7 @@ export function StructuredData({
 					url: baseUrl,
 					jobTitle: 'Senior Full-Stack Engineer & Developer Educator',
 					description:
-						"Senior full-stack engineer and developer educator. I help companies ship better software and level up their engineering teams. Previously with Google, O'Reilly, Sentry, and HOKA.",
+						"Senior full-stack engineer and developer educator. I help companies ship better software and level up their engineering teams. Previously with Google, O'Reilly, and Sentry.",
 					knowsAbout: [
 						'Full-Stack Development',
 						'Web Development',

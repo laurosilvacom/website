@@ -57,8 +57,8 @@ export default function AboutPage() {
 								meaningfully with their audiences.
 							</p>
 							<p>
-								I've worked with teams at Google, O'Reilly, Sentry, and HOKA to build
-								better digital experiences. My technical expertise is in React, Next.js,
+								I've worked with teams at Google, O'Reilly, and Sentry to build better
+								digital experiences. My technical expertise is in React, Next.js,
 								TypeScript, and Node.js — but more than the tools, I care about building
 								software that's maintainable, thoughtful, and genuinely useful.
 							</p>

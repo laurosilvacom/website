@@ -7,7 +7,7 @@ Portland, OR | laurosilva.com
 
 ## Summary
 
-Senior software engineer with experience at Google, Sentry, HOKA, and Test Double. I help product teams build production-ready web applications and agencies deliver client work. I also design and deliver technical training — live workshops for O'Reilly Media and courses for egghead.io reaching thousands of developers.
+Senior software engineer with experience at Google, Sentry, and Test Double. I help product teams build production-ready web applications and agencies deliver client work. I also design and deliver technical training — live workshops for O'Reilly Media and courses for egghead.io reaching thousands of developers.
 
 ---
 
@@ -38,15 +38,6 @@ _Multiple client engagements_
 - Rapidly assessed codebases, identified highest-leverage improvements, and delivered in compressed timelines
 - Led legacy code migrations, architecture redesigns, and testing strategy overhauls
 - Improved shipping cadences, team practices, and code quality across engagements
-
-### Senior Engineer (Project) — HOKA
-
-_Full-stack product development via consulting engagement_
-
-- Led full-stack development for digital products at one of the fastest-growing brands in running
-- Made architecture decisions and delivered hands-on development for high-performance web applications
-- Built with Next.js, React, TypeScript, and Tailwind CSS on Vercel
-- Applied domain expertise as an active member of the running community
 
 ### Developer Experience Engineer (Project) — Sentry
 
