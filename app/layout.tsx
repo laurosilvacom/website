@@ -2,26 +2,17 @@ import {type Metadata} from 'next/types'
 import {type ReactNode} from 'react'
 import {ThemeProvider} from '@/shared/components/theme-provider'
 import {Analytics} from '@vercel/analytics/next'
-import {Source_Sans_3, Instrument_Serif, JetBrains_Mono} from 'next/font/google'
+import {Geist, Geist_Mono} from 'next/font/google'
 
-const sourceSans = Source_Sans_3({
-	weight: ['400', '500', '600', '700'],
+const geist = Geist({
 	subsets: ['latin'],
-	variable: '--font-sans',
+	variable: '--font-geist-sans',
 	display: 'swap',
 })
 
-const instrumentSerif = Instrument_Serif({
-	weight: ['400'],
+const geistMono = Geist_Mono({
 	subsets: ['latin'],
-	variable: '--font-serif',
-	display: 'swap',
-})
-
-const jetbrainsMono = JetBrains_Mono({
-	weight: ['400', '500', '700'],
-	subsets: ['latin'],
-	variable: '--font-mono',
+	variable: '--font-geist-mono',
 	display: 'swap',
 })
 
@@ -32,6 +23,7 @@ import {StructuredData} from '@/shared/components/structured-data'
 import {baseUrl} from '@/app/sitemap'
 import {Navigation} from '@/shared/components/navigation'
 import {defaultOgImageUrl} from '@/shared/lib/metadata'
+import {cn} from '@/shared/lib/utils'
 
 export const metadata: Metadata = {
 	metadataBase: new URL(baseUrl),
@@ -168,13 +160,21 @@ export default function RootLayout({children}: RootLayoutProps) {
 	return (
 		<html
 			lang="en"
-			className={`${sourceSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} bg-background text-foreground scroll-smooth antialiased`}
+			className={cn(
+				'bg-background',
+				'text-foreground',
+				'scroll-smooth',
+				'antialiased',
+				geist.variable,
+				geistMono.variable,
+				'font-sans',
+			)}
 			suppressHydrationWarning>
 			<head>
 				<link rel="dns-prefetch" href="https://cdn.sanity.io" />
 				<link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="" />
 			</head>
-			<body className="min-h-screen">
+			<body className="min-h-screen font-sans">
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 					<div className="relative min-h-screen">
 						<Navigation />
