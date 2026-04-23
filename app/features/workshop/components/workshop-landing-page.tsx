@@ -48,7 +48,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 								</>
 							)}
 						</div>
-						<h1 className="font-serif text-3xl leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-5xl">
+						<h1 className="font-heading text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
 							{workshop.title}
 						</h1>
 						{workshop.shortDescription && (

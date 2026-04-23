@@ -90,7 +90,7 @@ export function Footnote({id, children}: FootnoteProps) {
 				id={`footnote-ref-${footnoteId}`}
 				onClick={handleClick}
 				className={cn(
-					'focus:ring-primary inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-medium transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none',
+					'inline-flex size-5 items-center justify-center rounded-full text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
 					isActive
 						? 'bg-primary text-primary-foreground hover:bg-primary/90'
 						: 'text-muted-foreground hover:text-foreground border-border/50 hover:border-border border bg-transparent',

@@ -26,9 +26,8 @@ export function ModeToggle() {
 				variant="outline"
 				size="icon"
 				disabled
-				className="h-9 w-9 shrink-0"
-				style={{width: '36px', minWidth: '36px'}}>
-				<Sun className="text-foreground h-[1.2rem] w-[1.2rem]" />
+				className="shrink-0">
+				<Sun className="text-foreground size-4" />
 				<span className="sr-only">Toggle theme</span>
 			</Button>
 		)
@@ -40,11 +39,10 @@ export function ModeToggle() {
 				<Button
 					variant="outline"
 					size="icon"
-					className="relative h-9 w-9 shrink-0 overflow-hidden"
-					style={{width: '36px', minWidth: '36px'}}>
+					className="relative shrink-0 overflow-hidden">
 					<span className="absolute inset-0 flex items-center justify-center">
-						<Sun className="text-foreground h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-						<Moon className="text-foreground absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+						<Sun className="text-foreground size-4 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+						<Moon className="text-foreground absolute size-4 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
 					</span>
 					<span className="sr-only">Toggle theme</span>
 				</Button>

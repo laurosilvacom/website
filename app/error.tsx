@@ -7,7 +7,7 @@ type ErrorPageProps = {
 
 export default function Error({error, reset}: ErrorPageProps) {
 	return (
-		<div className="flex min-h-[400px] flex-col items-center justify-center px-4">
+		<div className="flex min-h-96 flex-col items-center justify-center px-4">
 			<div className="max-w-md text-center">
 				<h1 className="mb-4 text-2xl font-semibold">Something went wrong</h1>
 				<p className="text-muted-foreground mb-6 text-sm">

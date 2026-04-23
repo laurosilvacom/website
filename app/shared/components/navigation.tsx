@@ -46,8 +46,7 @@ export function Navigation() {
 						<div className="flex items-center justify-between py-6">
 							<Link
 								href="/"
-								className="text-foreground font-serif text-sm font-bold tracking-tight transition-opacity hover:opacity-70"
-								style={{letterSpacing: '-0.03em'}}>
+								className="text-foreground text-sm font-semibold tracking-tighter transition-opacity hover:opacity-70">
 								Lauro Silva
 							</Link>
 
@@ -82,8 +81,7 @@ export function Navigation() {
 					<div className="flex h-14 items-center justify-between">
 						<Link
 							href="/"
-							className="text-foreground font-serif text-sm font-bold tracking-tight"
-							style={{letterSpacing: '-0.03em'}}>
+							className="text-foreground text-sm font-semibold tracking-tighter transition-opacity hover:opacity-70">
 							Lauro Silva
 						</Link>
 

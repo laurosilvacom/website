@@ -38,7 +38,7 @@ export default async function TagsPage() {
 							<ArrowLeft className="h-3 w-3" />
 							Writing
 						</Link>
-						<h1 className="font-serif text-3xl leading-[1.1] font-bold tracking-tight sm:text-4xl lg:text-5xl">
+						<h1 className="font-heading text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
 							Topics
 						</h1>
 						<p className="text-muted-foreground text-base leading-relaxed">

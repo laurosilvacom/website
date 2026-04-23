@@ -4,7 +4,7 @@ import Container from '@/shared/components/container'
 export default function NotFound() {
 	return (
 		<Container>
-			<div className="flex min-h-[400px] flex-col items-center justify-center text-center">
+			<div className="flex min-h-96 flex-col items-center justify-center text-center">
 				<h1 className="mb-4 text-4xl font-semibold">404</h1>
 				<p className="text-muted-foreground mb-8 text-lg">Page not found</p>
 				<Link

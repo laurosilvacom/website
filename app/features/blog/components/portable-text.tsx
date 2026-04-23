@@ -102,7 +102,7 @@ function CodeBlock({value}: PortableTextTypeComponentProps<CodeBlockValue>) {
 
 function InlineCode({children}: PortableTextMarkComponentProps) {
 	return (
-		<code className="inline-code rounded px-1.5 py-0.5 font-mono text-[0.875em] font-medium">
+		<code className="inline-code rounded px-1.5 py-0.5 font-mono text-sm font-medium">
 			{children}
 		</code>
 	)
@@ -241,7 +241,7 @@ function createComponents(): PortableTextComponents {
 				<h6 className="text-foreground">{children ?? null}</h6>
 			),
 			blockquote: ({children}: PortableTextComponentProps<any>) => (
-				<blockquote className="border-foreground/15 text-foreground/75 my-8 border-l-2 py-1 pl-6 font-serif text-base leading-[1.8]">
+				<blockquote className="border-foreground/15 text-foreground/75 my-8 border-l-2 py-1 pl-6 font-heading text-base leading-relaxed">
 					{children ?? null}
 				</blockquote>
 			),
@@ -263,7 +263,7 @@ export function PortableText({blocks}: PortableTextProps) {
 
 	const components = createComponents()
 	return (
-		<div className="prose prose-headings:font-serif prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground prose-h1:text-2xl prose-h1:mt-16 prose-h1:mb-6 prose-h2:text-xl prose-h2:mt-14 prose-h2:mb-5 prose-h3:text-lg prose-h3:mt-12 prose-h3:mb-4 prose-h4:text-base prose-h4:mt-10 prose-h4:mb-3 prose-h4:font-semibold prose-h5:text-sm prose-h5:mt-8 prose-h5:mb-2 prose-h5:font-semibold prose-h6:text-xs prose-h6:mt-6 prose-h6:mb-2 prose-h6:text-muted-foreground prose-p:text-base prose-p:leading-[1.8] prose-p:mb-7 prose-p:text-foreground/85 prose-li:text-base prose-li:leading-[1.8] prose-li:text-foreground/85 prose-a:text-foreground prose-a:underline prose-a:underline-offset-[3px] prose-a:decoration-foreground/25 hover:prose-a:decoration-foreground/60 prose-strong:font-semibold prose-strong:text-foreground prose-code:text-sm prose-code:font-mono prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-blockquote:border-foreground/15 prose-blockquote:font-serif prose-blockquote:text-foreground/75 prose-blockquote:not-italic prose-img:rounded-lg prose-hr:border-border prose-hr:my-12 dark:prose-invert max-w-none">
+		<div className="prose prose-headings:font-heading prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-foreground prose-h1:text-2xl prose-h1:mt-16 prose-h1:mb-6 prose-h2:text-xl prose-h2:mt-14 prose-h2:mb-5 prose-h3:text-lg prose-h3:mt-12 prose-h3:mb-4 prose-h4:text-base prose-h4:mt-10 prose-h4:mb-3 prose-h4:font-semibold prose-h5:text-sm prose-h5:mt-8 prose-h5:mb-2 prose-h5:font-semibold prose-h6:text-xs prose-h6:mt-6 prose-h6:mb-2 prose-h6:text-muted-foreground prose-p:text-base prose-p:leading-relaxed prose-p:mb-7 prose-p:text-foreground/85 prose-li:text-base prose-li:leading-relaxed prose-li:text-foreground/85 prose-a:text-foreground prose-a:underline prose-a:underline-offset-4 prose-a:decoration-foreground/25 hover:prose-a:decoration-foreground/60 prose-strong:font-semibold prose-strong:text-foreground prose-code:text-sm prose-code:font-mono prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-blockquote:border-foreground/15 prose-blockquote:font-heading prose-blockquote:text-foreground/75 prose-blockquote:not-italic prose-img:rounded-lg prose-hr:border-border prose-hr:my-12 dark:prose-invert max-w-none">
 			<SanityPortableText value={blocks} components={components} />
 		</div>
 	)

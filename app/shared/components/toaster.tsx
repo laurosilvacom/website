@@ -6,17 +6,17 @@ export function Toaster() {
 	return (
 		<Sonner
 			theme="system"
-			className="toaster group font-sans"
+			className="toaster group"
 			toastOptions={{
 				classNames: {
 					toast:
-						'group toast group flex gap-3 bg-card border border-border rounded-lg text-foreground font-sans',
-					description: 'group-[.toast]:text-muted-foreground font-sans',
+						'group toast group flex gap-3 bg-card border border-border rounded-lg text-foreground',
+					description: 'group-[.toast]:text-muted-foreground',
 					actionButton:
-						'group-[.toast]:bg-primary group-[.toast]:text-primary-foreground font-sans',
+						'group-[.toast]:bg-primary group-[.toast]:text-primary-foreground',
 					cancelButton:
-						'group-[.toast]:bg-muted group-[.toast]:text-muted-foreground font-sans',
-					title: 'group-[.toast]:text-foreground font-sans',
+						'group-[.toast]:bg-muted group-[.toast]:text-muted-foreground',
+					title: 'group-[.toast]:text-foreground',
 					loader: 'group-[.toast]:text-primary',
 					closeButton:
 						'group-[.toast]:hover:text-primary group-[.toast]:text-muted-foreground',
@@ -28,14 +28,14 @@ export function Toaster() {
 
 export function successToast(message: string) {
 	toast.custom(() => (
-		<div className="border-primary/20 bg-card flex items-center gap-3 rounded-lg border p-4 font-sans shadow-lg transition-all duration-200">
-			<div className="relative flex h-8 w-8 items-center justify-center">
-				<div className="animate-in fade-in-0 zoom-in-50 absolute h-8 w-8 duration-300">
-					<div className="bg-primary/20 h-full w-full rounded-full transition-transform duration-300 ease-out group-hover:scale-110" />
+		<div className="flex items-center gap-3 rounded-lg border border-primary/20 bg-card p-4 shadow-lg transition-all duration-200">
+			<div className="relative flex size-8 items-center justify-center">
+				<div className="animate-in fade-in-0 zoom-in-50 absolute size-8 duration-300">
+					<div className="size-full rounded-full bg-primary/20 transition-transform duration-300 ease-out group-hover:scale-110" />
 				</div>
 				<svg
 					viewBox="0 0 24 24"
-					className="stroke-primary absolute h-5 w-5 stroke-[2.5]"
+					className="absolute size-5 stroke-primary stroke-[2.5]"
 					fill="none"
 					strokeLinecap="round"
 					strokeLinejoin="round">
@@ -45,21 +45,21 @@ export function successToast(message: string) {
 					/>
 				</svg>
 			</div>
-			<p className="text-card-foreground font-medium">{message}</p>
+			<p className="font-medium text-card-foreground">{message}</p>
 		</div>
 	))
 }
 
 export function errorToast(message: string) {
 	toast.custom(() => (
-		<div className="border-destructive/20 bg-card flex items-center gap-3 rounded-lg border p-4 font-sans shadow-lg transition-all duration-200">
-			<div className="relative flex h-8 w-8 items-center justify-center">
-				<div className="animate-in fade-in-0 zoom-in-50 absolute h-8 w-8 duration-300">
-					<div className="bg-destructive/20 h-full w-full rounded-full transition-transform duration-300 ease-out group-hover:scale-110" />
+		<div className="flex items-center gap-3 rounded-lg border border-destructive/20 bg-card p-4 shadow-lg transition-all duration-200">
+			<div className="relative flex size-8 items-center justify-center">
+				<div className="animate-in fade-in-0 zoom-in-50 absolute size-8 duration-300">
+					<div className="size-full rounded-full bg-destructive/20 transition-transform duration-300 ease-out group-hover:scale-110" />
 				</div>
 				<svg
 					viewBox="0 0 24 24"
-					className="stroke-destructive absolute h-5 w-5 stroke-[2.5]"
+					className="absolute size-5 stroke-destructive stroke-[2.5]"
 					fill="none"
 					strokeLinecap="round"
 					strokeLinejoin="round">
@@ -69,7 +69,7 @@ export function errorToast(message: string) {
 					/>
 				</svg>
 			</div>
-			<p className="text-card-foreground font-medium">{message}</p>
+			<p className="font-medium text-card-foreground">{message}</p>
 		</div>
 	))
 }

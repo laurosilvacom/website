@@ -16,21 +16,21 @@ export default async function WorkshopNewsletterConfirmedPage({searchParams}: Pa
 			description:
 				'Check your inbox—your lessons are on the way. Reply to any email if you have questions.',
 			icon: CheckCircle,
-			iconClass: 'text-green-500',
+			iconClass: 'text-primary',
 		},
 		invalid: {
 			title: 'Link expired',
 			description:
 				'This link has expired or was already used. Sign up again to get a fresh confirmation link.',
 			icon: AlertCircle,
-			iconClass: 'text-amber-500',
+			iconClass: 'text-muted-foreground',
 		},
 		error: {
 			title: 'Something went wrong',
 			description:
 				"We couldn't confirm your subscription. Please try again or reach out if the problem persists.",
 			icon: XCircle,
-			iconClass: 'text-red-500',
+			iconClass: 'text-destructive',
 		},
 	}
 
@@ -47,8 +47,8 @@ export default async function WorkshopNewsletterConfirmedPage({searchParams}: Pa
 				<div className="space-y-6">
 					<div className="space-y-4">
 						<div className="flex items-center gap-3">
-							<Icon className={`h-8 w-8 ${iconClass}`} />
-							<h1 className="font-serif text-3xl font-bold tracking-tight sm:text-4xl">
+							<Icon className={`size-8 ${iconClass}`} />
+							<h1 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
 								{title}
 							</h1>
 						</div>

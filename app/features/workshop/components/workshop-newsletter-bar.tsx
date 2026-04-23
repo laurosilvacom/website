@@ -93,18 +93,18 @@ export function WorkshopNewsletterBar({
 				'fixed right-0 bottom-6 left-0 z-40 flex justify-center px-6 transition-transform duration-700 ease-out sm:px-8',
 				isVisible ? 'translate-y-0' : 'translate-y-[calc(100%+1.5rem)]',
 			)}>
-			<div className="bg-brand-blue shadow-brand-blue/30 w-full max-w-4xl rounded-2xl border border-white/20 shadow-2xl">
+			<div className="w-full max-w-4xl rounded-xl border border-primary-foreground/20 bg-primary shadow-2xl shadow-primary/30">
 				<div className="flex items-center justify-center px-6 py-4 sm:px-8">
 					{isSuccess ? (
 						<div className="animate-in fade-in-0 flex items-center gap-3">
-							<div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/20">
-								<CheckCircle className="h-4 w-4 text-white" />
+							<div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary-foreground/20">
+								<CheckCircle className="size-4 text-primary-foreground" />
 							</div>
 							<div>
-								<p className="text-sm font-semibold text-white">
-									Check your email to confirm!
-								</p>
-								<p className="text-xs text-white/70">
+							<p className="text-sm font-semibold text-primary-foreground">
+								Check your email to confirm!
+							</p>
+							<p className="text-xs text-primary-foreground/70">
 									{lessonCount
 										? `You'll receive ${lessonCount} lessons, one per day.`
 										: 'Your first lesson will arrive shortly.'}
@@ -113,7 +113,7 @@ export function WorkshopNewsletterBar({
 						</div>
 					) : (
 						<div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-							<p className="text-center text-sm font-medium text-white sm:text-left lg:shrink-0">
+							<p className="text-center text-sm font-medium text-primary-foreground sm:text-left lg:shrink-0">
 								{preface}
 							</p>
 							<form
@@ -129,28 +129,28 @@ export function WorkshopNewsletterBar({
 									value={firstName}
 									onChange={(e) => setFirstName(e.target.value)}
 									disabled={isSubmitting}
-									className="h-10 w-full border-white/20 bg-white/10 text-sm text-white placeholder:text-white/60 sm:h-9 sm:flex-1"
-								/>
+								className="h-10 w-full border-primary-foreground/20 bg-primary-foreground/10 text-sm text-primary-foreground placeholder:text-primary-foreground/60 sm:h-9 sm:flex-1"
+							/>
 
-								<label htmlFor="bottom-email" className="sr-only">
-									Email address
-								</label>
-								<Input
-									id="bottom-email"
-									type="email"
-									placeholder="Email address"
-									value={email}
-									onChange={(e) => setEmail(e.target.value)}
-									required
-									disabled={isSubmitting}
-									className="h-10 w-full border-white/20 bg-white/10 text-sm text-white placeholder:text-white/60 sm:h-9 sm:flex-1"
+							<label htmlFor="bottom-email" className="sr-only">
+								Email address
+							</label>
+							<Input
+								id="bottom-email"
+								type="email"
+								placeholder="Email address"
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+								required
+								disabled={isSubmitting}
+								className="h-10 w-full border-primary-foreground/20 bg-primary-foreground/10 text-sm text-primary-foreground placeholder:text-primary-foreground/60 sm:h-9 sm:flex-1"
 								/>
 
 								<Button
 									type="submit"
-									className="text-brand-blue h-10 w-full bg-white px-6 text-sm font-medium hover:bg-white/90 sm:h-9 sm:w-auto sm:shrink-0"
+									className="h-10 w-full bg-primary-foreground px-6 text-sm font-medium text-primary hover:bg-primary-foreground/90 sm:h-9 sm:w-auto sm:shrink-0"
 									disabled={isSubmitting}>
-									{isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : ctaLabel}
+									{isSubmitting ? <Loader2 className="size-4 animate-spin" /> : ctaLabel}
 								</Button>
 							</form>
 						</div>
@@ -158,8 +158,8 @@ export function WorkshopNewsletterBar({
 				</div>
 
 				{error && !isSuccess && (
-					<div className="rounded-b-2xl border-t border-white/10 bg-white/10 px-6 py-2 text-center sm:px-8">
-						<p className="text-xs font-medium text-white">{error}</p>
+				<div className="rounded-b-xl border-t border-primary-foreground/10 bg-primary-foreground/10 px-6 py-2 text-center sm:px-8">
+					<p className="text-xs font-medium text-primary-foreground">{error}</p>
 					</div>
 				)}
 			</div>
