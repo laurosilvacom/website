@@ -36,7 +36,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 	return (
 		<>
 			{/* Header */}
-			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
+			<section className="pt-28 pb-12 lg:pt-32 lg:pb-16">
 				<Container>
 					<div className="space-y-4">
 						<Link
@@ -52,7 +52,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 							<span>{study.type}</span>
 						</div>
 
-						<h1 className="font-heading text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+						<h1 className="text-2xl font-normal tracking-tight sm:text-3xl">
 							{study.title}
 						</h1>
 
@@ -68,9 +68,9 @@ export default async function CaseStudyPage({params}: PageProps) {
 			</section>
 
 			{/* Challenge */}
-			<section className="pb-12 lg:pb-16">
+			<section className="pb-16 lg:pb-20">
 				<Container>
-					<h2 className="text-foreground mb-4 text-sm font-semibold">The Challenge</h2>
+					<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">The Challenge</h2>
 					<div className="text-muted-foreground mt-4 space-y-4 text-sm leading-relaxed">
 						{study.challenge.map((p, i) => (
 							<p key={i}>{p}</p>
@@ -80,9 +80,9 @@ export default async function CaseStudyPage({params}: PageProps) {
 			</section>
 
 			{/* Approach */}
-			<section className="pb-12 lg:pb-16">
+			<section className="pb-16 lg:pb-20">
 				<Container>
-					<h2 className="text-foreground mb-4 text-sm font-semibold">The Approach</h2>
+					<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">The Approach</h2>
 					<div className="text-muted-foreground mt-4 space-y-4 text-sm leading-relaxed">
 						{study.approach.map((p, i) => (
 							<p key={i}>{p}</p>
@@ -92,9 +92,9 @@ export default async function CaseStudyPage({params}: PageProps) {
 			</section>
 
 			{/* Outcome */}
-			<section className="pb-12 lg:pb-16">
+			<section className="pb-16 lg:pb-20">
 				<Container>
-					<h2 className="text-foreground mb-4 text-sm font-semibold">The Outcome</h2>
+					<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">The Outcome</h2>
 					<div className="text-muted-foreground mt-4 space-y-4 text-sm leading-relaxed">
 						{study.outcome.map((p, i) => (
 							<p key={i}>{p}</p>
@@ -104,9 +104,9 @@ export default async function CaseStudyPage({params}: PageProps) {
 			</section>
 
 			{/* Tech Stack */}
-			<section className="pb-12 lg:pb-16">
+			<section className="pb-16 lg:pb-20">
 				<Container>
-					<h2 className="text-foreground mb-4 text-sm font-semibold">Tech Stack</h2>
+					<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">Tech Stack</h2>
 					<div className="mt-4 flex flex-wrap gap-x-4 gap-y-1">
 						{study.techStack.map((tech) => (
 							<span key={tech} className="text-muted-foreground text-sm">
@@ -121,7 +121,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 			{study.testimonial && (
 				<section className="pb-16 lg:pb-20">
 					<Container>
-						<h2 className="text-foreground mb-4 text-sm font-semibold">Testimonial</h2>
+						<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">Testimonial</h2>
 						<div className="mt-4 space-y-4">
 							<p className="text-foreground text-sm leading-relaxed italic">
 								&ldquo;{study.testimonial.quote}&rdquo;

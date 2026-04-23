@@ -46,7 +46,7 @@ export function Navigation() {
 						<div className="flex items-center justify-between py-6">
 							<Link
 								href="/"
-								className="text-foreground text-sm font-semibold tracking-tighter transition-opacity hover:opacity-70">
+								className="text-foreground text-sm font-medium tracking-tight transition-opacity hover:opacity-70">
 								Lauro Silva
 							</Link>
 
@@ -81,7 +81,7 @@ export function Navigation() {
 					<div className="flex h-14 items-center justify-between">
 						<Link
 							href="/"
-							className="text-foreground text-sm font-semibold tracking-tighter transition-opacity hover:opacity-70">
+							className="text-foreground text-sm font-medium tracking-tight transition-opacity hover:opacity-70">
 							Lauro Silva
 						</Link>
 
@@ -126,7 +126,7 @@ export function Navigation() {
 										href={path}
 										onClick={() => setIsMenuOpen(false)}
 										className={cn(
-											'py-3 text-lg font-medium transition-opacity hover:opacity-70',
+											'py-4 text-2xl font-normal tracking-tight transition-opacity hover:opacity-70',
 											isActive ? 'text-foreground' : 'text-muted-foreground',
 										)}>
 										{name}

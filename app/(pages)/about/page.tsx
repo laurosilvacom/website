@@ -30,10 +30,10 @@ export default function AboutPage() {
 			/>
 			<main>
 				{/* Header */}
-				<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
+				<section className="pt-28 pb-12 lg:pt-32 lg:pb-16">
 					<Container>
 						<div className="space-y-4">
-							<h1 className="font-heading text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+							<h1 className="text-2xl font-normal tracking-tight sm:text-3xl">
 								Build & Run
 							</h1>
 							<p className="text-muted-foreground text-base leading-relaxed">
@@ -45,9 +45,9 @@ export default function AboutPage() {
 				</section>
 
 				{/* Software Engineer */}
-				<section className="pb-12 lg:pb-16">
+				<section className="pb-16 lg:pb-20">
 					<Container>
-						<h2 className="text-foreground mb-4 text-sm font-semibold">
+						<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">
 							Software Engineer
 						</h2>
 						<div className="text-muted-foreground mt-4 space-y-4 text-sm leading-relaxed">
@@ -67,9 +67,9 @@ export default function AboutPage() {
 				</section>
 
 				{/* Community Builder */}
-				<section className="pb-12 lg:pb-16">
+				<section className="pb-16 lg:pb-20">
 					<Container>
-						<h2 className="text-foreground mb-4 text-sm font-semibold">
+						<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">
 							Community Builder
 						</h2>
 						<div className="text-muted-foreground mt-4 space-y-4 text-sm leading-relaxed">
@@ -100,9 +100,9 @@ export default function AboutPage() {
 				</section>
 
 				{/* Trail Runner */}
-				<section className="pb-12 lg:pb-16">
+				<section className="pb-16 lg:pb-20">
 					<Container>
-						<h2 className="text-foreground mb-4 text-sm font-semibold">Trail Runner</h2>
+						<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">Trail Runner</h2>
 						<div className="text-muted-foreground mt-4 space-y-4 text-sm leading-relaxed">
 							<p>
 								I'm a semi-professional trail runner. The trails have taught me about

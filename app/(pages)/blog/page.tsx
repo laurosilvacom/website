@@ -32,10 +32,10 @@ export default async function BlogPage() {
 
 	return (
 		<>
-			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
+			<section className="pt-28 pb-12 lg:pt-32 lg:pb-16">
 				<Container>
 					<div className="space-y-4">
-						<h1 className="font-heading text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+						<h1 className="text-2xl font-normal tracking-tight sm:text-3xl">
 							Writing
 						</h1>
 						<p className="text-muted-foreground text-base leading-relaxed">

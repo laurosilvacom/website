@@ -64,7 +64,7 @@ export default async function TagPage({params}: TagPageProps) {
 	return (
 		<>
 			{/* Header */}
-			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
+			<section className="pt-28 pb-12 lg:pt-32 lg:pb-16">
 				<Container>
 					<div className="space-y-4">
 						<Link
@@ -74,7 +74,7 @@ export default async function TagPage({params}: TagPageProps) {
 							All topics
 						</Link>
 
-						<h1 className="font-heading text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+						<h1 className="text-2xl font-normal tracking-tight sm:text-3xl">
 							{tag}
 						</h1>
 						<p className="text-muted-foreground text-base leading-relaxed">
@@ -121,7 +121,7 @@ export default async function TagPage({params}: TagPageProps) {
 									</p>
 								</div>
 								<div className="flex shrink-0 items-center gap-3">
-									<span className="text-muted-foreground hidden font-mono text-xs sm:inline">
+									<span className="hidden font-mono text-xs tabular-nums text-muted-foreground sm:inline">
 										{formatDate(post.metadata.publishedAt, false)}
 									</span>
 									<ArrowRight className="text-muted-foreground h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100" />

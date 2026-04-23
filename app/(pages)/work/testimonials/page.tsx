@@ -144,7 +144,7 @@ export default function TestimonialsPage() {
 	return (
 		<>
 			{/* Header */}
-			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
+			<section className="pt-28 pb-12 lg:pt-32 lg:pb-16">
 				<Container>
 					<div className="space-y-4">
 						<Link
@@ -153,7 +153,7 @@ export default function TestimonialsPage() {
 							<ArrowLeft className="h-3 w-3" />
 							All work
 						</Link>
-						<h1 className="font-heading text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+						<h1 className="text-2xl font-normal tracking-tight sm:text-3xl">
 							Testimonials
 						</h1>
 						<p className="text-muted-foreground text-base leading-relaxed">
@@ -164,9 +164,9 @@ export default function TestimonialsPage() {
 			</section>
 
 			{/* Education Testimonials */}
-			<section className="pb-12 lg:pb-16">
+			<section className="pb-16 lg:pb-20">
 				<Container>
-					<h2 className="text-foreground mb-2 text-sm font-semibold">
+					<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">
 						Developer Education & Training
 					</h2>
 					<p className="text-muted-foreground mb-6 text-xs">
@@ -184,7 +184,7 @@ export default function TestimonialsPage() {
 			{/* Engineering Testimonials */}
 			<section className="pb-16 lg:pb-20">
 				<Container>
-					<h2 className="text-foreground mb-2 text-sm font-semibold">
+					<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">
 						Full-Stack Engineering
 					</h2>
 					<p className="text-muted-foreground mb-6 text-xs">

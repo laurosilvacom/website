@@ -121,10 +121,10 @@ export default async function WorkPage() {
 	return (
 		<>
 			{/* Header */}
-			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
+			<section className="pt-28 pb-12 lg:pt-32 lg:pb-16">
 				<Container>
 					<div className="space-y-4">
-						<h1 className="font-heading text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+						<h1 className="text-2xl font-normal tracking-tight sm:text-3xl">
 							Work
 						</h1>
 						<p className="text-muted-foreground text-base leading-relaxed">
@@ -173,7 +173,7 @@ export default async function WorkPage() {
 			<section className="pb-16 lg:pb-20">
 				<Container>
 					<div className="mb-8 flex items-center justify-between">
-						<h2 className="text-foreground text-sm font-semibold">Testimonials</h2>
+						<h2 className="text-foreground text-xs font-medium uppercase tracking-widest">Testimonials</h2>
 						<Link
 							href="/work/testimonials"
 							className="text-muted-foreground hover:text-foreground text-xs transition-colors">

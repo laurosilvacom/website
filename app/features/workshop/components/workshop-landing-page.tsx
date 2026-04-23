@@ -30,7 +30,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 	return (
 		<div className="relative min-h-screen">
 			{/* Header */}
-			<section className="pt-32 pb-16 lg:pt-36 lg:pb-20">
+			<section className="pt-28 pb-12 lg:pt-32 lg:pb-16">
 				<Container>
 					<div className="space-y-4">
 						<div className="flex items-center gap-2">
@@ -48,7 +48,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 								</>
 							)}
 						</div>
-						<h1 className="font-heading text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+						<h1 className="text-2xl font-normal tracking-tight sm:text-3xl">
 							{workshop.title}
 						</h1>
 						{workshop.shortDescription && (
@@ -171,7 +171,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 			{landingDescription && (
 				<section className="border-border border-b py-16 lg:py-20">
 					<Container>
-						<h2 className="text-foreground mb-4 text-sm font-semibold">
+						<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">
 							About This Workshop
 						</h2>
 						<div>
@@ -191,7 +191,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 			{workshop.emailLessons && workshop.emailLessons.length > 0 && (
 				<section className="border-border border-b py-16 lg:py-20">
 					<Container>
-						<h2 className="text-foreground mb-4 text-sm font-semibold">
+						<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">
 							What You&apos;ll Learn
 						</h2>
 						<p className="text-muted-foreground text-sm">
@@ -200,7 +200,7 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 						<div className="divide-border mt-6 divide-y">
 							{workshop.emailLessons.map((lesson, i) => (
 								<div key={lesson._key || i} className="flex items-baseline gap-4 py-3">
-									<span className="text-muted-foreground w-6 shrink-0 text-right font-mono text-xs">
+									<span className="w-6 shrink-0 text-right font-mono text-xs tabular-nums text-muted-foreground">
 										{String(i + 1).padStart(2, '0')}
 									</span>
 									<span className="text-foreground text-sm font-medium">
