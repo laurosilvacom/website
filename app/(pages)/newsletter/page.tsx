@@ -8,7 +8,7 @@ import {baseUrl} from '@/app/sitemap'
 export const metadata: Metadata = createMetadata({
 	title: 'Newsletter',
 	description:
-		'Get updates on software, trails, and community. Subscribe to receive the latest posts and insights.',
+		'Get updates on software engineering, developer education, and practical team workflows.',
 	canonical: `${baseUrl}/newsletter`,
 })
 
@@ -23,9 +23,9 @@ export default function NewsletterPage() {
 							Newsletter
 						</h1>
 						<p className="text-muted-foreground text-base leading-relaxed">
-							Updates on building software, lessons from the trails, and things I&apos;m
-							learning about growing inclusive communities. Subscribers get content that
-							doesn&apos;t make it to the blog.
+							Updates on building production software, developer education, and better
+							engineering workflows. Subscribers get practical notes that don&apos;t make
+							it to the blog.
 						</p>
 						<div className="flex items-center gap-4 pt-2 text-sm">
 							<Link

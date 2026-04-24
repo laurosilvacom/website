@@ -3,14 +3,13 @@
 import Link from 'next/link'
 import {usePathname} from 'next/navigation'
 import {useEffect, useState} from 'react'
-import {ModeToggle} from './toggle'
 import Container from '@/shared/components/container'
 import {cn} from '@/shared/lib/utils'
 
 const navItems = [
 	{path: '/work', name: 'Work'},
 	{path: '/teaching', name: 'Teaching'},
-	{path: '/blog', name: 'Blog'},
+	{path: '/blog', name: 'Writing'},
 	{path: '/about', name: 'About'},
 ]
 
@@ -68,7 +67,6 @@ export function Navigation() {
 										</Link>
 									)
 								})}
-								<ModeToggle />
 							</div>
 						</div>
 					</Container>
@@ -85,29 +83,26 @@ export function Navigation() {
 							Lauro Silva
 						</Link>
 
-						<div className="flex items-center gap-3">
-							<ModeToggle />
-							<button
-								onClick={() => setIsMenuOpen(!isMenuOpen)}
-								className="-mr-2 p-2"
-								aria-label="Toggle menu"
-								aria-expanded={isMenuOpen}>
-								<div className="relative h-4 w-4">
-									<span
-										className={cn(
-											'bg-foreground absolute left-0 h-px w-4 transition-all duration-200',
-											isMenuOpen ? 'top-2 rotate-45' : 'top-0.5',
-										)}
-									/>
-									<span
-										className={cn(
-											'bg-foreground absolute left-0 h-px w-4 transition-all duration-200',
-											isMenuOpen ? 'top-2 -rotate-45' : 'top-[11px]',
-										)}
-									/>
-								</div>
-							</button>
-						</div>
+						<button
+							onClick={() => setIsMenuOpen(!isMenuOpen)}
+							className="-mr-2 p-2"
+							aria-label="Toggle menu"
+							aria-expanded={isMenuOpen}>
+							<div className="relative h-4 w-4">
+								<span
+									className={cn(
+										'bg-foreground absolute left-0 h-px w-4 transition-all duration-200',
+										isMenuOpen ? 'top-2 rotate-45' : 'top-0.5',
+									)}
+								/>
+								<span
+									className={cn(
+										'bg-foreground absolute left-0 h-px w-4 transition-all duration-200',
+										isMenuOpen ? 'top-2 -rotate-45' : 'top-[11px]',
+									)}
+								/>
+							</div>
+						</button>
 					</div>
 				</Container>
 			</nav>

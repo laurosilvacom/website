@@ -8,7 +8,7 @@ export const revalidate = 30
 
 export const metadata = {
 	title: 'Workshops',
-	description: 'Professional workshops and training programs.',
+	description: 'Self-paced courses and email workshops.',
 }
 
 export default async function WorkshopsPage() {
@@ -34,7 +34,16 @@ export default async function WorkshopsPage() {
 							Workshops
 						</h1>
 						<p className="text-muted-foreground text-base leading-relaxed">
-							Professional training programs designed to help you level up your skills.
+							Self-paced courses and email-based workshops for individual developers.
+						</p>
+						<p className="text-muted-foreground text-sm leading-relaxed">
+							Looking for team training?{' '}
+							<Link
+								href="/teaching"
+								className="text-foreground underline underline-offset-4 transition-opacity hover:opacity-70">
+								See teaching engagements
+							</Link>
+							.
 						</p>
 					</div>
 				</Container>
@@ -45,7 +54,7 @@ export default async function WorkshopsPage() {
 				<Container>
 					{workshops.length === 0 ? (
 						<p className="text-muted-foreground text-sm">
-							No workshops available at the moment.
+							No self-paced courses are available right now.
 						</p>
 					) : (
 						<div className="space-y-1">

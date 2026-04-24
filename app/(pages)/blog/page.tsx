@@ -8,7 +8,7 @@ export const revalidate = 30
 export const metadata = {
 	title: 'Writing',
 	description:
-		'Thoughts, ideas, and explorations at the intersection of technology and the outdoor industry.',
+		'Engineering notes on React, Next.js, TypeScript, developer education, and shipping production software.',
 }
 
 export default async function BlogPage() {
@@ -39,8 +39,8 @@ export default async function BlogPage() {
 							Writing
 						</h1>
 						<p className="text-muted-foreground text-base leading-relaxed">
-							Thoughts, ideas, and explorations at the intersection of technology and the
-							outdoor industry.{' '}
+							Engineering notes on building production software, teaching developers, and
+							improving team workflows.{' '}
 							<Link href="/blog/rss.xml" className="underline underline-offset-4">
 								RSS
 							</Link>

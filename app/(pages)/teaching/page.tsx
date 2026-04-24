@@ -38,33 +38,6 @@ const platforms = [
 	},
 ]
 
-const workshopTopics = [
-	{
-		title: 'Production React & Next.js',
-		desc: 'Server components, app router, data fetching, caching, and deployment patterns for real applications.',
-	},
-	{
-		title: 'Practical TypeScript for Engineering Teams',
-		desc: 'Type-safe APIs, generics, utility types, and migration strategies that ship.',
-	},
-	{
-		title: 'Building with AI: From Prototype to Production',
-		desc: 'Claude, GPT-4, prompt engineering, structured outputs, and API patterns that hold up.',
-	},
-	{
-		title: 'Frontend Architecture at Scale',
-		desc: 'Monorepos, micro-frontends, API design, and the scaling patterns behind large codebases.',
-	},
-	{
-		title: 'Testing That Actually Works',
-		desc: 'Unit, integration, and E2E testing strategies that teams adopt and keep.',
-	},
-	{
-		title: 'Engineering Workflows & Developer Experience',
-		desc: 'Tooling, CI/CD, code review practices, and the systems that make teams fast.',
-	},
-]
-
 const currentOfferings = [
 	{
 		title: 'Prompt Engineering for Everyone',
@@ -74,6 +47,7 @@ const currentOfferings = [
 		href: '/workshops/prompt-engineering-for-everyone',
 	},
 ]
+
 
 export default function TeachingPage() {
 	return (
@@ -86,38 +60,19 @@ export default function TeachingPage() {
 							Teaching
 						</h1>
 						<p className="text-muted-foreground text-base leading-relaxed">
-							I teach engineering teams to build better software. From half-day workshops
-							to multi-week programs. Previously at O&apos;Reilly and egghead.
+							I help engineering teams improve delivery quality through practical training.
+							From focused workshops to multi-week enablement programs.
+						</p>
+						<p className="text-muted-foreground text-sm leading-relaxed">
+							If you&apos;re looking for individual self-paced learning, visit the{' '}
+							<Link href="/workshops" className="text-foreground underline underline-offset-4">
+								workshop library
+							</Link>
+							.
 						</p>
 					</div>
 				</Container>
 			</section>
-
-			{/* Current Offerings */}
-			{currentOfferings.length > 0 && (
-				<section className="pb-16 lg:pb-20">
-					<Container>
-						<div className="space-y-1">
-							{currentOfferings.map((offering) => (
-								<Link
-									key={offering.title}
-									href={offering.href}
-									className="group flex items-center justify-between gap-4 py-4 transition-opacity hover:opacity-70">
-									<div className="min-w-0 space-y-1">
-										<span className="text-foreground text-sm font-medium">
-											{offering.title}
-										</span>
-										<p className="text-muted-foreground text-xs">
-											{offering.description}
-										</p>
-									</div>
-									<ArrowRight className="text-muted-foreground h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity group-hover:opacity-100" />
-								</Link>
-							))}
-						</div>
-					</Container>
-				</section>
-			)}
 
 			{/* Where I've Taught */}
 			<section className="pb-16 lg:pb-20">
@@ -152,24 +107,60 @@ export default function TeachingPage() {
 				</Container>
 			</section>
 
-			{/* Topics */}
+			{/* Self-paced offerings */}
+			{currentOfferings.length > 0 && (
+				<section className="pb-16 lg:pb-20">
+					<Container>
+						<div className="mb-6 flex items-center justify-between">
+							<h2 className="text-foreground text-xs font-medium uppercase tracking-widest">
+								Self-paced Courses
+							</h2>
+							<Link
+								href="/workshops"
+								className="text-muted-foreground hover:text-foreground text-xs transition-colors">
+								View all
+							</Link>
+						</div>
+						<div className="space-y-1">
+							{currentOfferings.map((offering) => (
+								<Link
+									key={offering.title}
+									href={offering.href}
+									className="group flex items-center justify-between gap-4 py-4 transition-opacity hover:opacity-70">
+									<div className="min-w-0 space-y-1">
+										<span className="text-foreground text-sm font-medium">
+											{offering.title}
+										</span>
+										<p className="text-muted-foreground text-xs">
+											{offering.description}
+										</p>
+									</div>
+									<ArrowRight className="text-muted-foreground h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity group-hover:opacity-100" />
+								</Link>
+							))}
+						</div>
+					</Container>
+				</section>
+			)}
+
+			{/* Contact */}
 			<section className="pb-16 lg:pb-20">
 				<Container>
-					<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">Workshop Topics</h2>
-					<div className="divide-y divide-border">
-						{workshopTopics.map((topic) => (
-							<div
-								key={topic.title}
-								className="py-5">
-								<p className="text-foreground text-sm font-medium">
-									{topic.title}
-								</p>
-								<p className="text-muted-foreground mt-1 text-xs leading-relaxed">
-									{topic.desc}
-								</p>
-							</div>
-						))}
-					</div>
+					<p className="text-muted-foreground text-sm">
+						<a
+							href="mailto:me@laurosilva.com"
+							className="text-foreground underline underline-offset-4 transition-opacity hover:opacity-70">
+							me@laurosilva.com
+						</a>
+						{' · '}
+						<a
+							href="https://cal.com/laurosilvacom/chat"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-foreground underline underline-offset-4 transition-opacity hover:opacity-70">
+							Schedule a training conversation
+						</a>
+					</p>
 				</Container>
 			</section>
 		</>

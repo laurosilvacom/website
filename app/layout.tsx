@@ -22,6 +22,7 @@ import {Toaster} from '@/shared/components/toaster'
 import {StructuredData} from '@/shared/components/structured-data'
 import {baseUrl} from '@/app/sitemap'
 import {Navigation} from '@/shared/components/navigation'
+import {Footer} from '@/shared/components/footer'
 import {defaultOgImageUrl} from '@/shared/lib/metadata'
 import {cn} from '@/shared/lib/utils'
 
@@ -176,9 +177,10 @@ export default function RootLayout({children}: RootLayoutProps) {
 			</head>
 			<body className="min-h-screen font-sans">
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-					<div className="relative min-h-screen">
+					<div className="relative flex min-h-screen flex-col">
 						<Navigation />
-						<main className="relative">{children}</main>
+						<main className="relative flex-1">{children}</main>
+						<Footer />
 					</div>
 				</ThemeProvider>
 				<StructuredData type="website" />
