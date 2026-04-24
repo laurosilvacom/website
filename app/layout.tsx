@@ -161,6 +161,7 @@ export default function RootLayout({children}: RootLayoutProps) {
 	return (
 		<html
 			lang="en"
+			data-scroll-behavior="smooth"
 			className={cn(
 				'bg-background',
 				'text-foreground',

@@ -184,7 +184,13 @@ export default async function WorkPage() {
 						{testimonials.slice(0, 5).map((t) => (
 							<div key={t.name} className="flex gap-3 py-3">
 								<div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full">
-									<Image src={t.image} alt={t.name} fill className="object-cover" />
+									<Image
+										src={t.image}
+										alt={t.name}
+										fill
+										sizes="32px"
+										className="object-cover"
+									/>
 								</div>
 								<div className="min-w-0">
 									<p className="text-foreground text-sm leading-relaxed">

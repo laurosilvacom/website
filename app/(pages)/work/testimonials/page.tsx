@@ -123,6 +123,7 @@ function TestimonialCard({
 					src={testimonial.image}
 					alt={testimonial.name}
 					fill
+					sizes="32px"
 					className="object-cover"
 				/>
 			</div>

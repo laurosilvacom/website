@@ -133,6 +133,7 @@ export default async function CaseStudyPage({params}: PageProps) {
 											src={study.testimonial.image.asset.url}
 											alt={study.testimonial.name}
 											fill
+											sizes="32px"
 											className="object-cover"
 										/>
 									</div>
