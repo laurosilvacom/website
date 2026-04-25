@@ -4,6 +4,8 @@ import Container from '@/shared/components/container'
 import {ArrowRight} from 'lucide-react'
 import {generatePageMetadata} from '@/shared/lib/metadata'
 import {getCaseStudies} from '@/features/work/server'
+import {Avatar, AvatarFallback, AvatarImage} from '@/shared/ui/avatar'
+import {Button} from '@/shared/ui/button'
 
 export const metadata = generatePageMetadata(
 	'Work',
@@ -124,10 +126,10 @@ export default async function WorkPage() {
 			<section className="pt-28 pb-12 lg:pt-32 lg:pb-16">
 				<Container>
 					<div className="space-y-4">
-						<h1 className="text-2xl font-normal tracking-tight sm:text-3xl">
+						<h1 className="type-page-title">
 							Work
 						</h1>
-						<p className="text-muted-foreground text-base leading-relaxed">
+						<p className="type-page-intro">
 							I take on a small number of projects at a time. Development, leadership, and
 							training for engineering teams.
 						</p>
@@ -140,30 +142,34 @@ export default async function WorkPage() {
 				<Container>
 					<div className="space-y-1">
 						{caseStudies.map((study) => (
-							<Link
+							<Button
 								key={study.slug}
-								href={`/work/${study.slug}`}
-								className="group flex items-center justify-between gap-4 py-4 transition-opacity hover:opacity-70">
-								<div className="min-w-0 space-y-1">
-									<span className="text-foreground flex items-center gap-2 text-sm font-medium">
-										{study.domain && (
-											<Image
-												src={`https://www.google.com/s2/favicons?domain=${study.domain}&sz=64`}
-												alt=""
-												width={14}
-												height={14}
-												unoptimized
-												className="h-3.5 w-3.5 rounded-sm opacity-50 grayscale group-hover:opacity-100 group-hover:grayscale-0"
-											/>
-										)}
-										{study.client}
-									</span>
-									<p className="text-muted-foreground text-xs">
-										{study.title} · {study.type}
-									</p>
-								</div>
-								<ArrowRight className="text-muted-foreground h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity group-hover:opacity-100" />
-							</Link>
+								asChild
+								variant="ghost"
+								size="sm"
+								className="group h-auto w-full justify-between gap-4 px-0 py-4 transition-opacity hover:opacity-70">
+								<Link href={`/work/${study.slug}`}>
+									<div className="min-w-0 space-y-1 text-left">
+										<span className="type-item-title flex items-center gap-2">
+											{study.domain && (
+												<Image
+													src={`https://www.google.com/s2/favicons?domain=${study.domain}&sz=64`}
+													alt=""
+													width={14}
+													height={14}
+													unoptimized
+													className="h-3.5 w-3.5 rounded-sm opacity-50 grayscale group-hover:opacity-100 group-hover:grayscale-0"
+												/>
+											)}
+											{study.client}
+										</span>
+										<p className="type-meta">
+											{study.title} · {study.type}
+										</p>
+									</div>
+									<ArrowRight className="text-muted-foreground h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity group-hover:opacity-100" />
+								</Link>
+							</Button>
 						))}
 					</div>
 				</Container>
@@ -173,30 +179,23 @@ export default async function WorkPage() {
 			<section className="pb-16 lg:pb-20">
 				<Container>
 					<div className="mb-8 flex items-center justify-between">
-						<h2 className="text-foreground text-xs font-medium uppercase tracking-widest">Testimonials</h2>
-						<Link
-							href="/work/testimonials"
-							className="text-muted-foreground hover:text-foreground text-xs transition-colors">
-							View all
-						</Link>
+						<h2 className="type-section-label">Testimonials</h2>
+						<Button asChild variant="link" size="sm" className="type-link-muted h-auto px-0">
+							<Link href="/work/testimonials">View all</Link>
+						</Button>
 					</div>
 					<div className="space-y-6">
 						{testimonials.slice(0, 5).map((t) => (
 							<div key={t.name} className="flex gap-3 py-3">
-								<div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full">
-									<Image
-										src={t.image}
-										alt={t.name}
-										fill
-										sizes="32px"
-										className="object-cover"
-									/>
-								</div>
+								<Avatar className="size-8 shrink-0">
+									<AvatarImage src={t.image} alt={t.name} />
+									<AvatarFallback>{t.name.charAt(0).toUpperCase()}</AvatarFallback>
+								</Avatar>
 								<div className="min-w-0">
-									<p className="text-foreground text-sm leading-relaxed">
+									<p className="type-body-sm text-foreground">
 										&ldquo;{t.quote}&rdquo;
 									</p>
-									<p className="text-muted-foreground mt-2 text-xs">
+									<p className="type-meta mt-2">
 										<span className="text-foreground font-medium">{t.name}</span>
 										{' · '}
 										{t.role}
@@ -211,20 +210,24 @@ export default async function WorkPage() {
 			{/* Contact */}
 			<section className="pb-16 lg:pb-20">
 				<Container>
-					<p className="text-muted-foreground text-sm">
-						<a
-							href="mailto:me@laurosilva.com"
-							className="text-foreground underline underline-offset-4 transition-opacity hover:opacity-70">
-							me@laurosilva.com
-						</a>
+					<p className="type-body-sm">
+						<Button
+							asChild
+							variant="link"
+							size="sm"
+							className="text-foreground h-auto px-0 transition-opacity hover:opacity-70">
+							<a href="mailto:me@laurosilva.com">me@laurosilva.com</a>
+						</Button>
 						{' · '}
-						<a
-							href="https://cal.com/laurosilvacom/chat"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="text-foreground underline underline-offset-4 transition-opacity hover:opacity-70">
-							Schedule a conversation
-						</a>
+						<Button
+							asChild
+							variant="link"
+							size="sm"
+							className="text-foreground h-auto px-0 transition-opacity hover:opacity-70">
+							<a href="https://cal.com/laurosilvacom/chat" target="_blank" rel="noopener noreferrer">
+								Schedule a conversation
+							</a>
+						</Button>
 					</p>
 				</Container>
 			</section>

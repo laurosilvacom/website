@@ -1,5 +1,7 @@
 'use client'
 
+import {Button} from '@/shared/ui/button'
+
 type ErrorPageProps = {
 	error: Error & {digest?: string}
 	reset: () => void
@@ -13,11 +15,9 @@ export default function Error({error, reset}: ErrorPageProps) {
 				<p className="text-muted-foreground mt-2 text-sm">
 					{error.message || 'An unexpected error occurred'}
 				</p>
-				<button
-					onClick={reset}
-					className="bg-primary text-primary-foreground hover:bg-primary/90 mt-6 rounded-md px-4 py-2 text-sm font-medium transition-colors">
+				<Button onClick={reset} className="mt-6" size="sm">
 					Try again
-				</button>
+				</Button>
 			</div>
 		</div>
 	)

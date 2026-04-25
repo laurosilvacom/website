@@ -112,9 +112,9 @@
 	--radius-lg: calc(var(--radius) + 2px);
 	--radius-xl: calc(var(--radius) + 4px);
 	--radius-2xl: calc(var(--radius) + 8px);
-	--font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+	--font-sans: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
 	--font-mono: var(--font-geist-mono), ui-monospace, 'SF Mono', monospace;
-	--font-heading: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+	--font-heading: var(--font-wotfard), ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
 @layer base {
@@ -126,7 +126,7 @@
 		@apply font-sans scroll-smooth;
 		font-size: 16px;
 		line-height: 1.6;
-		letter-spacing: -0.011em;
+		letter-spacing: -0.003em;
 		font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
 		text-rendering: optimizeLegibility;
 		-webkit-font-smoothing: antialiased;
@@ -135,9 +135,69 @@
 
 	body {
 		@apply bg-background text-foreground;
+		font-weight: 470;
+	}
+
+	h1 {
+		font-family: var(--font-heading);
+		font-weight: 620;
+		letter-spacing: -0.012em;
+		line-height: 1.14;
+		font-feature-settings: 'kern' 1, 'liga' 1;
+	}
+
+	h2,
+	h3 {
+		font-family: var(--font-heading);
+		font-weight: 580;
+		letter-spacing: -0.01em;
+	}
+
+	.prose :where(h1, h2, h3):not(:where(.not-prose, .not-prose *)) {
+		font-family: var(--font-heading);
+		font-weight: 580;
+		letter-spacing: -0.01em;
 	}
 
 	::selection {
 		@apply bg-foreground/8 text-foreground;
+	}
+}
+
+@layer components {
+	.type-page-title {
+		@apply font-heading text-[2rem] leading-[1.1] font-semibold tracking-[-0.018em] sm:text-[2.35rem];
+	}
+
+	.type-page-intro {
+		@apply text-muted-foreground text-[1.02rem] leading-relaxed;
+	}
+
+	.type-section-label {
+		@apply text-foreground text-[0.69rem] font-semibold uppercase tracking-[0.14em];
+	}
+
+	.type-item-title {
+		@apply text-foreground text-[0.94rem] leading-snug font-semibold;
+	}
+
+	.type-body-sm {
+		@apply text-muted-foreground text-[0.92rem] leading-relaxed;
+	}
+
+	.type-meta {
+		@apply text-muted-foreground text-[0.78rem] leading-normal;
+	}
+
+	.type-link-muted {
+		@apply text-muted-foreground hover:text-foreground text-[0.82rem] font-medium transition-colors;
+	}
+
+	.type-nav {
+		@apply text-[0.9rem] font-medium tracking-[-0.006em];
+	}
+
+	.type-nav-mobile {
+		@apply text-[1.35rem] font-medium tracking-[-0.01em];
 	}
 }

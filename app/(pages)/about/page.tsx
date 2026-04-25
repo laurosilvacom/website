@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Container from '@/shared/components/container'
 import {generatePageMetadata} from '@/shared/lib/metadata'
 import {StructuredData} from '@/shared/components/structured-data'
+import {Button} from '@/shared/ui/button'
 
 export const metadata = generatePageMetadata(
 	'About',
@@ -34,10 +35,10 @@ export default function AboutPage() {
 				<section className="pt-28 pb-12 lg:pt-32 lg:pb-16">
 					<Container>
 						<div className="space-y-4">
-							<h1 className="text-2xl font-normal tracking-tight sm:text-3xl">
+							<h1 className="type-page-title">
 								About
 							</h1>
-							<p className="text-muted-foreground text-base leading-relaxed">
+							<p className="type-page-intro">
 								I&apos;m a senior software engineer and developer educator. I work with
 								teams that need both strong execution and stronger engineering capability.
 							</p>
@@ -48,10 +49,10 @@ export default function AboutPage() {
 				{/* Professional focus */}
 				<section className="pb-16 lg:pb-20">
 					<Container>
-						<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">
+						<h2 className="type-section-label mb-6">
 							Professional Focus
 						</h2>
-						<div className="text-muted-foreground mt-4 space-y-4 text-sm leading-relaxed">
+						<div className="type-body-sm mt-4 space-y-4">
 							<p>
 								I help product teams and agencies ship production-ready web applications.
 								My core stack is React, Next.js, TypeScript, and Node.js.
@@ -68,10 +69,10 @@ export default function AboutPage() {
 				{/* Education approach */}
 				<section className="pb-16 lg:pb-20">
 					<Container>
-						<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">
+						<h2 className="type-section-label mb-6">
 							Developer Education
 						</h2>
-						<div className="text-muted-foreground mt-4 space-y-4 text-sm leading-relaxed">
+						<div className="type-body-sm mt-4 space-y-4">
 							<p>
 								I design practical training for engineering teams: workshops, coaching,
 								and implementation support that teams can apply immediately.
@@ -87,10 +88,10 @@ export default function AboutPage() {
 				{/* Perspective */}
 				<section className="pb-16 lg:pb-20">
 					<Container>
-						<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">
+						<h2 className="type-section-label mb-6">
 							Domain Perspective
 						</h2>
-						<div className="text-muted-foreground mt-4 space-y-4 text-sm leading-relaxed">
+						<div className="type-body-sm mt-4 space-y-4">
 							<p>
 								Outside software, I&apos;m active in trail running communities and outdoor
 								initiatives. That perspective helps when building products for performance
@@ -108,15 +109,17 @@ export default function AboutPage() {
 				<section className="pb-16 lg:pb-20">
 					<Container>
 						<div className="max-w-xl space-y-4">
-							<p className="text-foreground text-sm leading-relaxed">
+							<p className="type-item-title leading-relaxed">
 								If you need a partner who can both build software and level up your team,
 								let&apos;s talk.
 							</p>
-							<Link
-								href="/work"
-								className="text-foreground inline-block text-sm font-medium underline underline-offset-4 transition-opacity hover:opacity-70">
-								See case studies →
-							</Link>
+							<Button
+								asChild
+								variant="link"
+								size="sm"
+								className="type-link-muted text-foreground inline-block h-auto px-0 transition-opacity hover:opacity-70">
+								<Link href="/work">See case studies →</Link>
+							</Button>
 						</div>
 					</Container>
 				</section>

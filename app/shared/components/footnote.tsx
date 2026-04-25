@@ -3,6 +3,7 @@
 import Image, {type ImageProps} from 'next/image'
 import {useEffect, useState} from 'react'
 import {cn} from '@/shared/lib/utils'
+import {Button} from '@/shared/ui/button'
 
 interface FootnoteData {
 	id: string
@@ -85,18 +86,20 @@ export function Footnote({id, children}: FootnoteProps) {
 
 	return (
 		<sup>
-			<button
+			<Button
 				type="button"
 				id={`footnote-ref-${footnoteId}`}
 				onClick={handleClick}
+				size="icon-xs"
+				variant={isActive ? 'default' : 'outline'}
 				className={cn(
-					'inline-flex size-5 items-center justify-center rounded-full text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+					'rounded-full text-xs font-medium',
 					isActive
 						? 'bg-primary text-primary-foreground hover:bg-primary/90'
-						: 'text-muted-foreground hover:text-foreground border-border/50 hover:border-border border bg-transparent',
+						: 'text-muted-foreground hover:text-foreground border-border/60 hover:border-border',
 				)}>
 				{footnoteNumber}
-			</button>
+			</Button>
 		</sup>
 	)
 }

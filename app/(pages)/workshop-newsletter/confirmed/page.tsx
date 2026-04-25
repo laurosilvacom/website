@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Container from '@/shared/components/container'
 import {CheckCircle, AlertCircle, XCircle} from 'lucide-react'
+import {Button} from '@/shared/ui/button'
 
 type PageProps = {
 	searchParams?: Promise<Record<string, string | string[] | undefined>>
@@ -48,33 +49,29 @@ export default async function WorkshopNewsletterConfirmedPage({searchParams}: Pa
 					<div className="space-y-4">
 						<div className="flex items-center gap-3">
 							<Icon className={`size-8 ${iconClass}`} />
-							<h1 className="text-2xl font-normal tracking-tight sm:text-3xl">
+							<h1 className="type-page-title">
 								{title}
 							</h1>
 						</div>
-						<p className="text-muted-foreground text-base leading-relaxed">
+						<p className="type-page-intro">
 							{description}
 						</p>
 					</div>
 
 					{status === 'success' && (
-						<p className="text-muted-foreground text-sm leading-relaxed">
+						<p className="type-body-sm">
 							You&apos;ll receive one lesson per day. Each builds on the last, so take
 							your time and apply what you learn.
 						</p>
 					)}
 
-					<div className="flex items-center gap-4 text-sm">
-						<Link
-							href="/workshops"
-							className="text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors">
-							Explore courses
-						</Link>
-						<Link
-							href="/blog"
-							className="text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors">
-							Read the blog
-						</Link>
+					<div className="flex items-center gap-4">
+						<Button asChild variant="link" size="sm" className="type-link-muted h-auto px-0">
+							<Link href="/workshops">Explore courses</Link>
+						</Button>
+						<Button asChild variant="link" size="sm" className="type-link-muted h-auto px-0">
+							<Link href="/blog">Read the blog</Link>
+						</Button>
 					</div>
 				</div>
 			</Container>

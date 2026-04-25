@@ -4,6 +4,7 @@ import Container from '@/shared/components/container'
 import {NewsletterForm} from '@/features/newsletter/components/newsletter-form'
 import {createMetadata} from '@/shared/lib/metadata'
 import {baseUrl} from '@/app/sitemap'
+import {Button} from '@/shared/ui/button'
 
 export const metadata: Metadata = createMetadata({
 	title: 'Newsletter',
@@ -19,20 +20,22 @@ export default function NewsletterPage() {
 			<section className="pt-28 pb-12 lg:pt-32 lg:pb-16">
 				<Container>
 					<div className="space-y-4">
-						<h1 className="text-2xl font-normal tracking-tight sm:text-3xl">
+						<h1 className="type-page-title">
 							Newsletter
 						</h1>
-						<p className="text-muted-foreground text-base leading-relaxed">
+						<p className="type-page-intro">
 							Updates on building production software, developer education, and better
 							engineering workflows. Subscribers get practical notes that don&apos;t make
 							it to the blog.
 						</p>
-						<div className="flex items-center gap-4 pt-2 text-sm">
-							<Link
-								href="/blog"
-								className="text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors">
-								Read the blog
-							</Link>
+						<div className="flex items-center gap-4 pt-2">
+							<Button
+								asChild
+								variant="link"
+								size="sm"
+								className="type-link-muted h-auto px-0">
+								<Link href="/blog">Read the blog</Link>
+							</Button>
 						</div>
 					</div>
 				</Container>
@@ -50,7 +53,7 @@ export default function NewsletterPage() {
 			{/* What You Get */}
 			<section className="pb-16 lg:pb-20">
 				<Container>
-					<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">
+					<h2 className="type-section-label mb-6">
 						What You&apos;ll Get
 					</h2>
 					<div className="space-y-3">
@@ -69,8 +72,8 @@ export default function NewsletterPage() {
 							},
 						].map((item) => (
 							<div key={item.title} className="py-3">
-								<span className="text-foreground text-sm font-medium">{item.title}</span>
-								<p className="text-muted-foreground text-xs">{item.desc}</p>
+								<span className="type-item-title">{item.title}</span>
+								<p className="type-meta">{item.desc}</p>
 							</div>
 						))}
 					</div>

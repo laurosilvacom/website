@@ -2,6 +2,8 @@
 
 import {useState} from 'react'
 import {Button} from '@/shared/ui/button'
+import {Input} from '@/shared/ui/input'
+import {Alert, AlertDescription, AlertTitle} from '@/shared/ui/alert'
 
 export function NewsletterForm() {
 	const [email, setEmail] = useState('')
@@ -44,12 +46,12 @@ export function NewsletterForm() {
 
 	if (status === 'success') {
 		return (
-			<div className="py-4">
-				<p className="text-foreground text-sm font-medium">You&apos;re subscribed!</p>
-				<p className="text-muted-foreground text-xs">
+			<Alert className="max-w-lg py-3">
+				<AlertTitle>You&apos;re subscribed!</AlertTitle>
+				<AlertDescription>
 					Check your inbox for a confirmation email.
-				</p>
-			</div>
+				</AlertDescription>
+			</Alert>
 		)
 	}
 
@@ -72,12 +74,11 @@ export function NewsletterForm() {
 					<label htmlFor="newsletter-firstName" className="sr-only">
 						First Name
 					</label>
-					<input
+					<Input
 						id="newsletter-firstName"
 						type="text"
 						value={firstName}
 						onChange={(e) => setFirstName(e.target.value)}
-						className="border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary h-9 w-full rounded-lg border px-3 text-sm transition-colors focus:ring-1 focus:outline-none"
 						placeholder="First name"
 						aria-describedby="firstName-description"
 					/>
@@ -90,14 +91,13 @@ export function NewsletterForm() {
 					<label htmlFor="newsletter-email" className="sr-only">
 						Email address (required)
 					</label>
-					<input
+					<Input
 						id="newsletter-email"
 						type="email"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required
 						autoComplete="email"
-						className="border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary h-9 w-full rounded-lg border px-3 text-sm transition-colors focus:ring-1 focus:outline-none"
 						placeholder="you@example.com"
 						aria-describedby="email-description"
 						aria-required="true"
@@ -118,9 +118,9 @@ export function NewsletterForm() {
 			</div>
 
 			{errorMessage && (
-				<div role="alert" className="text-destructive mt-2 text-xs font-medium">
-					{errorMessage}
-				</div>
+				<Alert variant="destructive" className="mt-3 py-2.5">
+					<AlertDescription>{errorMessage}</AlertDescription>
+				</Alert>
 			)}
 
 			<p className="text-muted-foreground mt-2 text-xs">No spam. Unsubscribe anytime.</p>

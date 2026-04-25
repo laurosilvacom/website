@@ -2,6 +2,7 @@
 
 import {useState} from 'react'
 import {Check, Copy} from 'lucide-react'
+import {Button} from '@/shared/ui/button'
 
 export function CodeCopyButton({code}: {code: string}) {
 	const [copied, setCopied] = useState(false)
@@ -13,11 +14,13 @@ export function CodeCopyButton({code}: {code: string}) {
 	}
 
 	return (
-		<button
+		<Button
 			onClick={copy}
-			className="flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
+			variant="ghost"
+			size="icon-xs"
+			className="text-muted-foreground hover:text-foreground"
 			aria-label="Copy code">
 			{copied ? <Check className="size-4" /> : <Copy className="size-4" />}
-		</button>
+		</Button>
 	)
 }

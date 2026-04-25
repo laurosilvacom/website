@@ -14,6 +14,7 @@ import {
 	getSanityImageBlurDataUrl,
 	getSanityImageUrl,
 } from '@/shared/integrations/sanity/image'
+import {Button} from '@/shared/ui/button'
 
 export const revalidate = 30
 
@@ -110,17 +111,15 @@ export default async function BlogPost({params}: Props) {
 				<header className="pt-28 pb-12 lg:pt-32 lg:pb-16">
 					<Container>
 						<div className="space-y-4">
-							<Link
-								href="/blog"
-								className="text-muted-foreground hover:text-foreground inline-block text-sm transition-colors">
-								← Writing
-							</Link>
+							<Button asChild variant="link" size="sm" className="type-link-muted inline-block h-auto px-0">
+								<Link href="/blog">← Writing</Link>
+							</Button>
 
-							<h1 className="text-2xl font-normal tracking-tight sm:text-3xl">
+							<h1 className="type-page-title">
 								{post.metadata.title}
 							</h1>
 
-							<div className="text-muted-foreground flex items-center gap-1.5 text-xs">
+							<div className="type-meta flex items-center gap-1.5">
 								<time dateTime={post.metadata.publishedAt}>
 									{formatDate(post.metadata.publishedAt)}
 								</time>
@@ -129,7 +128,7 @@ export default async function BlogPost({params}: Props) {
 							</div>
 
 							{post.metadata.summary && (
-								<p className="text-muted-foreground text-base leading-relaxed">
+								<p className="type-page-intro">
 									{post.metadata.summary}
 								</p>
 							)}
@@ -154,7 +153,7 @@ export default async function BlogPost({params}: Props) {
 								/>
 							</div>
 							{post.heroImage?.caption && (
-								<p className="text-muted-foreground mt-3 text-xs">
+								<p className="type-meta mt-3">
 									{post.heroImage.caption}
 								</p>
 							)}
@@ -173,12 +172,14 @@ export default async function BlogPost({params}: Props) {
 						{post.metadata.tags && post.metadata.tags.length > 0 && (
 							<div className="flex flex-wrap gap-x-3 gap-y-1">
 								{post.metadata.tags.map((tag) => (
-									<Link
+									<Button
 										key={tag}
-										href={`/tags/${encodeURIComponent(tag)}`}
-										className="text-muted-foreground hover:text-foreground text-xs transition-colors">
-										#{tag}
-									</Link>
+										asChild
+										variant="link"
+										size="sm"
+										className="type-meta hover:text-foreground h-auto px-0 transition-colors">
+										<Link href={`/tags/${encodeURIComponent(tag)}`}>#{tag}</Link>
+									</Button>
 								))}
 							</div>
 						)}

@@ -11,6 +11,8 @@ import Link from 'next/link'
 import {PortableText, type PortableTextBlock} from '@portabletext/react'
 import {WorkshopNewsletterBar} from '@/features/workshop/components/workshop-newsletter-bar'
 import Container from '@/shared/components/container'
+import {Avatar, AvatarFallback, AvatarImage} from '@/shared/ui/avatar'
+import {Separator} from '@/shared/ui/separator'
 
 interface WorkshopLandingPageProps {
 	workshop: SanityModule
@@ -34,25 +36,23 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 				<Container>
 					<div className="space-y-4">
 						<div className="flex items-center gap-2">
-							<Link
-								href="/workshops"
-								className="text-muted-foreground hover:text-foreground text-xs font-medium transition-colors">
-								Workshops
-							</Link>
+							<Button asChild variant="link" size="sm" className="type-link-muted h-auto px-0">
+								<Link href="/workshops">Workshops</Link>
+							</Button>
 							{audienceLabel && (
 								<>
-									<span className="text-muted-foreground text-xs">/</span>
-									<span className="text-muted-foreground text-xs">
+									<span className="type-meta">/</span>
+									<span className="type-meta">
 										For {audienceLabel}
 									</span>
 								</>
 							)}
 						</div>
-						<h1 className="text-2xl font-normal tracking-tight sm:text-3xl">
+						<h1 className="type-page-title">
 							{workshop.title}
 						</h1>
 						{workshop.shortDescription && (
-							<p className="text-muted-foreground text-base leading-relaxed">
+							<p className="type-page-intro">
 								{workshop.shortDescription}
 							</p>
 						)}
@@ -79,8 +79,10 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 				</Container>
 			</section>
 
+			<Separator />
+
 			{/* Meta strip */}
-			<section className="border-border border-y">
+			<section className="py-2">
 				<Container>
 					<div className="divide-border grid grid-cols-2 divide-x sm:grid-cols-4">
 						{[
@@ -102,8 +104,8 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 							},
 						].map((item) => (
 							<div key={item.label} className="px-4 py-5 first:pl-0 sm:px-6">
-								<p className="text-foreground text-sm font-semibold">{item.value}</p>
-								<p className="text-muted-foreground text-xs">{item.label}</p>
+								<p className="type-item-title">{item.value}</p>
+								<p className="type-meta">{item.label}</p>
 							</div>
 						))}
 					</div>
@@ -112,32 +114,30 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 
 			{/* Contributors */}
 			{workshop.contributors && workshop.contributors.length > 0 && (
-				<section className="border-border border-b py-5">
+				<>
+					<Separator />
+					<section className="py-5">
 					<Container>
 						<div className="flex items-center gap-3">
-							<span className="text-muted-foreground text-xs">Taught by</span>
+							<span className="type-meta">Taught by</span>
 							{workshop.contributors.map((contributorData: SanityProductContributor) => {
 								if (!contributorData.contributor) return null
 								return (
 									<div
 										key={contributorData.contributor._id}
 										className="flex items-center gap-2">
-										<div className="bg-muted flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-full">
+										<Avatar className="size-6">
 											{contributorData.contributor.picture?.asset?.url ? (
-												<Image
+												<AvatarImage
 													src={contributorData.contributor.picture.asset.url}
 													alt={contributorData.contributor.name}
-													width={24}
-													height={24}
-													className="h-6 w-6 rounded-full object-cover"
 												/>
-											) : (
-												<span className="text-muted-foreground text-xs font-semibold">
-													{contributorData.contributor.name.charAt(0).toUpperCase()}
-												</span>
-											)}
-										</div>
-										<span className="text-foreground text-sm font-medium">
+											) : null}
+											<AvatarFallback className="text-[0.65rem] font-semibold">
+												{contributorData.contributor.name.charAt(0).toUpperCase()}
+											</AvatarFallback>
+										</Avatar>
+										<span className="type-item-title">
 											{contributorData.contributor.name}
 										</span>
 									</div>
@@ -145,12 +145,15 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 							})}
 						</div>
 					</Container>
-				</section>
+					</section>
+				</>
 			)}
 
 			{/* Workshop Image */}
 			{workshop.image?.asset?.url && (
-				<section className="border-border border-b py-10 lg:py-14">
+				<>
+					<Separator />
+					<section className="py-10 lg:py-14">
 					<Container>
 						<div className="overflow-hidden rounded-xl">
 							<Image
@@ -164,14 +167,17 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 							/>
 						</div>
 					</Container>
-				</section>
+					</section>
+				</>
 			)}
 
 			{/* Description */}
 			{landingDescription && (
-				<section className="border-border border-b py-16 lg:py-20">
+				<>
+					<Separator />
+					<section className="py-16 lg:py-20">
 					<Container>
-						<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">
+						<h2 className="type-section-label mb-6">
 							About This Workshop
 						</h2>
 						<div>
@@ -179,38 +185,45 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 								{Array.isArray(landingDescription) ? (
 									<PortableText value={landingDescription as PortableTextBlock[]} />
 								) : (
-									<p className="text-sm leading-relaxed">{landingDescription}</p>
+									<p className="type-body-sm">{landingDescription}</p>
 								)}
 							</div>
 						</div>
 					</Container>
-				</section>
+					</section>
+				</>
 			)}
 
 			{/* Lessons preview */}
 			{workshop.emailLessons && workshop.emailLessons.length > 0 && (
-				<section className="border-border border-b py-16 lg:py-20">
+				<>
+					<Separator />
+					<section className="py-16 lg:py-20">
 					<Container>
-						<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">
+						<h2 className="type-section-label mb-6">
 							What You&apos;ll Learn
 						</h2>
-						<p className="text-muted-foreground text-sm">
+						<p className="type-body-sm">
 							{lessonCount} lessons delivered to your inbox, one per day.
 						</p>
-						<div className="divide-border mt-6 divide-y">
+						<div className="mt-6">
 							{workshop.emailLessons.map((lesson, i) => (
-								<div key={lesson._key || i} className="flex items-baseline gap-4 py-3">
-									<span className="w-6 shrink-0 text-right font-mono text-xs tabular-nums text-muted-foreground">
-										{String(i + 1).padStart(2, '0')}
-									</span>
-									<span className="text-foreground text-sm font-medium">
-										{lesson.subject || `Lesson ${i + 1}`}
-									</span>
+								<div key={lesson._key || i}>
+									<div className="flex items-baseline gap-4 py-3">
+										<span className="type-meta w-6 shrink-0 text-right font-mono tabular-nums">
+											{String(i + 1).padStart(2, '0')}
+										</span>
+										<span className="type-item-title">
+											{lesson.subject || `Lesson ${i + 1}`}
+										</span>
+									</div>
+									{i < (workshop.emailLessons?.length ?? 0) - 1 && <Separator />}
 								</div>
 							))}
 						</div>
 					</Container>
-				</section>
+					</section>
+				</>
 			)}
 
 			{/* CTA */}
@@ -218,10 +231,10 @@ export function WorkshopLandingPage({workshop}: WorkshopLandingPageProps) {
 				<Container>
 					<div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
 						<div>
-							<p className="text-foreground text-sm font-medium">
+							<p className="type-item-title">
 								Start learning for free
 							</p>
-							<p className="text-muted-foreground text-sm">
+							<p className="type-body-sm">
 								{lessonCount
 									? `${lessonCount} lessons delivered to your inbox.`
 									: 'Free email course — sign up below.'}

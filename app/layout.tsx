@@ -2,11 +2,44 @@ import {type Metadata} from 'next/types'
 import {type ReactNode} from 'react'
 import {ThemeProvider} from '@/shared/components/theme-provider'
 import {Analytics} from '@vercel/analytics/next'
-import {Geist, Geist_Mono} from 'next/font/google'
+import {Geist_Mono, Plus_Jakarta_Sans} from 'next/font/google'
+import localFont from 'next/font/local'
 
-const geist = Geist({
+const plusJakartaSans = Plus_Jakarta_Sans({
 	subsets: ['latin'],
-	variable: '--font-geist-sans',
+	variable: '--font-plus-jakarta-sans',
+	display: 'swap',
+})
+
+const wotfard = localFont({
+	src: [
+		{
+			path: './fonts/wotfard/Wotfard-Thin.ttf',
+			weight: '100',
+			style: 'normal',
+		},
+		{
+			path: './fonts/wotfard/Wotfard-Regular.ttf',
+			weight: '400',
+			style: 'normal',
+		},
+		{
+			path: './fonts/wotfard/Wotfard-Medium.ttf',
+			weight: '500',
+			style: 'normal',
+		},
+		{
+			path: './fonts/wotfard/Wotfard-SemiBold.ttf',
+			weight: '600',
+			style: 'normal',
+		},
+		{
+			path: './fonts/wotfard/Wotfard-Bold.ttf',
+			weight: '700',
+			style: 'normal',
+		},
+	],
+	variable: '--font-wotfard',
 	display: 'swap',
 })
 
@@ -167,7 +200,8 @@ export default function RootLayout({children}: RootLayoutProps) {
 				'text-foreground',
 				'scroll-smooth',
 				'antialiased',
-				geist.variable,
+				plusJakartaSans.variable,
+				wotfard.variable,
 				geistMono.variable,
 				'font-sans',
 			)}

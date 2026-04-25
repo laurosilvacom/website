@@ -1,8 +1,9 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import Container from '@/shared/components/container'
 import {ArrowLeft} from 'lucide-react'
 import {generatePageMetadata} from '@/shared/lib/metadata'
+import {Avatar, AvatarFallback, AvatarImage} from '@/shared/ui/avatar'
+import {Button} from '@/shared/ui/button'
 
 export const metadata = generatePageMetadata(
 	'Testimonials',
@@ -118,20 +119,15 @@ function TestimonialCard({
 }) {
 	return (
 		<div className="flex gap-3 py-4">
-			<div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full">
-				<Image
-					src={testimonial.image}
-					alt={testimonial.name}
-					fill
-					sizes="32px"
-					className="object-cover"
-				/>
-			</div>
+			<Avatar className="size-8 shrink-0">
+				<AvatarImage src={testimonial.image} alt={testimonial.name} />
+				<AvatarFallback>{testimonial.name.charAt(0).toUpperCase()}</AvatarFallback>
+			</Avatar>
 			<div className="min-w-0">
-				<p className="text-foreground text-sm leading-relaxed">
+				<p className="type-body-sm text-foreground">
 					&ldquo;{testimonial.quote}&rdquo;
 				</p>
-				<p className="text-muted-foreground mt-2 text-xs">
+				<p className="type-meta mt-2">
 					<span className="text-foreground font-medium">{testimonial.name}</span>
 					{' · '}
 					{testimonial.role}
@@ -148,16 +144,16 @@ export default function TestimonialsPage() {
 			<section className="pt-28 pb-12 lg:pt-32 lg:pb-16">
 				<Container>
 					<div className="space-y-4">
-						<Link
-							href="/work"
-							className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-xs font-medium transition-colors">
-							<ArrowLeft className="h-3 w-3" />
-							All work
-						</Link>
-						<h1 className="text-2xl font-normal tracking-tight sm:text-3xl">
+						<Button asChild variant="link" size="sm" className="type-link-muted h-auto px-0">
+							<Link href="/work" className="inline-flex items-center gap-1.5">
+								<ArrowLeft className="h-3 w-3" />
+								All work
+							</Link>
+						</Button>
+						<h1 className="type-page-title">
 							Testimonials
 						</h1>
-						<p className="text-muted-foreground text-base leading-relaxed">
+						<p className="type-page-intro">
 							What clients and collaborators have said about working together.
 						</p>
 					</div>
@@ -167,10 +163,10 @@ export default function TestimonialsPage() {
 			{/* Education Testimonials */}
 			<section className="pb-16 lg:pb-20">
 				<Container>
-					<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">
+					<h2 className="type-section-label mb-6">
 						Developer Education & Training
 					</h2>
-					<p className="text-muted-foreground mb-6 text-xs">
+					<p className="type-meta mb-6">
 						Feedback from instructional design, content strategy, and developer training
 						engagements.
 					</p>
@@ -185,10 +181,10 @@ export default function TestimonialsPage() {
 			{/* Engineering Testimonials */}
 			<section className="pb-16 lg:pb-20">
 				<Container>
-					<h2 className="text-foreground text-xs font-medium uppercase tracking-widest mb-6">
+					<h2 className="type-section-label mb-6">
 						Full-Stack Engineering
 					</h2>
-					<p className="text-muted-foreground mb-6 text-xs">
+					<p className="type-meta mb-6">
 						Feedback from product development, consulting, and technical leadership
 						engagements.
 					</p>
@@ -203,20 +199,24 @@ export default function TestimonialsPage() {
 			{/* Contact */}
 			<section className="pb-16 lg:pb-20">
 				<Container>
-					<p className="text-muted-foreground text-sm">
-						<a
-							href="mailto:me@laurosilva.com"
-							className="text-foreground underline underline-offset-4 transition-opacity hover:opacity-70">
-							me@laurosilva.com
-						</a>
+					<p className="type-body-sm">
+						<Button
+							asChild
+							variant="link"
+							size="sm"
+							className="text-foreground h-auto px-0 transition-opacity hover:opacity-70">
+							<a href="mailto:me@laurosilva.com">me@laurosilva.com</a>
+						</Button>
 						{' · '}
-						<a
-							href="https://cal.com/laurosilvacom/chat"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="text-foreground underline underline-offset-4 transition-opacity hover:opacity-70">
-							Schedule a conversation
-						</a>
+						<Button
+							asChild
+							variant="link"
+							size="sm"
+							className="text-foreground h-auto px-0 transition-opacity hover:opacity-70">
+							<a href="https://cal.com/laurosilvacom/chat" target="_blank" rel="noopener noreferrer">
+								Schedule a conversation
+							</a>
+						</Button>
 					</p>
 				</Container>
 			</section>
